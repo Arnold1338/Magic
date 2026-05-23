@@ -1,0 +1,70 @@
+package hellfirepvp.observerlib.common.util;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.server.ServerLifecycleHooks;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class RegistryUtil {
+    private final RegistryAccess registries;
+
+    private RegistryUtil(RegistryAccess registries) {
+        this.registries = registries;
+    }
+
+    public static RegistryUtil server() {
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        if (server == null) return new RegistryUtil(RegistryAccess.EMPTY);
+        return new RegistryUtil(server.registryAccess());
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static RegistryUtil client() {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.getConnection() == null) return new RegistryUtil(RegistryAccess.EMPTY);
+        return new RegistryUtil(mc.getConnection().registryAccess());
+    }
+
+    @Nullable
+    public <V> ResourceKey<V> getRegistryKey(@Nonnull ResourceKey<Registry<V>> registry, V value) {
+        return this.registries.registryOrThrow(registry).getResourceKey(value).orElse(null);
+    }
+
+    @Nullable
+    public <V> ResourceLocation getKey(@Nonnull ResourceKey<Registry<V>> registry, V value) {
+        return this.registries.registryOrThrow(registry).getKey(value);
+    }
+
+    @Nullable
+    public <V> V getValue(@Nonnull ResourceKey<Registry<V>> registry, ResourceKey<V> key) {
+        return this.registries.registryOrThrow(registry).get(key);
+    }
+
+    @Nullable
+    public <V> V getValue(@Nonnull ResourceKey<Registry<V>> registry, ResourceLocation key) {
+        return this.registries.registryOrThrow(registry).get(key);
+    }
+
+    public <V> Collection<Map.Entry<ResourceKey<V>, V>> getEntries(@Nonnull ResourceKey<Registry<V>> registry) {
+        return this.registries.registryOrThrow(registry).entrySet();
+    }
+
+    public <V> Collection<ResourceLocation> getKeys(@Nonnull ResourceKey<Registry<V>> registry) {
+        return this.registries.registryOrThrow(registry).keySet();
+    }
+
+    public <V> Collection<V> getValues(@Nonnull ResourceKey<Registry<V>> registry) {
+        return getEntries(registry).stream().map(Map.Entry::getValue).collect(Collectors.toList());
+    }
+}
