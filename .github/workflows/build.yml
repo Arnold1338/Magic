@@ -26,13 +26,38 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build --no-daemon --stacktrace
-        env:
-          GRADLE_OPTS: "-Xmx4g"
+        id: build
+        run: |
+          set -o pipefail
+          ./gradlew build --no-daemon --stacktrace 2>&1 | tee build_output.txt
+          echo "BUILD_EXIT=${PIPESTATUS[0]}" >> $GITHUB_ENV
+        continue-on-error: true
+
+      - name: Write build summary
+        if: always()
+        run: |
+          echo "## Build Output" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          tail -300 build_output.txt >> $GITHUB_STEP_SUMMARY || echo "No output" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Commit build log
+        if: always()
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          cp build_output.txt build_log.txt || echo "no output" > build_log.txt
+          git add build_log.txt
+          git commit -m "Build log [skip ci]" || true
+          git push origin main || true
 
       - name: Upload built jar
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: observerlib-1.20.1
           path: build/libs/*.jar
-          if-no-files-found: error
+
+      - name: Fail if build failed
+        if: env.BUILD_EXIT != '0'
+        run: exit 1
