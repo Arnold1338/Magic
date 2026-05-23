@@ -26,19 +26,31 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build --no-daemon --stacktrace 2>&1 | tee build_output.txt; exit ${PIPESTATUS[0]}
+        id: gradle_build
+        run: |
+          ./gradlew build --no-daemon --stacktrace 2>&1 | tee build_output.txt
+          echo "exit_code=${PIPESTATUS[0]}" >> $GITHUB_OUTPUT
+        continue-on-error: true
 
-      - name: Upload build log (always)
+      - name: Post build log to Gist
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-log
-          path: build_output.txt
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          LOG=$(tail -c 90000 build_output.txt | python3 -c "import sys,json; print(json.dumps(sys.stdin.read()))")
+          curl -s -X POST https://api.github.com/gists \
+            -H "Authorization: token $GH_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"public\":true,\"description\":\"ObserverLib build log\",\"files\":{\"build_log.txt\":{\"content\":$LOG}}}" \
+            | python3 -c "import sys,json; d=json.load(sys.stdin); print('GIST URL:', d.get('html_url','ERROR: '+str(d.get('message',''))))"
 
       - name: Upload built jar
-        if: success()
+        if: steps.gradle_build.outputs.exit_code == '0'
         uses: actions/upload-artifact@v4
         with:
           name: observerlib-1.20.1
-          path: build/libs/*-1.20.1-*.jar
-          if-no-files-found: warn
+          path: build/libs/*.jar
+
+      - name: Fail if build failed
+        if: steps.gradle_build.outputs.exit_code != '0'
+        run: exit 1
