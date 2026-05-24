@@ -1,28 +1,86 @@
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/effect/EffectProperties.java:64: error: cannot find symbol
-    public Vector3i getPosition() {
-           ^
-  symbol:   class Vector3i
-  location: class EffectProperties<T>
-  where T is a type-variable:
-    T extends EntityVisualFX declared in class EffectProperties
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/effect/handler/EffectHelper.java:51: error: cannot find symbol
-        public Builder<T> setPosition(@Nonnull final Vector3i position) {
-                                                     ^
-  symbol:   class Vector3i
-  location: class Builder<T>
-  where T is a type-variable:
-    T extends EntityVisualFX declared in class Builder
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/effect/function/VFXAlphaFunction.java:3: error: package net.minecraft.util.math does not exist
-import net.minecraft.util.math.MathHelper;
-                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/effect/function/VFXScaleFunction.java:4: error: package net.minecraft.util.math does not exist
-import net.minecraft.util.math.MathHelper;
-                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/effect/EntityVisualFX.java:97: error: cannot find symbol
-    public abstract <T extends EntityVisualFX> void render(final BatchRenderContext<T> p0, final PoseStack p1, final IVertexBuilder p2, final float p3);
-                                                                                                                     ^
-  symbol:   class IVertexBuilder
-  location: class EntityVisualFX
+            ^
+  symbol:   class ItemStack
+  location: class ScreenJournalPerkTree
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:119: error: cannot find symbol
+    private ItemStack foundSeals;
+            ^
+  symbol:   class ItemStack
+  location: class ScreenJournalPerkTree
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:30: error: cannot find symbol
+    default boolean hasItem(final Player player, final LogicalSide side) {
+                                  ^
+  symbol:   class Player
+  location: interface GemSocketPerk
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:34: error: cannot find symbol
+    default boolean hasItem(final Player player, final LogicalSide side, @Nullable final CompoundTag data) {
+                                  ^
+  symbol:   class Player
+  location: interface GemSocketPerk
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:38: error: cannot find symbol
+    default ItemStack getContainedItem(final Player player, final LogicalSide side) {
+                                             ^
+  symbol:   class Player
+  location: interface GemSocketPerk
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:38: error: cannot find symbol
+    default ItemStack getContainedItem(final Player player, final LogicalSide side) {
+            ^
+  symbol:   class ItemStack
+  location: interface GemSocketPerk
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:42: error: cannot find symbol
+    default ItemStack getContainedItem(final Player player, final LogicalSide side, @Nullable final CompoundTag dataOvr) {
+                                             ^
+  symbol:   class Player
+  location: interface GemSocketPerk
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:42: error: cannot find symbol
+    default ItemStack getContainedItem(final Player player, final LogicalSide side, @Nullable final CompoundTag dataOvr) {
+            ^
+  symbol:   class ItemStack
+  location: interface GemSocketPerk
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:54: error: cannot find symbol
+    default boolean setContainedItem(final Player player, final LogicalSide side, final ItemStack stack) {
+                                           ^
+  symbol:   class Player
+  location: interface GemSocketPerk
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:54: error: cannot find symbol
+    default boolean setContainedItem(final Player player, final LogicalSide side, final ItemStack stack) {
+                                                                                        ^
+  symbol:   class ItemStack
+  location: interface GemSocketPerk
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:58: error: cannot find symbol
+    default <T extends AbstractPerk & GemSocketPerk> boolean setContainedItem(final Player player, final LogicalSide side, @Nullable final CompoundTag dataOvr, final ItemStack stack) {
+                                                                                    ^
+  symbol:   class Player
+  location: interface GemSocketPerk
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:58: error: cannot find symbol
+    default <T extends AbstractPerk & GemSocketPerk> boolean setContainedItem(final Player player, final LogicalSide side, @Nullable final CompoundTag dataOvr, final ItemStack stack) {
+                                                                                                                                                                      ^
+  symbol:   class ItemStack
+  location: interface GemSocketPerk
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:95: error: cannot find symbol
+    default void dropItemToPlayer(final Player player) {
+                                        ^
+  symbol:   class Player
+  location: interface GemSocketPerk
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:99: error: cannot find symbol
+    default void dropItemToPlayer(final Player player, @Nullable CompoundTag data) {
+                                        ^
+  symbol:   class Player
+  location: interface GemSocketPerk
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:125: error: cannot find symbol
+    default <T extends AbstractPerk & GemSocketPerk> void addTooltipInfo(final Collection<IFormattableTextComponent> tooltip) {
+                                                                                          ^
+  symbol:   class IFormattableTextComponent
+  location: interface GemSocketPerk
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/util/ScreenTextEntry.java:14: error: cannot find symbol
+    private final TextInputUtil inputUtil;
+                  ^
+  symbol:   class TextInputUtil
+  location: class ScreenTextEntry
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/bookmark/BookmarkProvider.java:6: error: cannot find symbol
+import net.minecraft.network.chat.IFormattableTextComponent;
+                                 ^
+  symbol:   class IFormattableTextComponent
+  location: package net.minecraft.network.chat
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/IConstellation.java:128: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
         return ConstellationRegistry.getConstellation(new ResourceLocation(compound.getString(key)));
                                                       ^
@@ -331,7 +389,7 @@ Note: Recompile with -Xlint:unchecked for details.
 Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
 100 errors
 100 warnings
-only showing the first 100 errors, of 15880 total; use -Xmaxerrs if you would like to see more
+only showing the first 100 errors, of 23017 total; use -Xmaxerrs if you would like to see more
 
 > Task :compileJava FAILED
 
@@ -376,35 +434,6 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':compile
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:463)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:380)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:116)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:138)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:123)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:51)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:177)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:44)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:177)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:264)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:80)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Compilation failed; see the compiler error output for details.
@@ -557,35 +586,6 @@ Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Com
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:463)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:380)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:116)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:138)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:123)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:51)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:177)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:44)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:177)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:264)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:80)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 
@@ -596,5 +596,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 2m 37s
+BUILD FAILED in 2m 44s
 4 actionable tasks: 4 executed
