@@ -37,23 +37,19 @@ jobs:
           echo "exit_code=${PIPESTATUS[0]}" >> $GITHUB_OUTPUT
         continue-on-error: true
 
-      - name: Commit build log to repo
+      - name: Commit build log and jar to repo
         if: always()
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
-          # Keep only last 500 lines to stay under file size limits
           tail -500 build_output.txt > build_log.txt
-          git add build_log.txt
-          git diff --cached --quiet || git commit -m "ci: build log [skip ci]"
+          # Copy built jar if it exists
+          mkdir -p output
+          find build/libs -name "*.jar" -not -name "*-sources*" -not -name "*-javadoc*" \
+            -exec cp {} output/ \; 2>/dev/null || true
+          git add build_log.txt output/
+          git diff --cached --quiet || git commit -m "ci: build output [skip ci]"
           git push origin main
-
-      - name: Upload built jar
-        if: steps.gradle_build.outputs.exit_code == '0'
-        uses: actions/upload-artifact@v4
-        with:
-          name: observerlib-1.20.1
-          path: build/libs/*.jar
 
       - name: Fail if build failed
         if: steps.gradle_build.outputs.exit_code != '0'
