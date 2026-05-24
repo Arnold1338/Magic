@@ -1,0 +1,48 @@
+package hellfirepvp.astralsorcery.common.tile.network;
+
+import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissionNode;
+import hellfirepvp.astralsorcery.common.tile.base.network.TileReceiverBase;
+import hellfirepvp.astralsorcery.common.starlight.transmission.registry.TransmissionProvider;
+import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
+import net.minecraft.world.level.Level;
+import net.minecraft.core.BlockPos;
+import hellfirepvp.astralsorcery.common.tile.TileTreeBeacon;
+import hellfirepvp.astralsorcery.common.starlight.transmission.base.SimpleTransmissionReceiver;
+
+public class StarlightReceiverTreeBeacon extends SimpleTransmissionReceiver<TileTreeBeacon>
+{
+    public StarlightReceiverTreeBeacon(final BlockPos thisPos) {
+        super(thisPos);
+    }
+    
+    @Override
+    public void onStarlightReceive(final World world, final IWeakConstellation type, final double amount) {
+        final TileTreeBeacon well = this.getTileAtPos(world);
+        if (well != null) {
+            well.receiveStarlight(amount, type);
+        }
+    }
+    
+    @Override
+    public boolean syncTileData(final World world, final TileTreeBeacon tile) {
+        return true;
+    }
+    
+    @Override
+    public Class<TileTreeBeacon> getTileClass() {
+        return TileTreeBeacon.class;
+    }
+    
+    @Override
+    public TransmissionProvider getProvider() {
+        return new Provider();
+    }
+    
+    public static class Provider extends TransmissionProvider
+    {
+        @Override
+        public IPrismTransmissionNode get() {
+            return new StarlightReceiverTreeBeacon(null);
+        }
+    }
+}

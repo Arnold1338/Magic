@@ -1,0 +1,315 @@
+package hellfirepvp.astralsorcery.common.item.wand;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.util.text.IFormattableTextComponent;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.nbt.CompoundTag;
+import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
+import javax.annotation.Nonnull;
+import java.util.Random;
+import com.google.common.collect.Iterables;
+import java.util.Collections;
+import com.google.common.collect.Lists;
+import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
+import hellfirepvp.astralsorcery.common.data.config.entry.WandsConfig;
+import net.minecraft.world.level.BlockGetter;
+import java.util.Collection;
+import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
+import com.google.common.collect.Maps;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import java.util.Iterator;
+import net.minecraft.core.Vec3i;
+import hellfirepvp.astralsorcery.common.network.PacketChannel;
+import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
+import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
+import net.minecraft.core.Direction;
+import net.minecraftforge.fml.LogicalSide;
+import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
+import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import hellfirepvp.astralsorcery.common.util.MapStream;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.item.ItemUseContext;
+import net.minecraft.util.Tuple;
+import hellfirepvp.astralsorcery.client.util.RenderingOverlayUtils;
+import hellfirepvp.astralsorcery.common.util.data.Vector3;
+import java.util.Map;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import hellfirepvp.astralsorcery.client.util.RenderingUtils;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import hellfirepvp.astralsorcery.client.util.Blending;
+import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
+import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
+import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
+import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.Minecraft;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.world.phys.BlockHitResult;
+import hellfirepvp.astralsorcery.common.util.MiscUtils;
+import net.minecraft.util.math.RayTraceContext;
+import com.google.common.collect.Sets;
+import java.util.Set;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.ToolAction;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.network.chat.Component;
+import java.util.List;
+import javax.annotation.Nullable;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
+import hellfirepvp.astralsorcery.common.CommonProxy;
+import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeConsumer;
+import hellfirepvp.astralsorcery.common.item.base.client.ItemHeldRender;
+import hellfirepvp.astralsorcery.common.item.base.client.ItemOverlayRender;
+import hellfirepvp.astralsorcery.common.item.base.ItemBlockStorage;
+import net.minecraft.world.item.Item;
+
+public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOverlayRender, ItemHeldRender, AlignmentChargeConsumer
+{
+    private static final float COST_PER_EXCHANGE = 5.0f;
+    
+    public ItemExchangeWand() {
+        super(new Item.Properties().func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+    }
+    
+    @OnlyIn(Dist.CLIENT)
+    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final ITooltipFlag flagIn) {
+        tooltip.add((Component)getSizeMode(stack).getDisplay().func_240699_a_(ChatFormatting.GOLD));
+    }
+    
+    public float func_150893_a(final ItemStack stack, final BlockState state) {
+        return 0.0f;
+    }
+    
+    public int getHarvestLevel(final ItemStack stack, final ToolType tool, @Nullable final Player player, @Nullable final BlockState blockState) {
+        return 3;
+    }
+    
+    public Set<ToolType> getToolTypes(final ItemStack stack) {
+        return Sets.newHashSet((Object[])new ToolType[] { ToolType.PICKAXE, ToolType.AXE, ToolType.SHOVEL });
+    }
+    
+    public boolean func_150897_b(final BlockState blockIn) {
+        return true;
+    }
+    
+    public boolean canHarvestBlock(final ItemStack stack, final BlockState state) {
+        return true;
+    }
+    
+    public float getAlignmentChargeCost(final Player player, final ItemStack stack) {
+        final BlockRayTraceResult hitResult = MiscUtils.rayTraceLookBlock(player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
+        if (hitResult == null) {
+            return 0.0f;
+        }
+        return this.getPlaceStates(player, player.func_130014_f_(), hitResult.func_216350_a(), stack).size() * 5.0f;
+    }
+    
+    @OnlyIn(Dist.CLIENT)
+    public boolean renderInHand(final ItemStack stack, final PoseStack renderStack, final float pTicks) {
+        final BlockRayTraceResult hitResult = MiscUtils.rayTraceLookBlock((Player)Minecraft.func_71410_x().field_71439_g, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
+        if (hitResult == null) {
+            return true;
+        }
+        final World world = (World)Minecraft.func_71410_x().field_71441_e;
+        final BlockPos at = hitResult.func_216350_a();
+        final Map<BlockPos, BlockState> placeStates = this.getPlaceStates((Player)Minecraft.func_71410_x().field_71439_g, world, at, stack);
+        if (placeStates.isEmpty()) {
+            return true;
+        }
+        RenderSystem.enableTexture();
+        BlockAtlasTexture.getInstance().bindTexture();
+        final int[] fullBright = { 15, 15 };
+        final BufferDecoratorBuilder decorator = BufferDecoratorBuilder.withLightmap((skyLight, blockLight) -> fullBright);
+        final Vector3 offset = RenderingVectorUtils.getStandardTranslationRemovalVector(pTicks);
+        RenderSystem.enableBlend();
+        Blending.ADDITIVEDARK.apply();
+        RenderSystem.disableDepthTest();
+        RenderSystem.disableAlphaTest();
+        RenderingUtils.draw(7, DefaultVertexFormats.field_176600_a, buf -> placeStates.forEach((pos, state) -> {
+            renderStack.func_227860_a_();
+            renderStack.func_227861_a_(pos.getX() - offset.getX() + 0.10000000149011612, pos.getY() - offset.getY() + 0.10000000149011612, pos.getZ() - offset.getZ() + 0.10000000149011612);
+            renderStack.func_227862_a_(0.8f, 0.8f, 0.8f);
+            RenderingUtils.renderSimpleBlockModel(state, renderStack, (IVertexBuilder)decorator.decorate(buf), pos, null, false);
+            renderStack.func_227865_b_();
+        }));
+        RenderSystem.enableAlphaTest();
+        RenderSystem.enableDepthTest();
+        Blending.DEFAULT.apply();
+        RenderSystem.disableBlend();
+        return true;
+    }
+    
+    @OnlyIn(Dist.CLIENT)
+    public boolean renderOverlay(final PoseStack renderStack, final ItemStack stack, final float pTicks) {
+        final List<Tuple<ItemStack, Integer>> foundStacks = ItemBlockStorage.getInventoryMatchingItemStacks((Player)Minecraft.func_71410_x().field_71439_g, stack);
+        RenderingOverlayUtils.renderDefaultItemDisplay(renderStack, foundStacks);
+        return true;
+    }
+    
+    public InteractionResult func_195939_a(final ItemUseContext context) {
+        final World world = context.func_195991_k();
+        final ItemStack stack = context.func_195996_i();
+        final Player player = context.func_195999_j();
+        final BlockPos pos = context.func_195995_a();
+        if (world.func_201670_d() || !(player instanceof ServerPlayer) || stack.isEmpty()) {
+            return InteractionResult.SUCCESS;
+        }
+        if (player.func_225608_bj_()) {
+            ItemBlockStorage.storeBlockState(stack, world, pos);
+            return InteractionResult.SUCCESS;
+        }
+        final Map<BlockPos, BlockState> placeStates = this.getPlaceStates(player, world, pos, stack);
+        final Map<BlockState, Tuple<ItemStack, Integer>> availableStacks = MapStream.of(ItemBlockStorage.getInventoryMatching(player, stack)).filter(tpl -> placeStates.containsValue(tpl.func_76341_a())).collect(Collectors.toMap((Function<? super net.minecraft.util.Tuple<BlockState, Tuple<ItemStack, Integer>>, ? extends BlockState>)Tuple::func_76341_a, (Function<? super net.minecraft.util.Tuple<BlockState, Tuple<ItemStack, Integer>>, ? extends Tuple<ItemStack, Integer>>)Tuple::func_76340_b));
+        for (final BlockPos placePos : placeStates.keySet()) {
+            final BlockState stateToPlace = placeStates.get(placePos);
+            final Tuple<ItemStack, Integer> availableStack = availableStacks.get(stateToPlace);
+            if (availableStack == null) {
+                continue;
+            }
+            final ItemStack extractable = ItemUtils.copyStackWithSize((ItemStack)availableStack.func_76341_a(), 1);
+            boolean canExtract = player.func_184812_l_();
+            if (!canExtract && ItemUtils.consumeFromPlayerInventory(player, stack, extractable, true)) {
+                canExtract = true;
+            }
+            if (!canExtract) {
+                continue;
+            }
+            final BlockState prevState = world.getBlockState(placePos);
+            if ((!player.func_184812_l_() && !ItemUtils.consumeFromPlayerInventory(player, stack, extractable, true)) || !AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, 5.0f, false) || !((ServerPlayer)player).field_71134_c.func_180237_b(placePos) || !MiscUtils.canPlayerPlaceBlockPos(player, stateToPlace, placePos, Direction.UP) || (!player.func_184812_l_() && !ItemUtils.consumeFromPlayerInventory(player, stack, extractable, false)) || !world.func_175656_a(placePos, stateToPlace)) {
+                continue;
+            }
+            final PktPlayEffect ev = new PktPlayEffect(PktPlayEffect.Type.BLOCK_EFFECT).addData(buf -> {
+                ByteBufUtils.writePos(buf, placePos);
+                ByteBufUtils.writeBlockState(buf, prevState);
+                return;
+            });
+            PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vector3i)placePos, 32.0));
+        }
+        return InteractionResult.SUCCESS;
+    }
+    
+    public InteractionResult<ItemStack> func_77659_a(final World worldIn, final Player playerIn, final Hand handIn) {
+        final ItemStack held = playerIn.func_184586_b(handIn);
+        if (playerIn.func_225608_bj_()) {
+            final SizeMode nextMode = getSizeMode(held).next();
+            setSizeMode(held, nextMode);
+            playerIn.func_146105_b((Component)nextMode.getDisplay(), true);
+        }
+        return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)held);
+    }
+    
+    @Nonnull
+    private Map<BlockPos, BlockState> getPlaceStates(final Player placer, final World world, final BlockPos origin, final ItemStack refStack) {
+        final Map<BlockState, Tuple<ItemStack, Integer>> tplStates = ItemBlockStorage.getInventoryMatching(placer, refStack);
+        final BlockState atState = world.getBlockState(origin);
+        final SizeMode mode = getSizeMode(refStack);
+        final Map<BlockPos, BlockState> placeables = Maps.newHashMap();
+        final BlockState match = BlockUtils.getMatchingState(tplStates.keySet(), atState);
+        if (match != null && tplStates.size() <= 1) {
+            return placeables;
+        }
+        final float hardness = atState.func_185887_b((IBlockReader)world, origin);
+        final int cfgHardness = (int)WandsConfig.CONFIG.exchangeWandMaxHardness.get();
+        if (hardness == -1.0f || (cfgHardness != -1 && hardness > cfgHardness)) {
+            return placeables;
+        }
+        int totalItems = 0;
+        if (placer.func_184812_l_()) {
+            totalItems = Integer.MAX_VALUE;
+        }
+        else {
+            for (final Tuple<ItemStack, Integer> amountTpl : tplStates.values()) {
+                totalItems += (int)(((int)amountTpl.func_76340_b() == -1) ? 500000 : amountTpl.func_76340_b());
+            }
+        }
+        final List<BlockPos> foundPositions = BlockDiscoverer.discoverBlocksWithSameStateAround(world, origin, true, mode.getSearchRadius(), totalItems, false);
+        if (foundPositions.isEmpty()) {
+            return placeables;
+        }
+        final Map<BlockState, Integer> placeAmounts = Maps.newHashMap();
+        for (final BlockState state : tplStates.keySet()) {
+            placeAmounts.put(state, placer.func_184812_l_() ? Integer.valueOf(Integer.MAX_VALUE) : ((Integer)tplStates.get(state).func_76340_b()));
+        }
+        final List<BlockState> placeableStates = Lists.newArrayList((Iterable)placeAmounts.keySet());
+        final Random rand = ItemBlockStorage.getPreviewRandomFromWorld(world);
+        for (final BlockPos pos : foundPositions) {
+            Collections.shuffle(placeableStates, rand);
+            final BlockState toPlace = (BlockState)Iterables.getFirst((Iterable)placeableStates, (Object)null);
+            if (toPlace == null) {
+                continue;
+            }
+            if (!placer.func_184812_l_()) {
+                int count = placeAmounts.get(toPlace);
+                if (--count <= 0) {
+                    placeAmounts.remove(toPlace);
+                    placeableStates.remove(toPlace);
+                }
+                else {
+                    placeAmounts.put(toPlace, count);
+                }
+            }
+            placeables.put(pos, toPlace);
+        }
+        return placeables;
+    }
+    
+    public static void setSizeMode(@Nonnull final ItemStack stack, @Nonnull final SizeMode mode) {
+        if (stack.isEmpty() || !(stack.getItem() instanceof ItemExchangeWand)) {
+            return;
+        }
+        final CompoundTag nbt = NBTHelper.getPersistentData(stack);
+        nbt.putInt("sizeMode", mode.ordinal());
+    }
+    
+    @Nonnull
+    public static SizeMode getSizeMode(@Nonnull final ItemStack stack) {
+        if (stack.isEmpty() || !(stack.getItem() instanceof ItemExchangeWand)) {
+            return SizeMode.RANGE_2;
+        }
+        final CompoundTag nbt = NBTHelper.getPersistentData(stack);
+        return MiscUtils.getEnumEntry(SizeMode.class, nbt.getInt("sizeMode"));
+    }
+    
+    public enum SizeMode
+    {
+        RANGE_2(2), 
+        RANGE_3(3), 
+        RANGE_4(4), 
+        RANGE_5(5);
+        
+        private final int searchRadius;
+        
+        private SizeMode(final int searchRadius) {
+            this.searchRadius = searchRadius;
+        }
+        
+        public int getSearchRadius() {
+            return this.searchRadius;
+        }
+        
+        public IFormattableTextComponent getName() {
+            return (IFormattableTextComponent)new Component("astralsorcery.misc.exchange.size." + this.searchRadius);
+        }
+        
+        public IFormattableTextComponent getDisplay() {
+            return (IFormattableTextComponent)new Component("astralsorcery.misc.exchange.size", new Object[] { this.getName() });
+        }
+        
+        @Nonnull
+        private SizeMode next() {
+            final int next = (this.ordinal() + 1) % values().length;
+            return MiscUtils.getEnumEntry(SizeMode.class, next);
+        }
+    }
+}

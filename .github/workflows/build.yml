@@ -1,8 +1,8 @@
-name: Build ObserverLib 1.20.1 Port
+name: Build AstralSorcery 1.20.1 Port
 
 on:
   push:
-    branches: [ main ]
+    branches: [ astralsorcery ]
   workflow_dispatch:
 
 permissions:
@@ -42,14 +42,13 @@ jobs:
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
-          tail -500 build_output.txt > build_log.txt
-          # Copy built jar if it exists
+          tail -600 build_output.txt > build_log.txt
           mkdir -p output
           find build/libs -name "*.jar" -not -name "*-sources*" -not -name "*-javadoc*" \
             -exec cp {} output/ \; 2>/dev/null || true
           git add build_log.txt output/
           git diff --cached --quiet || git commit -m "ci: build output [skip ci]"
-          git push origin main
+          git push origin astralsorcery
 
       - name: Fail if build failed
         if: steps.gradle_build.outputs.exit_code != '0'

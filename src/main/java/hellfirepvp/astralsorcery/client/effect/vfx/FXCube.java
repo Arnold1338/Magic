@@ -1,0 +1,121 @@
+package hellfirepvp.astralsorcery.client.effect.vfx;
+
+import java.awt.Color;
+import net.minecraft.util.Tuple;
+import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
+import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
+import hellfirepvp.astralsorcery.client.util.LightmapUtil;
+import com.mojang.math.Vector3f;
+import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.PoseStack;
+import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
+import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
+import hellfirepvp.astralsorcery.common.util.data.Vector3;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import hellfirepvp.astralsorcery.client.effect.EntityDynamicFX;
+import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
+
+public class FXCube extends EntityVisualFX implements EntityDynamicFX
+{
+    private TextureAtlasSprite tas;
+    private Vector3 rotationDegreeAxis;
+    private Vector3 prevRotationDegreeAxis;
+    private Vector3 rotationChange;
+    private float tumbleIntensityMultiplier;
+    private float textureSubSizePercentage;
+    
+    public FXCube(final Vector3 pos) {
+        super(pos);
+        this.tas = null;
+        this.rotationDegreeAxis = new Vector3();
+        this.prevRotationDegreeAxis = new Vector3();
+        this.rotationChange = new Vector3();
+        this.tumbleIntensityMultiplier = 1.0f;
+        this.textureSubSizePercentage = 1.0f;
+    }
+    
+    public FXCube setTextureAtlasSprite(final TextureAtlasSprite tas) {
+        this.tas = tas;
+        return this;
+    }
+    
+    public FXCube setTextureSubSizePercentage(final float textureSubSizePercentage) {
+        this.textureSubSizePercentage = textureSubSizePercentage;
+        return this;
+    }
+    
+    public FXCube setTumbleIntensityMultiplier(final float tumbleIntensityMultiplier) {
+        this.tumbleIntensityMultiplier = tumbleIntensityMultiplier;
+        return this;
+    }
+    
+    public FXCube tumble() {
+        this.rotationDegreeAxis = Vector3.positiveYRandom().multiply(360);
+        this.rotationChange = Vector3.random().multiply(12);
+        return this;
+    }
+    
+    public Vector3 getInterpolatedRotation(final float pTicks) {
+        return new Vector3(RenderingVectorUtils.interpolate(this.prevRotationDegreeAxis.getX(), this.rotationDegreeAxis.getX(), pTicks), RenderingVectorUtils.interpolate(this.prevRotationDegreeAxis.getY(), this.rotationDegreeAxis.getY(), pTicks), RenderingVectorUtils.interpolate(this.prevRotationDegreeAxis.getZ(), this.rotationDegreeAxis.getZ(), pTicks));
+    }
+    
+    @Override
+    public void tick() {
+        super.tick();
+        if (this.tumbleIntensityMultiplier > 0.0f && this.rotationChange.lengthSquared() > 0.0) {
+            final Vector3 degAxis = this.rotationDegreeAxis.clone();
+            final Vector3 modify = this.rotationChange.clone().multiply(this.tumbleIntensityMultiplier);
+            this.prevRotationDegreeAxis = this.rotationDegreeAxis.clone();
+            this.rotationDegreeAxis.add(modify);
+            final Vector3 newDegAxis = this.rotationDegreeAxis;
+            newDegAxis.setX(newDegAxis.getX() % 360.0).setY(newDegAxis.getY() % 360.0).setZ(newDegAxis.getZ() % 360.0);
+            if (!degAxis.add(modify).equals(newDegAxis)) {
+                this.prevRotationDegreeAxis = this.rotationDegreeAxis.clone().subtract(modify);
+            }
+        }
+        else {
+            this.prevRotationDegreeAxis = this.rotationDegreeAxis.clone();
+        }
+    }
+    
+    @Override
+    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final IVertexBuilder vb, final float pTicks) {
+    }
+    
+    @Override
+    public <T extends EntityVisualFX & EntityDynamicFX> void renderNow(final BatchRenderContext<T> ctx, final PoseStack renderStack, final IDrawRenderTypeBuffer drawBuffer, final float pTicks) {
+        float u;
+        float v;
+        float uLength;
+        float vLength;
+        if (this.tas != null) {
+            u = this.tas.func_94209_e();
+            v = this.tas.func_94206_g();
+            uLength = (this.tas.func_94212_f() - u) * this.textureSubSizePercentage;
+            vLength = (this.tas.func_94210_h() - v) * this.textureSubSizePercentage;
+        }
+        else {
+            final SpriteSheetResource ssr = ctx.getSprite();
+            final Tuple<Float, Float> uv = ssr.getUVOffset(this.getAge());
+            u = (float)uv.func_76341_a();
+            v = (float)uv.func_76340_b();
+            uLength = ssr.getULength() * this.textureSubSizePercentage;
+            vLength = ssr.getVLength() * this.textureSubSizePercentage;
+        }
+        final int alpha = this.getAlpha(pTicks);
+        final Color c = this.getColor(pTicks);
+        final Vector3 translateTo = this.getRenderPosition(pTicks).subtract(RenderingVectorUtils.getStandardTranslationRemovalVector(pTicks));
+        final Vector3 rotation = this.getInterpolatedRotation(pTicks);
+        final float scale = this.getScale(pTicks);
+        renderStack.func_227860_a_();
+        renderStack.func_227861_a_(translateTo.getX(), translateTo.getY(), translateTo.getZ());
+        renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_((float)rotation.getX()));
+        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_((float)rotation.getY()));
+        renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_((float)rotation.getZ()));
+        renderStack.func_227862_a_(scale, scale, scale);
+        final IVertexBuilder buf = drawBuffer.getBuffer(ctx.getRenderType());
+        RenderingDrawUtils.renderTexturedCubeCentralColorLighted(buf, renderStack, u, v, uLength, vLength, c.getRed(), c.getGreen(), c.getBlue(), alpha, LightmapUtil.getPackedFullbrightCoords());
+        renderStack.func_227865_b_();
+    }
+}

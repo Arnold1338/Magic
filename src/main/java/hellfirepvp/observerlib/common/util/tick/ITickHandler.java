@@ -1,9 +1,0 @@
-package hellfirepvp.observerlib.common.util.tick;
-import net.minecraftforge.event.TickEvent;
-import java.util.EnumSet;
-public interface ITickHandler {
-    void tick(TickEvent.Type type, Object... context);
-    EnumSet<TickEvent.Type> getHandledTypes();
-    boolean canFire(TickEvent.Phase phase);
-    String getName();
-}

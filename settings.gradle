@@ -5,5 +5,4 @@ pluginManagement {
         maven { url = 'https://maven.spongepowered.org/repository/maven-public/' }
     }
 }
-
-rootProject.name = 'observerlib'
+rootProject.name = 'astralsorcery'

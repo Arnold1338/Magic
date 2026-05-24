@@ -1,24 +1,37 @@
 modLoader="javafml"
 loaderVersion="[47,)"
-license="GNU Lesser General Public License v3.0"
-issueTrackerURL="https://github.com/HellFirePvP/ObserverLib/issues"
+license="All rights reserved"
+issueTrackerURL="https://github.com/HellFirePvP/AstralSorcery/issues"
 [[mods]]
-modId="observerlib"
+modId="astralsorcery"
 version="${file.jarVersion}"
-displayName="ObserverLib"
-displayURL="https://www.curseforge.com/minecraft/mc-mods/observerlib"
+displayName="Astral Sorcery"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/astral-sorcery"
 logoFile="logo.png"
-authors="HellFirePvP"
-description='''Cached world structure and change monitoring library.'''
-[[dependencies.observerlib]]
+credits="HellFirePvP (code), wiiv (models & textures), VulpTheHorseDog (models & textures)"
+authors="HellFirePvP, wiiv, VulpTheHorseDog"
+description='''Magic mod that draws power from stars and their constellations'''
+[[dependencies.astralsorcery]]
     modId="forge"
     mandatory=true
     versionRange="[47,)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.observerlib]]
+[[dependencies.astralsorcery]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.astralsorcery]]
+    modId="observerlib"
+    mandatory=true
+    versionRange="[1.20.1-1.6,)"
+    ordering="BEFORE"
+    side="BOTH"
+[[dependencies.astralsorcery]]
+    modId="curios"
+    mandatory=true
+    versionRange="[5.14,)"
     ordering="NONE"
     side="BOTH"
