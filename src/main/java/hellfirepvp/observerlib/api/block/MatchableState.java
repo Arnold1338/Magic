@@ -5,6 +5,7 @@ import hellfirepvp.observerlib.common.block.BlockAirRequirement;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -40,7 +41,10 @@ public interface MatchableState {
     @Nullable
     default BlockEntity createBlockEntity(BlockGetter blockReader, long tick) {
         BlockState s = getDescriptiveState(tick);
-        return s.hasBlockEntity() ? s.getBlock().newBlockEntity(BlockPos.ZERO, s) : null;
+        if (s.hasBlockEntity() && s.getBlock() instanceof EntityBlock eb) {
+            return eb.newBlockEntity(BlockPos.ZERO, s);
+        }
+        return null;
     }
 
     boolean matches(@Nullable BlockGetter reader, @Nonnull BlockPos absolutePosition, @Nonnull BlockState state);

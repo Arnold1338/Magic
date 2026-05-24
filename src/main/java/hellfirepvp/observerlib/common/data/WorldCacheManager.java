@@ -65,7 +65,7 @@ public class WorldCacheManager implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() { return EnumSet.of(TickEvent.Type.WORLD); }
+    public EnumSet<TickEvent.Type> getHandledTypes() { return EnumSet.of(TickEvent.Type.LEVEL); }
     @Override
     public boolean canFire(TickEvent.Phase phase) { return phase == TickEvent.Phase.END; }
     @Override

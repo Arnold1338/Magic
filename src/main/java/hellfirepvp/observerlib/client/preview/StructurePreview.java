@@ -17,13 +17,13 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -65,9 +65,8 @@ public class StructurePreview {
 
     private boolean isInRenderDistance(BlockPos position) {
         double distanceSq = Math.max(minimumDisplayDistanceSq,
-            new Vec3i(snapshot.getStructure().getMaximumOffset().getX() - snapshot.getStructure().getMinimumOffset().getX(),
-                snapshot.getStructure().getMaximumOffset().getY() - snapshot.getStructure().getMinimumOffset().getY(),
-                snapshot.getStructure().getMaximumOffset().getZ() - snapshot.getStructure().getMinimumOffset().getZ()).distSqr(Vec3i.ZERO));
+            (double)(snapshot.getStructure().getMaximumOffset().getX() - snapshot.getStructure().getMinimumOffset().getX())
+            * (snapshot.getStructure().getMaximumOffset().getZ() - snapshot.getStructure().getMinimumOffset().getZ()));
         distanceSq *= Math.max(1.0, displayDistanceMultiplier);
         return origin.distSqr(position) <= distanceSq;
     }
@@ -90,8 +89,7 @@ public class StructurePreview {
                     / (float) snapshot.getStructure().getContents().size();
                 bossInfo.setProgress(1.0f - percFinished);
             } else if (bossInfo != null) {
-                bossInfo.removeInfo();
-                bossInfo = null;
+                bossInfo.removeInfo(); bossInfo = null;
             }
         }
     }
@@ -102,7 +100,7 @@ public class StructurePreview {
         Optional<Integer> displaySlice = StructureUtil.getLowestMismatchingSlice(snapshot.getStructure(), renderWorld, origin);
         if (!displaySlice.isPresent()) return;
 
-        Holder<net.minecraft.world.level.biome.Biome> biome = renderWorld.getBiome(origin);
+        Holder<Biome> biome = renderWorld.getBiome(origin);
         StructureRenderWorld drawWorld = new StructureRenderWorld(snapshot.getStructure(), biome);
         drawWorld.pushContentFilter(pos -> pos.getY() == displaySlice.get());
 
@@ -145,7 +143,7 @@ public class StructurePreview {
 
             BlockEntity renderTile = expectedBlock.getB().createBlockEntity(drawWorld, snapshot.getSnapshotTick());
             ModelData modelData = renderTile != null
-                ? net.minecraftforge.client.extensions.common.IClientBlockExtensions.of(renderTile).getRenderData(renderTile)
+                ? renderTile != null ? renderTile.getModelData() : ModelData.EMPTY
                 : ModelData.EMPTY;
 
             poseStack.pushPose();
@@ -155,12 +153,6 @@ public class StructurePreview {
             if (!actual.isAir()) isMismatch[0] = true;
 
             drawWorld.pushContentFilter(pos -> pos.equals(expectedBlock.getA()));
-
-            if (!renderState.getFluidState().isEmpty()) {
-                RenderTypeDecorator fluidDecorated = RenderTypeDecorator.wrapSetup(RenderType.translucent(), transparentSetup, transparentClean);
-                VertexConsumer fluidBuf = decorator.decorate(buffers.getBuffer(fluidDecorated));
-                brd.renderBatched(renderState, BlockPos.ZERO, drawWorld, poseStack, fluidBuf, true, rand, modelData, fluidDecorated);
-            }
 
             RenderTypeDecorator decorated = RenderTypeDecorator.wrapSetup(RenderType.translucent(), transparentSetup, transparentClean);
             VertexConsumer buf = decorator.decorate(buffers.getBuffer(decorated));

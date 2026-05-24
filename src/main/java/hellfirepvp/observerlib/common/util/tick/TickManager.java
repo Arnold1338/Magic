@@ -1,5 +1,6 @@
 package hellfirepvp.observerlib.common.util.tick;
 
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import java.util.*;
@@ -14,7 +15,7 @@ public class TickManager {
     }
 
     public void attachListeners(IEventBus eventBus) {
-        eventBus.addListener(this::worldTick);
+        eventBus.addListener(this::levelTick);
         eventBus.addListener(this::serverTick);
         eventBus.addListener(this::playerTick);
         eventBus.addListener(this::renderTick);
@@ -33,9 +34,9 @@ public class TickManager {
         return removed;
     }
 
-    private void worldTick(TickEvent.LevelTickEvent event) {
-        for (ITickHandler handler : registeredTickHandlers.get(TickEvent.Type.WORLD)) {
-            if (handler.canFire(event.phase)) handler.tick(TickEvent.Type.WORLD, event.level);
+    private void levelTick(TickEvent.LevelTickEvent event) {
+        for (ITickHandler handler : registeredTickHandlers.get(TickEvent.Type.LEVEL)) {
+            if (handler.canFire(event.phase)) handler.tick(TickEvent.Type.LEVEL, event.level);
         }
     }
 

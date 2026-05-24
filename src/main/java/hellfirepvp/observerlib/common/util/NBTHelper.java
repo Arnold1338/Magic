@@ -1,15 +1,15 @@
 package hellfirepvp.observerlib.common.util;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.state.Property;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
@@ -30,9 +30,8 @@ public class NBTHelper {
         final ListTag properties = new ListTag();
         for (Property<?> property : state.getProperties()) {
             final CompoundTag propTag = new CompoundTag();
-            try {
-                propTag.putString("value", getName(property, state));
-            } catch (Exception exc) { continue; }
+            try { propTag.putString("value", getName(property, state)); }
+            catch (Exception exc) { continue; }
             propTag.putString("property", property.getName());
             properties.add(propTag);
         }
@@ -46,8 +45,10 @@ public class NBTHelper {
     }
 
     @Nullable
+    @SuppressWarnings("unchecked")
     public static <T extends Comparable<T>> BlockState getBlockStateFromTag(final CompoundTag cmp, final BlockState _default) {
-        final ResourceLocation key = new ResourceLocation(cmp.getString("registryName"));
+        final ResourceLocation key = ResourceLocation.tryParse(cmp.getString("registryName"));
+        if (key == null) return _default;
         final Block block = ForgeRegistries.BLOCKS.getValue(key);
         if (block == null || block == Blocks.AIR) return _default;
         BlockState state = block.defaultBlockState();
