@@ -50,8 +50,7 @@ public class AstralAdvancementProvider extends AdvancementProvider
         final Set<ResourceLocation> set = Sets.newHashSet();
         final Consumer<Advancement> registrar = advancement -> {
             if (!set.add(advancement.func_192067_g())) {
-                new IllegalStateException("Duplicate advancement " + advancement.func_192067_g());
-                throw;
+                throw new IllegalStateException("Duplicate advancement " + advancement.func_192067_g());
             }
             else {
                 final Path outPath = this.getPath(path, advancement);

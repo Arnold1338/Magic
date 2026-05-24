@@ -47,8 +47,7 @@ public class PreparedPerkTreeData
             }
             final PerkTreePoint<? extends AbstractPerk> offsetPoint = perk.getPoint();
             if (treeData.treePoints.contains(offsetPoint)) {
-                new IllegalArgumentException("Tried to register perk-point at already placed position: " + offsetPoint.getOffset().toString());
-                throw;
+                throw new IllegalArgumentException("Tried to register perk-point at already placed position: " + offsetPoint.getOffset().toString());
             }
             else {
                 treeData.treePoints.add((PerkTreePoint<AbstractPerk>)offsetPoint);

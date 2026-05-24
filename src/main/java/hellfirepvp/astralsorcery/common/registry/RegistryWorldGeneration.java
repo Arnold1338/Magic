@@ -112,8 +112,7 @@ public class RegistryWorldGeneration
                 final GenerationStage.Decoration stage = RegistryWorldGeneration.FEATURE_STAGE.get(feature);
                 if (stage == null) {
                     final ResourceLocation key = WorldGenRegistries.field_243653_e.func_230519_c_((Object)feature).map(RegistryKey::func_240901_a_).orElse(new ResourceLocation("not_registered"));
-                    new IllegalArgumentException("Unknown generation stage for feature " + key + "!");
-                    throw;
+                    throw new IllegalArgumentException("Unknown generation stage for feature " + key + "!");
                 }
                 else {
                     gen.func_242513_a(stage, feature);

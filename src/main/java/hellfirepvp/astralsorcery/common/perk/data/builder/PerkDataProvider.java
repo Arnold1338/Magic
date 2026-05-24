@@ -44,12 +44,10 @@ public abstract class PerkDataProvider implements IDataProvider
             final ResourceLocation perkName = finishedPerk.perk.getRegistryName();
             final Point2D.Float offset = finishedPerk.perk.getOffset();
             if (builtPerks.stream().anyMatch(knownPerk -> knownPerk.perk.getOffset().equals(offset))) {
-                new IllegalArgumentException("Duplicate perk registration at " + offset + " for " + perkName);
-                throw;
+                throw new IllegalArgumentException("Duplicate perk registration at " + offset + " for " + perkName);
             }
             else if (builtPerks.contains(finishedPerk)) {
-                new IllegalArgumentException("Duplicate perk registry name: " + perkName);
-                throw;
+                throw new IllegalArgumentException("Duplicate perk registry name: " + perkName);
             }
             else {
                 builtPerks.add(finishedPerk);

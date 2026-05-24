@@ -4,9 +4,9 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import java.util.Iterator;
 import net.minecraft.nbt.ListTag;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.nbt.Tag;
+import net.minecraft.nbt.INBT;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.IBlockReader;
 import hellfirepvp.astralsorcery.common.tile.TileRitualLink;
 import com.mojang.datafixers.util.Either;
 import java.util.Collection;
@@ -152,22 +152,22 @@ public abstract class CEffectAbstractList<T extends ListEntry> extends Constella
         final BlockPos at = gen.generateNextPosition(new Vector3(0.5, 0.5, 0.5), prop.getSize());
         final BlockPos actual = at.func_177971_a((Vector3i)pos);
         if (this.getCount() >= this.maxAmount) {
-            return (Either<T, BlockPos>)Either.stack()((Object)actual);
+            return (Either<T, BlockPos>)Either.right((Object)actual);
         }
         return (Either<T, BlockPos>)MiscUtils.executeWithChunk((IWorldReader)world, actual, () -> {
             if (this.verifier.test(world, actual, world.getBlockState(actual))) {
                 final T element = this.createElement(world, actual);
                 if (element == null) {
-                    return Either.stack()((Object)actual);
+                    return Either.right((Object)actual);
                 }
                 else {
-                    return Either.slotContext().identifier()((Object)element);
+                    return Either.left((Object)element);
                 }
             }
             else {
-                return Either.stack()((Object)actual);
+                return Either.right((Object)actual);
             }
-        }, Either.stack()((Object)actual));
+        }, Either.right((Object)actual));
     }
     
     @Nonnull
@@ -195,8 +195,8 @@ public abstract class CEffectAbstractList<T extends ListEntry> extends Constella
     public void readFromNBT(final CompoundTag cmp) {
         super.readFromNBT(cmp);
         this.elements.clear();
-        final ListTag list = cmp.getList("elements", 10);
-        for (final Tag nbt : list) {
+        final ListTag list = cmp.func_150295_c("elements", 10);
+        for (final INBT nbt : list) {
             final CompoundTag tag = (CompoundTag)nbt;
             final BlockPos pos = NBTHelper.readBlockPosFromNBT(tag);
             final CompoundTag tagData = tag.func_74775_l("data");
@@ -217,10 +217,10 @@ public abstract class CEffectAbstractList<T extends ListEntry> extends Constella
             NBTHelper.writeBlockPosToNBT(element.getPos(), tag);
             final CompoundTag dataTag = new CompoundTag();
             element.writeToNBT(dataTag);
-            tag.put("data", (Tag)dataTag);
+            tag.func_218657_a("data", (INBT)dataTag);
             list.add((Object)tag);
         }
-        cmp.put("elements", (Tag)list);
+        cmp.func_218657_a("elements", (INBT)list);
     }
     
     public static class CountConfig extends Config

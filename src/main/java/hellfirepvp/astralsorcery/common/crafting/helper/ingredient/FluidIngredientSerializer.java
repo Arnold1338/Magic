@@ -30,8 +30,7 @@ public class FluidIngredientSerializer implements IIngredientSerializer<FluidIng
                     final JsonObject object = e.getAsJsonObject();
                     final ResourceLocation key2 = new ResourceLocation(JSONUtils.func_151200_h(object, "fluid"));
                     if (!ForgeRegistries.FLUIDS.containsKey(key2)) {
-                        new JsonSyntaxException("Unknown fluid '" + key2 + "'");
-                        throw;
+                        throw new JsonSyntaxException("Unknown fluid '" + key2 + "'");
                     }
                     else {
                         int amount2 = 1000;
@@ -45,8 +44,7 @@ public class FluidIngredientSerializer implements IIngredientSerializer<FluidIng
                 else if (e.isJsonPrimitive()) {
                     final ResourceLocation key3 = new ResourceLocation(JSONUtils.func_151206_a(element, "fluid"));
                     if (!ForgeRegistries.FLUIDS.containsKey(key3)) {
-                        new JsonSyntaxException("Unknown fluid '" + key3 + "'");
-                        throw;
+                        throw new JsonSyntaxException("Unknown fluid '" + key3 + "'");
                     }
                     else {
                         final Fluid fluid3 = (Fluid)ForgeRegistries.FLUIDS.getValue(key3);

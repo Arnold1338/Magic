@@ -3,12 +3,12 @@ package hellfirepvp.astralsorcery.common.util.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.block.Blocks;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.ArrayList;
 import java.util.Arrays;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.block.Block;
 import java.util.List;
 import com.mojang.datafixers.util.Either;
 import net.minecraft.world.level.block.state.BlockState;
@@ -19,11 +19,11 @@ public class SimpleBlockPredicate implements BlockPredicate, Predicate<BlockStat
     final Either<List<BlockState>, Block> validMatch;
     
     public SimpleBlockPredicate(final Block block) {
-        this.validMatch = (Either<List<BlockState>, Block>)Either.stack()((Object)block);
+        this.validMatch = (Either<List<BlockState>, Block>)Either.right((Object)block);
     }
     
     public SimpleBlockPredicate(final BlockState... states) {
-        this.validMatch = (Either<List<BlockState>, Block>)Either.slotContext().identifier()((Object)Arrays.asList(states));
+        this.validMatch = (Either<List<BlockState>, Block>)Either.left((Object)Arrays.asList(states));
     }
     
     public List<String> getAsConfigList() {
@@ -52,7 +52,7 @@ public class SimpleBlockPredicate implements BlockPredicate, Predicate<BlockStat
     @Override
     public boolean test(final BlockState state) {
         final Either<Boolean, Boolean> matchResult = (Either<Boolean, Boolean>)this.validMatch.mapBoth(states -> states.contains(state), block -> state.getBlock().equals(block));
-        return matchResult.slotContext().identifier()().orElse(matchResult.stack()().orElse(false));
+        return matchResult.left().orElse(matchResult.right().orElse(false));
     }
     
     @Override

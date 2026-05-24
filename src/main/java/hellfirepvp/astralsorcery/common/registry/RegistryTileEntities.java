@@ -109,8 +109,7 @@ public class RegistryTileEntities
             }
             catch (final Exception exc) {
                 exc.printStackTrace();
-                new IllegalArgumentException("Unexpected Constructor for class: " + tileClass.getName());
-                throw;
+                throw new IllegalArgumentException("Unexpected Constructor for class: " + tileClass.getName());
             }
         }, validBlocks);
         final BlockEntityType<T> type = (BlockEntityType<T>)typeBuilder.func_206865_a((Type)null);
