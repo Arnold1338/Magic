@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.crystal;
 
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.starlight.transmission.base.crystal.IndependentCrystalSource;
 import hellfirepvp.astralsorcery.common.crystal.calc.PropertySource;

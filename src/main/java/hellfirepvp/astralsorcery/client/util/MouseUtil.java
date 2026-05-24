@@ -15,12 +15,12 @@ public class MouseUtil
     }
     
     public static void ungrab() {
-        Minecraft.func_71410_x().field_71417_B.func_198032_j();
+        Minecraft.getInstance().field_71417_B.func_198032_j();
     }
     
     public static void grab() {
         MouseUtil.preventGuiChange = true;
-        Minecraft.func_71410_x().field_71417_B.func_198034_i();
+        Minecraft.getInstance().field_71417_B.func_198034_i();
     }
     
     private static void onGuiOpen(final GuiOpenEvent event) {

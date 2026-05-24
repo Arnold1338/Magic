@@ -3,14 +3,14 @@ package hellfirepvp.astralsorcery.common.util.time;
 import net.minecraft.nbt.Tag;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.level.chunk.LevelChunk;
+import net.minecraft.world.level.chunk.LevelChunk;
 import java.util.Iterator;
 import java.util.List;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXLightning;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.data.config.registry.TileAccelerationBlacklistRegistry;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import java.util.Map;
 import net.minecraft.util.Mth;
 import net.minecraft.util.EntityPredicates;
@@ -27,7 +27,7 @@ import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import javax.annotation.Nonnull;
 import net.minecraft.core.BlockPos;
 import java.util.Random;
@@ -85,7 +85,7 @@ public class TimeStopEffectHelper
     
     @OnlyIn(Dist.CLIENT)
     public void playClientTickEffect() {
-        final World world = (World)Minecraft.func_71410_x().field_71441_e;
+        final World world = (World)Minecraft.getInstance().field_71441_e;
         if (world == null) {
             return;
         }

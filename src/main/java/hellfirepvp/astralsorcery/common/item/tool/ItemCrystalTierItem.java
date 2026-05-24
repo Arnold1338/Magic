@@ -1,16 +1,16 @@
 package hellfirepvp.astralsorcery.common.item.tool;
 
-import net.minecraft.world.level.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import com.google.common.collect.HashMultimap;
-import net.minecraft.world.level.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.level.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import com.google.common.collect.Multimap;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.entity.EquipmentSlot;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import java.util.function.Predicate;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.crystal.CrystalCalculations;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -20,15 +20,15 @@ import hellfirepvp.astralsorcery.common.crystal.CalculationContext;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import javax.annotation.Nullable;
 import net.minecraftforge.common.ToolAction;
-import net.minecraft.world.level.level.material.Material;
+import net.minecraft.world.level.material.Material;
 import java.util.Set;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeItem;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public abstract class ItemCrystalTierItem extends Item implements CrystalAttributeItem
 {

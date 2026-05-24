@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.effect.vfx;
 
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import java.awt.Color;
 import com.mojang.blaze3d.vertex.VertexConsumer;

@@ -7,7 +7,7 @@ import hellfirepvp.observerlib.api.ObserverHelper;
 import hellfirepvp.observerlib.common.change.ChangeObserverStructure;
 import hellfirepvp.observerlib.api.ChangeSubscriber;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import hellfirepvp.observerlib.api.util.BlockArray;

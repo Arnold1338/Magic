@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.starlight.network;
 
 import net.minecraftforge.event.level.LevelEvent;
-import net.minecraft.world.level.level.LevelAccessor;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.level.ChunkEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.IEventBus;

@@ -16,9 +16,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.event.TickEvent;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.data.world.GatewayCache;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.common.network.play.client.PktRevokeGatewayAccess;
 import hellfirepvp.astralsorcery.common.util.PlayerReference;
@@ -26,9 +26,9 @@ import java.util.function.Function;
 import net.minecraft.util.Tuple;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.MapStream;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.tile.TileCelestialGateway;
 import hellfirepvp.astralsorcery.client.event.effect.GatewayUIRenderHandler;
@@ -79,8 +79,8 @@ public class GatewayInteractionHandler
     }
     
     private static void clientTick(final TickEvent.ClientTickEvent event) {
-        final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
-        final World world = (World)Minecraft.func_71410_x().field_71441_e;
+        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        final World world = (World)Minecraft.getInstance().field_71441_e;
         if (player == null || world == null) {
             GatewayInteractionHandler.focusingEntry = null;
             GatewayInteractionHandler.focusTicks = 0;
@@ -104,7 +104,7 @@ public class GatewayInteractionHandler
             GatewayInteractionHandler.focusTicks = 0;
             return;
         }
-        if (!Minecraft.func_71410_x().field_71474_y.field_74313_G.func_151470_d() && !Minecraft.func_71410_x().field_71474_y.field_228046_af_.func_151470_d()) {
+        if (!Minecraft.getInstance().field_71474_y.field_74313_G.func_151470_d() && !Minecraft.getInstance().field_71474_y.field_228046_af_.func_151470_d()) {
             GatewayInteractionHandler.focusingEntry = null;
             GatewayInteractionHandler.focusTicks = 0;
             return;
@@ -162,7 +162,7 @@ public class GatewayInteractionHandler
             }
         }
         if (GatewayInteractionHandler.focusTicks > 95) {
-            Minecraft.func_71410_x().field_71439_g.func_226284_e_(false);
+            Minecraft.getInstance().field_71439_g.func_226284_e_(false);
             final PktRequestTeleport pkt = new PktRequestTeleport(GatewayInteractionHandler.focusingEntry.getNodeDimension(), GatewayInteractionHandler.focusingEntry.getNode().getPos());
             PacketChannel.CHANNEL.sendToServer(pkt);
             GatewayInteractionHandler.focusingEntry = null;
@@ -176,7 +176,7 @@ public class GatewayInteractionHandler
             return;
         }
         if (event.phase == TickEvent.Phase.START) {
-            GatewayInteractionHandler.fovPre = Minecraft.func_71410_x().field_71474_y.field_74334_X;
+            GatewayInteractionHandler.fovPre = Minecraft.getInstance().field_71474_y.field_74334_X;
             if (GatewayInteractionHandler.focusTicks < 80) {
                 return;
             }
@@ -184,10 +184,10 @@ public class GatewayInteractionHandler
             percDone = (float)Math.pow(percDone, 2.4000000953674316);
             final float targetFov = 10.0f;
             final double diff = GatewayInteractionHandler.fovPre - targetFov;
-            Minecraft.func_71410_x().field_71474_y.field_74334_X = Math.max(targetFov, targetFov + diff * percDone);
+            Minecraft.getInstance().field_71474_y.field_74334_X = Math.max(targetFov, targetFov + diff * percDone);
         }
         else {
-            Minecraft.func_71410_x().field_71474_y.field_74334_X = GatewayInteractionHandler.fovPre;
+            Minecraft.getInstance().field_71474_y.field_74334_X = GatewayInteractionHandler.fovPre;
         }
     }
     

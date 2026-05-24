@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.event.handler;
 
 import hellfirepvp.astralsorcery.common.network.play.client.PktClearBlockStorageStack;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.item.base.ItemBlockStorage;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import java.util.function.Consumer;

@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.perk.type;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.perk.type.vanilla.VanillaPerkAttributeType;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
-import net.minecraft.world.level.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 
 public class PerkAttributeTypeHelper
 {

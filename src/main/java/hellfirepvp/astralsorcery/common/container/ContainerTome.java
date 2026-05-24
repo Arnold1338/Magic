@@ -16,9 +16,9 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import hellfirepvp.astralsorcery.common.item.ItemTome;
 import net.minecraft.world.level.inventory.MenuType;
 import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
-import net.minecraft.world.level.entity.player.Inventory;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.inventory.AbstractContainerMenu;
 
 public class ContainerTome extends Container
@@ -67,35 +67,35 @@ public class ContainerTome extends Container
     }
     
     public ItemStack func_82846_b(final Player playerIn, final int index) {
-        ItemStack itemstack = ItemStack.field_190927_a;
+        ItemStack itemstack = ItemStack.EMPTY;
         final Slot slot = this.field_75151_b.get(index);
         if (slot != null && slot.func_75216_d()) {
             final ItemStack itemstack2 = slot.func_75211_c();
             itemstack = itemstack2.copy();
             if (!itemstack2.isEmpty() && itemstack2.getItem() instanceof ItemConstellationPaper && ((ItemConstellationPaper)itemstack2.getItem()).getConstellation(itemstack2) != null && index >= 0 && index < 36 && !this.func_75135_a(itemstack2, 36, 63, false)) {
-                return ItemStack.field_190927_a;
+                return ItemStack.EMPTY;
             }
             if (index >= 0 && index < 27) {
                 if (!this.func_75135_a(itemstack2, 27, 36, false)) {
-                    return ItemStack.field_190927_a;
+                    return ItemStack.EMPTY;
                 }
             }
             else if (index >= 27 && index < 36) {
                 if (!this.func_75135_a(itemstack2, 0, 27, false)) {
-                    return ItemStack.field_190927_a;
+                    return ItemStack.EMPTY;
                 }
             }
             else if (!this.func_75135_a(itemstack2, 0, 36, false)) {
-                return ItemStack.field_190927_a;
+                return ItemStack.EMPTY;
             }
             if (itemstack2.func_190916_E() == 0) {
-                slot.func_75215_d(ItemStack.field_190927_a);
+                slot.func_75215_d(ItemStack.EMPTY);
             }
             else {
                 slot.func_75218_e();
             }
             if (itemstack2.func_190916_E() == itemstack.func_190916_E()) {
-                return ItemStack.field_190927_a;
+                return ItemStack.EMPTY;
             }
             slot.func_190901_a(playerIn, itemstack2);
         }

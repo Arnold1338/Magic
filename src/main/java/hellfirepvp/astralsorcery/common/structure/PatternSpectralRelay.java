@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.structure;
 
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
 import hellfirepvp.observerlib.api.util.PatternBlockArray;

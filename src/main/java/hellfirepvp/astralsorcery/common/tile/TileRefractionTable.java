@@ -7,7 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.constellation.DrawnConstellation;
@@ -25,7 +25,7 @@ import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.client.effect.function.RefreshFunction;
 import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
@@ -38,9 +38,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.server.level.ServerPlayer;
 import hellfirepvp.astralsorcery.common.item.ItemInfusedGlass;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
-import net.minecraft.world.level.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.tile.NamedInventoryTile;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
 
@@ -56,9 +56,9 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
     public TileRefractionTable() {
         super(TileEntityTypesAS.REFRACTION_TABLE);
         this.runTick = 0;
-        this.glassStack = ItemStack.field_190927_a;
+        this.glassStack = ItemStack.EMPTY;
         this.parchmentCount = 0;
-        this.inputStack = ItemStack.field_190927_a;
+        this.inputStack = ItemStack.EMPTY;
     }
     
     @Override
@@ -187,7 +187,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
     @Nonnull
     public ItemStack setGlassStack(@Nonnull final ItemStack glassStack) {
         if (!glassStack.isEmpty() && !isValidGlassStack(glassStack)) {
-            return ItemStack.field_190927_a;
+            return ItemStack.EMPTY;
         }
         final ItemStack prevStack = this.glassStack;
         this.glassStack = glassStack;
@@ -212,11 +212,11 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
         final Vector3 at = new Vector3(this).add(0.5, 0.5, 0.5);
         if (!this.getGlassStack().isEmpty()) {
             ItemUtils.dropItemNaturally(this.func_145831_w(), at.getX(), at.getY(), at.getZ(), this.getGlassStack());
-            this.setGlassStack(ItemStack.field_190927_a);
+            this.setGlassStack(ItemStack.EMPTY);
         }
         if (!this.getInputStack().isEmpty()) {
             ItemUtils.dropItemNaturally(this.func_145831_w(), at.getX(), at.getY(), at.getZ(), this.getInputStack());
-            this.setInputStack(ItemStack.field_190927_a);
+            this.setInputStack(ItemStack.EMPTY);
         }
         this.markForUpdate();
     }

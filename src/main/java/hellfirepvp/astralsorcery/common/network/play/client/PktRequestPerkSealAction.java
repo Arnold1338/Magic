@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.network.play.client;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.item.useables.ItemPerkSeal;
 import net.minecraftforge.api.distmarker.Dist;
@@ -58,14 +58,14 @@ public class PktRequestPerkSealAction extends ASPacket<PktRequestPerkSealAction>
             @OnlyIn(Dist.CLIENT)
             @Override
             public void handleClient(final PktRequestPerkSealAction packet, final NetworkEvent.Context context) {
-                final Screen current = Minecraft.func_71410_x().field_71462_r;
+                final Screen current = Minecraft.getInstance().field_71462_r;
                 if (current instanceof ScreenJournalPerkTree) {
                     PerkTree.PERK_TREE.getPerk(LogicalSide.CLIENT, packet.perkKey).ifPresent(perk -> {
                         if (!packet.doSealing) {
-                            Minecraft.func_71410_x().func_212871_a_(() -> ((ScreenJournalPerkTree)current).playSealBreakAnimation(perk));
+                            Minecraft.getInstance().func_212871_a_(() -> ((ScreenJournalPerkTree)current).playSealBreakAnimation(perk));
                         }
                         else {
-                            Minecraft.func_71410_x().func_212871_a_(() -> ((ScreenJournalPerkTree)current).playSealApplyAnimation(perk));
+                            Minecraft.getInstance().func_212871_a_(() -> ((ScreenJournalPerkTree)current).playSealApplyAnimation(perk));
                         }
                     });
                 }

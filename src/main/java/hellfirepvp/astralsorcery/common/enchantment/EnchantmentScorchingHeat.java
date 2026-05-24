@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.common.enchantment;
 
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.item.enchantment.Enchantments;
-import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.level.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
 
 public class EnchantmentScorchingHeat extends Enchantment
 {

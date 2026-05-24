@@ -5,7 +5,7 @@ import hellfirepvp.astralsorcery.common.tile.base.network.TileReceiverBase;
 import hellfirepvp.astralsorcery.common.starlight.transmission.registry.TransmissionProvider;
 import hellfirepvp.astralsorcery.common.tile.altar.AltarCollectionCategory;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.starlight.transmission.base.SimpleTransmissionReceiver;

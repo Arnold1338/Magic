@@ -31,7 +31,7 @@ public abstract class RenderablePage
     }
     
     public static FontRenderer getFontRenderer() {
-        return Minecraft.func_71410_x().field_71466_p;
+        return Minecraft.getInstance().field_71466_p;
     }
     
     @Nullable

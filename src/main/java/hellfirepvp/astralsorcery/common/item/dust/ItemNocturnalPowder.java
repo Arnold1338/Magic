@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.common.item.dust;
 
 import net.minecraft.world.item.ItemUseContext;
-import net.minecraft.world.level.entity.LivingEntity;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.entity.EntityNocturnalSpark;
 import net.minecraft.world.level.block.state.Property;
 import net.minecraft.world.level.block.DispenserBlock;

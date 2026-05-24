@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.effect.vfx;
 
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import java.awt.Color;

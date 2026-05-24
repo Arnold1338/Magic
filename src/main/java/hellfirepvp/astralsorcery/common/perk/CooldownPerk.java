@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.perk;
 
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 
 public interface CooldownPerk
 {

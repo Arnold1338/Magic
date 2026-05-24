@@ -5,7 +5,7 @@ import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import hellfirepvp.astralsorcery.client.effect.EffectProperties;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 import java.io.IOException;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.util.order.DependencySorter;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
@@ -82,9 +82,9 @@ public final class EffectHandler
             this.effectMap.values().forEach(List::clear);
             this.cleanRequested = false;
         }
-        Entity rView = Minecraft.func_71410_x().func_175606_aa();
+        Entity rView = Minecraft.getInstance().func_175606_aa();
         if (rView == null) {
-            rView = (Entity)Minecraft.func_71410_x().field_71439_g;
+            rView = (Entity)Minecraft.getInstance().field_71439_g;
         }
         if (rView == null) {
             cleanUp();

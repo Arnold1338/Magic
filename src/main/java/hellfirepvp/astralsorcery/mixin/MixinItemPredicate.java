@@ -2,8 +2,8 @@ package hellfirepvp.astralsorcery.mixin;
 
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentHelper;
 import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.item.enchantment.Enchantment;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

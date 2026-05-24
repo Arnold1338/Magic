@@ -10,11 +10,11 @@ import net.minecraft.client.sounds.ISound;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.util.sound.PositionedLoopSound;
 import java.util.function.Predicate;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.sounds.SoundEvent;
 
 public class SoundHelper
@@ -50,7 +50,7 @@ public class SoundHelper
         }
         final PositionedLoopSound posSound = new PositionedLoopSound(sound, cat, volume, pitch, pos, isGlobal);
         posSound.setRefreshFunction(func);
-        Minecraft.func_71410_x().func_147118_V().func_147682_a((ISound)posSound);
+        Minecraft.getInstance().func_147118_V().func_147682_a((ISound)posSound);
         return posSound;
     }
     
@@ -62,7 +62,7 @@ public class SoundHelper
         }
         final FadeLoopSound posSound = new FadeLoopSound(sound, cat, volume, pitch, pos, isGlobal);
         posSound.setRefreshFunction(func);
-        Minecraft.func_71410_x().func_147118_V().func_147682_a((ISound)posSound);
+        Minecraft.getInstance().func_147118_V().func_147682_a((ISound)posSound);
         return posSound;
     }
     
@@ -74,18 +74,18 @@ public class SoundHelper
         }
         final FadeSound posSound = new FadeSound(sound, cat, volume, pitch, pos, isGlobal);
         posSound.setRefreshFunction(func);
-        Minecraft.func_71410_x().func_147118_V().func_147682_a((ISound)posSound);
+        Minecraft.getInstance().func_147118_V().func_147682_a((ISound)posSound);
         return posSound;
     }
     
     @OnlyIn(Dist.CLIENT)
     public static float getSoundVolume(final SoundSource cat) {
-        return Minecraft.func_71410_x().field_71474_y.func_186711_a(cat);
+        return Minecraft.getInstance().field_71474_y.func_186711_a(cat);
     }
     
     @OnlyIn(Dist.CLIENT)
     public static void playSoundClient(final SoundEvent sound, final float volume, final float pitch) {
-        final ClientPlayerEntity player = Minecraft.func_71410_x().field_71439_g;
+        final ClientPlayerEntity player = Minecraft.getInstance().field_71439_g;
         if (player != null) {
             player.func_184185_a(sound, volume, pitch);
         }
@@ -98,8 +98,8 @@ public class SoundHelper
     
     @OnlyIn(Dist.CLIENT)
     public static void playSoundClientWorld(final SoundEvent sound, final SoundSource cat, final BlockPos pos, final float volume, final float pitch) {
-        if (Minecraft.func_71410_x().field_71441_e != null) {
-            Minecraft.func_71410_x().field_71441_e.func_184148_a((Player)Minecraft.func_71410_x().field_71439_g, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), sound, cat, volume, pitch);
+        if (Minecraft.getInstance().field_71441_e != null) {
+            Minecraft.getInstance().field_71441_e.func_184148_a((Player)Minecraft.getInstance().field_71439_g, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), sound, cat, volume, pitch);
         }
     }
 }

@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import java.io.IOException;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import java.util.HashSet;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import java.util.Set;
 import java.io.File;

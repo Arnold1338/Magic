@@ -1,17 +1,17 @@
 package hellfirepvp.astralsorcery.common.integration;
 
-import net.minecraft.world.level.item.Item;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import java.util.List;
 import vazkii.botania.api.item.IBlockProvider;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraft.world.level.item.BlockItem;
+import net.minecraft.world.item.BlockItem;
 import java.util.LinkedList;
 import java.util.Collection;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
 
 public class IntegrationBotania
 {
@@ -27,7 +27,7 @@ public class IntegrationBotania
             final Item sItem = s.getItem();
             if (sItem instanceof IBlockProvider) {
                 final IBlockProvider provider = (IBlockProvider)sItem;
-                int blockCount = provider.getBlockCount(player, ItemStack.field_190927_a, s, matchBlock);
+                int blockCount = provider.getBlockCount(player, ItemStack.EMPTY, s, matchBlock);
                 if (blockCount == -1) {
                     blockCount = 9001;
                 }

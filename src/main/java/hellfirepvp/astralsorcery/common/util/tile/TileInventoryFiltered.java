@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.util.tile;
 
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.function.BiFunction;
 import java.util.Collection;
 import javax.annotation.Nullable;
@@ -71,7 +71,7 @@ public class TileInventoryFiltered extends TileInventory
     @Nonnull
     public ItemStack extractItem(final int slot, final int amount, final boolean simulate) {
         if (!this.canExtractItem(slot, amount, this.getStackInSlot(slot))) {
-            return ItemStack.field_190927_a;
+            return ItemStack.EMPTY;
         }
         return super.extractItem(slot, amount, simulate);
     }

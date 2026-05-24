@@ -12,16 +12,16 @@ import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import java.util.Objects;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.block.tile.fountain.BlockFountainPrime;
 import net.minecraftforge.fluids.FluidStack;
 import hellfirepvp.astralsorcery.common.fluid.FluidLiquidStarlight;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Vec3i;
@@ -31,7 +31,7 @@ import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.util.tile.SimpleSingleFluidTank;
 import hellfirepvp.astralsorcery.common.util.tile.FluidTankAccess;
@@ -106,7 +106,7 @@ public class TileFountain extends TileEntityTick
         final BlockPos at = ByteBufUtils.readPos(pktPlayEffect.getExtraData());
         final FountainEffect.OperationSegment segment = ByteBufUtils.readEnumValue(pktPlayEffect.getExtraData(), FountainEffect.OperationSegment.class);
         final FountainEffect.OperationSegment nextSegment = ByteBufUtils.readEnumValue(pktPlayEffect.getExtraData(), FountainEffect.OperationSegment.class);
-        final World world = (World)Minecraft.func_71410_x().field_71441_e;
+        final World world = (World)Minecraft.getInstance().field_71441_e;
         if (world == null) {
             return;
         }
@@ -124,7 +124,7 @@ public class TileFountain extends TileEntityTick
     @OnlyIn(Dist.CLIENT)
     public static void replaceEffect(final PktPlayEffect pktPlayEffect) {
         final BlockPos at = ByteBufUtils.readPos(pktPlayEffect.getExtraData());
-        final World world = (World)Minecraft.func_71410_x().field_71441_e;
+        final World world = (World)Minecraft.getInstance().field_71441_e;
         if (world == null) {
             return;
         }

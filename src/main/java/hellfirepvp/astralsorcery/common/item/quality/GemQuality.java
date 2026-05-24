@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.item.quality;
 
 import net.minecraft.network.chat.Component;
 import java.util.Locale;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.ChatFormatting;
 
 public enum GemQuality
@@ -27,7 +27,7 @@ public enum GemQuality
         return this.degree;
     }
     
-    public IFormattableTextComponent getDisplayName() {
+    public MutableComponent getDisplayName() {
         return new Component("item.astralsorcery.gem_quality.%s", new Object[] { this.name().toLowerCase(Locale.ROOT) }).func_240699_a_(this.color);
     }
 }

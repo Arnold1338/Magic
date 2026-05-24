@@ -4,7 +4,7 @@ import net.minecraft.world.item.crafting.IRecipeSerializer;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomRecipeSerializer;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import net.minecraft.world.level.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.RecipeType;
 import com.google.gson.JsonElement;
 import hellfirepvp.astralsorcery.common.util.data.JsonHelper;
 import com.google.gson.JsonArray;
@@ -17,9 +17,9 @@ import net.minecraft.network.FriendlyByteBuf;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.JsonObject;
 import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Ingredient;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -39,7 +39,7 @@ import java.util.Set;
 import hellfirepvp.astralsorcery.common.crafting.helper.WrappedIngredient;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.AltarRecipeGrid;
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
@@ -158,7 +158,7 @@ public class SimpleAltarRecipe extends CustomMatcherRecipe implements GatedRecip
     @Nonnull
     @OnlyIn(Dist.CLIENT)
     public ItemStack getOutputForRender(final Iterable<ItemStack> inventoryContents) {
-        final ItemStack first = (ItemStack)Iterables.getFirst((Iterable)this.outputs, (Object)ItemStack.field_190927_a);
+        final ItemStack first = (ItemStack)Iterables.getFirst((Iterable)this.outputs, (Object)ItemStack.EMPTY);
         return ItemUtils.copyStackWithSize(first, first.func_190916_E());
     }
     

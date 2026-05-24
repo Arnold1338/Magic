@@ -3,13 +3,13 @@ package hellfirepvp.astralsorcery.common;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.client.screen.ScreenHandTelescope;
 import hellfirepvp.astralsorcery.client.screen.ScreenTelescope;
 import hellfirepvp.astralsorcery.common.tile.TileTelescope;
 import hellfirepvp.astralsorcery.client.screen.ScreenRefractionTable;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalProgression;
@@ -55,8 +55,8 @@ public enum GuiType
     @Nullable
     @OnlyIn(Dist.CLIENT)
     public Screen deserialize(final CompoundTag data) {
-        final World clWorld = (World)Minecraft.func_71410_x().field_71441_e;
-        final Player clPlayer = (Player)Minecraft.func_71410_x().field_71439_g;
+        final World clWorld = (World)Minecraft.getInstance().field_71441_e;
+        final Player clPlayer = (Player)Minecraft.getInstance().field_71439_g;
         if (clWorld == null || clPlayer == null) {
             return null;
         }

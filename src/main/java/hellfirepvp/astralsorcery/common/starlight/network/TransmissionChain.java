@@ -5,10 +5,10 @@ import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import java.util.function.BiFunction;
 import hellfirepvp.astralsorcery.common.starlight.transmission.NodeConnection;
 import hellfirepvp.astralsorcery.common.crystal.CrystalCalculations;
-import net.minecraft.world.level.level.block.Block;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import java.util.Iterator;
-import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.LevelReader;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.block.base.BlockStarlightRecipient;
 import java.util.Collection;
@@ -17,7 +17,7 @@ import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.common.data.sync.server.DataLightConnections;
 import hellfirepvp.astralsorcery.common.data.sync.SyncDataHolder;
 import hellfirepvp.astralsorcery.common.starlight.IIndependentStarlightSource;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.HashSet;
@@ -27,7 +27,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.ITransmissionRece
 import net.minecraft.core.BlockPos;
 import java.util.Map;
 import java.util.List;
-import net.minecraft.world.level.level.ChunkPos;
+import net.minecraft.world.level.ChunkPos;
 import java.util.Set;
 
 public class TransmissionChain

@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.common.world.placement;
 
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
-import net.minecraft.world.level.level.material.Fluid;
-import net.minecraft.world.level.level.block.Block;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.tags.FluidTags;

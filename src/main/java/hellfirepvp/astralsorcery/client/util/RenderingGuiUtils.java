@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.util;
 
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import java.awt.Color;

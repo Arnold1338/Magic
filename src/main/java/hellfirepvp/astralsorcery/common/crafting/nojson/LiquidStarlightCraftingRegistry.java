@@ -2,8 +2,8 @@ package hellfirepvp.astralsorcery.common.crafting.nojson;
 
 import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.entity.item.ItemEntity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.item.ItemEntity;
 import hellfirepvp.astralsorcery.common.crafting.nojson.starlight.MergeCrystalsRecipe;
 import hellfirepvp.astralsorcery.common.crafting.nojson.starlight.FormGemCrystalClusterRecipe;
 import hellfirepvp.astralsorcery.common.crafting.nojson.starlight.FormCelestialCrystalClusterRecipe;

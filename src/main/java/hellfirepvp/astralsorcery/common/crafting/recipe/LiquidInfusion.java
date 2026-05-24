@@ -6,7 +6,7 @@ import net.minecraft.world.item.crafting.IRecipeSerializer;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomRecipeSerializer;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import net.minecraft.world.level.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.RecipeType;
 import com.google.gson.JsonElement;
 import hellfirepvp.astralsorcery.common.util.data.JsonHelper;
 import com.google.gson.JsonObject;
@@ -22,12 +22,12 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.MapStream;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.tile.TileInfuser;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.item.crafting.Ingredient;
-import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.material.Fluid;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomMatcherRecipe;
 
 public class LiquidInfusion extends CustomMatcherRecipe implements GatedRecipe.Progression

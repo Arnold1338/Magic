@@ -10,11 +10,11 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.ArrayList;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.entity.item.ItemEntity;
-import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.EntityType;
 import hellfirepvp.astralsorcery.common.entity.item.EntityItemExplosionResistant;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.GuiType;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.sounds.SoundEvent;
@@ -26,25 +26,25 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.NonNullList;
-import net.minecraft.world.level.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTab;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationBaseItem;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemDynamicColor;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemConstellationPaper extends Item implements ItemDynamicColor, ConstellationBaseItem
 {
@@ -66,7 +66,7 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
     @OnlyIn(Dist.CLIENT)
     public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> toolTip, final TooltipFlag flag) {
         final IConstellation c = this.getConstellation(stack);
-        if (c != null && c.canDiscover((Player)Minecraft.func_71410_x().field_71439_g, ResearchHelper.getClientProgress())) {
+        if (c != null && c.canDiscover((Player)Minecraft.getInstance().field_71439_g, ResearchHelper.getClientProgress())) {
             toolTip.add((Component)c.getConstellationName().func_240699_a_(ChatFormatting.BLUE));
         }
         else {

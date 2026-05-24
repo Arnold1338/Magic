@@ -19,7 +19,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.client.util.Blending;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -30,7 +30,7 @@ import java.util.Set;
 import java.util.Random;
 import hellfirepvp.astralsorcery.client.screen.telescope.PlayerAngledConstellationInformation;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.constellation.IMajorConstellation;
@@ -68,7 +68,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
         final Set<IConstellation> used = new HashSet<IConstellation>();
         for (final DrawArea area : drawAreas) {
             final Collection<IConstellation> available = Lists.newArrayList((Iterable)ctx.getActiveCelestialsHandler().getActiveConstellations());
-            available.removeIf(c -> !(c instanceof IMajorConstellation) || used.contains(c) || !c.canDiscover((Player)Minecraft.func_71410_x().field_71439_g, ResearchHelper.getClientProgress()));
+            available.removeIf(c -> !(c instanceof IMajorConstellation) || used.contains(c) || !c.canDiscover((Player)Minecraft.getInstance().field_71439_g, ResearchHelper.getClientProgress()));
             final IConstellation cst = MiscUtils.getRandomEntry(available, gen);
             if (cst instanceof IMajorConstellation) {
                 used.add(cst);
@@ -95,15 +95,15 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
     }
     
     private void drawTelescopeCell(final PoseStack renderStack, final float pTicks) {
-        final boolean canSeeSky = this.canObserverSeeSky(Minecraft.func_71410_x().field_71439_g.func_233580_cy_(), 1);
-        final float pitch = Minecraft.func_71410_x().field_71439_g.func_195050_f(pTicks);
+        final boolean canSeeSky = this.canObserverSeeSky(Minecraft.getInstance().field_71439_g.func_233580_cy_(), 1);
+        final float pitch = Minecraft.getInstance().field_71439_g.func_195050_f(pTicks);
         float angleOpacity = 0.0f;
         if (pitch < -60.0f) {
             angleOpacity = 1.0f;
         }
         else if (pitch < -10.0f) {
             angleOpacity = (Math.abs(pitch) - 10.0f) / 50.0f;
-            if (DayTimeHelper.isNight((World)Minecraft.func_71410_x().field_71441_e)) {
+            if (DayTimeHelper.isNight((World)Minecraft.getInstance().field_71441_e)) {
                 angleOpacity *= angleOpacity;
             }
         }
@@ -120,18 +120,18 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
             RenderSystem.disableBlend();
             return;
         }
-        final WorldContext ctx = SkyHandler.getContext((World)Minecraft.func_71410_x().field_71441_e, LogicalSide.CLIENT);
+        final WorldContext ctx = SkyHandler.getContext((World)Minecraft.getInstance().field_71441_e, LogicalSide.CLIENT);
         if (ctx != null && canSeeSky) {
             final Random gen = ctx.getDayRandom();
-            final double guiFactor = Minecraft.func_71410_x().func_228018_at_().func_198100_s();
-            float playerYaw = Minecraft.func_71410_x().field_71439_g.field_70177_z % 360.0f;
+            final double guiFactor = Minecraft.getInstance().func_228018_at_().func_198100_s();
+            float playerYaw = Minecraft.getInstance().field_71439_g.field_70177_z % 360.0f;
             if (playerYaw < 0.0f) {
                 playerYaw += 360.0f;
             }
             if (playerYaw >= 180.0f) {
                 playerYaw -= 360.0f;
             }
-            final float playerPitch = Minecraft.func_71410_x().field_71439_g.field_70125_A;
+            final float playerPitch = Minecraft.getInstance().field_71439_g.field_70125_A;
             this.func_230926_e_(-9);
             final float starSize = 5.0f;
             TexturesAS.TEX_STAR_1.bindTexture();
@@ -162,7 +162,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
                     if ((Math.abs(diffYaw) > maxDistance && Math.abs(playerYaw + 360.0f) > maxDistance) || Math.abs(diffPitch) > maxDistance) {
                         continue;
                     }
-                    final float rainBr = 1.0f - Minecraft.func_71410_x().field_71441_e.func_72867_j(pTicks);
+                    final float rainBr = 1.0f - Minecraft.getInstance().field_71441_e.func_72867_j(pTicks);
                     final int wPart = Mth.func_76141_d(this.getGuiWidth() * 0.1f);
                     final int hPart = Mth.func_76141_d(this.getGuiHeight() * 0.1f);
                     final float xFactor = diffYaw / 8.0f;
@@ -184,17 +184,17 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
     }
     
     public void func_212927_b(final double xPos, final double yPos) {
-        if (!Minecraft.func_71410_x().field_71417_B.func_198035_h()) {
+        if (!Minecraft.getInstance().field_71417_B.func_198035_h()) {
             return;
         }
         final int offsetX = 6;
         final int offsetY = 6;
         final int width = this.guiWidth - 12;
         final int height = this.guiHeight - 12;
-        final Minecraft mc = Minecraft.func_71410_x();
+        final Minecraft mc = Minecraft.getInstance();
         final double xDiff = mc.field_71417_B.func_198024_e() - xPos / (mc.func_228018_at_().func_198107_o() / (double)mc.func_228018_at_().func_198105_m());
         double yDiff = mc.field_71417_B.func_198026_f() - yPos / (mc.func_228018_at_().func_198087_p() / (double)mc.func_228018_at_().func_198083_n());
-        if (Minecraft.func_71410_x().field_71439_g != null && Minecraft.func_71410_x().field_71439_g.func_195050_f(1.0f) <= -89.99f && yDiff > 0.0) {
+        if (Minecraft.getInstance().field_71439_g != null && Minecraft.getInstance().field_71439_g.func_195050_f(1.0f) <= -89.99f && yDiff > 0.0) {
             yDiff = 0.0;
         }
         for (final Point2D.Float float1 : this.usedStars) {

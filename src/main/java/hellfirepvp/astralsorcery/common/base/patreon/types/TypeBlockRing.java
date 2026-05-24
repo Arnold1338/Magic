@@ -18,13 +18,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import hellfirepvp.astralsorcery.common.base.patreon.FlareColor;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import java.util.Map;
 import java.util.UUID;
@@ -60,8 +60,8 @@ public class TypeBlockRing extends PatreonEffect
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public void onRenderLast(final RenderWorldLastEvent event) {
-        final Player pl = (Player)Minecraft.func_71410_x().field_71439_g;
-        if (Minecraft.func_71410_x().field_71474_y.func_243230_g().func_243192_a() && pl != null && pl.getUUID().equals(this.playerUUID)) {
+        final Player pl = (Player)Minecraft.getInstance().field_71439_g;
+        if (Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a() && pl != null && pl.getUUID().equals(this.playerUUID)) {
             final PoseStack renderStack = event.getMatrixStack();
             int alpha = 88;
             if (pl.field_70125_A >= 35.0f) {

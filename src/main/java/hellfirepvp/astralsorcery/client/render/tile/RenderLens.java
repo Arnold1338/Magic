@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import java.awt.Color;
 import java.util.List;
-import com.mojang.math.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.core.BlockPos;

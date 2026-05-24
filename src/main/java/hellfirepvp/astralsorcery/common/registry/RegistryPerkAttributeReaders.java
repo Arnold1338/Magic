@@ -9,7 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.perk.reader.ReaderBreakSpeed;
 import hellfirepvp.astralsorcery.common.perk.reader.ReaderFlatAttribute;
-import net.minecraft.world.level.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.common.ForgeMod;
 import hellfirepvp.astralsorcery.common.perk.reader.ReaderVanillaAttribute;

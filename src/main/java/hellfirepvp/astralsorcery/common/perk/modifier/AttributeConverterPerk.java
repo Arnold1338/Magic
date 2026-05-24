@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import java.util.Collection;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import java.awt.geom.Point2D;
 import com.google.common.collect.Sets;
 import net.minecraft.resources.ResourceLocation;

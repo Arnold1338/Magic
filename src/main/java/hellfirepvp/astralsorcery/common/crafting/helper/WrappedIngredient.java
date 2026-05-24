@@ -6,8 +6,8 @@ import net.minecraftforge.common.crafting.CraftingHelper;
 import com.google.gson.JsonParser;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.util.IngredientHelper;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public class WrappedIngredient
 {

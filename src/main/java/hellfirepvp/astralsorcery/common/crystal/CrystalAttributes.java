@@ -9,9 +9,9 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Mth;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -146,8 +146,8 @@ public final class CrystalAttributes
                     missing = true;
                 }
                 else {
-                    final IFormattableTextComponent enchantmentLevel = new Component(String.format("enchantment.level.%s", attr.getTier())).func_240699_a_(ChatFormatting.GOLD);
-                    final IFormattableTextComponent propertyName = prop.getName(attr.getTier()).func_240699_a_(ChatFormatting.GRAY);
+                    final MutableComponent enchantmentLevel = new Component(String.format("enchantment.level.%s", attr.getTier())).func_240699_a_(ChatFormatting.GOLD);
+                    final MutableComponent propertyName = prop.getName(attr.getTier()).func_240699_a_(ChatFormatting.GRAY);
                     tooltip.add((Component)propertyName.func_230529_a_((Component)new Component(" ")).func_230529_a_((Component)enchantmentLevel));
                     addedAtLeastOne = true;
                 }

@@ -2,17 +2,17 @@ package hellfirepvp.astralsorcery.common.block.tile;
 
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.tile.TileTreeBeaconComponent;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Random;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.level.block.state.BlockState;
-import net.minecraft.world.level.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.level.material.MapColor;
-import net.minecraft.world.level.level.material.Material;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.Material;
 import hellfirepvp.astralsorcery.common.block.base.BlockFakedState;
 
 public class BlockTreeBeaconComponent extends BlockFakedState

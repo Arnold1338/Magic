@@ -6,7 +6,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.items.IItemHandler;
 import java.util.Collection;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import com.google.common.collect.Lists;
 import java.util.Iterator;
 import com.google.common.collect.Maps;

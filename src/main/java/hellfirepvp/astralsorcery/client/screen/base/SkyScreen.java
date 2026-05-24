@@ -17,7 +17,7 @@ public interface SkyScreen
     public static final float THRESHOLD_FROM_MAX_BLUEGRAD = 0.3f;
     
     default Tuple<Color, Color> getSkyGradient(final boolean canSeeSky, final float angleTransparency, final float partialTicks) {
-        final ClientLevel renderWorld = Minecraft.func_71410_x().field_71441_e;
+        final ClientLevel renderWorld = Minecraft.getInstance().field_71441_e;
         int rgbFrom;
         int rgbTo;
         if (canSeeSky && angleTransparency > 1.0E-4) {

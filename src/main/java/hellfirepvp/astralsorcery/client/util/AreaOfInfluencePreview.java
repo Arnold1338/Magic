@@ -10,16 +10,16 @@ import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import net.minecraft.util.Mth;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.event.TickEvent;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.tile.base.TileAreaOfInfluence;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXCube;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 
@@ -68,7 +68,7 @@ public class AreaOfInfluencePreview implements ITickHandler
             this.removeEffects();
             return;
         }
-        final World clientWorld = (World)Minecraft.func_71410_x().field_71441_e;
+        final World clientWorld = (World)Minecraft.getInstance().field_71441_e;
         if (clientWorld == null) {
             this.clearClient();
             this.removeEffects();
@@ -95,7 +95,7 @@ public class AreaOfInfluencePreview implements ITickHandler
     }
     
     private boolean shouldContinueEffect(final TileAreaOfInfluence aoeTile) {
-        if (Minecraft.func_71410_x().field_71439_g == null) {
+        if (Minecraft.getInstance().field_71439_g == null) {
             return false;
         }
         final float effectRadius = aoeTile.getRadius();
@@ -103,7 +103,7 @@ public class AreaOfInfluencePreview implements ITickHandler
             return false;
         }
         final Vector3 offset = aoeTile.getEffectPosition();
-        final double distance = offset.distance((Entity)Minecraft.func_71410_x().field_71439_g);
+        final double distance = offset.distance((Entity)Minecraft.getInstance().field_71439_g);
         return distance <= effectRadius * 3.0f && distance <= 48.0;
     }
     

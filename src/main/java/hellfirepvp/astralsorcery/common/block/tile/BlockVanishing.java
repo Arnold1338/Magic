@@ -1,26 +1,26 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
 import hellfirepvp.astralsorcery.common.tile.TileVanishing;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.phys.shapes.Shapes;
 import net.minecraft.world.level.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.SpawnPlacements;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Random;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.level.block.state.BlockState;
-import net.minecraft.world.level.level.block.SoundType;
-import net.minecraft.world.level.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.level.material.MapColor;
-import net.minecraft.world.level.level.material.Material;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.BaseEntityBlock;
 
 public class BlockVanishing extends BaseEntityBlock

@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.crystal;
 
 import javax.annotation.Nullable;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 public interface CrystalAttributeItem
 {

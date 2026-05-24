@@ -2,21 +2,21 @@ package hellfirepvp.astralsorcery.common.item.lens;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.Vec3i;
 import net.minecraft.sounds.SoundEvent;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileLens;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.item.ItemUseContext;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemDynamicColor;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public abstract class ItemColoredLens extends Item implements ItemDynamicColor
 {
@@ -42,7 +42,7 @@ public abstract class ItemColoredLens extends Item implements ItemDynamicColor
                 if (!player.func_184812_l_()) {
                     held.func_190920_e(held.func_190916_E() - 1);
                     if (held.func_190916_E() <= 0) {
-                        player.func_184611_a(ctx.func_221531_n(), ItemStack.field_190927_a);
+                        player.func_184611_a(ctx.func_221531_n(), ItemStack.EMPTY);
                     }
                 }
                 SoundHelper.playSoundAround(SoundsAS.BLOCK_COLOREDLENS_ATTACH, world, (Vector3i)ctx.func_195995_a(), 0.8f, 1.5f);

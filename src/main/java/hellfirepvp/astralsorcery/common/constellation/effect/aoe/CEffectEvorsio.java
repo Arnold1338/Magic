@@ -6,15 +6,15 @@ import java.util.Iterator;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.List;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import java.util.function.Predicate;
 import net.minecraft.core.NonNullList;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.BlockDropCaptureAssist;
-import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.server.level.ServerLevel;
 import hellfirepvp.astralsorcery.common.constellation.IMinorConstellation;
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffectProperties;
@@ -29,7 +29,7 @@ import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.tile.TileRitualPedestal;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -110,7 +110,7 @@ public class CEffectEvorsio extends CEffectAbstractList<ListEntries.PosEntry>
                     if (this.canBreakBlock(world, at, state2, this.buildFilter(pedestal))) {
                         BlockDropCaptureAssist.startCapturing();
                         try {
-                            BlockUtils.breakBlockWithoutPlayer((ServerLevel)world, at, state2, ItemStack.field_190927_a, true, true);
+                            BlockUtils.breakBlockWithoutPlayer((ServerLevel)world, at, state2, ItemStack.EMPTY, true, true);
                         }
                         finally {
                             final NonNullList<ItemStack> captured = BlockDropCaptureAssist.getCapturedStacksAndStop();

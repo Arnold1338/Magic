@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.advancement.instance;
 
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.server.level.ServerPlayer;

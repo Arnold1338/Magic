@@ -4,8 +4,8 @@ import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.block.tile.crystal.CollectorCrystalType;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.level.item.Item;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 
 public class ItemBlockCelestialCollectorCrystal extends ItemBlockCollectorCrystal
 {

@@ -12,7 +12,7 @@ public abstract class RandomWordGenerator
     
     @Nonnull
     public static RandomWordGenerator getGenerator() {
-        String lang = Minecraft.func_71410_x().field_71474_y.field_74363_ab;
+        String lang = Minecraft.getInstance().field_71474_y.field_74363_ab;
         if (lang == null) {
             return RandomWordGenerator.fallback;
         }

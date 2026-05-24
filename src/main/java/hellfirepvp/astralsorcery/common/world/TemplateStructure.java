@@ -1,13 +1,13 @@
 package hellfirepvp.astralsorcery.common.world;
 
-import net.minecraft.world.level.level.LevelAccessor;
+import net.minecraft.world.level.LevelAccessor;
 import hellfirepvp.astralsorcery.common.world.marker.MarkerManagerAS;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.IServerWorld;
-import net.minecraft.world.level.level.ChunkPos;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.core.MutableBoundingBox;
 import java.util.Random;
-import net.minecraft.world.level.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.structure.StructureManager;
 import net.minecraft.world.level.ISeedReader;
 import net.minecraft.resources.ResourceLocation;

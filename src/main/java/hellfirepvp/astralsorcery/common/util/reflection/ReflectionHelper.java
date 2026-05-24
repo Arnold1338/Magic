@@ -7,7 +7,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import java.lang.reflect.Field;
-import net.minecraft.world.level.entity.item.ItemEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import java.util.function.BiConsumer;
 
 public class ReflectionHelper

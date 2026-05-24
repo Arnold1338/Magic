@@ -11,24 +11,24 @@ import net.minecraft.server.level.ServerPlayer;
 import java.util.Objects;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.network.chat.MutableComponent;
 import java.util.UUID;
 
 public class PlayerReference
 {
     private final UUID playerUUID;
-    private final IFormattableTextComponent playerName;
+    private final MutableComponent playerName;
     
-    public PlayerReference(final UUID playerUUID, final IFormattableTextComponent playerName) {
+    public PlayerReference(final UUID playerUUID, final MutableComponent playerName) {
         this.playerUUID = playerUUID;
         this.playerName = playerName;
     }
     
     public static PlayerReference of(final Player player) {
         final Component txt = player.func_145748_c_();
-        if (txt instanceof IFormattableTextComponent) {
-            return new PlayerReference(player.getUUID(), (IFormattableTextComponent)txt);
+        if (txt instanceof MutableComponent) {
+            return new PlayerReference(player.getUUID(), (MutableComponent)txt);
         }
         return new PlayerReference(player.getUUID(), new Component("").func_230529_a_(txt));
     }

@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.block.base;
 
-import net.minecraft.world.level.level.material.Material;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.properties.PushReaction;
-import net.minecraft.world.level.level.material.MapColor;
+import net.minecraft.world.level.material.MapColor;
 
 public class MaterialBuilderAS
 {

@@ -1,19 +1,19 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.level.block.Block;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.pathfinding.PathType;
 import hellfirepvp.astralsorcery.common.GuiType;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.item.ItemParchment;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.level.phys.BlockHitResult;
 import net.minecraft.world.level.InteractionHand;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
@@ -25,13 +25,13 @@ import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.Random;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.BlockGetter;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesWood;
 import net.minecraft.world.level.phys.AABB;
 import net.minecraft.world.level.phys.shapes.VoxelShape;
@@ -82,14 +82,14 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
             if (tft != null) {
                 if (player.func_225608_bj_()) {
                     if (!tft.getInputStack().isEmpty()) {
-                        final ItemStack remaining = ItemUtils.dropItemToPlayer(player, tft.setInputStack(ItemStack.field_190927_a));
+                        final ItemStack remaining = ItemUtils.dropItemToPlayer(player, tft.setInputStack(ItemStack.EMPTY));
                         if (!remaining.isEmpty()) {
                             ItemUtils.dropItemNaturally(world, player.func_226277_ct_(), player.func_226278_cu_(), player.func_226281_cx_(), remaining);
                         }
                         return InteractionResult.SUCCESS;
                     }
                     if (!tft.getGlassStack().isEmpty()) {
-                        final ItemStack remaining = ItemUtils.dropItemToPlayer(player, tft.setGlassStack(ItemStack.field_190927_a));
+                        final ItemStack remaining = ItemUtils.dropItemToPlayer(player, tft.setGlassStack(ItemStack.EMPTY));
                         if (!remaining.isEmpty()) {
                             ItemUtils.dropItemNaturally(world, player.func_226277_ct_(), player.func_226278_cu_(), player.func_226281_cx_(), remaining);
                         }
@@ -102,7 +102,7 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
                         if (leftover < tft.getParchmentCount() && !player.func_184812_l_()) {
                             held.func_190920_e(leftover);
                             if (held.isEmpty()) {
-                                player.func_184611_a(hand, ItemStack.field_190927_a);
+                                player.func_184611_a(hand, ItemStack.EMPTY);
                             }
                             else {
                                 player.func_184611_a(hand, held);
@@ -118,7 +118,7 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
                             if (!player.func_184812_l_()) {
                                 held.shrink(1);
                                 if (held.isEmpty()) {
-                                    player.func_184611_a(hand, ItemStack.field_190927_a);
+                                    player.func_184611_a(hand, ItemStack.EMPTY);
                                 }
                                 else {
                                     player.func_184611_a(hand, held);
@@ -134,7 +134,7 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
                             if (!player.func_184812_l_()) {
                                 held.shrink(1);
                                 if (held.isEmpty()) {
-                                    player.func_184611_a(hand, ItemStack.field_190927_a);
+                                    player.func_184611_a(hand, ItemStack.EMPTY);
                                 }
                                 else {
                                     player.func_184611_a(hand, held);

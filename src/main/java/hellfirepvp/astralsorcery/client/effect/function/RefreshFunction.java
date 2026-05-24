@@ -1,16 +1,16 @@
 package hellfirepvp.astralsorcery.client.effect.function;
 
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 import java.util.function.BiPredicate;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 
 public interface RefreshFunction<T extends EntityComplexFX>
@@ -47,7 +47,7 @@ public interface RefreshFunction<T extends EntityComplexFX>
         
         @Nullable
         protected E getTileIfValid() {
-            final World clWorld = (World)Minecraft.func_71410_x().field_71441_e;
+            final World clWorld = (World)Minecraft.getInstance().field_71441_e;
             final E tile;
             if (clWorld != null && clWorld.dimension().equals(this.dimType) && (tile = MiscUtils.getTileAt((IBlockReader)clWorld, this.pos, this.clazzExpected, true)) != null && !tile.func_145837_r()) {
                 return tile;

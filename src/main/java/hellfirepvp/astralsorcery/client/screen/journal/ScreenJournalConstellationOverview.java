@@ -10,7 +10,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import java.util.Random;
 import net.minecraft.util.Mth;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
@@ -157,15 +157,15 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
         for (final Rectangle r : this.rectCRenderMap.keySet()) {
             if (r.contains(mouseX, mouseY)) {
                 final IConstellation c = this.rectCRenderMap.get(r);
-                Minecraft.func_71410_x().func_147108_a((Screen)new ScreenJournalConstellationDetail(this, c));
+                Minecraft.getInstance().func_147108_a((Screen)new ScreenJournalConstellationDetail(this, c));
             }
         }
         if (this.rectPrev != null && this.rectPrev.contains(mouseX, mouseY)) {
-            Minecraft.func_71410_x().func_147108_a((Screen)new ScreenJournalConstellationOverview(this.pageId - 1, this.constellations));
+            Minecraft.getInstance().func_147108_a((Screen)new ScreenJournalConstellationOverview(this.pageId - 1, this.constellations));
             return true;
         }
         if (this.rectNext != null && this.rectNext.contains(mouseX, mouseY)) {
-            Minecraft.func_71410_x().func_147108_a((Screen)new ScreenJournalConstellationOverview(this.pageId + 1, this.constellations));
+            Minecraft.getInstance().func_147108_a((Screen)new ScreenJournalConstellationOverview(this.pageId + 1, this.constellations));
             return true;
         }
         return false;

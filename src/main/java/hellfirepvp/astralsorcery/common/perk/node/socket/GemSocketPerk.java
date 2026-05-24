@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
@@ -17,11 +17,11 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import javax.annotation.Nullable;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 
 public interface GemSocketPerk
 {
@@ -45,10 +45,10 @@ public interface GemSocketPerk
         }
         final CompoundTag data = (dataOvr != null) ? dataOvr : ((AbstractPerk)this).getPerkData(player, side);
         if (data == null) {
-            return ItemStack.field_190927_a;
+            return ItemStack.EMPTY;
         }
         final ItemStack stack = NBTHelper.getStack(data, "socketedItem");
-        return (stack != null) ? stack : ItemStack.field_190927_a;
+        return (stack != null) ? stack : ItemStack.EMPTY;
     }
     
     default boolean setContainedItem(final Player player, final LogicalSide side, final ItemStack stack) {
@@ -115,14 +115,14 @@ public interface GemSocketPerk
         if (!contained.isEmpty() && !player.func_191521_c(contained)) {
             ItemUtils.dropItem(player.func_130014_f_(), player.func_226277_ct_(), player.func_226278_cu_(), player.func_226281_cx_(), contained);
         }
-        this.setContainedItem(player, LogicalSide.SERVER, data, ItemStack.field_190927_a);
+        this.setContainedItem(player, LogicalSide.SERVER, data, ItemStack.EMPTY);
         if (updateData) {
             ResearchManager.setPerkData(player, (AbstractPerk)this, prev, data);
         }
     }
     
     @OnlyIn(Dist.CLIENT)
-    default <T extends AbstractPerk & GemSocketPerk> void addTooltipInfo(final Collection<IFormattableTextComponent> tooltip) {
+    default <T extends AbstractPerk & GemSocketPerk> void addTooltipInfo(final Collection<MutableComponent> tooltip) {
         if (!(this instanceof AbstractPerk)) {
             return;
         }
@@ -132,18 +132,18 @@ public interface GemSocketPerk
             return;
         }
         final PlayerPerkData perkData = prog.getPerkData();
-        final ItemStack contained = this.getContainedItem((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT);
+        final ItemStack contained = this.getContainedItem((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT);
         if (contained.isEmpty()) {
             tooltip.add(new Component("perk.info.astralsorcery.gem.empty").func_240699_a_(ChatFormatting.GRAY));
             if (perkData.hasPerkEffect(thisPerk)) {
                 tooltip.add(new Component("perk.info.astralsorcery.gem.content.empty").func_240699_a_(ChatFormatting.GRAY));
-                final boolean has = !ItemUtils.findItemsIndexedInPlayerInventory((Player)Minecraft.func_71410_x().field_71439_g, stack -> {
+                final boolean has = !ItemUtils.findItemsIndexedInPlayerInventory((Player)Minecraft.getInstance().field_71439_g, stack -> {
                     if (stack.isEmpty() || !(stack.getItem() instanceof GemSocketItem)) {
                         return false;
                     }
                     else {
                         final GemSocketItem item2 = (GemSocketItem)stack.getItem();
-                        return item2.canBeInserted(stack, thisPerk, (Player)Minecraft.func_71410_x().field_71439_g, ResearchHelper.getClientProgress(), LogicalSide.CLIENT);
+                        return item2.canBeInserted(stack, thisPerk, (Player)Minecraft.getInstance().field_71439_g, ResearchHelper.getClientProgress(), LogicalSide.CLIENT);
                     }
                 }).isEmpty();
                 if (!has) {
@@ -154,11 +154,11 @@ public interface GemSocketPerk
         else {
             if (contained.getItem() instanceof GemSocketItem) {
                 final GemSocketItem item = (GemSocketItem)contained.getItem();
-                final List<IFormattableTextComponent> additionalToolTip = new ArrayList<IFormattableTextComponent>();
+                final List<MutableComponent> additionalToolTip = new ArrayList<MutableComponent>();
                 item.addTooltip(contained, thisPerk, additionalToolTip);
                 if (!additionalToolTip.isEmpty()) {
                     tooltip.addAll(additionalToolTip);
-                    tooltip.add((IFormattableTextComponent)new Component(""));
+                    tooltip.add((MutableComponent)new Component(""));
                 }
             }
             tooltip.add(new Component("perk.info.astralsorcery.gem.content.item", new Object[] { contained.func_200301_q() }).func_240699_a_(ChatFormatting.GRAY));

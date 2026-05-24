@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.perk;
 
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import net.minecraftforge.event.TickEvent;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import java.util.function.Consumer;

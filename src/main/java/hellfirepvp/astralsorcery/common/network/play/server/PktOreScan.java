@@ -5,9 +5,9 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import java.util.Iterator;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.client.util.MiscPlayEffect;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -54,7 +54,7 @@ public class PktOreScan extends ASPacket<PktOreScan>
             @Override
             public void handleClient(final PktOreScan packet, final NetworkEvent.Context context) {
                 context.enqueueWork(() -> {
-                    final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+                    final Player player = (Player)Minecraft.getInstance().field_71439_g;
                     if (player != null) {
                         packet.positions.iterator();
                         final Iterator iterator;
@@ -62,7 +62,7 @@ public class PktOreScan extends ASPacket<PktOreScan>
                             final BlockPos at = iterator.next();
                             final Vector3 atPos = new Vector3((Vector3i)at).add(0.5, 0.5, 0.5);
                             atPos.add(PktOreScan.rand.nextFloat() - PktOreScan.rand.nextFloat(), PktOreScan.rand.nextFloat() - PktOreScan.rand.nextFloat(), PktOreScan.rand.nextFloat() - PktOreScan.rand.nextFloat());
-                            final BlockState state = Minecraft.func_71410_x().field_71441_e.getBlockState(at);
+                            final BlockState state = Minecraft.getInstance().field_71441_e.getBlockState(at);
                             MiscPlayEffect.playSingleBlockTumbleDepthEffect(atPos, state);
                         }
                     }

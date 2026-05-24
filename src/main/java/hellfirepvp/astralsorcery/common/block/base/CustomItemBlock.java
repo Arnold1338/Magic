@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.common.block.base;
 
-import net.minecraft.world.level.level.block.Block;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.Item;
 import hellfirepvp.astralsorcery.common.item.block.ItemBlockCustom;
-import net.minecraft.world.level.item.BlockItem;
+import net.minecraft.world.item.BlockItem;
 
 public interface CustomItemBlock
 {

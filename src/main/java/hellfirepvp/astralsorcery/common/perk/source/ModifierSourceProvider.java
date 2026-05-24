@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.perk.source;
 
 import hellfirepvp.astralsorcery.common.network.play.server.PktSyncModifierSource;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.perk.PerkEffectHelper;
 import net.minecraftforge.fml.LogicalSide;
 import javax.annotation.Nullable;

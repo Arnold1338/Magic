@@ -3,13 +3,13 @@ package hellfirepvp.astralsorcery.common.integration.jei;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IGuiFluidStackGroup;
 import java.util.Arrays;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.List;
-import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.resources.ResourceLocation;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.world.level.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.Recipe;
 
 public abstract class JEICategory<T extends Recipe<?>> implements IRecipeCategory<T>
 {

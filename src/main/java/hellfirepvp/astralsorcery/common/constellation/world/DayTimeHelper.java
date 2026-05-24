@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.constellation.world;
 
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 
 public class DayTimeHelper
 {

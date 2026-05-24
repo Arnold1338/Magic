@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.common.perk.node.socket;
 
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.perk.modifier.DynamicAttributeModifier;
 import java.util.List;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 public interface GemSocketItem
 {
@@ -26,6 +26,6 @@ public interface GemSocketItem
         return new ArrayList<DynamicAttributeModifier>();
     }
     
-    default <T extends AbstractPerk & GemSocketPerk> void addTooltip(final ItemStack stack, final T perk, final List<IFormattableTextComponent> toolTip) {
+    default <T extends AbstractPerk & GemSocketPerk> void addTooltip(final ItemStack stack, final T perk, final List<MutableComponent> toolTip) {
     }
 }

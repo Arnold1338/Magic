@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.item.wand;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.nbt.CompoundTag;
@@ -13,7 +13,7 @@ import java.util.Collections;
 import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
 import hellfirepvp.astralsorcery.common.data.config.entry.WandsConfig;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import com.google.common.collect.Maps;
@@ -39,7 +39,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingOverlayUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.Map;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
@@ -55,9 +55,9 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.level.ClipContext;
 import com.google.common.collect.Sets;
 import java.util.Set;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.ToolAction;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.ChatFormatting;
@@ -65,14 +65,14 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeConsumer;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemHeldRender;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemOverlayRender;
 import hellfirepvp.astralsorcery.common.item.base.ItemBlockStorage;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOverlayRender, ItemHeldRender, AlignmentChargeConsumer
 {
@@ -117,13 +117,13 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     
     @OnlyIn(Dist.CLIENT)
     public boolean renderInHand(final ItemStack stack, final PoseStack renderStack, final float pTicks) {
-        final BlockHitResult hitResult = MiscUtils.rayTraceLookBlock((Player)Minecraft.func_71410_x().field_71439_g, ClipContext.BlockMode.OUTLINE, ClipContext.FluidMode.NONE);
+        final BlockHitResult hitResult = MiscUtils.rayTraceLookBlock((Player)Minecraft.getInstance().field_71439_g, ClipContext.BlockMode.OUTLINE, ClipContext.FluidMode.NONE);
         if (hitResult == null) {
             return true;
         }
-        final World world = (World)Minecraft.func_71410_x().field_71441_e;
+        final World world = (World)Minecraft.getInstance().field_71441_e;
         final BlockPos at = hitResult.func_216350_a();
-        final Map<BlockPos, BlockState> placeStates = this.getPlaceStates((Player)Minecraft.func_71410_x().field_71439_g, world, at, stack);
+        final Map<BlockPos, BlockState> placeStates = this.getPlaceStates((Player)Minecraft.getInstance().field_71439_g, world, at, stack);
         if (placeStates.isEmpty()) {
             return true;
         }
@@ -152,7 +152,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     
     @OnlyIn(Dist.CLIENT)
     public boolean renderOverlay(final PoseStack renderStack, final ItemStack stack, final float pTicks) {
-        final List<Tuple<ItemStack, Integer>> foundStacks = ItemBlockStorage.getInventoryMatchingItemStacks((Player)Minecraft.func_71410_x().field_71439_g, stack);
+        final List<Tuple<ItemStack, Integer>> foundStacks = ItemBlockStorage.getInventoryMatchingItemStacks((Player)Minecraft.getInstance().field_71439_g, stack);
         RenderingOverlayUtils.renderDefaultItemDisplay(renderStack, foundStacks);
         return true;
     }
@@ -298,12 +298,12 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
             return this.searchRadius;
         }
         
-        public IFormattableTextComponent getName() {
-            return (IFormattableTextComponent)new Component("astralsorcery.misc.exchange.size." + this.searchRadius);
+        public MutableComponent getName() {
+            return (MutableComponent)new Component("astralsorcery.misc.exchange.size." + this.searchRadius);
         }
         
-        public IFormattableTextComponent getDisplay() {
-            return (IFormattableTextComponent)new Component("astralsorcery.misc.exchange.size", new Object[] { this.getName() });
+        public MutableComponent getDisplay() {
+            return (MutableComponent)new Component("astralsorcery.misc.exchange.size", new Object[] { this.getName() });
         }
         
         @Nonnull

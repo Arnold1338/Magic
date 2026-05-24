@@ -8,10 +8,10 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeLimiter;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import hellfirepvp.astralsorcery.common.perk.type.AttributeTypeBreakSpeed;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeMap;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 

@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.block.base.template;
 import javax.annotation.Nonnull;
 import net.minecraft.world.level.effect.MobEffect;
 import net.minecraft.world.level.effect.MobEffects;
-import net.minecraft.world.level.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import net.minecraft.world.level.block.FlowerBlock;
 

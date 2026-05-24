@@ -13,7 +13,7 @@ public class KeyDisablePerkAbilities extends KeyBindingWrapper
     
     @Override
     public void onKeyDown() {
-        if (!Minecraft.func_71410_x().func_147113_T()) {
+        if (!Minecraft.getInstance().func_147113_T()) {
             final PktToggleClientOption pkt = new PktToggleClientOption(PktToggleClientOption.Option.DISABLE_PERK_ABILITIES);
             PacketChannel.CHANNEL.sendToServer(pkt);
         }

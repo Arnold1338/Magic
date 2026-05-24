@@ -3,13 +3,13 @@ package hellfirepvp.astralsorcery.common.constellation.mantle;
 import net.minecraftforge.common.ForgeConfigSpec;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 import java.util.EnumSet;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.event.TickEvent;
@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.common.MinecraftForge;
@@ -81,7 +81,7 @@ public abstract class MantleEffect extends ForgeRegistryEntry<MantleEffect> impl
     
     @OnlyIn(Dist.CLIENT)
     protected void playCapeSparkles(final Player player, float chance) {
-        if (player == Minecraft.func_71410_x().field_71439_g && Minecraft.func_71410_x().field_71474_y.func_243230_g().func_243192_a()) {
+        if (player == Minecraft.getInstance().field_71439_g && Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a()) {
             chance *= 0.1f;
         }
         if (MantleEffect.rand.nextFloat() < chance) {

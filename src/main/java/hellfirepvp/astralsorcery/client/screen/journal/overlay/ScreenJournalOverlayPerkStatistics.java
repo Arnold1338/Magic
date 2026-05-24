@@ -19,7 +19,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Iterator;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import java.util.Comparator;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.LogicalSide;
@@ -56,7 +56,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
     protected void func_231160_c_() {
         super.func_231160_c_();
         this.statistics.clear();
-        final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().field_71439_g;
         final PerkAttributeInterpreter interpreter = PerkAttributeInterpreter.defaultInterpreter(player);
         RegistriesAS.REGISTRY_PERK_ATTRIBUTE_TYPES.getValues().stream().filter(t -> t instanceof VanillaPerkAttributeType).forEach(t -> ((VanillaPerkAttributeType)t).refreshAttribute(player));
         for (final PerkAttributeType type : RegistriesAS.REGISTRY_PERK_ATTRIBUTE_TYPES.getValues()) {
@@ -158,7 +158,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
         if (reader == null) {
             return;
         }
-        final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().field_71439_g;
         final PerkAttributeMap attrMap = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.CLIENT);
         final List<ITextProperties> information = Lists.newArrayList();
         information.add((ITextProperties)new Component("perk.reader.astralsorcery.description.head", new Object[] { PerkAttributeReader.formatDecimal(reader.getDefaultValue(attrMap, player, LogicalSide.CLIENT)) }));

@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.common.enchantment.amulet.AmuletRandomizeHelper;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Iterator;
@@ -24,12 +24,12 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import java.util.Random;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemDynamicColor;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor
 {

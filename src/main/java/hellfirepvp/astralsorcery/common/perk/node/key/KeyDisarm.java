@@ -2,19 +2,19 @@ package hellfirepvp.astralsorcery.common.perk.node.key;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import net.minecraft.world.level.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -51,7 +51,7 @@ public class KeyDisarm extends KeyPerk
                         final LivingEntity attacked = event.getEntityLiving();
                         final ItemStack stack = attacked.getItemBySlot(slot);
                         if (!stack.isEmpty()) {
-                            attacked.func_184201_a(slot, ItemStack.field_190927_a);
+                            attacked.func_184201_a(slot, ItemStack.EMPTY);
                             ItemUtils.dropItemNaturally(attacked.field_70170_p, attacked.func_226277_ct_(), attacked.func_226278_cu_(), attacked.func_226281_cx_(), stack);
                             break;
                         }

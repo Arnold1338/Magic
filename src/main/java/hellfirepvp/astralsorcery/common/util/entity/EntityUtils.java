@@ -1,43 +1,43 @@
 package hellfirepvp.astralsorcery.common.util.entity;
 
-import net.minecraft.world.level.entity.item.ItemEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import java.util.Iterator;
 import java.util.function.Function;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import com.google.common.base.Predicate;
 import net.minecraft.world.level.phys.AABB;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.level.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.LootContext;
 import java.util.Collections;
 import net.minecraft.world.level.GameRules;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.damagesource.DamageSource;
 import net.minecraftforge.eventbus.api.Event;
-import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.spawner.WorldEntitySpawner;
 import net.minecraft.world.entity.SpawnPlacements;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.StructureManager;
-import net.minecraft.world.level.level.biome.Biome;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.level.IServerWorld;
 import net.minecraft.world.level.spawner.AbstractSpawner;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.entity.Mob;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.entity.EntityType;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.BlockGetter;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.level.biome.MobSpawnInfo;
 import java.util.List;
-import net.minecraft.world.level.level.LevelAccessor;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.MobCategory;
@@ -47,7 +47,7 @@ import java.util.function.Consumer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.function.Supplier;
 import net.minecraft.world.level.effect.MobEffectInstance;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -55,7 +55,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import net.minecraft.server.MinecraftServer;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.fml.LogicalSide;
 import java.util.UUID;
 import java.util.Random;
@@ -81,7 +81,7 @@ public class EntityUtils
     @Nullable
     @OnlyIn(Dist.CLIENT)
     public static Player getPlayerClient(final UUID playerUUID) {
-        final ClientLevel clWorld = Minecraft.func_71410_x().field_71441_e;
+        final ClientLevel clWorld = Minecraft.getInstance().field_71441_e;
         if (clWorld == null) {
             return null;
         }

@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.registry;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.lib.PerkCustomModifiersAS;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.perk.modifier.PerkAttributeModifier;

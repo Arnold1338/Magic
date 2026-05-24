@@ -5,13 +5,13 @@ import java.util.Deque;
 import java.util.LinkedList;
 import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.LevelReader;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.level.level.chunk.LevelChunk;
+import net.minecraft.world.level.chunk.LevelChunk;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.function.Function;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import java.util.function.Predicate;
 import java.util.Iterator;
 import java.util.List;
@@ -23,9 +23,9 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.Nullable;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 
 public class BlockDiscoverer
 {

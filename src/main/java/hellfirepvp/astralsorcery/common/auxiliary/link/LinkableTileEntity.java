@@ -7,13 +7,13 @@ import net.minecraft.Util;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import com.google.common.collect.Lists;
-import net.minecraft.world.level.entity.LivingEntity;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.Level;
 
 public interface LinkableTileEntity
 {

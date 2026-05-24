@@ -3,8 +3,8 @@ package hellfirepvp.astralsorcery.common.item.crystal;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import java.awt.Color;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.entity.item.ItemEntity;
-import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.EntityType;
 import hellfirepvp.astralsorcery.common.entity.item.EntityCrystal;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,11 +15,11 @@ import java.util.List;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.crystal.CrystalGenerator;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeGenItem;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public abstract class ItemCrystalBase extends Item implements CrystalAttributeGenItem
 {

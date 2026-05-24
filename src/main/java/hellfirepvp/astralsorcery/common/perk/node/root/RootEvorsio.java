@@ -1,17 +1,17 @@
 package hellfirepvp.astralsorcery.common.perk.node.root;
 
-import net.minecraft.world.level.level.LevelAccessor;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.event.level.BlockEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;

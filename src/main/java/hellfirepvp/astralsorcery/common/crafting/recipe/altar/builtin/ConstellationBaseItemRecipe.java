@@ -10,7 +10,7 @@ import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import com.google.gson.JsonSyntaxException;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import com.google.gson.JsonObject;

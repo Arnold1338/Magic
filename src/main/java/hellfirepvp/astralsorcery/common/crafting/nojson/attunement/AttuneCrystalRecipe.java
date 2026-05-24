@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.crafting.nojson.attunement;
 
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.constellation.IMinorConstellation;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationItem;
@@ -9,13 +9,13 @@ import java.util.List;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import javax.annotation.Nullable;
 import net.minecraft.nbt.CompoundTag;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.entity.item.ItemEntity;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
 import hellfirepvp.astralsorcery.AstralSorcery;

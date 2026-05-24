@@ -6,7 +6,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import net.minecraft.commands.arguments.EntitySelector;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.arguments.LongArgumentType;
 import com.mojang.brigadier.arguments.ArgumentType;

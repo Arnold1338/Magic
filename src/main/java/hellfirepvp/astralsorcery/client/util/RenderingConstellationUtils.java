@@ -14,7 +14,7 @@ import java.util.Iterator;
 import hellfirepvp.astralsorcery.client.constellation.ConstellationBackgroundInfo;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import hellfirepvp.astralsorcery.common.constellation.star.StarLocation;
 import hellfirepvp.astralsorcery.common.constellation.star.StarConnection;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -177,8 +177,8 @@ public class RenderingConstellationUtils
         final int g = col.getGreen();
         final int b = col.getBlue();
         float starBrightness = 1.0f;
-        if (applyStarBrightness && Minecraft.func_71410_x().field_71441_e != null) {
-            starBrightness = Minecraft.func_71410_x().field_71441_e.func_228330_j_(1.0f);
+        if (applyStarBrightness && Minecraft.getInstance().field_71441_e != null) {
+            starBrightness = Minecraft.getInstance().field_71441_e.func_228330_j_(1.0f);
             if (starBrightness <= 0.23f) {
                 return new HashMap<StarLocation, Rectangle2D.Float>();
             }

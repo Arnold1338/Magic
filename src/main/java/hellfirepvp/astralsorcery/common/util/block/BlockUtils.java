@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.common.util.block;
 
 import net.minecraftforge.common.util.FakePlayer;
-import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import hellfirepvp.astralsorcery.common.util.BlockDropCaptureAssist;
-import net.minecraft.world.level.level.LevelAccessor;
-import net.minecraft.world.level.level.material.Fluids;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.util.BlockSnapshot;
 import java.util.ArrayList;
 import net.minecraftforge.eventbus.api.Event;
@@ -13,7 +13,7 @@ import net.minecraftforge.event.level.BlockEvent;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.ToolAction;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.Property;
 import java.util.Iterator;
 import javax.annotation.Nullable;
@@ -22,23 +22,23 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.effect.MobEffects;
 import net.minecraft.world.effect.EffectUtils;
-import net.minecraft.world.level.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BlockItemUseContext;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.InteractionHand;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.phys.Vec3;
-import net.minecraft.world.level.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.level.level.storage.loot.LootContext;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.block.state.BlockState;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.core.BlockPos;
@@ -48,7 +48,7 @@ public class BlockUtils
 {
     @Nonnull
     public static List<ItemStack> getDrops(final ServerLevel world, final BlockPos pos, final int harvestFortune, final Random rand) {
-        return getDrops(world, pos, harvestFortune, rand, ItemStack.field_190927_a);
+        return getDrops(world, pos, harvestFortune, rand, ItemStack.EMPTY);
     }
     
     @Nonnull
@@ -195,7 +195,7 @@ public class BlockUtils
     }
     
     public static boolean breakBlockWithoutPlayer(final ServerLevel world, final BlockPos pos) {
-        return breakBlockWithoutPlayer(world, pos, world.getBlockState(pos), ItemStack.field_190927_a, true, false);
+        return breakBlockWithoutPlayer(world, pos, world.getBlockState(pos), ItemStack.EMPTY, true, false);
     }
     
     @Deprecated
@@ -237,7 +237,7 @@ public class BlockUtils
         catch (final Exception exc2) {
             return false;
         }
-        final ItemStack heldCopy = heldItem.isEmpty() ? ItemStack.field_190927_a : heldItem.copy();
+        final ItemStack heldCopy = heldItem.isEmpty() ? ItemStack.EMPTY : heldItem.copy();
         try {
             heldCopy.func_179548_a((World)world, stateBroken, pos, (Player)fakePlayer);
         }
@@ -266,7 +266,7 @@ public class BlockUtils
         if (harvestable) {
             try {
                 final BlockEntity tileentity = MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true);
-                final ItemStack harvestStack = heldCopy.isEmpty() ? ItemStack.field_190927_a : heldCopy.copy();
+                final ItemStack harvestStack = heldCopy.isEmpty() ? ItemStack.EMPTY : heldCopy.copy();
                 stateBroken.getBlock().func_180657_a((World)world, (Player)fakePlayer, pos, stateBroken, tileentity, harvestStack);
             }
             catch (final Exception exc4) {

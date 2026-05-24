@@ -6,7 +6,7 @@ import hellfirepvp.astralsorcery.common.auxiliary.book.BookLookupRegistry;
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.Arrays;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.client.resource.AssetLoader;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.resource.query.TextureQuery;
 import hellfirepvp.astralsorcery.client.resource.query.SpriteQuery;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 public class ResearchNode
 {

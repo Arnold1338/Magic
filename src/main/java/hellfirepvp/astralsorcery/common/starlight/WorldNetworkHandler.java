@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.starlight;
 
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.level.ChunkPos;
+import net.minecraft.world.level.ChunkPos;
 import java.util.LinkedList;
 import hellfirepvp.astralsorcery.common.starlight.transmission.NodeConnection;
 import javax.annotation.Nullable;
@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.starlight.network.StarlightTransmissionH
 import net.minecraft.core.BlockPos;
 import hellfirepvp.observerlib.common.data.WorldCacheDomain;
 import hellfirepvp.astralsorcery.common.lib.DataAS;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.data.world.LightNetworkBuffer;
 
 public class WorldNetworkHandler

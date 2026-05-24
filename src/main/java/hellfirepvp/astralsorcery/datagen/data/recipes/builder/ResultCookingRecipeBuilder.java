@@ -11,8 +11,8 @@ import net.minecraft.data.IFinishedRecipe;
 import java.util.function.Consumer;
 import net.minecraft.world.item.crafting.IRecipeSerializer;
 import net.minecraft.world.item.crafting.CookingRecipeSerializer;
-import net.minecraft.world.level.item.crafting.Ingredient;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.ItemStack;
 
 public class ResultCookingRecipeBuilder
 {

@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.entity;
 
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraft.network.IPacket;
 import net.minecraft.world.level.phys.HitResult;
@@ -25,18 +25,18 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.Iterator;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.phys.Vec3;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.entity.LivingEntity;
-import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EntityType;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.world.level.phys.AABB;
 import net.minecraft.world.entity.projectile.ThrowableEntity;
@@ -107,7 +107,7 @@ public class EntityNocturnalSpark extends ThrowableEntity
             if (this.field_70173_aa % 5 == 0) {
                 final List<BlockPos> lightPositions = BlockDiscoverer.searchForBlocksAround((World)sWorld, this.func_233580_cy_(), 8, (world, pos, state) -> !(state.getBlock() instanceof AirBlock) && state.func_185887_b((IBlockReader)world, pos) != -1.0f && state.getLightValue((IBlockReader)world, pos) > 3);
                 for (final BlockPos light : lightPositions) {
-                    if (!BlockUtils.breakBlockWithoutPlayer(sWorld, light, sWorld.getBlockState(light), ItemStack.field_190927_a, true, true)) {
+                    if (!BlockUtils.breakBlockWithoutPlayer(sWorld, light, sWorld.getBlockState(light), ItemStack.EMPTY, true, true)) {
                         sWorld.func_217377_a(light, false);
                     }
                 }

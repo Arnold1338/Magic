@@ -11,7 +11,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraftforge.server.command.EnumArgument;
 import hellfirepvp.astralsorcery.common.data.research.ProgressionTier;

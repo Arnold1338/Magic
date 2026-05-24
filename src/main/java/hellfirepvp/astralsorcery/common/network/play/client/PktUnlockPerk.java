@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.network.play.client;
 import net.minecraft.network.FriendlyByteBuf;
 import hellfirepvp.astralsorcery.common.data.research.PlayerPerkData;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.data.research.PlayerPerkAllocation;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
@@ -68,9 +68,9 @@ public class PktUnlockPerk extends ASPacket<PktUnlockPerk>
                 context.enqueueWork(() -> {
                     if (packet.serverAccept) {
                         PerkTree.PERK_TREE.getPerk(LogicalSide.CLIENT, packet.perkKey).ifPresent(perk -> {
-                            final Screen current = Minecraft.func_71410_x().field_71462_r;
+                            final Screen current = Minecraft.getInstance().field_71462_r;
                             if (current instanceof ScreenJournalPerkTree) {
-                                Minecraft.func_71410_x().func_212871_a_(() -> ((ScreenJournalPerkTree)current).playUnlockAnimation(perk));
+                                Minecraft.getInstance().func_212871_a_(() -> ((ScreenJournalPerkTree)current).playUnlockAnimation(perk));
                             }
                         });
                     }

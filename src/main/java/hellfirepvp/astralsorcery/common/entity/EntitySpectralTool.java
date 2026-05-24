@@ -4,8 +4,8 @@ import net.minecraft.world.entity.ai.control.MoveControl;
 import hellfirepvp.astralsorcery.common.entity.goal.SpectralToolMeleeAttackGoal;
 import hellfirepvp.astralsorcery.common.entity.goal.SpectralToolBreakLogGoal;
 import hellfirepvp.astralsorcery.common.entity.goal.SpectralToolBreakBlockGoal;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.item.Items;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.Items;
 import hellfirepvp.astralsorcery.common.constellation.mantle.effect.MantleEffectPelotrio;
 import java.util.function.BiFunction;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -22,20 +22,20 @@ import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.level.entity.Mob;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
-import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.world.entity.EntityType;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.entity.goal.SpectralToolGoal;
-import net.minecraft.world.level.entity.LivingEntity;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.world.entity.FlyingMob;
 
@@ -79,7 +79,7 @@ public class EntitySpectralTool extends FlyingMob
     
     protected void func_70088_a() {
         super.func_70088_a();
-        this.func_184212_Q().func_187214_a((EntityDataAccessor)EntitySpectralTool.ITEM, (Object)ItemStack.field_190927_a);
+        this.func_184212_Q().func_187214_a((EntityDataAccessor)EntitySpectralTool.ITEM, (Object)ItemStack.EMPTY);
     }
     
     public boolean func_241849_j(final Entity entity) {

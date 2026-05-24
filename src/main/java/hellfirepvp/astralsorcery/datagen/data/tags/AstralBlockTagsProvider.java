@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.datagen.data.tags;
 import net.minecraft.data.TagsProvider;
 import hellfirepvp.astralsorcery.common.lib.TagsAS;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.tags.TagKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.ExistingFileHelper;

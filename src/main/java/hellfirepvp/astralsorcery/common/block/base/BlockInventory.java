@@ -4,13 +4,13 @@ import net.minecraftforge.common.util.LazyOptional;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.level.block.state.BlockState;
-import net.minecraft.world.level.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public abstract class BlockInventory extends BlockCrystalContainer
 {

@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.block.tile.crystal;
 
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
-import net.minecraft.world.level.level.material.MapColor;
+import net.minecraft.world.level.material.MapColor;
 import java.awt.Color;
 
 public enum CollectorCrystalType

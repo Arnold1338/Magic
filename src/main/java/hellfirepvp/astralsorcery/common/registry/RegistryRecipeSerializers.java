@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.registry;
 
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.world.item.crafting.IRecipeSerializer;
-import net.minecraft.world.level.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Container;
 import hellfirepvp.astralsorcery.common.crafting.custom.RecipeDyeableChangeColor;
 import hellfirepvp.astralsorcery.common.crafting.serializer.LiquidInteractionSerializer;

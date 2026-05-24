@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.common.enchantment.dynamic;
 
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.common.MinecraftForge;
 import hellfirepvp.astralsorcery.common.event.DynamicEnchantmentEvent;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.enchantment.amulet.AmuletEnchantmentHelper;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import hellfirepvp.astralsorcery.common.base.Mods;
 import net.minecraft.world.item.BookItem;
@@ -24,10 +24,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.enchantment.QuickChargeEnchantment;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.world.level.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
 import javax.annotation.Nullable;
 import java.util.List;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 public class DynamicEnchantmentHelper
 {

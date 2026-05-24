@@ -9,9 +9,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.LanguageMap;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentType;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantment;
 
@@ -26,13 +26,13 @@ public class AmuletEnchantment extends DynamicEnchantment
     }
     
     @OnlyIn(Dist.CLIENT)
-    public IFormattableTextComponent getDisplay() {
+    public MutableComponent getDisplay() {
         final String typeStr = this.getType().getDisplayName();
         final String levelsStr = I18n.func_135052_a(String.format("astralsorcery.amulet.enchantment.level.%s", (this.levelAddition > 1) ? "more" : "one"), new Object[0]);
         if (this.getType().isEnchantmentSpecific()) {
-            return (IFormattableTextComponent)new Component(typeStr, new Object[] { String.valueOf(this.getLevelAddition()), levelsStr, LanguageMap.func_74808_a().func_230503_a_(this.getEnchantment().func_77320_a()) });
+            return (MutableComponent)new Component(typeStr, new Object[] { String.valueOf(this.getLevelAddition()), levelsStr, LanguageMap.func_74808_a().func_230503_a_(this.getEnchantment().func_77320_a()) });
         }
-        return (IFormattableTextComponent)new Component(typeStr, new Object[] { String.valueOf(this.getLevelAddition()), levelsStr });
+        return (MutableComponent)new Component(typeStr, new Object[] { String.valueOf(this.getLevelAddition()), levelsStr });
     }
     
     public boolean canMerge(final AmuletEnchantment other) {

@@ -3,8 +3,8 @@ package hellfirepvp.astralsorcery.common.item.block;
 import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.block.tile.crystal.CollectorCrystalType;
-import net.minecraft.world.level.item.Item;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 
 public class ItemBlockRockCollectorCrystal extends ItemBlockCollectorCrystal
 {

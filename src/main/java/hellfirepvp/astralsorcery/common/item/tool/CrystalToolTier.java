@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.item.tool;
 
-import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.IItemTier;
 
 public class CrystalToolTier implements IItemTier

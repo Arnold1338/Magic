@@ -2,9 +2,9 @@ package hellfirepvp.astralsorcery.common.constellation.mantle.effect;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -19,7 +19,7 @@ import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
 import hellfirepvp.astralsorcery.common.perk.node.key.KeyMantleFlight;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import hellfirepvp.astralsorcery.common.constellation.mantle.MantleEffect;
@@ -54,7 +54,7 @@ public class MantleEffectVicio extends MantleEffect
     protected void tickClient(final Player player) {
         super.tickClient(player);
         if (player.func_184613_cA() || (!player.func_184812_l_() && !player.func_175149_v() && player.field_71075_bZ.field_75100_b)) {
-            if (!Minecraft.func_71410_x().field_71474_y.func_243230_g().func_243193_b()) {
+            if (!Minecraft.getInstance().field_71474_y.func_243230_g().func_243193_b()) {
                 this.playCapeSparkles(player, 0.1f);
             }
             else {

@@ -10,7 +10,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import net.minecraft.util.Mth;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import java.util.Iterator;
 import java.util.function.Function;
 import java.util.Comparator;
@@ -88,7 +88,7 @@ public class ScreenJournal extends WidthHeightScreen
         }
     }
     
-    private Rectangle drawBookmark(final PoseStack renderStack, final float offsetX, final float offsetY, int width, final int height, final int mouseOverWidth, final float zLevel, final IFormattableTextComponent title, final int titleRGBColor, final int mouseX, final int mouseY, final AbstractRenderableTexture texture, final AbstractRenderableTexture textureStretched) {
+    private Rectangle drawBookmark(final PoseStack renderStack, final float offsetX, final float offsetY, int width, final int height, final int mouseOverWidth, final float zLevel, final MutableComponent title, final int titleRGBColor, final int mouseX, final int mouseY, final AbstractRenderableTexture texture, final AbstractRenderableTexture textureStretched) {
         texture.bindTexture();
         Rectangle r = new Rectangle(Mth.func_76141_d(offsetX), Mth.func_76141_d(offsetY), Mth.func_76141_d((float)width), Mth.func_76141_d((float)height));
         if (r.contains(mouseX, mouseY)) {
@@ -120,7 +120,7 @@ public class ScreenJournal extends WidthHeightScreen
             final BookmarkProvider provider = this.drawnBookmarks.get(bookmarkRectangle);
             if (this.bookmarkIndex != provider.getIndex() && bookmarkRectangle.contains(mouseX, mouseY)) {
                 ScreenJournalProgression.resetJournal();
-                Minecraft.func_71410_x().func_147108_a(provider.getGuiScreen());
+                Minecraft.getInstance().func_147108_a(provider.getGuiScreen());
                 return true;
             }
         }

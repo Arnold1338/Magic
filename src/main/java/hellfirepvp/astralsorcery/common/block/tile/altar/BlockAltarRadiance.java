@@ -2,12 +2,12 @@ package hellfirepvp.astralsorcery.common.block.tile.altar;
 
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.VoxelUtils;
 import net.minecraft.world.phys.shapes.BooleanOp;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.world.level.phys.shapes.VoxelShape;
 import net.minecraft.world.level.phys.AABB;

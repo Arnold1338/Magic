@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.util;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import net.minecraft.network.chat.ITextProperties;
 import java.util.Iterator;
 import net.minecraft.client.gui.Font;
@@ -12,7 +12,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
 import java.util.List;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -25,8 +25,8 @@ public class RenderingOverlayUtils
         final int width = 26;
         final int offsetX = 30;
         final int offsetY = 15;
-        final ItemRenderer itemRender = Minecraft.func_71410_x().func_175599_af();
-        final FontRenderer fontRenderer = Minecraft.func_71410_x().field_71466_p;
+        final ItemRenderer itemRender = Minecraft.getInstance().func_175599_af();
+        final FontRenderer fontRenderer = Minecraft.getInstance().field_71466_p;
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         int tempY = offsetY;

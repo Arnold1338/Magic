@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.client.event;
 
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemHeldRender;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import java.util.function.Consumer;
@@ -25,11 +25,11 @@ public class ItemHeldEffectRenderer
     private void onHeldRender(final RenderWorldLastEvent event) {
         final float pTicks = event.getPartialTicks();
         final PoseStack renderStack = event.getMatrixStack();
-        if (Minecraft.func_71410_x().field_71439_g == null || Minecraft.func_71410_x().field_71441_e == null) {
+        if (Minecraft.getInstance().field_71439_g == null || Minecraft.getInstance().field_71441_e == null) {
             return;
         }
         for (final EquipmentSlot type : EquipmentSlot.values()) {
-            if (this.doHeldRender(Minecraft.func_71410_x().field_71439_g.getItemBySlot(type), renderStack, pTicks)) {
+            if (this.doHeldRender(Minecraft.getInstance().field_71439_g.getItemBySlot(type), renderStack, pTicks)) {
                 break;
             }
         }

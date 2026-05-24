@@ -2,12 +2,12 @@ package hellfirepvp.astralsorcery.client.event;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import java.util.EnumSet;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.item.base.PerkExperienceRevealer;
 import net.minecraft.world.level.InteractionHand;
 import net.minecraftforge.event.TickEvent;
 import hellfirepvp.astralsorcery.common.data.research.PlayerPerkData;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import net.minecraft.client.gui.Font;
@@ -57,7 +57,7 @@ public class PerkExperienceRenderer implements ITickHandler
             return;
         }
         final PoseStack renderStack = event.getMatrixStack();
-        final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().field_71439_g;
         final float frameHeight = 128.0f;
         final float frameWidth = 32.0f;
         final float frameOffsetX = 0.0f;
@@ -76,7 +76,7 @@ public class PerkExperienceRenderer implements ITickHandler
         RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, expOffsetX, expOffsetY, 10.0f, expWidth, expHeight).color(1.0f, 0.9f, 0.0f, this.visibilityReveal * 0.9f).tex(0.0f, 0.0f, 1.0f, 1.0f - perc).draw());
         final String strLevel = String.valueOf(perkData.getPerkLevel(player, LogicalSide.CLIENT));
         final Component txtLevel = new Component(strLevel);
-        final int strLength = Minecraft.func_71410_x().field_71466_p.func_238414_a_((ITextProperties)txtLevel);
+        final int strLength = Minecraft.getInstance().field_71466_p.func_238414_a_((ITextProperties)txtLevel);
         renderStack.func_227860_a_();
         renderStack.func_227861_a_((double)(15.0f - strLength / 2.0f), 94.0, 20.0);
         renderStack.func_227862_a_(1.2f, 1.2f, 1.0f);
@@ -90,7 +90,7 @@ public class PerkExperienceRenderer implements ITickHandler
     }
     
     public void tick(final TickEvent.Type type, final Object... context) {
-        final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().field_71439_g;
         if (player != null) {
             ItemStack held = player.func_184586_b(InteractionHand.MAIN_HAND);
             if (!held.isEmpty() && held.getItem() instanceof PerkExperienceRevealer && ((PerkExperienceRevealer)held.getItem()).shouldReveal(held)) {

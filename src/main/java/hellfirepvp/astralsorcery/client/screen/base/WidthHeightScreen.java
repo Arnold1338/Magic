@@ -71,10 +71,10 @@ public class WidthHeightScreen extends InputScreen
         if (super.func_231042_a_(charCode, keyModifiers)) {
             return true;
         }
-        if (this.closeWithInventoryKey && Minecraft.func_71410_x().field_71474_y.field_151445_Q.func_151470_d()) {
+        if (this.closeWithInventoryKey && Minecraft.getInstance().field_71474_y.field_151445_Q.func_151470_d()) {
             this.func_231175_as__();
-            if (Minecraft.func_71410_x().field_71462_r == null) {
-                Minecraft.func_71410_x().field_71417_B.func_198034_i();
+            if (Minecraft.getInstance().field_71462_r == null) {
+                Minecraft.getInstance().field_71417_B.func_198034_i();
             }
         }
         return false;
@@ -87,8 +87,8 @@ public class WidthHeightScreen extends InputScreen
         }
         if (button == 1 && this.shouldRightClickCloseScreen(mouseX, mouseY)) {
             this.func_231175_as__();
-            if (Minecraft.func_71410_x().field_71462_r == null) {
-                Minecraft.func_71410_x().field_71417_B.func_198034_i();
+            if (Minecraft.getInstance().field_71462_r == null) {
+                Minecraft.getInstance().field_71417_B.func_198034_i();
             }
             return true;
         }

@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.perk.type;
 
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;

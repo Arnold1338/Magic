@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.crafting.recipe;
 
 import net.minecraft.world.item.crafting.IRecipeSerializer;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import net.minecraft.world.level.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.RecipeType;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomRecipeSerializer;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
@@ -15,7 +15,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.nbt.JsonToNBT;
 import com.google.gson.JsonSyntaxException;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.level.material.Fluid;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonObject;
 import javax.annotation.Nullable;

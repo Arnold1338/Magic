@@ -2,8 +2,8 @@ package hellfirepvp.astralsorcery.common.event;
 
 import java.util.LinkedList;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantment;
 import java.util.List;
 import net.minecraftforge.eventbus.api.Cancelable;

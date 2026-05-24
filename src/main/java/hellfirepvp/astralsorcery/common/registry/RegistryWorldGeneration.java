@@ -18,7 +18,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.WorldGenRegistries;
 import net.minecraft.world.level.levelgen.DimensionSettings;
 import net.minecraft.world.level.levelgen.settings.StructureSeparationSettings;
-import net.minecraft.world.level.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import java.util.ArrayList;
 import net.minecraft.world.level.levelgen.placement.NoPlacementConfig;
 import net.minecraft.world.level.levelgen.feature.template.RuleTest;

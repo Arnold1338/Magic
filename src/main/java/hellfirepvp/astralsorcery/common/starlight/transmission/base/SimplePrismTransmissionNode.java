@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.starlight.WorldNetworkHandler;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.common.starlight.network.TransmissionWorldHandler;
 import hellfirepvp.astralsorcery.common.starlight.network.StarlightTransmissionHandler;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

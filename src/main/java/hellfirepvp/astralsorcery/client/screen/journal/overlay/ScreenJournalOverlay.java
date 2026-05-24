@@ -38,7 +38,7 @@ public abstract class ScreenJournalOverlay extends ScreenJournal
     }
     
     public void func_231175_as__() {
-        Minecraft.func_71410_x().func_147108_a((Screen)this.origin);
+        Minecraft.getInstance().func_147108_a((Screen)this.origin);
     }
     
     public void func_231164_f_() {
@@ -56,8 +56,8 @@ public abstract class ScreenJournalOverlay extends ScreenJournal
         if (super.func_231042_a_(charCode, keyModifiers)) {
             return true;
         }
-        if (Minecraft.func_71410_x().field_71462_r != this && Minecraft.func_71410_x().field_71462_r != this.origin) {
-            Minecraft.func_71410_x().func_147108_a((Screen)this.origin);
+        if (Minecraft.getInstance().field_71462_r != this && Minecraft.getInstance().field_71462_r != this.origin) {
+            Minecraft.getInstance().func_147108_a((Screen)this.origin);
             return true;
         }
         return false;

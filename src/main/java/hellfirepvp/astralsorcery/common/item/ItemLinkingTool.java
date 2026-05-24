@@ -1,17 +1,17 @@
 package hellfirepvp.astralsorcery.common.item;
 
-import net.minecraft.world.level.entity.LivingEntity;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.auxiliary.link.LinkHandler;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.InteractionHand;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.auxiliary.link.IItemLinkingTool;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemLinkingTool extends Item implements IItemLinkingTool
 {

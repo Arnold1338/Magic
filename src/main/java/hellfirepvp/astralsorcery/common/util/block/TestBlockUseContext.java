@@ -1,16 +1,16 @@
 package hellfirepvp.astralsorcery.common.util.block;
 
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.phys.BlockHitResult;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.phys.Vec3;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.InteractionHand;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.BlockItemUseContext;
 
 public class TestBlockUseContext extends BlockItemUseContext
@@ -23,7 +23,7 @@ public class TestBlockUseContext extends BlockItemUseContext
     }
     
     public static BlockItemUseContext getHandContext(final World worldIn, @Nullable final Entity usingEntity, final Hand usedHand, final BlockPos at, final Direction side) {
-        return getHandContextWithItem(worldIn, usingEntity, usedHand, ItemStack.field_190927_a, at, side);
+        return getHandContextWithItem(worldIn, usingEntity, usedHand, ItemStack.EMPTY, at, side);
     }
     
     public static BlockItemUseContext getHandContextWithItem(final World worldIn, @Nullable final Entity usingEntity, final Hand usedHand, final ItemStack stack, final BlockPos at, final Direction side) {

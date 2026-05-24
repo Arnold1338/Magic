@@ -6,7 +6,7 @@ import hellfirepvp.astralsorcery.client.event.PerkExperienceRenderer;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktSyncKnowledge;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 
 public class ResearchSyncHelper
 {

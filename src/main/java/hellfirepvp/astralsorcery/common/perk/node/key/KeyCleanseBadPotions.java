@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.perk.node.key;
 
 import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import net.minecraft.world.effect.EffectType;
 import net.minecraft.world.level.effect.MobEffectInstance;
 import java.util.List;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;

@@ -1,11 +1,11 @@
 package hellfirepvp.astralsorcery.common.auxiliary;
 
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Iterator;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import java.util.LinkedList;
 import hellfirepvp.astralsorcery.common.tile.TileChalice;
@@ -20,7 +20,7 @@ import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.List;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 
 public class ChaliceHelper
 {

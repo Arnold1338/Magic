@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import java.util.Collection;
 import java.util.ArrayList;
 import net.minecraft.resources.ResourceLocation;
@@ -23,7 +23,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import java.util.function.BiPredicate;
 
 public class ProgressGatedPerk extends AbstractPerk
@@ -68,7 +68,7 @@ public class ProgressGatedPerk extends AbstractPerk
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public boolean addLocalizedTooltip(final Collection<IFormattableTextComponent> tooltip) {
+    public boolean addLocalizedTooltip(final Collection<MutableComponent> tooltip) {
         if (!this.canSeeClient()) {
             tooltip.add(new Component("perk.info.astralsorcery.missing_progress").func_240699_a_(ChatFormatting.RED));
             return false;
@@ -78,7 +78,7 @@ public class ProgressGatedPerk extends AbstractPerk
     
     @OnlyIn(Dist.CLIENT)
     public final boolean canSeeClient() {
-        return this.canSee((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT);
+        return this.canSee((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT);
     }
     
     public final boolean canSee(final Player player, final LogicalSide side) {

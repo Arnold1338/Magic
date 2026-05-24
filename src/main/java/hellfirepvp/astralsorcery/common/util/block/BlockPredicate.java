@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.util.block;
 
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 
 public interface BlockPredicate
 {

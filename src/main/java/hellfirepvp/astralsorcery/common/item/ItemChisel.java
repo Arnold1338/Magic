@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.common.item;
 
-import net.minecraft.world.level.item.enchantment.Enchantments;
-import net.minecraft.world.level.item.enchantment.Enchantment;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemChisel extends Item
 {

@@ -8,7 +8,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.constellation.IMajorConstellation;
 import net.minecraft.commands.arguments.EntitySelector;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import com.mojang.brigadier.context.CommandContext;
 import hellfirepvp.astralsorcery.common.cmd.argument.ArgumentTypeConstellation;
 import com.mojang.brigadier.arguments.ArgumentType;

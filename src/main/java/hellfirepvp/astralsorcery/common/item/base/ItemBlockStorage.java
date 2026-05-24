@@ -13,20 +13,20 @@ import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.world.level.InteractionHand;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.level.entity.LivingEntity;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.nbt.Tag;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
 import java.util.Random;
 
 public interface ItemBlockStorage

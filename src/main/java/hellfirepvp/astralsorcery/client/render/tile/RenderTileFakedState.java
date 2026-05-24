@@ -2,8 +2,8 @@ package hellfirepvp.astralsorcery.client.render.tile;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import java.awt.Color;
-import net.minecraft.world.level.level.block.state.BlockState;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.renderer.RenderType;
 import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;

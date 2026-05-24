@@ -39,7 +39,7 @@ public class BindableResource extends Full implements ReloadableResource
     
     @Override
     public void invalidateAndReload() {
-        Minecraft.func_71410_x().func_110434_K().func_147645_c(this.getKey());
+        Minecraft.getInstance().func_110434_K().func_147645_c(this.getKey());
         this.resource = null;
     }
     
@@ -47,7 +47,7 @@ public class BindableResource extends Full implements ReloadableResource
         if (AssetLibrary.isReloading()) {
             return null;
         }
-        final TextureManager mgr = Minecraft.func_71410_x().func_110434_K();
+        final TextureManager mgr = Minecraft.getInstance().func_110434_K();
         final Texture resource = mgr.func_229267_b_(this.getKey());
         if (resource != null) {
             return resource;

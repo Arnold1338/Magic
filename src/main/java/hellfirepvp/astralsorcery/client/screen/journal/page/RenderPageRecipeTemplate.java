@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.screen.journal.page;
 
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.fluids.FluidStack;
 import hellfirepvp.astralsorcery.common.crafting.helper.ingredient.FluidIngredient;
 import net.minecraft.tags.TagKey;
@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
 import hellfirepvp.astralsorcery.common.auxiliary.book.BookLookupInfo;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.auxiliary.book.BookLookupRegistry;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.network.chat.Component;
@@ -49,8 +49,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.HashMap;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
-import net.minecraft.world.level.item.crafting.Ingredient;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
 import java.awt.Rectangle;
 import java.util.Map;
@@ -139,10 +139,10 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
     }
     
     public boolean handleRecipeNameCopyClick(final double mouseX, final double mouseZ, final SimpleAltarRecipe recipe) {
-        if (Minecraft.func_71410_x().field_71474_y.field_74330_P && Screen.func_231172_r_() && ((Rectangle)this.thisFrameOuputStack.func_76341_a()).contains(mouseX, mouseZ)) {
+        if (Minecraft.getInstance().field_71474_y.field_74330_P && Screen.func_231172_r_() && ((Rectangle)this.thisFrameOuputStack.func_76341_a()).contains(mouseX, mouseZ)) {
             final String recipeName = recipe.func_199560_c().toString();
-            Minecraft.func_71410_x().field_195559_v.func_197960_a(recipeName);
-            Minecraft.func_71410_x().field_71439_g.func_145747_a((Component)new Component("astralsorcery.misc.ctrlcopy.copied", new Object[] { recipeName }), Util.NIL_UUID);
+            Minecraft.getInstance().field_195559_v.func_197960_a(recipeName);
+            Minecraft.getInstance().field_71439_g.func_145747_a((Component)new Component("astralsorcery.misc.ctrlcopy.copied", new Object[] { recipeName }), Util.NIL_UUID);
             return true;
         }
         return false;
@@ -152,8 +152,8 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         for (final Rectangle r : this.thisFrameInputStacks.keySet()) {
             if (r.contains(mouseX, mouseZ)) {
                 final ItemStack stack = (ItemStack)this.thisFrameInputStacks.get(r).func_76341_a();
-                final BookLookupInfo info = BookLookupRegistry.findPage((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT, stack);
-                if (info != null && info.canSee(ResearchHelper.getProgress((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT)) && !info.getResearchNode().equals(this.getResearchNode())) {
+                final BookLookupInfo info = BookLookupRegistry.findPage((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT, stack);
+                if (info != null && info.canSee(ResearchHelper.getProgress((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT)) && !info.getResearchNode().equals(this.getResearchNode())) {
                     info.openGui();
                     return true;
                 }
@@ -162,8 +162,8 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         }
         if (this.thisFrameOuputStack != null && ((Rectangle)this.thisFrameOuputStack.func_76341_a()).contains(mouseX, mouseZ)) {
             final ItemStack stack2 = (ItemStack)this.thisFrameOuputStack.func_76340_b();
-            final BookLookupInfo info2 = BookLookupRegistry.findPage((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT, stack2);
-            if (info2 != null && info2.canSee(ResearchHelper.getProgress((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT)) && !info2.getResearchNode().equals(this.getResearchNode())) {
+            final BookLookupInfo info2 = BookLookupRegistry.findPage((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT, stack2);
+            if (info2 != null && info2.canSee(ResearchHelper.getProgress((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT)) && !info2.getResearchNode().equals(this.getResearchNode())) {
                 info2.openGui();
                 return true;
             }
@@ -297,7 +297,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         if (((Rectangle)this.thisFrameOuputStack.func_76341_a()).contains(mouseX, mouseY)) {
             final ItemStack stack = (ItemStack)this.thisFrameOuputStack.func_76340_b();
             this.addInputInformation(stack, null, tooltip);
-            if (Minecraft.func_71410_x().field_71474_y.field_74330_P) {
+            if (Minecraft.getInstance().field_71474_y.field_74330_P) {
                 tooltip.add((ITextProperties)Component.field_240750_d_);
                 tooltip.add((ITextProperties)new Component("astralsorcery.misc.recipename", new Object[] { recipeName.toString() }).func_240699_a_(ChatFormatting.LIGHT_PURPLE).func_240699_a_(ChatFormatting.ITALIC));
                 tooltip.add((ITextProperties)new Component("astralsorcery.misc.ctrlcopy", new Object[] { recipeName.toString() }).func_240699_a_(ChatFormatting.LIGHT_PURPLE).func_240699_a_(ChatFormatting.ITALIC));
@@ -307,17 +307,17 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
     
     protected void addInputInformation(final ItemStack stack, @Nullable final Ingredient stackIngredient, final List<ITextProperties> tooltip) {
         try {
-            tooltip.addAll(stack.func_82840_a((Player)Minecraft.func_71410_x().field_71439_g, (TooltipFlag)(Minecraft.func_71410_x().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
+            tooltip.addAll(stack.func_82840_a((Player)Minecraft.getInstance().field_71439_g, (TooltipFlag)(Minecraft.getInstance().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
         }
         catch (final Exception exc) {
             tooltip.add((ITextProperties)new Component("astralsorcery.misc.tooltipError").func_240699_a_(ChatFormatting.RED));
         }
-        final BookLookupInfo info = BookLookupRegistry.findPage((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT, stack);
-        if (info != null && info.canSee(ResearchHelper.getProgress((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT)) && !info.getResearchNode().equals(this.getResearchNode())) {
+        final BookLookupInfo info = BookLookupRegistry.findPage((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT, stack);
+        if (info != null && info.canSee(ResearchHelper.getProgress((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT)) && !info.getResearchNode().equals(this.getResearchNode())) {
             tooltip.add((ITextProperties)Component.field_240750_d_);
             tooltip.add((ITextProperties)new Component("astralsorcery.misc.craftInformation").func_240699_a_(ChatFormatting.GRAY));
         }
-        if (stackIngredient != null && Minecraft.func_71410_x().field_71474_y.field_82882_x) {
+        if (stackIngredient != null && Minecraft.getInstance().field_71474_y.field_82882_x) {
             final ITag<Item> itemTag = IngredientHelper.guessTag(stackIngredient);
             if (itemTag instanceof ITag.INamedTag) {
                 tooltip.add((ITextProperties)Component.field_240750_d_);

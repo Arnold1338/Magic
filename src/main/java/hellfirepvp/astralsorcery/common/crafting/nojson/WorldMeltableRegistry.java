@@ -2,13 +2,13 @@ package hellfirepvp.astralsorcery.common.crafting.nojson;
 
 import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.crafting.nojson.meltable.FurnaceMeltableRecipe;
 import net.minecraftforge.common.Tags;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.tags.TagKey;
 import hellfirepvp.astralsorcery.common.crafting.nojson.meltable.BlockMeltableRecipe;
-import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.tags.BlockTags;
 import hellfirepvp.astralsorcery.common.crafting.nojson.meltable.WorldMeltableRecipe;
 

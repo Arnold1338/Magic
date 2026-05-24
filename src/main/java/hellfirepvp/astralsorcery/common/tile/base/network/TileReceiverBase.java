@@ -2,12 +2,12 @@ package hellfirepvp.astralsorcery.common.tile.base.network;
 
 import java.util.LinkedList;
 import java.util.List;
-import net.minecraft.world.level.entity.LivingEntity;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import javax.annotation.Nonnull;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.auxiliary.link.LinkableTileEntity;
 import hellfirepvp.astralsorcery.common.starlight.IStarlightReceiver;
 import hellfirepvp.astralsorcery.common.tile.base.TileNetwork;

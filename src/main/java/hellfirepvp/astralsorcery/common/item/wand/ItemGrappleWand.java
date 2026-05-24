@@ -1,19 +1,19 @@
 package hellfirepvp.astralsorcery.common.item.wand;
 
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.entity.technical.EntityGrapplingHook;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.level.InteractionHand;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeConsumer;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemGrappleWand extends Item implements AlignmentChargeConsumer
 {

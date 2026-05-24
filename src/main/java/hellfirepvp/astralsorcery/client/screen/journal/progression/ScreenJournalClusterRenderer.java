@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import org.lwjgl.opengl.GL11;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
@@ -74,7 +74,7 @@ public class ScreenJournalClusterRenderer
             for (final Rectangle r : this.clickableNodes.keySet()) {
                 if (r.contains(mouseX, mouseY)) {
                     final ResearchNode clicked = this.clickableNodes.get(r);
-                    Minecraft.func_71410_x().func_147108_a((Screen)new ScreenJournalPages(parent, clicked));
+                    Minecraft.getInstance().func_147108_a((Screen)new ScreenJournalPages(parent, clicked));
                     return true;
                 }
             }
@@ -91,7 +91,7 @@ public class ScreenJournalClusterRenderer
                     renderStack.func_227860_a_();
                     renderStack.func_227861_a_(r.getX(), r.getY(), (double)(zLevel + 200.0f));
                     renderStack.func_227862_a_(this.progressionSizeHandler.getScalingFactor(), this.progressionSizeHandler.getScalingFactor(), 1.0f);
-                    RenderingDrawUtils.renderBlueTooltipComponents(renderStack, 0.0f, 0.0f, 0.0f, Lists.newArrayList((Object[])new ITextProperties[] { name }), Minecraft.func_71410_x().field_71466_p, false);
+                    RenderingDrawUtils.renderBlueTooltipComponents(renderStack, 0.0f, 0.0f, 0.0f, Lists.newArrayList((Object[])new ITextProperties[] { name }), Minecraft.getInstance().field_71466_p, false);
                     renderStack.func_227865_b_();
                 }
             }

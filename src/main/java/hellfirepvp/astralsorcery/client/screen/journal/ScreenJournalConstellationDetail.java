@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.client.screen.journal;
 
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.sounds.SoundEvent;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import net.minecraft.client.gui.screens.Screen;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import java.util.Random;
@@ -28,7 +28,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import java.util.Collection;
@@ -81,7 +81,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         this.locTextMantle = new ArrayList<FormattedCharSequence>();
         this.origin = origin;
         this.constellation = cst;
-        this.field_230712_o_ = Minecraft.func_71410_x().field_71466_p;
+        this.field_230712_o_ = Minecraft.getInstance().field_71466_p;
         this.detailed = ResearchHelper.getClientProgress().hasConstellationDiscovered(cst);
         final PlayerProgress playerProgress = ResearchHelper.getClientProgress();
         if (this.detailed) {
@@ -194,7 +194,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     }
     
     private void testActivePhases() {
-        final WorldContext ctx = SkyHandler.getContext((World)Minecraft.func_71410_x().field_71441_e, LogicalSide.CLIENT);
+        final WorldContext ctx = SkyHandler.getContext((World)Minecraft.getInstance().field_71441_e, LogicalSide.CLIENT);
         if (ctx == null) {
             return;
         }
@@ -430,7 +430,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     }
     
     public void func_231175_as__() {
-        Minecraft.func_71410_x().func_147108_a((Screen)this.origin);
+        Minecraft.getInstance().func_147108_a((Screen)this.origin);
     }
     
     @Override
@@ -445,7 +445,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
             return true;
         }
         if (this.rectBack != null && this.rectBack.contains(mouseX, mouseY)) {
-            Minecraft.func_71410_x().func_147108_a((Screen)this.origin);
+            Minecraft.getInstance().func_147108_a((Screen)this.origin);
             return true;
         }
         if (this.rectPrev != null && this.rectPrev.contains(mouseX, mouseY)) {

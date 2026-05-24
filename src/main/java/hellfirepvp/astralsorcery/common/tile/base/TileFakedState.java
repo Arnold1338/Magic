@@ -5,10 +5,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.nbt.CompoundTag;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.level.block.Blocks;
-import net.minecraft.world.level.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import java.awt.Color;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class TileFakedState extends TileEntityTick
 {

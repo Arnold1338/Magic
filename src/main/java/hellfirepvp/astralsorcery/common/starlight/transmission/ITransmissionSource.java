@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.starlight.transmission;
 
 import hellfirepvp.astralsorcery.common.starlight.WorldNetworkHandler;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.starlight.IIndependentStarlightSource;
 import hellfirepvp.astralsorcery.common.starlight.IStarlightSource;
 

@@ -8,7 +8,7 @@ import net.minecraft.world.level.levelgen.feature.WorldDecoratingHelper;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import java.util.function.Supplier;
 import net.minecraft.world.level.levelgen.placement.ConfiguredPlacement;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import java.util.List;
 import com.mojang.serialization.Codec;

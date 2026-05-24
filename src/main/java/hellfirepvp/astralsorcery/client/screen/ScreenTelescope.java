@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.screen;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.common.network.play.client.PktRotateTelescope;
 import net.minecraft.util.Tuple;
@@ -30,7 +30,7 @@ import java.util.Random;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import java.util.Collections;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
@@ -76,7 +76,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
         final PlayerProgress prog = ResearchHelper.getClientProgress();
         List<IWeakConstellation> cst = new ArrayList<IWeakConstellation>();
         for (final IConstellation active : ctx.getActiveCelestialsHandler().getCurrentRenderPositions().keySet()) {
-            if (active instanceof IWeakConstellation && active.canDiscover((Player)Minecraft.func_71410_x().field_71439_g, prog)) {
+            if (active instanceof IWeakConstellation && active.canDiscover((Player)Minecraft.getInstance().field_71439_g, prog)) {
                 cst.add((IWeakConstellation)active);
             }
         }
@@ -168,7 +168,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
                     info.getFrameDrawInformation().clear();
                     final Point pos = info.getRenderPosition();
                     final int size = (int)info.getRenderSize();
-                    final float rainBr = 1.0f - Minecraft.func_71410_x().field_71441_e.func_72867_j(pTicks);
+                    final float rainBr = 1.0f - Minecraft.getInstance().field_71441_e.func_72867_j(pTicks);
                     final Map<StarLocation, Rectangle2D.Float> cstRenderInfo = RenderingConstellationUtils.renderConstellationIntoGUI(cst, renderStack, (float)(pos.x + this.guiLeft), (float)(pos.y + this.guiTop), (float)this.getGuiZLevel(), (float)size, (float)size, 2.5, () -> RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), pTicks, 5 + gen.nextInt(15)) * rainBr, prog.hasConstellationDiscovered(cst), true);
                     info.getFrameDrawInformation().putAll(cstRenderInfo);
                 }

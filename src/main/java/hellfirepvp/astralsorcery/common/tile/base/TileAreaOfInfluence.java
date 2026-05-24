@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.tile.base;
 
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import javax.annotation.Nonnull;

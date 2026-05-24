@@ -6,10 +6,10 @@ import java.util.List;
 import hellfirepvp.astralsorcery.common.util.data.BiDiPair;
 import net.minecraft.core.Vec3i;
 import java.util.HashSet;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import java.util.function.Predicate;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 
 public class BlockSymmetryHelper
 {

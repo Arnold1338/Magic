@@ -2,13 +2,13 @@ package hellfirepvp.astralsorcery.client.util.camera;
 
 import net.minecraft.world.entity.HumanoidArm;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlot;
 import java.util.Collections;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.Entity;
 import javax.annotation.Nullable;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -19,7 +19,7 @@ public abstract class EntityCameraRenderView extends ClientPlayerEntity
     private Vector3 cameraFocus;
     
     public EntityCameraRenderView() {
-        super(Minecraft.func_71410_x(), Minecraft.func_71410_x().field_71441_e, Minecraft.func_71410_x().field_71439_g.field_71174_a, Minecraft.func_71410_x().field_71439_g.func_146107_m(), Minecraft.func_71410_x().field_71439_g.func_199507_B(), false, false);
+        super(Minecraft.getInstance(), Minecraft.getInstance().field_71441_e, Minecraft.getInstance().field_71439_g.field_71174_a, Minecraft.getInstance().field_71439_g.func_146107_m(), Minecraft.getInstance().field_71439_g.func_199507_B(), false, false);
         this.cameraFocus = null;
         this.field_71075_bZ.field_75101_c = true;
         this.field_71075_bZ.field_75100_b = true;
@@ -36,7 +36,7 @@ public abstract class EntityCameraRenderView extends ClientPlayerEntity
     }
     
     public void setAsRenderViewEntity() {
-        Minecraft.func_71410_x().func_175607_a((Entity)this);
+        Minecraft.getInstance().func_175607_a((Entity)this);
     }
     
     public void transformToFocusOnPoint(final Vector3 toFocus, final float pTicks, final boolean propagate) {
@@ -73,7 +73,7 @@ public abstract class EntityCameraRenderView extends ClientPlayerEntity
     
     @Nonnull
     public ItemStack func_184582_a(final EquipmentSlot slotIn) {
-        return ItemStack.field_190927_a;
+        return ItemStack.EMPTY;
     }
     
     public void func_184201_a(final EquipmentSlot slotIn, @Nullable final ItemStack stack) {

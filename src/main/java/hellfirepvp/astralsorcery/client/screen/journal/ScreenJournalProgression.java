@@ -154,7 +154,7 @@ public class ScreenJournalProgression extends ScreenJournal
     }
     
     private void renderProgressView(final PoseStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
-        final double guiFactor = Minecraft.func_71410_x().func_228018_at_().func_198100_s();
+        final double guiFactor = Minecraft.getInstance().func_228018_at_().func_198100_s();
         GL11.glEnable(3089);
         GL11.glScissor(Mth.func_76128_c((this.guiLeft + 27) * guiFactor), Mth.func_76128_c((this.guiTop + 27) * guiFactor), Mth.func_76128_c((this.guiWidth - 54) * guiFactor), Mth.func_76128_c((this.guiHeight - 54) * guiFactor));
         ScreenJournalProgression.progressionRenderer.drawProgressionPart(renderStack, (float)this.getGuiZLevel(), mouseX, mouseY);
@@ -170,7 +170,7 @@ public class ScreenJournalProgression extends ScreenJournal
     }
     
     private void drawSearchResults(final PoseStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
-        final FontRenderer fr = Minecraft.func_71410_x().field_71466_p;
+        final FontRenderer fr = Minecraft.getInstance().field_71466_p;
         final int lineHeight = 12;
         int offsetX = this.getGuiLeft() + 35;
         int offsetY = this.getGuiTop() + 26;
@@ -333,7 +333,7 @@ public class ScreenJournalProgression extends ScreenJournal
             }
         }
         this.searchResult.sort(Comparator.comparing(node -> node.getName().getString()));
-        final FontRenderer fr = Minecraft.func_71410_x().field_71466_p;
+        final FontRenderer fr = Minecraft.getInstance().field_71466_p;
         int addedPages = 0;
         int pageIndex = 0;
         while (addedPages < this.searchResult.size()) {
@@ -410,7 +410,7 @@ public class ScreenJournalProgression extends ScreenJournal
         }
         if (this.searchHoverNode != null) {
             this.searchTextEntry.setText("");
-            Minecraft.func_71410_x().func_147108_a((Screen)new ScreenJournalPages(this, this.searchHoverNode));
+            Minecraft.getInstance().func_147108_a((Screen)new ScreenJournalPages(this, this.searchHoverNode));
             SoundHelper.playSoundClient(SoundsAS.GUI_JOURNAL_PAGE, 1.0f, 1.0f);
             return true;
         }

@@ -2,22 +2,22 @@ package hellfirepvp.astralsorcery.common.block.base;
 
 import net.minecraft.world.level.block.RenderShape;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.level.phys.BlockHitResult;
 import net.minecraft.world.level.InteractionHand;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import com.google.common.collect.Lists;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.List;
-import net.minecraft.world.level.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.level.level.block.SoundType;
+import net.minecraft.world.level.block.SoundType;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.LevelReader;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.phys.HitResult;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
@@ -30,17 +30,17 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.base.TileFakedState;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import java.util.Random;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.level.block.state.BlockState;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.StateContainer;
-import net.minecraft.world.level.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.BaseEntityBlock;
 
 public abstract class BlockFakedState extends BaseEntityBlock
@@ -143,7 +143,7 @@ public abstract class BlockFakedState extends BaseEntityBlock
             return fakeState.getPickBlock(target, world, pos, player);
         }
         catch (final Exception ex) {
-            return ItemStack.field_190927_a;
+            return ItemStack.EMPTY;
         }
     }
     

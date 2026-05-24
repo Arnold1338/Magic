@@ -37,7 +37,7 @@ public class GeneratedResource extends BindableResource implements ReloadableRes
         if (AssetLibrary.isReloading()) {
             return null;
         }
-        final TextureManager mgr = Minecraft.func_71410_x().func_110434_K();
+        final TextureManager mgr = Minecraft.getInstance().func_110434_K();
         final Texture resource = mgr.func_229267_b_(this.getKey());
         if (resource != null) {
             return resource;

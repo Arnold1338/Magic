@@ -7,7 +7,7 @@ import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.world.effect.EffectType;
 import net.minecraft.world.level.effect.MobEffectInstance;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.IEventBus;

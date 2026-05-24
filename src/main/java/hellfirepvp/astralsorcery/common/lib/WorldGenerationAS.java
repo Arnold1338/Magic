@@ -2,9 +2,9 @@ package hellfirepvp.astralsorcery.common.lib;
 
 import net.minecraft.resources.ResourceKey;
 import java.util.Collections;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import java.util.Arrays;
-import net.minecraft.world.level.level.biome.Biome;
+import net.minecraft.world.level.biome.Biome;
 import hellfirepvp.astralsorcery.common.world.FeatureGenerationConfig;
 import hellfirepvp.astralsorcery.common.world.StructureGenerationConfig;
 import hellfirepvp.astralsorcery.common.world.placement.WorldFilteredPlacement;
@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.world.feature.RockCrystalFeature;
 import hellfirepvp.astralsorcery.common.world.feature.ReplaceBlockFeature;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.world.level.levelgen.feature.NoneFeatureConfiguration;
-import net.minecraft.world.level.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructurePieceType;
 import net.minecraft.resources.ResourceLocation;
 

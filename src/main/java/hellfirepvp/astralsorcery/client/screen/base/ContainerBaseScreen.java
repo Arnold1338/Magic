@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.client.screen.base;
 
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.level.inventory.AbstractContainerMenu;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.entity.player.Inventory;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import hellfirepvp.astralsorcery.common.container.ContainerTileEntity;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
 public abstract class ContainerBaseScreen<T extends BlockEntity, C extends ContainerTileEntity<T>> extends ContainerScreen<C>
 {
@@ -25,7 +25,7 @@ public abstract class ContainerBaseScreen<T extends BlockEntity, C extends Conta
     public void func_231023_e_() {
         super.func_231023_e_();
         final BlockEntity te = ((ContainerTileEntity)this.field_147002_h).getTileEntity();
-        if (te.func_145837_r() || !((ContainerTileEntity)this.field_147002_h).func_75145_c((Player)Minecraft.func_71410_x().field_71439_g)) {
+        if (te.func_145837_r() || !((ContainerTileEntity)this.field_147002_h).func_75145_c((Player)Minecraft.getInstance().field_71439_g)) {
             this.func_231175_as__();
         }
     }

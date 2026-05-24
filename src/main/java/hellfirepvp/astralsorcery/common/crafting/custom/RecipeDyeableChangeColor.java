@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.crafting.custom;
 
 import hellfirepvp.astralsorcery.common.block.tile.BlockCelestialGateway;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.item.wand.ItemIlluminationWand;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
@@ -11,13 +11,13 @@ import net.minecraft.world.level.Container;
 import javax.annotation.Nullable;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.CraftingInventory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.function.BiConsumer;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.IRecipeSerializer;
 import java.util.function.Supplier;
 import net.minecraft.world.item.crafting.SpecialRecipe;
@@ -42,7 +42,7 @@ public class RecipeDyeableChangeColor extends SpecialRecipe
     public ItemStack getCraftingResult(final CraftingInventory inv) {
         final Tuple<DyeColor, ItemStack> itemColorTpl = this.tryFindValidRecipeAndDye(inv);
         if (itemColorTpl == null) {
-            return ItemStack.field_190927_a;
+            return ItemStack.EMPTY;
         }
         final ItemStack out = ItemUtils.copyStackWithSize((ItemStack)itemColorTpl.func_76340_b(), 1);
         this.colorFn.accept(out, (DyeColor)itemColorTpl.func_76341_a());
@@ -51,7 +51,7 @@ public class RecipeDyeableChangeColor extends SpecialRecipe
     
     @Nullable
     private Tuple<DyeColor, ItemStack> tryFindValidRecipeAndDye(final CraftingInventory inv) {
-        ItemStack itemFound = ItemStack.field_190927_a;
+        ItemStack itemFound = ItemStack.EMPTY;
         DyeColor dyeColorFound = null;
         int nonEmptyItemsFound = 0;
         for (int slot = 0; slot < inv.func_70302_i_(); ++slot) {

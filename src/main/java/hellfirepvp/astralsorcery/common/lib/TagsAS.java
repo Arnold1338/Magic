@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.common.lib;
 
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraft.tags.BlockTags;
 import hellfirepvp.astralsorcery.common.base.Mods;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.tags.TagKey;
 
 public class TagsAS

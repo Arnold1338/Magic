@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.crafting.helper;
 
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.Container;
-import net.minecraft.world.level.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.items.IItemHandler;
 
 public interface IHandlerRecipe<I extends IItemHandler> extends Recipe<Container>

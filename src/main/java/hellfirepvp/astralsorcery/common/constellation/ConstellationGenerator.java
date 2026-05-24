@@ -1,11 +1,11 @@
 package hellfirepvp.astralsorcery.common.constellation;
 
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import java.awt.Color;
 import java.util.function.Supplier;
-import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Ingredient;
 import java.awt.geom.Point2D;
 import java.util.Collections;
 import java.util.Iterator;

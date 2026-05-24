@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.base.patreon.manager;
 
 import java.util.Set;
 import java.util.EnumSet;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerPlayer;
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.Map;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.base.patreon.PatreonEffect;
 import hellfirepvp.astralsorcery.common.base.patreon.entity.PatreonPartialEntity;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.base.patreon.PatreonEffectHelper;
 import java.util.HashSet;
 import java.util.Collection;

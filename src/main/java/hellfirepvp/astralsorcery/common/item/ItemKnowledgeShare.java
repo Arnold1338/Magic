@@ -18,23 +18,23 @@ import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.item.ItemUseContext;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.level.InteractionHand;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.NonNullList;
-import net.minecraft.world.level.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTab;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemKnowledgeShare extends Item
 {
@@ -61,7 +61,7 @@ public class ItemKnowledgeShare extends Item
             tooltip.add((Component)new Component("astralsorcery.misc.knowledge.missing").func_240699_a_(ChatFormatting.GRAY));
         }
         else {
-            final IFormattableTextComponent name = getKnowledgeOwnerName(stack);
+            final MutableComponent name = getKnowledgeOwnerName(stack);
             if (name != null) {
                 tooltip.add((Component)new Component("astralsorcery.misc.knowledge.inscribed", new Object[] { name }).func_240699_a_(ChatFormatting.BLUE));
             }
@@ -139,7 +139,7 @@ public class ItemKnowledgeShare extends Item
     }
     
     @Nullable
-    public static IFormattableTextComponent getKnowledgeOwnerName(final ItemStack stack) {
+    public static MutableComponent getKnowledgeOwnerName(final ItemStack stack) {
         if (isCreative(stack)) {
             return null;
         }

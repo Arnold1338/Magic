@@ -14,10 +14,10 @@ import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
@@ -57,7 +57,7 @@ public class TypeNebulaCloud extends PatreonEffect implements ITickHandler
             final float oZ = (TypeNebulaCloud.rand.nextFloat() - TypeNebulaCloud.rand.nextFloat()) * 2.0f;
             final Vector3 offset = new Vector3(oX, TypeNebulaCloud.rand.nextFloat() * 0.1f, oZ);
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(playerPos.clone().add(offset)).setAlphaMultiplier(0.8f).alpha(((VFXAlphaFunction<?>)((fx, alphaIn, pTicks) -> {
-                if (this.shouldDoEffect(player) && Minecraft.func_71410_x().field_71474_y.func_243230_g().func_243192_a() && player.field_70125_A > 40.0f) {
+                if (this.shouldDoEffect(player) && Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a() && player.field_70125_A > 40.0f) {
                     return Mth.func_76131_a(1.0f - (player.field_70125_A - 40.0f) / 20.0f, 0.0f, 1.0f) * alphaIn;
                 }
                 else {
@@ -69,7 +69,7 @@ public class TypeNebulaCloud extends PatreonEffect implements ITickHandler
             final Vector3 from = Vector3.random().setY(0).normalize().multiply(TypeNebulaCloud.rand.nextFloat() * 2.0f).addY(TypeNebulaCloud.rand.nextFloat() * 0.1f);
             final Vector3 to = Vector3.random().setY(0).normalize().multiply(TypeNebulaCloud.rand.nextFloat() * 2.0f).addY(TypeNebulaCloud.rand.nextFloat() * 0.1f);
             EffectHelper.of(EffectTemplatesAS.LIGHTNING).spawn(playerPos.clone().add(from)).makeDefault(playerPos.clone().add(to)).color(VFXColorFunction.WHITE).alpha((fx, alphaIn, pTicks) -> {
-                if (this.shouldDoEffect(player) && Minecraft.func_71410_x().field_71474_y.func_243230_g().func_243192_a() && player.field_70125_A > 40.0f) {
+                if (this.shouldDoEffect(player) && Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a() && player.field_70125_A > 40.0f) {
                     return Mth.func_76131_a(1.0f - (Math.abs(player.field_70125_A) - 40.0f) / 20.0f, 0.0f, 1.0f) * alphaIn;
                 }
                 else {

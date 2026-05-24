@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.crafting.recipe;
 
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.tile.TileInfuser;
 import net.minecraftforge.items.IItemHandler;
 import hellfirepvp.astralsorcery.common.crafting.helper.RecipeCraftingContext;

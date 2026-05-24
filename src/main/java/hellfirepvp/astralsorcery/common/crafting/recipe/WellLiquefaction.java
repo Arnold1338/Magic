@@ -4,14 +4,14 @@ import net.minecraft.world.item.crafting.IRecipeSerializer;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomRecipeSerializer;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import net.minecraft.world.level.item.crafting.RecipeType;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.ItemStack;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import javax.annotation.Nullable;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.level.material.Fluid;
-import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.item.crafting.Ingredient;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomMatcherRecipe;
 

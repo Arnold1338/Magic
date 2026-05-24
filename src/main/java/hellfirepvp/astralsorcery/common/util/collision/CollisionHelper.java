@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.phys.Vec3;
 import net.minecraft.world.level.phys.AABB;
 import net.minecraft.world.phys.shapes.BooleanOp;

@@ -30,22 +30,22 @@ import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.entity.EntityFlare;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
-import net.minecraft.world.level.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.RecipeType;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import net.minecraft.world.level.item.crafting.Recipe;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.util.sound.CategorizedSoundEvent;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.client.util.sound.PositionedLoopSound;
@@ -57,11 +57,11 @@ import hellfirepvp.astralsorcery.common.tile.base.TileEntitySynchronized;
 import net.minecraft.core.Direction;
 import java.util.HashSet;
 import java.util.HashMap;
-import net.minecraft.world.level.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import net.minecraft.resources.ResourceLocation;
 import java.util.Set;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.ActiveSimpleAltarRecipe;
 import java.util.Map;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventoryFiltered;
@@ -90,7 +90,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         this.altarType = AltarType.DISCOVERY;
         this.tickStarlightCollectionMap = new HashMap<AltarCollectionCategory, Float>();
         this.activeRecipe = null;
-        this.focusItem = ItemStack.field_190927_a;
+        this.focusItem = ItemStack.EMPTY;
         this.knownRecipes = new HashSet<ResourceLocation>();
         this.starlightStorage = new DeferredStarlightStorage(2);
         this.starlightNextTick = 0;
@@ -163,7 +163,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         final ResourceLocation recipeName = ByteBufUtils.readResourceLocation(pkt.getExtraData());
         final BlockPos at = ByteBufUtils.readPos(pkt.getExtraData());
         final boolean isChaining = pkt.getExtraData().readBoolean();
-        final World world = (World)Minecraft.func_71410_x().field_71441_e;
+        final World world = (World)Minecraft.getInstance().field_71441_e;
         if (world == null) {
             return;
         }
@@ -326,7 +326,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         super.onBreak();
         if (!this.func_145831_w().func_201670_d() && !this.getFocusItem().isEmpty()) {
             ItemUtils.dropItemNaturally(this.func_145831_w(), this.func_174877_v().getX() + 0.5, this.func_174877_v().getY() + 0.5, this.func_174877_v().getZ() + 0.5, this.focusItem);
-            this.focusItem = ItemStack.field_190927_a;
+            this.focusItem = ItemStack.EMPTY;
         }
     }
     

@@ -13,12 +13,12 @@ import io.netty.buffer.ByteBufOutputStream;
 import net.minecraftforge.fluids.FluidStack;
 import java.util.Optional;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.Property;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.nbt.CompoundTag;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierSourceProvider;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierManager;
@@ -30,7 +30,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.RegistryManager;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import java.nio.charset.StandardCharsets;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -140,7 +140,7 @@ public class ByteBufUtils
         writeString(buf, Component.Serializer.func_150696_a(cmp));
     }
     
-    public static IFormattableTextComponent readTextComponent(final FriendlyByteBuf buf) {
+    public static MutableComponent readTextComponent(final FriendlyByteBuf buf) {
         return Component.Serializer.func_240643_a_(readString(buf));
     }
     
@@ -266,7 +266,7 @@ public class ByteBufUtils
         if (defined) {
             return ItemStack.func_199557_a(readNBTTag(byteBuf));
         }
-        return ItemStack.field_190927_a;
+        return ItemStack.EMPTY;
     }
     
     public static void writeBlockState(final FriendlyByteBuf byteBuf, @Nonnull final BlockState state) {

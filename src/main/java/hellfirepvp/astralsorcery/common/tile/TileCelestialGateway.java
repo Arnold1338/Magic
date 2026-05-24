@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.tile;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 import net.minecraft.Util;
 import net.minecraft.ChatFormatting;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.nbt.Tag;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Collections;
 import java.util.ArrayList;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.client.effect.function.VFXAlphaFunction;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
@@ -35,9 +35,9 @@ import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXColorEffectSphere;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 import net.minecraftforge.api.distmarker.Dist;
@@ -46,7 +46,7 @@ import hellfirepvp.observerlib.common.data.WorldCacheDomain;
 import hellfirepvp.astralsorcery.common.lib.DataAS;
 import hellfirepvp.astralsorcery.common.data.world.GatewayCache;
 import java.util.HashMap;
-import net.minecraft.world.level.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import java.util.Map;
 import hellfirepvp.astralsorcery.common.util.PlayerReference;
@@ -127,7 +127,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
             return;
         }
         final Vector3 at = new Vector3(this).add(0.5, 1.7, 0.5);
-        final double distance = Vector3.atEntityCorner((Entity)Minecraft.func_71410_x().field_71439_g).distance(at);
+        final double distance = Vector3.atEntityCorner((Entity)Minecraft.getInstance().field_71439_g).distance(at);
         if (this.clientGatewaySphereEffect == null) {
             this.clientGatewaySphereEffect = EffectHelper.of(EffectTemplatesAS.COLOR_SPHERE).spawn(at).setupSphere(Vector3.RotAxis.Y_AXIS, 6.0f).setRemoveIfInvisible(true).setAlphaFadeDistance(4.0).setAlphaMultiplier(1.0f).color(VFXColorFunction.BLACK).refresh(RefreshFunction.tileExistsAnd(this, (te, fx) -> te.doesSeeSky() && te.hasMultiblock()));
         }
@@ -135,7 +135,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
             EffectHelper.refresh(this.clientGatewaySphereEffect, EffectTemplatesAS.COLOR_SPHERE);
         }
         if (distance < 5.5) {
-            Minecraft.func_71410_x().field_71474_y.func_243229_a(PointOfView.FIRST_PERSON);
+            Minecraft.getInstance().field_71474_y.func_243229_a(PointOfView.FIRST_PERSON);
         }
         if (distance < 2.5) {
             GatewayUIRenderHandler.getInstance().getOrCreateUI(this.func_145831_w(), this.func_174877_v(), at);

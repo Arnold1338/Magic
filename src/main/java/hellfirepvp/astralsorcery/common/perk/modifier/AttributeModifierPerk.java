@@ -10,14 +10,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Iterator;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import java.util.ArrayList;
 import java.util.Collections;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import java.util.Collection;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
@@ -56,14 +56,14 @@ public class AttributeModifierPerk extends AttributeConverterPerk implements Att
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public boolean addLocalizedTooltip(final Collection<IFormattableTextComponent> tooltip) {
-        final Collection<PerkAttributeModifier> modifiers = this.getModifiers((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT, true);
+    public boolean addLocalizedTooltip(final Collection<MutableComponent> tooltip) {
+        final Collection<PerkAttributeModifier> modifiers = this.getModifiers((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT, true);
         boolean addEmptyLine = !modifiers.isEmpty();
         if (this.canSeeClient()) {
             for (final PerkAttributeModifier modifier : modifiers) {
                 final String modifierDisplay = modifier.getLocalizedDisplayString();
                 if (modifierDisplay != null) {
-                    tooltip.add((IFormattableTextComponent)new Component(modifierDisplay));
+                    tooltip.add((MutableComponent)new Component(modifierDisplay));
                 }
                 else {
                     addEmptyLine = false;

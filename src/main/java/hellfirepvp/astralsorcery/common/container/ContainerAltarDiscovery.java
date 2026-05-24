@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.container;
 
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.Optional;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
@@ -10,7 +10,7 @@ import net.minecraft.world.level.Container;
 import net.minecraft.world.level.inventory.Slot;
 import net.minecraft.world.level.inventory.MenuType;
 import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
-import net.minecraft.world.level.entity.player.Inventory;
+import net.minecraft.world.entity.player.Inventory;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 
 public class ContainerAltarDiscovery extends ContainerAltarBase

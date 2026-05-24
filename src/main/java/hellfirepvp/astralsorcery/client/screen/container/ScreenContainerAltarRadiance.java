@@ -13,13 +13,13 @@ import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.entity.player.Inventory;
+import net.minecraft.world.entity.player.Inventory;
 import java.util.Random;
 import hellfirepvp.astralsorcery.common.container.ContainerAltarTrait;
 import hellfirepvp.astralsorcery.client.screen.base.ScreenContainerAltar;
@@ -50,7 +50,7 @@ public class ScreenContainerAltarRadiance extends ScreenContainerAltar<Container
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
         RenderSystem.disableDepthTest();
-        final float pTicks = Minecraft.func_71410_x().func_184121_ak();
+        final float pTicks = Minecraft.getInstance().func_184121_ak();
         TexturesAS.TEX_STAR_1.bindTexture();
         ScreenContainerAltarRadiance.rand.setSeed(-8604827917233251694L);
         for (int i = 0; i < 18; ++i) {
@@ -63,7 +63,7 @@ public class ScreenContainerAltarRadiance extends ScreenContainerAltar<Container
         final IConstellation c = altar.getFocusedConstellation();
         if (c != null && altar.hasMultiblock() && ResearchHelper.getClientProgress().hasConstellationDiscovered(c)) {
             ScreenContainerAltarRadiance.rand.setSeed(7061404134423019785L);
-            RenderingConstellationUtils.renderConstellationIntoGUI(c.getConstellationColor(), c, renderStack, 16.0f, 41.0f, (float)this.func_230927_p_(), 58.0f, 58.0f, 2.0, () -> 0.2f + 0.8f * RenderingConstellationUtils.conCFlicker(Minecraft.func_71410_x().field_71441_e.func_72820_D(), pTicks, 5 + ScreenContainerAltarRadiance.rand.nextInt(5)), true, false);
+            RenderingConstellationUtils.renderConstellationIntoGUI(c.getConstellationColor(), c, renderStack, 16.0f, 41.0f, (float)this.func_230927_p_(), 58.0f, 58.0f, 2.0, () -> 0.2f + 0.8f * RenderingConstellationUtils.conCFlicker(Minecraft.getInstance().field_71441_e.func_72820_D(), pTicks, 5 + ScreenContainerAltarRadiance.rand.nextInt(5)), true, false);
         }
         RenderSystem.disableBlend();
         RenderSystem.enableDepthTest();

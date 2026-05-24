@@ -13,7 +13,7 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import javax.annotation.Nonnull;
 import net.minecraft.network.FriendlyByteBuf;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 

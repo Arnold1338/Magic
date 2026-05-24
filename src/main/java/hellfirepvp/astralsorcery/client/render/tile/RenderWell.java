@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import net.minecraft.world.level.level.block.entity.BlockEntity;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.item.ItemStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.fluids.FluidStack;

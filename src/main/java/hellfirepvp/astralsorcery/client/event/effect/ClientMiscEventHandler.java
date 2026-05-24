@@ -5,12 +5,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.level.phys.Vec3;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.math.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -47,7 +47,7 @@ public class ClientMiscEventHandler
             ClientMiscEventHandler.attemptLoad = true;
             final ResourceLocation mod = new ResourceLocation("astralsorcery:models/obj/modelassec.obj");
             try {
-                ClientMiscEventHandler.obj = new WavefrontObject("astralSorcery:wingsrender", new GZIPInputStream(Minecraft.func_71410_x().func_195551_G().func_199002_a(mod).func_199027_b()));
+                ClientMiscEventHandler.obj = new WavefrontObject("astralSorcery:wingsrender", new GZIPInputStream(Minecraft.getInstance().func_195551_G().func_199002_a(mod).func_199027_b()));
             }
             catch (final Exception ex) {}
         }
@@ -87,7 +87,7 @@ public class ClientMiscEventHandler
         }
         RenderTypesAS.MODEL_DEMON_WINGS.func_228547_a_();
         RenderSystem.enableTexture();
-        Minecraft.func_71410_x().func_110434_K().func_110577_a(ClientMiscEventHandler.tex);
+        Minecraft.getInstance().func_110434_K().func_110577_a(ClientMiscEventHandler.tex);
         renderStack.func_227860_a_();
         renderStack.func_227863_a_(Vector3f.field_229180_c_.func_229187_a_(20.0f + r));
         ClientMiscEventHandler.vboR.func_177359_a();

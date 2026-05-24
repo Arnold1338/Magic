@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.constellation;
 
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 
 public interface IConstellationSpecialShowup extends IConstellation
 {

@@ -1,17 +1,17 @@
 package hellfirepvp.astralsorcery.common.event;
 
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeTypeHelper;
-import net.minecraft.world.level.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.entity.LivingEntity;
-import net.minecraft.world.level.entity.ai.attributes.AttributeMap;
-import net.minecraft.world.level.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeMap;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.common.MinecraftForge;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 
 public class AttributeEvent
 {

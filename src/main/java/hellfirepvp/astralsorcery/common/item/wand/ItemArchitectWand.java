@@ -5,13 +5,13 @@ import net.minecraft.world.level.phys.HitResult;
 import hellfirepvp.astralsorcery.common.util.RaytraceAssist;
 import java.util.ArrayList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import java.util.Random;
-import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.LevelReader;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import com.google.common.collect.Iterables;
 import java.util.Collections;
@@ -20,7 +20,7 @@ import com.google.common.collect.Maps;
 import javax.annotation.Nonnull;
 import net.minecraft.world.level.phys.BlockHitResult;
 import java.util.HashMap;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.ClipContext;
 import java.util.Iterator;
 import net.minecraft.core.Vec3i;
@@ -43,10 +43,10 @@ import net.minecraft.world.item.ItemUseContext;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.util.RenderingOverlayUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import java.util.Map;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
@@ -57,7 +57,7 @@ import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.ChatFormatting;
@@ -65,14 +65,14 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeConsumer;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemHeldRender;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemOverlayRender;
 import hellfirepvp.astralsorcery.common.item.base.ItemBlockStorage;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOverlayRender, ItemHeldRender, AlignmentChargeConsumer
 {
@@ -94,7 +94,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
     
     @OnlyIn(Dist.CLIENT)
     public boolean renderInHand(final ItemStack stack, final PoseStack renderStack, final float pTicks) {
-        final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().field_71439_g;
         final Map<BlockPos, BlockState> placeStates = this.getPlayerPlaceableStates(player, stack);
         if (placeStates.isEmpty()) {
             return true;
@@ -124,7 +124,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
     
     @OnlyIn(Dist.CLIENT)
     public boolean renderOverlay(final PoseStack renderStack, final ItemStack stack, final float pTicks) {
-        final List<Tuple<ItemStack, Integer>> foundStacks = ItemBlockStorage.getInventoryMatchingItemStacks((Player)Minecraft.func_71410_x().field_71439_g, stack);
+        final List<Tuple<ItemStack, Integer>> foundStacks = ItemBlockStorage.getInventoryMatchingItemStacks((Player)Minecraft.getInstance().field_71439_g, stack);
         RenderingOverlayUtils.renderDefaultItemDisplay(renderStack, foundStacks);
         return true;
     }
@@ -383,12 +383,12 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
             this.placeCostMulitplier = placeCostMultiplier;
         }
         
-        public IFormattableTextComponent getName() {
-            return (IFormattableTextComponent)new Component("astralsorcery.misc.architect.mode." + this.name);
+        public MutableComponent getName() {
+            return (MutableComponent)new Component("astralsorcery.misc.architect.mode." + this.name);
         }
         
-        public IFormattableTextComponent getDisplay() {
-            return (IFormattableTextComponent)new Component("astralsorcery.misc.architect.mode", new Object[] { this.getName() });
+        public MutableComponent getDisplay() {
+            return (MutableComponent)new Component("astralsorcery.misc.architect.mode", new Object[] { this.getName() });
         }
         
         public float getPlaceCostMulitplier() {

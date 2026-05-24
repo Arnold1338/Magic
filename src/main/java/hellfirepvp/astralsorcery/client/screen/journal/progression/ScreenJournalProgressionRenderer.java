@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.util.Blending;
@@ -237,7 +237,7 @@ public class ScreenJournalProgressionRenderer
                 br = 1.0f - (scale - 6.0f) / 2.0f;
             }
             final ITextProperties name = (ITextProperties)this.focusedClusterMouse.getName();
-            final float length = Minecraft.func_71410_x().field_71466_p.func_238414_a_(name) * 1.4f;
+            final float length = Minecraft.getInstance().field_71466_p.func_238414_a_(name) * 1.4f;
             int alpha = 204;
             alpha *= (int)br;
             alpha = Math.max(alpha, 5);

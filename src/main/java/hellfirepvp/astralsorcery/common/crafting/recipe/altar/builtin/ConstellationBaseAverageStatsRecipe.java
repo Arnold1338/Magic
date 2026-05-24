@@ -6,7 +6,7 @@ import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeItem;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.AltarRecipeGrid;
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;

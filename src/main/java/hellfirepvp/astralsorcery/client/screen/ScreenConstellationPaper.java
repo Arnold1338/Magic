@@ -6,7 +6,7 @@ import java.util.Collections;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.client.util.Blending;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import net.minecraft.network.chat.ITextProperties;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
 import java.util.ArrayList;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.client.Minecraft;
@@ -40,7 +40,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen
     }
     
     private void resolvePhases() {
-        final WorldContext ctx = SkyHandler.getContext((World)Minecraft.func_71410_x().field_71441_e, LogicalSide.CLIENT);
+        final WorldContext ctx = SkyHandler.getContext((World)Minecraft.getInstance().field_71441_e, LogicalSide.CLIENT);
         if (ctx != null) {
             this.phases = new ArrayList<MoonPhase>();
             for (final MoonPhase phase : MoonPhase.values()) {
@@ -74,7 +74,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen
     }
     
     private void drawHeader(final PoseStack renderStack) {
-        final IFormattableTextComponent name = this.constellation.getConstellationName();
+        final MutableComponent name = this.constellation.getConstellationName();
         final float length = this.field_230712_o_.func_238414_a_((ITextProperties)name) * 1.8f;
         final double offsetLeft = (this.field_230708_k_ >> 1) - length / 2.0f;
         final int offsetTop = this.guiTop + 45;
@@ -99,7 +99,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen
         final List<MoonPhase> phases = (this.phases == null) ? Collections.emptyList() : this.phases;
         if (phases.isEmpty()) {
             final ITextProperties text = (ITextProperties)new Component("astralsorcery.journal.constellation.unknown");
-            RenderingDrawUtils.renderStringCentered(Minecraft.func_71410_x().field_71466_p, renderStack, text, this.guiLeft + this.guiWidth / 2 + 25, this.guiTop + 239, 1.8f, -1437774515);
+            RenderingDrawUtils.renderStringCentered(Minecraft.getInstance().field_71466_p, renderStack, text, this.guiLeft + this.guiWidth / 2 + 25, this.guiTop + 239, 1.8f, -1437774515);
         }
         else {
             final int size = 16;

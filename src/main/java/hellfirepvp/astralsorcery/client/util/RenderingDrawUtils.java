@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.client.util;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.math.Matrix3f;
+import org.joml.Matrix3f;
 import net.minecraft.world.level.phys.Vec3;
 import net.minecraft.client.Camera;
 import hellfirepvp.astralsorcery.client.util.draw.RenderInfo;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
-import com.mojang.math.Vector3f;
+import org.joml.Vector3f;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.systems.RenderSystem;
 import java.util.Iterator;
@@ -15,9 +15,9 @@ import java.util.LinkedList;
 import net.minecraft.util.Tuple;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MapStream;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.List;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.util.Mth;
@@ -44,7 +44,7 @@ public class RenderingDrawUtils
     
     public static void renderStringCentered(@Nullable FontRenderer fr, final PoseStack renderStack, final ITextProperties text, final int x, final int y, final float scale, final int color) {
         if (fr == null) {
-            fr = Minecraft.func_71410_x().field_71466_p;
+            fr = Minecraft.getInstance().field_71466_p;
         }
         final float strLength = fr.func_238414_a_(text) * scale;
         final float offsetLeft = x - strLength;
@@ -56,19 +56,19 @@ public class RenderingDrawUtils
     }
     
     public static float renderString(final ITextProperties text) {
-        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.func_71410_x().field_71466_p, Color.WHITE.getRGB(), false);
+        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().field_71466_p, Color.WHITE.getRGB(), false);
     }
     
     public static float renderString(final FormattedCharSequence text) {
-        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.func_71410_x().field_71466_p, Color.WHITE.getRGB(), false);
+        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().field_71466_p, Color.WHITE.getRGB(), false);
     }
     
     public static float renderString(final ITextProperties text, final int color) {
-        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.func_71410_x().field_71466_p, color, false);
+        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().field_71466_p, color, false);
     }
     
     public static float renderString(final FormattedCharSequence text, final int color) {
-        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.func_71410_x().field_71466_p, color, false);
+        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().field_71466_p, color, false);
     }
     
     public static float renderString(@Nullable final FontRenderer fr, final ITextProperties text, final int color) {
@@ -93,7 +93,7 @@ public class RenderingDrawUtils
     
     public static float renderStringAt(final FormattedCharSequence text, final PoseStack renderStack, @Nullable FontRenderer fr, final int color, final boolean dropShadow) {
         if (fr == null) {
-            fr = Minecraft.func_71410_x().field_71466_p;
+            fr = Minecraft.getInstance().field_71466_p;
         }
         final MultiBufferSource.Impl buffer = MultiBufferSource.func_228455_a_(Tessellator.func_178181_a().func_178180_c());
         final int length = fr.func_238416_a_(text, 0.0f, 0.0f, color, dropShadow, renderStack.func_227866_c_().func_227870_a_(), (MultiBufferSource)buffer, false, 0, LightmapUtil.getPackedFullbrightCoords());
@@ -127,7 +127,7 @@ public class RenderingDrawUtils
     }
     
     public static void renderBlueTooltipComponents(final PoseStack renderStack, final float x, final float y, final float zLevel, final List<ITextProperties> tooltipData, final FontRenderer fontRenderer, final boolean isFirstLineHeadline) {
-        final List<Tuple<ItemStack, ITextProperties>> stackTooltip = MapStream.ofValues((Collection<ITextProperties>)tooltipData, t -> ItemStack.field_190927_a).toTupleList();
+        final List<Tuple<ItemStack, ITextProperties>> stackTooltip = MapStream.ofValues((Collection<ITextProperties>)tooltipData, t -> ItemStack.EMPTY).toTupleList();
         renderBlueTooltip(renderStack, x, y, zLevel, stackTooltip, fontRenderer, isFirstLineHeadline);
     }
     
@@ -156,7 +156,7 @@ public class RenderingDrawUtils
                     maxWidth = width;
                 }
             }
-            if (x + 15.0f + maxWidth > Minecraft.func_71410_x().func_228018_at_().func_198107_o()) {
+            if (x + 15.0f + maxWidth > Minecraft.getInstance().func_228018_at_().func_198107_o()) {
                 x -= maxWidth + 24;
             }
             final int formatWidth = anyItemFound ? (maxWidth - stackBoxSize) : maxWidth;

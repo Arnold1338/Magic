@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.data.sync.base;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.common.data.sync.SyncDataHolder;
 import net.minecraft.resources.ResourceLocation;

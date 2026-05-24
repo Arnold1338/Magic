@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.util.loot;
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.function.Consumer;
 
 public class LootCollector implements Consumer<ItemStack>

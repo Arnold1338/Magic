@@ -9,7 +9,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.entity.player.Inventory;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.world.level.inventory.AbstractContainerMenu;

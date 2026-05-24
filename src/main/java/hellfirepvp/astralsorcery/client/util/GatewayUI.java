@@ -6,7 +6,7 @@ import java.util.Collections;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.util.object.ObjectReference;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.world.GatewayCache;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.LogicalSide;
@@ -23,7 +23,7 @@ import java.util.UUID;
 import java.util.Map;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 
 public class GatewayUI
@@ -69,7 +69,7 @@ public class GatewayUI
         }
         final RegistryKey<World> dimType = (RegistryKey<World>)world.dimension();
         final GatewayUI ui = new GatewayUI(dimType, tilePos, renderPos, sphereRadius);
-        final Player thisPlayer = (Player)Minecraft.func_71410_x().field_71439_g;
+        final Player thisPlayer = (Player)Minecraft.getInstance().field_71439_g;
         for (final GatewayCache.GatewayNode node : CelestialGatewayHandler.INSTANCE.getGatewaysForWorld(world, LogicalSide.CLIENT)) {
             if (!node.hasAccess(thisPlayer)) {
                 continue;
@@ -184,7 +184,7 @@ public class GatewayUI
     
     @Nullable
     public GatewayCache.GatewayNode getThisGatewayNode() {
-        return CelestialGatewayHandler.INSTANCE.getGatewayNode((World)Minecraft.func_71410_x().field_71441_e, LogicalSide.CLIENT, this.getPos());
+        return CelestialGatewayHandler.INSTANCE.getGatewayNode((World)Minecraft.getInstance().field_71441_e, LogicalSide.CLIENT, this.getPos());
     }
     
     @Nullable

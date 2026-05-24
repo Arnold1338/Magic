@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.client.util.camera;
 
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 
 public class ClientCameraUtil
 {
@@ -16,7 +16,7 @@ public class ClientCameraUtil
         yawPrev = yaw - dYaw;
         final float iYaw = Mth.func_219799_g(pTicks, (float)yawPrev, (float)yaw);
         final float iPitch = Mth.func_219799_g(pTicks, (float)pitchPrev, (float)pitch);
-        final Minecraft mc = Minecraft.func_71410_x();
+        final Minecraft mc = Minecraft.getInstance();
         Entity rv = mc.func_175606_aa();
         if (rv == null || !rv.equals((Object)renderView)) {
             mc.func_175607_a((Entity)renderView);
@@ -40,7 +40,7 @@ public class ClientCameraUtil
         render.field_70760_ar = iYaw;
         render.field_70125_A = iPitch;
         render.field_70127_C = iPitch;
-        render = (Player)Minecraft.func_71410_x().field_71439_g;
+        render = (Player)Minecraft.getInstance().field_71439_g;
         render.func_226288_n_(x, y, z);
         render.field_70169_q = prevX;
         render.field_70167_r = prevY;
@@ -61,7 +61,7 @@ public class ClientCameraUtil
     }
     
     public static void resetCamera() {
-        final Minecraft mc = Minecraft.func_71410_x();
+        final Minecraft mc = Minecraft.getInstance();
         if (mc.field_71439_g != null) {
             final Player player = (Player)mc.field_71439_g;
             mc.func_175607_a((Entity)player);

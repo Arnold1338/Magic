@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.resources.model.Model;
 import net.minecraft.client.resources.model.ModelRenderer;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 
 public class ModelArmorMantle extends CustomArmorModel<LivingEntity>
 {

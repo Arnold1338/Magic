@@ -66,7 +66,7 @@ public abstract class FXSourceOrbital<E extends EntityVisualFX, T extends BatchR
     
     @Override
     public void tickSpawnFX(final Function<Vector3, E> effectRegistrar) {
-        if (Minecraft.func_71410_x().func_147113_T()) {
+        if (Minecraft.getInstance().func_147113_T()) {
             return;
         }
         for (int branch = 0; branch < this.branches; ++branch) {

@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 import javax.annotation.Nonnull;
 import java.util.Random;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
 

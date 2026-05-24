@@ -74,10 +74,10 @@ public class PktProgressionUpdate extends ASPacket<PktProgressionUpdate>
             public void handleClient(final PktProgressionUpdate packet, final NetworkEvent.Context context) {
                 context.enqueueWork(() -> {
                     if (packet.tier != null) {
-                        Minecraft.func_71410_x().field_71439_g.func_145747_a((Component)new Component("astralsorcery.progress.gain.progress.chat").func_240699_a_(ChatFormatting.BLUE), Util.NIL_UUID);
+                        Minecraft.getInstance().field_71439_g.func_145747_a((Component)new Component("astralsorcery.progress.gain.progress.chat").func_240699_a_(ChatFormatting.BLUE), Util.NIL_UUID);
                     }
                     if (packet.prog != null) {
-                        final ClientPlayerEntity field_71439_g = Minecraft.func_71410_x().field_71439_g;
+                        final ClientPlayerEntity field_71439_g = Minecraft.getInstance().field_71439_g;
                         new Component("astralsorcery.progress.gain.research.chat", new Object[] { packet.prog.getName() });
                         final Component translationTextComponent;
                         field_71439_g.func_145747_a((Component)translationTextComponent.func_240699_a_(ChatFormatting.AQUA), Util.NIL_UUID);
@@ -94,9 +94,9 @@ public class PktProgressionUpdate extends ASPacket<PktProgressionUpdate>
     
     @OnlyIn(Dist.CLIENT)
     private void refreshJournal() {
-        final Screen open = Minecraft.func_71410_x().field_71462_r;
+        final Screen open = Minecraft.getInstance().field_71462_r;
         if (open != null && open instanceof ScreenJournal && !(open instanceof ScreenJournalPerkTree)) {
-            Minecraft.func_71410_x().func_147108_a((Screen)null);
+            Minecraft.getInstance().func_147108_a((Screen)null);
         }
         ScreenJournalProgression.resetJournal();
     }

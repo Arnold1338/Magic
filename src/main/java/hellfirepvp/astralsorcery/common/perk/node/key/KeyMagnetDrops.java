@@ -1,18 +1,18 @@
 package hellfirepvp.astralsorcery.common.perk.node.key;
 
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.Iterator;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import net.minecraft.world.level.damagesource.DamageSource;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.entity.item.ItemEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;

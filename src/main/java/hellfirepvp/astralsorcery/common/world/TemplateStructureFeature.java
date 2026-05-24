@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.world;
 
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.feature.NoneFeatureConfiguration;
-import net.minecraft.world.level.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.Structure;
 
 public abstract class TemplateStructureFeature extends Structure<NoneFeatureConfiguration>
 {

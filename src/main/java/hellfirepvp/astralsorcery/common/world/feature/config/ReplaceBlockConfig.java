@@ -4,7 +4,7 @@ import java.util.function.BiFunction;
 import com.mojang.datafixers.kinds.Applicative;
 import com.mojang.datafixers.kinds.App;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.template.RuleTest;
 import com.mojang.serialization.Codec;
 import net.minecraft.world.level.levelgen.feature.FeatureConfiguration;

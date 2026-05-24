@@ -15,16 +15,16 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.observerlib.client.preview.StructurePreview;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import hellfirepvp.observerlib.api.util.BlockArray;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import hellfirepvp.observerlib.api.structure.MatchableStructure;
 import hellfirepvp.astralsorcery.common.tile.base.TileRequiresMultiblock;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.InteractionHand;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import java.util.Iterator;
-import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.LevelReader;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
@@ -34,18 +34,18 @@ import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.block.ore.BlockRockCrystalOre;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.ChunkPos;
+import net.minecraft.world.level.ChunkPos;
 import hellfirepvp.observerlib.common.data.WorldCacheDomain;
 import hellfirepvp.astralsorcery.common.lib.DataAS;
 import hellfirepvp.astralsorcery.common.data.world.RockCrystalBuffer;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.item.base.OverrideInteractItem;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemWand extends Item implements OverrideInteractItem
 {
@@ -124,12 +124,12 @@ public class ItemWand extends Item implements OverrideInteractItem
     @OnlyIn(Dist.CLIENT)
     public static void playUndergroundEffect(final PktPlayEffect effect) {
         final Vector3 at = ByteBufUtils.readVector(effect.getExtraData());
-        final World world = (World)Minecraft.func_71410_x().field_71441_e;
+        final World world = (World)Minecraft.getInstance().field_71441_e;
         if (world == null) {
             return;
         }
         final float dstr = 0.4f + 0.6f * DayTimeHelper.getCurrentDaytimeDistribution(world);
-        final Vector3 plVec = Vector3.atEntityCorner((Entity)Minecraft.func_71410_x().field_71439_g);
+        final Vector3 plVec = Vector3.atEntityCorner((Entity)Minecraft.getInstance().field_71439_g);
         final float dst = (float)at.distance(plVec);
         final float dstMul = (dst <= 25.0f) ? 1.0f : ((dst >= 50.0f) ? 0.0f : (1.0f - (dst - 25.0f) / 25.0f));
         for (int i = 0; i < 3; ++i) {
@@ -142,7 +142,7 @@ public class ItemWand extends Item implements OverrideInteractItem
     @OnlyIn(Dist.CLIENT)
     public static void playEffect(final PktPlayEffect effect) {
         final Vector3 pos = ByteBufUtils.readVector(effect.getExtraData());
-        final World world = (World)Minecraft.func_71410_x().field_71441_e;
+        final World world = (World)Minecraft.getInstance().field_71441_e;
         if (world == null) {
             return;
         }

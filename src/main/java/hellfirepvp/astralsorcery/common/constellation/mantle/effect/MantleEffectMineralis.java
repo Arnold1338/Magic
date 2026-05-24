@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.common.constellation.mantle.effect;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.util.block.BlockPredicate;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.client.util.MiscPlayEffect;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -15,10 +15,10 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.level.InteractionHand;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import net.minecraftforge.event.level.BlockEvent;
 import java.util.function.Consumer;

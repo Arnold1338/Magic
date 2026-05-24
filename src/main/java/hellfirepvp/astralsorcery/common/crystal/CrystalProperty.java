@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.crystal;
 
 import java.util.Objects;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import java.util.ArrayList;
@@ -63,8 +63,8 @@ public abstract class CrystalProperty extends ForgeRegistryEntry<CrystalProperty
         return value;
     }
     
-    public IFormattableTextComponent getName(final int currentTier) {
-        return (IFormattableTextComponent)new Component(String.format("crystal.property.%s.%s.name", this.getRegistryName().func_110624_b(), this.getRegistryName().func_110623_a()));
+    public MutableComponent getName(final int currentTier) {
+        return (MutableComponent)new Component(String.format("crystal.property.%s.%s.name", this.getRegistryName().func_110624_b(), this.getRegistryName().func_110623_a()));
     }
     
     public int compareTo(final CrystalProperty other) {

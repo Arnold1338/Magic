@@ -7,7 +7,7 @@ import net.minecraftforge.event.TickEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import java.util.HashSet;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.damagesource.DamageSource;
 import java.util.Set;
 import java.util.UUID;

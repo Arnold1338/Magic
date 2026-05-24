@@ -1,30 +1,30 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.world.level.level.block.Blocks;
-import net.minecraft.world.level.level.LevelReader;
-import net.minecraft.world.level.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.core.Direction;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.sounds.SoundEvents;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileSpectralRelay;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.level.phys.BlockHitResult;
 import net.minecraft.world.level.InteractionHand;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.BlockGetter;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesGlass;
 import net.minecraft.world.level.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
@@ -52,7 +52,7 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
                     if (!inv.getStackInSlot(0).isEmpty()) {
                         final ItemStack stack = inv.getStackInSlot(0);
                         player.getInventory().func_191975_a(world, stack);
-                        inv.setStackInSlot(0, ItemStack.field_190927_a);
+                        inv.setStackInSlot(0, ItemStack.EMPTY);
                         tar.markForUpdate();
                         TileSpectralRelay.cascadeRelayProximityUpdates(world, pos);
                     }
@@ -71,7 +71,7 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
                 else if (!inv.getStackInSlot(0).isEmpty()) {
                     final ItemStack stack = inv.getStackInSlot(0);
                     player.getInventory().func_191975_a(world, stack);
-                    inv.setStackInSlot(0, ItemStack.field_190927_a);
+                    inv.setStackInSlot(0, ItemStack.EMPTY);
                     TileSpectralRelay.cascadeRelayProximityUpdates(world, pos);
                     tar.markForUpdate();
                 }

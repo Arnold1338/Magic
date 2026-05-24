@@ -8,7 +8,7 @@ import net.minecraft.network.IPacket;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 import java.awt.Color;
 import java.util.Random;
@@ -19,13 +19,13 @@ import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.phys.Vec3;
-import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.world.entity.EntityType;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.world.entity.projectile.ThrowableEntity;
 
@@ -73,7 +73,7 @@ public class EntityShootingStar extends ThrowableEntity
     private void spawnEffects() {
         final float maxRenderPosDist = 96.0f;
         final VFXRenderOffsetFunction<FXFacingParticle> renderFn = (fx, iPos, pTicks) -> {
-            final Player pl = (Player)Minecraft.func_71410_x().field_71439_g;
+            final Player pl = (Player)Minecraft.getInstance().field_71439_g;
             if (pl == null) {
                 return iPos;
             }
@@ -88,7 +88,7 @@ public class EntityShootingStar extends ThrowableEntity
             }
         };
         final VFXScaleFunction<EntityVisualFX> scaleFn = (fx, scaleIn, pTicks) -> {
-            final Player pl2 = (Player)Minecraft.func_71410_x().field_71439_g;
+            final Player pl2 = (Player)Minecraft.getInstance().field_71439_g;
             if (pl2 == null) {
                 return scaleIn;
             }

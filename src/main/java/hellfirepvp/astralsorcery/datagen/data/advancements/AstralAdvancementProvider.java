@@ -14,7 +14,7 @@ import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 import net.minecraft.advancements.criterion.TickTrigger;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.advancements.FrameType;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;

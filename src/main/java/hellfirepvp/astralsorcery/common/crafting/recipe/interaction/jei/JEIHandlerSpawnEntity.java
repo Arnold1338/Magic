@@ -1,13 +1,13 @@
 package hellfirepvp.astralsorcery.common.crafting.recipe.interaction.jei;
 
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.InteractionResult;
 import hellfirepvp.astralsorcery.client.util.LightmapUtil;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.math.Vector3f;
-import net.minecraft.world.level.entity.LivingEntity;
-import net.minecraft.world.level.level.Level;
+import org.joml.Vector3f;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.ResultSpawnEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -36,7 +36,7 @@ public class JEIHandlerSpawnEntity extends JEIInteractionResultHandler
         if (!(result instanceof ResultSpawnEntity)) {
             return;
         }
-        final Entity le = ((ResultSpawnEntity)result).getEntityType().func_200721_a((World)Minecraft.func_71410_x().field_71441_e);
+        final Entity le = ((ResultSpawnEntity)result).getEntityType().func_200721_a((World)Minecraft.getInstance().field_71441_e);
         if (!(le instanceof LivingEntity)) {
             return;
         }
@@ -46,7 +46,7 @@ public class JEIHandlerSpawnEntity extends JEIInteractionResultHandler
         renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(180.0f));
         renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(145.0f));
         final MultiBufferSource.Impl buffer = MultiBufferSource.func_228455_a_(Tessellator.func_178181_a().func_178180_c());
-        Minecraft.func_71410_x().func_175598_ae().func_229084_a_(le, 0.0, 0.0, 0.0, 0.0f, 0.0f, renderStack, (MultiBufferSource)buffer, LightmapUtil.getPackedFullbrightCoords());
+        Minecraft.getInstance().func_175598_ae().func_229084_a_(le, 0.0, 0.0, 0.0, 0.0f, 0.0f, renderStack, (MultiBufferSource)buffer, LightmapUtil.getPackedFullbrightCoords());
         buffer.func_228461_a_();
         renderStack.func_227865_b_();
     }

@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.starlight;
 
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import javax.annotation.Nonnull;
 import net.minecraft.core.BlockPos;
 import javax.annotation.Nullable;

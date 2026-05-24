@@ -7,8 +7,8 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraft.util.Mth;
 import javax.annotation.Nonnull;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraft.world.level.level.material.Fluids;
-import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.IFluidTank;
 
 public class PrecisionSingleFluidTank implements IFluidTank

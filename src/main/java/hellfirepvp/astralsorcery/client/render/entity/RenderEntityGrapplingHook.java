@@ -16,7 +16,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import net.minecraft.util.Mth;
 import net.minecraft.client.renderer.MultiBufferSource;

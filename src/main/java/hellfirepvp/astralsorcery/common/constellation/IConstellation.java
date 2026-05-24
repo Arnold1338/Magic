@@ -3,20 +3,20 @@ package hellfirepvp.astralsorcery.common.constellation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import java.awt.Color;
 import java.util.function.Supplier;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.ItemStack;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.common.constellation.engraving.EngravingEffect;
-import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.constellation.star.StarConnection;
 import hellfirepvp.astralsorcery.common.constellation.star.StarLocation;
@@ -41,11 +41,11 @@ public interface IConstellation extends IForgeRegistryEntry<IConstellation>, Com
     
     String getTranslationKey();
     
-    default IFormattableTextComponent getConstellationName() {
-        return (IFormattableTextComponent)new Component(this.getTranslationKey());
+    default MutableComponent getConstellationName() {
+        return (MutableComponent)new Component(this.getTranslationKey());
     }
     
-    default IFormattableTextComponent getConstellationTypeDescription() {
+    default MutableComponent getConstellationTypeDescription() {
         String type = "unknown";
         if (this instanceof IMajorConstellation) {
             type = "major";
@@ -56,19 +56,19 @@ public interface IConstellation extends IForgeRegistryEntry<IConstellation>, Com
         else if (this instanceof IMinorConstellation) {
             type = "minor";
         }
-        return (IFormattableTextComponent)new Component(String.format("astralsorcery.journal.constellation.type.%s", type));
+        return (MutableComponent)new Component(String.format("astralsorcery.journal.constellation.type.%s", type));
     }
     
-    default IFormattableTextComponent getConstellationTag() {
-        return (IFormattableTextComponent)new Component(this.getTranslationKey() + ".tag");
+    default MutableComponent getConstellationTag() {
+        return (MutableComponent)new Component(this.getTranslationKey() + ".tag");
     }
     
-    default IFormattableTextComponent getConstellationDescription() {
-        return (IFormattableTextComponent)new Component(this.getTranslationKey() + ".description");
+    default MutableComponent getConstellationDescription() {
+        return (MutableComponent)new Component(this.getTranslationKey() + ".description");
     }
     
-    default IFormattableTextComponent getConstellationEnchantmentDescription() {
-        return (IFormattableTextComponent)new Component(this.getTranslationKey() + ".enchantments");
+    default MutableComponent getConstellationEnchantmentDescription() {
+        return (MutableComponent)new Component(this.getTranslationKey() + ".enchantments");
     }
     
     default String getDefaultSaveKey() {

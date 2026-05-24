@@ -9,9 +9,9 @@ import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import java.awt.geom.Rectangle2D;
 import hellfirepvp.astralsorcery.client.screen.journal.perk.BatchPerkContext;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -43,7 +43,7 @@ public class PerkTreeGem<T extends AbstractPerk & GemSocketPerk> extends PerkTre
     @OnlyIn(Dist.CLIENT)
     @Override
     public void renderAt(final AllocationStatus status, final PoseStack renderStack, final long spriteOffsetTick, final float pTicks, final float x, final float y, final float zLevel, final float scale) {
-        final ItemStack stack = this.getPerk().getContainedItem((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT);
+        final ItemStack stack = this.getPerk().getContainedItem((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT);
         if (!stack.isEmpty()) {
             final float posX = x - 8.0f * scale;
             final float posY = y - 8.0f * scale;

@@ -22,23 +22,23 @@ import net.minecraft.tags.ItemTags;
 import java.util.List;
 import net.minecraft.resources.ResourceLocation;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.block.Blocks;
-import net.minecraft.world.level.level.block.Block;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
 import java.util.function.Supplier;
 import java.util.function.Consumer;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.phys.Vec3;
-import net.minecraft.world.level.entity.item.ItemEntity;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import java.util.Random;
 import net.minecraftforge.items.IItemHandler;
 
@@ -76,7 +76,7 @@ public class ItemUtils
     public static void decrementItem(final Supplier<ItemStack> getFromInventory, final Consumer<ItemStack> setIntoInventory, final Consumer<ItemStack> handleExcess) {
         ItemStack toConsume = getFromInventory.get();
         toConsume = copyStackWithSize(toConsume, toConsume.func_190916_E());
-        ItemStack toReplaceWith = ItemStack.field_190927_a;
+        ItemStack toReplaceWith = ItemStack.EMPTY;
         if (toConsume.hasContainerItem()) {
             toReplaceWith = toConsume.getContainerItem();
         }
@@ -131,7 +131,7 @@ public class ItemUtils
         if (item.isAlive()) {
             return item.func_92059_d().copy();
         }
-        return ItemStack.field_190927_a;
+        return ItemStack.EMPTY;
     }
     
     private static void applyRandomDropOffset(final ItemEntity item) {
@@ -295,7 +295,7 @@ public class ItemUtils
         }
         st.func_190920_e(st.func_190916_E() - 1);
         if (st.func_190916_E() <= 0) {
-            handler.setStackInSlot(slot, ItemStack.field_190927_a);
+            handler.setStackInSlot(slot, ItemStack.EMPTY);
         }
     }
     
@@ -348,7 +348,7 @@ public class ItemUtils
     
     public static ItemStack copyStackWithSize(@Nonnull final ItemStack stack, final int amount) {
         if (stack.isEmpty() || amount <= 0) {
-            return ItemStack.field_190927_a;
+            return ItemStack.EMPTY;
         }
         final ItemStack s = stack.copy();
         s.func_190920_e(amount);
@@ -368,7 +368,7 @@ public class ItemUtils
         
         @Nonnull
         public ItemStack getStackInSlot(final int slot) {
-            return ItemStack.field_190927_a;
+            return ItemStack.EMPTY;
         }
         
         @Nonnull
@@ -378,7 +378,7 @@ public class ItemUtils
         
         @Nonnull
         public ItemStack extractItem(final int slot, final int amount, final boolean simulate) {
-            return ItemStack.field_190927_a;
+            return ItemStack.EMPTY;
         }
         
         public int getSlotLimit(final int slot) {

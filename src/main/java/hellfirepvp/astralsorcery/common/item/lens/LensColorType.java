@@ -1,15 +1,15 @@
 package hellfirepvp.astralsorcery.common.item.lens;
 
 import java.util.HashMap;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.util.PartialEffectExecutor;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import java.awt.Color;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.function.Supplier;
 import net.minecraft.resources.ResourceLocation;
 import java.util.Map;

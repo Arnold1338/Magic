@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import javax.annotation.Nonnull;
 import net.minecraft.world.level.InteractionResult;
 import hellfirepvp.astralsorcery.client.util.AreaOfInfluencePreview;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.base.TileAreaOfInfluence;
 import net.minecraft.core.Direction;
@@ -37,36 +37,36 @@ import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
-import net.minecraft.world.level.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraftforge.common.capabilities.Capability;
 import hellfirepvp.astralsorcery.common.lib.CapabilitiesAS;
-import net.minecraft.world.level.level.chunk.LevelChunk;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.levelgen.Heightmap;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.entity.LivingEntity;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Iterator;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.NonNullList;
-import net.minecraft.world.level.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTab;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.item.base.OverrideInteractItem;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemResonator extends Item implements OverrideInteractItem
 {
@@ -87,7 +87,7 @@ public class ItemResonator extends Item implements OverrideInteractItem
     
     @OnlyIn(Dist.CLIENT)
     public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> tooltip, final TooltipFlag extended) {
-        final ResonatorUpgrade current = getCurrentUpgrade((Player)Minecraft.func_71410_x().field_71439_g, stack);
+        final ResonatorUpgrade current = getCurrentUpgrade((Player)Minecraft.getInstance().field_71439_g, stack);
         for (final ResonatorUpgrade upgrade : getUpgrades(stack)) {
             final ChatFormatting color = upgrade.equals(current) ? ChatFormatting.GOLD : ChatFormatting.BLUE;
             tooltip.add((Component)new Component(upgrade.getUnlocalizedTypeName()).func_240699_a_(color));

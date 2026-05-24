@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.client.util.camera.path;
 import java.util.Iterator;
 import net.minecraft.util.Mth;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.client.util.camera.EntityClientReplacement;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.client.util.camera.ICameraStopListener;
@@ -74,7 +74,7 @@ public class CameraPath extends EntityCameraRenderView implements ICameraPersist
     
     @Override
     public void onStopTransforming() {
-        if (this.stopDelegate != null && Minecraft.func_71410_x().field_71441_e != null) {
+        if (this.stopDelegate != null && Minecraft.getInstance().field_71441_e != null) {
             this.stopDelegate.onCameraStop();
         }
     }

@@ -1,11 +1,11 @@
 package hellfirepvp.astralsorcery.client.event;
 
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemOverlayRender;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import java.util.function.Consumer;
@@ -28,8 +28,8 @@ public class OverlayRenderer
         if (event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
             return;
         }
-        final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
-        if (player == null || Minecraft.func_71410_x().field_71441_e == null) {
+        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        if (player == null || Minecraft.getInstance().field_71441_e == null) {
             return;
         }
         final PoseStack renderStack = event.getMatrixStack();

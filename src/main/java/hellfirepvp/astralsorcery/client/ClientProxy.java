@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalProgression;
 import java.util.Map;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.model.BipedModel;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import hellfirepvp.astralsorcery.client.render.entity.layer.StarryLayerRenderer;
 import net.minecraft.client.renderer.entity.PlayerRenderer;
@@ -33,7 +33,7 @@ import hellfirepvp.astralsorcery.common.registry.RegistryEntities;
 import hellfirepvp.astralsorcery.common.registry.RegistryContainerTypes;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraft.client.player.AbstractClientPlayerEntity;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.GuiType;
@@ -80,7 +80,7 @@ public class ClientProxy extends CommonProxy
     public void initialize() {
         this.clientScheduler = new ClientScheduler();
         if (!AstralSorcery.isDoingDataGeneration()) {
-            final IReloadableResourceManager resMgr = (IReloadableResourceManager)Minecraft.func_71410_x().func_195551_G();
+            final IReloadableResourceManager resMgr = (IReloadableResourceManager)Minecraft.getInstance().func_195551_G();
             resMgr.func_219534_a((IFutureReloadListener)AssetLibrary.INSTANCE);
             resMgr.func_219534_a((IFutureReloadListener)AssetPreLoader.INSTANCE);
             resMgr.func_219534_a(ColorizationHelper.onReload());
@@ -151,7 +151,7 @@ public class ClientProxy extends CommonProxy
     public void openGuiClient(final GuiType type, final CompoundTag data) {
         final Screen toOpen = type.deserialize(data);
         if (toOpen != null) {
-            Minecraft.func_71410_x().func_147108_a(toOpen);
+            Minecraft.getInstance().func_147108_a(toOpen);
         }
     }
     
@@ -172,7 +172,7 @@ public class ClientProxy extends CommonProxy
         RegistryBlockRenderTypes.initBlocks();
         RegistryBlockRenderTypes.initFluids();
         RegistryItems.registerItemProperties();
-        final Map<String, PlayerRenderer> playerRenderMap = Minecraft.func_71410_x().func_175598_ae().getSkinMap();
+        final Map<String, PlayerRenderer> playerRenderMap = Minecraft.getInstance().func_175598_ae().getSkinMap();
         PlayerRenderer renderer = playerRenderMap.get("slim");
         renderer.func_177094_a((LayerRenderer)new StarryLayerRenderer((net.minecraft.client.renderer.entity.IEntityRenderer<LivingEntity, BipedModel>)renderer, true));
         renderer = playerRenderMap.get("default");

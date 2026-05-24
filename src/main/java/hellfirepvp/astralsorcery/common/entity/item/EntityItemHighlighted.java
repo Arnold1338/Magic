@@ -3,18 +3,18 @@ package hellfirepvp.astralsorcery.common.entity.item;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraft.network.IPacket;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.Pose;
 import javax.annotation.Nullable;
 import java.awt.Color;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.reflection.ReflectionHelper;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.entity.item.ItemEntity;
-import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.network.syncher.EntityDataAccessor;
 
 public class EntityItemHighlighted extends EntityCustomItemReplacement

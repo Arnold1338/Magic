@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMarble;

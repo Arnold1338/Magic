@@ -5,7 +5,7 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.resources.ResourceLocation;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.world.entity.EntityType;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
 
 public class EntityTransmutationEntry implements ConfigDataSet

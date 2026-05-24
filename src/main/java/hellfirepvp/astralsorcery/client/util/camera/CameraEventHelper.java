@@ -12,7 +12,7 @@ public class CameraEventHelper
     }
     
     private static void onPlayerRender(final RenderPlayerEvent.Pre event) {
-        if (event.getPlayer() == Minecraft.func_71410_x().field_71439_g && ClientCameraManager.INSTANCE.hasActiveTransformer()) {
+        if (event.getPlayer() == Minecraft.getInstance().field_71439_g && ClientCameraManager.INSTANCE.hasActiveTransformer()) {
             event.setCanceled(true);
         }
     }

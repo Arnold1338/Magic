@@ -13,7 +13,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.Collection;
 import java.util.HashSet;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import java.util.Random;
 import hellfirepvp.astralsorcery.common.data.config.registry.sets.OreBlockRarityEntry;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataAdapter;

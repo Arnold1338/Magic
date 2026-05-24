@@ -3,14 +3,14 @@ package hellfirepvp.astralsorcery.common.perk.type.vanilla;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import java.util.UUID;
-import net.minecraft.world.level.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.level.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierSource;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 

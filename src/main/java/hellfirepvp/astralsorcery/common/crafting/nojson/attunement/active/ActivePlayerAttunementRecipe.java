@@ -8,7 +8,7 @@ import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.client.util.camera.ClientCameraManager;
 import hellfirepvp.astralsorcery.client.util.camera.ICameraPersistencyFunction;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.common.network.play.client.PktAttunePlayerConstellation;
 import hellfirepvp.astralsorcery.client.util.camera.ICameraTransformer;
@@ -42,9 +42,9 @@ import hellfirepvp.astralsorcery.client.effect.function.impl.RenderOffsetNoisePl
 import hellfirepvp.astralsorcery.common.event.helper.EventHelperInvulnerability;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
 import net.minecraft.nbt.CompoundTag;
 import java.util.ArrayList;
@@ -221,7 +221,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
     
     @OnlyIn(Dist.CLIENT)
     private void doClientSetup(final TileAttunementAltar altar) {
-        if (this.cameraHack == null && Minecraft.func_71410_x().field_71439_g != null && Minecraft.func_71410_x().field_71439_g.getUUID().equals(this.getPlayerUUID())) {
+        if (this.cameraHack == null && Minecraft.getInstance().field_71439_g != null && Minecraft.getInstance().field_71439_g.getUUID().equals(this.getPlayerUUID())) {
             final Vector3 offset = new Vector3(altar).add(0.5, 6.0, 0.5);
             final CameraPathBuilder builder = CameraPathBuilder.builder(offset.clone().add(4.0f, 0.0f, 4.0f), new Vector3(altar).add(0.5, 0.5, 0.5));
             builder.addCircularPoints(offset, CameraPathBuilder.DynamicRadiusGetter.dyanmicIncrease(5.0, 0.025), 200, 2);

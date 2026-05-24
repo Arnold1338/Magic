@@ -2,8 +2,8 @@ package hellfirepvp.astralsorcery.common.block.ore;
 
 import net.minecraft.util.Mth;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.LevelReader;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.block.base.template.BlockSandTemplate;
 
 public class BlockAquamarineSandOre extends BlockSandTemplate

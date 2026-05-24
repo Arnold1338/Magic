@@ -7,12 +7,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.Property;
 import hellfirepvp.astralsorcery.common.block.tile.BlockPrism;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.item.lens.LensColorType;
-import net.minecraft.world.level.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 
 public class TilePrism extends TileLens

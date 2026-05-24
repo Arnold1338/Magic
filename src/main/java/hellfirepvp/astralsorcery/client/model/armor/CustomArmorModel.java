@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.client.model.armor;
 
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.client.resources.model.ModelRenderer;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.client.model.BipedModel;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 
 public class CustomArmorModel<T extends LivingEntity> extends BipedModel<T>
 {

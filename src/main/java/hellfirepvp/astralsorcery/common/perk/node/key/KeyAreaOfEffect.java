@@ -1,21 +1,21 @@
 package hellfirepvp.astralsorcery.common.perk.node.key;
 
 import java.util.Iterator;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import net.minecraft.world.level.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.SweepingEnchantment;
-import net.minecraft.world.level.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.entity.projectile.TridentEntity;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.IndirectEntityDamageSource;
 import hellfirepvp.astralsorcery.common.event.EventFlags;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -23,7 +23,7 @@ import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.item.enchantment.Enchantments;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.resources.ResourceLocation;
 
 public class KeyAreaOfEffect extends KeyAddEnchantment

@@ -5,7 +5,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.resources.ResourceLocation;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
 
 public class AmuletEnchantmentEntry implements ConfigDataSet, Comparable<AmuletEnchantmentEntry>

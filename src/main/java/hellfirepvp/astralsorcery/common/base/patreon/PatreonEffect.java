@@ -5,7 +5,7 @@ import hellfirepvp.astralsorcery.common.base.patreon.entity.PatreonFlare;
 import hellfirepvp.astralsorcery.common.base.patreon.entity.PatreonPartialEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.IEventBus;

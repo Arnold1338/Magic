@@ -4,13 +4,13 @@ import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 import java.util.LinkedList;
 import java.util.Iterator;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentType;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.data.config.registry.AmuletEnchantmentRegistry;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.item.ItemEnchantmentAmulet;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeConfigSpec;
 import java.util.Random;
 

@@ -3,11 +3,11 @@ package hellfirepvp.astralsorcery.client.screen;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.client.PktEngraveGlass;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import java.util.function.Supplier;
 import net.minecraft.util.Mth;
 import java.util.Collection;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.TooltipFlag;
 import java.awt.Color;
 import java.util.Collections;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.constellation.engraving.EngravedStarMap;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.item.ItemInfusedGlass;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
@@ -30,7 +30,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
@@ -83,7 +83,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
             this.dragging = null;
         }
         final List<ITextProperties> tooltip = new ArrayList<ITextProperties>();
-        FontRenderer tooltipRenderer = Minecraft.func_71410_x().field_71466_p;
+        FontRenderer tooltipRenderer = Minecraft.getInstance().field_71466_p;
         tooltipRenderer = this.renderTileItems(renderStack, mouseX, mouseY, tooltip, tooltipRenderer);
         this.renderConstellationOptions(renderStack, mouseX, mouseY, tooltip);
         this.renderRunningHalo(renderStack);
@@ -241,7 +241,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
                 if (custom != null) {
                     tooltipRenderer = custom;
                 }
-                tooltip.addAll(input.func_82840_a((Player)this.getMinecraft().field_71439_g, (TooltipFlag)(Minecraft.func_71410_x().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
+                tooltip.addAll(input.func_82840_a((Player)this.getMinecraft().field_71439_g, (TooltipFlag)(Minecraft.getInstance().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
             }
         }
         final ItemStack glass = this.getTile().getGlassStack();
@@ -256,7 +256,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
                 if (custom2 != null) {
                     tooltipRenderer = custom2;
                 }
-                tooltip.addAll(glass.func_82840_a((Player)this.getMinecraft().field_71439_g, (TooltipFlag)(Minecraft.func_71410_x().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
+                tooltip.addAll(glass.func_82840_a((Player)this.getMinecraft().field_71439_g, (TooltipFlag)(Minecraft.getInstance().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
             }
         }
         this.func_230926_e_(0);

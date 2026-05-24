@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.commands.arguments.EntityArgument;
 import com.mojang.brigadier.arguments.ArgumentType;
 import hellfirepvp.astralsorcery.common.cmd.argument.ArgumentTypeConstellation;

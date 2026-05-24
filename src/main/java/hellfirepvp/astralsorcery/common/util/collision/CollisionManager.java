@@ -6,7 +6,7 @@ import net.minecraft.core.BlockPos;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.constellation.mantle.effect.MantleEffectAevitas;
 import net.minecraft.world.level.phys.AABB;
 import java.util.Map;

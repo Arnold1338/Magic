@@ -2,17 +2,17 @@ package hellfirepvp.astralsorcery.common.integration.crt;
 
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionRecipeBase;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import net.minecraft.world.level.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.RecipeType;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionRemoveRecipe;
 import com.blamejared.crafttweaker.impl.item.MCItemStackMutable;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import com.blamejared.crafttweaker.api.actions.IAction;
 import com.blamejared.crafttweaker.api.CraftTweakerAPI;
-import net.minecraft.world.level.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.Recipe;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
 import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInfusion;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.level.material.Fluid;
 import com.blamejared.crafttweaker.api.item.IIngredient;
 import com.blamejared.crafttweaker.api.item.IItemStack;
 import org.openzen.zencode.java.ZenCodeType;
@@ -35,7 +35,7 @@ public class InfusionManager implements IRecipeManager
         CraftTweakerAPI.apply((IAction)new ActionRemoveRecipe((IRecipeManager)this, iRecipe -> {
             if (iRecipe instanceof LiquidInfusion) {
                 final LiquidInfusion recipe = (LiquidInfusion)iRecipe;
-                return output.matches((IItemStack)new MCItemStackMutable(recipe.getOutput(ItemStack.field_190927_a)));
+                return output.matches((IItemStack)new MCItemStackMutable(recipe.getOutput(ItemStack.EMPTY)));
             }
             else {
                 return false;

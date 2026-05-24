@@ -3,11 +3,11 @@ package hellfirepvp.astralsorcery.common.util;
 import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.Comparator;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.resources.ResourceLocation;
 import java.util.ArrayList;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraft.tags.TagKey;
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,8 +15,8 @@ import java.util.List;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public class IngredientHelper
 {
@@ -29,7 +29,7 @@ public class IngredientHelper
     public static ItemStack getRandomVisibleStack(final Ingredient ingredient, final long tick) {
         final List<ItemStack> applicable = getVisibleItemStacks(ingredient);
         if (applicable.isEmpty()) {
-            return ItemStack.field_190927_a;
+            return ItemStack.EMPTY;
         }
         final int mod = (int)(tick / 20L % applicable.size());
         return applicable.get(Mth.func_76125_a(mod, 0, applicable.size() - 1));

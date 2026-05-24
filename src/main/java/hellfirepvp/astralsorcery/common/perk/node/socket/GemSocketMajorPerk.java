@@ -3,16 +3,16 @@ package hellfirepvp.astralsorcery.common.perk.node.socket;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.data.research.PerkAllocationType;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.perk.modifier.PerkAttributeModifier;
 import java.util.Collection;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreeGem;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
 import hellfirepvp.astralsorcery.common.lib.PerkNamesAS;
@@ -52,9 +52,9 @@ public class GemSocketMajorPerk extends MajorPerk implements GemSocketPerk
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public boolean addLocalizedTooltip(final Collection<IFormattableTextComponent> tooltip) {
+    public boolean addLocalizedTooltip(final Collection<MutableComponent> tooltip) {
         if (super.addLocalizedTooltip(tooltip)) {
-            tooltip.add((IFormattableTextComponent)new Component(""));
+            tooltip.add((MutableComponent)new Component(""));
         }
         if (this.canSeeClient()) {
             this.addTooltipInfo(tooltip);

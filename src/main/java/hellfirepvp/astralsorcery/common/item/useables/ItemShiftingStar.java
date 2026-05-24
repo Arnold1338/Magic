@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.item.useables;
 
 import net.minecraft.world.item.UseAction;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
@@ -17,10 +17,10 @@ import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.level.InteractionHand;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
@@ -31,11 +31,11 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.item.base.PerkExperienceRevealer;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemShiftingStar extends Item implements PerkExperienceRevealer
 {
@@ -75,13 +75,13 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
                     ResearchManager.setExp((Player)player, Mth.func_76124_d(perkExp));
                     player.func_145747_a((Component)new Component("astralsorcery.progress.switch.attunement").func_240699_a_(ChatFormatting.BLUE), Util.NIL_UUID);
                     SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vector3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
-                    return ItemStack.field_190927_a;
+                    return ItemStack.EMPTY;
                 }
             }
             else if (ResearchManager.setAttunedConstellation((Player)player, null)) {
                 player.func_145747_a((Component)new Component("astralsorcery.progress.remove.attunement").func_240699_a_(ChatFormatting.BLUE), Util.NIL_UUID);
                 SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vector3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
-                return ItemStack.field_190927_a;
+                return ItemStack.EMPTY;
             }
         }
         return stack;

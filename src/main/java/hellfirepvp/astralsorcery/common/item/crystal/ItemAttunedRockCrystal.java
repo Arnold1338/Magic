@@ -2,14 +2,14 @@ package hellfirepvp.astralsorcery.common.item.crystal;
 
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import java.util.Iterator;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.NonNullList;
-import net.minecraft.world.level.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTab;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemAttunedRockCrystal extends ItemAttunedCrystalBase
 {

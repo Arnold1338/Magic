@@ -2,12 +2,12 @@ package hellfirepvp.astralsorcery.common.block.ore;
 
 import net.minecraft.util.Mth;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.LevelReader;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMisc;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 
 public class BlockRockCrystalOre extends Block implements CustomItemBlock
 {

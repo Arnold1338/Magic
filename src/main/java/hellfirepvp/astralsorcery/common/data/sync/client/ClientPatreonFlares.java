@@ -9,7 +9,7 @@ import java.util.HashSet;
 import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.data.sync.base.ClientDataReader;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import java.util.ArrayList;
 import java.util.Collections;

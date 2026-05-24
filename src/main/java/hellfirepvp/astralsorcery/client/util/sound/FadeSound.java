@@ -57,7 +57,7 @@ public class FadeSound extends SimpleSoundInstance implements ITickableSound, IS
     }
     
     public boolean hasStoppedPlaying() {
-        return this.hasStoppedPlaying || !Minecraft.func_71410_x().func_147118_V().func_215294_c((ISound)this);
+        return this.hasStoppedPlaying || !Minecraft.getInstance().func_147118_V().func_215294_c((ISound)this);
     }
     
     public void setVolumeMultiplier(final float volumeMultiplier) {

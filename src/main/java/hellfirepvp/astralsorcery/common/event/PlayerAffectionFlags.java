@@ -4,7 +4,7 @@ import java.util.Objects;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.util.tick.TimeoutList;
 import net.minecraftforge.event.TickEvent;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import java.util.function.Consumer;
 import java.util.UUID;

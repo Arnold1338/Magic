@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import net.minecraft.util.Mth;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.Random;
 import java.util.List;
 

@@ -2,16 +2,16 @@ package hellfirepvp.astralsorcery.common.item.useables;
 
 import net.minecraftforge.items.IItemHandlerModifiable;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraft.core.Direction;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemPerkSeal extends Item
 {

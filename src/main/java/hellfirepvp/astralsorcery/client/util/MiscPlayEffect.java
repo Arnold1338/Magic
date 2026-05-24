@@ -10,7 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.client.effect.function.VFXScaleFunction;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXBlock;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;

@@ -4,14 +4,14 @@ import hellfirepvp.astralsorcery.common.crafting.helper.CustomMatcherRecipe;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomRecipeSerializer;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraftforge.registries.ForgeRegistryEntry;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.item.crafting.Ingredient;
-import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInfusion;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomRecipeBuilder;
@@ -31,7 +31,7 @@ public class LiquidInfusionBuilder extends CustomRecipeBuilder<LiquidInfusion>
     private LiquidInfusionBuilder(final ResourceLocation id) {
         this.liquidInput = null;
         this.itemInput = Ingredient.field_193370_a;
-        this.output = ItemStack.field_190927_a;
+        this.output = ItemStack.EMPTY;
         this.craftingTickTime = 200;
         this.consumptionChance = 0.3f;
         this.consumeMultipleFluids = false;

@@ -18,7 +18,7 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.function.Consumer;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntitySynchronized;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class TileInventory extends ItemStackHandler implements Iterable<ItemStack>
@@ -107,7 +107,7 @@ public class TileInventory extends ItemStackHandler implements Iterable<ItemStac
     
     public void clearInventory() {
         for (int i = 0; i < this.getSlots(); ++i) {
-            this.setStackInSlot(i, ItemStack.field_190927_a);
+            this.setStackInSlot(i, ItemStack.EMPTY);
             this.onContentsChanged(i);
         }
     }

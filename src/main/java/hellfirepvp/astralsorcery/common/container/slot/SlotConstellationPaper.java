@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.container.slot;
 
 import hellfirepvp.astralsorcery.common.item.ItemConstellationPaper;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import hellfirepvp.astralsorcery.common.container.ContainerTome;
 import net.minecraftforge.items.SlotItemHandler;

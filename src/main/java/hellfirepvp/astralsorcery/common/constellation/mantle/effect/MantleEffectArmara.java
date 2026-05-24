@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.constellation.mantle.effect;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraft.world.level.damagesource.DamageSource;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -16,12 +16,12 @@ import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import net.minecraft.util.Mth;
 import net.minecraft.client.Minecraft;
 import java.util.Random;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
-import net.minecraft.world.level.entity.LivingEntity;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -90,7 +90,7 @@ public class MantleEffectArmara extends MantleEffect
                 final Vector3 anglePlayer = perpEffect.normalize().rotate(Math.toRadians(360.0f * (tick / (float)ticksPerCircle)), axis).normalize();
                 final Vector3 pos = anglePlayer.clone().multiply(sRand.nextFloat() * 0.4f + 0.9f).add(at);
                 float alpha = 0.8f;
-                if (Minecraft.func_71410_x().field_71474_y.func_243230_g().func_243192_a()) {
+                if (Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a()) {
                     final float deg = (float)Math.toDegrees(lookVec.angle(anglePlayer));
                     if (deg < 70.0f) {
                         final float tansparentDegree = 40.0f;

@@ -3,15 +3,15 @@ package hellfirepvp.astralsorcery.common.auxiliary.book;
 import java.util.HashMap;
 import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.util.item.ItemComparator;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import java.util.Map;
 
 public class BookLookupRegistry

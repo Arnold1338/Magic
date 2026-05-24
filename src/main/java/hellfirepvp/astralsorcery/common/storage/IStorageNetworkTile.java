@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.storage;
 
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 
 public interface IStorageNetworkTile<T extends IStorageNetworkTile<T>> extends ILocatable

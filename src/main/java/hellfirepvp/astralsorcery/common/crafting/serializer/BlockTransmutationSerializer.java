@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.crafting.serializer;
 
-import net.minecraft.world.level.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.Recipe;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomMatcherRecipe;
 import java.util.function.BiConsumer;
 import java.util.Collection;
@@ -9,15 +9,15 @@ import com.google.gson.JsonArray;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.block.BlockStateHelper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;

@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.container;
 
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.inventory.MenuType;
 import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
 import hellfirepvp.astralsorcery.common.tile.TileObservatory;

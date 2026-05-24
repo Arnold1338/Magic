@@ -4,13 +4,13 @@ import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.level.InteractionHand;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.item.ItemUseContext;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.core.dispenser.BlockSource;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public abstract class ItemUsableDust extends Item implements DispenseItemBehavior
 {

@@ -1,17 +1,17 @@
 package hellfirepvp.astralsorcery.datagen.data.loot;
 
-import net.minecraft.world.level.item.Items;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.functions.ILootFunction;
 import net.minecraft.world.level.storage.loot.functions.SetCount;
 import net.minecraft.world.level.storage.loot.LootEntry;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.storage.loot.ItemLootEntry;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import net.minecraft.world.level.storage.loot.IRandomRange;
 import net.minecraft.world.level.storage.loot.RandomValueRange;
 import net.minecraft.world.level.storage.loot.LootPool;
 import hellfirepvp.astralsorcery.common.lib.LootAS;
-import net.minecraft.world.level.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.resources.ResourceLocation;
 import java.util.function.BiConsumer;
 import net.minecraft.data.loot.ChestLootTables;

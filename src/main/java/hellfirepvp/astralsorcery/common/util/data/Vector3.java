@@ -1,17 +1,17 @@
 package hellfirepvp.astralsorcery.common.util.data;
 
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import java.util.function.Consumer;
-import net.minecraft.world.level.level.ChunkPos;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.core.BlockPos;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.phys.AABB;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.phys.Vec3;
 import net.minecraft.core.Vec3i;
 import java.util.Random;
@@ -684,7 +684,7 @@ public class Vector3
         
         @Override
         public String toString() {
-            return String.format("Quaternion: { s=%f, i=%f, j=%f, k=%f }", this.s, this.i, this.j, this.k);
+            return String.format("Quaternionf: { s=%f, i=%f, j=%f, k=%f }", this.s, this.i, this.j, this.k);
         }
         
         public static Quat buildQuatFrom3DVector(final Vector3 axis, final double angle) {

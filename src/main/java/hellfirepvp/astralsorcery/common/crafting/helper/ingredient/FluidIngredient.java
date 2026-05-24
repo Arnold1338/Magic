@@ -16,11 +16,11 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraft.core.NonNullList;
 import java.util.Arrays;
 import java.util.stream.Stream;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraftforge.fluids.FluidStack;
 import java.util.List;
-import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public class FluidIngredient extends Ingredient
 {

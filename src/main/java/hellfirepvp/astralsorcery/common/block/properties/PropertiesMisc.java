@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.common.block.properties;
 
-import net.minecraft.world.level.level.block.SoundType;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraftforge.common.ToolAction;
-import net.minecraft.world.level.level.material.MapColor;
-import net.minecraft.world.level.level.material.Material;
-import net.minecraft.world.level.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class PropertiesMisc
 {

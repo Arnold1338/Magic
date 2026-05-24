@@ -26,7 +26,7 @@ import javax.annotation.Nonnull;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.fml.LogicalSide;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import java.util.UUID;
 import java.util.Map;
 

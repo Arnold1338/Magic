@@ -29,18 +29,18 @@ import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import net.minecraft.world.level.phys.BlockHitResult;
 import net.minecraft.world.level.phys.HitResult;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileCelestialGateway;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.client.util.GatewayUI;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 
@@ -75,7 +75,7 @@ public class GatewayUIRenderHandler implements ITickHandler
         if (this.currentUI == null) {
             return true;
         }
-        final World world = (World)Minecraft.func_71410_x().field_71441_e;
+        final World world = (World)Minecraft.getInstance().field_71441_e;
         final TileCelestialGateway gateway;
         if (world == null || this.currentUI.getVisibleTicks() <= 0 || !this.currentUI.getDimType().equals(world.dimension()) || (gateway = MiscUtils.getTileAt((IBlockReader)world, this.currentUI.getPos(), TileCelestialGateway.class, true)) == null || !gateway.doesSeeSky() || !gateway.hasMultiblock()) {
             this.currentUI = null;
@@ -90,7 +90,7 @@ public class GatewayUIRenderHandler implements ITickHandler
         final float pTicks = event.getPartialTicks();
         final PoseStack renderStack = event.getMatrixStack();
         final Vector3 renderOffset = this.currentUI.getRenderCenter();
-        final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().field_71439_g;
         final double dst = renderOffset.distance(Vector3.atEntityCorner((Entity)player).addY(1.5));
         if (dst > 3.0) {
             return;
@@ -108,8 +108,8 @@ public class GatewayUIRenderHandler implements ITickHandler
         if (node == null || !node.isLocked() || node.getOwner() == null || node.getAllowedUsers().isEmpty()) {
             return;
         }
-        final UUID currentUUID = (Minecraft.func_71410_x().field_71439_g != null) ? Minecraft.func_71410_x().field_71439_g.getUUID() : null;
-        final HitResult mouseOverRtr = Minecraft.func_71410_x().field_71476_x;
+        final UUID currentUUID = (Minecraft.getInstance().field_71439_g != null) ? Minecraft.getInstance().field_71439_g.getUUID() : null;
+        final HitResult mouseOverRtr = Minecraft.getInstance().field_71476_x;
         BlockPos blockSelected;
         if (mouseOverRtr != null && mouseOverRtr.func_216346_c() == HitResult.Type.BLOCK && mouseOverRtr instanceof BlockHitResult) {
             blockSelected = ((BlockHitResult)mouseOverRtr).func_216350_a().above();
@@ -134,7 +134,7 @@ public class GatewayUIRenderHandler implements ITickHandler
     }
     
     private void renderGatewayFocusedEntry(final PoseStack renderStack, final Vector3 renderOffset, final float pTicks) {
-        final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().field_71439_g;
         final GatewayUI.GatewayEntry entry = this.findMatchingEntry(Mth.func_76142_g(player.field_70177_z), Mth.func_76142_g(player.field_70125_A));
         if (entry != null) {
             final Component display = entry.getNode().getDisplayName();

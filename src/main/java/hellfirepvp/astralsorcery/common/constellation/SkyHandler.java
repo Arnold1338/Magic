@@ -14,7 +14,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.TickEvent;
 import com.google.common.collect.Maps;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import java.util.Map;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
@@ -57,7 +57,7 @@ public class SkyHandler implements ITickHandler
     
     @OnlyIn(Dist.CLIENT)
     private void handleClientTick() {
-        final World w = (World)Minecraft.func_71410_x().field_71441_e;
+        final World w = (World)Minecraft.getInstance().field_71441_e;
         if (w != null) {
             final RegistryKey<World> dimKey = (RegistryKey<World>)w.dimension();
             WorldContext ctx = this.worldHandlersClient.get(dimKey);

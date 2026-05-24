@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.sky.astral;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.util.Mth;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import java.util.Iterator;
 import java.util.Map;
@@ -10,18 +10,18 @@ import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.common.constellation.world.ActiveCelestialsHandler;
-import net.minecraft.world.level.level.LevelAccessor;
+import net.minecraft.world.level.LevelAccessor;
 import hellfirepvp.astralsorcery.common.base.MoonPhase;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
 import net.minecraft.world.level.phys.Vec3;
-import com.mojang.math.Vector3f;
+import org.joml.Vector3f;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import net.minecraft.client.renderer.FogRenderer;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.client.resource.AssetLibrary;
@@ -132,7 +132,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         RenderSystem.enableFog();
         RenderSystem.disableTexture();
         RenderSystem.color4f(0.0f, 0.0f, 0.0f, 1.0f);
-        final double horizonDiff = Minecraft.func_71410_x().field_71439_g.func_174824_e(pTicks).field_72448_b - world.func_72912_H().func_239159_f_();
+        final double horizonDiff = Minecraft.getInstance().field_71439_g.func_174824_e(pTicks).field_72448_b - world.func_72912_H().func_239159_f_();
         if (horizonDiff < 0.0) {
             renderStack.func_227860_a_();
             renderStack.func_227861_a_(0.0, 12.0, 0.0);
@@ -240,7 +240,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
     private void renderSun(final PoseStack renderStack) {
         final float sunSize = 30.0f;
         final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
-        Minecraft.func_71410_x().func_110434_K().func_110577_a(AstralSkyRenderer.REF_TEX_SUN);
+        Minecraft.getInstance().func_110434_K().func_110577_a(AstralSkyRenderer.REF_TEX_SUN);
         RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
             buf.func_227888_a_(matr, -sunSize, 100.0f, -sunSize).func_225583_a_(0.0f, 0.0f).func_181675_d();
             buf.func_227888_a_(matr, sunSize, 100.0f, -sunSize).func_225583_a_(1.0f, 0.0f).func_181675_d();
@@ -259,7 +259,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         final float maxU = (i + 1) / 4.0f;
         final float maxV = (j + 1) / 2.0f;
         final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
-        Minecraft.func_71410_x().func_110434_K().func_110577_a(AstralSkyRenderer.REF_TEX_MOON_PHASES);
+        Minecraft.getInstance().func_110434_K().func_110577_a(AstralSkyRenderer.REF_TEX_MOON_PHASES);
         RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
             buf.func_227888_a_(matr, -moonSize, -100.0f, moonSize).func_225583_a_(maxU, maxV).func_181675_d();
             buf.func_227888_a_(matr, moonSize, -100.0f, moonSize).func_225583_a_(minU, maxV).func_181675_d();

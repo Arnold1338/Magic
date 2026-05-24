@@ -15,8 +15,8 @@ import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeItem;
 import hellfirepvp.astralsorcery.common.constellation.IMinorConstellation;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationItem;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.util.MapStream;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXLightning;
 import java.util.Collection;
@@ -34,9 +34,9 @@ import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXLightbeam;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffectProperties;
@@ -53,21 +53,21 @@ import com.google.common.collect.Sets;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import java.util.Iterator;
-import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.LevelReader;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.item.crystal.ItemAttunedCrystalBase;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntitySynchronized;
 import net.minecraft.core.Direction;
 import java.util.HashMap;
-import net.minecraft.world.level.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffect;
 import hellfirepvp.astralsorcery.common.util.EffectIncrementer;
 import java.util.UUID;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import java.util.Map;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventoryFiltered;
 import java.util.Set;
@@ -410,12 +410,12 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
         final ItemStack toInsert = ItemUtils.copyStackWithSize(crystal, Math.min(crystal.func_190916_E(), 1));
         if (toInsert.isEmpty()) {
             if (!this.inventory.canExtractItem(0, 1)) {
-                return ItemStack.field_190927_a;
+                return ItemStack.EMPTY;
             }
             if (currentCatalyst.isEmpty()) {
-                return ItemStack.field_190927_a;
+                return ItemStack.EMPTY;
             }
-            this.inventory.setStackInSlot(0, ItemStack.field_190927_a);
+            this.inventory.setStackInSlot(0, ItemStack.EMPTY);
             return currentCatalyst;
         }
         else {
@@ -436,7 +436,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
         final ItemStack crystal = this.getCurrentCrystal();
         if (!crystal.isEmpty() && crystal.getItem() instanceof CrystalAttributeItem) {
             if (newAttributes == null) {
-                this.tryPlaceCrystalInPedestal(ItemStack.field_190927_a);
+                this.tryPlaceCrystalInPedestal(ItemStack.EMPTY);
             }
             else {
                 this.setAttributes(newAttributes.copy());

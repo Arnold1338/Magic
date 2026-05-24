@@ -14,12 +14,12 @@ import hellfirepvp.astralsorcery.common.network.play.client.PktDiscoverConstella
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import java.awt.geom.Rectangle2D;
 import hellfirepvp.astralsorcery.common.constellation.star.StarConnection;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import com.google.common.collect.Iterables;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import com.mojang.blaze3d.vertex.BufferBuilder;
@@ -37,7 +37,7 @@ import net.minecraft.util.Mth;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.client.Minecraft;
@@ -86,7 +86,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
     protected abstract void fillConstellations(final WorldContext p0, final List<D> p1);
     
     protected WorldContext getContext() {
-        return SkyHandler.getContext((World)Minecraft.func_71410_x().field_71441_e, LogicalSide.CLIENT);
+        return SkyHandler.getContext((World)Minecraft.getInstance().field_71441_e, LogicalSide.CLIENT);
     }
     
     protected boolean isInitialized() {
@@ -116,16 +116,16 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
     }
     
     protected float multiplyStarBrightness(final float pTicks, float brightnessIn) {
-        brightnessIn *= Minecraft.func_71410_x().field_71441_e.func_228330_j_(pTicks) * 2.0f;
-        return Mth.func_76131_a(brightnessIn * (1.0f - Minecraft.func_71410_x().field_71441_e.func_72867_j(pTicks)), 0.0f, 1.0f);
+        brightnessIn *= Minecraft.getInstance().field_71441_e.func_228330_j_(pTicks) * 2.0f;
+        return Mth.func_76131_a(brightnessIn * (1.0f - Minecraft.getInstance().field_71441_e.func_72867_j(pTicks)), 0.0f, 1.0f);
     }
     
     public void func_230430_a_(final PoseStack renderStack, final int mouseX, final int mouseY, final float partialTicks) {
         if (this.isMouseRotatingGui()) {
-            if (func_231173_s_() && Minecraft.func_71410_x().field_71417_B.func_198035_h()) {
+            if (func_231173_s_() && Minecraft.getInstance().field_71417_B.func_198035_h()) {
                 MouseUtil.ungrab();
             }
-            if (!func_231173_s_() && !Minecraft.func_71410_x().field_71417_B.func_198035_h()) {
+            if (!func_231173_s_() && !Minecraft.getInstance().field_71417_B.func_198035_h()) {
                 MouseUtil.grab();
             }
         }
@@ -234,7 +234,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
     }
     
     protected boolean canDraw() {
-        return !Minecraft.func_71410_x().field_71417_B.func_198035_h() && DayTimeHelper.isNight((World)Minecraft.func_71410_x().field_71441_e) && Minecraft.func_71410_x().field_71441_e.func_72867_j(1.0f) <= 0.1f;
+        return !Minecraft.getInstance().field_71417_B.func_198035_h() && DayTimeHelper.isNight((World)Minecraft.getInstance().field_71441_e) && Minecraft.getInstance().field_71441_e.func_72867_j(1.0f) <= 0.1f;
     }
     
     protected void clearDrawing() {
@@ -266,7 +266,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
                 if (cst.getStarConnections().size() != this.drawnLines.size()) {
                     continue;
                 }
-                if (!cst.canDiscover((Player)Minecraft.func_71410_x().field_71439_g, progress)) {
+                if (!cst.canDiscover((Player)Minecraft.getInstance().field_71439_g, progress)) {
                     continue;
                 }
                 boolean didMatch = true;
@@ -306,7 +306,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
     }
     
     protected boolean canObserverSeeSky(final BlockPos pos, final int xzWidth) {
-        final World world = (World)Minecraft.func_71410_x().field_71441_e;
+        final World world = (World)Minecraft.getInstance().field_71441_e;
         if (world == null) {
             return false;
         }

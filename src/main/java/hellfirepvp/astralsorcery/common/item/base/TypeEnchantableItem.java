@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.item.base;
 
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 public interface TypeEnchantableItem
 {

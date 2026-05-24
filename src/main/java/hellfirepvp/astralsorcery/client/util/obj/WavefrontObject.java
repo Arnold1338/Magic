@@ -54,7 +54,7 @@ public class WavefrontObject
         this.groupObjects = new ArrayList<GroupObject>();
         this.fileName = resource.toString();
         try {
-            final IResource res = Minecraft.func_71410_x().func_195551_G().func_199002_a(resource);
+            final IResource res = Minecraft.getInstance().func_195551_G().func_199002_a(resource);
             this.loadObjModel(res.func_199027_b());
         }
         catch (final IOException e) {

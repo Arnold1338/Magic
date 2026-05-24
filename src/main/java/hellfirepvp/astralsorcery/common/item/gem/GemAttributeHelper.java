@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.data.config.registry.WeightedPerkAttribu
 import hellfirepvp.astralsorcery.common.perk.modifier.DynamicAttributeModifier;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.perk.DynamicModifierHelper;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.Random;
 
 public class GemAttributeHelper

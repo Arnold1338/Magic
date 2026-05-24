@@ -1,13 +1,13 @@
 package hellfirepvp.astralsorcery.common.registry;
 
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.client.render.entity.RenderEntityGrapplingHook;
@@ -22,13 +22,13 @@ import hellfirepvp.astralsorcery.common.entity.technical.EntityObservatoryHelper
 import hellfirepvp.astralsorcery.common.entity.item.EntityStarmetal;
 import hellfirepvp.astralsorcery.common.entity.item.EntityCrystal;
 import hellfirepvp.astralsorcery.common.entity.item.EntityItemExplosionResistant;
-import net.minecraft.world.level.entity.item.ItemEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import hellfirepvp.astralsorcery.common.entity.item.EntityItemHighlighted;
 import hellfirepvp.astralsorcery.common.entity.EntitySpectralTool;
 import hellfirepvp.astralsorcery.common.entity.EntityFlare;
 import hellfirepvp.astralsorcery.common.entity.EntityIlluminationSpark;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import hellfirepvp.astralsorcery.common.entity.EntityNocturnalSpark;
 
@@ -64,7 +64,7 @@ public class RegistryEntities
         RenderingRegistry.registerEntityRenderingHandler((EntityType)EntityTypesAS.ITEM_HIGHLIGHT, (IRenderFactory)new RenderEntityItemHighlighted.Factory());
         RenderingRegistry.registerEntityRenderingHandler((EntityType)EntityTypesAS.ITEM_EXPLOSION_RESISTANT, (IRenderFactory)new RenderEntityItemHighlighted.Factory());
         RenderingRegistry.registerEntityRenderingHandler((EntityType)EntityTypesAS.ITEM_CRYSTAL, (IRenderFactory)new RenderEntityItemHighlighted.Factory());
-        RenderingRegistry.registerEntityRenderingHandler((EntityType)EntityTypesAS.ITEM_STARMETAL_INGOT, manager -> new ItemRenderer(manager, Minecraft.func_71410_x().func_175599_af()));
+        RenderingRegistry.registerEntityRenderingHandler((EntityType)EntityTypesAS.ITEM_STARMETAL_INGOT, manager -> new ItemRenderer(manager, Minecraft.getInstance().func_175599_af()));
         RenderingRegistry.registerEntityRenderingHandler((EntityType)EntityTypesAS.OBSERVATORY_HELPER, (IRenderFactory)new RenderEntityEmpty.Factory());
         RenderingRegistry.registerEntityRenderingHandler((EntityType)EntityTypesAS.GRAPPLING_HOOK, (IRenderFactory)new RenderEntityGrapplingHook.Factory());
     }

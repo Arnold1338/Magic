@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.event;
 
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
@@ -17,7 +17,7 @@ import net.minecraftforge.client.event.RenderLevelStageEvent;
 public class SkyRenderEventHandler
 {
     public static void onRender(final RenderWorldLastEvent event) {
-        final ClientLevel world = Minecraft.func_71410_x().field_71441_e;
+        final ClientLevel world = Minecraft.getInstance().field_71441_e;
         if (world != null && world.func_239132_a_().func_241683_c_() == DimensionRenderInfo.FogType.NORMAL) {
             final ISkyRenderHandler render = world.func_239132_a_().getSkyRenderHandler();
             if (!(render instanceof ChainingSkyRenderer)) {
@@ -30,7 +30,7 @@ public class SkyRenderEventHandler
     }
     
     public static void onFog(final EntityViewRenderEvent.FogColors event) {
-        final ClientLevel world = Minecraft.func_71410_x().field_71441_e;
+        final ClientLevel world = Minecraft.getInstance().field_71441_e;
         if (world != null) {
             final String strDimKey = world.dimension().func_240901_a_().toString();
             if (world.func_239132_a_().func_241683_c_() == DimensionRenderInfo.FogType.NORMAL && ((List)RenderingConfig.CONFIG.dimensionsWithSkyRendering.get()).contains(strDimKey) && !((List)RenderingConfig.CONFIG.dimensionsWithOnlyConstellationRendering.get()).contains(strDimKey) && world.func_239132_a_().getSkyRenderHandler() instanceof ChainingSkyRenderer) {

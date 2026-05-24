@@ -31,7 +31,7 @@ public class ClientCameraManager implements ITickHandler
                     prio.onStartTransforming(pTicks);
                     this.lastTransformer = prio;
                 }
-                prio.transformRenderView(Minecraft.func_71410_x().func_147113_T() ? 0.0f : pTicks);
+                prio.transformRenderView(Minecraft.getInstance().func_147113_T() ? 0.0f : pTicks);
                 if (prio.getPersistencyFunction().isExpired()) {
                     prio.onStopTransforming(pTicks);
                     this.transformers.remove(prio);
@@ -42,7 +42,7 @@ public class ClientCameraManager implements ITickHandler
                 this.lastTransformer = null;
             }
         }
-        else if (!Minecraft.func_71410_x().func_147113_T() && this.hasActiveTransformer()) {
+        else if (!Minecraft.getInstance().func_147113_T() && this.hasActiveTransformer()) {
             this.getActiveTransformer().onClientTick();
         }
     }

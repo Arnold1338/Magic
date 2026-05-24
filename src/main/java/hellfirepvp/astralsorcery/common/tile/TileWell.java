@@ -27,12 +27,12 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
-import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.level.material.Fluid;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.entity.EntityFlare;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeItem;
 import hellfirepvp.astralsorcery.common.crafting.recipe.WellLiquefactionContext;
@@ -40,7 +40,7 @@ import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntitySynchronized;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventoryFiltered;
 import hellfirepvp.astralsorcery.common.util.tile.PrecisionSingleFluidTank;
@@ -152,7 +152,7 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell>
     }
     
     public void breakCatalyst() {
-        this.inventory.setStackInSlot(0, ItemStack.field_190927_a);
+        this.inventory.setStackInSlot(0, ItemStack.EMPTY);
         this.runningRecipe = null;
         final PktPlayEffect effect = new PktPlayEffect(PktPlayEffect.Type.SMALL_CRYSTAL_BREAK).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3(this).add(0.5, 1.3, 0.5)));
         PacketChannel.CHANNEL.sendToAllAround(effect, PacketChannel.pointFromPos(this.func_145831_w(), (Vector3i)this.func_174877_v(), 32.0));

@@ -13,11 +13,11 @@ import java.util.function.Consumer;
 import java.util.Optional;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.Property;
-import net.minecraft.world.level.level.block.Blocks;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import java.util.function.BiConsumer;
 import javax.annotation.Nullable;
 import java.util.HashSet;
@@ -37,10 +37,10 @@ import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.IntArrayNBT;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import javax.annotation.Nonnull;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 
 public class NBTHelper
 {
@@ -395,7 +395,7 @@ public class NBTHelper
     }
     
     public static ItemStack getStack(final CompoundTag compound, final String tag) {
-        return (ItemStack)ObjectUtils.firstNonNull((Object[])new ItemStack[] { readFromSubTag(compound, tag, ItemStack::func_199557_a), ItemStack.field_190927_a });
+        return (ItemStack)ObjectUtils.firstNonNull((Object[])new ItemStack[] { readFromSubTag(compound, tag, ItemStack::func_199557_a), ItemStack.EMPTY });
     }
     
     public static void setFluid(final CompoundTag compound, final String tag, final FluidStack stack) {

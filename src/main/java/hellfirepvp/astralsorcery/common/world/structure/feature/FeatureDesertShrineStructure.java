@@ -4,14 +4,14 @@ import net.minecraft.world.level.levelgen.feature.FeatureConfiguration;
 import hellfirepvp.astralsorcery.common.world.structure.DesertShrineStructure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.level.biome.Biome;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.feature.template.TemplateManager;
-import net.minecraft.world.level.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.core.DynamicRegistries;
 import net.minecraft.core.MutableBoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.level.levelgen.feature.NoneFeatureConfiguration;
-import net.minecraft.world.level.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import hellfirepvp.astralsorcery.common.world.TemplateStructureFeature;
 
 public class FeatureDesertShrineStructure extends TemplateStructureFeature

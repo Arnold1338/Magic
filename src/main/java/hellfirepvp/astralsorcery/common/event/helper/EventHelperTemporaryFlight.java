@@ -4,7 +4,7 @@ import net.minecraftforge.event.TickEvent;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import java.util.function.Consumer;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.util.tick.TimeoutList;
 
 public class EventHelperTemporaryFlight

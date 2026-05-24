@@ -20,7 +20,7 @@ public class BlockAtlasTexture extends Full
     
     @Override
     public void bindTexture() {
-        final TextureManager mgr = Minecraft.func_71410_x().func_110434_K();
+        final TextureManager mgr = Minecraft.getInstance().func_110434_K();
         mgr.func_110577_a(AtlasTexture.field_110575_b);
     }
     

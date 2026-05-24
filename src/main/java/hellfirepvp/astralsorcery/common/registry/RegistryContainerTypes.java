@@ -10,7 +10,7 @@ import hellfirepvp.astralsorcery.client.screen.container.ScreenContainerAltarAtt
 import hellfirepvp.astralsorcery.client.screen.container.ScreenContainerAltarDiscovery;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.entity.player.Inventory;
+import net.minecraft.world.entity.player.Inventory;
 import hellfirepvp.astralsorcery.client.screen.ScreenObservatory;
 import hellfirepvp.astralsorcery.common.container.ContainerObservatory;
 import net.minecraft.world.level.inventory.MenuType;

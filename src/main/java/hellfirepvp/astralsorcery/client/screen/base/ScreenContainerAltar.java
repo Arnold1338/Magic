@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipeContext;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.client.Minecraft;
@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.entity.player.Inventory;
+import net.minecraft.world.entity.player.Inventory;
 import hellfirepvp.astralsorcery.common.container.ContainerAltarBase;
 
 public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends ScreenCustomContainer<T>
@@ -33,7 +33,7 @@ public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends
     @Nullable
     public SimpleAltarRecipe findRecipe(final boolean ignoreStarlightRequirement) {
         final TileAltar ta = this.func_212873_a_().getTileEntity();
-        return RecipeTypesAS.TYPE_ALTAR.findRecipe(new SimpleAltarRecipeContext((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT, ta).setIgnoreStarlightRequirement(ignoreStarlightRequirement));
+        return RecipeTypesAS.TYPE_ALTAR.findRecipe(new SimpleAltarRecipeContext((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT, ta).setIgnoreStarlightRequirement(ignoreStarlightRequirement));
     }
     
     @Override

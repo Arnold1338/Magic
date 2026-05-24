@@ -1,21 +1,21 @@
 package hellfirepvp.astralsorcery.common.block.base;
 
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.entity.LivingEntity;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationTile;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationItem;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeTile;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeItem;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.phys.HitResult;
-import net.minecraft.world.level.level.block.state.BlockState;
-import net.minecraft.world.level.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.BaseEntityBlock;
 
 public abstract class BlockCrystalContainer extends BaseEntityBlock

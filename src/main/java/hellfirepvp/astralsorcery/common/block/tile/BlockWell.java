@@ -9,7 +9,7 @@ import net.minecraft.world.level.Container;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.util.Mth;
@@ -17,7 +17,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraft.core.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.sounds.SoundEvents;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
@@ -29,15 +29,15 @@ import hellfirepvp.astralsorcery.common.tile.TileWell;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.level.phys.BlockHitResult;
 import net.minecraft.world.level.InteractionHand;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.BlockGetter;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.util.VoxelUtils;
 import net.minecraft.world.phys.shapes.BooleanOp;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMarble;
 import net.minecraft.world.level.phys.shapes.VoxelShape;
@@ -91,7 +91,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock
                         heldItem.shrink(1);
                     }
                     if (heldItem.func_190916_E() <= 0) {
-                        player.func_184611_a(hand, ItemStack.field_190927_a);
+                        player.func_184611_a(hand, ItemStack.EMPTY);
                     }
                 }
                 tw.getCapability((net.minecraftforge.common.capabilities.Capability<Object>)CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).ifPresent(handler -> {

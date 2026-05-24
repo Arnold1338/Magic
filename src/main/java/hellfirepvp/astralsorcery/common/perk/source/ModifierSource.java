@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.perk.source;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 
 public interface ModifierSource
 {

@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.util.camera;
 
 import net.minecraft.client.GameSettings;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.options.PointOfView;
@@ -26,7 +26,7 @@ public abstract class CameraTransformerSettingsCache implements ICameraTransform
     
     @Override
     public void onStartTransforming(final float pTicks) {
-        final Minecraft mc = Minecraft.func_71410_x();
+        final Minecraft mc = Minecraft.getInstance();
         this.viewBobbing = mc.field_71474_y.field_74336_f;
         this.hideGui = mc.field_71474_y.field_74319_N;
         this.thirdPersonView = mc.field_71474_y.func_243230_g();
@@ -42,11 +42,11 @@ public abstract class CameraTransformerSettingsCache implements ICameraTransform
     @Override
     public void onStopTransforming(final float pTicks) {
         if (this.active) {
-            final GameSettings settings = Minecraft.func_71410_x().field_71474_y;
+            final GameSettings settings = Minecraft.getInstance().field_71474_y;
             settings.field_74336_f = this.viewBobbing;
             settings.field_74319_N = this.hideGui;
             settings.func_243229_a(this.thirdPersonView);
-            final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+            final Player player = (Player)Minecraft.getInstance().field_71439_g;
             player.field_71075_bZ.field_75100_b = this.flying;
             player.func_70080_a(this.startPosition.getX(), this.startPosition.getY(), this.startPosition.getZ(), this.startYaw, this.startPitch);
             player.func_70016_h(0.0, 0.0, 0.0);
@@ -59,11 +59,11 @@ public abstract class CameraTransformerSettingsCache implements ICameraTransform
         if (!this.active) {
             return;
         }
-        final GameSettings settings = Minecraft.func_71410_x().field_71474_y;
+        final GameSettings settings = Minecraft.getInstance().field_71474_y;
         settings.field_74319_N = true;
         settings.field_74336_f = false;
         settings.func_243229_a(PointOfView.THIRD_PERSON_BACK);
-        Minecraft.func_71410_x().field_71439_g.field_71075_bZ.field_75100_b = true;
-        Minecraft.func_71410_x().field_71439_g.func_70016_h(0.0, 0.0, 0.0);
+        Minecraft.getInstance().field_71439_g.field_71075_bZ.field_75100_b = true;
+        Minecraft.getInstance().field_71439_g.func_70016_h(0.0, 0.0, 0.0);
     }
 }

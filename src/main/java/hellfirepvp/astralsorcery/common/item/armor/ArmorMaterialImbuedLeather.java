@@ -3,11 +3,11 @@ package hellfirepvp.astralsorcery.common.item.armor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.IArmorMaterial;
 
 public class ArmorMaterialImbuedLeather implements IArmorMaterial

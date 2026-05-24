@@ -8,11 +8,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.resources.ResourceLocation;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonObject;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.EntityType;
 
 public class ResultSpawnEntity extends InteractionResult
 {

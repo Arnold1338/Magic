@@ -6,8 +6,8 @@ import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeRevealer;
 import net.minecraftforge.event.TickEvent;
 import java.awt.Color;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.client.MainWindow;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
@@ -19,7 +19,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
 import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeConsumer;
-import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
 import net.minecraft.world.level.GameType;
@@ -51,7 +51,7 @@ public class AlignmentChargeRenderer implements ITickHandler
         if (event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
             return;
         }
-        if (Minecraft.func_71410_x().field_71442_b != null && Minecraft.func_71410_x().field_71442_b.func_178889_l() == GameType.SPECTATOR) {
+        if (Minecraft.getInstance().field_71442_b != null && Minecraft.getInstance().field_71442_b.func_178889_l() == GameType.SPECTATOR) {
             return;
         }
         if (this.alphaReveal <= 0.0f) {
@@ -64,7 +64,7 @@ public class AlignmentChargeRenderer implements ITickHandler
         final int barWidth = 194;
         final int offsetLeft = screenWidth / 2 - barWidth / 2;
         final int offsetTop = screenHeight + 3 - 81;
-        final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().field_71439_g;
         float percFilled = AlignmentChargeHandler.INSTANCE.getFilledPercentage(player, LogicalSide.CLIENT);
         boolean hasEnoughCharge = true;
         float usagePerc = 0.0f;
@@ -98,7 +98,7 @@ public class AlignmentChargeRenderer implements ITickHandler
     }
     
     public void tick(final TickEvent.Type type, final Object... context) {
-        final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().field_71439_g;
         if (player != null) {
             if (AlignmentChargeHandler.INSTANCE.getFilledPercentage(player, LogicalSide.CLIENT) <= 0.95f) {
                 this.revealCharge(20);

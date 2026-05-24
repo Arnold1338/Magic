@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.datagen.data.recipes.infuser;
 
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.level.block.Blocks;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.Item;
 import net.minecraft.tags.TagKey;
 import net.minecraftforge.common.Tags;
-import net.minecraft.world.level.item.Items;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.material.Fluid;
 import hellfirepvp.astralsorcery.common.lib.FluidsAS;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 import hellfirepvp.astralsorcery.common.crafting.builder.LiquidInfusionBuilder;

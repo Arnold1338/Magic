@@ -17,11 +17,11 @@ import net.minecraftforge.fluids.FluidStack;
 import javax.annotation.Nonnull;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import hellfirepvp.astralsorcery.common.util.ColorUtils;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.material.Fluid;
 import java.awt.Color;
 import java.util.Optional;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import java.util.Map;
 
 public class ColorizationHelper

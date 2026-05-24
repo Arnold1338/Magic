@@ -5,21 +5,21 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import hellfirepvp.astralsorcery.client.registry.RegistryRenderTypes;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import java.util.Iterator;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
-import net.minecraft.world.level.entity.EquipmentSlot;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
 import java.util.function.BiPredicate;
 import net.minecraft.client.renderer.RenderType;
 import hellfirepvp.astralsorcery.common.util.object.CacheReference;
 import java.util.List;
 import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
 import net.minecraft.client.model.BipedModel;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 
 public class StarryLayerRenderer<E extends LivingEntity, M extends BipedModel<E>> extends BipedArmorLayer<E, M, BipedModel<E>>
 {

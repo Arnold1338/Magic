@@ -2,10 +2,10 @@ package hellfirepvp.astralsorcery.common.event.helper;
 
 import net.minecraftforge.event.TickEvent;
 import java.util.Iterator;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.core.Vec3i;
 import java.util.Map;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.MobCategory;
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;

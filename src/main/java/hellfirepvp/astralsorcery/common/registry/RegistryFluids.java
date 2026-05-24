@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.registry;
 import java.util.LinkedList;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.block.FlowingFluidBlock;
-import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.util.NameUtil;
@@ -17,8 +17,8 @@ import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.fluid.BlockLiquidStarlight;
 import hellfirepvp.astralsorcery.common.lib.FluidsAS;
 import hellfirepvp.astralsorcery.common.fluid.FluidLiquidStarlight;
-import net.minecraft.world.level.item.Item;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import java.util.List;
 
 public class RegistryFluids

@@ -8,7 +8,7 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import javax.annotation.Nonnull;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 
 public class PktSyncCharge extends ASPacket<PktSyncCharge>
@@ -65,7 +65,7 @@ public class PktSyncCharge extends ASPacket<PktSyncCharge>
             @OnlyIn(Dist.CLIENT)
             @Override
             public void handleClient(final PktSyncCharge packet, final NetworkEvent.Context context) {
-                context.enqueueWork(() -> AlignmentChargeHandler.INSTANCE.receiveCharge(packet, (Player)Minecraft.func_71410_x().field_71439_g));
+                context.enqueueWork(() -> AlignmentChargeHandler.INSTANCE.receiveCharge(packet, (Player)Minecraft.getInstance().field_71439_g));
             }
             
             @Override

@@ -4,17 +4,17 @@ import net.minecraft.ChatFormatting;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import javax.annotation.Nonnull;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.IBlockDisplayReader;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.level.item.BlockItem;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraft.util.Mth;
 import java.awt.Color;
@@ -74,18 +74,18 @@ public class ColorUtils
             return -1;
         }
         if (!(stack.getItem() instanceof BlockItem)) {
-            return Minecraft.func_71410_x().getItemColors().func_186728_a(stack, 0);
+            return Minecraft.getInstance().getItemColors().func_186728_a(stack, 0);
         }
         final BlockState state = ItemUtils.createBlockState(stack);
         if (state == null) {
             return -1;
         }
-        return Minecraft.func_71410_x().func_184125_al().func_228054_a_(state, (IBlockDisplayReader)null, (BlockPos)null, 0);
+        return Minecraft.getInstance().func_184125_al().func_228054_a_(state, (IBlockDisplayReader)null, (BlockPos)null, 0);
     }
     
     @Nonnull
-    public static IFormattableTextComponent getTranslation(final DyeColor color) {
-        return (IFormattableTextComponent)new Component(String.format("color.minecraft.%s", color.func_176762_d()));
+    public static MutableComponent getTranslation(final DyeColor color) {
+        return (MutableComponent)new Component(String.format("color.minecraft.%s", color.func_176762_d()));
     }
     
     @Nonnull

@@ -1,21 +1,21 @@
 package hellfirepvp.astralsorcery.common.tile.base;
 
-import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.entity.item.ItemEntity;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.protocol.game.SUpdateTileEntityPacket;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.phys.AABB;
 import java.util.Random;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
 public abstract class TileEntitySynchronized extends BlockEntity implements ILocatable
 {

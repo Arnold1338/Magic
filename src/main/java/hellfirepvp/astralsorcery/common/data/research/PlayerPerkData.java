@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.perk.PerkTree;
 import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.perk.PerkLevelManager;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.util.MapStream;
 import java.util.Optional;
 import javax.annotation.Nullable;

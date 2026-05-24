@@ -7,7 +7,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import javax.annotation.Nullable;
 import com.google.common.collect.HashBasedTable;
 import javax.annotation.Nonnull;
@@ -136,12 +136,12 @@ public class PerkAttributeModifier extends ForgeRegistryEntry<PerkAttributeModif
     
     @OnlyIn(Dist.CLIENT)
     public String getLocalizedAttributeValue() {
-        return this.getMode().stringifyValue(this.getValueForDisplay((Player)Minecraft.func_71410_x().field_71439_g, ResearchHelper.getClientProgress()));
+        return this.getMode().stringifyValue(this.getValueForDisplay((Player)Minecraft.getInstance().field_71439_g, ResearchHelper.getClientProgress()));
     }
     
     @OnlyIn(Dist.CLIENT)
     public String getLocalizedModifierName() {
-        return I18n.func_135052_a(this.getMode().getUnlocalizedModifierName(this.getValueForDisplay((Player)Minecraft.func_71410_x().field_71439_g, ResearchHelper.getClientProgress())), new Object[0]);
+        return I18n.func_135052_a(this.getMode().getUnlocalizedModifierName(this.getValueForDisplay((Player)Minecraft.getInstance().field_71439_g, ResearchHelper.getClientProgress())), new Object[0]);
     }
     
     @OnlyIn(Dist.CLIENT)

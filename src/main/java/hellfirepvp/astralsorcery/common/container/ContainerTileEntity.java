@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.container;
 import javax.annotation.Nullable;
 import net.minecraft.world.level.inventory.MenuType;
 import net.minecraft.world.level.inventory.AbstractContainerMenu;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
 public abstract class ContainerTileEntity<T extends BlockEntity> extends Container
 {

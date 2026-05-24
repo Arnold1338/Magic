@@ -1,26 +1,26 @@
 package hellfirepvp.astralsorcery.common.item.lens;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import net.minecraft.core.Vec3i;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import java.util.function.Function;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.common.util.RecipeHelper;
-import net.minecraft.world.level.entity.item.ItemEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import hellfirepvp.astralsorcery.common.util.PartialEffectExecutor;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import java.util.Random;
@@ -68,7 +68,7 @@ public class ItemColoredLensFire extends ItemColoredLens
             }
             if (entity instanceof ItemEntity) {
                 final ItemStack current = ((ItemEntity)entity).func_92059_d();
-                final ItemStack result = RecipeHelper.findSmeltingResult(entity.func_130014_f_(), current).map((Function<? super Tuple<ItemStack, Float>, ? extends ItemStack>)Tuple::func_76341_a).orElse(ItemStack.field_190927_a);
+                final ItemStack result = RecipeHelper.findSmeltingResult(entity.func_130014_f_(), current).map((Function<? super Tuple<ItemStack, Float>, ? extends ItemStack>)Tuple::func_76341_a).orElse(ItemStack.EMPTY);
                 if (result.isEmpty()) {
                     return;
                 }
@@ -106,7 +106,7 @@ public class ItemColoredLensFire extends ItemColoredLens
             if (blockStack.isEmpty()) {
                 return;
             }
-            final ItemStack result = RecipeHelper.findSmeltingResult(world, blockStack).map((Function<? super Tuple<ItemStack, Float>, ? extends ItemStack>)Tuple::func_76341_a).orElse(ItemStack.field_190927_a);
+            final ItemStack result = RecipeHelper.findSmeltingResult(world, blockStack).map((Function<? super Tuple<ItemStack, Float>, ? extends ItemStack>)Tuple::func_76341_a).orElse(ItemStack.EMPTY);
             if (result.isEmpty()) {
                 return;
             }

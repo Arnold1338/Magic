@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.network.play.server;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.function.Function;
@@ -108,7 +108,7 @@ public class PktSyncPerkActivity extends ASPacket<PktSyncPerkActivity>
             @Override
             public void handleClient(final PktSyncPerkActivity packet, final NetworkEvent.Context context) {
                 context.enqueueWork(() -> {
-                    final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+                    final Player player = (Player)Minecraft.getInstance().field_71439_g;
                     if (player != null) {
                         switch (packet.type) {
                             case CLEARALL: {

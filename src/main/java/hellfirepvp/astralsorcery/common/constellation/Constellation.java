@@ -7,7 +7,7 @@ import hellfirepvp.astralsorcery.common.base.MoonPhase;
 import hellfirepvp.astralsorcery.common.data.research.ProgressionTier;
 import java.util.Objects;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.function.Function;
@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import java.util.LinkedList;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import java.awt.Color;
-import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Supplier;
 import java.util.List;
 

@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.client.screen.journal.page;
 import net.minecraft.client.renderer.RenderType;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.network.chat.ITextProperties;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
@@ -24,7 +24,7 @@ import java.util.function.Function;
 import hellfirepvp.astralsorcery.common.util.block.BlockMatchInformation;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.crafting.recipe.BlockTransmutation;
 

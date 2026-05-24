@@ -5,26 +5,26 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraft.network.IPacket;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.phys.HitResult;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.container.ContainerObservatory;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import com.google.common.collect.Iterables;
 import javax.annotation.Nullable;
 import java.util.UUID;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileObservatory;
-import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.world.entity.EntityType;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 
 public class EntityObservatoryHelper extends Entity
 {

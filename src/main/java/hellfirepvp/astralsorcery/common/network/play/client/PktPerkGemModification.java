@@ -2,12 +2,12 @@ package hellfirepvp.astralsorcery.common.network.play.client;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.fml.network.NetworkEvent;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.perk.node.socket.GemSocketItem;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.perk.node.socket.GemSocketPerk;
 import hellfirepvp.astralsorcery.common.perk.PerkTree;

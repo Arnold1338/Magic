@@ -4,7 +4,7 @@ import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import net.minecraftforge.fml.LogicalSide;
 import javax.annotation.Nullable;
 import com.google.common.collect.Maps;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeMap;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import java.util.Map;

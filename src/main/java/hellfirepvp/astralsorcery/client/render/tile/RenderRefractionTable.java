@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import com.mojang.math.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.client.resources.model.ItemTransforms;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -29,7 +29,7 @@ public class RenderRefractionTable extends CustomTileEntityRenderer<TileRefracti
             renderStack.func_227860_a_();
             renderStack.func_227861_a_(0.5, 0.8500000238418579, 0.5);
             renderStack.func_227862_a_(0.625f, 0.625f, 0.625f);
-            Minecraft.func_71410_x().func_175599_af().func_229110_a_(input, ItemTransforms.TransformType.GROUND, combinedLight, combinedOverlay, renderStack, renderTypeBuffer);
+            Minecraft.getInstance().func_175599_af().func_229110_a_(input, ItemTransforms.TransformType.GROUND, combinedLight, combinedOverlay, renderStack, renderTypeBuffer);
             renderStack.func_227865_b_();
         }
         renderStack.func_227860_a_();

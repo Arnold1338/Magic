@@ -12,9 +12,9 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraftforge.fluids.FluidStack;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.vertex.PoseStack;
 import javax.annotation.Nullable;
@@ -34,7 +34,7 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate
     public void render(final PoseStack renderStack, final float x, final float y, final float z, final float pTicks, final float mouseX, final float mouseY) {
         this.clearFrameRectangles();
         this.renderRecipeGrid(renderStack, x, y, z, TexturesAS.TEX_GUI_BOOK_GRID_INFUSION);
-        this.renderExpectedItemStackOutput(renderStack, x + 78.0f, y + 25.0f, z, 1.4f, this.recipe.getOutput(ItemStack.field_190927_a));
+        this.renderExpectedItemStackOutput(renderStack, x + 78.0f, y + 25.0f, z, 1.4f, this.recipe.getOutput(ItemStack.EMPTY));
         this.renderInfoStar(renderStack, x, y, z, pTicks);
         final float renderX = x + 80.0f;
         final float renderY = y + 128.0f;

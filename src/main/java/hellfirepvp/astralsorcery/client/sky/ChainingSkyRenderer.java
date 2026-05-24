@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.sky;
 
-import net.minecraft.world.level.level.Level;
-import com.mojang.math.Vector3f;
+import net.minecraft.world.level.Level;
+import org.joml.Vector3f;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.resources.ResourceKey;
@@ -34,7 +34,7 @@ public class ChainingSkyRenderer implements ISkyRenderHandler
                     else {
                         final ISkyRenderHandler existing = world.func_239132_a_().getSkyRenderHandler();
                         world.func_239132_a_().setSkyRenderHandler((ISkyRenderHandler)null);
-                        Minecraft.func_71410_x().field_71438_f.func_228424_a_(renderStack, partialTicks);
+                        Minecraft.getInstance().field_71438_f.func_228424_a_(renderStack, partialTicks);
                         world.func_239132_a_().setSkyRenderHandler(existing);
                     }
                     this.renderConstellations(world, renderStack, partialTicks);
@@ -46,7 +46,7 @@ public class ChainingSkyRenderer implements ISkyRenderHandler
             else {
                 final ISkyRenderHandler existing2 = world.func_239132_a_().getSkyRenderHandler();
                 world.func_239132_a_().setSkyRenderHandler((ISkyRenderHandler)null);
-                Minecraft.func_71410_x().field_71438_f.func_228424_a_(renderStack, partialTicks);
+                Minecraft.getInstance().field_71438_f.func_228424_a_(renderStack, partialTicks);
                 world.func_239132_a_().setSkyRenderHandler(existing2);
             }
         });

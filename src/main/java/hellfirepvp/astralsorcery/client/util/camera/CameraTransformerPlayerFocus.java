@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.util.camera;
 
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.client.player.AbstractClientPlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.client.Minecraft;
@@ -21,8 +21,8 @@ public class CameraTransformerPlayerFocus extends CameraTransformerSettingsCache
     public void onStartTransforming(final float pTicks) {
         super.onStartTransforming(pTicks);
         final EntityClientReplacement repl = new EntityClientReplacement();
-        repl.func_70020_e(Minecraft.func_71410_x().field_71439_g.func_189511_e(new CompoundTag()));
-        Minecraft.func_71410_x().field_71441_e.func_217408_a(repl.func_145782_y(), (AbstractClientPlayerEntity)repl);
+        repl.func_70020_e(Minecraft.getInstance().field_71439_g.func_189511_e(new CompoundTag()));
+        Minecraft.getInstance().field_71441_e.func_217408_a(repl.func_145782_y(), (AbstractClientPlayerEntity)repl);
         this.clientEntity = repl;
         this.entity.setAsRenderViewEntity();
     }
@@ -30,7 +30,7 @@ public class CameraTransformerPlayerFocus extends CameraTransformerSettingsCache
     @Override
     public void onStopTransforming(final float pTicks) {
         super.onStopTransforming(pTicks);
-        final Minecraft mc = Minecraft.func_71410_x();
+        final Minecraft mc = Minecraft.getInstance();
         if (mc.field_71441_e != null) {
             mc.field_71441_e.func_217413_d(this.clientEntity.func_145782_y());
         }

@@ -12,11 +12,11 @@ import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.util.List;
 import java.util.function.Consumer;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationBaseItem;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import net.minecraft.world.Inventory;
 import net.minecraft.world.level.Container;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.LecternBlock;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.item.ItemUseContext;
@@ -24,14 +24,14 @@ import hellfirepvp.astralsorcery.common.container.factory.ContainerTomeProvider;
 import net.minecraft.server.level.ServerPlayer;
 import hellfirepvp.astralsorcery.common.GuiType;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.level.InteractionHand;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.item.base.PerkExperienceRevealer;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemTome extends Item implements PerkExperienceRevealer
 {

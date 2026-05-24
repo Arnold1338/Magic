@@ -8,25 +8,25 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.util.thread.EffectiveSide;
-import net.minecraft.world.level.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Container;
-import net.minecraft.world.level.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import org.apache.commons.lang3.ObjectUtils;
-import net.minecraft.world.level.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.Inventory;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.util.Tuple;
 import java.util.Optional;
-import net.minecraft.world.level.level.block.state.BlockState;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.Collections;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.function.Predicate;
 
 public class RecipeHelper
@@ -81,7 +81,7 @@ public class RecipeHelper
     @OnlyIn(Dist.CLIENT)
     private static RecipeManager getClientManager() {
         final ClientPlayNetHandler conn;
-        if ((conn = Minecraft.func_71410_x().func_147114_u()) != null) {
+        if ((conn = Minecraft.getInstance().func_147114_u()) != null) {
             return conn.func_199526_e();
         }
         return null;

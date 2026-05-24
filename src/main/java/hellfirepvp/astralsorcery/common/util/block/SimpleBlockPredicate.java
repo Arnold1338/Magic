@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.util.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import net.minecraft.world.level.block.Blocks;
 import java.util.function.Consumer;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 import net.minecraft.world.level.block.Block;
 import java.util.List;
 import com.mojang.datafixers.util.Either;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import java.util.function.Predicate;
 
 public class SimpleBlockPredicate implements BlockPredicate, Predicate<BlockState>

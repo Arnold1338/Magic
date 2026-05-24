@@ -13,7 +13,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.Collection;
 import java.util.HashSet;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import java.util.Random;
 import hellfirepvp.astralsorcery.common.data.config.registry.sets.OreItemRarityEntry;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataAdapter;

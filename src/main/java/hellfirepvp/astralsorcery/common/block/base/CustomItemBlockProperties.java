@@ -7,10 +7,10 @@ import java.util.Collections;
 import net.minecraftforge.common.ToolAction;
 import java.util.Map;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.item.Rarity;
-import net.minecraft.world.level.item.CreativeModeTab;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.CreativeModeTab;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public interface CustomItemBlockProperties extends CustomItemBlock
 {

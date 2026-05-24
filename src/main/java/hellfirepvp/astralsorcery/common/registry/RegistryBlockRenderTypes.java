@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.function.Predicate;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import java.util.Arrays;
-import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.level.material.Fluid;
 import hellfirepvp.astralsorcery.common.lib.FluidsAS;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 

@@ -1,16 +1,16 @@
 package hellfirepvp.astralsorcery.common.crafting.nojson.freezing;
 
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import java.util.function.Consumer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import hellfirepvp.astralsorcery.common.util.block.BlockPredicates;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.util.block.BlockPredicate;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.util.block.WorldBlockPos;
 import java.util.function.BiFunction;
 

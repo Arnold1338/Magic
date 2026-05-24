@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.block.ore;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMisc;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 
 public class BlockStarmetalOre extends Block implements CustomItemBlock
 {

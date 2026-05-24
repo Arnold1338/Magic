@@ -35,6 +35,6 @@ public class BookLookupInfo
     
     @OnlyIn(Dist.CLIENT)
     public void openGui() {
-        Minecraft.func_71410_x().func_147108_a((Screen)new ScreenJournalPages(Minecraft.func_71410_x().field_71462_r, this.getResearchNode(), this.getPageIndex()));
+        Minecraft.getInstance().func_147108_a((Screen)new ScreenJournalPages(Minecraft.getInstance().field_71462_r, this.getResearchNode(), this.getPageIndex()));
     }
 }

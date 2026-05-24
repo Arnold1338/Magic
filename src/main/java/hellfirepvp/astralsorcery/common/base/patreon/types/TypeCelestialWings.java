@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.base.patreon.types;
 import java.util.EnumSet;
 import hellfirepvp.astralsorcery.client.render.ObjModelRender;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
-import com.mojang.math.Vector3f;
+import org.joml.Vector3f;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -16,13 +16,13 @@ import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import java.awt.Color;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -56,7 +56,7 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler
     public void tick(final TickEvent.Type type, final Object... context) {
         final Player player = (Player)context[0];
         final LogicalSide side = (LogicalSide)context[1];
-        if (side.isClient() && this.shouldDoEffect(player) && Minecraft.func_71410_x().field_71439_g != null && Minecraft.func_71410_x().field_71439_g.getUUID().equals(this.playerUUID) && !Minecraft.func_71410_x().field_71474_y.func_243230_g().func_243192_a()) {
+        if (side.isClient() && this.shouldDoEffect(player) && Minecraft.getInstance().field_71439_g != null && Minecraft.getInstance().field_71439_g.getUUID().equals(this.playerUUID) && !Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a()) {
             this.playEffects(player);
         }
     }

@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.network.play.client;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.fml.network.NetworkEvent;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
 import net.minecraftforge.fml.LogicalSide;
@@ -18,7 +18,7 @@ import java.util.LinkedList;
 import hellfirepvp.astralsorcery.common.constellation.DrawnConstellation;
 import java.util.List;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 

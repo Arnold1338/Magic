@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import net.minecraft.world.level.level.block.entity.BlockEntity;
-import net.minecraft.world.level.entity.Entity;
-import net.minecraft.world.level.entity.player.Player;
-import com.mojang.math.Vector3f;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import org.joml.Vector3f;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.entity.technical.EntityObservatoryHelper;
 import net.minecraft.client.Minecraft;
@@ -22,9 +22,9 @@ public class RenderObservatory extends CustomTileEntityRenderer<TileObservatory>
     }
     
     public void render(final TileObservatory tile, final float pTicks, final PoseStack renderStack, final MultiBufferSource renderTypeBuffer, final int combinedLight, final int combinedOverlay) {
-        final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().field_71439_g;
         final Entity ridden;
-        if (player != null && (ridden = Minecraft.func_71410_x().field_71439_g.getVehicle()) != null && ridden instanceof EntityObservatoryHelper && ((EntityObservatoryHelper)ridden).getAssociatedObservatory() != null) {
+        if (player != null && (ridden = Minecraft.getInstance().field_71439_g.getVehicle()) != null && ridden instanceof EntityObservatoryHelper && ((EntityObservatoryHelper)ridden).getAssociatedObservatory() != null) {
             ((EntityObservatoryHelper)ridden).applyObservatoryRotationsFrom(tile, player, false);
         }
         final float prevYaw = tile.prevObservatoryYaw;

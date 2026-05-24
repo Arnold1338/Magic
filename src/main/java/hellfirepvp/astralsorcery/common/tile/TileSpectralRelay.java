@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.tile;
 
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraft.nbt.Tag;
@@ -25,7 +25,7 @@ import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
@@ -34,16 +34,16 @@ import java.util.function.Consumer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.phys.Vec3;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.level.LevelReader;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntitySynchronized;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
@@ -71,7 +71,7 @@ public class TileSpectralRelay extends TileEntityTick
                 if (!in.isEmpty()) {
                     final ItemStack out = ItemUtils.copyStackWithSize(in, in.func_190916_E());
                     ItemUtils.dropItem(this.func_145831_w(), this.func_174877_v().getX(), this.func_174877_v().getY(), this.func_174877_v().getZ(), out);
-                    this.getInventory().setStackInSlot(0, ItemStack.field_190927_a);
+                    this.getInventory().setStackInSlot(0, ItemStack.EMPTY);
                 }
             }
             if (this.hasMultiblock() && this.hasGlassLens() && this.altarPos != null) {

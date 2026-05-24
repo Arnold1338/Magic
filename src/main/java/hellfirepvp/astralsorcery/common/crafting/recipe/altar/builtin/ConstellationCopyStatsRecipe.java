@@ -9,7 +9,7 @@ import hellfirepvp.astralsorcery.common.constellation.ConstellationItem;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonObject;
@@ -77,7 +77,7 @@ public class ConstellationCopyStatsRecipe extends ConstellationBaseAverageStatsR
             final ConstellationItem iOut = (ConstellationItem)out.getItem();
             if (iOut.getAttunedConstellation(out) == null || iOut.getTraitConstellation(out) == null) {
                 if (this.constellationSlot >= 0) {
-                    inventoryContents = Iterables.concat((Iterable)Lists.newArrayList((Object[])new ItemStack[] { (ItemStack)Iterables.get((Iterable)inventoryContents, this.constellationSlot, (Object)ItemStack.field_190927_a) }), (Iterable)inventoryContents);
+                    inventoryContents = Iterables.concat((Iterable)Lists.newArrayList((Object[])new ItemStack[] { (ItemStack)Iterables.get((Iterable)inventoryContents, this.constellationSlot, (Object)ItemStack.EMPTY) }), (Iterable)inventoryContents);
                 }
                 for (final ItemStack stack : inventoryContents) {
                     if (stack.getItem() instanceof ConstellationItem) {

@@ -22,14 +22,14 @@ import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.data.research.PerkAllocationType;
 import javax.annotation.Nullable;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import javax.annotation.Nonnull;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
 import java.awt.geom.Point2D;
@@ -55,7 +55,7 @@ public class AbstractPerk implements ModifierSource
     private boolean hiddenUnlessAllocated;
     private PerkTreePoint<? extends AbstractPerk> treePoint;
     private ResourceLocation customPerkType;
-    private List<IFormattableTextComponent> tooltipCache;
+    private List<MutableComponent> tooltipCache;
     private boolean cacheTooltip;
     
     public AbstractPerk(final ResourceLocation name, final float x, final float y) {
@@ -195,23 +195,23 @@ public class AbstractPerk implements ModifierSource
         return !this.hiddenUnlessAllocated || progress.getPerkData().hasPerkAllocation(this);
     }
     
-    public IFormattableTextComponent getName() {
+    public MutableComponent getName() {
         return new Component(this.unlocalizedKey + ".name").func_240699_a_(this.getCategory().getTextFormatting());
     }
     
     @Nonnull
     @OnlyIn(Dist.CLIENT)
-    public Collection<IFormattableTextComponent> getDescription() {
-        final List<IFormattableTextComponent> toolTip = new ArrayList<IFormattableTextComponent>();
+    public Collection<MutableComponent> getDescription() {
+        final List<MutableComponent> toolTip = new ArrayList<MutableComponent>();
         if (I18n.func_188566_a(this.unlocalizedKey + ".desc.1")) {
             for (int count = 1; I18n.func_188566_a(this.unlocalizedKey + ".desc." + count); ++count) {
-                toolTip.add((IFormattableTextComponent)new Component(this.unlocalizedKey + ".desc." + count));
+                toolTip.add((MutableComponent)new Component(this.unlocalizedKey + ".desc." + count));
             }
-            toolTip.add((IFormattableTextComponent)new Component(""));
+            toolTip.add((MutableComponent)new Component(""));
         }
         else if (I18n.func_188566_a(this.unlocalizedKey + ".desc")) {
-            toolTip.add((IFormattableTextComponent)new Component(this.unlocalizedKey + ".desc"));
-            toolTip.add((IFormattableTextComponent)new Component(""));
+            toolTip.add((MutableComponent)new Component(this.unlocalizedKey + ".desc"));
+            toolTip.add((MutableComponent)new Component(""));
         }
         return toolTip;
     }
@@ -222,7 +222,7 @@ public class AbstractPerk implements ModifierSource
     }
     
     @OnlyIn(Dist.CLIENT)
-    public final Collection<IFormattableTextComponent> getLocalizedTooltip() {
+    public final Collection<MutableComponent> getLocalizedTooltip() {
         if (this.cacheTooltip && this.tooltipCache != null) {
             return this.tooltipCache;
         }
@@ -232,7 +232,7 @@ public class AbstractPerk implements ModifierSource
             final int prevLength = this.tooltipCache.size();
             final boolean shouldAdd = this.addLocalizedTooltip(this.tooltipCache);
             if (shouldAdd && prevLength != this.tooltipCache.size()) {
-                this.tooltipCache.add((IFormattableTextComponent)new Component(""));
+                this.tooltipCache.add((MutableComponent)new Component(""));
             }
             this.tooltipCache.addAll(this.getDescription());
         }
@@ -243,17 +243,17 @@ public class AbstractPerk implements ModifierSource
     }
     
     @OnlyIn(Dist.CLIENT)
-    public boolean addLocalizedTooltip(final Collection<IFormattableTextComponent> tooltip) {
+    public boolean addLocalizedTooltip(final Collection<MutableComponent> tooltip) {
         return false;
     }
     
     @Nullable
     @OnlyIn(Dist.CLIENT)
-    public Collection<IFormattableTextComponent> getSource() {
+    public Collection<MutableComponent> getSource() {
         final String modid = this.getRegistryName().func_110624_b();
         final ModContainer mod = ModList.get().getModContainerById(modid).orElse(null);
         if (mod != null) {
-            return Lists.newArrayList((Object[])new IFormattableTextComponent[] { (IFormattableTextComponent)new Component(mod.getModInfo().getDisplayName()) });
+            return Lists.newArrayList((Object[])new MutableComponent[] { (MutableComponent)new Component(mod.getModInfo().getDisplayName()) });
         }
         return null;
     }
@@ -341,11 +341,11 @@ public class AbstractPerk implements ModifierSource
     
     public static class PerkCategory
     {
-        private final IFormattableTextComponent name;
+        private final MutableComponent name;
         private final ChatFormatting color;
         
         public PerkCategory(@Nonnull final String unlocName, @Nonnull final ChatFormatting color) {
-            this.name = (IFormattableTextComponent)new Component("perk.category.astralsorcery." + unlocName + ".name");
+            this.name = (MutableComponent)new Component("perk.category.astralsorcery." + unlocName + ".name");
             this.color = color;
         }
         
@@ -353,7 +353,7 @@ public class AbstractPerk implements ModifierSource
             return this.color;
         }
         
-        public IFormattableTextComponent getName() {
+        public MutableComponent getName() {
             return this.name;
         }
         

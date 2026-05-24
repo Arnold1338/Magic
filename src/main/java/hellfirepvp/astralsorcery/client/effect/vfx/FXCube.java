@@ -5,7 +5,7 @@ import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.LightmapUtil;
-import com.mojang.math.Vector3f;
+import org.joml.Vector3f;
 import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;

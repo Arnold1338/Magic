@@ -1,25 +1,25 @@
 package hellfirepvp.astralsorcery.common.item.tool;
 
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.item.ItemUseContext;
-import net.minecraft.world.level.level.block.state.BlockState;
-import net.minecraft.world.level.item.enchantment.Enchantment;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.NonNullList;
-import net.minecraft.world.level.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTab;
 import java.util.Set;
 import com.google.common.collect.Sets;
-import net.minecraft.world.level.level.material.Material;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.item.base.TypeEnchantableItem;
 

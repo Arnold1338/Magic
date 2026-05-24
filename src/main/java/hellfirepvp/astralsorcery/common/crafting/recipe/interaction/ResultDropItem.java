@@ -8,8 +8,8 @@ import hellfirepvp.astralsorcery.common.util.data.JsonHelper;
 import com.google.gson.JsonObject;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
 
 public class ResultDropItem extends InteractionResult
 {
@@ -17,7 +17,7 @@ public class ResultDropItem extends InteractionResult
     
     ResultDropItem() {
         super(InteractionResultRegistry.ID_DROP_ITEM);
-        this.output = ItemStack.field_190927_a;
+        this.output = ItemStack.EMPTY;
     }
     
     public static ResultDropItem dropItem(final ItemStack output) {

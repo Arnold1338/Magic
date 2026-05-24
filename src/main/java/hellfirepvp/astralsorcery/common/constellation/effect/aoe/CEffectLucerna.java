@@ -19,7 +19,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.common.tile.TileRitualPedestal;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;

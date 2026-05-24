@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.crafting.helper.ingredient;
 
-import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.network.FriendlyByteBuf;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonObject;

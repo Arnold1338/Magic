@@ -6,8 +6,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import javax.annotation.Nonnull;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraft.world.level.level.material.Fluids;
-import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.IFluidTank;
 
 public class SimpleSingleFluidTank implements IFluidTank

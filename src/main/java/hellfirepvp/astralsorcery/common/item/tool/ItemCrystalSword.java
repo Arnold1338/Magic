@@ -1,15 +1,15 @@
 package hellfirepvp.astralsorcery.common.item.tool;
 
-import net.minecraft.world.level.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import com.google.common.collect.HashMultimap;
-import net.minecraft.world.level.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.level.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import com.google.common.collect.Multimap;
-import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.level.block.WebBlock;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.level.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
 import hellfirepvp.astralsorcery.common.crystal.CrystalCalculations;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -19,18 +19,18 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.NonNullList;
-import net.minecraft.world.level.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.IItemTier;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import hellfirepvp.astralsorcery.common.item.base.TypeEnchantableItem;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeItem;
-import net.minecraft.world.level.item.SwordItem;
+import net.minecraft.world.item.SwordItem;
 
 public class ItemCrystalSword extends SwordItem implements CrystalAttributeItem, TypeEnchantableItem
 {

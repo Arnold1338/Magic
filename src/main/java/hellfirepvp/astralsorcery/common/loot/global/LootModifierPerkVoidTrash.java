@@ -6,11 +6,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.common.data.config.registry.OreItemRarityRegistry;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
@@ -18,13 +18,13 @@ import hellfirepvp.astralsorcery.common.perk.PerkTree;
 import hellfirepvp.astralsorcery.common.perk.node.key.KeyVoidTrash;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
-import net.minecraft.world.level.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.loot.LootUtil;
-import net.minecraft.world.level.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.level.storage.loot.LootContext;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.item.ItemStack;
 import java.util.List;
 import net.minecraft.world.level.storage.loot.predicates.ILootCondition;
 import net.minecraftforge.common.loot.LootModifier;
@@ -55,7 +55,7 @@ public class LootModifierPerkVoidTrash extends LootModifier
         final double chance = KeyVoidTrash.CONFIG.getOreChance() * PerkAttributeHelper.getOrCreateMap(player, LogicalSide.SERVER).getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT);
         return generatedLoot.stream().filter(stack -> !stack.isEmpty()).map(result -> {
             if (KeyVoidTrash.CONFIG.isTrash(result)) {
-                result = ItemStack.field_190927_a;
+                result = ItemStack.EMPTY;
                 if (context.func_216032_b().nextFloat() < chance) {
                     final Item drop = OreItemRarityRegistry.VOID_TRASH_REWARD.getRandomItem(context.func_216032_b());
                     if (drop != null) {

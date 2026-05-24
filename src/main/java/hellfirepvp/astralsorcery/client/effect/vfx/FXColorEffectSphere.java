@@ -1,13 +1,13 @@
 package hellfirepvp.astralsorcery.client.effect.vfx;
 
 import java.util.Iterator;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.client.effect.function.VFXAlphaFunction;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Mth;
@@ -47,9 +47,9 @@ public class FXColorEffectSphere extends EntityVisualFX
         if (fadeDistance > 0.0) {
             this.alphaFadeMaxDist = fadeDistance;
             this.alpha((fx, alpha, pTicks) -> {
-                Entity rView = Minecraft.func_71410_x().func_175606_aa();
+                Entity rView = Minecraft.getInstance().func_175606_aa();
                 if (rView == null) {
-                    rView = (Entity)Minecraft.func_71410_x().field_71439_g;
+                    rView = (Entity)Minecraft.getInstance().field_71439_g;
                 }
                 final Vector3 plVec = Vector3.atEntityCenter(rView);
                 final double dst = plVec.distance(this.getRenderPosition(pTicks)) - 1.2;

@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.crafting.recipe;
 
 import hellfirepvp.astralsorcery.common.tile.TileWell;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import hellfirepvp.astralsorcery.common.crafting.helper.RecipeCraftingContext;
 

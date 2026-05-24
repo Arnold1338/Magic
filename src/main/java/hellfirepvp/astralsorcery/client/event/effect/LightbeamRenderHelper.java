@@ -3,12 +3,12 @@ package hellfirepvp.astralsorcery.client.event.effect;
 import java.util.EnumSet;
 import java.awt.Color;
 import java.util.Iterator;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXLightbeam;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileLens;
 import net.minecraft.core.Vec3i;
@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import java.util.Set;
 import net.minecraft.core.BlockPos;
 import java.util.Map;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.common.data.sync.client.ClientLightConnections;
 import hellfirepvp.astralsorcery.common.data.sync.SyncDataHolder;
@@ -43,9 +43,9 @@ public class LightbeamRenderHelper implements ITickHandler
         ++this.ticksExisted;
         if (this.ticksExisted % 48 == 0) {
             this.ticksExisted = 0;
-            Entity rView = Minecraft.func_71410_x().func_175606_aa();
+            Entity rView = Minecraft.getInstance().func_175606_aa();
             if (rView == null) {
-                rView = (Entity)Minecraft.func_71410_x().field_71439_g;
+                rView = (Entity)Minecraft.getInstance().field_71439_g;
             }
             if (rView != null) {
                 final Entity renderView = rView;

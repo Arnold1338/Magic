@@ -5,7 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import javax.annotation.Nonnull;
 import net.minecraft.world.item.enchantment.MendingEnchantment;
-import net.minecraft.world.level.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
@@ -20,10 +20,10 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemInfusedGlass extends Item
 {
@@ -40,7 +40,7 @@ public class ItemInfusedGlass extends Item
                 if (cst != null) {
                     final String format = "item.astralsorcery.infused_glass.ttip";
                     final Component cstName = (Component)cst.getConstellationName().func_240699_a_(ChatFormatting.BLUE);
-                    if (Minecraft.func_71410_x().field_71439_g != null && Minecraft.func_71410_x().field_71439_g.func_184812_l_()) {
+                    if (Minecraft.getInstance().field_71439_g != null && Minecraft.getInstance().field_71439_g.func_184812_l_()) {
                         final String percent = String.valueOf(Math.round(map.getDistribution(cst) * 100.0f));
                         final Component creativeHint = (Component)new Component("item.astralsorcery.infused_glass.ttip.creative", new Object[] { percent }).func_240699_a_(ChatFormatting.LIGHT_PURPLE);
                         tooltip.add((Component)new Component(format, new Object[] { cstName, creativeHint }).func_240699_a_(ChatFormatting.GRAY));

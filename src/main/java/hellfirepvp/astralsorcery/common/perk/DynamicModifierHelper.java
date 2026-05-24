@@ -14,7 +14,7 @@ import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.perk.modifier.PerkAttributeModifier;
 import java.util.List;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.common.perk.modifier.DynamicAttributeModifier;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import java.util.UUID;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 public class DynamicModifierHelper
 {
@@ -72,11 +72,11 @@ public class DynamicModifierHelper
     
     @OnlyIn(Dist.CLIENT)
     public static void addModifierTooltip(final ItemStack stack, final List<Component> tooltip) {
-        final Player clientPlayer = (Player)Minecraft.func_71410_x().field_71439_g;
+        final Player clientPlayer = (Player)Minecraft.getInstance().field_71439_g;
         if (clientPlayer == null) {
             return;
         }
-        for (final PerkAttributeModifier mod : getDynamicModifiers(stack, (Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT, false)) {
+        for (final PerkAttributeModifier mod : getDynamicModifiers(stack, (Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT, false)) {
             if (mod.hasDisplayString()) {
                 tooltip.add((Component)new Component(mod.getLocalizedDisplayString()).func_240699_a_(ChatFormatting.GRAY).func_240699_a_(ChatFormatting.ITALIC));
             }

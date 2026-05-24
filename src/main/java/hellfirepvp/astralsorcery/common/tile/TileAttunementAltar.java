@@ -19,15 +19,15 @@ import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import javax.annotation.Nullable;
 import net.minecraft.world.level.InteractionHand;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.item.ItemConstellationPaper;
 import net.minecraft.world.level.phys.Vec3;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
-import net.minecraft.world.level.level.LevelAccessor;
+import net.minecraft.world.level.LevelAccessor;
 import hellfirepvp.astralsorcery.common.base.MoonPhase;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import hellfirepvp.astralsorcery.client.effect.function.VFXAlphaFunction;
@@ -37,7 +37,7 @@ import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.client.util.sound.PositionedLoopSound;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
@@ -56,11 +56,11 @@ import hellfirepvp.astralsorcery.common.entity.EntityFlare;
 import java.util.Iterator;
 import net.minecraftforge.items.IItemHandler;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraftforge.fml.LogicalSide;
 import java.util.HashMap;
-import net.minecraft.world.level.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import net.minecraft.core.BlockPos;
 import java.util.Map;
@@ -305,7 +305,7 @@ public class TileAttunementAltar extends TileEntityTick
         if (ctx == null) {
             return;
         }
-        final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().field_71439_g;
         if (player == null || player.func_195048_a(Vec3.func_237489_a_((Vector3i)this.func_174877_v())) >= 256.0) {
             return;
         }

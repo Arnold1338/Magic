@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.crystal.calc;
 
 import java.util.Objects;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -12,8 +12,8 @@ public class PropertyUsage extends ForgeRegistryEntry<PropertyUsage>
         this.setRegistryName(registryName);
     }
     
-    public IFormattableTextComponent getName() {
-        return (IFormattableTextComponent)new Component(String.format("crystal.usage.%s.%s.name", this.getRegistryName().func_110624_b(), this.getRegistryName().func_110623_a()));
+    public MutableComponent getName() {
+        return (MutableComponent)new Component(String.format("crystal.usage.%s.%s.name", this.getRegistryName().func_110624_b(), this.getRegistryName().func_110623_a()));
     }
     
     public boolean equals(final Object o) {

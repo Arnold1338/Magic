@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import javax.annotation.Nullable;
 import net.minecraftforge.eventbus.api.Event;

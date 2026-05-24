@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.function.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import java.util.List;
 import net.minecraftforge.common.ForgeConfigSpec;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;

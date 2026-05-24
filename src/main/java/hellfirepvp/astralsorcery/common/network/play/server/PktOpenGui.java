@@ -48,7 +48,7 @@ public class PktOpenGui extends ASPacket<PktOpenGui>
             @OnlyIn(Dist.CLIENT)
             @Override
             public void handleClient(final PktOpenGui packet, final NetworkEvent.Context context) {
-                if (Minecraft.func_71410_x().field_71439_g != null) {
+                if (Minecraft.getInstance().field_71439_g != null) {
                     context.enqueueWork(() -> AstralSorcery.getProxy().openGuiClient(packet.type, packet.data));
                 }
             }

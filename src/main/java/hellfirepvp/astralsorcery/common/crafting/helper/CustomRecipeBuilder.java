@@ -13,7 +13,7 @@ import net.minecraft.data.IFinishedRecipe;
 import java.util.function.Consumer;
 import net.minecraft.resources.ResourceLocation;
 import java.util.Set;
-import net.minecraft.world.level.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.RecipeType;
 import java.util.Map;
 
 public abstract class CustomRecipeBuilder<R extends CustomMatcherRecipe>

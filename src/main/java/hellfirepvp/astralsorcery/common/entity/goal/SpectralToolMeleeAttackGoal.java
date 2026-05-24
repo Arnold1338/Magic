@@ -8,11 +8,11 @@ import net.minecraft.world.entity.ai.control.MoveControl;
 import java.util.List;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.phys.AABB;
 import hellfirepvp.astralsorcery.common.entity.EntitySpectralTool;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 
 public class SpectralToolMeleeAttackGoal extends SpectralToolGoal
 {

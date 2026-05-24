@@ -14,7 +14,7 @@ import java.util.Collection;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierSource;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;

@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.network.play.server;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.data.research.ResearchSyncHelper;
 import net.minecraft.client.Minecraft;
@@ -117,7 +117,7 @@ public class PktSyncKnowledge extends ASPacket<PktSyncKnowledge>
             @Override
             public void handleClient(final PktSyncKnowledge packet, final NetworkEvent.Context context) {
                 context.enqueueWork(() -> {
-                    final Player player = (Player)Minecraft.func_71410_x().field_71439_g;
+                    final Player player = (Player)Minecraft.getInstance().field_71439_g;
                     if (player != null) {
                         if (packet.state == 0) {
                             ResearchSyncHelper.recieveProgressFromServer(packet, player);

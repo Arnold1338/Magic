@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.constellation.effect;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.constellation.IMinorConstellation;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 
 public interface ConstellationEffectStatus
 {

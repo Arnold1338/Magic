@@ -7,7 +7,7 @@ import mezz.jei.api.constants.VanillaTypes;
 import java.util.Collections;
 import com.google.common.collect.ImmutableList;
 import mezz.jei.api.ingredients.IIngredients;
-import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.client.gui.Font;
 import java.util.Collection;
 import net.minecraft.network.chat.Component;
@@ -20,8 +20,8 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.jei.JEIInter
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import java.util.List;
-import net.minecraft.world.level.level.ItemLike;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.integration.IntegrationJEI;
@@ -70,8 +70,8 @@ public class CategoryLiquidInteraction extends JEICategory<LiquidInteraction>
         if (!sameInteractions.isEmpty()) {
             final int totalWeight = sameInteractions.stream().mapToInt(LiquidInteraction::getWeight).sum();
             final float perc = recipe.getWeight() / (float)totalWeight * 100.0f;
-            final FontRenderer fr = Minecraft.func_71410_x().field_71466_p;
-            final IFormattableTextComponent txt = (IFormattableTextComponent)new Component("jei.astralsorcery.tip.chance", new Object[] { CategoryLiquidInteraction.FORMAT_CHANCE.format(perc) });
+            final FontRenderer fr = Minecraft.getInstance().field_71466_p;
+            final MutableComponent txt = (MutableComponent)new Component("jei.astralsorcery.tip.chance", new Object[] { CategoryLiquidInteraction.FORMAT_CHANCE.format(perc) });
             final int width = fr.func_238414_a_((ITextProperties)txt);
             fr.func_243248_b(renderStack, (Component)txt, (float)(74 - width), 44.0f, 3355443);
         }

@@ -119,11 +119,11 @@ public class RenderStateBuilder
         private ParticleTarget() {
             super("as_particle_target", () -> {
                 if (Minecraft.func_238218_y_()) {
-                    Minecraft.func_71410_x().field_71438_f.func_239230_s_().func_147610_a(false);
+                    Minecraft.getInstance().field_71438_f.func_239230_s_().func_147610_a(false);
                 }
             }, () -> {
                 if (Minecraft.func_238218_y_()) {
-                    Minecraft.func_71410_x().func_147110_a().func_147610_a(false);
+                    Minecraft.getInstance().func_147110_a().func_147610_a(false);
                 }
             });
         }

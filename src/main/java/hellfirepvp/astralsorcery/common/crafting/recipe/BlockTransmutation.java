@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.crafting.recipe;
 
 import net.minecraft.world.item.crafting.IRecipeSerializer;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import net.minecraft.world.level.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.RecipeType;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomRecipeSerializer;
 import java.util.stream.Collector;
@@ -11,19 +11,19 @@ import java.util.function.Function;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.object.PredicateBuilder;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.LevelAccessor;
+import net.minecraft.world.level.LevelAccessor;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
-import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import java.util.ArrayList;
 import javax.annotation.Nullable;
 import net.minecraft.resources.ResourceLocation;
 import java.util.function.Predicate;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.block.BlockMatchInformation;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomMatcherRecipe;
 
 public class BlockTransmutation extends CustomMatcherRecipe implements GatedRecipe.Progression

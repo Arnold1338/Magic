@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.starlight;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.starlight.transmission.registry.SourceClassRegistry;
 import java.util.Map;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import net.minecraft.core.BlockPos;

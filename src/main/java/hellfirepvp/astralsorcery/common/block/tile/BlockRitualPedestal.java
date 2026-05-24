@@ -1,27 +1,27 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.item.ItemStack;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileRitualPedestal;
 import net.minecraft.world.level.InteractionResult;
 import net.minecraft.world.level.phys.BlockHitResult;
 import net.minecraft.world.level.InteractionHand;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.level.Level;
-import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.util.VoxelUtils;
 import net.minecraft.world.phys.shapes.BooleanOp;
-import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMarble;
 import net.minecraft.world.level.phys.shapes.VoxelShape;
@@ -73,7 +73,7 @@ public class BlockRitualPedestal extends BlockStarlightNetwork implements Custom
         final ItemStack heldItem = player.func_184586_b(hand);
         final ItemStack in = pedestal.getCurrentCrystal();
         if (player.func_225608_bj_()) {
-            pedestal.tryPlaceCrystalInPedestal(ItemStack.field_190927_a);
+            pedestal.tryPlaceCrystalInPedestal(ItemStack.EMPTY);
             if (player.func_184586_b(hand).isEmpty()) {
                 player.func_184611_a(hand, in);
             }
@@ -95,7 +95,7 @@ public class BlockRitualPedestal extends BlockStarlightNetwork implements Custom
             final BlockState other = world.getBlockState(toCheck);
             if (Block.func_208061_a(other.func_196952_d((IBlockReader)world, pos), Direction.DOWN)) {
                 ItemUtils.dropItem(world, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, te.getCurrentCrystal());
-                te.tryPlaceCrystalInPedestal(ItemStack.field_190927_a);
+                te.tryPlaceCrystalInPedestal(ItemStack.EMPTY);
             }
         }
     }

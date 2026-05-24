@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.base.patreon.types;
 
-import net.minecraft.world.level.entity.EquipmentSlot;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.client.render.entity.layer.StarryLayerRenderer;
 import net.minecraftforge.api.distmarker.Dist;

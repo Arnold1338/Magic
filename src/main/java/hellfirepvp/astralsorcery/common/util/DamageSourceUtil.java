@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraft.util.EntityDamageSource;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.damagesource.DamageSource;
 import javax.annotation.Nonnull;
 

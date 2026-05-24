@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.crafting.nojson.fountain;
 
-import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraft.world.level.level.material.Fluids;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import hellfirepvp.astralsorcery.common.capability.ChunkFluidEntry;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
@@ -18,25 +18,25 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.client.effect.function.RefreshFunction;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
-import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXSpritePlane;
-import net.minecraft.world.level.level.block.state.BlockState;
-import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.LevelReader;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
-import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.BlockDropCaptureAssist;
 import net.minecraft.core.BlockPos;
 import java.util.List;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.level.chunk.LevelChunk;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.common.capabilities.Capability;
 import hellfirepvp.astralsorcery.common.lib.CapabilitiesAS;
-import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.tile.TileFountain;
 import javax.annotation.Nonnull;
@@ -111,7 +111,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
             positions.forEach(pos -> MiscUtils.executeWithChunk((IWorldReader)world, pos, () -> {
                 final BlockState state = world.getBlockState(pos);
                 if (!state.isAir((IBlockReader)world, pos) && world.func_175625_s(pos) == null && state.func_185887_b((IBlockReader)world, pos) >= 0.0f && !BlockUtils.isFluidBlock(state)) {
-                    BlockUtils.breakBlockWithoutPlayer(world, pos, state, ItemStack.field_190927_a, true, true, false);
+                    BlockUtils.breakBlockWithoutPlayer(world, pos, state, ItemStack.EMPTY, true, true, false);
                 }
             }));
         }

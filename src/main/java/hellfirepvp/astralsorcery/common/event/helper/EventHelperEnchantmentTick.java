@@ -2,14 +2,14 @@ package hellfirepvp.astralsorcery.common.event.helper;
 
 import java.util.EnumSet;
 import java.util.Iterator;
-import net.minecraft.world.level.entity.LivingEntity;
-import net.minecraft.world.level.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import net.minecraft.world.level.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import hellfirepvp.astralsorcery.common.enchantment.EnchantmentPlayerTick;
 import java.util.Collection;

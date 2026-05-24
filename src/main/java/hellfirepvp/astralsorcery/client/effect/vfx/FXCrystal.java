@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.effect.vfx;
 
 import hellfirepvp.astralsorcery.client.render.ObjModelRender;
 import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
-import com.mojang.math.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.client.renderer.MultiBufferSource;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
