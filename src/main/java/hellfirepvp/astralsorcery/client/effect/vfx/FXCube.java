@@ -7,7 +7,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.LightmapUtil;
 import com.mojang.math.Vector3f;
 import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
@@ -80,7 +80,7 @@ public class FXCube extends EntityVisualFX implements EntityDynamicFX
     }
     
     @Override
-    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final IVertexBuilder vb, final float pTicks) {
+    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final VertexConsumer vb, final float pTicks) {
     }
     
     @Override
@@ -114,7 +114,7 @@ public class FXCube extends EntityVisualFX implements EntityDynamicFX
         renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_((float)rotation.getY()));
         renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_((float)rotation.getZ()));
         renderStack.func_227862_a_(scale, scale, scale);
-        final IVertexBuilder buf = drawBuffer.getBuffer(ctx.getRenderType());
+        final VertexConsumer buf = drawBuffer.getBuffer(ctx.getRenderType());
         RenderingDrawUtils.renderTexturedCubeCentralColorLighted(buf, renderStack, u, v, uLength, vLength, c.getRed(), c.getGreen(), c.getBlue(), alpha, LightmapUtil.getPackedFullbrightCoords());
         renderStack.func_227865_b_();
     }

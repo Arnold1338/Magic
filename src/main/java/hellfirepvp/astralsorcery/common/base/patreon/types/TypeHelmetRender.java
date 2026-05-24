@@ -3,14 +3,14 @@ package hellfirepvp.astralsorcery.common.base.patreon.types;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.level.entity.EquipmentSlot;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.base.patreon.FlareColor;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.UUID;
 import hellfirepvp.astralsorcery.common.base.patreon.PatreonEffect;
 

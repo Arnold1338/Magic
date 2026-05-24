@@ -1,18 +1,18 @@
 package hellfirepvp.astralsorcery.common.perk.node.key;
 
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import net.minecraft.potion.EffectType;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.EffectType;
+import net.minecraft.world.level.effect.MobEffectInstance;
 import java.util.List;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -58,6 +58,6 @@ public class KeyCleanseBadPotions extends KeyPerk
             return 0.0f;
         }
         final float chance = (3.0f / (healed * -0.6666667f) + 5.0f) / 5.0f;
-        return MathHelper.func_76131_a(chance, 0.0f, 1.0f);
+        return Mth.func_76131_a(chance, 0.0f, 1.0f);
     }
 }

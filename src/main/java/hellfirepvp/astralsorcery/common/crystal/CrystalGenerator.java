@@ -7,9 +7,9 @@ import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import javax.annotation.Nonnull;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.Random;
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class CrystalGenerator
             return attr;
         }
         final int existing = attr.getTotalTierLevel();
-        final int expected = MathHelper.func_76125_a(existing + 1, ((CrystalAttributeGenItem)stack.getItem()).getGeneratedPropertyTiers(), ((CrystalAttributeGenItem)stack.getItem()).getMaxPropertyTiers());
+        final int expected = Mth.func_76125_a(existing + 1, ((CrystalAttributeGenItem)stack.getItem()).getGeneratedPropertyTiers(), ((CrystalAttributeGenItem)stack.getItem()).getMaxPropertyTiers());
         final int generate = expected - attr.getTotalTierLevel();
         final CrystalAttributes.Builder builder = CrystalAttributes.Builder.newBuilder(false);
         builder.addAll(attr);

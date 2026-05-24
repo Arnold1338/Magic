@@ -5,42 +5,42 @@ import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraft.world.Container;
+import net.minecraft.world.level.Container;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.block.BlockRenderType;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraft.core.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.sounds.SoundEvents;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.crafting.recipe.WellLiquefactionContext;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.crafting.recipe.WellLiquefaction;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileWell;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.level.InteractionHand;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.util.VoxelUtils;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.level.level.block.Block;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMarble;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.astralsorcery.common.block.base.BlockStarlightNetwork;
 
@@ -61,14 +61,14 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock
         final VoxelShape w2 = Block.func_208617_a(2.0, 5.0, 1.0, 15.0, 16.0, 2.0);
         final VoxelShape w3 = Block.func_208617_a(14.0, 5.0, 2.0, 15.0, 16.0, 15.0);
         final VoxelShape w4 = Block.func_208617_a(1.0, 5.0, 14.0, 14.0, 16.0, 15.0);
-        return VoxelUtils.combineAll(IBooleanFunction.field_223244_o_, footing, floor, basinFloor, w1, w2, w3, w4);
+        return VoxelUtils.combineAll(BooleanOp.field_223244_o_, footing, floor, basinFloor, w1, w2, w3, w4);
     }
     
-    public VoxelShape func_220053_a(final BlockState p_220053_1_, final IBlockReader p_220053_2_, final BlockPos p_220053_3_, final ISelectionContext p_220053_4_) {
+    public VoxelShape func_220053_a(final BlockState p_220053_1_, final IBlockReader p_220053_2_, final BlockPos p_220053_3_, final CollisionContext p_220053_4_) {
         return this.shape;
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockRayTraceResult hit) {
+    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
         if (!world.func_201670_d()) {
             final ItemStack heldItem = player.func_184586_b(hand);
             if (!heldItem.isEmpty()) {
@@ -95,7 +95,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock
                     }
                 }
                 tw.getCapability((net.minecraftforge.common.capabilities.Capability<Object>)CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).ifPresent(handler -> {
-                    final FluidActionResult far = FluidUtil.tryFillContainerAndStow(heldItem, handler, (IItemHandler)new InvWrapper((IInventory)player.getInventory()), 1000, player, true);
+                    final FluidActionResult far = FluidUtil.tryFillContainerAndStow(heldItem, handler, (IItemHandler)new InvWrapper((Container)player.getInventory()), 1000, player, true);
                     if (far.isSuccess()) {
                         player.func_184611_a(hand, far.getResult());
                         SoundHelper.playSoundAround(SoundEvents.field_187630_M, world, (Vector3i)pos, 1.0f, 1.0f);
@@ -126,7 +126,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock
     public int func_180641_l(final BlockState state, final World world, final BlockPos pos) {
         final TileWell tw = MiscUtils.getTileAt((IBlockReader)world, pos, TileWell.class, false);
         if (tw != null) {
-            final int fluidPart = MathHelper.func_76123_f(tw.getTank().getPercentageFilled() * 8.0f);
+            final int fluidPart = Mth.func_76123_f(tw.getTank().getPercentageFilled() * 8.0f);
             return tw.getCatalyst().isEmpty() ? fluidPart : (fluidPart + 7);
         }
         return 0;
@@ -136,8 +136,8 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock
         return false;
     }
     
-    public BlockRenderType func_149645_b(final BlockState p_149645_1_) {
-        return BlockRenderType.MODEL;
+    public RenderShape func_149645_b(final BlockState p_149645_1_) {
+        return RenderShape.MODEL;
     }
     
     @Nullable

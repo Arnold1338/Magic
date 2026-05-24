@@ -3,13 +3,13 @@ package hellfirepvp.astralsorcery.common.constellation.world;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import java.util.Iterator;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.constellation.IConstellationSpecialShowup;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;
 import java.util.HashMap;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.LevelAccessor;
 import hellfirepvp.astralsorcery.common.base.MoonPhase;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import com.google.common.collect.Maps;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.util.Map;
@@ -50,10 +50,10 @@ public class DistributionHandler
         final Map<IConstellation, Float> distribution = new HashMap<IConstellation, Float>(this.dayDistributionMap.get(current.ordinal()));
         for (final IConstellationSpecialShowup special : ConstellationRegistry.getSpecialShowupConstellations()) {
             if (special.doesShowUp(world, this.lastRecordedDay)) {
-                distribution.put(special, MathHelper.func_76131_a(special.getDistribution(world, this.lastRecordedDay, true), 0.0f, 1.0f));
+                distribution.put(special, Mth.func_76131_a(special.getDistribution(world, this.lastRecordedDay, true), 0.0f, 1.0f));
             }
             else {
-                distribution.put(special, MathHelper.func_76131_a(special.getDistribution(world, this.lastRecordedDay, false), 0.0f, 1.0f));
+                distribution.put(special, Mth.func_76131_a(special.getDistribution(world, this.lastRecordedDay, false), 0.0f, 1.0f));
             }
         }
         this.activeDistribution = distribution;
@@ -90,6 +90,6 @@ public class DistributionHandler
         final int phaseCount = MoonPhase.values().length;
         final int dist = Math.min(Math.abs(dayStart - dayIn), Math.abs(dayStart - (dayIn + phaseCount)));
         final float part = dist / (float)(phaseCount / 2);
-        return MathHelper.func_76134_b((float)(part / 2.0f * 3.141592653589793)) * 0.5f + 0.5f;
+        return Mth.func_76134_b((float)(part / 2.0f * 3.141592653589793)) * 0.5f + 0.5f;
     }
 }

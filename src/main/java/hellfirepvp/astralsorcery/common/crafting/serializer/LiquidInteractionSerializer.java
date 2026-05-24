@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.crafting.serializer;
 
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.item.crafting.Recipe;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomMatcherRecipe;
 import javax.annotation.Nullable;
 import net.minecraft.network.FriendlyByteBuf;

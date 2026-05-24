@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.common.util.data;
 
-import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraft.network.datasync.IDataSerializer;
+import net.minecraft.network.syncher.IDataSerializer;
 
 public class ASDataSerializers
 {
@@ -21,8 +21,8 @@ public class ASDataSerializers
                 return buf.readLongLE();
             }
             
-            public DataParameter<Long> func_187161_a(final int id) {
-                return (DataParameter<Long>)new DataParameter(id, (IDataSerializer)this);
+            public EntityDataAccessor<Long> func_187161_a(final int id) {
+                return (EntityDataAccessor<Long>)new EntityDataAccessor(id, (IDataSerializer)this);
             }
             
             public Long copyValue(final Long value) {
@@ -40,8 +40,8 @@ public class ASDataSerializers
                 return new Vector3(buf.readDouble(), buf.readDouble(), buf.readDouble());
             }
             
-            public DataParameter<Vector3> func_187161_a(final int id) {
-                return (DataParameter<Vector3>)new DataParameter(id, (IDataSerializer)this);
+            public EntityDataAccessor<Vector3> func_187161_a(final int id) {
+                return (EntityDataAccessor<Vector3>)new EntityDataAccessor(id, (IDataSerializer)this);
             }
             
             public Vector3 copyValue(final Vector3 value) {
@@ -57,8 +57,8 @@ public class ASDataSerializers
                 return ByteBufUtils.readFluidStack(buf);
             }
             
-            public DataParameter<FluidStack> func_187161_a(final int id) {
-                return (DataParameter<FluidStack>)new DataParameter(id, (IDataSerializer)this);
+            public EntityDataAccessor<FluidStack> func_187161_a(final int id) {
+                return (EntityDataAccessor<FluidStack>)new EntityDataAccessor(id, (IDataSerializer)this);
             }
             
             public FluidStack copyValue(final FluidStack value) {

@@ -22,18 +22,18 @@ import java.util.Iterator;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import java.util.Collection;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.event.helper.EventHelperEntityFreeze;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.phys.Vec3;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.GameRules;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.data.config.registry.TechnicalEntityRegistry;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.tile.TileFountain;
@@ -108,7 +108,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
             }
         }
         final float upkeep = Math.max(0.0f, density / boxCapacity);
-        fountain.consumeLiquidStarlight(MathHelper.func_76123_f(upkeep / 3.0f));
+        fountain.consumeLiquidStarlight(Mth.func_76123_f(upkeep / 3.0f));
         final List<LivingEntity> pulling = fountain.func_145831_w().func_217357_a((Class)LivingEntity.class, pullBox);
         pulling.removeAll(captured);
         for (final LivingEntity le2 : pulling) {

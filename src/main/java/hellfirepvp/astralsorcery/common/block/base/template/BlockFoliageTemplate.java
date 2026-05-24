@@ -1,16 +1,16 @@
 package hellfirepvp.astralsorcery.common.block.base.template;
 
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.level.LevelAccessor;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockBehaviour;
 import net.minecraftforge.common.IPlantable;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 
 public abstract class BlockFoliageTemplate extends Block implements CustomItemBlock, IPlantable
 {

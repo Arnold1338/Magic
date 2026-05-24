@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.tile;
 
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraft.nbt.Tag;
@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import hellfirepvp.astralsorcery.common.tile.altar.AltarCollectionCategory;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
@@ -25,25 +25,25 @@ import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
 import hellfirepvp.astralsorcery.common.block.tile.BlockSpectralRelay;
 import java.util.function.Consumer;
-import net.minecraft.dispenser.IPosition;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntitySynchronized;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
@@ -169,7 +169,7 @@ public class TileSpectralRelay extends TileEntityTick
     
     private void provideStarlight(final TileAltar ta) {
         if (this.doesSeeSky()) {
-            float heightAmount = MathHelper.func_76131_a((float)Math.pow(this.func_174877_v().getY() / 7.0f, 1.5) / 60.0f, 0.0f, 1.0f);
+            float heightAmount = Mth.func_76131_a((float)Math.pow(this.func_174877_v().getY() / 7.0f, 1.5) / 60.0f, 0.0f, 1.0f);
             heightAmount = 0.7f + heightAmount * 0.3f;
             heightAmount *= DayTimeHelper.getCurrentDaytimeDistribution(this.func_145831_w());
             heightAmount *= this.proximityMultiplier;
@@ -227,7 +227,7 @@ public class TileSpectralRelay extends TileEntityTick
             this.proximityMultiplier = 1.0f;
         }
         else {
-            this.proximityMultiplier = MathHelper.func_76131_a((float)new Vector3((Vector3i)this.func_174877_v()).distance((Vector3i)this.closestRelayPos) / 8.0f, 0.0f, 1.0f);
+            this.proximityMultiplier = Mth.func_76131_a((float)new Vector3((Vector3i)this.func_174877_v()).distance((Vector3i)this.closestRelayPos) / 8.0f, 0.0f, 1.0f);
         }
     }
     

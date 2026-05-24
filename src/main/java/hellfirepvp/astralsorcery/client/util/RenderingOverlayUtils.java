@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.util;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.math.Matrix4f;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.ITextProperties;
 import java.util.Iterator;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -12,7 +12,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import net.minecraft.util.Tuple;
 import java.util.List;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -36,7 +36,7 @@ public class RenderingOverlayUtils
             final float currentY = (float)tempY;
             if (first) {
                 TexturesAS.TEX_OVERLAY_ITEM_FRAME.bindTexture();
-                RenderingUtils.draw(7, DefaultVertexFormats.field_181707_g, buf -> {
+                RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
                     final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
                     buf.func_227888_a_(offset, (float)offsetX, currentY + heightSplit, 10.0f).func_225583_a_(0.0f, 0.5f).func_181675_d();
                     buf.func_227888_a_(offset, (float)(offsetX + width), currentY + heightSplit, 10.0f).func_225583_a_(1.0f, 0.5f).func_181675_d();
@@ -48,7 +48,7 @@ public class RenderingOverlayUtils
             }
             else {
                 TexturesAS.TEX_OVERLAY_ITEM_FRAME_EXTENSION.bindTexture();
-                RenderingUtils.draw(7, DefaultVertexFormats.field_181707_g, buf -> {
+                RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
                     final Matrix4f offset2 = renderStack.func_227866_c_().func_227870_a_();
                     buf.func_227888_a_(offset2, (float)offsetX, currentY + heightNormal, 10.0f).func_225583_a_(0.0f, 1.0f).func_181675_d();
                     buf.func_227888_a_(offset2, (float)(offsetX + width), currentY + heightNormal, 10.0f).func_225583_a_(1.0f, 1.0f).func_181675_d();
@@ -61,7 +61,7 @@ public class RenderingOverlayUtils
             if (last) {
                 final float drawY = (float)tempY;
                 TexturesAS.TEX_OVERLAY_ITEM_FRAME.bindTexture();
-                RenderingUtils.draw(7, DefaultVertexFormats.field_181707_g, buf -> {
+                RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
                     final Matrix4f offset3 = renderStack.func_227866_c_().func_227870_a_();
                     buf.func_227888_a_(offset3, (float)offsetX, drawY + heightSplit, 10.0f).func_225583_a_(0.0f, 1.0f).func_181675_d();
                     buf.func_227888_a_(offset3, (float)(offsetX + width), drawY + heightSplit, 10.0f).func_225583_a_(1.0f, 1.0f).func_181675_d();

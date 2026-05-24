@@ -9,18 +9,18 @@ import com.google.gson.JsonElement;
 import javax.annotation.Nullable;
 import java.util.Comparator;
 import it.unimi.dsi.fastutil.ints.IntComparators;
-import net.minecraft.item.crafting.RecipeItemHelper;
+import net.minecraft.world.item.crafting.RecipeItemHelper;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import java.util.Iterator;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.NonNullList;
 import java.util.Arrays;
 import java.util.stream.Stream;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraftforge.fluids.FluidStack;
 import java.util.List;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.item.crafting.Ingredient;
 
 public class FluidIngredient extends Ingredient
 {

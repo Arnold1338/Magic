@@ -1,26 +1,26 @@
 package hellfirepvp.astralsorcery.common.crafting.custom;
 
 import hellfirepvp.astralsorcery.common.block.tile.BlockCelestialGateway;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.item.wand.ItemIlluminationWand;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;
-import net.minecraft.item.crafting.SpecialRecipeSerializer;
-import net.minecraft.world.Container;
+import net.minecraft.world.item.crafting.SpecialRecipeSerializer;
+import net.minecraft.world.level.Container;
 import javax.annotation.Nullable;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.Level;
-import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.CraftingInventory;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.item.DyeColor;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.function.BiConsumer;
-import net.minecraft.world.item.Item;
-import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.world.level.item.Item;
+import net.minecraft.world.item.crafting.IRecipeSerializer;
 import java.util.function.Supplier;
-import net.minecraft.item.crafting.SpecialRecipe;
+import net.minecraft.world.item.crafting.SpecialRecipe;
 
 public class RecipeDyeableChangeColor extends SpecialRecipe
 {

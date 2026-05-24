@@ -5,7 +5,7 @@ import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import hellfirepvp.astralsorcery.client.effect.EffectProperties;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 import java.io.IOException;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.util.order.DependencySorter;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;

@@ -3,18 +3,18 @@ package hellfirepvp.astralsorcery.common.util.time;
 import net.minecraft.nbt.Tag;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.level.chunk.LevelChunk;
 import java.util.Iterator;
 import java.util.List;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXLightning;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.data.config.registry.TileAccelerationBlacklistRegistry;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import java.util.Map;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.util.EntityPredicates;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.phys.AABB;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.client.effect.function.VFXAlphaFunction;
@@ -26,8 +26,8 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.level.entity.LivingEntity;
 import javax.annotation.Nonnull;
 import net.minecraft.core.BlockPos;
 import java.util.Random;
@@ -65,7 +65,7 @@ public class TimeStopEffectHelper
     
     @OnlyIn(Dist.CLIENT)
     static void playEntityParticles(final LivingEntity e) {
-        final EntitySize size = e.func_213305_a(e.func_213283_Z());
+        final EntityDimensions size = e.func_213305_a(e.func_213283_Z());
         final double x = e.func_226277_ct_() - size.field_220315_a / 2.0f + TimeStopEffectHelper.rand.nextFloat() * size.field_220315_a;
         final double y = e.func_226278_cu_() + TimeStopEffectHelper.rand.nextFloat() * size.field_220316_b;
         final double z = e.func_226281_cx_() - size.field_220315_a / 2.0f + TimeStopEffectHelper.rand.nextFloat() * size.field_220315_a;
@@ -95,10 +95,10 @@ public class TimeStopEffectHelper
                 playEntityParticles(e);
             }
         }
-        final int minX = MathHelper.func_76128_c((this.position.getX() - this.range) / 16.0);
-        final int maxX = MathHelper.func_76128_c((this.position.getX() + this.range) / 16.0);
-        final int minZ = MathHelper.func_76128_c((this.position.getZ() - this.range) / 16.0);
-        final int maxZ = MathHelper.func_76128_c((this.position.getZ() + this.range) / 16.0);
+        final int minX = Mth.func_76128_c((this.position.getX() - this.range) / 16.0);
+        final int maxX = Mth.func_76128_c((this.position.getX() + this.range) / 16.0);
+        final int minZ = Mth.func_76128_c((this.position.getZ() - this.range) / 16.0);
+        final int maxZ = Mth.func_76128_c((this.position.getZ() + this.range) / 16.0);
         for (int xx = minX; xx <= maxX; ++xx) {
             for (int zz = minZ; zz <= maxZ; ++zz) {
                 final Chunk ch = world.func_212866_a_(xx, zz);

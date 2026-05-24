@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import net.minecraft.util.Tuple;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import java.awt.geom.Rectangle2D;
@@ -68,7 +68,7 @@ public class PerkTreePoint<T extends AbstractPerk> implements PerkRender
         final BufferBuilder buf = drawCtx.getContext(grp);
         final float size = this.renderSize * scale;
         final Tuple<Float, Float> frameUV = tex.getUVOffset(spriteOffsetTick);
-        RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, x - size, y - size, zLevel, size * 2.0f, size * 2.0f).tex((float)frameUV.func_76341_a(), (float)frameUV.func_76340_b(), tex.getULength(), tex.getVLength()).draw();
+        RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, x - size, y - size, zLevel, size * 2.0f, size * 2.0f).tex((float)frameUV.func_76341_a(), (float)frameUV.func_76340_b(), tex.getULength(), tex.getVLength()).draw();
         return new Rectangle2D.Float(-size, -size, size * 2.0f, size * 2.0f);
     }
     

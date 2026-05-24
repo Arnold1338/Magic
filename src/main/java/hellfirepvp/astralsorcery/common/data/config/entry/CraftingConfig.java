@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.data.config.entry;
 
 import hellfirepvp.astralsorcery.common.util.block.BlockStateHelper;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeConfigSpec;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 

@@ -3,9 +3,9 @@ package hellfirepvp.astralsorcery.common.base.patreon.types;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import java.util.Iterator;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
-import net.minecraft.world.IBlockDisplayReader;
+import net.minecraft.world.level.IBlockDisplayReader;
 import hellfirepvp.astralsorcery.client.util.LightmapUtil;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -18,13 +18,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import hellfirepvp.astralsorcery.common.base.patreon.FlareColor;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import java.util.Map;
 import java.util.UUID;
@@ -115,7 +115,7 @@ public class TypeBlockRing extends PatreonEffect
                 renderStack.func_227860_a_();
                 renderStack.func_227861_a_(dir.getX(), dir.getY(), dir.getZ());
                 renderStack.func_227862_a_(0.09f, 0.09f, 0.09f);
-                RenderingUtils.draw(7, DefaultVertexFormats.field_227852_q_, buf -> RenderingDrawUtils.renderTexturedCubeCentralColorLighted((IVertexBuilder)buf, renderStack, tas.func_94209_e(), tas.func_94206_g(), tas.func_94212_f() - tas.func_94209_e(), tas.func_94210_h() - tas.func_94206_g(), 255, 255, 255, alphaMultiplier, LightmapUtil.getPackedLightCoords((IBlockDisplayReader)player.func_130014_f_(), player.func_233580_cy_())));
+                RenderingUtils.draw(7, DefaultVertexFormat.field_227852_q_, buf -> RenderingDrawUtils.renderTexturedCubeCentralColorLighted((VertexConsumer)buf, renderStack, tas.func_94209_e(), tas.func_94206_g(), tas.func_94212_f() - tas.func_94209_e(), tas.func_94210_h() - tas.func_94206_g(), 255, 255, 255, alphaMultiplier, LightmapUtil.getPackedLightCoords((IBlockDisplayReader)player.func_130014_f_(), player.func_233580_cy_())));
                 renderStack.func_227865_b_();
             }
         }

@@ -4,21 +4,21 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import java.util.function.Function;
 import java.util.Random;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.item.enchantment.Enchantments;
+import net.minecraft.world.level.effect.MobEffects;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.level.storage.loot.LootContext;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.lib.LootAS;
-import net.minecraft.loot.LootFunctionType;
+import net.minecraft.world.level.storage.loot.LootFunctionType;
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.loot.LootParameter;
+import net.minecraft.world.level.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.LootParameter;
 import java.util.Set;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.loot.LootFunction;
+import net.minecraft.world.level.storage.loot.predicates.ILootCondition;
+import net.minecraft.world.level.storage.loot.LootFunction;
 
 public class LinearLuckBonus extends LootFunction
 {

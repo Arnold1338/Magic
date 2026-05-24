@@ -16,7 +16,7 @@ import java.util.HashMap;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import java.util.Set;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 import java.util.Map;
 import hellfirepvp.astralsorcery.common.data.sync.base.AbstractData;

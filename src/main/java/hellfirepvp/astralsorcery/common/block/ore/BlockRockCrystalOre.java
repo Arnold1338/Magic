@@ -1,13 +1,13 @@
 package hellfirepvp.astralsorcery.common.block.ore;
 
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMisc;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 
 public class BlockRockCrystalOre extends Block implements CustomItemBlock
 {
@@ -16,6 +16,6 @@ public class BlockRockCrystalOre extends Block implements CustomItemBlock
     }
     
     public int getExpDrop(final BlockState state, final IWorldReader world, final BlockPos pos, final int fortune, final int silktouch) {
-        return fortune * MathHelper.func_76136_a(this.RANDOM, 8, 14);
+        return fortune * Mth.func_76136_a(this.RANDOM, 8, 14);
     }
 }

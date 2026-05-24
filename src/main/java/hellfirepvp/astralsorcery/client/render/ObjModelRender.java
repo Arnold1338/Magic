@@ -6,7 +6,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.resource.AssetLoader;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
 import hellfirepvp.astralsorcery.client.util.obj.WavefrontObject;
@@ -20,7 +20,7 @@ public class ObjModelRender
     private static VertexBuffer wraithWingsBones;
     private static VertexBuffer wraithWingsWing;
     
-    public static void renderCrystal(final PoseStack renderStack, final IVertexBuilder buf, final Runnable drawFn) {
+    public static void renderCrystal(final PoseStack renderStack, final VertexConsumer buf, final Runnable drawFn) {
         if (ObjModelRender.crystalModel == null) {
             ObjModelRender.crystalModel = AssetLoader.loadObjModel(AssetLoader.ModelLocation.OBJ, "crystal");
         }

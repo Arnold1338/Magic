@@ -1,30 +1,30 @@
 package hellfirepvp.astralsorcery.common.block.base;
 
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 import javax.annotation.Nullable;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationTile;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationItem;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeTile;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.block.ContainerBlock;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.phys.HitResult;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.BaseEntityBlock;
 
-public abstract class BlockCrystalContainer extends ContainerBlock
+public abstract class BlockCrystalContainer extends BaseEntityBlock
 {
     protected BlockCrystalContainer(final AbstractBlock.Properties builder) {
         super(builder);
     }
     
-    public ItemStack getPickBlock(final BlockState state, final RayTraceResult target, final IBlockReader world, final BlockPos pos, final Player player) {
+    public ItemStack getPickBlock(final BlockState state, final HitResult target, final IBlockReader world, final BlockPos pos, final Player player) {
         final ItemStack stack = super.getPickBlock(state, target, world, pos, player);
         if (stack.getItem() instanceof CrystalAttributeItem) {
             final CrystalAttributeTile cat = MiscUtils.getTileAt(world, pos, CrystalAttributeTile.class, true);

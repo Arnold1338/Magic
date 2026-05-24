@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.common.structure;
 
 import javax.annotation.Nonnull;
-import net.minecraft.state.Property;
+import net.minecraft.world.level.block.state.Property;
 import hellfirepvp.observerlib.api.block.SimpleMatchableBlock;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import hellfirepvp.observerlib.api.block.MatchableState;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.Blocks;
 import hellfirepvp.astralsorcery.common.block.marble.BlockMarblePillar;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;

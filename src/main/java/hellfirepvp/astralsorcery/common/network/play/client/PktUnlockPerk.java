@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.network.play.client;
 import net.minecraft.network.FriendlyByteBuf;
 import hellfirepvp.astralsorcery.common.data.research.PlayerPerkData;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.data.research.PlayerPerkAllocation;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;

@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.lib;
 
-import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.item.enchantment.Enchantment;
 
 public class EnchantmentsAS
 {

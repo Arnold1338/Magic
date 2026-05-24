@@ -5,33 +5,33 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.EffectsAS;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.level.effect.MobEffectInstance;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.item.PotionItem;
-import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.PotionUtils;
+import net.minecraft.world.item.PotionItem;
+import net.minecraft.world.level.effect.MobEffect;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.level.item.Items;
 import java.util.Map;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.item.EnchantedBookItem;
-import net.minecraft.item.BookItem;
-import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.EnchantedBookItem;
+import net.minecraft.world.item.BookItem;
+import net.minecraft.world.level.item.enchantment.Enchantment;
 import java.util.UUID;
 import java.util.Random;
 import java.util.Iterator;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 import hellfirepvp.astralsorcery.common.item.base.TypeEnchantableItem;
 import hellfirepvp.astralsorcery.common.perk.DynamicModifierHelper;
-import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.util.List;
@@ -61,11 +61,11 @@ public class EngravingEffect extends ForgeRegistryEntry<EngravingEffect>
         private final ModifierType type;
         private final float min;
         private final float max;
-        private final List<EnchantmentType> applicableTypes;
+        private final List<EnchantmentCategory> applicableTypes;
         private boolean formatToInteger;
         
         public ModifierEffect(final Supplier<PerkAttributeType> modifier, final ModifierType type, final float min, final float max) {
-            this.applicableTypes = new ArrayList<EnchantmentType>();
+            this.applicableTypes = new ArrayList<EnchantmentCategory>();
             this.formatToInteger = false;
             this.modifier = modifier;
             this.type = type;
@@ -73,7 +73,7 @@ public class EngravingEffect extends ForgeRegistryEntry<EngravingEffect>
             this.max = max;
         }
         
-        public ModifierEffect addApplicableType(final EnchantmentType type) {
+        public ModifierEffect addApplicableType(final EnchantmentCategory type) {
             this.applicableTypes.add(type);
             return this;
         }
@@ -93,7 +93,7 @@ public class EngravingEffect extends ForgeRegistryEntry<EngravingEffect>
             }
             final Item item = stack.getItem();
             if (this.applicableTypes.isEmpty()) {
-                for (final EnchantmentType type : EnchantmentType.values()) {
+                for (final EnchantmentCategory type : EnchantmentCategory.values()) {
                     if (type.func_77557_a(item)) {
                         return true;
                     }
@@ -102,7 +102,7 @@ public class EngravingEffect extends ForgeRegistryEntry<EngravingEffect>
                     }
                 }
             }
-            for (final EnchantmentType type2 : this.applicableTypes) {
+            for (final EnchantmentCategory type2 : this.applicableTypes) {
                 if (type2.func_77557_a(item)) {
                     return true;
                 }

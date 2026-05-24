@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.common.container.slot;
 
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.Container;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.Container;
+import net.minecraft.world.level.inventory.Slot;
 
 public class SlotUnclickable extends Slot
 {
-    public SlotUnclickable(final IInventory inventoryIn, final int index, final int xPosition, final int yPosition) {
+    public SlotUnclickable(final Container inventoryIn, final int index, final int xPosition, final int yPosition) {
         super(inventoryIn, index, xPosition, yPosition);
     }
     

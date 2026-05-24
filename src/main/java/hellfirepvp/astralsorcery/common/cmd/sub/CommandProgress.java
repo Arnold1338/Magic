@@ -11,15 +11,15 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.command.ICommandSource;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraftforge.server.command.EnumArgument;
 import hellfirepvp.astralsorcery.common.data.research.ProgressionTier;
 import com.mojang.brigadier.arguments.ArgumentType;
-import net.minecraft.command.arguments.EntityArgument;
-import net.minecraft.command.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.commands.Commands;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import net.minecraft.command.CommandSource;
+import net.minecraft.commands.CommandSourceStack;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 
 public class CommandProgress
@@ -27,16 +27,16 @@ public class CommandProgress
     private CommandProgress() {
     }
     
-    public static ArgumentBuilder<CommandSource, ?> register() {
-        return (ArgumentBuilder<CommandSource, ?>)((LiteralArgumentBuilder)Commands.func_197057_a("progress").requires(cs -> cs.func_197034_c(2))).then(Commands.func_197056_a("player", (ArgumentType)EntityArgument.func_197096_c()).then(Commands.func_197056_a("progress", (ArgumentType)EnumArgument.enumArgument((Class)ProgressionTier.class)).executes(ctx -> {
-            final Player src = (Player)((CommandSource)ctx.getSource()).func_197035_h();
+    public static ArgumentBuilder<CommandSourceStack, ?> register() {
+        return (ArgumentBuilder<CommandSourceStack, ?>)((LiteralArgumentBuilder)Commands.func_197057_a("progress").requires(cs -> cs.func_197034_c(2))).then(Commands.func_197056_a("player", (ArgumentType)EntityArgument.func_197096_c()).then(Commands.func_197056_a("progress", (ArgumentType)EnumArgument.enumArgument((Class)ProgressionTier.class)).executes(ctx -> {
+            final Player src = (Player)((CommandSourceStack)ctx.getSource()).func_197035_h();
             final Player target = (Player)EntityArgument.func_197089_d(ctx, "player");
             final ProgressionTier goal = (ProgressionTier)ctx.getArgument("progress", (Class)ProgressionTier.class);
-            return pushPlayerToProgress((ICommandSource)src, target, goal);
+            return pushPlayerToProgress((CommandSource)src, target, goal);
         })));
     }
     
-    private static int pushPlayerToProgress(final ICommandSource src, final Player target, final ProgressionTier goal) {
+    private static int pushPlayerToProgress(final CommandSource src, final Player target, final ProgressionTier goal) {
         final Component targetName = target.func_145748_c_();
         final PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
         if (!progress.isValid() || progress.getTierReached().isThisLaterOrEqual(goal)) {

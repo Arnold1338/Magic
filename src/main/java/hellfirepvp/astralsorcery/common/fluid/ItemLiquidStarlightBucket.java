@@ -4,13 +4,13 @@ import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import javax.annotation.Nullable;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.item.Items;
+import net.minecraft.world.level.item.Item;
+import net.minecraft.world.level.level.material.Fluid;
 import java.util.function.Supplier;
-import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.level.item.BucketItem;
 
 public class ItemLiquidStarlightBucket extends BucketItem
 {

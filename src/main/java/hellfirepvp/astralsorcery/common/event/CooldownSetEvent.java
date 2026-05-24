@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.event;
 
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.eventbus.api.Event;
 
 public class CooldownSetEvent extends Event

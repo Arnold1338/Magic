@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.entity.EntitySpectralTool;
 import hellfirepvp.astralsorcery.common.entity.EntityFlare;
 import hellfirepvp.astralsorcery.common.entity.EntityIlluminationSpark;
 import hellfirepvp.astralsorcery.common.entity.EntityNocturnalSpark;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.entity.EntityType;
 
 public class EntityTypesAS
 {

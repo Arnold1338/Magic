@@ -5,10 +5,10 @@ import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.client.PktEngraveGlass;
 import com.mojang.math.Matrix4f;
 import java.util.function.Supplier;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.Collection;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.item.TooltipFlag;
 import java.awt.Color;
 import java.util.Collections;
 import java.util.Random;
@@ -19,18 +19,18 @@ import java.util.stream.Collectors;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.constellation.engraving.EngravedStarMap;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.item.ItemInfusedGlass;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
@@ -39,7 +39,7 @@ import java.awt.Point;
 import net.minecraft.client.gui.Font;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.ITextProperties;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -159,7 +159,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         renderStack.func_227860_a_();
         renderStack.func_227861_a_((double)(this.guiWidth / 2.0f), (double)(this.guiHeight / 2.0f), 0.0);
         renderStack.func_227862_a_(-scale / 2.0f, -scale / 2.0f, 1.0f);
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).dim(scale, scale).color(1.0f, 1.0f, 1.0f, this.getTile().getRunProgress()).tex((float)uvFrame.func_76341_a(), (float)uvFrame.func_76340_b(), SpritesAS.SPR_HALO_INFUSION.getUWidth(), SpritesAS.SPR_HALO_INFUSION.getVWidth()).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).dim(scale, scale).color(1.0f, 1.0f, 1.0f, this.getTile().getRunProgress()).tex((float)uvFrame.func_76341_a(), (float)uvFrame.func_76340_b(), SpritesAS.SPR_HALO_INFUSION.getUWidth(), SpritesAS.SPR_HALO_INFUSION.getVWidth()).draw());
         renderStack.func_227865_b_();
         RenderSystem.enableAlphaTest();
         Blending.DEFAULT.apply();
@@ -241,7 +241,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
                 if (custom != null) {
                     tooltipRenderer = custom;
                 }
-                tooltip.addAll(input.func_82840_a((Player)this.getMinecraft().field_71439_g, (ITooltipFlag)(Minecraft.func_71410_x().field_71474_y.field_82882_x ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL)));
+                tooltip.addAll(input.func_82840_a((Player)this.getMinecraft().field_71439_g, (TooltipFlag)(Minecraft.func_71410_x().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
             }
         }
         final ItemStack glass = this.getTile().getGlassStack();
@@ -256,7 +256,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
                 if (custom2 != null) {
                     tooltipRenderer = custom2;
                 }
-                tooltip.addAll(glass.func_82840_a((Player)this.getMinecraft().field_71439_g, (ITooltipFlag)(Minecraft.func_71410_x().field_71474_y.field_82882_x ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL)));
+                tooltip.addAll(glass.func_82840_a((Player)this.getMinecraft().field_71439_g, (TooltipFlag)(Minecraft.func_71410_x().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
             }
         }
         this.func_230926_e_(0);
@@ -268,14 +268,14 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         final float r = c.getRed() / 255.0f;
         final float g = c.getGreen() / 255.0f;
         final float b = c.getBlue() / 255.0f;
-        final Supplier<Float> alpha = () -> 0.1f + 0.4f * ((MathHelper.func_76126_a(rand.nextInt(200) + ClientScheduler.getClientTick() / 20.0f) + 1.0f) / 2.0f);
+        final Supplier<Float> alpha = () -> 0.1f + 0.4f * ((Mth.func_76126_a(rand.nextInt(200) + ClientScheduler.getClientTick() / 20.0f) + 1.0f) / 2.0f);
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
         RenderSystem.disableAlphaTest();
         RenderSystem.lineWidth(2.0f);
         RenderSystem.disableTexture();
         RenderSystem.disableDepthTest();
-        RenderingUtils.draw(1, DefaultVertexFormats.field_181706_f, buf -> {
+        RenderingUtils.draw(1, DefaultVertexFormat.field_181706_f, buf -> {
             final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
             buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).func_227885_a_(r, g, b, (float)alpha.get()).func_181675_d();
             buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).func_227885_a_(r, g, b, (float)alpha.get()).func_181675_d();

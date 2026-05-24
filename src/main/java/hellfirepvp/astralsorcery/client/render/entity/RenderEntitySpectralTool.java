@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.client.render.entity;
 
 import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
-import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.level.item.AxeItem;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;

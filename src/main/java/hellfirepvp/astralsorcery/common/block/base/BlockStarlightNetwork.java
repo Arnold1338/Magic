@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.common.block.base;
 
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.base.TileNetwork;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockBehaviour;
 
 public abstract class BlockStarlightNetwork extends BlockInventory
 {

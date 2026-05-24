@@ -6,7 +6,7 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.nbt.ListTag;
 import java.util.HashSet;
 import java.util.Set;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.observerlib.common.data.base.WorldSection;
 import java.util.Collection;
@@ -14,7 +14,7 @@ import net.minecraft.core.Vec3i;
 import java.util.LinkedList;
 import net.minecraft.core.BlockPos;
 import java.util.List;
-import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.level.ChunkPos;
 import hellfirepvp.observerlib.common.data.WorldCacheDomain;
 import hellfirepvp.observerlib.common.data.base.SectionWorldData;
 

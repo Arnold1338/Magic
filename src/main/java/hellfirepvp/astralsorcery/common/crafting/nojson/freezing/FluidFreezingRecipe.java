@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.common.crafting.nojson.freezing;
 
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.util.block.WorldBlockPos;
 import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.level.block.Blocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.IBlockDisplayReader;
+import net.minecraft.world.level.IBlockDisplayReader;
 import hellfirepvp.astralsorcery.AstralSorcery;
 
 public class FluidFreezingRecipe extends BlockFreezingRecipe

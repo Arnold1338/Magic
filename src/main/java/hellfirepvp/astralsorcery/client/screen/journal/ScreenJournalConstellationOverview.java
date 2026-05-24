@@ -4,12 +4,12 @@ import com.mojang.blaze3d.vertex.BufferBuilder;
 import java.util.Iterator;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.ITextProperties;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import java.util.Random;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import com.mojang.math.Matrix4f;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
@@ -73,7 +73,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
     
     private void drawConstellationBackground(final PoseStack renderStack) {
         TexturesAS.TEX_BLACK.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
             buf.func_227888_a_(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).func_227885_a_(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(0.0f, 1.0f).func_181675_d();
             buf.func_227888_a_(offset, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).func_227885_a_(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(1.0f, 1.0f).func_181675_d();
@@ -84,7 +84,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         TexturesAS.TEX_GUI_BACKGROUND_CONSTELLATIONS.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             final Matrix4f offset2 = renderStack.func_227866_c_().func_227870_a_();
             buf.func_227888_a_(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).func_227885_a_(0.8f, 0.8f, 1.0f, 0.7f).func_225583_a_(0.1f, 0.9f).func_181675_d();
             buf.func_227888_a_(offset2, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).func_227885_a_(0.8f, 0.8f, 1.0f, 0.7f).func_225583_a_(0.9f, 0.9f).func_181675_d();
@@ -107,7 +107,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
     }
     
     private Rectangle drawConstellation(final PoseStack renderStack, final IConstellation display, final double offsetX, final double offsetY, final float zLevel, final float partial, final int mouseX, final int mouseY) {
-        final Rectangle rect = new Rectangle(MathHelper.func_76128_c(offsetX), MathHelper.func_76128_c(offsetY), 80, 110);
+        final Rectangle rect = new Rectangle(Mth.func_76128_c(offsetX), Mth.func_76128_c(offsetY), 80, 110);
         renderStack.func_227860_a_();
         renderStack.func_227861_a_(offsetX + 40.0, offsetY + 40.0, (double)zLevel);
         if (rect.contains(mouseX, mouseY)) {

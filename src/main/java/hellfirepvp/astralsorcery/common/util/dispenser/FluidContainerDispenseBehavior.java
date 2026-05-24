@@ -4,22 +4,22 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.InteractionHand;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraftforge.fluids.FluidStack;
 import javax.annotation.Nonnull;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.tileentity.DispenserTileEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.state.Property;
-import net.minecraft.block.DispenserBlock;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.block.entity.DispenserTileEntity;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.block.state.Property;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.core.Direction;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.dispenser.IBlockSource;
-import net.minecraft.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.core.dispenser.BlockSource;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 
 public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior
 {
@@ -34,7 +34,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior
         return FluidContainerDispenseBehavior.INSTANCE;
     }
     
-    protected ItemStack func_82487_b(final IBlockSource source, final ItemStack stack) {
+    protected ItemStack func_82487_b(final BlockSource source, final ItemStack stack) {
         if (FluidUtil.getFluidContained(stack).isPresent()) {
             return this.dumpContainer(source, stack);
         }
@@ -42,7 +42,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior
     }
     
     @Nonnull
-    private ItemStack fillContainer(final IBlockSource source, final ItemStack stack) {
+    private ItemStack fillContainer(final BlockSource source, final ItemStack stack) {
         final World world = (World)source.func_197524_h();
         final Direction dispenserFacing = (Direction)source.func_189992_e().getValue((Property)DispenserBlock.field_176441_a);
         final BlockPos blockpos = source.func_180699_d().func_177972_a(dispenserFacing);
@@ -63,7 +63,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior
     }
     
     @Nonnull
-    private ItemStack dumpContainer(final IBlockSource source, @Nonnull final ItemStack stack) {
+    private ItemStack dumpContainer(final BlockSource source, @Nonnull final ItemStack stack) {
         final ServerLevel world = source.func_197524_h();
         final ItemStack singleStack = stack.copy();
         singleStack.func_190920_e(1);

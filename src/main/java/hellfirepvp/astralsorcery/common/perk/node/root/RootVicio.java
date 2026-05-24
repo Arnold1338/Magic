@@ -10,7 +10,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.util.DiminishingMultiplier;
 import java.util.HashMap;

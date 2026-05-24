@@ -1,16 +1,16 @@
 package hellfirepvp.astralsorcery.client.effect.function;
 
 import javax.annotation.Nullable;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 import java.util.function.BiPredicate;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 
 public interface RefreshFunction<T extends EntityComplexFX>

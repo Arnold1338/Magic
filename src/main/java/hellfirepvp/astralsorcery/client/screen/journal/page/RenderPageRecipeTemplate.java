@@ -1,11 +1,11 @@
 package hellfirepvp.astralsorcery.client.screen.journal.page;
 
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 import net.minecraftforge.fluids.FluidStack;
 import hellfirepvp.astralsorcery.common.crafting.helper.ingredient.FluidIngredient;
 import net.minecraft.tags.TagKey;
 import java.util.Collection;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import hellfirepvp.astralsorcery.common.data.research.ProgressionTier;
@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
 import java.util.LinkedList;
 import net.minecraft.resources.ResourceLocation;
 import java.util.ArrayList;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.ITextProperties;
 import java.util.function.Consumer;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import java.awt.Color;
@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
 import hellfirepvp.astralsorcery.common.auxiliary.book.BookLookupInfo;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.auxiliary.book.BookLookupRegistry;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.network.chat.Component;
@@ -36,7 +36,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.renderer.RenderHelper;
 import hellfirepvp.astralsorcery.common.crafting.helper.WrappedIngredient;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.List;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import hellfirepvp.astralsorcery.common.util.IngredientHelper;
@@ -49,8 +49,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.HashMap;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.level.item.ItemStack;
 import net.minecraft.util.Tuple;
 import java.awt.Rectangle;
 import java.util.Map;
@@ -93,7 +93,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
     
     public void renderExpectedIngredientInput(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float scale, final long tickOffset, final List<ItemStack> displayOptions) {
         final int mod = (int)((ClientScheduler.getClientTick() + tickOffset) / 20L % displayOptions.size());
-        final ItemStack expected = displayOptions.get(MathHelper.func_76125_a(mod, 0, displayOptions.size() - 1));
+        final ItemStack expected = displayOptions.get(Mth.func_76125_a(mod, 0, displayOptions.size() - 1));
         if (!expected.isEmpty()) {
             BlockAtlasTexture.getInstance().bindTexture();
             this.renderItemStack(renderStack, offsetX, offsetY, zLevel, scale, expected);
@@ -109,7 +109,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         final int amt = ingredients.size();
         for (int i = 0; i < ingredients.size(); ++i) {
             double part = i / (double)amt * 2.0 * 3.141592653589793;
-            part = MathHelper.func_151237_a(part, 0.0, 6.283185307179586);
+            part = Mth.func_151237_a(part, 0.0, 6.283185307179586);
             part += 6.283185307179586 * perc + 3.141592653589793;
             final double xAdd = Math.sin(part) * 75.0;
             final double yAdd = Math.cos(part) * 75.0;
@@ -307,7 +307,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
     
     protected void addInputInformation(final ItemStack stack, @Nullable final Ingredient stackIngredient, final List<ITextProperties> tooltip) {
         try {
-            tooltip.addAll(stack.func_82840_a((Player)Minecraft.func_71410_x().field_71439_g, (ITooltipFlag)(Minecraft.func_71410_x().field_71474_y.field_82882_x ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL)));
+            tooltip.addAll(stack.func_82840_a((Player)Minecraft.func_71410_x().field_71439_g, (TooltipFlag)(Minecraft.func_71410_x().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
         }
         catch (final Exception exc) {
             tooltip.add((ITextProperties)new Component("astralsorcery.misc.tooltipError").func_240699_a_(ChatFormatting.RED));

@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.util.draw.BufferContext;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import java.awt.geom.Rectangle2D;
@@ -79,7 +79,7 @@ public class PerkTreeConstellation<T extends AbstractPerk> extends PerkTreePoint
             haloSize *= 1.3f;
         }
         final Tuple<Float, Float> frameUV = tex.getUVOffset(spriteOffsetTick);
-        RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, x - haloSize, y - haloSize, zLevel, haloSize * 2.0f, haloSize * 2.0f).color(1.0f, 1.0f, 1.0f, 0.85f).tex((float)frameUV.func_76341_a(), (float)frameUV.func_76340_b(), tex.getULength(), tex.getVLength()).draw();
+        RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, x - haloSize, y - haloSize, zLevel, haloSize * 2.0f, haloSize * 2.0f).color(1.0f, 1.0f, 1.0f, 0.85f).tex((float)frameUV.func_76341_a(), (float)frameUV.func_76340_b(), tex.getULength(), tex.getVLength()).draw();
         super.renderPerkAtBatch(drawCtx, renderStack, status, spriteOffsetTick, pTicks, x, y, zLevel, scale);
         final float actualSize = this.perkSpriteSize * scale;
         return new Rectangle2D.Float(-actualSize, -actualSize, actualSize * 2.0f, actualSize * 2.0f);

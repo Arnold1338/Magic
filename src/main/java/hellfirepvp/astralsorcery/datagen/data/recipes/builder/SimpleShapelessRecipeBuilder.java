@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.datagen.data.recipes.builder;
 
 import javax.annotation.Nullable;
-import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.world.item.crafting.IRecipeSerializer;
 import java.util.Iterator;
 import net.minecraft.core.Registry;
 import com.google.gson.JsonElement;
@@ -14,10 +14,10 @@ import net.minecraft.data.IFinishedRecipe;
 import java.util.function.Consumer;
 import net.minecraft.tags.TagKey;
 import com.google.common.collect.Lists;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.item.crafting.Ingredient;
 import java.util.List;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 
 public class SimpleShapelessRecipeBuilder
 {

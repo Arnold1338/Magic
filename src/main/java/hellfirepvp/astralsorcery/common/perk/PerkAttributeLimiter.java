@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.perk;
 
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.HashMap;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import javax.annotation.Nonnull;
@@ -67,7 +67,7 @@ public class PerkAttributeLimiter
         }
         
         protected double limit(final double value) {
-            return MathHelper.func_151237_a(value, (double)this.min.get(), (double)this.max.get());
+            return Mth.func_151237_a(value, (double)this.min.get(), (double)this.max.get());
         }
         
         private Pair<Double, Double> asPair() {

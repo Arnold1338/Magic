@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Collection;
 import java.util.Random;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import net.minecraft.tags.TagKey;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
 

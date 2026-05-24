@@ -1,13 +1,13 @@
 package hellfirepvp.astralsorcery.common.util.world;
 
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.world.level.ISeedReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Optional;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 import java.util.Random;
 
@@ -42,7 +42,7 @@ public class SkyCollectionHelper
     }
     
     private static float cosInterpolate(final float l, final float h, final float partial) {
-        final float t2 = (1.0f - MathHelper.func_76134_b((float)(partial * 3.141592653589793))) / 2.0f;
+        final float t2 = (1.0f - Mth.func_76134_b((float)(partial * 3.141592653589793))) / 2.0f;
         return l * (1.0f - t2) + h * t2;
     }
     

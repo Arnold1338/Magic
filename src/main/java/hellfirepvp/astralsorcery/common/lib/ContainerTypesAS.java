@@ -6,7 +6,7 @@ import hellfirepvp.astralsorcery.common.container.ContainerAltarAttunement;
 import hellfirepvp.astralsorcery.common.container.ContainerAltarDiscovery;
 import hellfirepvp.astralsorcery.common.container.ContainerObservatory;
 import hellfirepvp.astralsorcery.common.container.ContainerTome;
-import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.level.inventory.MenuType;
 
 public class ContainerTypesAS
 {

@@ -4,11 +4,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import javax.annotation.Nonnull;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.level.material.Fluids;
+import net.minecraft.world.level.level.material.Fluid;
 import net.minecraftforge.fluids.IFluidTank;
 
 public class PrecisionSingleFluidTank implements IFluidTank
@@ -111,7 +111,7 @@ public class PrecisionSingleFluidTank implements IFluidTank
     }
     
     public int getFluidAmount() {
-        return MathHelper.func_76128_c(this.amount);
+        return Mth.func_76128_c(this.amount);
     }
     
     public int getCapacity() {
@@ -147,7 +147,7 @@ public class PrecisionSingleFluidTank implements IFluidTank
             return 0;
         }
         final int maxAdded = resource.getAmount();
-        int addable = MathHelper.func_76128_c(this.getMaxAddable(maxAdded));
+        int addable = Mth.func_76128_c(this.getMaxAddable(maxAdded));
         if (action.execute()) {
             if (addable > 0 && this.fluid == Fluids.field_204541_a) {
                 this.setFluid(resource.getFluid());

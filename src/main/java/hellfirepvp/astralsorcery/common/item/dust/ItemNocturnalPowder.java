@@ -1,22 +1,22 @@
 package hellfirepvp.astralsorcery.common.item.dust;
 
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemUseContext;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.entity.EntityNocturnalSpark;
-import net.minecraft.state.Property;
-import net.minecraft.block.DispenserBlock;
+import net.minecraft.world.level.block.state.Property;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.core.Direction;
-import net.minecraft.dispenser.IBlockSource;
+import net.minecraft.core.dispenser.BlockSource;
 
 public class ItemNocturnalPowder extends ItemUsableDust
 {
     @Override
-    boolean dispense(final IBlockSource dispenser) {
+    boolean dispense(final BlockSource dispenser) {
         final BlockPos at = dispenser.func_180699_d();
         final Direction face = (Direction)dispenser.func_189992_e().getValue((Property)DispenserBlock.field_176441_a);
         final EntityNocturnalSpark nocSpark = new EntityNocturnalSpark(at.getX(), at.getY(), at.getZ(), (World)dispenser.func_197524_h());

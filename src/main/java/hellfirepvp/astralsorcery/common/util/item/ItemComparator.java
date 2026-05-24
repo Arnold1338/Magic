@@ -5,7 +5,7 @@ import net.minecraftforge.common.capabilities.CapabilityProvider;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTComparator;
 import com.google.common.collect.Sets;
 import javax.annotation.Nonnull;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 
 public class ItemComparator
 {

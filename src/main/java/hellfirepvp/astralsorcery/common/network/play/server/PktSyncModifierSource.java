@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.network.play.server;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.perk.PerkEffectHelper;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.client.Minecraft;

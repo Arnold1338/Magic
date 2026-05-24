@@ -1,11 +1,11 @@
 package hellfirepvp.astralsorcery.common.registry;
 
-import net.minecraft.command.arguments.ArgumentTypes;
+import net.minecraft.commands.arguments.ArgumentTypes;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.command.arguments.IArgumentSerializer;
+import net.minecraft.commands.arguments.IArgumentSerializer;
 import com.mojang.brigadier.arguments.ArgumentType;
 import java.util.function.Supplier;
-import net.minecraft.command.arguments.ArgumentSerializer;
+import net.minecraft.commands.arguments.ArgumentSerializer;
 import hellfirepvp.astralsorcery.common.cmd.argument.ArgumentTypeConstellation;
 import hellfirepvp.astralsorcery.AstralSorcery;
 

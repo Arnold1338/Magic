@@ -1,15 +1,15 @@
 package hellfirepvp.astralsorcery.common.starlight;
 
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.level.ChunkPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.level.ChunkPos;
 import java.util.LinkedList;
 import hellfirepvp.astralsorcery.common.starlight.transmission.NodeConnection;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.starlight.transmission.ITransmissionSource;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.dispenser.IPosition;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.phys.Vec3;
 import net.minecraft.util.Tuple;
 import java.util.Collection;
 import java.util.Iterator;
@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.starlight.network.StarlightTransmissionH
 import net.minecraft.core.BlockPos;
 import hellfirepvp.observerlib.common.data.WorldCacheDomain;
 import hellfirepvp.astralsorcery.common.lib.DataAS;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.data.world.LightNetworkBuffer;
 
 public class WorldNetworkHandler
@@ -250,12 +250,12 @@ public class WorldNetworkHandler
     private List<LightNetworkBuffer.ChunkSectionNetworkData> getAffectedChunkSections(final BlockPos centralPos) {
         final List<LightNetworkBuffer.ChunkSectionNetworkData> dataList = new LinkedList<LightNetworkBuffer.ChunkSectionNetworkData>();
         final ChunkPos central = new ChunkPos(centralPos);
-        final int posYLevel = MathHelper.func_76125_a(centralPos.getY(), 0, 255);
+        final int posYLevel = Mth.func_76125_a(centralPos.getY(), 0, 255);
         for (int xx = -1; xx <= 1; ++xx) {
             for (int zz = -1; zz <= 1; ++zz) {
                 for (int yy = -1; yy <= 1; ++yy) {
                     BlockPos pos = central.func_206849_h();
-                    pos = pos.offset(xx * 16, MathHelper.func_76125_a(posYLevel + yy * 16, 0, 255), zz * 16);
+                    pos = pos.offset(xx * 16, Mth.func_76125_a(posYLevel + yy * 16, 0, 255), zz * 16);
                     this.queryData(pos, dataList);
                 }
             }

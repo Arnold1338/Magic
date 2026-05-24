@@ -2,14 +2,14 @@ package hellfirepvp.astralsorcery.client.screen.journal.page;
 
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.NonNullList;
 import java.util.HashMap;
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.item.crafting.Recipe;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.item.crafting.Ingredient;
 import java.util.Map;
 
 public class RenderPageRecipe extends RenderPageRecipeTemplate

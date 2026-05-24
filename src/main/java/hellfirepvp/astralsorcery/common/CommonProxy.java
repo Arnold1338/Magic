@@ -2,9 +2,9 @@ package hellfirepvp.astralsorcery.common;
 
 import hellfirepvp.astralsorcery.common.item.armor.ArmorMaterialImbuedLeather;
 import net.minecraft.ChatFormatting;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.DamageSourceUtil;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.perk.data.PerkTreeLoader;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import hellfirepvp.astralsorcery.common.integration.IntegrationCurios;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraft.command.CommandSource;
+import net.minecraft.commands.CommandSourceStack;
 import com.mojang.brigadier.CommandDispatcher;
 import hellfirepvp.astralsorcery.common.cmd.CommandAstralSorcery;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -27,9 +27,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import hellfirepvp.astralsorcery.common.network.play.server.PktOpenGui;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.storage.LevelResource;
+import net.minecraft.world.level.level.storage.LevelResource;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import net.minecraft.server.MinecraftServer;
@@ -127,10 +127,10 @@ import java.util.List;
 import hellfirepvp.observerlib.common.util.tick.TickManager;
 import hellfirepvp.astralsorcery.common.registry.internal.PrimerEventHandler;
 import hellfirepvp.astralsorcery.common.registry.internal.InternalRegistryPrimer;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.item.IArmorMaterial;
+import net.minecraft.world.level.item.Rarity;
+import net.minecraft.world.level.item.CreativeModeTab;
+import net.minecraft.world.level.damagesource.DamageSource;
 import java.util.UUID;
 
 public class CommonProxy
@@ -338,7 +338,7 @@ public class CommonProxy
     }
     
     private void onRegisterCommands(final RegisterCommandsEvent event) {
-        CommandAstralSorcery.register((CommandDispatcher<CommandSource>)event.getDispatcher());
+        CommandAstralSorcery.register((CommandDispatcher<CommandSourceStack>)event.getDispatcher());
     }
     
     private void onEnqueueIMC(final InterModEnqueueEvent event) {

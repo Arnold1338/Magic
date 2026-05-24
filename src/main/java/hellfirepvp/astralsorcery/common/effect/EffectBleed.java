@@ -2,17 +2,17 @@ package hellfirepvp.astralsorcery.common.effect;
 
 import hellfirepvp.astralsorcery.client.resource.AssetLoader;
 import hellfirepvp.astralsorcery.client.resource.query.SpriteQuery;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.EffectType;
 
 public class EffectBleed extends EffectCustomTexture
 {

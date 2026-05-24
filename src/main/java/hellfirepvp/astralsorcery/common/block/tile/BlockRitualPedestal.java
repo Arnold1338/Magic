@@ -1,30 +1,30 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.block.BlockRenderType;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
 import javax.annotation.Nullable;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileRitualPedestal;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.level.InteractionHand;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.util.VoxelUtils;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.level.level.block.Block;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMarble;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
 import hellfirepvp.observerlib.api.block.BlockStructureObserver;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.astralsorcery.common.block.base.BlockStarlightNetwork;
@@ -59,10 +59,10 @@ public class BlockRitualPedestal extends BlockStarlightNetwork implements Custom
         final VoxelShape m18 = Block.func_208617_a(11.0, 2.0, 1.0, 15.0, 8.0, 5.0);
         final VoxelShape m19 = Block.func_208617_a(1.0, 2.0, 11.0, 5.0, 8.0, 15.0);
         final VoxelShape m20 = Block.func_208617_a(1.0, 2.0, 1.0, 5.0, 8.0, 5.0);
-        return VoxelUtils.combineAll(IBooleanFunction.field_223244_o_, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20);
+        return VoxelUtils.combineAll(BooleanOp.field_223244_o_, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20);
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockRayTraceResult rtr) {
+    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult rtr) {
         if (world.func_201670_d()) {
             return InteractionResult.SUCCESS;
         }
@@ -100,7 +100,7 @@ public class BlockRitualPedestal extends BlockStarlightNetwork implements Custom
         }
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
         return this.shape;
     }
     
@@ -118,8 +118,8 @@ public class BlockRitualPedestal extends BlockStarlightNetwork implements Custom
         return false;
     }
     
-    public BlockRenderType func_149645_b(final BlockState state) {
-        return BlockRenderType.MODEL;
+    public RenderShape func_149645_b(final BlockState state) {
+        return RenderShape.MODEL;
     }
     
     @Nullable

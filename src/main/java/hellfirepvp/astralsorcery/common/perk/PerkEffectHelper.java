@@ -17,9 +17,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.network.play.server.PktSyncPerkActivity;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.server.level.ServerPlayer;
 

@@ -5,15 +5,15 @@ import net.minecraft.network.IPacket;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.LevelAccessor;
 import net.minecraftforge.common.util.BlockSnapshot;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.item.BlockItemUseContext;
+import net.minecraft.world.item.ItemUseContext;
+import net.minecraft.world.level.InteractionHand;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.level.phys.HitResult;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import net.minecraftforge.api.distmarker.Dist;
@@ -22,12 +22,12 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.entity.EntityType;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.Level;
-import net.minecraft.entity.projectile.ThrowableEntity;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.entity.projectile.ThrowableEntity;
 
 public class EntityIlluminationSpark extends ThrowableEntity
 {
@@ -90,16 +90,16 @@ public class EntityIlluminationSpark extends ThrowableEntity
         }
     }
     
-    protected void func_70227_a(final RayTraceResult result) {
+    protected void func_70227_a(final HitResult result) {
         if (this.field_70170_p.func_201670_d()) {
             return;
         }
-        if (!(result instanceof BlockRayTraceResult) || !(this.func_234616_v_() instanceof Player)) {
+        if (!(result instanceof BlockHitResult) || !(this.func_234616_v_() instanceof Player)) {
             this.func_70106_y();
             return;
         }
         final Player player = (Player)this.func_234616_v_();
-        final BlockRayTraceResult brtr = (BlockRayTraceResult)result;
+        final BlockHitResult brtr = (BlockHitResult)result;
         final BlockItemUseContext bCtx = new BlockItemUseContext(new ItemUseContext(player, InteractionHand.MAIN_HAND, brtr));
         BlockPos pos = bCtx.func_195995_a();
         if (!BlockUtils.isReplaceable(this.field_70170_p, pos)) {

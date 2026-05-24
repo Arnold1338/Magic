@@ -4,25 +4,25 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.DiggingParticle;
 import hellfirepvp.observerlib.client.util.RenderTypeDecorator;
 import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
-import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.level.biome.Biome;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.core.Registry;
 import hellfirepvp.observerlib.common.util.RegistryUtil;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.client.renderer.model.BakedQuad;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.client.color.ItemColors;
+import net.minecraft.client.resources.model.BakedQuad;
 import java.util.List;
 import net.minecraft.core.Direction;
 import java.util.Iterator;
-import net.minecraft.item.CompassItem;
+import net.minecraft.world.item.CompassItem;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.ItemRenderer;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.world.level.item.Items;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.client.player.ClientPlayerEntity;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import net.minecraft.network.chat.Component;
 import org.apache.commons.lang3.ObjectUtils;
@@ -31,44 +31,44 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraftforge.client.ForgeHooksClient;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.resources.model.ItemTransforms;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.common.util.reflection.ReflectionHelper;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.util.IReorderingProcessor;
+import net.minecraft.world.level.entity.item.ItemEntity;
+import net.minecraft.util.FormattedCharSequence;
 import com.mojang.math.Matrix4f;
 import net.minecraft.client.gui.Font;
-import net.minecraft.util.text.LanguageMap;
+import net.minecraft.network.chat.LanguageMap;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.math.Vector3f;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.util.text.ITextProperties;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.network.chat.ITextProperties;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.WorldVertexBufferUploader;
 import net.minecraft.client.renderer.RenderType;
 import com.mojang.blaze3d.systems.RenderSystem;
 import java.util.function.Function;
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import java.util.function.Consumer;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.awt.Color;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraftforge.client.model.data.IModelData;
 import net.minecraftforge.client.model.data.EmptyModelData;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import javax.annotation.Nullable;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlas;
@@ -77,7 +77,7 @@ import net.minecraft.client.renderer.texture.MissingTextureSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.IBlockDisplayReader;
+import net.minecraft.world.level.IBlockDisplayReader;
 import java.util.Random;
 
 public class RenderingUtils
@@ -150,9 +150,9 @@ public class RenderingUtils
             final double xDist = Math.min(1.0, maxX - minX);
             final double yDist = Math.min(1.0, maxY - minY);
             final double zDist = Math.min(1.0, maxZ - minZ);
-            final double i = Math.max(2, MathHelper.func_76143_f(xDist / 0.25));
-            final double j = Math.max(2, MathHelper.func_76143_f(yDist / 0.25));
-            final double k = Math.max(2, MathHelper.func_76143_f(zDist / 0.25));
+            final double i = Math.max(2, Mth.func_76143_f(xDist / 0.25));
+            final double j = Math.max(2, Mth.func_76143_f(yDist / 0.25));
+            final double k = Math.max(2, Mth.func_76143_f(zDist / 0.25));
             for (int xx = 0; xx < i; ++xx) {
                 for (int yy = 0; yy < j; ++yy) {
                     for (int zz = 0; zz < k; ++zz) {
@@ -180,11 +180,11 @@ public class RenderingUtils
         final int r = rgb >> 16 & 0xFF;
         final int g = rgb >> 8 & 0xFF;
         final int b = rgb >> 0 & 0xFF;
-        return new Color(MathHelper.func_76125_a((int)(r * mul), 0, 255), MathHelper.func_76125_a((int)(g * mul), 0, 255), MathHelper.func_76125_a((int)(b * mul), 0, 255));
+        return new Color(Mth.func_76125_a((int)(r * mul), 0, 255), Mth.func_76125_a((int)(g * mul), 0, 255), Mth.func_76125_a((int)(b * mul), 0, 255));
     }
     
     public static Color clampToColor(final int r, final int g, final int b) {
-        return new Color(MathHelper.func_76125_a((int)(float)r, 0, 255), MathHelper.func_76125_a((int)(float)g, 0, 255), MathHelper.func_76125_a((int)(float)b, 0, 255));
+        return new Color(Mth.func_76125_a((int)(float)r, 0, 255), Mth.func_76125_a((int)(float)g, 0, 255), Mth.func_76125_a((int)(float)b, 0, 255));
     }
     
     public static boolean canEffectExist(final EntityComplexFX fx) {
@@ -233,7 +233,7 @@ public class RenderingUtils
         }
     }
     
-    public static void refreshDrawing(final IVertexBuilder vb, final RenderType type) {
+    public static void refreshDrawing(final VertexConsumer vb, final RenderType type) {
         if (vb instanceof BufferBuilder) {
             type.func_228631_a_((BufferBuilder)vb, 0, 0, 0);
             ((BufferBuilder)vb).func_181668_a(type.func_228664_q_(), type.func_228663_p_());
@@ -255,13 +255,13 @@ public class RenderingUtils
             if (le == null) {
                 le = (Entity)Minecraft.func_71410_x().field_71439_g;
             }
-            final float iYaw = RenderingVectorUtils.interpolate(MathHelper.func_76142_g(le.field_70126_B), MathHelper.func_76142_g(le.field_70177_z), pTicks);
+            final float iYaw = RenderingVectorUtils.interpolate(Mth.func_76142_g(le.field_70126_B), Mth.func_76142_g(le.field_70177_z), pTicks);
             renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(-iYaw + 180.0f));
         }
         final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
         final int length = fr.func_238414_a_(text);
         final MultiBufferSource.Impl buffers = MultiBufferSource.func_228455_a_(Tessellator.func_178181_a().func_178180_c());
-        final IReorderingProcessor processedText = LanguageMap.func_74808_a().func_241870_a(text);
+        final FormattedCharSequence processedText = LanguageMap.func_74808_a().func_241870_a(text);
         final int drawnLength = fr.func_238416_a_(processedText, -(length / 2.0f), 0.0f, color.getRGB(), false, matr, (MultiBufferSource)buffers, true, 0, LightmapUtil.getPackedFullbrightCoords());
         buffers.func_228461_a_();
         renderStack.func_227865_b_();
@@ -294,7 +294,7 @@ public class RenderingUtils
     
     public static void renderTranslucentItemStack(final ItemStack stack, final PoseStack renderStack, final float pTicks, final Color overlayColor, final int alpha) {
         renderStack.func_227860_a_();
-        final float sinBobY = MathHelper.func_76126_a((ClientScheduler.getClientTick() + pTicks) / 10.0f) * 0.1f + 0.1f;
+        final float sinBobY = Mth.func_76126_a((ClientScheduler.getClientTick() + pTicks) / 10.0f) * 0.1f + 0.1f;
         renderStack.func_227861_a_(0.0, (double)sinBobY, 0.0);
         final float ageRotate = (ClientScheduler.getClientTick() + pTicks) / 20.0f;
         renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229193_c_(ageRotate));
@@ -304,12 +304,12 @@ public class RenderingUtils
     
     public static void renderTranslucentItemStackModelGround(final ItemStack stack, final PoseStack renderStack, final Color overlayColor, final Blending blendMode, final int alpha) {
         final BakedModel bakedModel = getItemModel(stack);
-        ForgeHooksClient.handleCameraTransforms(renderStack, bakedModel, ItemCameraTransforms.TransformType.GROUND, false);
+        ForgeHooksClient.handleCameraTransforms(renderStack, bakedModel, ItemTransforms.TransformType.GROUND, false);
         final TextureManager textureManager = Minecraft.func_71410_x().func_110434_K();
         textureManager.func_110577_a(AtlasTexture.field_110575_b);
         textureManager.func_229267_b_(AtlasTexture.field_110575_b).setBlurMipmap(false, false);
         final MultiBufferSource.Impl buffer = Minecraft.func_71410_x().func_228019_au_().func_228487_b_();
-        renderItemModelWithColor(stack, ItemCameraTransforms.TransformType.GROUND, bakedModel, renderStack, renderType -> {
+        renderItemModelWithColor(stack, ItemTransforms.TransformType.GROUND, bakedModel, renderStack, renderType -> {
             final RenderTypeDecorator decorated = RenderTypeDecorator.wrapSetup(renderType, () -> {
                 RenderSystem.enableBlend();
                 blendMode.apply();
@@ -337,13 +337,13 @@ public class RenderingUtils
         renderStack.func_227860_a_();
         renderStack.func_227861_a_(8.0, 8.0, 0.0);
         renderStack.func_227862_a_(16.0f, -16.0f, 16.0f);
-        final BakedModel bakedModel = ForgeHooksClient.handleCameraTransforms(renderStack, getItemModel(stack), ItemCameraTransforms.TransformType.GUI, false);
+        final BakedModel bakedModel = ForgeHooksClient.handleCameraTransforms(renderStack, getItemModel(stack), ItemTransforms.TransformType.GUI, false);
         final boolean isSideLit = bakedModel.func_230044_c_();
         if (!isSideLit) {
             RenderHelper.func_227783_c_();
         }
         final MultiBufferSource.Impl buffer = Minecraft.func_71410_x().func_228019_au_().func_228487_b_();
-        renderItemModelWithColor(stack, ItemCameraTransforms.TransformType.GUI, bakedModel, renderStack, (MultiBufferSource)buffer, LightmapUtil.getPackedFullbrightCoords(), OverlayTexture.field_229196_a_, overlayColor, MathHelper.func_76125_a(alpha, 0, 255));
+        renderItemModelWithColor(stack, ItemTransforms.TransformType.GUI, bakedModel, renderStack, (MultiBufferSource)buffer, LightmapUtil.getPackedFullbrightCoords(), OverlayTexture.field_229196_a_, overlayColor, Mth.func_76125_a(alpha, 0, 255));
         buffer.func_228461_a_();
         if (!isSideLit) {
             RenderHelper.func_227784_d_();
@@ -380,9 +380,9 @@ public class RenderingUtils
             final float health = (float)stack.getItem().getDurabilityForDisplay(stack);
             final float durabilityPercent = 13.0f - health * 13.0f;
             final int color = stack.getItem().getRGBDurabilityForDisplay(stack);
-            draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
-                RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, 2.0f, 13.0f, 0.0f, 13.0f, 2.0f).color(0, 0, 0, 255).draw();
-                RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, 2.0f, 13.0f, 0.0f, durabilityPercent, 1.0f).color(color >> 16 & 0xFF, color >> 8 & 0xFF, color & 0xFF, 255).draw();
+            draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
+                RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 2.0f, 13.0f, 0.0f, 13.0f, 2.0f).color(0, 0, 0, 255).draw();
+                RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 2.0f, 13.0f, 0.0f, durabilityPercent, 1.0f).color(color >> 16 & 0xFF, color >> 8 & 0xFF, color & 0xFF, 255).draw();
                 return;
             });
             RenderSystem.enableBlend();
@@ -397,7 +397,7 @@ public class RenderingUtils
             RenderSystem.disableTexture();
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
-            draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, 0.0f, 16.0f * (1.0f - cooldownPercent), 0.0f, 16.0f, 16.0f * cooldownPercent).color(255, 255, 255, 127).draw());
+            draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 16.0f * (1.0f - cooldownPercent), 0.0f, 16.0f, 16.0f * cooldownPercent).color(255, 255, 255, 127).draw());
             RenderSystem.enableTexture();
             RenderSystem.enableDepthTest();
         }
@@ -408,11 +408,11 @@ public class RenderingUtils
         return Minecraft.func_71410_x().func_175599_af().func_184393_a(stack, (World)Minecraft.func_71410_x().field_71441_e, (LivingEntity)Minecraft.func_71410_x().field_71439_g);
     }
     
-    private static void renderItemModelWithColor(final ItemStack stack, final ItemCameraTransforms.TransformType transformType, final BakedModel model, final PoseStack renderStack, final MultiBufferSource buffer, final int combinedLight, final int combinedOverlay, final Color c, final int alpha) {
+    private static void renderItemModelWithColor(final ItemStack stack, final ItemTransforms.TransformType transformType, final BakedModel model, final PoseStack renderStack, final MultiBufferSource buffer, final int combinedLight, final int combinedOverlay, final Color c, final int alpha) {
         if (!stack.isEmpty()) {
             renderStack.func_227860_a_();
             renderStack.func_227861_a_(-0.5, -0.5, -0.5);
-            final boolean renderThirdPersonView = transformType == ItemCameraTransforms.TransformType.GUI || transformType == ItemCameraTransforms.TransformType.GROUND || transformType == ItemCameraTransforms.TransformType.FIXED;
+            final boolean renderThirdPersonView = transformType == ItemTransforms.TransformType.GUI || transformType == ItemTransforms.TransformType.GROUND || transformType == ItemTransforms.TransformType.FIXED;
             if (model.func_188618_c() || (stack.getItem() == Items.field_203184_eO && !renderThirdPersonView)) {
                 final int[] colors = { c.getRed(), c.getGreen(), c.getBlue(), alpha };
                 final MultiBufferSource decoratedBuffer = type -> BufferDecoratorBuilder.withColor((r, g, b, a) -> colors).decorate(buffer.getBuffer(type));
@@ -424,7 +424,7 @@ public class RenderingUtils
                     final RenderType rType = (RenderType)layerModel.getSecond();
                     ForgeHooksClient.setRenderLayer(rType);
                     try {
-                        final IVertexBuilder vertexBuilder = ItemRenderer.func_239391_c_(buffer, rType, true, stack.func_77962_s());
+                        final VertexConsumer vertexBuilder = ItemRenderer.func_239391_c_(buffer, rType, true, stack.func_77962_s());
                         renderColoredItemModel(stack, layer, renderStack, vertexBuilder, combinedLight, combinedOverlay, c, alpha);
                     }
                     finally {
@@ -434,11 +434,11 @@ public class RenderingUtils
             }
             else {
                 final RenderType rType2 = RenderTypeLookup.func_239219_a_(stack, true);
-                IVertexBuilder vertexBuilder2;
+                VertexConsumer vertexBuilder2;
                 if (stack.getItem() instanceof CompassItem && stack.func_77962_s()) {
                     renderStack.func_227860_a_();
                     final PoseStack.Entry topEntry = renderStack.func_227866_c_();
-                    if (transformType == ItemCameraTransforms.TransformType.GUI) {
+                    if (transformType == ItemTransforms.TransformType.GUI) {
                         topEntry.func_227870_a_().func_226592_a_(0.5f);
                     }
                     else if (transformType.func_241716_a_()) {
@@ -456,7 +456,7 @@ public class RenderingUtils
         }
     }
     
-    private static void renderColoredItemModel(final ItemStack stack, final BakedModel model, final PoseStack renderStack, final IVertexBuilder buffer, final int combinedLight, final int combinedOverlay, final Color color, final int alpha) {
+    private static void renderColoredItemModel(final ItemStack stack, final BakedModel model, final PoseStack renderStack, final VertexConsumer buffer, final int combinedLight, final int combinedOverlay, final Color color, final int alpha) {
         final Color alphaColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
         final Random renderRand = new Random();
         final IModelData data = (IModelData)EmptyModelData.INSTANCE;
@@ -468,7 +468,7 @@ public class RenderingUtils
         renderColoredQuads(buffer, renderStack, model.getQuads((BlockState)null, (Direction)null, renderRand, data), alphaColor, combinedLight, combinedOverlay, stack);
     }
     
-    private static void renderColoredQuads(final IVertexBuilder vb, final PoseStack renderStack, final List<BakedQuad> quads, final Color color, final int combinedLight, final int combinedOverlay, final ItemStack stack) {
+    private static void renderColoredQuads(final VertexConsumer vb, final PoseStack renderStack, final List<BakedQuad> quads, final Color color, final int combinedLight, final int combinedOverlay, final ItemStack stack) {
         final boolean useOverlayColors = (color.getRGB() & 0xFFFFFF) == 0xFFFFFF && !stack.isEmpty();
         int i = 0;
         final ItemColors itemColors = Minecraft.func_71410_x().getItemColors();
@@ -486,16 +486,16 @@ public class RenderingUtils
         }
     }
     
-    public static void renderSimpleBlockModel(final BlockState state, final PoseStack renderStack, final IVertexBuilder vb) {
+    public static void renderSimpleBlockModel(final BlockState state, final PoseStack renderStack, final VertexConsumer vb) {
         renderSimpleBlockModel(state, renderStack, vb, BlockPos.field_177992_a, null, false);
     }
     
-    public static void renderSimpleBlockModel(final BlockState state, final PoseStack renderStack, final IVertexBuilder vb, final BlockPos pos, @Nullable final BlockEntity te, final boolean checkRenderSide) {
+    public static void renderSimpleBlockModel(final BlockState state, final PoseStack renderStack, final VertexConsumer vb, final BlockPos pos, @Nullable final BlockEntity te, final boolean checkRenderSide) {
         if (RenderingUtils.plainRenderWorld == null) {
             RenderingUtils.plainRenderWorld = (IBlockDisplayReader)new EmptyRenderWorld(() -> RegistryUtil.client().getValue(Registry.field_239720_u_, Biomes.field_76772_c));
         }
-        final BlockRenderType brt = state.func_185901_i();
-        if (brt == BlockRenderType.INVISIBLE) {
+        final RenderShape brt = state.func_185901_i();
+        if (brt == RenderShape.INVISIBLE) {
             return;
         }
         final BlockRenderDispatcher brd = Minecraft.func_71410_x().func_175602_ab();
@@ -506,13 +506,13 @@ public class RenderingUtils
         brd.renderModel(state, pos, RenderingUtils.plainRenderWorld, renderStack, vb, checkRenderSide, RenderingUtils.rand, data);
     }
     
-    public static void renderSimpleBlockModelCurrentWorld(final BlockState state, final PoseStack renderStack, final IVertexBuilder buf, final int combinedOverlayIn) {
+    public static void renderSimpleBlockModelCurrentWorld(final BlockState state, final PoseStack renderStack, final VertexConsumer buf, final int combinedOverlayIn) {
         renderSimpleBlockModelCurrentWorld(state, renderStack, buf, BlockPos.field_177992_a, null, combinedOverlayIn, false);
     }
     
-    public static void renderSimpleBlockModelCurrentWorld(final BlockState state, final PoseStack renderStack, final IVertexBuilder buf, final BlockPos pos, @Nullable final BlockEntity te, final int combinedOverlayIn, final boolean checkRenderSide) {
-        final BlockRenderType brt = state.func_185901_i();
-        if (brt == BlockRenderType.INVISIBLE) {
+    public static void renderSimpleBlockModelCurrentWorld(final BlockState state, final PoseStack renderStack, final VertexConsumer buf, final BlockPos pos, @Nullable final BlockEntity te, final int combinedOverlayIn, final boolean checkRenderSide) {
+        final RenderShape brt = state.func_185901_i();
+        if (brt == RenderShape.INVISIBLE) {
             return;
         }
         final BlockRenderDispatcher brd = Minecraft.func_71410_x().func_175602_ab();
@@ -520,7 +520,7 @@ public class RenderingUtils
         if (te != null) {
             data = te.getModelData();
         }
-        if (brt == BlockRenderType.MODEL) {
+        if (brt == RenderShape.MODEL) {
             final BakedModel model = brd.func_184389_a(state);
             brd.func_175019_b().renderModel((IBlockDisplayReader)Minecraft.func_71410_x().field_71441_e, model, state, pos, renderStack, buf, checkRenderSide, RenderingUtils.rand, state.func_209533_a(pos), combinedOverlayIn, data);
         }

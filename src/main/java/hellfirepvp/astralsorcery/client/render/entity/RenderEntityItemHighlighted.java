@@ -2,12 +2,12 @@ package hellfirepvp.astralsorcery.client.render.entity;
 
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.common.entity.item.EntityItemHighlighted;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.level.entity.item.ItemEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.ItemRenderer;

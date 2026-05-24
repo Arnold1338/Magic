@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.client.screen.journal.bookmark;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.network.chat.IFormattableTextComponent;
 import net.minecraft.client.gui.screens.Screen;
 import java.util.function.Supplier;
 import net.minecraftforge.api.distmarker.Dist;

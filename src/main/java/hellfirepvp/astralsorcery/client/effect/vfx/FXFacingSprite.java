@@ -8,7 +8,7 @@ import hellfirepvp.observerlib.client.util.RenderTypeDecorator;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -38,7 +38,7 @@ public class FXFacingSprite extends EntityVisualFX implements EntityDynamicFX
     }
     
     @Override
-    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final IVertexBuilder vb, final float pTicks) {
+    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final VertexConsumer vb, final float pTicks) {
     }
     
     @Override
@@ -50,7 +50,7 @@ public class FXFacingSprite extends EntityVisualFX implements EntityDynamicFX
         final Vector3 vec = this.getRenderPosition(pTicks);
         final float scale = this.getScale(pTicks);
         final RenderTypeDecorator decorated = RenderTypeDecorator.wrapSetup(ctx.getRenderType(), ssr::bindTexture, BlockAtlasTexture.getInstance()::bindTexture);
-        final IVertexBuilder buf = drawBuffer.getBuffer((RenderType)decorated);
+        final VertexConsumer buf = drawBuffer.getBuffer((RenderType)decorated);
         RenderingDrawUtils.renderFacingQuadVB(buf, renderStack, vec.getX(), vec.getY(), vec.getZ(), scale, 0.0f, (float)uvOffset.func_76341_a(), (float)uvOffset.func_76340_b(), ssr.getULength(), ssr.getVLength(), col.getRed(), col.getGreen(), col.getBlue(), alpha);
         drawBuffer.draw();
     }

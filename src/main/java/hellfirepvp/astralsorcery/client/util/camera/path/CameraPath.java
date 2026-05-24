@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.client.util.camera.path;
 
 import java.util.Iterator;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.client.util.camera.EntityClientReplacement;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.client.util.camera.ICameraStopListener;
@@ -92,7 +92,7 @@ public class CameraPath extends EntityCameraRenderView implements ICameraPersist
             if (accumulator >= ticks) {
                 final int interp = current.ticksToGetThere - (accumulator - ticks);
                 final int dstJump = current.ticksToGetThere;
-                return current.dstPoint.clone().subtract(prev).divide(dstJump).multiply(MathHelper.func_76125_a(interp, 1, dstJump)).add(prev);
+                return current.dstPoint.clone().subtract(prev).divide(dstJump).multiply(Mth.func_76125_a(interp, 1, dstJump)).add(prev);
             }
             acc = accumulator;
         }

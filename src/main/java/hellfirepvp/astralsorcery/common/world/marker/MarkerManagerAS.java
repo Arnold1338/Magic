@@ -1,23 +1,23 @@
 package hellfirepvp.astralsorcery.common.world.marker;
 
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.tileentity.LockableLootTileEntity;
-import net.minecraft.world.gen.feature.structure.StructurePiece;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.entity.LockableLootTileEntity;
+import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;
 import hellfirepvp.astralsorcery.common.constellation.IMajorConstellation;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileCollectorCrystal;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.level.block.Blocks;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.lib.LootAS;
-import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.core.MutableBoundingBox;
 import java.util.Random;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.LevelAccessor;
 import net.minecraft.core.BlockPos;
 
 public class MarkerManagerAS

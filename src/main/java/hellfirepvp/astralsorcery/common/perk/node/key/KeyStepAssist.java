@@ -7,7 +7,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.server.level.ServerPlayer;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.perk.PerkCooldownHelper;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;

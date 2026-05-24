@@ -5,7 +5,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.InteractionR
 import java.util.List;
 import mezz.jei.api.constants.VanillaTypes;
 import com.google.common.collect.Lists;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.ResultDropItem;
 import com.google.common.collect.ImmutableList;
 import net.minecraftforge.api.distmarker.Dist;

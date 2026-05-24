@@ -5,7 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParseException;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;
-import net.minecraft.util.JSONUtils;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonObject;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraftforge.fml.LogicalSide;
@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.network.chat.IFormattableTextComponent;
 import java.util.Collection;
 import java.util.ArrayList;
 import net.minecraft.resources.ResourceLocation;
@@ -23,7 +23,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import java.util.function.BiPredicate;
 
 public class ProgressGatedPerk extends AbstractPerk

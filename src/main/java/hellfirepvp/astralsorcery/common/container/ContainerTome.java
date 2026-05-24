@@ -8,18 +8,18 @@ import java.util.LinkedList;
 import net.minecraftforge.fml.util.thread.EffectiveSide;
 import hellfirepvp.astralsorcery.common.item.ItemConstellationPaper;
 import hellfirepvp.astralsorcery.common.container.slot.SlotConstellationPaper;
-import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.Container;
+import net.minecraft.world.level.inventory.Slot;
+import net.minecraft.world.level.Container;
 import hellfirepvp.astralsorcery.common.container.slot.SlotUnclickable;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import hellfirepvp.astralsorcery.common.item.ItemTome;
-import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.level.inventory.MenuType;
 import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.entity.player.Inventory;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.inventory.AbstractContainerMenu;
 
 public class ContainerTome extends Container
 {
@@ -41,19 +41,19 @@ public class ContainerTome extends Container
             for (int j = 0; j < 9; ++j) {
                 final int index = j + i * 9 + 9;
                 if (index == this.tomeIndex) {
-                    this.func_75146_a((Slot)new SlotUnclickable((IInventory)playerInv, index, 8 + j * 18, 84 + i * 18));
+                    this.func_75146_a((Slot)new SlotUnclickable((Container)playerInv, index, 8 + j * 18, 84 + i * 18));
                 }
                 else {
-                    this.func_75146_a(new Slot((IInventory)playerInv, index, 8 + j * 18, 84 + i * 18));
+                    this.func_75146_a(new Slot((Container)playerInv, index, 8 + j * 18, 84 + i * 18));
                 }
             }
         }
         for (int i = 0; i < 9; ++i) {
             if (i == this.tomeIndex) {
-                this.func_75146_a((Slot)new SlotUnclickable((IInventory)playerInv, i, 8 + i * 18, 142));
+                this.func_75146_a((Slot)new SlotUnclickable((Container)playerInv, i, 8 + i * 18, 142));
             }
             else {
-                this.func_75146_a(new Slot((IInventory)playerInv, i, 8 + i * 18, 142));
+                this.func_75146_a(new Slot((Container)playerInv, i, 8 + i * 18, 142));
             }
         }
     }

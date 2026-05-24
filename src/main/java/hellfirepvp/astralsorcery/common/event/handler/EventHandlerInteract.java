@@ -1,16 +1,16 @@
 package hellfirepvp.astralsorcery.common.event.handler;
 
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.base.TileOwned;
 import net.minecraft.core.BlockPos;
 import java.util.Iterator;
 import net.minecraftforge.common.util.BlockSnapshot;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.level.LevelAccessor;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.event.level.BlockEvent;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.InteractionResult;
 import hellfirepvp.astralsorcery.common.item.base.OverrideInteractItem;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import java.util.function.Consumer;

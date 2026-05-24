@@ -2,10 +2,10 @@ package hellfirepvp.astralsorcery.client.effect.vfx;
 
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
@@ -36,7 +36,7 @@ public class FXFacingAtlasParticle extends EntityVisualFX
     }
     
     public <T extends FXFacingAtlasParticle> T selectFraction(float percentage) {
-        percentage = MathHelper.func_76131_a(percentage, 0.0f, 1.0f);
+        percentage = Mth.func_76131_a(percentage, 0.0f, 1.0f);
         this.minU += this.uLength * (1.0f - percentage) * FXFacingAtlasParticle.rand.nextFloat();
         this.minV += this.vLength * (1.0f - percentage) * FXFacingAtlasParticle.rand.nextFloat();
         this.uLength *= percentage;
@@ -45,7 +45,7 @@ public class FXFacingAtlasParticle extends EntityVisualFX
     }
     
     @Override
-    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final IVertexBuilder vb, final float pTicks) {
+    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final VertexConsumer vb, final float pTicks) {
         if (this.sprite == null) {
             return;
         }

@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.common.perk.node.key;
 
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import net.minecraftforge.common.ForgeConfigSpec;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.level.block.Blocks;
 import java.util.ArrayList;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
 

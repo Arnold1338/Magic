@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import net.minecraft.world.level.block.entity.BlockEntity;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.fluids.FluidStack;
@@ -14,12 +14,12 @@ import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import hellfirepvp.astralsorcery.common.tile.TileChalice;
 
 public class RenderChalice extends CustomTileEntityRenderer<TileChalice>
 {
-    public RenderChalice(final TileEntityRendererDispatcher tileRenderer) {
+    public RenderChalice(final BlockEntityRenderDispatcher tileRenderer) {
         super(tileRenderer);
     }
     
@@ -47,7 +47,7 @@ public class RenderChalice extends CustomTileEntityRenderer<TileChalice>
         renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_((float)rotation.getY()));
         renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_((float)rotation.getZ()));
         renderStack.func_227862_a_(percSize, percSize, percSize);
-        final IVertexBuilder buf = renderTypeBuffer.getBuffer(RenderTypesAS.TER_CHALICE_LIQUID);
+        final VertexConsumer buf = renderTypeBuffer.getBuffer(RenderTypesAS.TER_CHALICE_LIQUID);
         RenderingDrawUtils.renderTexturedCubeCentralColorNormal(renderStack, buf, uOffset, vOffset, uPart, vPart, color.getRed(), color.getGreen(), color.getBlue(), 255, renderStack.func_227866_c_().func_227872_b_());
         renderStack.func_227865_b_();
     }

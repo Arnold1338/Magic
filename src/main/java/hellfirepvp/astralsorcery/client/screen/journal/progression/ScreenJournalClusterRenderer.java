@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.screen.journal.progression;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import org.lwjgl.opengl.GL11;
 import com.mojang.math.Matrix4f;
@@ -15,13 +15,13 @@ import java.awt.Color;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import net.minecraft.client.renderer.RenderHelper;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
 import java.awt.geom.Point2D;
 import java.util.List;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import com.google.common.collect.Lists;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.ITextProperties;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Iterator;
 import net.minecraft.client.gui.screens.Screen;
@@ -152,7 +152,7 @@ public class ScreenJournalClusterRenderer
         this.alpha = this.progressionSizeHandler.getScalingFactor();
         this.alpha -= 0.25f;
         this.alpha /= 0.75f;
-        this.alpha = MathHelper.func_76131_a(this.alpha, 0.0f, 1.0f);
+        this.alpha = Mth.func_76131_a(this.alpha, 0.0f, 1.0f);
         final Map<ResearchNode, Point2D.Float> displayPositions = new HashMap<ResearchNode, Point2D.Float>();
         final Iterator<ResearchNode> iterator = this.progression.getResearchNodes().iterator();
         ResearchNode node = null;
@@ -177,7 +177,7 @@ public class ScreenJournalClusterRenderer
         final float offsetY = offset.y - zoomedWH / 2.0f;
         node.getBackgroundTexture().resolve().bindTexture();
         if (this.progressionSizeHandler.getScalingFactor() >= 0.7) {
-            this.clickableNodes.put(new Rectangle(MathHelper.func_76141_d(offsetX), MathHelper.func_76141_d(offsetY), MathHelper.func_76141_d(zoomedWH), MathHelper.func_76141_d(zoomedWH)), node);
+            this.clickableNodes.put(new Rectangle(Mth.func_76141_d(offsetX), Mth.func_76141_d(offsetY), Mth.func_76141_d(zoomedWH), Mth.func_76141_d(zoomedWH)), node);
         }
         this.drawResearchItemBackground(zoomedWH, offsetX, offsetY, zLevel);
         final float pxWH = this.progressionSizeHandler.getZoomedWHNode() / 16.0f;
@@ -189,7 +189,7 @@ public class ScreenJournalClusterRenderer
                 renderStack.func_227861_a_(3.0, 3.0, 100.0);
                 renderStack.func_227862_a_(0.75f, 0.75f, 1.0f);
                 RenderHelper.func_227780_a_();
-                RenderingUtils.renderTranslucentItemStackModelGUI(node.getRenderItemStack(ClientScheduler.getClientTick()), renderStack, Color.WHITE, Blending.DEFAULT, MathHelper.func_76125_a((int)(this.alpha * 255.0f), 0, 255));
+                RenderingUtils.renderTranslucentItemStackModelGUI(node.getRenderItemStack(ClientScheduler.getClientTick()), renderStack, Color.WHITE, Blending.DEFAULT, Mth.func_76125_a((int)(this.alpha * 255.0f), 0, 255));
                 RenderHelper.func_74518_a();
                 renderStack.func_227865_b_();
                 break;
@@ -207,7 +207,7 @@ public class ScreenJournalClusterRenderer
                 renderStack.func_227861_a_((double)offsetX, (double)offsetY, 0.0);
                 RenderSystem.enableBlend();
                 RenderSystem.defaultBlendFunc();
-                RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+                RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
                     final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
                     buf.func_227888_a_(matr, pxWH, zoomedWH - pxWH, zLevel).func_227885_a_(r, g, b, a).func_225583_a_((float)uvTexture.func_76341_a(), (float)uvTexture.func_76340_b() + res.getVLength()).func_181675_d();
                     buf.func_227888_a_(matr, zoomedWH - pxWH, zoomedWH - pxWH, zLevel).func_227885_a_(r, g, b, a).func_225583_a_((float)uvTexture.func_76341_a() + res.getULength(), (float)uvTexture.func_76340_b() + res.getVLength()).func_181675_d();
@@ -235,14 +235,14 @@ public class ScreenJournalClusterRenderer
         final int segments = (int)Math.ceil(line.length() / 1.0);
         final int activeSegment = (int)(clientTicks % segments);
         final Vector3 segmentIter = line.divide(segments);
-        RenderingUtils.draw(3, DefaultVertexFormats.field_181706_f, buf -> {
+        RenderingUtils.draw(3, DefaultVertexFormat.field_181706_f, buf -> {
             for (int i = segments; i >= 0; --i) {
                 final double lx = origin.getX();
                 final double ly = origin.getY();
                 origin.add(segmentIter);
                 final float brightness = 0.6f;
                 final float brightness2 = brightness + 0.4f * this.evaluateBrightness(i, activeSegment);
-                this.drawLinePart((IVertexBuilder)buf, renderStack, lx, ly, origin.getX(), origin.getY(), zLevel, brightness2);
+                this.drawLinePart((VertexConsumer)buf, renderStack, lx, ly, origin.getX(), origin.getY(), zLevel, brightness2);
             }
             return;
         });
@@ -252,7 +252,7 @@ public class ScreenJournalClusterRenderer
         RenderSystem.enableTexture();
     }
     
-    private void drawLinePart(final IVertexBuilder buf, final PoseStack renderStack, final double lx, final double ly, final double hx, final double hy, final float zLevel, final float brightness) {
+    private void drawLinePart(final VertexConsumer buf, final PoseStack renderStack, final double lx, final double ly, final double hx, final double hy, final float zLevel, final float brightness) {
         final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
         buf.func_227888_a_(offset, (float)lx, (float)ly, zLevel).func_227885_a_(brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).func_181675_d();
         buf.func_227888_a_(offset, (float)hx, (float)hy, zLevel).func_227885_a_(brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).func_181675_d();
@@ -268,7 +268,7 @@ public class ScreenJournalClusterRenderer
     
     private void drawResearchItemBackground(final double zoomedWH, final double xAdd, final double yAdd, final float zLevel) {
         RenderSystem.enableBlend();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             buf.func_225582_a_(xAdd, yAdd + zoomedWH, (double)zLevel).func_227885_a_(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(0.0f, 1.0f).func_181675_d();
             buf.func_225582_a_(xAdd + zoomedWH, yAdd + zoomedWH, (double)zLevel).func_227885_a_(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(1.0f, 1.0f).func_181675_d();
             buf.func_225582_a_(xAdd + zoomedWH, yAdd, (double)zLevel).func_227885_a_(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(1.0f, 0.0f).func_181675_d();

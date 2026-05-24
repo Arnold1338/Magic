@@ -3,13 +3,13 @@ package hellfirepvp.astralsorcery.common.util.time;
 import java.util.HashMap;
 import java.util.EnumSet;
 import net.minecraftforge.event.TickEvent;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.entity.boss.dragon.phase.PhaseType;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.boss.dragon.phase.PhaseType;
+import net.minecraft.world.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.world.level.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.data.sync.server.DataTimeFreezeEntities;
 import hellfirepvp.astralsorcery.common.data.sync.client.ClientTimeFreezeEntities;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.data.sync.server.DataTimeFreezeEffects;
 import hellfirepvp.astralsorcery.common.data.sync.SyncDataHolder;
 import java.util.LinkedList;
@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.Collections;
 import net.minecraft.core.BlockPos;
 import java.util.List;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 import java.util.Map;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
@@ -84,7 +84,7 @@ public class TimeStopController implements ITickHandler
             }
             if (shouldFreeze) {
                 if (e.field_70170_p.func_201670_d()) {
-                    for (int amt = (int)MathHelper.func_76129_c(e.func_213311_cf() * e.func_213302_cg()), i = 0; i < amt; ++i) {
+                    for (int amt = (int)Mth.func_76129_c(e.func_213311_cf() * e.func_213302_cg()), i = 0; i < amt; ++i) {
                         if (e.field_70170_p.field_73012_v.nextInt(5) == 0) {
                             TimeStopEffectHelper.playEntityParticles(e);
                         }

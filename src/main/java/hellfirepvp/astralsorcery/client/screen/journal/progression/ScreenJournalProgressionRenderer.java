@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.screen.journal.progression;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import com.mojang.math.Matrix4f;
@@ -9,12 +9,12 @@ import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import javax.annotation.Nullable;
 import java.util.Iterator;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.ITextProperties;
 import net.minecraft.client.gui.Font;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import net.minecraft.client.Minecraft;
@@ -276,7 +276,7 @@ public class ScreenJournalProgressionRenderer
         final Point2D.Float pCluster = this.sizeHandler.scalePointToGui(this.parentGui, this.mousePointScaled, new Point2D.Float((float)cluster.x, (float)cluster.y));
         final float width = this.sizeHandler.scaledDistanceX((float)cluster.x, (float)cluster.maxX);
         final float height = this.sizeHandler.scaledDistanceY((float)cluster.y, (float)cluster.maxY);
-        final Rectangle r = new Rectangle(MathHelper.func_76141_d(pCluster.x), MathHelper.func_76141_d(pCluster.y), MathHelper.func_76141_d(width), MathHelper.func_76141_d(height));
+        final Rectangle r = new Rectangle(Mth.func_76141_d(pCluster.x), Mth.func_76141_d(pCluster.y), Mth.func_76141_d(width), Mth.func_76141_d(height));
         this.clusterRectMap.put(r, p);
         cluster.cloudTexture.bindTexture();
         final float scale = this.sizeHandler.getScalingFactor();
@@ -292,7 +292,7 @@ public class ScreenJournalProgressionRenderer
         }
         RenderSystem.enableBlend();
         Blending.ADDITIVEDARK.apply();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
             buf.func_227888_a_(offset, pCluster.x + 0.0f, pCluster.y + height, zLevel).func_227885_a_(br, br, br, br).func_225583_a_(0.0f, 1.0f).func_181675_d();
             buf.func_227888_a_(offset, pCluster.x + width, pCluster.y + height, zLevel).func_227885_a_(br, br, br, br).func_225583_a_(1.0f, 1.0f).func_181675_d();
@@ -319,7 +319,7 @@ public class ScreenJournalProgressionRenderer
         tex.bindTexture();
         RenderSystem.enableBlend();
         Blending.ADDITIVEDARK.apply();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
             buf.func_227888_a_(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).func_227885_a_(br, br, br, br).func_225583_a_(0.0f, 1.0f).func_181675_d();
             buf.func_227888_a_(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).func_227885_a_(br, br, br, br).func_225583_a_(1.0f, 1.0f).func_181675_d();
@@ -334,7 +334,7 @@ public class ScreenJournalProgressionRenderer
     private void drawBackground(final PoseStack renderStack, final float zLevel) {
         final float br = 0.35f;
         TexturesAS.TEX_GUI_BACKGROUND_DEFAULT.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
             buf.func_227888_a_(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).func_227885_a_(br, br, br, 1.0f).func_225583_a_(0.0f, 1.0f).func_181675_d();
             buf.func_227888_a_(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).func_227885_a_(br, br, br, 1.0f).func_225583_a_(1.0f, 1.0f).func_181675_d();
@@ -349,20 +349,20 @@ public class ScreenJournalProgressionRenderer
         Blending.OVERLAYDARK.apply();
         final float offsetX = scalePosX / 2000.0f;
         final float offsetY = scalePosY / 1000.0f;
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
-            this.drawStarOverlay((IVertexBuilder)buf, renderStack, zLevel, offsetX, offsetY, 2.0f);
-            this.drawStarOverlay((IVertexBuilder)buf, renderStack, zLevel, offsetX, offsetY, 1.5f);
-            this.drawStarOverlay((IVertexBuilder)buf, renderStack, zLevel, offsetX, offsetY, 1.0f);
-            this.drawStarOverlay((IVertexBuilder)buf, renderStack, zLevel, offsetX, offsetY, 0.75f);
-            this.drawStarOverlay((IVertexBuilder)buf, renderStack, zLevel, offsetX, offsetY, 0.5f);
-            this.drawStarOverlay((IVertexBuilder)buf, renderStack, zLevel, offsetX, offsetY, 0.3f);
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
+            this.drawStarOverlay((VertexConsumer)buf, renderStack, zLevel, offsetX, offsetY, 2.0f);
+            this.drawStarOverlay((VertexConsumer)buf, renderStack, zLevel, offsetX, offsetY, 1.5f);
+            this.drawStarOverlay((VertexConsumer)buf, renderStack, zLevel, offsetX, offsetY, 1.0f);
+            this.drawStarOverlay((VertexConsumer)buf, renderStack, zLevel, offsetX, offsetY, 0.75f);
+            this.drawStarOverlay((VertexConsumer)buf, renderStack, zLevel, offsetX, offsetY, 0.5f);
+            this.drawStarOverlay((VertexConsumer)buf, renderStack, zLevel, offsetX, offsetY, 0.3f);
             return;
         });
         RenderSystem.defaultBlendFunc();
         RenderSystem.disableBlend();
     }
     
-    private void drawStarOverlay(final IVertexBuilder buf, final PoseStack renderStack, final float zLevel, final float scalePosX, final float scalePosY, final float scaleFactor) {
+    private void drawStarOverlay(final VertexConsumer buf, final PoseStack renderStack, final float zLevel, final float scalePosX, final float scalePosY, final float scaleFactor) {
         final float scale = this.sizeHandler.getScalingFactor() / 40.0f;
         final float x = (float)this.parentGui.getGuiLeft();
         final float y = (float)this.parentGui.getGuiTop();

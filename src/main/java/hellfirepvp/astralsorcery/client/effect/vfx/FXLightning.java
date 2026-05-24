@@ -5,7 +5,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import com.mojang.math.Matrix4f;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import java.awt.Color;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
 import java.util.Iterator;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.LinkedList;
 import com.google.common.collect.Lists;
 import java.util.Random;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 
@@ -54,7 +54,7 @@ public class FXLightning extends EntityVisualFX
         final double dstLength = to.clone().subtract(this.getPosition()).length();
         float perc = 1.0f;
         if (dstLength > 7.0) {
-            perc = MathHelper.func_76133_a(dstLength / 7.0);
+            perc = Mth.func_76133_a(dstLength / 7.0);
         }
         else if (dstLength < 7.0) {
             perc = (float)Math.pow(dstLength / 7.0, 2.0);
@@ -73,7 +73,7 @@ public class FXLightning extends EntityVisualFX
         this.root.next.add(new LightningVertex(destination));
         rootVertices.add(this.root);
         final double l = directionVector.length();
-        for (int iterations = Math.min(MathHelper.func_76141_d((float)Math.round(Math.sqrt(l))), 200), i = 0; i < iterations; ++i) {
+        for (int iterations = Math.min(Mth.func_76141_d((float)Math.round(Math.sqrt(l))), 200), i = 0; i < iterations; ++i) {
             final LinkedList<LightningVertex> newRootVertices = new LinkedList<LightningVertex>();
             for (final LightningVertex sourceVertex : rootVertices) {
                 final LinkedList<LightningVertex> newNext = new LinkedList<LightningVertex>();
@@ -105,7 +105,7 @@ public class FXLightning extends EntityVisualFX
     }
     
     @Override
-    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final IVertexBuilder vb, final float pTicks) {
+    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final VertexConsumer vb, final float pTicks) {
         if (this.root == null) {
             return;
         }
@@ -115,7 +115,7 @@ public class FXLightning extends EntityVisualFX
         this.renderRec(this.root, vb, renderStack, pTicks, c.getRed() / 255.0f, c.getGreen() / 255.0f, c.getBlue() / 255.0f, alpha / 255.0f);
     }
     
-    private void renderRec(final LightningVertex root, final IVertexBuilder vb, final PoseStack renderStack, final float pTicks, final float r, final float g, final float b, final float a) {
+    private void renderRec(final LightningVertex root, final VertexConsumer vb, final PoseStack renderStack, final float pTicks, final float r, final float g, final float b, final float a) {
         final int allDepth = root.followingDepth;
         final boolean mayRenderNext = 1.0f - root.followingDepth / (float)allDepth <= this.bufRenderDepth;
         final Vector3 playerOffset = RenderingVectorUtils.getStandardTranslationRemovalVector(pTicks);
@@ -129,12 +129,12 @@ public class FXLightning extends EntityVisualFX
         }
     }
     
-    private void drawLine(final Vector3 from, final Vector3 to, final IVertexBuilder vb, final PoseStack renderStack, final float r, final float g, final float b, final float a) {
+    private void drawLine(final Vector3 from, final Vector3 to, final VertexConsumer vb, final PoseStack renderStack, final float r, final float g, final float b, final float a) {
         this.renderCurrentTextureAroundAxis(from, to, Math.toRadians(0.0), 0.03500000014901161, vb, renderStack, r, g, b, a);
         this.renderCurrentTextureAroundAxis(from, to, Math.toRadians(90.0), 0.03500000014901161, vb, renderStack, r, g, b, a);
     }
     
-    private void renderCurrentTextureAroundAxis(final Vector3 from, final Vector3 to, final double angle, final double size, final IVertexBuilder buf, final PoseStack renderStack, final float r, final float g, final float b, final float a) {
+    private void renderCurrentTextureAroundAxis(final Vector3 from, final Vector3 to, final double angle, final double size, final VertexConsumer buf, final PoseStack renderStack, final float r, final float g, final float b, final float a) {
         final Vector3 aim = to.clone().subtract(from).normalize();
         final Vector3 aimPerp = aim.clone().perpendicular().normalize();
         final Vector3 perp = aimPerp.clone().rotate(angle, aim).normalize();

@@ -6,7 +6,7 @@ import hellfirepvp.astralsorcery.common.network.play.client.PktRequestSeed;
 import java.util.Optional;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 import java.util.Map;
 

@@ -6,11 +6,11 @@ import net.minecraft.core.BlockPos;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.annotation.Nullable;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.constellation.mantle.effect.MantleEffectAevitas;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.phys.AABB;
 import java.util.Map;
-import net.minecraft.util.math.shapes.VoxelShapeSpliterator;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,8 +18,8 @@ public class CollisionManager
 {
     private static final List<CustomCollisionHandler> customHandlers;
     private static final int maxCacheSize = 20;
-    private static final LinkedList<VoxelShapeSpliterator> accessList;
-    private static final Map<VoxelShapeSpliterator, List<AABB>> instanceFlags;
+    private static final LinkedList<VoxelShape> accessList;
+    private static final Map<VoxelShape, List<AABB>> instanceFlags;
     
     public static void init() {
         register(new MantleEffectAevitas.PlayerWalkableAir());
@@ -30,7 +30,7 @@ public class CollisionManager
     }
     
     @Nullable
-    public static AABB getIteratorBoundingBoxes(final VoxelShapeSpliterator iterator, @Nullable final Entity entity) {
+    public static AABB getIteratorBoundingBoxes(final VoxelShape iterator, @Nullable final Entity entity) {
         if (!CollisionManager.instanceFlags.containsKey(iterator)) {
             final List<AABB> additionalBoundingBoxes = getAdditionalBoundingBoxes(entity);
             if (additionalBoundingBoxes.isEmpty()) {
@@ -66,7 +66,7 @@ public class CollisionManager
     
     private static void removeOldestEntry() {
         if (CollisionManager.accessList.size() >= 20) {
-            VoxelShapeSpliterator oldest;
+            VoxelShape oldest;
             try {
                 oldest = CollisionManager.accessList.removeLast();
             }
@@ -87,7 +87,7 @@ public class CollisionManager
         }
     }
     
-    private static void markActive(final VoxelShapeSpliterator it) {
+    private static void markActive(final VoxelShape it) {
         if (CollisionManager.accessList.remove(it)) {
             CollisionManager.accessList.addFirst(it);
         }
@@ -95,7 +95,7 @@ public class CollisionManager
     
     static {
         customHandlers = new ArrayList<CustomCollisionHandler>();
-        accessList = new LinkedList<VoxelShapeSpliterator>();
-        instanceFlags = new HashMap<VoxelShapeSpliterator, List<AABB>>();
+        accessList = new LinkedList<VoxelShape>();
+        instanceFlags = new HashMap<VoxelShape, List<AABB>>();
     }
 }

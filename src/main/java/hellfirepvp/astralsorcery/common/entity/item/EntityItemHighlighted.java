@@ -1,25 +1,25 @@
 package hellfirepvp.astralsorcery.common.entity.item;
 
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraft.network.IPacket;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.Pose;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.Pose;
 import javax.annotation.Nullable;
 import java.awt.Color;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.reflection.ReflectionHelper;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.entity.item.ItemEntity;
+import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.network.syncher.EntityDataAccessor;
 
 public class EntityItemHighlighted extends EntityCustomItemReplacement
 {
-    private static final DataParameter<Integer> DATA_COLOR;
+    private static final EntityDataAccessor<Integer> DATA_COLOR;
     private static final int NO_COLOR = -16777216;
     
     public EntityItemHighlighted(final EntityType<? extends ItemEntity> type, final World world) {
@@ -47,15 +47,15 @@ public class EntityItemHighlighted extends EntityCustomItemReplacement
     
     protected void func_70088_a() {
         super.func_70088_a();
-        this.func_184212_Q().func_187214_a((DataParameter)EntityItemHighlighted.DATA_COLOR, (Object)(-16777216));
+        this.func_184212_Q().func_187214_a((EntityDataAccessor)EntityItemHighlighted.DATA_COLOR, (Object)(-16777216));
     }
     
     public void applyColor(@Nullable final Color color) {
-        this.func_184212_Q().func_187227_b((DataParameter)EntityItemHighlighted.DATA_COLOR, (Object)((color == null) ? -16777216 : (color.getRGB() & 0xFFFFFF)));
+        this.func_184212_Q().func_187227_b((EntityDataAccessor)EntityItemHighlighted.DATA_COLOR, (Object)((color == null) ? -16777216 : (color.getRGB() & 0xFFFFFF)));
     }
     
     public boolean hasColor() {
-        return (int)this.func_184212_Q().func_187225_a((DataParameter)EntityItemHighlighted.DATA_COLOR) != -16777216;
+        return (int)this.func_184212_Q().func_187225_a((EntityDataAccessor)EntityItemHighlighted.DATA_COLOR) != -16777216;
     }
     
     @Nullable
@@ -63,7 +63,7 @@ public class EntityItemHighlighted extends EntityCustomItemReplacement
         if (!this.hasColor()) {
             return null;
         }
-        final int colorInt = (int)this.func_184212_Q().func_187225_a((DataParameter)EntityItemHighlighted.DATA_COLOR);
+        final int colorInt = (int)this.func_184212_Q().func_187225_a((EntityDataAccessor)EntityItemHighlighted.DATA_COLOR);
         return new Color(colorInt, false);
     }
     
@@ -84,7 +84,7 @@ public class EntityItemHighlighted extends EntityCustomItemReplacement
         }
     }
     
-    public EntitySize func_213305_a(final Pose poseIn) {
+    public EntityDimensions func_213305_a(final Pose poseIn) {
         if (!this.func_233570_aj_()) {
             return EntityType.field_200765_E.func_220334_j();
         }
@@ -96,6 +96,6 @@ public class EntityItemHighlighted extends EntityCustomItemReplacement
     }
     
     static {
-        DATA_COLOR = EntityDataManager.func_187226_a((Class)EntityItemHighlighted.class, DataSerializers.field_187192_b);
+        DATA_COLOR = SynchedEntityData.func_187226_a((Class)EntityItemHighlighted.class, EntityDataSerializers.field_187192_b);
     }
 }

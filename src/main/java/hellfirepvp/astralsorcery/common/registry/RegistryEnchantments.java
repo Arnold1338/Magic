@@ -4,7 +4,7 @@ import hellfirepvp.astralsorcery.common.enchantment.EnchantmentScorchingHeat;
 import hellfirepvp.astralsorcery.common.lib.EnchantmentsAS;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.enchantment.EnchantmentNightVision;
-import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.item.enchantment.Enchantment;
 
 public class RegistryEnchantments
 {

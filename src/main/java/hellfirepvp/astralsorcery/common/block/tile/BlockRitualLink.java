@@ -1,21 +1,21 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.level.phys.shapes.Shapes;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.tile.TileRitualLink;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesGlass;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.block.ContainerBlock;
+import net.minecraft.world.level.block.BaseEntityBlock;
 
-public class BlockRitualLink extends ContainerBlock implements CustomItemBlock
+public class BlockRitualLink extends BaseEntityBlock implements CustomItemBlock
 {
     private static final VoxelShape RITUAL_LINK;
     
@@ -23,12 +23,12 @@ public class BlockRitualLink extends ContainerBlock implements CustomItemBlock
         super(PropertiesGlass.coatedGlass().harvestTool(ToolType.PICKAXE));
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
         return BlockRitualLink.RITUAL_LINK;
     }
     
-    public BlockRenderType func_149645_b(final BlockState state) {
-        return BlockRenderType.MODEL;
+    public RenderShape func_149645_b(final BlockState state) {
+        return RenderShape.MODEL;
     }
     
     @Nullable

@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.crystal;
 
 import java.util.Objects;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.network.chat.IFormattableTextComponent;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import java.util.ArrayList;

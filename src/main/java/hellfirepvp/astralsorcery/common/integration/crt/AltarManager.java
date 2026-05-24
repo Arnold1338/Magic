@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.common.integration.crt;
 
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.item.crafting.RecipeType;
 import java.util.Iterator;
 import java.util.Map;
 import com.blamejared.crafttweaker.api.actions.IAction;
 import com.blamejared.crafttweaker.api.CraftTweakerAPI;
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.item.crafting.Recipe;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
 import net.minecraft.resources.ResourceLocation;

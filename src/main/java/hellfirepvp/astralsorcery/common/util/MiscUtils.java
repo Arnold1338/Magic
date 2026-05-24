@@ -3,19 +3,19 @@ package hellfirepvp.astralsorcery.common.util;
 import hellfirepvp.astralsorcery.common.base.Mods;
 import net.minecraftforge.common.util.FakePlayer;
 import java.util.Optional;
-import net.minecraft.world.level.chunk.ChunkSource;
+import net.minecraft.world.level.level.chunk.ChunkSource;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.util.log.LogCategory;
 import java.awt.Color;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.phys.HitResult;
 import net.minecraftforge.common.ForgeMod;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.entity.ai.attributes.Attribute;
+import net.minecraft.world.level.phys.BlockHitResult;
 import java.util.LinkedList;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.level.chunk.ChunkAccess;
 import net.minecraft.tags.TagKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.util.ITeleporter;
@@ -24,25 +24,25 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.InteractionHand;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.world.level.item.Item;
+import net.minecraft.world.level.ISeedReader;
 import net.minecraft.server.level.ServerPlayer;
 import com.google.common.collect.Lists;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraft.core.Direction;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.level.BlockEvent;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.level.material.FluidState;
+import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.level.block.FlowingFluidBlock;
+import net.minecraft.world.level.level.block.state.BlockState;
 import java.util.function.Predicate;
 import java.util.HashSet;
 import java.util.Collections;
@@ -55,15 +55,15 @@ import org.apache.logging.log4j.util.TriConsumer;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 import java.util.function.Consumer;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.GameRules;
+import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.GameRules;
 import hellfirepvp.astralsorcery.common.lib.GameRulesAS;
 import java.util.Iterator;
 import net.minecraft.util.WeightedRandom;
 import java.util.ArrayList;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.ModContainer;
 import com.google.common.collect.Iterables;
@@ -71,15 +71,15 @@ import java.util.Random;
 import java.util.Collection;
 import net.minecraftforge.common.util.BlockSnapshot;
 import java.util.List;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.ChunkPos;
+import net.minecraft.world.level.level.LevelAccessor;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 
 public class MiscUtils
 {
@@ -153,7 +153,7 @@ public class MiscUtils
         if (values.length == 0) {
             throw new IllegalArgumentException(enumClazz.getName() + " has no enum constants.");
         }
-        return values[MathHelper.func_76125_a(index, 0, values.length - 1)];
+        return values[Mth.func_76125_a(index, 0, values.length - 1)];
     }
     
     @Nullable
@@ -488,51 +488,51 @@ public class MiscUtils
     }
     
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(final Player player) {
+    public static BlockHitResult rayTraceLookBlock(final Player player) {
         return rayTraceLookBlock(player, player.func_110148_a((Attribute)ForgeMod.REACH_DISTANCE.get()).func_111126_e());
     }
     
     @Nonnull
-    public static RayTraceResult rayTraceLook(final Player player) {
+    public static HitResult rayTraceLook(final Player player) {
         return rayTraceLook(player, player.func_110148_a((Attribute)ForgeMod.REACH_DISTANCE.get()).func_111126_e());
     }
     
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(final Player player, final RayTraceContext.BlockMode blockMode, final RayTraceContext.FluidMode fluidMode) {
+    public static BlockHitResult rayTraceLookBlock(final Player player, final ClipContext.BlockMode blockMode, final ClipContext.FluidMode fluidMode) {
         return rayTraceLookBlock((Entity)player, blockMode, fluidMode, player.func_110148_a((Attribute)ForgeMod.REACH_DISTANCE.get()).func_111126_e());
     }
     
     @Nonnull
-    public static RayTraceResult rayTraceLook(final Player player, final RayTraceContext.BlockMode blockMode, final RayTraceContext.FluidMode fluidMode) {
+    public static HitResult rayTraceLook(final Player player, final ClipContext.BlockMode blockMode, final ClipContext.FluidMode fluidMode) {
         return rayTraceLook((Entity)player, blockMode, fluidMode, player.func_110148_a((Attribute)ForgeMod.REACH_DISTANCE.get()).func_111126_e());
     }
     
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(final Player player, final double reachDst) {
-        return rayTraceLookBlock((Entity)player, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.ANY, reachDst);
+    public static BlockHitResult rayTraceLookBlock(final Player player, final double reachDst) {
+        return rayTraceLookBlock((Entity)player, ClipContext.BlockMode.COLLIDER, ClipContext.FluidMode.ANY, reachDst);
     }
     
     @Nonnull
-    public static RayTraceResult rayTraceLook(final Player player, final double reachDst) {
-        return rayTraceLook((Entity)player, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.ANY, reachDst);
+    public static HitResult rayTraceLook(final Player player, final double reachDst) {
+        return rayTraceLook((Entity)player, ClipContext.BlockMode.COLLIDER, ClipContext.FluidMode.ANY, reachDst);
     }
     
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(final Entity entity, final RayTraceContext.BlockMode blockMode, final RayTraceContext.FluidMode fluidMode, final double reachDst) {
-        final RayTraceResult rtr = rayTraceLook(entity, blockMode, fluidMode, reachDst);
-        if (rtr.func_216346_c() == RayTraceResult.Type.BLOCK && rtr instanceof BlockRayTraceResult) {
-            return (BlockRayTraceResult)rtr;
+    public static BlockHitResult rayTraceLookBlock(final Entity entity, final ClipContext.BlockMode blockMode, final ClipContext.FluidMode fluidMode, final double reachDst) {
+        final HitResult rtr = rayTraceLook(entity, blockMode, fluidMode, reachDst);
+        if (rtr.func_216346_c() == HitResult.Type.BLOCK && rtr instanceof BlockHitResult) {
+            return (BlockHitResult)rtr;
         }
         return null;
     }
     
     @Nonnull
-    public static RayTraceResult rayTraceLook(final Entity entity, final RayTraceContext.BlockMode blockMode, final RayTraceContext.FluidMode fluidMode, final double reachDst) {
+    public static HitResult rayTraceLook(final Entity entity, final ClipContext.BlockMode blockMode, final ClipContext.FluidMode fluidMode, final double reachDst) {
         final Vec3 pos = new Vec3(entity.func_226277_ct_(), entity.func_226278_cu_() + entity.func_70047_e(), entity.func_226281_cx_());
         final Vec3 lookVec = entity.func_70040_Z();
         final Vec3 end = pos.func_72441_c(lookVec.field_72450_a * reachDst, lookVec.field_72448_b * reachDst, lookVec.field_72449_c * reachDst);
-        final RayTraceContext ctx = new RayTraceContext(pos, end, blockMode, fluidMode, entity);
-        return (RayTraceResult)entity.field_70170_p.func_217299_a(ctx);
+        final ClipContext ctx = new ClipContext(pos, end, blockMode, fluidMode, entity);
+        return (HitResult)entity.field_70170_p.func_217299_a(ctx);
     }
     
     public static Color calcRandomConstellationColor(final float perc) {

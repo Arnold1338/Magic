@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.effect.AltarRecipeEffect;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.ActiveSimpleAltarRecipe;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
@@ -18,12 +18,12 @@ import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 
 public class RenderAltar extends CustomTileEntityRenderer<TileAltar>
 {
-    public RenderAltar(final TileEntityRendererDispatcher tileRenderer) {
+    public RenderAltar(final BlockEntityRenderDispatcher tileRenderer) {
         super(tileRenderer);
     }
     

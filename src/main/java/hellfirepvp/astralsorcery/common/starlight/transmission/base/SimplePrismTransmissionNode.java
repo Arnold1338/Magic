@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.starlight.transmission.base;
 
-import net.minecraft.dispenser.IPosition;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.phys.Vec3;
 import hellfirepvp.astralsorcery.common.util.RaytraceAssist;
 import java.util.Objects;
 import net.minecraft.nbt.Tag;
@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.starlight.WorldNetworkHandler;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.common.starlight.network.TransmissionWorldHandler;
 import hellfirepvp.astralsorcery.common.starlight.network.StarlightTransmissionHandler;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

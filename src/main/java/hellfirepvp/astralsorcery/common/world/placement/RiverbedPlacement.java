@@ -1,21 +1,21 @@
 package hellfirepvp.astralsorcery.common.world.placement;
 
-import net.minecraft.world.gen.placement.IPlacementConfig;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.level.material.Fluid;
+import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.tags.FluidTags;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.core.Direction;
-import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.level.levelgen.Heightmap;
 import java.util.stream.Stream;
 import net.minecraft.core.BlockPos;
 import java.util.Random;
-import net.minecraft.world.gen.feature.WorldDecoratingHelper;
-import net.minecraft.world.gen.placement.NoPlacementConfig;
-import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.level.levelgen.feature.WorldDecoratingHelper;
+import net.minecraft.world.level.levelgen.placement.NoPlacementConfig;
+import net.minecraft.world.level.levelgen.placement.Placement;
 
 public class RiverbedPlacement extends Placement<NoPlacementConfig>
 {

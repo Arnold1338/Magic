@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import java.util.Iterator;
-import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.item.enchantment.Enchantment;
 import net.minecraftforge.registries.ForgeRegistries;
 import java.util.LinkedList;
 import java.util.List;

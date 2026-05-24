@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.lib;
 
-import net.minecraft.loot.LootFunctionType;
+import net.minecraft.world.level.storage.loot.LootFunctionType;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.resources.ResourceLocation;
 

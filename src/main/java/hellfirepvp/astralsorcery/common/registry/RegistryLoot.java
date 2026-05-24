@@ -1,15 +1,15 @@
 package hellfirepvp.astralsorcery.common.registry;
 
-import net.minecraft.loot.ILootSerializer;
-import net.minecraft.loot.functions.LootFunctionManager;
-import net.minecraft.loot.LootFunctionType;
+import net.minecraft.world.level.storage.loot.ILootSerializer;
+import net.minecraft.world.level.storage.loot.functions.LootFunctionManager;
+import net.minecraft.world.level.storage.loot.LootFunctionType;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.loot.CopyGatewayColor;
 import hellfirepvp.astralsorcery.common.loot.CopyConstellation;
 import hellfirepvp.astralsorcery.common.loot.CopyCrystalProperties;
 import hellfirepvp.astralsorcery.common.loot.RandomCrystalProperty;
 import hellfirepvp.astralsorcery.common.lib.LootAS;
-import net.minecraft.loot.LootFunction;
+import net.minecraft.world.level.storage.loot.LootFunction;
 import hellfirepvp.astralsorcery.common.loot.LinearLuckBonus;
 import hellfirepvp.astralsorcery.common.loot.global.LootModifierPerkVoidTrash;
 import net.minecraftforge.common.loot.IGlobalLootModifier;

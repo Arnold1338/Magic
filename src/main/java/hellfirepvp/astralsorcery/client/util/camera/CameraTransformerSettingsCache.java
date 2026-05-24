@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.client.util.camera;
 
 import net.minecraft.client.GameSettings;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.client.settings.PointOfView;
+import net.minecraft.client.options.PointOfView;
 
 public abstract class CameraTransformerSettingsCache implements ICameraTransformer
 {

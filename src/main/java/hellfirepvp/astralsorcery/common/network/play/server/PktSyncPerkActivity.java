@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.network.play.server;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.function.Function;

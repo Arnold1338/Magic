@@ -1,22 +1,22 @@
 package hellfirepvp.astralsorcery.common.util.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.level.ChunkPos;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.state.BlockState;
 import java.util.Set;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Arrays;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import net.minecraft.tags.TagKey;
 
 public class BlockPredicates

@@ -4,19 +4,19 @@ import net.minecraft.ChatFormatting;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import javax.annotation.Nonnull;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.item.DyeColor;
+import net.minecraft.network.chat.IFormattableTextComponent;
+import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.IBlockDisplayReader;
+import net.minecraft.world.level.IBlockDisplayReader;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.BlockItem;
+import net.minecraft.world.level.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.awt.Color;
 
 public class ColorUtils
@@ -26,7 +26,7 @@ public class ColorUtils
     }
     
     public static int blendColors(final int color1, final int color2, final float color1Ratio) {
-        final float ratio1 = MathHelper.func_76131_a(color1Ratio, 0.0f, 1.0f);
+        final float ratio1 = Mth.func_76131_a(color1Ratio, 0.0f, 1.0f);
         final float ratio2 = 1.0f - ratio1;
         final int a1 = (color1 & 0xFF000000) >> 24;
         final int r1 = (color1 & 0xFF0000) >> 16;
@@ -36,10 +36,10 @@ public class ColorUtils
         final int r2 = (color2 & 0xFF0000) >> 16;
         final int g2 = (color2 & 0xFF00) >> 8;
         final int b2 = color2 & 0xFF;
-        final int a3 = MathHelper.func_76125_a(Math.round(a1 * ratio1 + a2 * ratio2), 0, 255);
-        final int r3 = MathHelper.func_76125_a(Math.round(r1 * ratio1 + r2 * ratio2), 0, 255);
-        final int g3 = MathHelper.func_76125_a(Math.round(g1 * ratio1 + g2 * ratio2), 0, 255);
-        final int b3 = MathHelper.func_76125_a(Math.round(b1 * ratio1 + b2 * ratio2), 0, 255);
+        final int a3 = Mth.func_76125_a(Math.round(a1 * ratio1 + a2 * ratio2), 0, 255);
+        final int r3 = Mth.func_76125_a(Math.round(r1 * ratio1 + r2 * ratio2), 0, 255);
+        final int g3 = Mth.func_76125_a(Math.round(g1 * ratio1 + g2 * ratio2), 0, 255);
+        final int b3 = Mth.func_76125_a(Math.round(b1 * ratio1 + b2 * ratio2), 0, 255);
         return a3 << 24 | r3 << 16 | g3 << 8 | b3;
     }
     

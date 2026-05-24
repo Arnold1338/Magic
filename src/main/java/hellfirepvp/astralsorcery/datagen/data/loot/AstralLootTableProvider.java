@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.datagen.data.loot;
 
-import net.minecraft.loot.LootTableManager;
-import net.minecraft.loot.ValidationTracker;
+import net.minecraft.world.level.storage.loot.LootTableManager;
+import net.minecraft.world.level.storage.loot.ValidationTracker;
 import java.util.Map;
 import com.google.common.collect.Lists;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.loot.LootParameterSet;
-import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.LootParameterSet;
+import net.minecraft.world.level.level.storage.loot.LootTable;
 import net.minecraft.resources.ResourceLocation;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;

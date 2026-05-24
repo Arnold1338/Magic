@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.render;
 
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -27,7 +27,7 @@ public interface IDrawRenderTypeBuffer extends MultiBufferSource
                 drawBuffer.func_228462_a_(type);
             }
             
-            public IVertexBuilder getBuffer(final RenderType renderType) {
+            public VertexConsumer getBuffer(final RenderType renderType) {
                 return drawBuffer.getBuffer(renderType);
             }
         };

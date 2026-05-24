@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.client.event;
 import java.util.EnumSet;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopEffectHelper;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.data.sync.client.ClientTimeFreezeEffects;
 import hellfirepvp.astralsorcery.common.data.sync.SyncDataHolder;
 import net.minecraft.client.Minecraft;

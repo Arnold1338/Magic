@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.item;
 
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 
 public class ItemAquamarine extends Item
 {

@@ -2,10 +2,10 @@ package hellfirepvp.astralsorcery.common.block.base.template;
 
 import javax.annotation.Nullable;
 import net.minecraftforge.common.ToolAction;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.block.StairsBlock;
+import net.minecraft.world.level.block.StairsBlock;
 
 public class BlockStairsTemplate extends StairsBlock implements CustomItemBlock
 {

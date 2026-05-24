@@ -1,53 +1,53 @@
 package hellfirepvp.astralsorcery.common.util.entity;
 
-import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.level.entity.item.ItemEntity;
 import java.util.Iterator;
 import java.util.function.Function;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 import com.google.common.base.Predicate;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.phys.AABB;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.level.storage.loot.LootTable;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.level.storage.loot.LootContext;
 import java.util.Collections;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.damagesource.DamageSource;
 import net.minecraftforge.eventbus.api.Event;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.spawner.WorldEntitySpawner;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.gen.feature.structure.StructureManager;
-import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.spawner.WorldEntitySpawner;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.structure.StructureManager;
+import net.minecraft.world.level.level.biome.Biome;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.spawner.AbstractSpawner;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.level.IServerWorld;
+import net.minecraft.world.level.spawner.AbstractSpawner;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.entity.Mob;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.world.level.level.BlockGetter;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.biome.MobSpawnInfo;
+import net.minecraft.world.level.biome.MobSpawnInfo;
 import java.util.List;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.LevelAccessor;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.EntityClassification;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import java.util.function.Consumer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.function.Supplier;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.effect.MobEffectInstance;
+import net.minecraft.world.level.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -55,7 +55,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import net.minecraft.server.MinecraftServer;
 import javax.annotation.Nullable;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.fml.LogicalSide;
 import java.util.UUID;
 import java.util.Random;
@@ -117,10 +117,10 @@ public class EntityUtils
     }
     
     @Nullable
-    public static LivingEntity performWorldSpawningAt(final ServerLevel world, final BlockPos pos, final EntityClassification category, final SpawnReason reason, final boolean ignoreWeighting, final int ignoreSpawnCheckFlags) {
+    public static LivingEntity performWorldSpawningAt(final ServerLevel world, final BlockPos pos, final MobCategory category, final MobSpawnType reason, final boolean ignoreWeighting, final int ignoreSpawnCheckFlags) {
         final Biome b = world.func_226691_t_(pos);
         final StructureManager mgr = world.func_241112_a_();
-        List<MobSpawnInfo.Spawners> spawnList = world.func_72863_F().func_201711_g().func_230353_a_(b, mgr, EntityClassification.MONSTER, pos);
+        List<MobSpawnInfo.Spawners> spawnList = world.func_72863_F().func_201711_g().func_230353_a_(b, mgr, MobCategory.MONSTER, pos);
         spawnList = ForgeEventFactory.getPotentialSpawns((IWorld)world, category, pos, (List)spawnList);
         spawnList.removeIf(s -> !s.field_242588_c.func_200720_b());
         MobSpawnInfo.Spawners entry;
@@ -152,7 +152,7 @@ public class EntityUtils
                     return null;
                 }
                 if (!ForgeEventFactory.doSpecialSpawn(entity, (World)world, x, y, z, (AbstractSpawner)null, reason)) {
-                    entity.func_213386_a((IServerWorld)world, world.func_175649_E(pos), reason, (ILivingEntityData)null, (CompoundTag)null);
+                    entity.func_213386_a((IServerWorld)world, world.func_175649_E(pos), reason, (SpawnGroupData)null, (CompoundTag)null);
                 }
                 world.func_242417_l((Entity)entity);
                 return (LivingEntity)entity;
@@ -161,16 +161,16 @@ public class EntityUtils
         return null;
     }
     
-    public static boolean canEntitySpawnHere(final ServerLevel world, final BlockPos at, final EntityType<? extends Entity> type, final SpawnReason spawnReason, final int ignoreCheckFlags, @Nullable final Consumer<Entity> preCheckEntity) {
-        if (type.func_220339_d() == EntityClassification.MISC || !type.func_200720_b() || !world.func_175723_af().func_177746_a(at)) {
+    public static boolean canEntitySpawnHere(final ServerLevel world, final BlockPos at, final EntityType<? extends Entity> type, final MobSpawnType spawnReason, final int ignoreCheckFlags, @Nullable final Consumer<Entity> preCheckEntity) {
+        if (type.func_220339_d() == MobCategory.MISC || !type.func_200720_b() || !world.func_175723_af().func_177746_a(at)) {
             return false;
         }
         if (!SpawnConditionFlags.isSet(ignoreCheckFlags, 1)) {
-            final EntitySpawnPlacementRegistry.PlacementType placementType = EntitySpawnPlacementRegistry.func_209344_a((EntityType)type);
+            final SpawnPlacements.PlacementType placementType = SpawnPlacements.func_209344_a((EntityType)type);
             if (!WorldEntitySpawner.canSpawnAtBody(placementType, (IWorldReader)world, at, (EntityType)type)) {
                 return false;
             }
-            if (!EntitySpawnPlacementRegistry.func_223515_a((EntityType)type, (IServerWorld)world, spawnReason, at, EntityUtils.rand)) {
+            if (!SpawnPlacements.func_223515_a((EntityType)type, (IServerWorld)world, spawnReason, at, EntityUtils.rand)) {
                 return false;
             }
         }

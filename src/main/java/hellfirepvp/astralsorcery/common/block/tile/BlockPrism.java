@@ -1,43 +1,43 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.block.BlockRenderType;
+import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.IBlockDisplayReader;
+import net.minecraft.world.level.IBlockDisplayReader;
 import javax.annotation.Nullable;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.state.StateContainer;
+import net.minecraft.world.item.BlockItemUseContext;
+import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.state.StateContainer;
 import hellfirepvp.astralsorcery.common.item.lens.LensColorType;
 import net.minecraft.core.Vec3i;
 import net.minecraft.sounds.SoundEvent;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.level.InteractionHand;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TilePrism;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.item.block.ItemBlockPrism;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.state.Property;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.item.BlockItem;
+import net.minecraft.world.level.block.state.Property;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesGlass;
-import net.minecraft.state.BooleanProperty;
+import net.minecraft.world.level.block.state.BooleanProperty;
 import net.minecraft.core.Direction;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.block.state.EnumProperty;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.BlockDynamicColor;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.astralsorcery.common.block.base.BlockStarlightNetwork;
@@ -72,7 +72,7 @@ public class BlockPrism extends BlockStarlightNetwork implements CustomItemBlock
         super.func_176208_a(world, pos, state, player);
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockRayTraceResult hit) {
+    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
         if (!world.func_201670_d() && player.func_225608_bj_()) {
             final TilePrism lens = MiscUtils.getTileAt((IBlockReader)world, pos, TilePrism.class, true);
             if (lens != null && lens.getColorType() != null) {
@@ -125,7 +125,7 @@ public class BlockPrism extends BlockStarlightNetwork implements CustomItemBlock
         return -1;
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
         switch ((Direction)state.getValue((Property)BlockPrism.PLACED_AGAINST)) {
             case UP: {
                 return BlockPrism.PRISM_UP;
@@ -152,8 +152,8 @@ public class BlockPrism extends BlockStarlightNetwork implements CustomItemBlock
         return false;
     }
     
-    public BlockRenderType func_149645_b(final BlockState state) {
-        return BlockRenderType.MODEL;
+    public RenderShape func_149645_b(final BlockState state) {
+        return RenderShape.MODEL;
     }
     
     @Nullable

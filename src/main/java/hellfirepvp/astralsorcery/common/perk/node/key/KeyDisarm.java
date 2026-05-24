@@ -2,19 +2,19 @@ package hellfirepvp.astralsorcery.common.perk.node.key;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.level.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -45,7 +45,7 @@ public class KeyDisarm extends KeyPerk
             final PlayerProgress prog = ResearchHelper.getProgress(player, side);
             if (prog.getPerkData().hasPerkEffect(this)) {
                 final float chance = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT, ((Double)KeyDisarm.CONFIG.dropChance.get()).floatValue());
-                final float currentChance = MathHelper.func_76131_a(chance, 0.0f, 1.0f);
+                final float currentChance = Mth.func_76131_a(chance, 0.0f, 1.0f);
                 for (final EquipmentSlot slot : EquipmentSlot.values()) {
                     if (KeyDisarm.rand.nextFloat() < currentChance) {
                         final LivingEntity attacked = event.getEntityLiving();

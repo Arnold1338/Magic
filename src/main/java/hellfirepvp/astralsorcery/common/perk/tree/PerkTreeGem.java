@@ -4,14 +4,14 @@ import javax.annotation.Nullable;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.util.draw.BufferContext;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import java.awt.geom.Rectangle2D;
 import hellfirepvp.astralsorcery.client.screen.journal.perk.BatchPerkContext;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -70,7 +70,7 @@ public class PerkTreeGem<T extends AbstractPerk & GemSocketPerk> extends PerkTre
             haloSize *= 1.5;
         }
         final Tuple<Float, Float> frameUV = tex.getUVOffset(spriteOffsetTick);
-        RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, x - haloSize, y - haloSize, zLevel, haloSize * 2.0f, haloSize * 2.0f).color(1.0f, 1.0f, 1.0f, 0.85f).tex((float)frameUV.func_76341_a(), (float)frameUV.func_76340_b(), tex.getULength(), tex.getVLength()).draw();
+        RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, x - haloSize, y - haloSize, zLevel, haloSize * 2.0f, haloSize * 2.0f).color(1.0f, 1.0f, 1.0f, 0.85f).tex((float)frameUV.func_76341_a(), (float)frameUV.func_76340_b(), tex.getULength(), tex.getVLength()).draw();
         super.renderPerkAtBatch(drawCtx, renderStack, status, spriteOffsetTick, pTicks, x, y, zLevel, scale);
         final float actualSize = this.getRenderSize() * scale;
         return new Rectangle2D.Float(-actualSize, -actualSize, actualSize * 2.0f, actualSize * 2.0f);

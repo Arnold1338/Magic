@@ -4,7 +4,7 @@ import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.starlight.transmission.TransmissionNetworkHelper;
 import hellfirepvp.astralsorcery.common.starlight.WorldNetworkHandler;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.level.block.entity.BlockEntityType;
 import java.util.Random;
 import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissionNode;
 

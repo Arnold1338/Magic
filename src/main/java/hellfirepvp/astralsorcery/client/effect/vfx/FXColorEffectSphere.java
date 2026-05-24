@@ -4,13 +4,13 @@ import java.util.Iterator;
 import com.mojang.math.Matrix4f;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.client.effect.function.VFXAlphaFunction;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.LinkedList;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.util.SphereBuilder;
@@ -37,8 +37,8 @@ public class FXColorEffectSphere extends EntityVisualFX
     public FXColorEffectSphere setupSphere(final Vector3 axis, final float scale, int fractionsSplit, int fractionsCircle) {
         this.setScaleMultiplier(scale);
         final Vector3 actAxis = axis.clone().normalize().multiply(scale);
-        fractionsSplit = MathHelper.func_76125_a(fractionsSplit, 2, Integer.MAX_VALUE);
-        fractionsCircle = MathHelper.func_76125_a(fractionsCircle, 3, Integer.MAX_VALUE);
+        fractionsSplit = Mth.func_76125_a(fractionsSplit, 2, Integer.MAX_VALUE);
+        fractionsCircle = Mth.func_76125_a(fractionsCircle, 3, Integer.MAX_VALUE);
         this.sphereFaces = SphereBuilder.buildFaces(actAxis, fractionsSplit, fractionsCircle);
         return this;
     }
@@ -54,7 +54,7 @@ public class FXColorEffectSphere extends EntityVisualFX
                 final Vector3 plVec = Vector3.atEntityCenter(rView);
                 final double dst = plVec.distance(this.getRenderPosition(pTicks)) - 1.2;
                 alpha *= (float)(1.0 - dst / this.alphaFadeMaxDist);
-                alpha = MathHelper.func_76131_a(alpha, 0.0f, 1.0f);
+                alpha = Mth.func_76131_a(alpha, 0.0f, 1.0f);
                 return alpha;
             });
         }
@@ -70,7 +70,7 @@ public class FXColorEffectSphere extends EntityVisualFX
     }
     
     @Override
-    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final IVertexBuilder vb, final float pTicks) {
+    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final VertexConsumer vb, final float pTicks) {
         final int alpha = this.getAlpha(pTicks);
         if (this.removeIfInvisible && alpha <= 0) {
             this.requestRemoval();

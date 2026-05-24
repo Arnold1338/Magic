@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.util;
 
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 
 public class EffectIncrementer
 {
@@ -19,7 +19,7 @@ public class EffectIncrementer
         else {
             --this.current;
         }
-        this.current = MathHelper.func_76125_a(this.current, 0, this.cap);
+        this.current = Mth.func_76125_a(this.current, 0, this.cap);
     }
     
     public int get() {

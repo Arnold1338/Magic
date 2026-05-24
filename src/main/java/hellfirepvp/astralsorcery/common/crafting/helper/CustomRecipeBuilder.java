@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.crafting.helper;
 
-import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.world.item.crafting.IRecipeSerializer;
 import org.apache.logging.log4j.Level;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import com.google.gson.JsonObject;
@@ -13,7 +13,7 @@ import net.minecraft.data.IFinishedRecipe;
 import java.util.function.Consumer;
 import net.minecraft.resources.ResourceLocation;
 import java.util.Set;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.item.crafting.RecipeType;
 import java.util.Map;
 
 public abstract class CustomRecipeBuilder<R extends CustomMatcherRecipe>

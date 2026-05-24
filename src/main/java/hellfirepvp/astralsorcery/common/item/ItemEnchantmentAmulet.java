@@ -13,23 +13,23 @@ import java.util.Optional;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.common.enchantment.amulet.AmuletRandomizeHelper;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Iterator;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import hellfirepvp.astralsorcery.common.enchantment.amulet.AmuletEnchantment;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import java.util.Random;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemDynamicColor;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 
 public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor
 {
@@ -40,7 +40,7 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final ITooltipFlag flagIn) {
+    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         super.func_77624_a(stack, worldIn, (List)tooltip, flagIn);
         final List<AmuletEnchantment> enchantments = getAmuletEnchantments(stack);
         for (final AmuletEnchantment ench : enchantments) {

@@ -3,17 +3,17 @@ package hellfirepvp.astralsorcery.common.item.block;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import javax.annotation.Nullable;
-import net.minecraft.state.Property;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.world.level.block.state.Property;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.item.BlockItemUseContext;
 import java.util.Iterator;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.block.tile.BlockGemCrystalCluster;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.level.item.CreativeModeTab;
+import net.minecraft.world.level.item.Item;
+import net.minecraft.world.level.level.block.Block;
 
 public class ItemBlockGemCrystalCluster extends ItemBlockCustom
 {

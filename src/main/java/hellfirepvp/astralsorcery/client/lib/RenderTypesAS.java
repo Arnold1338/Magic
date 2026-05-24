@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.client.lib;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 
 public class RenderTypesAS
 {
@@ -60,6 +60,6 @@ public class RenderTypesAS
     public static RenderType GUI_MISC_INFO_STAR;
     
     static {
-        RenderTypesAS.POSITION_COLOR_TEX_NORMAL = new VertexFormat(ImmutableList.of((Object)DefaultVertexFormats.field_181713_m, (Object)DefaultVertexFormats.field_181714_n, (Object)DefaultVertexFormats.field_181715_o, (Object)DefaultVertexFormats.field_181717_q));
+        RenderTypesAS.POSITION_COLOR_TEX_NORMAL = new VertexFormat(ImmutableList.of((Object)DefaultVertexFormat.field_181713_m, (Object)DefaultVertexFormat.field_181714_n, (Object)DefaultVertexFormat.field_181715_o, (Object)DefaultVertexFormat.field_181717_q));
     }
 }

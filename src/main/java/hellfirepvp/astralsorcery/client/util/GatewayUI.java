@@ -6,7 +6,7 @@ import java.util.Collections;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.util.object.ObjectReference;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.world.GatewayCache;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.LogicalSide;
@@ -23,7 +23,7 @@ import java.util.UUID;
 import java.util.Map;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 
 public class GatewayUI

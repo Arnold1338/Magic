@@ -12,18 +12,18 @@ import java.util.Locale;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.network.chat.Component;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import java.util.Iterator;
 import net.minecraft.client.gui.Font;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
-import net.minecraft.util.IReorderingProcessor;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.network.chat.ITextProperties;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -156,7 +156,7 @@ public class ScreenJournalProgression extends ScreenJournal
     private void renderProgressView(final PoseStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
         final double guiFactor = Minecraft.func_71410_x().func_228018_at_().func_198100_s();
         GL11.glEnable(3089);
-        GL11.glScissor(MathHelper.func_76128_c((this.guiLeft + 27) * guiFactor), MathHelper.func_76128_c((this.guiTop + 27) * guiFactor), MathHelper.func_76128_c((this.guiWidth - 54) * guiFactor), MathHelper.func_76128_c((this.guiHeight - 54) * guiFactor));
+        GL11.glScissor(Mth.func_76128_c((this.guiLeft + 27) * guiFactor), Mth.func_76128_c((this.guiTop + 27) * guiFactor), Mth.func_76128_c((this.guiWidth - 54) * guiFactor), Mth.func_76128_c((this.guiHeight - 54) * guiFactor));
         ScreenJournalProgression.progressionRenderer.drawProgressionPart(renderStack, (float)this.getGuiZLevel(), mouseX, mouseY);
         GL11.glDisable(3089);
         RenderSystem.disableDepthTest();
@@ -181,9 +181,9 @@ public class ScreenJournalProgression extends ScreenJournal
         List<ResearchNode> entries = this.searchResultPageIndex.getOrDefault(this.searchPageOffset, new ArrayList<ResearchNode>());
         for (final ResearchNode node : entries) {
             final int startOffsetY = offsetY;
-            final List<IReorderingProcessor> nodeTitle = fr.func_238425_b_((ITextProperties)node.getName(), 170);
+            final List<FormattedCharSequence> nodeTitle = fr.func_238425_b_((ITextProperties)node.getName(), 170);
             float maxLength = 0.0f;
-            for (final IReorderingProcessor line : nodeTitle) {
+            for (final FormattedCharSequence line : nodeTitle) {
                 renderStack.func_227860_a_();
                 renderStack.func_227861_a_((double)offsetX, (double)offsetY, (double)this.getGuiZLevel());
                 final float length = RenderingDrawUtils.renderStringAt(line, renderStack, fr, 13684944, false);
@@ -207,9 +207,9 @@ public class ScreenJournalProgression extends ScreenJournal
         entries = this.searchResultPageIndex.getOrDefault(this.searchPageOffset + 1, new ArrayList<ResearchNode>());
         for (final ResearchNode node : entries) {
             final int startOffsetY = offsetY;
-            final List<IReorderingProcessor> nodeTitle = fr.func_238425_b_((ITextProperties)node.getName(), 170);
+            final List<FormattedCharSequence> nodeTitle = fr.func_238425_b_((ITextProperties)node.getName(), 170);
             float maxLength = 0.0f;
-            for (final IReorderingProcessor line : nodeTitle) {
+            for (final FormattedCharSequence line : nodeTitle) {
                 renderStack.func_227860_a_();
                 renderStack.func_227861_a_((double)offsetX, (double)offsetY, (double)this.getGuiZLevel());
                 final float length = RenderingDrawUtils.renderStringAt(line, renderStack, fr, 13684944, false);
@@ -238,7 +238,7 @@ public class ScreenJournalProgression extends ScreenJournal
         TexturesAS.TEX_GUI_TEXT_FIELD.bindTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, (float)(this.guiLeft + 300), (float)(this.guiTop + 16), (float)this.getGuiZLevel(), 88.5f, 15.0f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.guiLeft + 300), (float)(this.guiTop + 16), (float)this.getGuiZLevel(), 88.5f, 15.0f).draw());
         RenderSystem.disableBlend();
         String text = this.searchTextEntry.getText();
         int length = this.field_230712_o_.func_78256_a(text);
@@ -283,7 +283,7 @@ public class ScreenJournalProgression extends ScreenJournal
             }
             renderStack.func_227861_a_((double)(-(width / 2.0f)), (double)(-(height / 2.0f)), 0.0);
             TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
+            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
             renderStack.func_227865_b_();
         }
         final int nextDoublePageIndex = this.searchPageOffset * 2 + 2;
@@ -306,7 +306,7 @@ public class ScreenJournalProgression extends ScreenJournal
             }
             renderStack.func_227861_a_((double)(-(width2 / 2.0f)), (double)(-(height2 / 2.0f)), 0.0);
             TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
+            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
             renderStack.func_227865_b_();
         }
     }

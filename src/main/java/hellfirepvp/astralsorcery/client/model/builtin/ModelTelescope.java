@@ -2,11 +2,11 @@ package hellfirepvp.astralsorcery.client.model.builtin;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.model.Model;
+import net.minecraft.client.resources.model.Model;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
-import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.resources.model.ModelRenderer;
 
 public class ModelTelescope extends CustomModel
 {
@@ -48,7 +48,7 @@ public class ModelTelescope extends CustomModel
         this.mountpiece.func_78792_a(this.mountpiece_1);
     }
     
-    public void func_225598_a_(final PoseStack matrixStackIn, final IVertexBuilder bufferIn, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha) {
+    public void func_225598_a_(final PoseStack matrixStackIn, final VertexConsumer bufferIn, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha) {
         this.mountpiece.func_228309_a_(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         this.opticalTube.func_228309_a_(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
     }

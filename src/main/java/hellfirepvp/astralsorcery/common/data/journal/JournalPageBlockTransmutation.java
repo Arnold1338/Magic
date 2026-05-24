@@ -1,15 +1,15 @@
 package hellfirepvp.astralsorcery.common.data.journal;
 
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.item.crafting.Recipe;
 import hellfirepvp.astralsorcery.client.screen.journal.page.RenderPageText;
 import hellfirepvp.astralsorcery.client.screen.journal.page.RenderPageBlockTransmutation;
 import hellfirepvp.astralsorcery.client.screen.journal.page.RenderablePage;
 import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
-import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.item.crafting.RecipeManager;
+import net.minecraft.world.level.item.crafting.RecipeType;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.util.RecipeHelper;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.function.Predicate;
 import hellfirepvp.astralsorcery.common.crafting.recipe.BlockTransmutation;
 import java.util.function.Supplier;

@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.starlight.network.handler;
 
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import java.util.HashMap;
@@ -21,13 +21,13 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.crafting.recipe.BlockTransmutation;
 import java.util.Random;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.LevelAccessor;
 import hellfirepvp.astralsorcery.common.crafting.recipe.BlockTransmutationContext;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.util.block.WorldBlockPos;
 import java.util.Map;
 import hellfirepvp.astralsorcery.common.starlight.network.StarlightNetworkRegistry;

@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
 import javax.annotation.Nullable;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.block.BlockRenderType;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
 import net.minecraftforge.items.IItemHandler;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
@@ -11,24 +11,24 @@ import hellfirepvp.astralsorcery.common.container.factory.ContainerAltarRadiance
 import hellfirepvp.astralsorcery.common.container.factory.ContainerAltarConstellationProvider;
 import hellfirepvp.astralsorcery.common.container.factory.ContainerAltarAttunementProvider;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.data.research.ProgressionTier;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.container.factory.ContainerAltarDiscoveryProvider;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.level.InteractionHand;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMarble;
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
@@ -48,7 +48,7 @@ public abstract class BlockAltar extends BlockStarlightNetwork implements Custom
         return this.type;
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockRayTraceResult hit) {
+    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
         if (!world.func_201670_d() && player instanceof ServerPlayer) {
             final TileAltar altar = MiscUtils.getTileAt((IBlockReader)world, pos, TileAltar.class, true);
             if (altar != null) {
@@ -112,8 +112,8 @@ public abstract class BlockAltar extends BlockStarlightNetwork implements Custom
         return false;
     }
     
-    public BlockRenderType func_149645_b(final BlockState state) {
-        return BlockRenderType.MODEL;
+    public RenderShape func_149645_b(final BlockState state) {
+        return RenderShape.MODEL;
     }
     
     @Nullable

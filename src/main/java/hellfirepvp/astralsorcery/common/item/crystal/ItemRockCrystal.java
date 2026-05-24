@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.item.crystal;
 
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 
 public class ItemRockCrystal extends ItemCrystalBase
 {

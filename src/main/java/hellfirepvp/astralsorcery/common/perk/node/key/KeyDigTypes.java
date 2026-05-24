@@ -1,20 +1,20 @@
 package hellfirepvp.astralsorcery.common.perk.node.key;
 
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.level.block.Blocks;
 import java.util.function.Supplier;
 import hellfirepvp.astralsorcery.common.event.EventFlags;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.IEventBus;

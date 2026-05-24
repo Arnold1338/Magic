@@ -9,17 +9,17 @@ import java.util.Map;
 import java.awt.Rectangle;
 import net.minecraft.network.chat.Component;
 import com.google.common.collect.Maps;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.ITextProperties;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
-import net.minecraft.util.IReorderingProcessor;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Iterator;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import java.util.Comparator;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.LogicalSide;
@@ -89,13 +89,13 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
     
     private void drawHeader(final PoseStack renderStack) {
         final ITextProperties title = (ITextProperties)new Component("perk.reader.astralsorcery.gui");
-        final List<IReorderingProcessor> lines = this.field_230712_o_.func_238425_b_(title, MathHelper.func_76141_d(135.7143f));
+        final List<FormattedCharSequence> lines = this.field_230712_o_.func_238425_b_(title, Mth.func_76141_d(135.7143f));
         final int step = 14;
         final float offsetTop = this.guiTop + 15 - lines.size() * step / 2.0f;
         renderStack.func_227860_a_();
         renderStack.func_227861_a_(0.0, (double)offsetTop, 0.0);
         for (int i = 0; i < lines.size(); ++i) {
-            final IReorderingProcessor line = lines.get(i);
+            final FormattedCharSequence line = lines.get(i);
             final float offsetLeft = this.field_230708_k_ / 2.0f - this.field_230712_o_.func_243245_a(line) * 1.4f / 2.0f;
             renderStack.func_227860_a_();
             renderStack.func_227861_a_((double)offsetLeft, (double)(i * step), 0.0);
@@ -116,9 +116,9 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
         int line = 0;
         for (final PerkStatistic stat : this.statistics) {
             final ITextProperties statName = (ITextProperties)new Component(stat.getUnlocPerkTypeName());
-            final List<IReorderingProcessor> statistics = this.field_230712_o_.func_238425_b_(statName, MathHelper.func_76141_d(126.666664f));
+            final List<FormattedCharSequence> statistics = this.field_230712_o_.func_238425_b_(statName, Mth.func_76141_d(126.666664f));
             for (int i = 0; i < statistics.size(); ++i) {
-                final IReorderingProcessor statistic = statistics.get(i);
+                final FormattedCharSequence statistic = statistics.get(i);
                 int drawX = offsetX;
                 if (i > 0) {
                     drawX += 10;

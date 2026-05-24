@@ -2,12 +2,12 @@ package hellfirepvp.astralsorcery.common.perk.type;
 
 import java.util.Iterator;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantment;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.event.DynamicEnchantmentEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.IEventBus;

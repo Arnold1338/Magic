@@ -16,16 +16,16 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import hellfirepvp.astralsorcery.common.capability.ChunkFluidEntry;
 import com.google.common.collect.Lists;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import javax.annotation.Nonnull;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.level.InteractionResult;
 import hellfirepvp.astralsorcery.client.util.AreaOfInfluencePreview;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.base.TileAreaOfInfluence;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.InteractionHand;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
@@ -37,36 +37,36 @@ import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
-import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.level.chunk.ChunkAccess;
 import net.minecraftforge.common.capabilities.Capability;
 import hellfirepvp.astralsorcery.common.lib.CapabilitiesAS;
-import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.level.chunk.LevelChunk;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.level.levelgen.Heightmap;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.entity.Entity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Iterator;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.level.item.CreativeModeTab;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.item.base.OverrideInteractItem;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 
 public class ItemResonator extends Item implements OverrideInteractItem
 {
@@ -86,7 +86,7 @@ public class ItemResonator extends Item implements OverrideInteractItem
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> tooltip, final ITooltipFlag extended) {
+    public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> tooltip, final TooltipFlag extended) {
         final ResonatorUpgrade current = getCurrentUpgrade((Player)Minecraft.func_71410_x().field_71439_g, stack);
         for (final ResonatorUpgrade upgrade : getUpgrades(stack)) {
             final ChatFormatting color = upgrade.equals(current) ? ChatFormatting.GOLD : ChatFormatting.BLUE;
@@ -247,7 +247,7 @@ public class ItemResonator extends Item implements OverrideInteractItem
         }
         final CompoundTag cmp = NBTHelper.getPersistentData(stack);
         final int current = cmp.getInt("selected_upgrade");
-        final ResonatorUpgrade upgrade = ResonatorUpgrade.values()[MathHelper.func_76125_a(current, 0, ResonatorUpgrade.values().length - 1)];
+        final ResonatorUpgrade upgrade = ResonatorUpgrade.values()[Mth.func_76125_a(current, 0, ResonatorUpgrade.values().length - 1)];
         if (viewing != null && !upgrade.canSwitchTo(viewing, stack)) {
             return ResonatorUpgrade.STARLIGHT;
         }

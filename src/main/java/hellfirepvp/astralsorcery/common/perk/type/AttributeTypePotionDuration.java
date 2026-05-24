@@ -1,13 +1,13 @@
 package hellfirepvp.astralsorcery.common.perk.type;
 
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.potion.EffectType;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.effect.EffectType;
+import net.minecraft.world.level.effect.MobEffectInstance;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -44,7 +44,7 @@ public class AttributeTypePotionDuration extends PerkAttributeType
         newDuration = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.SERVER).modifyValue(player, ResearchHelper.getProgress(player, LogicalSide.SERVER), this, newDuration);
         newDuration = AttributeEvent.postProcessModded(player, this, newDuration);
         if (newSetEffect.func_76459_b() < newDuration) {
-            newSetEffect.field_76460_b = MathHelper.func_76141_d(newDuration);
+            newSetEffect.field_76460_b = Mth.func_76141_d(newDuration);
         }
     }
 }

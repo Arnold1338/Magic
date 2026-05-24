@@ -2,26 +2,26 @@ package hellfirepvp.astralsorcery.common.util.time;
 
 import javax.annotation.Nonnull;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.entity.boss.dragon.phase.IPhase;
-import net.minecraft.entity.boss.dragon.phase.PhaseType;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.entity.boss.dragon.phase.IPhase;
+import net.minecraft.world.entity.boss.dragon.phase.PhaseType;
+import net.minecraft.world.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.level.BlockGetter;
 import java.util.Iterator;
-import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.level.chunk.LevelChunk;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.data.config.registry.TileAccelerationBlacklistRegistry;
 import java.util.Map;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.LinkedList;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import java.util.List;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.core.BlockPos;
 
 public class TimeStopZone
@@ -49,10 +49,10 @@ public class TimeStopZone
             return;
         }
         --this.ticksToLive;
-        final int minX = MathHelper.func_76128_c((this.offset.getX() - this.range) / 16.0);
-        final int maxX = MathHelper.func_76128_c((this.offset.getX() + this.range) / 16.0);
-        final int minZ = MathHelper.func_76128_c((this.offset.getZ() - this.range) / 16.0);
-        final int maxZ = MathHelper.func_76128_c((this.offset.getZ() + this.range) / 16.0);
+        final int minX = Mth.func_76128_c((this.offset.getX() - this.range) / 16.0);
+        final int maxX = Mth.func_76128_c((this.offset.getX() + this.range) / 16.0);
+        final int minZ = Mth.func_76128_c((this.offset.getZ() - this.range) / 16.0);
+        final int maxZ = Mth.func_76128_c((this.offset.getZ() + this.range) / 16.0);
         for (int xx = minX; xx <= maxX; ++xx) {
             for (int zz = minZ; zz <= maxZ; ++zz) {
                 final Chunk ch = this.world.func_212866_a_(xx, zz);

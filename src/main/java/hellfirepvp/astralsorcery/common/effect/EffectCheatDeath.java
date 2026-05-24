@@ -3,20 +3,20 @@ package hellfirepvp.astralsorcery.common.effect;
 import hellfirepvp.astralsorcery.client.resource.AssetLoader;
 import hellfirepvp.astralsorcery.client.resource.query.SpriteQuery;
 import java.util.Iterator;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.effect.MobEffectInstance;
+import net.minecraft.world.level.effect.MobEffects;
+import net.minecraft.world.level.effect.MobEffect;
 import hellfirepvp.astralsorcery.common.lib.EffectsAS;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import java.util.ArrayList;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.EffectType;
 
 public class EffectCheatDeath extends EffectCustomTexture
 {

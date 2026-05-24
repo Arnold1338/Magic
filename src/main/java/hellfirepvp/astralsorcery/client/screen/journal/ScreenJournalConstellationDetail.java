@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.screen.journal;
 
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.sounds.SoundEvent;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
@@ -11,7 +11,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import java.util.Random;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.util.Blending;
@@ -28,11 +28,11 @@ import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import java.util.Collection;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.ITextProperties;
 import net.minecraft.network.chat.Component;
 import java.util.LinkedList;
 import net.minecraft.network.chat.Component;
@@ -44,7 +44,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.client.Minecraft;
 import java.util.ArrayList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.IReorderingProcessor;
+import net.minecraft.util.FormattedCharSequence;
 import java.awt.Rectangle;
 import hellfirepvp.astralsorcery.client.screen.journal.page.RenderablePage;
 import hellfirepvp.astralsorcery.common.base.MoonPhase;
@@ -64,10 +64,10 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     private Rectangle rectBack;
     private Rectangle rectNext;
     private Rectangle rectPrev;
-    private final List<IReorderingProcessor> locTextMain;
-    private final List<IReorderingProcessor> locTextRitual;
-    private final List<IReorderingProcessor> locTextRefraction;
-    private final List<IReorderingProcessor> locTextMantle;
+    private final List<FormattedCharSequence> locTextMain;
+    private final List<FormattedCharSequence> locTextRitual;
+    private final List<FormattedCharSequence> locTextRefraction;
+    private final List<FormattedCharSequence> locTextMantle;
     
     public ScreenJournalConstellationDetail(final ScreenJournal origin, final IConstellation cst) {
         super((Component)cst.getConstellationName(), -1);
@@ -75,10 +75,10 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         this.doublePages = 0;
         this.activePhases = null;
         this.lastFramePage = null;
-        this.locTextMain = new ArrayList<IReorderingProcessor>();
-        this.locTextRitual = new ArrayList<IReorderingProcessor>();
-        this.locTextRefraction = new ArrayList<IReorderingProcessor>();
-        this.locTextMantle = new ArrayList<IReorderingProcessor>();
+        this.locTextMain = new ArrayList<FormattedCharSequence>();
+        this.locTextRitual = new ArrayList<FormattedCharSequence>();
+        this.locTextRefraction = new ArrayList<FormattedCharSequence>();
+        this.locTextMantle = new ArrayList<FormattedCharSequence>();
         this.origin = origin;
         this.constellation = cst;
         this.field_230712_o_ = Minecraft.func_71410_x().field_71466_p;
@@ -111,14 +111,14 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
             final Component txtMantle = ((IWeakConstellation)this.constellation).getInfoMantleEffect();
             final ITextProperties headTxt = (ITextProperties)new Component("astralsorcery.journal.constellation.mantle");
             this.locTextMantle.add(this.localize(headTxt));
-            this.locTextMantle.add(IReorderingProcessor.field_242232_a);
-            final List<IReorderingProcessor> lines = new LinkedList<IReorderingProcessor>();
+            this.locTextMantle.add(FormattedCharSequence.field_242232_a);
+            final List<FormattedCharSequence> lines = new LinkedList<FormattedCharSequence>();
             for (final String segment : txtMantle.getString().split("<NL>")) {
                 lines.addAll(this.field_230712_o_.func_238425_b_((ITextProperties)new Component(segment), 175));
-                lines.add(IReorderingProcessor.field_242232_a);
+                lines.add(FormattedCharSequence.field_242232_a);
             }
             this.locTextMantle.addAll(lines);
-            this.locTextMantle.add(IReorderingProcessor.field_242232_a);
+            this.locTextMantle.add(FormattedCharSequence.field_242232_a);
         }
     }
     
@@ -127,14 +127,14 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
             final Component txtEnchantments = (Component)this.constellation.getConstellationEnchantmentDescription();
             final ITextProperties headTxt = (ITextProperties)new Component("astralsorcery.journal.constellation.enchantments");
             this.locTextRefraction.add(this.localize(headTxt));
-            this.locTextRefraction.add(IReorderingProcessor.field_242232_a);
-            final List<IReorderingProcessor> lines = new LinkedList<IReorderingProcessor>();
+            this.locTextRefraction.add(FormattedCharSequence.field_242232_a);
+            final List<FormattedCharSequence> lines = new LinkedList<FormattedCharSequence>();
             for (final String segment : txtEnchantments.getString().split("<NL>")) {
                 lines.addAll(this.field_230712_o_.func_238425_b_((ITextProperties)new Component(segment), 175));
-                lines.add(IReorderingProcessor.field_242232_a);
+                lines.add(FormattedCharSequence.field_242232_a);
             }
             this.locTextRefraction.addAll(lines);
-            this.locTextRefraction.add(IReorderingProcessor.field_242232_a);
+            this.locTextRefraction.add(FormattedCharSequence.field_242232_a);
         }
     }
     
@@ -144,11 +144,11 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
                 final Component txtRitual = ((IMinorConstellation)this.constellation).getInfoTraitEffect();
                 final ITextProperties headTxt = (ITextProperties)new Component("astralsorcery.journal.constellation.ritual.trait");
                 this.locTextRitual.add(this.localize(headTxt));
-                this.locTextRitual.add(IReorderingProcessor.field_242232_a);
-                final List<IReorderingProcessor> lines = new LinkedList<IReorderingProcessor>();
+                this.locTextRitual.add(FormattedCharSequence.field_242232_a);
+                final List<FormattedCharSequence> lines = new LinkedList<FormattedCharSequence>();
                 for (final String segment : txtRitual.getString().split("<NL>")) {
                     lines.addAll(this.field_230712_o_.func_238425_b_((ITextProperties)new Component(segment), 175));
-                    lines.add(IReorderingProcessor.field_242232_a);
+                    lines.add(FormattedCharSequence.field_242232_a);
                 }
                 this.locTextRitual.addAll(lines);
             }
@@ -158,37 +158,37 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
                 final Component txtRitual = ((IWeakConstellation)this.constellation).getInfoRitualEffect();
                 final ITextProperties headTxt = (ITextProperties)new Component("astralsorcery.journal.constellation.ritual");
                 this.locTextRitual.add(this.localize(headTxt));
-                this.locTextRitual.add(IReorderingProcessor.field_242232_a);
-                final List<IReorderingProcessor> lines = new LinkedList<IReorderingProcessor>();
+                this.locTextRitual.add(FormattedCharSequence.field_242232_a);
+                final List<FormattedCharSequence> lines = new LinkedList<FormattedCharSequence>();
                 for (final String segment : txtRitual.getString().split("<NL>")) {
                     lines.addAll(this.field_230712_o_.func_238425_b_((ITextProperties)new Component(segment), 175));
-                    lines.add(IReorderingProcessor.field_242232_a);
+                    lines.add(FormattedCharSequence.field_242232_a);
                 }
                 this.locTextRitual.addAll(lines);
-                this.locTextRitual.add(IReorderingProcessor.field_242232_a);
+                this.locTextRitual.add(FormattedCharSequence.field_242232_a);
             }
             if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
                 final Component txtCorruptedRitual = ((IWeakConstellation)this.constellation).getInfoCorruptedRitualEffect();
                 final ITextProperties headTxt = (ITextProperties)new Component("astralsorcery.journal.constellation.corruption");
                 this.locTextRitual.add(this.localize(headTxt));
-                this.locTextRitual.add(IReorderingProcessor.field_242232_a);
-                final List<IReorderingProcessor> lines = new LinkedList<IReorderingProcessor>();
+                this.locTextRitual.add(FormattedCharSequence.field_242232_a);
+                final List<FormattedCharSequence> lines = new LinkedList<FormattedCharSequence>();
                 for (final String segment : txtCorruptedRitual.getString().split("<NL>")) {
                     lines.addAll(this.field_230712_o_.func_238425_b_((ITextProperties)new Component(segment), 175));
-                    lines.add(IReorderingProcessor.field_242232_a);
+                    lines.add(FormattedCharSequence.field_242232_a);
                 }
                 this.locTextRitual.addAll(lines);
-                this.locTextRitual.add(IReorderingProcessor.field_242232_a);
+                this.locTextRitual.add(FormattedCharSequence.field_242232_a);
             }
         }
     }
     
     private void buildMainText() {
         final Component txtDescription = (Component)this.constellation.getConstellationDescription();
-        final List<IReorderingProcessor> lines = new LinkedList<IReorderingProcessor>();
+        final List<FormattedCharSequence> lines = new LinkedList<FormattedCharSequence>();
         for (final String segment : txtDescription.getString().split("<NL>")) {
             lines.addAll(this.field_230712_o_.func_238425_b_((ITextProperties)new Component(segment), 175));
-            lines.add(IReorderingProcessor.field_242232_a);
+            lines.add(FormattedCharSequence.field_242232_a);
         }
         this.locTextMain.addAll(lines);
     }
@@ -246,14 +246,14 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     
     private void drawRefractionTableInformation(final PoseStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
         for (int i = 0; i < this.locTextRitual.size(); ++i) {
-            final IReorderingProcessor line = this.locTextRitual.get(i);
+            final FormattedCharSequence line = this.locTextRitual.get(i);
             renderStack.func_227860_a_();
             renderStack.func_227861_a_((double)(this.guiLeft + 30), (double)(this.guiTop + 30 + i * 10), (double)this.getGuiZLevel());
             RenderingDrawUtils.renderStringAt(line, renderStack, this.field_230712_o_, -3355444, true);
             renderStack.func_227865_b_();
         }
         for (int i = 0; i < this.locTextRefraction.size(); ++i) {
-            final IReorderingProcessor line = this.locTextRefraction.get(i);
+            final FormattedCharSequence line = this.locTextRefraction.get(i);
             renderStack.func_227860_a_();
             renderStack.func_227861_a_((double)(this.guiLeft + 220), (double)(this.guiTop + 30 + i * 10), (double)this.getGuiZLevel());
             RenderingDrawUtils.renderStringAt(line, renderStack, this.field_230712_o_, -3355444, true);
@@ -263,7 +263,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     
     private void drawCapeInformationPages(final PoseStack renderStack, final int mouseX, final int mouseY, final float partialTicks) {
         for (int i = 0; i < this.locTextMantle.size(); ++i) {
-            final IReorderingProcessor line = this.locTextMantle.get(i);
+            final FormattedCharSequence line = this.locTextMantle.get(i);
             renderStack.func_227860_a_();
             renderStack.func_227861_a_((double)(this.guiLeft + 30), (double)(this.guiTop + 30 + i * 10), (double)this.getGuiZLevel());
             RenderingDrawUtils.renderStringAt(line, renderStack, this.field_230712_o_, -3355444, true);
@@ -304,7 +304,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
             final int offsetY = 77;
             renderStack.func_227860_a_();
             renderStack.func_227861_a_((double)(this.guiLeft + offsetX), (double)(this.guiTop + offsetY), (double)this.getGuiZLevel());
-            for (final IReorderingProcessor line : this.locTextMain) {
+            for (final FormattedCharSequence line : this.locTextMain) {
                 RenderingDrawUtils.renderStringAt(this.field_230712_o_, renderStack, line, -3355444);
                 renderStack.func_227861_a_(0.0, 13.0, 0.0);
             }
@@ -353,7 +353,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
                     RenderSystem.defaultBlendFunc();
                     brightness = 0.7f;
                 }
-                RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, (float)(offsetX + index * (size + 2)), (float)offsetY, (float)this.getGuiZLevel(), (float)size, (float)size).color(brightness, brightness, brightness, brightness).draw());
+                RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(offsetX + index * (size + 2)), (float)offsetY, (float)this.getGuiZLevel(), (float)size, (float)size).color(brightness, brightness, brightness, brightness).draw());
             }
             RenderSystem.defaultBlendFunc();
             RenderSystem.disableBlend();
@@ -402,7 +402,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     
     private void drawCstBackground(final PoseStack renderStack) {
         TexturesAS.TEX_BLACK.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
             buf.func_227888_a_(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).func_227885_a_(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(0.0f, 1.0f).func_181675_d();
             buf.func_227888_a_(offset, (float)(this.guiLeft + 200), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).func_227885_a_(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(1.0f, 1.0f).func_181675_d();
@@ -413,7 +413,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         TexturesAS.TEX_GUI_BACKGROUND_CONSTELLATIONS.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             final Matrix4f offset2 = renderStack.func_227866_c_().func_227870_a_();
             buf.func_227888_a_(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).func_227885_a_(0.8f, 0.8f, 1.0f, 0.5f).func_225583_a_(0.3f, 0.9f).func_181675_d();
             buf.func_227888_a_(offset2, (float)(this.guiLeft + 200), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).func_227885_a_(0.8f, 0.8f, 1.0f, 0.5f).func_225583_a_(0.7f, 0.9f).func_181675_d();

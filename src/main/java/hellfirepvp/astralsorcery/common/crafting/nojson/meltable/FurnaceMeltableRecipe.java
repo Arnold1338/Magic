@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.common.crafting.nojson.meltable;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.util.block.WorldBlockPos;
 import java.util.function.Function;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.RecipeHelper;
 import hellfirepvp.astralsorcery.AstralSorcery;
 

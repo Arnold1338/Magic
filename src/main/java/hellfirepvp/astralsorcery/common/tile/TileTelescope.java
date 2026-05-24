@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.tile;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.util.tile.NamedInventoryTile;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntitySynchronized;

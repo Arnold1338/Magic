@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.screen.helper;
 
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
 import java.awt.Point;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.awt.geom.Point2D;
 import javax.annotation.Nullable;
 
@@ -128,11 +128,11 @@ public abstract class SizeHandler
     }
     
     public float clampX(final float centerX) {
-        return MathHelper.func_76131_a(centerX, 0.0f, this.getTotalWidth());
+        return Mth.func_76131_a(centerX, 0.0f, this.getTotalWidth());
     }
     
     public float clampY(final float centerY) {
-        return MathHelper.func_76131_a(centerY, 0.0f, this.getTotalHeight());
+        return Mth.func_76131_a(centerY, 0.0f, this.getTotalHeight());
     }
     
     public float evRelativePosX(final float relativeX) {

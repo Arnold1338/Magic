@@ -2,20 +2,20 @@ package hellfirepvp.astralsorcery.common.perk.type;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.util.block.BlockPredicate;
-import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.phys.BlockHitResult;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.level.LevelAccessor;
+import net.minecraft.util.Mth;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.util.math.RayTraceContext;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.phys.HitResult;
+import net.minecraft.world.level.ClipContext;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.event.EventFlags;
@@ -23,7 +23,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraftforge.event.level.BlockEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -58,17 +58,17 @@ public class AttributeTypeMiningSize extends PerkAttributeType
                 final float size = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.SERVER).modifyValue(player, prog, PerkAttributeTypesAS.ATTR_TYPE_MINING_SIZE, 0.0f);
                 final float size2 = AttributeEvent.postProcessModded(player, PerkAttributeTypesAS.ATTR_TYPE_MINING_SIZE, size);
                 if (size2 >= 1.0f) {
-                    final BlockRayTraceResult brtr = MiscUtils.rayTraceLookBlock(player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
-                    if (brtr != null && brtr.func_216346_c() == RayTraceResult.Type.BLOCK) {
+                    final BlockHitResult brtr = MiscUtils.rayTraceLookBlock(player, ClipContext.BlockMode.OUTLINE, ClipContext.FluidMode.NONE);
+                    if (brtr != null && brtr.func_216346_c() == HitResult.Type.BLOCK) {
                         final int levelBroken = event.getState().getHarvestLevel();
                         final float hardnessBroken = event.getState().func_185887_b((IBlockReader)world, event.getPos());
                         final BlockPredicate miningTest = (worldIn, posIn, stateIn) -> stateIn.getHarvestLevel() <= levelBroken && stateIn.func_185887_b((IBlockReader)worldIn, posIn) <= hardnessBroken;
                         final Direction dir = brtr.func_216354_b();
                         if (dir.func_176740_k() == Direction.Axis.Y) {
-                            this.breakBlocksPlaneHorizontal((ServerPlayer)player, dir, (World)world, event.getPos(), miningTest, MathHelper.func_76141_d(size2));
+                            this.breakBlocksPlaneHorizontal((ServerPlayer)player, dir, (World)world, event.getPos(), miningTest, Mth.func_76141_d(size2));
                         }
                         else {
-                            this.breakBlocksPlaneVertical((ServerPlayer)player, dir, (World)world, event.getPos(), miningTest, MathHelper.func_76141_d(size2));
+                            this.breakBlocksPlaneVertical((ServerPlayer)player, dir, (World)world, event.getPos(), miningTest, Mth.func_76141_d(size2));
                         }
                     }
                 }

@@ -8,7 +8,7 @@ import com.mojang.blaze3d.vertex.BufferBuilder;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -18,7 +18,7 @@ public class RenderingGuiUtils
     
     @Deprecated
     public static void drawTexturedRectAtCurrentPos(final float width, final float height, final float zLevel, final float uFrom, final float vFrom, final float uWidth, final float vWidth) {
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> rect((IVertexBuilder)buf, 0.0f, 0.0f, zLevel, width, height).tex(uFrom, vFrom, uWidth, vWidth).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> rect((VertexConsumer)buf, 0.0f, 0.0f, zLevel, width, height).tex(uFrom, vFrom, uWidth, vWidth).draw());
     }
     
     @Deprecated
@@ -32,7 +32,7 @@ public class RenderingGuiUtils
     }
     
     public static void drawRect(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float width, final float height) {
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> rect((IVertexBuilder)buf, renderStack, offsetX, offsetY, zLevel, width, height).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> rect((VertexConsumer)buf, renderStack, offsetX, offsetY, zLevel, width, height).draw());
     }
     
     public static void drawTexturedRect(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float width, final float height, final AbstractRenderableTexture tex) {
@@ -50,24 +50,24 @@ public class RenderingGuiUtils
     }
     
     public static void drawTexturedRect(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float width, final float height, final float uFrom, final float vFrom, final float uWidth, final float vWidth) {
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> rect((IVertexBuilder)buf, renderStack, offsetX, offsetY, zLevel, width, height).tex(uFrom, vFrom, uWidth, vWidth).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> rect((VertexConsumer)buf, renderStack, offsetX, offsetY, zLevel, width, height).tex(uFrom, vFrom, uWidth, vWidth).draw());
     }
     
     @Deprecated
-    public static DrawBuilder rect(final IVertexBuilder buf, final WidthHeightScreen screen) {
+    public static DrawBuilder rect(final VertexConsumer buf, final WidthHeightScreen screen) {
         return rect(buf, (float)screen.getGuiLeft(), (float)screen.getGuiTop(), (float)screen.getGuiZLevel(), (float)screen.getGuiWidth(), (float)screen.getGuiHeight());
     }
     
-    public static DrawBuilder rect(final IVertexBuilder buf, final PoseStack renderStack, final WidthHeightScreen screen) {
+    public static DrawBuilder rect(final VertexConsumer buf, final PoseStack renderStack, final WidthHeightScreen screen) {
         return rect(buf, renderStack, (float)screen.getGuiLeft(), (float)screen.getGuiTop(), (float)screen.getGuiZLevel(), (float)screen.getGuiWidth(), (float)screen.getGuiHeight());
     }
     
     @Deprecated
-    public static DrawBuilder rect(final IVertexBuilder buf, final float offsetX, final float offsetY, final float offsetZ, final float width, final float height) {
+    public static DrawBuilder rect(final VertexConsumer buf, final float offsetX, final float offsetY, final float offsetZ, final float width, final float height) {
         return rect(buf, RenderingGuiUtils.EMPTY, offsetX, offsetY, offsetZ, width, height);
     }
     
-    public static DrawBuilder rect(final IVertexBuilder buf, final PoseStack renderStack, final float offsetX, final float offsetY, final float offsetZ, final float width, final float height) {
+    public static DrawBuilder rect(final VertexConsumer buf, final PoseStack renderStack, final float offsetX, final float offsetY, final float offsetZ, final float width, final float height) {
         return new DrawBuilder(buf, renderStack, offsetX, offsetY, offsetZ, width, height);
     }
     
@@ -77,7 +77,7 @@ public class RenderingGuiUtils
     
     public static class DrawBuilder
     {
-        private final IVertexBuilder buf;
+        private final VertexConsumer buf;
         private final PoseStack renderStack;
         private float offsetX;
         private float offsetY;
@@ -90,7 +90,7 @@ public class RenderingGuiUtils
         private float vWidth;
         private Color color;
         
-        private DrawBuilder(final IVertexBuilder buf, final PoseStack renderStack, final float offsetX, final float offsetY, final float offsetZ, final float width, final float height) {
+        private DrawBuilder(final VertexConsumer buf, final PoseStack renderStack, final float offsetX, final float offsetY, final float offsetZ, final float width, final float height) {
             this.u = 0.0f;
             this.v = 0.0f;
             this.uWidth = 1.0f;

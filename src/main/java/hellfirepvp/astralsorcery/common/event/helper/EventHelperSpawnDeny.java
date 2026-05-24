@@ -2,12 +2,12 @@ package hellfirepvp.astralsorcery.common.event.helper;
 
 import net.minecraftforge.event.TickEvent;
 import java.util.Iterator;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.LivingEntity;
 import net.minecraft.core.Vec3i;
 import java.util.Map;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.EntityClassification;
+import net.minecraft.world.entity.MobCategory;
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -41,7 +41,7 @@ public class EventHelperSpawnDeny
         if (entity.func_184216_O().contains("skip.spawn.deny")) {
             return;
         }
-        if ((boolean)GeneralConfig.CONFIG.mobSpawningDenyAllTypes.get() || entity.getClassification(false) == EntityClassification.MONSTER) {
+        if ((boolean)GeneralConfig.CONFIG.mobSpawningDenyAllTypes.get() || entity.getClassification(false) == MobCategory.MONSTER) {
             final Vector3 entityPos = Vector3.atEntityCorner((Entity)entity);
             for (final Map.Entry<WorldBlockPos, TickTokenMap.SimpleTickToken<Double>> entry : EventHelperSpawnDeny.spawnDenyRegions.entrySet()) {
                 if (!entry.getKey().getWorldKey().equals(entity.func_130014_f_().dimension())) {

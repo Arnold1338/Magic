@@ -2,13 +2,13 @@ package hellfirepvp.astralsorcery.client.render.tile;
 
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 
-public abstract class CustomTileEntityRenderer<T extends BlockEntity> extends TileEntityRenderer<T>
+public abstract class CustomTileEntityRenderer<T extends BlockEntity> extends BlockEntityRenderer<T>
 {
-    public CustomTileEntityRenderer(final TileEntityRendererDispatcher tileRenderer) {
+    public CustomTileEntityRenderer(final BlockEntityRenderDispatcher tileRenderer) {
         super(tileRenderer);
     }
     

@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.common.data.world;
 
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.phys.AABB;
 import java.util.Iterator;
 import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Maps;
 import hellfirepvp.observerlib.common.data.WorldCacheDomain;
 import java.util.List;
-import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.level.ChunkPos;
 import hellfirepvp.astralsorcery.common.storage.StorageNetwork;
 import net.minecraft.core.BlockPos;
 import java.util.Map;

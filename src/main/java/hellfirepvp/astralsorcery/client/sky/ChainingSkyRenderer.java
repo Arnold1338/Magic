@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.sky;
 
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import com.mojang.math.Vector3f;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.client.sky.astral.AstralSkyRenderer;
 import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import java.util.List;
-import net.minecraft.client.world.DimensionRenderInfo;
+import net.minecraft.client.multiplayer.DimensionRenderInfo;
 import hellfirepvp.astralsorcery.common.event.EventFlags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;

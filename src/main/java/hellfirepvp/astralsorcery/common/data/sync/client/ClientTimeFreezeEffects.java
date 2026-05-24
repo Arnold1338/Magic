@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 import java.util.HashMap;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopEffectHelper;
 import java.util.List;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 import java.util.Map;
 import hellfirepvp.astralsorcery.common.data.sync.base.ClientData;

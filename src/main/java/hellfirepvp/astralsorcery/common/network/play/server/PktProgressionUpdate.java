@@ -8,7 +8,7 @@ import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournal;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.player.ClientPlayerEntity;
 import net.minecraft.network.chat.Component;
 import net.minecraft.Util;
 import net.minecraft.ChatFormatting;

@@ -1,36 +1,36 @@
 package hellfirepvp.astralsorcery.common.item.tool;
 
-import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.level.entity.ai.attributes.Attributes;
 import com.google.common.collect.HashMultimap;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.level.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.level.entity.ai.attributes.Attribute;
 import com.google.common.collect.Multimap;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.block.WebBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.world.level.block.WebBlock;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.level.item.enchantment.Enchantment;
 import hellfirepvp.astralsorcery.common.crystal.CrystalCalculations;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.crystal.CalculationContext;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.item.IItemTier;
+import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.level.item.CreativeModeTab;
+import net.minecraft.world.item.IItemTier;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 import hellfirepvp.astralsorcery.common.item.base.TypeEnchantableItem;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeItem;
-import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.level.item.SwordItem;
 
 public class ItemCrystalSword extends SwordItem implements CrystalAttributeItem, TypeEnchantableItem
 {
@@ -47,7 +47,7 @@ public class ItemCrystalSword extends SwordItem implements CrystalAttributeItem,
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> tooltip, final ITooltipFlag flag) {
+    public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> tooltip, final TooltipFlag flag) {
         final CrystalAttributes attr = this.getAttributes(stack);
         if (attr != null) {
             attr.addTooltip(tooltip, CalculationContext.Builder.newBuilder().addUsage(CrystalPropertiesAS.Usages.USE_TOOL_DURABILITY).addUsage(CrystalPropertiesAS.Usages.USE_TOOL_EFFECTIVENESS).build());
@@ -64,8 +64,8 @@ public class ItemCrystalSword extends SwordItem implements CrystalAttributeItem,
     }
     
     public boolean canApplyAtEnchantingTable(final ItemStack stack, final Enchantment enchantment) {
-        final EnchantmentType type = enchantment.field_77351_y;
-        return type == EnchantmentType.WEAPON || type == EnchantmentType.BREAKABLE;
+        final EnchantmentCategory type = enchantment.field_77351_y;
+        return type == EnchantmentCategory.WEAPON || type == EnchantmentCategory.BREAKABLE;
     }
     
     public boolean canHarvestBlock(final ItemStack stack, final BlockState state) {
@@ -110,8 +110,8 @@ public class ItemCrystalSword extends SwordItem implements CrystalAttributeItem,
         return false;
     }
     
-    public boolean canEnchantItem(final ItemStack stack, final EnchantmentType type) {
-        return type == EnchantmentType.BREAKABLE || type == EnchantmentType.WEAPON;
+    public boolean canEnchantItem(final ItemStack stack, final EnchantmentCategory type) {
+        return type == EnchantmentCategory.BREAKABLE || type == EnchantmentCategory.WEAPON;
     }
     
     public int getItemEnchantability(final ItemStack stack) {

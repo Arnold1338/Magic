@@ -7,7 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.constellation.DrawnConstellation;
@@ -23,9 +23,9 @@ import hellfirepvp.astralsorcery.client.effect.function.VFXAlphaFunction;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.client.effect.function.RefreshFunction;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
@@ -34,13 +34,13 @@ import hellfirepvp.astralsorcery.common.constellation.engraving.EngravedStarMap;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.server.level.ServerPlayer;
 import hellfirepvp.astralsorcery.common.item.ItemInfusedGlass;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.tile.NamedInventoryTile;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
 
@@ -101,7 +101,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
             EffectHelper.refresh(this.effectHalo, EffectTemplatesAS.TEXTURE_SPRITE);
         }
         if (this.effectHalo == null) {
-            this.effectHalo = EffectHelper.of(EffectTemplatesAS.TEXTURE_SPRITE).spawn(new Vector3(this).add(0.5, 0.8, 0.5)).setSprite(SpritesAS.SPR_HALO_INFUSION).setAxis(Vector3.RotAxis.Y_AXIS).setNoRotation(0.0f).setScaleMultiplier(0.8f).setAlphaMultiplier(0.8f).alpha((fx, alpha, pTicks) -> MathHelper.func_76131_a(alpha * this.getRunProgress(), 0.0f, 1.0f)).refresh(RefreshFunction.tileExistsAnd(this, (thisTile, fx) -> thisTile.getRunProgress() > 0.0f));
+            this.effectHalo = EffectHelper.of(EffectTemplatesAS.TEXTURE_SPRITE).spawn(new Vector3(this).add(0.5, 0.8, 0.5)).setSprite(SpritesAS.SPR_HALO_INFUSION).setAxis(Vector3.RotAxis.Y_AXIS).setNoRotation(0.0f).setScaleMultiplier(0.8f).setAlphaMultiplier(0.8f).alpha((fx, alpha, pTicks) -> Mth.func_76131_a(alpha * this.getRunProgress(), 0.0f, 1.0f)).refresh(RefreshFunction.tileExistsAnd(this, (thisTile, fx) -> thisTile.getRunProgress() > 0.0f));
         }
         final Vector3 offset = new Vector3(-0.3125, 1.505, -0.1875);
         final int random = TileRefractionTable.rand.nextInt(ColorsAS.REFRACTION_TABLE_COLORS.length);
@@ -205,7 +205,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
     }
     
     public float getRunProgress() {
-        return MathHelper.func_76131_a(this.runTick / 200.0f, 0.0f, 1.0f);
+        return Mth.func_76131_a(this.runTick / 200.0f, 0.0f, 1.0f);
     }
     
     public void dropContents() {

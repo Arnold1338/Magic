@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.screen;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.common.network.play.client.PktRotateTelescope;
 import net.minecraft.util.Tuple;
@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.constellation.star.StarLocation;
 import java.util.Map;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
@@ -30,7 +30,7 @@ import java.util.Random;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import java.util.Collections;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
@@ -151,13 +151,13 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
             this.func_230926_e_(-9);
             final float starSize = 5.0f;
             TexturesAS.TEX_STAR_1.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
                 for (int j = 0; j < 72 + gen.nextInt(108); ++j) {
                     final float innerOffsetX = starSize + gen.nextFloat() * (this.guiWidth - starSize * 2.0f) + this.getGuiLeft();
                     final float innerOffsetY = starSize + gen.nextFloat() * (this.guiHeight - starSize * 2.0f) + this.getGuiTop();
                     final float brightness = 0.4f + RenderingConstellationUtils.stdFlicker(ClientScheduler.getClientTick(), pTicks, 10 + gen.nextInt(20)) * 0.5f;
                     final float brightness2 = this.multiplyStarBrightness(pTicks, brightness);
-                    RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).at(innerOffsetX, innerOffsetY).dim(starSize, starSize).color(brightness2, brightness2, brightness2, brightness2).draw();
+                    RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(innerOffsetX, innerOffsetY).dim(starSize, starSize).color(brightness2, brightness2, brightness2, brightness2).draw();
                 }
                 return;
             });

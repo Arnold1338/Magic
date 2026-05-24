@@ -1,13 +1,13 @@
 package hellfirepvp.astralsorcery.client.model.builtin;
 
-import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.resources.model.ModelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import java.util.function.Function;
-import net.minecraft.client.renderer.model.Model;
+import net.minecraft.client.resources.model.Model;
 
 public abstract class CustomModel extends Model
 {

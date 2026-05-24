@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.common.enchantment;
 
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.level.item.enchantment.Enchantment;
 
 public abstract class EnchantmentPlayerTick extends Enchantment
 {
-    protected EnchantmentPlayerTick(final Enchantment.Rarity rarityIn, final EnchantmentType typeIn, final EquipmentSlot[] slots) {
+    protected EnchantmentPlayerTick(final Enchantment.Rarity rarityIn, final EnchantmentCategory typeIn, final EquipmentSlot[] slots) {
         super(rarityIn, typeIn, slots);
     }
     

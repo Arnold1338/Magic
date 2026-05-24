@@ -5,13 +5,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.tuple.Pair;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeLimiter;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.level.block.Blocks;
 import hellfirepvp.astralsorcery.common.perk.type.AttributeTypeBreakSpeed;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeMap;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 
@@ -42,7 +42,7 @@ public class ReaderBreakSpeed extends ReaderFlatAttribute
         if (PerkAttributeLimiter.hasLimit(this.getType())) {
             final Pair<Double, Double> limits = PerkAttributeLimiter.getLimit(this.getType());
             limit = (Double)limits.getRight();
-            limitStr = I18n.func_135052_a("perk.reader.astralsorcery.limit.percent", new Object[] { MathHelper.func_76128_c(limit * 100.0) });
+            limitStr = I18n.func_135052_a("perk.reader.astralsorcery.limit.percent", new Object[] { Mth.func_76128_c(limit * 100.0) });
         }
         double value = player.getDigSpeed(Blocks.field_150347_e.defaultBlockState(), BlockPos.field_177992_a);
         String postProcess = "";

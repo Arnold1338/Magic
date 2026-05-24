@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.util;
 
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.IBlockDisplayReader;
+import net.minecraft.world.level.IBlockDisplayReader;
 
 public class LightmapUtil
 {

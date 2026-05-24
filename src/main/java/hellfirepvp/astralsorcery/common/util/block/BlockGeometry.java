@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.util.block;
 
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.ArrayList;
 import net.minecraft.core.BlockPos;
@@ -32,12 +32,12 @@ public class BlockGeometry
         final List<BlockPos> out = new ArrayList<BlockPos>();
         final Vector3 vFrom = new Vector3(0.5, 0.5, 0.5);
         final double dst = radius * radius;
-        final int toX = MathHelper.func_76143_f(radius);
-        final int toY = MathHelper.func_76143_f(radius);
-        final int toZ = MathHelper.func_76143_f(radius);
-        for (int y = MathHelper.func_76128_c(-radius); y <= toY; ++y) {
-            for (int x = MathHelper.func_76128_c(-radius); x <= toX; ++x) {
-                for (int z = MathHelper.func_76128_c(-radius); z <= toZ; ++z) {
+        final int toX = Mth.func_76143_f(radius);
+        final int toY = Mth.func_76143_f(radius);
+        final int toZ = Mth.func_76143_f(radius);
+        for (int y = Mth.func_76128_c(-radius); y <= toY; ++y) {
+            for (int x = Mth.func_76128_c(-radius); x <= toX; ++x) {
+                for (int z = Mth.func_76128_c(-radius); z <= toZ; ++z) {
                     final Vector3 result = new Vector3(x, y, z).add(0.5, 0.5, 0.5);
                     if (result.distanceSquared(vFrom) <= dst) {
                         out.add(result.toBlockPos());
@@ -53,12 +53,12 @@ public class BlockGeometry
         final Vector3 vFrom = new Vector3(0.5, 0.5, 0.5);
         final double dstOuter = outerRadius * outerRadius;
         final double dstInner = innerRadius * innerRadius;
-        final int toX = MathHelper.func_76143_f(outerRadius);
-        final int toY = MathHelper.func_76143_f(outerRadius);
-        final int toZ = MathHelper.func_76143_f(outerRadius);
-        for (int x = MathHelper.func_76128_c(-outerRadius); x <= toX; ++x) {
-            for (int y = MathHelper.func_76128_c(-outerRadius); y <= toY; ++y) {
-                for (int z = MathHelper.func_76128_c(-outerRadius); z <= toZ; ++z) {
+        final int toX = Mth.func_76143_f(outerRadius);
+        final int toY = Mth.func_76143_f(outerRadius);
+        final int toZ = Mth.func_76143_f(outerRadius);
+        for (int x = Mth.func_76128_c(-outerRadius); x <= toX; ++x) {
+            for (int y = Mth.func_76128_c(-outerRadius); y <= toY; ++y) {
+                for (int z = Mth.func_76128_c(-outerRadius); z <= toZ; ++z) {
                     final Vector3 result = new Vector3(x, y, z).add(0.5, 0.5, 0.5);
                     final double dst = result.distanceSquared(vFrom);
                     if (dst > dstInner && dst <= dstOuter) {
@@ -75,11 +75,11 @@ public class BlockGeometry
         final Vector3 vFrom = new Vector3(0.5, 0.5, 0.5);
         final double dstOuter = outerRadius * outerRadius;
         final double dstInner = innerRadius * innerRadius;
-        final int toX = MathHelper.func_76143_f(outerRadius);
-        final int toY = MathHelper.func_76143_f(outerRadius);
-        final int toZ = MathHelper.func_76143_f(outerRadius);
-        for (int x = MathHelper.func_76128_c(-outerRadius); x <= toX; ++x) {
-            for (int z = MathHelper.func_76128_c(-outerRadius); z <= toZ; ++z) {
+        final int toX = Mth.func_76143_f(outerRadius);
+        final int toY = Mth.func_76143_f(outerRadius);
+        final int toZ = Mth.func_76143_f(outerRadius);
+        for (int x = Mth.func_76128_c(-outerRadius); x <= toX; ++x) {
+            for (int z = Mth.func_76128_c(-outerRadius); z <= toZ; ++z) {
                 for (int y = 0; y <= toY; ++y) {
                     final Vector3 result = new Vector3(x, y, z).add(0.5, 0.5, 0.5);
                     final double dst = result.distanceSquared(vFrom);

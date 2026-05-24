@@ -9,7 +9,7 @@ import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
@@ -68,7 +68,7 @@ public class FXSpritePlane extends EntityVisualFX implements EntityDynamicFX
     }
     
     @Override
-    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final IVertexBuilder vb, final float pTicks) {
+    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final VertexConsumer vb, final float pTicks) {
     }
     
     @Override
@@ -92,7 +92,7 @@ public class FXSpritePlane extends EntityVisualFX implements EntityDynamicFX
             deg = this.fixDegree;
         }
         final RenderTypeDecorator decorated = RenderTypeDecorator.wrapSetup(ctx.getRenderType(), ssr::bindTexture, () -> BlockAtlasTexture.getInstance().bindTexture());
-        final IVertexBuilder buf = drawBuffer.getBuffer((RenderType)decorated);
+        final VertexConsumer buf = drawBuffer.getBuffer((RenderType)decorated);
         RenderingDrawUtils.renderAngleRotatedTexturedRectVB(buf, renderStack, vec, axis, (float)Math.toRadians(deg), scale, (float)uvOffset.func_76341_a(), (float)uvOffset.func_76340_b(), ssr.getULength(), ssr.getVLength(), color.getRed(), color.getGreen(), color.getBlue(), alpha);
         drawBuffer.draw();
     }

@@ -11,25 +11,25 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.level.block.Blocks;
 import java.util.Random;
 import net.minecraft.core.Vec3i;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.Optional;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.level.LevelAccessor;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.entity.item.ItemEntity;
 import hellfirepvp.astralsorcery.common.item.crystal.ItemCrystalBase;
 import hellfirepvp.astralsorcery.common.data.config.entry.CraftingConfig;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Collections;
 import java.util.Arrays;
 import hellfirepvp.astralsorcery.common.crafting.helper.ingredient.CrystalIngredient;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.item.crafting.Ingredient;
 import java.util.List;
 import hellfirepvp.astralsorcery.AstralSorcery;
 
@@ -65,7 +65,7 @@ public class MergeCrystalsRecipe extends LiquidStarlightRecipe
     
     @Override
     public void doServerCraftTick(final ItemEntity trigger, final World world, final BlockPos at) {
-        final Random r = new Random(MathHelper.func_180186_a((Vector3i)at));
+        final Random r = new Random(Mth.func_180186_a((Vector3i)at));
         final ItemStack crystalFoundOne;
         final ItemStack crystalFoundTwo;
         if (!world.func_201670_d() && this.getAndIncrementCraftingTick((Entity)trigger) > 40 + r.nextInt(20) && (crystalFoundOne = this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null && (crystalFoundTwo = this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null && world.func_180501_a(at, Blocks.field_150350_a.defaultBlockState(), 11)) {

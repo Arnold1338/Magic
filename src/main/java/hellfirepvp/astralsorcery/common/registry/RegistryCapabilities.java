@@ -16,7 +16,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 import hellfirepvp.astralsorcery.common.lib.CapabilitiesAS;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import java.util.function.Consumer;
-import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.level.chunk.LevelChunk;
 import hellfirepvp.astralsorcery.common.capability.ChunkFluidEntry;
 import net.minecraftforge.eventbus.api.IEventBus;
 

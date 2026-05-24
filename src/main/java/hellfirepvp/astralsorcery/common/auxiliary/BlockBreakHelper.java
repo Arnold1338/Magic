@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.auxiliary;
 
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import net.minecraft.server.level.ServerLevel;
 import javax.annotation.Nonnull;
@@ -10,21 +10,21 @@ import hellfirepvp.astralsorcery.common.constellation.effect.base.CEffectAbstrac
 import java.util.HashMap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.observerlib.common.util.tick.TickManager;
 import java.util.function.Consumer;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.LevelAccessor;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraftforge.event.TickEvent;
 import java.util.function.Supplier;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.util.tick.TickTokenMap;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 import java.util.Map;
 

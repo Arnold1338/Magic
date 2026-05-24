@@ -4,7 +4,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonObject;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceLocation;
 
 public abstract class InteractionResult

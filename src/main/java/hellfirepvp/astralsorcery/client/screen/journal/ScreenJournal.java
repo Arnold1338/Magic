@@ -6,11 +6,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.Mth;
+import net.minecraft.network.chat.IFormattableTextComponent;
 import java.util.Iterator;
 import java.util.function.Function;
 import java.util.Comparator;
@@ -18,9 +18,9 @@ import hellfirepvp.astralsorcery.client.util.Blending;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.util.text.LanguageMap;
-import net.minecraft.util.IReorderingProcessor;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.LanguageMap;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.network.chat.ITextProperties;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import com.google.common.collect.Maps;
@@ -57,7 +57,7 @@ public class ScreenJournal extends WidthHeightScreen
         return true;
     }
     
-    protected IReorderingProcessor localize(final ITextProperties txt) {
+    protected FormattedCharSequence localize(final ITextProperties txt) {
         return LanguageMap.func_74808_a().func_241870_a(txt);
     }
     
@@ -90,18 +90,18 @@ public class ScreenJournal extends WidthHeightScreen
     
     private Rectangle drawBookmark(final PoseStack renderStack, final float offsetX, final float offsetY, int width, final int height, final int mouseOverWidth, final float zLevel, final IFormattableTextComponent title, final int titleRGBColor, final int mouseX, final int mouseY, final AbstractRenderableTexture texture, final AbstractRenderableTexture textureStretched) {
         texture.bindTexture();
-        Rectangle r = new Rectangle(MathHelper.func_76141_d(offsetX), MathHelper.func_76141_d(offsetY), MathHelper.func_76141_d((float)width), MathHelper.func_76141_d((float)height));
+        Rectangle r = new Rectangle(Mth.func_76141_d(offsetX), Mth.func_76141_d(offsetY), Mth.func_76141_d((float)width), Mth.func_76141_d((float)height));
         if (r.contains(mouseX, mouseY)) {
             if (mouseOverWidth > width) {
                 textureStretched.bindTexture();
             }
             width = mouseOverWidth;
-            r = new Rectangle(MathHelper.func_76141_d(offsetX), MathHelper.func_76141_d(offsetY), MathHelper.func_76141_d((float)width), MathHelper.func_76141_d((float)height));
+            r = new Rectangle(Mth.func_76141_d(offsetX), Mth.func_76141_d(offsetY), Mth.func_76141_d((float)width), Mth.func_76141_d((float)height));
         }
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
         final int actualWidth = width;
-        RenderingUtils.draw(7, DefaultVertexFormats.field_181707_g, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, offsetX, offsetY, zLevel, (float)actualWidth, (float)height).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offsetX, offsetY, zLevel, (float)actualWidth, (float)height).draw());
         RenderSystem.disableBlend();
         renderStack.func_227860_a_();
         renderStack.func_227861_a_((double)(offsetX + 2.0f), (double)(offsetY + 4.0f), (double)(zLevel + 50.0f));

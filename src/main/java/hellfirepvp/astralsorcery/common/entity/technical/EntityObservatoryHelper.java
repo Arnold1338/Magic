@@ -1,34 +1,34 @@
 package hellfirepvp.astralsorcery.common.entity.technical;
 
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraft.network.IPacket;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.phys.HitResult;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.container.ContainerObservatory;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import com.google.common.collect.Iterables;
 import javax.annotation.Nullable;
 import java.util.UUID;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileObservatory;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.entity.EntityType;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.world.level.entity.Entity;
 
 public class EntityObservatoryHelper extends Entity
 {
-    private static final DataParameter<BlockPos> FIXED;
+    private static final EntityDataAccessor<BlockPos> FIXED;
     
     public EntityObservatoryHelper(final World worldIn) {
         super((EntityType)EntityTypesAS.OBSERVATORY_HELPER, worldIn);
@@ -39,15 +39,15 @@ public class EntityObservatoryHelper extends Entity
     }
     
     protected void func_70088_a() {
-        this.field_70180_af.func_187214_a((DataParameter)EntityObservatoryHelper.FIXED, (Object)BlockPos.field_177992_a);
+        this.field_70180_af.func_187214_a((EntityDataAccessor)EntityObservatoryHelper.FIXED, (Object)BlockPos.field_177992_a);
     }
     
     public void setFixedObservatoryPos(final BlockPos pos) {
-        this.field_70180_af.func_187227_b((DataParameter)EntityObservatoryHelper.FIXED, (Object)pos);
+        this.field_70180_af.func_187227_b((EntityDataAccessor)EntityObservatoryHelper.FIXED, (Object)pos);
     }
     
     public BlockPos getFixedObservatoryPos() {
-        return (BlockPos)this.field_70180_af.func_187225_a((DataParameter)EntityObservatoryHelper.FIXED);
+        return (BlockPos)this.field_70180_af.func_187225_a((EntityDataAccessor)EntityObservatoryHelper.FIXED);
     }
     
     @Nullable
@@ -147,7 +147,7 @@ public class EntityObservatoryHelper extends Entity
         return false;
     }
     
-    public ItemStack getPickedResult(final RayTraceResult target) {
+    public ItemStack getPickedResult(final HitResult target) {
         return new ItemStack((ItemLike)BlocksAS.OBSERVATORY);
     }
     
@@ -162,6 +162,6 @@ public class EntityObservatoryHelper extends Entity
     }
     
     static {
-        FIXED = EntityDataManager.func_187226_a((Class)EntityObservatoryHelper.class, DataSerializers.field_187200_j);
+        FIXED = SynchedEntityData.func_187226_a((Class)EntityObservatoryHelper.class, EntityDataSerializers.field_187200_j);
     }
 }

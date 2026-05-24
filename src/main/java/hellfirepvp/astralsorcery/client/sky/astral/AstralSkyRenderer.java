@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.sky.astral;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import com.mojang.math.Matrix4f;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import java.util.Iterator;
@@ -10,18 +10,18 @@ import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.common.constellation.world.ActiveCelestialsHandler;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.LevelAccessor;
 import hellfirepvp.astralsorcery.common.base.MoonPhase;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.phys.Vec3;
 import com.mojang.math.Vector3f;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import net.minecraft.client.renderer.FogRenderer;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.client.resource.AssetLibrary;
@@ -53,8 +53,8 @@ public class AstralSkyRenderer implements ISkyRenderHandler
     private boolean initialized;
     
     private AstralSkyRenderer() {
-        this.sky = new BatchedVertexList(DefaultVertexFormats.field_181705_e);
-        this.skyHorizon = new BatchedVertexList(DefaultVertexFormats.field_181705_e);
+        this.sky = new BatchedVertexList(DefaultVertexFormat.field_181705_e);
+        this.skyHorizon = new BatchedVertexList(DefaultVertexFormat.field_181705_e);
         this.starLists = new LinkedList<StarDrawList>();
         this.initialized = false;
     }
@@ -227,7 +227,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         renderStack.func_227860_a_();
         renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(-90.0f));
         final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_181707_g, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
             buf.func_227888_a_(matr, -sunSize, 100.0f, -sunSize).func_225583_a_(uOffset / 7.0f, 0.0f).func_181675_d();
             buf.func_227888_a_(matr, sunSize, 100.0f, -sunSize).func_225583_a_((uOffset + 1.0f) / 7.0f, 0.0f).func_181675_d();
             buf.func_227888_a_(matr, sunSize, 100.0f, sunSize).func_225583_a_((uOffset + 1.0f) / 7.0f, 1.0f).func_181675_d();
@@ -241,7 +241,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         final float sunSize = 30.0f;
         final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
         Minecraft.func_71410_x().func_110434_K().func_110577_a(AstralSkyRenderer.REF_TEX_SUN);
-        RenderingUtils.draw(7, DefaultVertexFormats.field_181707_g, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
             buf.func_227888_a_(matr, -sunSize, 100.0f, -sunSize).func_225583_a_(0.0f, 0.0f).func_181675_d();
             buf.func_227888_a_(matr, sunSize, 100.0f, -sunSize).func_225583_a_(1.0f, 0.0f).func_181675_d();
             buf.func_227888_a_(matr, sunSize, 100.0f, sunSize).func_225583_a_(1.0f, 1.0f).func_181675_d();
@@ -260,7 +260,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         final float maxV = (j + 1) / 2.0f;
         final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
         Minecraft.func_71410_x().func_110434_K().func_110577_a(AstralSkyRenderer.REF_TEX_MOON_PHASES);
-        RenderingUtils.draw(7, DefaultVertexFormats.field_181707_g, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
             buf.func_227888_a_(matr, -moonSize, -100.0f, moonSize).func_225583_a_(maxU, maxV).func_181675_d();
             buf.func_227888_a_(matr, moonSize, -100.0f, moonSize).func_225583_a_(minU, maxV).func_181675_d();
             buf.func_227888_a_(matr, moonSize, -100.0f, -moonSize).func_225583_a_(minU, minV).func_181675_d();
@@ -269,7 +269,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
     }
     
     private void renderDuskDawn(final float[] duskDawnColors, final PoseStack renderStack, final ClientLevel world, final float pTicks) {
-        final float f3 = (MathHelper.func_76126_a(world.func_72929_e(pTicks)) < 0.0f) ? 180.0f : 0.0f;
+        final float f3 = (Mth.func_76126_a(world.func_72929_e(pTicks)) < 0.0f) ? 180.0f : 0.0f;
         renderStack.func_227860_a_();
         renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(90.0f));
         renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(f3));
@@ -278,12 +278,12 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         final float g = duskDawnColors[1];
         final float b = duskDawnColors[2];
         final float a = duskDawnColors[3];
-        RenderingUtils.draw(6, DefaultVertexFormats.field_181706_f, buf -> {
+        RenderingUtils.draw(6, DefaultVertexFormat.field_181706_f, buf -> {
             buf.func_225582_a_(0.0, 100.0, 0.0).func_227885_a_(r, g, b, a).func_181675_d();
             for (int i = 0; i <= 16; ++i) {
                 final float f4 = i * 6.2831855f / 16.0f;
-                final float f5 = MathHelper.func_76126_a(f4);
-                final float f6 = MathHelper.func_76134_b(f4);
+                final float f5 = Mth.func_76126_a(f4);
+                final float f6 = Mth.func_76134_b(f4);
                 buf.func_225582_a_((double)(f5 * 120.0f), (double)(f6 * 120.0f), (double)(-f6 * 40.0f * a)).func_227885_a_(r, g, b, 0.0f).func_181675_d();
             }
             return;
@@ -304,7 +304,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         private final int flickerSpeed;
         
         private StarDrawList(final AbstractRenderableTexture texture, final int flickerSpeed) {
-            super(DefaultVertexFormats.field_181707_g);
+            super(DefaultVertexFormat.field_181707_g);
             this.texture = texture;
             this.flickerSpeed = flickerSpeed;
         }

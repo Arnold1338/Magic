@@ -4,10 +4,10 @@ import java.util.EnumSet;
 import javax.annotation.Nullable;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ActiveRenderInfo;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.Camera;
+import net.minecraft.util.Mth;
 import net.minecraftforge.event.TickEvent;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.phys.Vec3;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 
 public class RenderInfo implements ITickHandler
@@ -29,13 +29,13 @@ public class RenderInfo implements ITickHandler
     }
     
     public void tick(final TickEvent.Type type, final Object... context) {
-        final ActiveRenderInfo info = this.getARI();
+        final Camera info = this.getARI();
         if (info != null) {
-            this.rotationX = MathHelper.func_76134_b(info.func_216778_f() * 0.017453292f);
-            this.rotationZ = MathHelper.func_76126_a(info.func_216778_f() * 0.017453292f);
-            this.rotationYZ = -this.rotationZ * MathHelper.func_76126_a(info.func_216777_e() * 0.017453292f);
-            this.rotationXY = this.rotationX * MathHelper.func_76126_a(info.func_216777_e() * 0.017453292f);
-            this.rotationXZ = MathHelper.func_76134_b(info.func_216777_e() * 0.017453292f);
+            this.rotationX = Mth.func_76134_b(info.func_216778_f() * 0.017453292f);
+            this.rotationZ = Mth.func_76126_a(info.func_216778_f() * 0.017453292f);
+            this.rotationYZ = -this.rotationZ * Mth.func_76126_a(info.func_216777_e() * 0.017453292f);
+            this.rotationXY = this.rotationX * Mth.func_76126_a(info.func_216777_e() * 0.017453292f);
+            this.rotationXZ = Mth.func_76134_b(info.func_216777_e() * 0.017453292f);
         }
     }
     
@@ -60,7 +60,7 @@ public class RenderInfo implements ITickHandler
     }
     
     @Nullable
-    public ActiveRenderInfo getARI() {
+    public Camera getARI() {
         final GameRenderer gr = Minecraft.func_71410_x().field_71460_t;
         if (gr != null) {
             return gr.func_215316_n();

@@ -9,7 +9,7 @@ import hellfirepvp.astralsorcery.common.util.MapStream;
 import java.util.List;
 import javax.annotation.Nullable;
 import com.google.common.collect.Maps;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.phys.AABB;
 import net.minecraft.core.BlockPos;
 import java.util.Map;
 

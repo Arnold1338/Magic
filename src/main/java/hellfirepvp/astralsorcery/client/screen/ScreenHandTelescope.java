@@ -9,9 +9,9 @@ import java.awt.geom.Rectangle2D;
 import hellfirepvp.astralsorcery.common.constellation.star.StarLocation;
 import java.util.Map;
 import org.lwjgl.opengl.GL11;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
@@ -19,7 +19,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.client.util.Blending;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -30,7 +30,7 @@ import java.util.Set;
 import java.util.Random;
 import hellfirepvp.astralsorcery.client.screen.telescope.PlayerAngledConstellationInformation;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.constellation.IMajorConstellation;
@@ -135,7 +135,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
             this.func_230926_e_(-9);
             final float starSize = 5.0f;
             TexturesAS.TEX_STAR_1.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
                 this.usedStars.iterator();
                 final Iterator iterator3;
                 while (iterator3.hasNext()) {
@@ -143,7 +143,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
                     final float brightness = 0.4f + RenderingConstellationUtils.stdFlicker(ClientScheduler.getClientTick(), pTicks, 10 + gen.nextInt(20)) * 0.5f;
                     final float brightness2 = this.multiplyStarBrightness(pTicks, brightness);
                     final float brightness3 = brightness2 * brMultiplier;
-                    RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, pos.x + this.getGuiLeft(), pos.y + this.getGuiTop(), (float)this.getGuiZLevel(), starSize, starSize).color(brightness3, brightness3, brightness3, brightness3).draw();
+                    RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, pos.x + this.getGuiLeft(), pos.y + this.getGuiTop(), (float)this.getGuiZLevel(), starSize, starSize).color(brightness3, brightness3, brightness3, brightness3).draw();
                 }
                 return;
             });
@@ -163,13 +163,13 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
                         continue;
                     }
                     final float rainBr = 1.0f - Minecraft.func_71410_x().field_71441_e.func_72867_j(pTicks);
-                    final int wPart = MathHelper.func_76141_d(this.getGuiWidth() * 0.1f);
-                    final int hPart = MathHelper.func_76141_d(this.getGuiHeight() * 0.1f);
+                    final int wPart = Mth.func_76141_d(this.getGuiWidth() * 0.1f);
+                    final int hPart = Mth.func_76141_d(this.getGuiHeight() * 0.1f);
                     final float xFactor = diffYaw / 8.0f;
                     final float yFactor = diffPitch / 8.0f;
                     GL11.glEnable(3089);
-                    GL11.glScissor(MathHelper.func_76128_c((this.getGuiLeft() + 5) * guiFactor), MathHelper.func_76128_c((this.getGuiTop() + 5) * guiFactor), MathHelper.func_76128_c((this.getGuiWidth() - 10) * guiFactor), MathHelper.func_76128_c((this.getGuiHeight() - 10) * guiFactor));
-                    final Map<StarLocation, Rectangle2D.Float> cstRenderInfo = RenderingConstellationUtils.renderConstellationIntoGUI(cst.getTierRenderColor(), cst, renderStack, (float)(this.getGuiLeft() + wPart + MathHelper.func_76128_c(xFactor / guiFactor * this.getGuiWidth())), (float)(this.getGuiTop() + hPart + MathHelper.func_76128_c(yFactor / guiFactor * this.getGuiHeight())), (float)this.getGuiZLevel(), (float)(this.getGuiWidth() - MathHelper.func_76141_d(wPart * 1.5f)), (float)(this.getGuiHeight() - MathHelper.func_76141_d(hPart * 1.5f)), 2.0, () -> (0.3f + 0.7f * RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), pTicks, 5 + gen.nextInt(15))) * rainBr * brMultiplier, ResearchHelper.getClientProgress().hasConstellationDiscovered(cst), true);
+                    GL11.glScissor(Mth.func_76128_c((this.getGuiLeft() + 5) * guiFactor), Mth.func_76128_c((this.getGuiTop() + 5) * guiFactor), Mth.func_76128_c((this.getGuiWidth() - 10) * guiFactor), Mth.func_76128_c((this.getGuiHeight() - 10) * guiFactor));
+                    final Map<StarLocation, Rectangle2D.Float> cstRenderInfo = RenderingConstellationUtils.renderConstellationIntoGUI(cst.getTierRenderColor(), cst, renderStack, (float)(this.getGuiLeft() + wPart + Mth.func_76128_c(xFactor / guiFactor * this.getGuiWidth())), (float)(this.getGuiTop() + hPart + Mth.func_76128_c(yFactor / guiFactor * this.getGuiHeight())), (float)this.getGuiZLevel(), (float)(this.getGuiWidth() - Mth.func_76141_d(wPart * 1.5f)), (float)(this.getGuiHeight() - Mth.func_76141_d(hPart * 1.5f)), 2.0, () -> (0.3f + 0.7f * RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), pTicks, 5 + gen.nextInt(15))) * rainBr * brMultiplier, ResearchHelper.getClientProgress().hasConstellationDiscovered(cst), true);
                     GL11.glDisable(3089);
                     info.getFrameDrawInformation().putAll(cstRenderInfo);
                 }

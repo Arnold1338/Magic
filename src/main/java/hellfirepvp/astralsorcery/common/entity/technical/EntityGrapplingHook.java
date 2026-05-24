@@ -1,15 +1,15 @@
 package hellfirepvp.astralsorcery.common.entity.technical;
 
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraft.network.IPacket;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.phys.EntityHitResult;
+import net.minecraft.world.level.phys.HitResult;
 import com.google.common.collect.Lists;
 import java.util.Collections;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.phys.AABB;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -23,25 +23,25 @@ import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.event.helper.EventHelperDamageCancelling;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.util.Mth;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.entity.EntityType;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
-import net.minecraft.entity.projectile.ThrowableEntity;
+import net.minecraft.world.entity.projectile.ThrowableEntity;
 
 public class EntityGrapplingHook extends ThrowableEntity implements IEntityAdditionalSpawnData
 {
-    private static final DataParameter<Integer> PULLING_ENTITY;
-    private static final DataParameter<Boolean> PULLING;
+    private static final EntityDataAccessor<Integer> PULLING_ENTITY;
+    private static final EntityDataAccessor<Boolean> PULLING;
     private boolean launchedThrower;
     private int timeout;
     private int previousDist;
@@ -74,22 +74,22 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
     }
     
     protected void func_70088_a() {
-        this.field_70180_af.func_187214_a((DataParameter)EntityGrapplingHook.PULLING, (Object)false);
-        this.field_70180_af.func_187214_a((DataParameter)EntityGrapplingHook.PULLING_ENTITY, (Object)(-1));
+        this.field_70180_af.func_187214_a((EntityDataAccessor)EntityGrapplingHook.PULLING, (Object)false);
+        this.field_70180_af.func_187214_a((EntityDataAccessor)EntityGrapplingHook.PULLING_ENTITY, (Object)(-1));
     }
     
     public void setPulling(final boolean pull, @Nullable final LivingEntity hit) {
-        this.field_70180_af.func_187227_b((DataParameter)EntityGrapplingHook.PULLING, (Object)pull);
-        this.field_70180_af.func_187227_b((DataParameter)EntityGrapplingHook.PULLING_ENTITY, (Object)((hit == null) ? -1 : hit.func_145782_y()));
+        this.field_70180_af.func_187227_b((EntityDataAccessor)EntityGrapplingHook.PULLING, (Object)pull);
+        this.field_70180_af.func_187227_b((EntityDataAccessor)EntityGrapplingHook.PULLING_ENTITY, (Object)((hit == null) ? -1 : hit.func_145782_y()));
     }
     
     public boolean isPulling() {
-        return (boolean)this.field_70180_af.func_187225_a((DataParameter)EntityGrapplingHook.PULLING);
+        return (boolean)this.field_70180_af.func_187225_a((EntityDataAccessor)EntityGrapplingHook.PULLING);
     }
     
     @Nullable
     public LivingEntity getPulling() {
-        final int idPull = (int)this.field_70180_af.func_187225_a((DataParameter)EntityGrapplingHook.PULLING_ENTITY);
+        final int idPull = (int)this.field_70180_af.func_187225_a((EntityDataAccessor)EntityGrapplingHook.PULLING_ENTITY);
         if (idPull > 0) {
             try {
                 return (LivingEntity)this.field_70170_p.func_73045_a(idPull);
@@ -102,7 +102,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
     public float despawnPercentage(final float partial) {
         float p = this.despawning - (1.0f - partial);
         p /= 10.0f;
-        return MathHelper.func_76131_a(p, 0.0f, 1.0f);
+        return Mth.func_76131_a(p, 0.0f, 1.0f);
     }
     
     public boolean isDespawning() {
@@ -267,9 +267,9 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
         list.add(origin.clone());
         for (int iter = (int)lineLength, xx = 1; xx < iter - 1; ++xx) {
             final float dist = xx * (lineLength / iter);
-            final double dx = (interpThrower.getX() - interpHook.getX()) / iter * xx + MathHelper.func_76126_a(dist / 10.0f) * this.pullFactor;
-            final double dy = (interpThrower.getY() - interpHook.getY() + thrower.func_213302_cg() / 2.0f) / iter * xx + MathHelper.func_76126_a(dist / 7.0f) * this.pullFactor;
-            final double dz = (interpThrower.getZ() - interpHook.getZ()) / iter * xx + MathHelper.func_76126_a(dist / 2.0f) * this.pullFactor;
+            final double dx = (interpThrower.getX() - interpHook.getX()) / iter * xx + Mth.func_76126_a(dist / 10.0f) * this.pullFactor;
+            final double dy = (interpThrower.getY() - interpHook.getY() + thrower.func_213302_cg() / 2.0f) / iter * xx + Mth.func_76126_a(dist / 7.0f) * this.pullFactor;
+            final double dz = (interpThrower.getZ() - interpHook.getZ()) / iter * xx + Mth.func_76126_a(dist / 2.0f) * this.pullFactor;
             list.add(new Vector3(dx, dy, dz));
         }
         list.add(to.clone());
@@ -284,7 +284,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
         super.func_70186_c(x, y, z, velocity, 0.0f);
     }
     
-    protected void func_70227_a(final RayTraceResult result) {
+    protected void func_70227_a(final HitResult result) {
         Vec3 hit = result.func_216347_e();
         switch (result.func_216346_c()) {
             case BLOCK: {
@@ -292,12 +292,12 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
                 break;
             }
             case ENTITY: {
-                final Entity e = ((EntityRayTraceResult)result).func_216348_a();
+                final Entity e = ((EntityHitResult)result).func_216348_a();
                 if (!(e instanceof LivingEntity) || (this.func_234616_v_() != null && e.equals((Object)this.func_234616_v_()))) {
                     return;
                 }
-                this.setPulling(true, (LivingEntity)((EntityRayTraceResult)result).func_216348_a());
-                hit = new Vec3(hit.field_72450_a, hit.field_72448_b + ((EntityRayTraceResult)result).func_216348_a().func_213302_cg() * 3.0f / 4.0f, hit.field_72449_c);
+                this.setPulling(true, (LivingEntity)((EntityHitResult)result).func_216348_a());
+                hit = new Vec3(hit.field_72450_a, hit.field_72448_b + ((EntityHitResult)result).func_216348_a().func_213302_cg() * 3.0f / 4.0f, hit.field_72449_c);
                 break;
             }
         }
@@ -310,7 +310,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
     }
     
     static {
-        PULLING_ENTITY = EntityDataManager.func_187226_a((Class)EntityGrapplingHook.class, DataSerializers.field_187192_b);
-        PULLING = EntityDataManager.func_187226_a((Class)EntityGrapplingHook.class, DataSerializers.field_187198_h);
+        PULLING_ENTITY = SynchedEntityData.func_187226_a((Class)EntityGrapplingHook.class, EntityDataSerializers.field_187192_b);
+        PULLING = SynchedEntityData.func_187226_a((Class)EntityGrapplingHook.class, EntityDataSerializers.field_187198_h);
     }
 }

@@ -5,7 +5,7 @@ import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktProgressionUpdate;
 import net.minecraft.network.chat.Component;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
-import net.minecraft.command.ICommandSource;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.Util;
 import net.minecraft.ChatFormatting;
@@ -26,7 +26,7 @@ import javax.annotation.Nonnull;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.fml.LogicalSide;
 import javax.annotation.Nullable;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import java.util.UUID;
 import java.util.Map;
 
@@ -157,11 +157,11 @@ public class ResearchHelper
         }
     }
     
-    public static void sendConstellationDiscoveryMessage(final ICommandSource src, final IConstellation cst) {
+    public static void sendConstellationDiscoveryMessage(final CommandSource src, final IConstellation cst) {
         src.func_145747_a((Component)new Component("astralsorcery.progress.constellation.discover.chat", new Object[] { cst.getConstellationName().func_240699_a_(ChatFormatting.GRAY) }).func_240699_a_(ChatFormatting.BLUE), Util.NIL_UUID);
     }
     
-    public static void sendConstellationMemorizationMessage(final ICommandSource src, final PlayerProgress progress, final IConstellation cst) {
+    public static void sendConstellationMemorizationMessage(final CommandSource src, final PlayerProgress progress, final IConstellation cst) {
         src.func_145747_a((Component)new Component("astralsorcery.progress.constellation.seen.chat", new Object[] { cst.getConstellationName().func_240699_a_(ChatFormatting.GRAY) }).func_240699_a_(ChatFormatting.BLUE), Util.NIL_UUID);
         if (progress.getSeenConstellations().size() == 1) {
             src.func_145747_a((Component)new Component("astralsorcery.progress.constellation.seen.track").func_240699_a_(ChatFormatting.BLUE), Util.NIL_UUID);

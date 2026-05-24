@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.effect;
 
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import java.awt.Color;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
 import hellfirepvp.astralsorcery.client.effect.function.VFXPositionController;
@@ -94,7 +94,7 @@ public abstract class EntityVisualFX extends EntityComplexFX
         this.pos = newPos;
     }
     
-    public abstract <T extends EntityVisualFX> void render(final BatchRenderContext<T> p0, final PoseStack p1, final IVertexBuilder p2, final float p3);
+    public abstract <T extends EntityVisualFX> void render(final BatchRenderContext<T> p0, final PoseStack p1, final VertexConsumer p2, final float p3);
     
     public int getAlpha(final float pTicks) {
         return (int)(this.alphaFunction.getAlpha(this, this.getAlphaMultiplier(), pTicks) * 255.0f);

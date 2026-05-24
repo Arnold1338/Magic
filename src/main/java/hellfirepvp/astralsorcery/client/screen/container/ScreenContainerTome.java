@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.level.entity.player.Inventory;
 import hellfirepvp.astralsorcery.common.container.ContainerTome;
 import hellfirepvp.astralsorcery.client.screen.base.ScreenCustomContainer;
 

@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.screen.base;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -32,7 +32,7 @@ public interface NavigationArrowScreen
         }
         renderStack.func_227861_a_((double)(-(width / 2.0f)), (double)(-(height / 2.0f)), 0.0);
         TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, 0.0f, 0.0f, (float)guiZLevel, width, height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, (float)guiZLevel, width, height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
         renderStack.func_227865_b_();
         return rectArrow;
     }

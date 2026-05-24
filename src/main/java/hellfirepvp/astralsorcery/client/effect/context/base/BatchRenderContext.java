@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.client.effect.context.base;
 
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.phys.Vec3;
 import hellfirepvp.astralsorcery.client.util.draw.RenderInfo;
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.observerlib.client.util.RenderTypeDecorator;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.effect.EntityDynamicFX;
@@ -79,12 +79,12 @@ public class BatchRenderContext<T extends EntityVisualFX> extends OrderSortable
                 return;
             });
         }
-        final IVertexBuilder buf = drawBuffer.getBuffer(drawType);
+        final VertexConsumer buf = drawBuffer.getBuffer(drawType);
         effects.forEach(effect -> effect.getEffect().render((BatchRenderContext<EntityVisualFX>)this, renderStack, buf, pTicks));
         this.drawBatched(buf, drawBuffer);
     }
     
-    private void drawBatched(final IVertexBuilder buf, final IDrawRenderTypeBuffer renderTypeBuffer) {
+    private void drawBatched(final VertexConsumer buf, final IDrawRenderTypeBuffer renderTypeBuffer) {
         if (buf instanceof BufferBuilder && this.getRenderType().func_228664_q_() == 7) {
             final Vec3 view = RenderInfo.getInstance().getARI().func_216785_c();
             ((BufferBuilder)buf).func_181674_a((float)view.field_72450_a, (float)view.field_72448_b, (float)view.field_72449_c);

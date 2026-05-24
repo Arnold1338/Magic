@@ -8,12 +8,12 @@ import com.google.common.collect.Sets;
 import java.util.Set;
 import com.google.common.collect.Maps;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.advancements.PlayerAdvancements;
+import net.minecraft.server.PlayerAdvancements;
 import java.util.Map;
-import net.minecraft.advancements.ICriterionTrigger;
-import net.minecraft.advancements.ICriterionInstance;
+import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 
-public abstract class ListenerCriterionTrigger<T extends ICriterionInstance> implements ICriterionTrigger<T>
+public abstract class ListenerCriterionTrigger<T extends AbstractCriterionTriggerInstance> implements CriterionTrigger<T>
 {
     protected final Map<PlayerAdvancements, Listeners<T>> listeners;
     private final ResourceLocation id;
@@ -27,7 +27,7 @@ public abstract class ListenerCriterionTrigger<T extends ICriterionInstance> imp
         return this.id;
     }
     
-    public final void func_192165_a(final PlayerAdvancements playerAdvancementsIn, final ICriterionTrigger.Listener<T> listener) {
+    public final void func_192165_a(final PlayerAdvancements playerAdvancementsIn, final CriterionTrigger.Listener<T> listener) {
         Listeners<T> listeners = this.listeners.get(playerAdvancementsIn);
         if (listeners == null) {
             listeners = new Listeners<T>(playerAdvancementsIn);
@@ -36,7 +36,7 @@ public abstract class ListenerCriterionTrigger<T extends ICriterionInstance> imp
         listeners.add(listener);
     }
     
-    public final void func_192164_b(final PlayerAdvancements playerAdvancementsIn, final ICriterionTrigger.Listener<T> listener) {
+    public final void func_192164_b(final PlayerAdvancements playerAdvancementsIn, final CriterionTrigger.Listener<T> listener) {
         final Listeners<T> listeners = this.listeners.get(playerAdvancementsIn);
         if (listeners != null) {
             listeners.remove(listener);
@@ -50,10 +50,10 @@ public abstract class ListenerCriterionTrigger<T extends ICriterionInstance> imp
         this.listeners.remove(playerAdvancementsIn);
     }
     
-    public static class Listeners<T extends ICriterionInstance>
+    public static class Listeners<T extends AbstractCriterionTriggerInstance>
     {
         private final PlayerAdvancements playerAdvancements;
-        private final Set<ICriterionTrigger.Listener<T>> listeners;
+        private final Set<CriterionTrigger.Listener<T>> listeners;
         
         public Listeners(final PlayerAdvancements playerAdvancementsIn) {
             this.listeners = Sets.newHashSet();
@@ -64,22 +64,22 @@ public abstract class ListenerCriterionTrigger<T extends ICriterionInstance> imp
             return this.listeners.isEmpty();
         }
         
-        public final void add(final ICriterionTrigger.Listener<T> listener) {
+        public final void add(final CriterionTrigger.Listener<T> listener) {
             this.listeners.add(listener);
         }
         
-        public final void remove(final ICriterionTrigger.Listener<T> listener) {
+        public final void remove(final CriterionTrigger.Listener<T> listener) {
             this.listeners.remove(listener);
         }
         
         public final void trigger(final Predicate<T> test) {
-            final List<ICriterionTrigger.Listener<T>> list = Lists.newArrayList();
-            for (final ICriterionTrigger.Listener<T> listener : this.listeners) {
+            final List<CriterionTrigger.Listener<T>> list = Lists.newArrayList();
+            for (final CriterionTrigger.Listener<T> listener : this.listeners) {
                 if (test.test((T)listener.func_192158_a())) {
                     list.add(listener);
                 }
             }
-            for (final ICriterionTrigger.Listener<T> listener2 : list) {
+            for (final CriterionTrigger.Listener<T> listener2 : list) {
                 listener2.func_192159_a(this.playerAdvancements);
             }
         }

@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.effect.function.impl;
 
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import java.util.Random;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -19,7 +19,7 @@ public class RenderOffsetFornax implements VFXRenderOffsetFunction<EntityVisualF
         final int interv = (int)((r.nextInt() + ClientScheduler.getClientTick()) % 9L);
         final float part = interv + pTicks;
         final float perc = part / 10.0f;
-        final float sinPart = MathHelper.func_76126_a(perc * 3.1415927f * 2.0f);
+        final float sinPart = Mth.func_76126_a(perc * 3.1415927f * 2.0f);
         return interpolatedPos.add(perp.rotate(r.nextFloat() * 360.0f, currentMotion).multiply(sinPart));
     }
 }

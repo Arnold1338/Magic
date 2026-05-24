@@ -6,7 +6,7 @@ import java.awt.Color;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.client.effect.function.VFXAlphaFunction;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.base.patreon.FlareColor;
 import net.minecraftforge.api.distmarker.Dist;

@@ -4,45 +4,45 @@ import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import java.util.Locale;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import java.awt.Color;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.network.FriendlyByteBuf;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.tile.TileGemCrystals;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.block.BlockRenderType;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.level.LevelAccessor;
 import net.minecraft.core.Direction;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.state.Property;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.state.StateContainer;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.block.state.Property;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.state.StateContainer;
 import hellfirepvp.astralsorcery.common.item.block.ItemBlockGemCrystalCluster;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.item.BlockItem;
+import net.minecraft.world.level.level.block.SoundType;
 import net.minecraftforge.common.ToolAction;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.level.block.state.BlockBehaviour;
 import hellfirepvp.astralsorcery.common.block.tile.crystal.CollectorCrystalType;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.level.material.Material;
+import net.minecraft.world.level.block.state.EnumProperty;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.block.ContainerBlock;
+import net.minecraft.world.level.block.BaseEntityBlock;
 
-public class BlockGemCrystalCluster extends ContainerBlock implements CustomItemBlock
+public class BlockGemCrystalCluster extends BaseEntityBlock implements CustomItemBlock
 {
     private static final VoxelShape STAGE_0;
     private static final VoxelShape STAGE_1;
@@ -63,7 +63,7 @@ public class BlockGemCrystalCluster extends ContainerBlock implements CustomItem
         builder.func_206894_a(new Property[] { (Property)BlockGemCrystalCluster.STAGE });
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final ISelectionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final CollisionContext context) {
         final Vec3 offset = state.func_191059_e(world, pos);
         VoxelShape shape = VoxelShapes.func_197868_b();
         switch ((GrowthStageType)state.getValue((Property)BlockGemCrystalCluster.STAGE)) {
@@ -122,8 +122,8 @@ public class BlockGemCrystalCluster extends ContainerBlock implements CustomItem
         return false;
     }
     
-    public BlockRenderType func_149645_b(final BlockState state) {
-        return BlockRenderType.MODEL;
+    public RenderShape func_149645_b(final BlockState state) {
+        return RenderShape.MODEL;
     }
     
     @Nullable
@@ -140,7 +140,7 @@ public class BlockGemCrystalCluster extends ContainerBlock implements CustomItem
         STAGE = EnumProperty.func_177709_a("stage", (Class)GrowthStageType.class);
     }
     
-    public enum GrowthStageType implements IStringSerializable
+    public enum GrowthStageType implements StringRepresentable
     {
         STAGE_0(0, Color.WHITE), 
         STAGE_1(1, Color.WHITE), 

@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.common.constellation.effect.aoe;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffect;
 import hellfirepvp.astralsorcery.common.crafting.nojson.meltable.WorldMeltableRecipe;
 import hellfirepvp.astralsorcery.common.crafting.nojson.freezing.WorldFreezingRecipe;
 import hellfirepvp.astralsorcery.common.crafting.nojson.WorldMeltableRegistry;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.function.Consumer;
 import hellfirepvp.astralsorcery.common.crafting.nojson.WorldFreezingRegistry;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
@@ -27,7 +27,7 @@ import java.util.function.Supplier;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.tile.TileRitualPedestal;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.crafting.recipe.altar.effect;
 
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;

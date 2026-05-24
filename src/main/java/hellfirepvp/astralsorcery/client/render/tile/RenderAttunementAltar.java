@@ -1,13 +1,13 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import hellfirepvp.astralsorcery.client.model.builtin.ModelAttunementAltar;
 import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
 
@@ -15,7 +15,7 @@ public class RenderAttunementAltar extends CustomTileEntityRenderer<TileAttuneme
 {
     private static final ModelAttunementAltar MODEL_ATTUNEMENT_ALTAR;
     
-    public RenderAttunementAltar(final TileEntityRendererDispatcher tileRenderer) {
+    public RenderAttunementAltar(final BlockEntityRenderDispatcher tileRenderer) {
         super(tileRenderer);
     }
     
@@ -53,8 +53,8 @@ public class RenderAttunementAltar extends CustomTileEntityRenderer<TileAttuneme
             final double renderFrame = RenderingVectorUtils.interpolate(prevAFrame, aFrame, 0.0f);
             final double partRenderFrame = renderFrame % spinDur / spinDur;
             final float normalized = (float)(partRenderFrame * 2.0 * 3.141592653589793);
-            final float xOffset = MathHelper.func_76134_b(normalized);
-            final float zOffset = MathHelper.func_76126_a(normalized);
+            final float xOffset = Mth.func_76134_b(normalized);
+            final float zOffset = Mth.func_76126_a(normalized);
             final float rotation = RenderingVectorUtils.interpolate(tile.prevActivationTick / spinStart, tile.activationTick / spinStart, pTicks);
             renderStack.func_227860_a_();
             renderStack.func_227861_a_(0.5, (double)framePosY, 0.5);

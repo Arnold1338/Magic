@@ -2,11 +2,11 @@ package hellfirepvp.astralsorcery.common.starlight.transmission.base.crystal;
 
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.starlight.transmission.registry.TransmissionProvider;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TilePrism;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.starlight.transmission.base.SimplePrismTransmissionNode;

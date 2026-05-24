@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.data.journal;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.ITextProperties;
 import hellfirepvp.observerlib.api.structure.Structure;
 import hellfirepvp.astralsorcery.client.screen.journal.page.RenderPageStructure;
 import hellfirepvp.astralsorcery.client.screen.journal.page.RenderablePage;

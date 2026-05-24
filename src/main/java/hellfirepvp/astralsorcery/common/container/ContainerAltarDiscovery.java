@@ -1,16 +1,16 @@
 package hellfirepvp.astralsorcery.common.container;
 
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.Optional;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
-import net.minecraft.world.Container;
-import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.level.Container;
+import net.minecraft.world.level.inventory.Slot;
+import net.minecraft.world.level.inventory.MenuType;
 import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.level.entity.player.Inventory;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 
 public class ContainerAltarDiscovery extends ContainerAltarBase
@@ -23,11 +23,11 @@ public class ContainerAltarDiscovery extends ContainerAltarBase
     void bindPlayerInventory(final Inventory plInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
-                this.func_75146_a(new Slot((IInventory)plInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+                this.func_75146_a(new Slot((Container)plInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
         for (int i = 0; i < 9; ++i) {
-            this.func_75146_a(new Slot((IInventory)plInventory, i, 8 + i * 18, 142));
+            this.func_75146_a(new Slot((Container)plInventory, i, 8 + i * 18, 142));
         }
     }
     

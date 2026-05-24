@@ -1,15 +1,15 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.state.StateContainer;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.state.StateContainer;
+import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.entity.LivingEntity;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.phys.HitResult;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -23,14 +23,14 @@ import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.common.util.ColorUtils;
 import java.util.Random;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.state.Property;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.block.state.Property;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMisc;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.item.DyeColor;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.state.EnumProperty;
+import net.minecraft.world.level.level.block.Block;
 
 public class BlockFlareLight extends Block
 {
@@ -59,7 +59,7 @@ public class BlockFlareLight extends Block
     }
     
     @OnlyIn(Dist.CLIENT)
-    public boolean addHitEffects(final BlockState state, final World worldObj, final RayTraceResult target, final ParticleEngine manager) {
+    public boolean addHitEffects(final BlockState state, final World worldObj, final HitResult target, final ParticleEngine manager) {
         return true;
     }
     
@@ -73,7 +73,7 @@ public class BlockFlareLight extends Block
         return true;
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final ISelectionContext ctx) {
+    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final CollisionContext ctx) {
         return BlockFlareLight.SHAPE;
     }
     
@@ -93,8 +93,8 @@ public class BlockFlareLight extends Block
         ct.func_206894_a(new Property[] { (Property)BlockFlareLight.COLOR });
     }
     
-    public BlockRenderType func_149645_b(final BlockState state) {
-        return BlockRenderType.INVISIBLE;
+    public RenderShape func_149645_b(final BlockState state) {
+        return RenderShape.INVISIBLE;
     }
     
     static {

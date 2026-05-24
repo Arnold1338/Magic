@@ -7,7 +7,7 @@ import java.util.Iterator;
 import net.minecraftforge.event.TickEvent;
 import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissionNode;
 import java.util.List;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 import java.util.Map;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;

@@ -2,21 +2,21 @@ package hellfirepvp.astralsorcery.common.loot;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.item.DyeColor;
 import java.util.function.Function;
 import hellfirepvp.astralsorcery.common.block.tile.BlockCelestialGateway;
 import hellfirepvp.astralsorcery.common.tile.TileCelestialGateway;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.storage.loot.LootContext;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.lib.LootAS;
-import net.minecraft.loot.LootFunctionType;
+import net.minecraft.world.level.storage.loot.LootFunctionType;
 import com.google.common.collect.Sets;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.loot.LootParameter;
+import net.minecraft.world.level.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.LootParameter;
 import java.util.Set;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.loot.LootFunction;
+import net.minecraft.world.level.storage.loot.predicates.ILootCondition;
+import net.minecraft.world.level.storage.loot.LootFunction;
 
 public class CopyGatewayColor extends LootFunction
 {

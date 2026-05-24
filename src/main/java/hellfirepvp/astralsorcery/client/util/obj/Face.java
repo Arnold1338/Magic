@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.client.util.obj;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 
 public class Face
 {
@@ -13,12 +13,12 @@ public class Face
     TextureCoordinate[] textureCoordinates;
     
     @OnlyIn(Dist.CLIENT)
-    void addFaceForRender(final IVertexBuilder vb) {
+    void addFaceForRender(final VertexConsumer vb) {
         this.addFaceForRender(vb, 4.0E-4f);
     }
     
     @OnlyIn(Dist.CLIENT)
-    void addFaceForRender(final IVertexBuilder vb, final float textureOffset) {
+    void addFaceForRender(final VertexConsumer vb, final float textureOffset) {
         float averageU = 0.0f;
         float averageV = 0.0f;
         for (final TextureCoordinate textureCoordinate : this.textureCoordinates) {

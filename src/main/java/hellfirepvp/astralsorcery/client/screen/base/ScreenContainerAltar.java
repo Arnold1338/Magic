@@ -6,14 +6,14 @@ import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import javax.annotation.Nullable;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipeContext;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.client.Minecraft;
@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.level.entity.player.Inventory;
 import hellfirepvp.astralsorcery.common.container.ContainerAltarBase;
 
 public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends ScreenCustomContainer<T>
@@ -47,7 +47,7 @@ public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends
         final TileAltar altar = this.func_212873_a_().getTileEntity();
         RenderSystem.disableAlphaTest();
         TexturesAS.TEX_BLACK.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, (float)(this.field_147003_i + offsetX), (float)(this.field_147009_r + offsetZ), (float)this.func_230927_p_(), (float)width, (float)height).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.field_147003_i + offsetX), (float)(this.field_147009_r + offsetZ), (float)this.func_230927_p_(), (float)width, (float)height).draw());
         float percFilled;
         Color barColor;
         if (altar.hasMultiblock()) {
@@ -63,7 +63,7 @@ public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends
             spriteStarlight.getResource().bindTexture();
             final int tick = altar.getTicksExisted();
             final Tuple<Float, Float> uvOffset = spriteStarlight.getUVOffset(tick);
-            RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, (float)(this.field_147003_i + offsetX), (float)(this.field_147009_r + offsetZ), (float)this.func_230927_p_(), (float)(int)(width * percFilled), (float)height).tex((float)uvOffset.func_76341_a(), (float)uvOffset.func_76340_b(), spriteStarlight.getULength() * percFilled, spriteStarlight.getVLength()).color(barColor).draw());
+            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.field_147003_i + offsetX), (float)(this.field_147009_r + offsetZ), (float)this.func_230927_p_(), (float)(int)(width * percFilled), (float)height).tex((float)uvOffset.func_76341_a(), (float)uvOffset.func_76340_b(), spriteStarlight.getULength() * percFilled, spriteStarlight.getVLength()).color(barColor).draw());
             if (altar.hasMultiblock()) {
                 final SimpleAltarRecipe aar = this.findRecipe(true);
                 if (aar != null) {
@@ -74,7 +74,7 @@ public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends
                         final float percReq = (req - has) / (float)max;
                         final int from = (int)(width * percFilled);
                         final int to = (int)(width * percReq);
-                        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, (float)(this.field_147003_i + offsetX + from), (float)(this.field_147009_r + offsetZ), (float)this.func_230927_p_(), (float)to, (float)height).tex((float)uvOffset.func_76341_a() + spriteStarlight.getULength() * percFilled, (float)uvOffset.func_76340_b(), spriteStarlight.getULength() * percReq, spriteStarlight.getVLength()).color(0.2f, 0.5f, 1.0f, 0.4f).draw());
+                        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.field_147003_i + offsetX + from), (float)(this.field_147009_r + offsetZ), (float)this.func_230927_p_(), (float)to, (float)height).tex((float)uvOffset.func_76341_a() + spriteStarlight.getULength() * percFilled, (float)uvOffset.func_76340_b(), spriteStarlight.getULength() * percReq, spriteStarlight.getVLength()).color(0.2f, 0.5f, 1.0f, 0.4f).draw());
                     }
                 }
             }

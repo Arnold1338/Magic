@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import net.minecraft.world.level.block.entity.BlockEntity;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import java.awt.Color;
@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.core.BlockPos;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import hellfirepvp.astralsorcery.client.model.builtin.ModelLensColored;
 import hellfirepvp.astralsorcery.client.model.builtin.ModelLens;
 import hellfirepvp.astralsorcery.common.tile.TileLens;
@@ -22,7 +22,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
     private static final ModelLens MODEL_LENS;
     private static final ModelLensColored MODEL_LENS_COLORED;
     
-    public RenderLens(final TileEntityRendererDispatcher tileRenderer) {
+    public RenderLens(final BlockEntityRenderDispatcher tileRenderer) {
         super(tileRenderer);
     }
     
@@ -173,7 +173,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
         RenderLens.MODEL_LENS_COLORED.fitting2.field_78795_f = pitch * 0.017453292f;
         RenderLens.MODEL_LENS_COLORED.detail1_1.field_78795_f = pitch * 0.017453292f;
         RenderLens.MODEL_LENS_COLORED.detail1.field_78795_f = pitch * 0.017453292f;
-        final IVertexBuilder vb = buffer.getBuffer(RenderTypesAS.MODEL_LENS_COLORED_GLASS);
+        final VertexConsumer vb = buffer.getBuffer(RenderTypesAS.MODEL_LENS_COLORED_GLASS);
         RenderLens.MODEL_LENS_COLORED.renderGlass(renderStack, vb, combinedLight, combinedOverlay, c.getRed() / 255.0f, c.getGreen() / 255.0f, c.getBlue() / 255.0f, 1.0f);
         RenderingUtils.refreshDrawing(vb, RenderTypesAS.MODEL_LENS_COLORED_GLASS);
         RenderLens.MODEL_LENS_COLORED.render(renderStack, buffer, combinedLight, combinedOverlay);

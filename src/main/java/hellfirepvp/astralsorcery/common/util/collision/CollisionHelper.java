@@ -4,18 +4,18 @@ import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
 import net.minecraft.core.Direction;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
 import java.util.function.Consumer;
-import net.minecraft.util.math.shapes.VoxelShapeSpliterator;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CollisionHelper
 {
-    public static boolean onCollision(final VoxelShapeSpliterator iterator, final Consumer<? super VoxelShape> action) {
+    public static boolean onCollision(final VoxelShape iterator, final Consumer<? super VoxelShape> action) {
         if (!CollisionManager.needsCustomCollision(iterator.field_234868_a_)) {
             return false;
         }
@@ -24,7 +24,7 @@ public class CollisionHelper
             return false;
         }
         final VoxelShape floor = VoxelShapes.func_197881_a(box);
-        if (VoxelShapes.func_197879_c(floor, VoxelShapes.func_197881_a(iterator.field_234869_b_.func_186662_g(1.0E-7)), IBooleanFunction.field_223238_i_)) {
+        if (VoxelShapes.func_197879_c(floor, VoxelShapes.func_197881_a(iterator.field_234869_b_.func_186662_g(1.0E-7)), BooleanOp.field_223238_i_)) {
             action.accept(floor);
             return true;
         }

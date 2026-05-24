@@ -19,25 +19,25 @@ import java.util.Random;
 import java.util.Iterator;
 import java.util.List;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.world.level.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.item.enchantment.Enchantments;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.ISeedReader;
 import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import net.minecraft.util.EntityPredicates;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.server.level.ServerLevel;
 import javax.annotation.Nullable;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.phys.AABB;
 
 public class CelestialStrike
 {
@@ -71,7 +71,7 @@ public class CelestialStrike
                 }
             }
             float dstPerc = (float)(Vector3.atEntityCenter((Entity)living).distance(at) / radius);
-            dstPerc = 1.0f - MathHelper.func_76131_a(dstPerc, 0.0f, 1.0f);
+            dstPerc = 1.0f - Mth.func_76131_a(dstPerc, 0.0f, 1.0f);
             final float dmgDealt = dstPerc * dmg;
             if (dmgDealt > 0.5) {
                 DamageUtil.attackEntityFrom((Entity)living, ds, dmgDealt);

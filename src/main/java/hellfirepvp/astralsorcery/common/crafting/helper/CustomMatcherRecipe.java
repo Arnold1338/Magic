@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.common.crafting.helper;
 
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.Container;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.crafting.IRecipeSerializer;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.Container;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.items.IItemHandler;
 
@@ -22,7 +22,7 @@ public abstract class CustomMatcherRecipe extends BaseHandlerRecipe<IItemHandler
         return false;
     }
     
-    public final ItemStack func_77572_b(final IInventory inv) {
+    public final ItemStack func_77572_b(final Container inv) {
         return this.func_77571_b();
     }
     

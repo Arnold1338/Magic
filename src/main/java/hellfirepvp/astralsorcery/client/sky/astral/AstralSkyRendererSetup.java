@@ -20,7 +20,7 @@ class AstralSkyRendererSetup
         final int scale = 64;
         final int segments = 6;
         final int width = segments * scale;
-        buf.func_181668_a(7, DefaultVertexFormats.field_181705_e);
+        buf.func_181668_a(7, DefaultVertexFormat.field_181705_e);
         for (int x = -width; x <= width; x += scale) {
             for (int z = -width; z <= width; z += scale) {
                 float x2 = (float)x;
@@ -38,7 +38,7 @@ class AstralSkyRendererSetup
     }
     
     static void generateStars(final BufferBuilder starBuffer, final int amount, final float sizeMultiplier) {
-        starBuffer.func_181668_a(7, DefaultVertexFormats.field_181707_g);
+        starBuffer.func_181668_a(7, DefaultVertexFormat.field_181707_g);
         for (int i = 0; i < amount; ++i) {
             double x = -1.0f + AstralSkyRendererSetup.RAND.nextFloat() * 2.0f;
             double y = -1.0f + AstralSkyRendererSetup.RAND.nextFloat() * 2.0f;

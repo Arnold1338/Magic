@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.effect.function.impl;
 
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
@@ -68,8 +68,8 @@ public class RenderOffsetNoisePlane implements VFXRenderOffsetFunction<EntityVis
     }
     
     private Vector3 interpolateRotation(final double partial, final Vector3 vZero, final Vector3 vOne) {
-        double v = 20.0 * MathHelper.func_151237_a(partial, 0.0, 1.0) - 10.0;
-        v = MathHelper.func_151237_a(Math.atan(v) / 2.9423 + 0.5, 0.0, 1.0);
+        double v = 20.0 * Mth.func_151237_a(partial, 0.0, 1.0) - 10.0;
+        v = Mth.func_151237_a(Math.atan(v) / 2.9423 + 0.5, 0.0, 1.0);
         return this.getInterpolatedVectorRotation((float)v, vZero, vOne);
     }
     

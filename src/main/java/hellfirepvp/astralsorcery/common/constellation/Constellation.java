@@ -1,13 +1,13 @@
 package hellfirepvp.astralsorcery.common.constellation;
 
 import java.util.Iterator;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.base.MoonPhase;
 import hellfirepvp.astralsorcery.common.data.research.ProgressionTier;
 import java.util.Objects;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.function.Function;
@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import java.util.LinkedList;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import java.awt.Color;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.item.crafting.Ingredient;
 import java.util.function.Supplier;
 import java.util.List;
 
@@ -189,7 +189,7 @@ public abstract class Constellation extends BaseConstellation implements IConste
             for (final MoonPhase mp : this.phases) {
                 int index;
                 for (index = mp.ordinal() + ((int)(rSeed % MoonPhase.values().length) + MoonPhase.values().length); index >= MoonPhase.values().length; index -= MoonPhase.values().length) {}
-                index = MathHelper.func_76125_a(index, 0, MoonPhase.values().length - 1);
+                index = Mth.func_76125_a(index, 0, MoonPhase.values().length - 1);
                 final MoonPhase offset = MoonPhase.values()[index];
                 if (!shifted.contains(offset)) {
                     shifted.add(offset);

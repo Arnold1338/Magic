@@ -7,10 +7,10 @@ import net.minecraft.nbt.CompoundTag;
 import java.util.List;
 import java.util.Collection;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.phys.Vec3;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
@@ -28,30 +28,30 @@ import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import hellfirepvp.astralsorcery.common.constellation.mantle.effect.MantleEffectBootes;
 import net.minecraft.core.Vec3i;
-import net.minecraft.entity.monster.PhantomEntity;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.entity.monster.PhantomEntity;
+import net.minecraft.world.level.level.LevelAccessor;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.entity.passive.BatEntity;
+import net.minecraft.world.entity.animal.BatEntity;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import javax.annotation.Nullable;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.level.LevelReader;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.data.config.entry.EntityConfig;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.entity.ai.attributes.Attributes;
+import net.minecraft.world.level.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.level.entity.EntityType;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.FlyingEntity;
+import net.minecraft.world.entity.FlyingMob;
 
-public class EntityFlare extends FlyingEntity
+public class EntityFlare extends FlyingMob
 {
     private static final int RANDOM_WANDER_RANGE = 31;
     private int entityAge;
@@ -73,7 +73,7 @@ public class EntityFlare extends FlyingEntity
         return (EntityType.IFactory<EntityFlare>)((type, world) -> new EntityFlare(world));
     }
     
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
+    public static AttributeSupplier.MutableAttribute createAttributes() {
         return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233818_a_, 1.0);
     }
     
@@ -262,7 +262,7 @@ public class EntityFlare extends FlyingEntity
         this.func_70606_j(0.0f);
     }
     
-    public boolean func_213380_a(final IWorld worldIn, final SpawnReason spawnReasonIn) {
+    public boolean func_213380_a(final IWorld worldIn, final MobSpawnType spawnReasonIn) {
         return false;
     }
     

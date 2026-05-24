@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.common.event.handler;
 
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import hellfirepvp.astralsorcery.common.block.tile.BlockAltar;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.level.block.Blocks;
 import hellfirepvp.astralsorcery.common.starlight.WorldNetworkHandler;
-import net.minecraft.world.level.chunk.ChunkStatus;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.chunk.ChunkStatus;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.chunk.LevelChunk;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.chunk.LevelChunk;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.observerlib.common.event.BlockChangeNotifier;
 
 public class EventHandlerAutoLink implements BlockChangeNotifier.Listener

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import net.minecraft.client.Minecraft;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -18,7 +18,7 @@ import com.mojang.math.Matrix4f;
 import hellfirepvp.astralsorcery.common.constellation.star.StarLocation;
 import hellfirepvp.astralsorcery.common.constellation.star.StarConnection;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.constellation.ConstellationRenderInfos;
 import java.util.function.Supplier;
@@ -41,20 +41,20 @@ public class RenderingConstellationUtils
         final ConstellationBackgroundInfo backgroundInfo = ConstellationRenderInfos.getBackgroundRenderInfo(c);
         if (backgroundInfo != null) {
             backgroundInfo.getBackgroundTexture().bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
                 final int bgScale = 32;
                 final Vector3 ofStar = renderOffset.clone().add(dirU.clone()).add(dirV.clone());
                 for (int i = 0; i < 4; ++i) {
                     final int u = (i + 1 & 0x2) >> 1;
                     final int v = (i + 2 & 0x2) >> 1;
                     final Vector3 pos = ofStar.clone().add(dirU.clone().multiply(u << 1).multiply(bgScale / 2)).add(dirV.clone().multiply(v << 1).multiply(bgScale / 2));
-                    buf.func_227888_a_(matr, (float)pos.getX(), (float)pos.getY(), (float)pos.getZ()).func_225586_a_(r, g, b, MathHelper.func_76125_a((int)(brightnessFn.get() * 255.0f * 0.5), 0, 255)).func_225583_a_((float)u, (float)v).func_181675_d();
+                    buf.func_227888_a_(matr, (float)pos.getX(), (float)pos.getY(), (float)pos.getZ()).func_225586_a_(r, g, b, Mth.func_76125_a((int)(brightnessFn.get() * 255.0f * 0.5), 0, 255)).func_225583_a_((float)u, (float)v).func_181675_d();
                 }
                 return;
             });
         }
         TexturesAS.TEX_STAR_CONNECTION.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             for (int j = 0; j < 2; ++j) {
                 c.getStarConnections().iterator();
                 final Iterator iterator;
@@ -69,14 +69,14 @@ public class RenderingConstellationUtils
                     final Vector3 vecU = vecAD.clone().multiply((j == 0) ? 2 : -2);
                     for (int k = 0; k < 4; ++k) {
                         final Vector3 pos2 = offset00.clone().add(vecU.clone().multiply((k + 1 & 0x2) >> 1)).add(vecCV.clone().multiply((k + 2 & 0x2) >> 1));
-                        buf.func_227888_a_(matr, (float)pos2.getX(), (float)pos2.getY(), (float)pos2.getZ()).func_225586_a_(r, g, b, MathHelper.func_76125_a((int)(brightnessFn.get() * 255.0f), 0, 255)).func_225583_a_((float)((k + 2 & 0x2) >> 1), (float)((k + 3 & 0x2) >> 1)).func_181675_d();
+                        buf.func_227888_a_(matr, (float)pos2.getX(), (float)pos2.getY(), (float)pos2.getZ()).func_225586_a_(r, g, b, Mth.func_76125_a((int)(brightnessFn.get() * 255.0f), 0, 255)).func_225583_a_((float)((k + 2 & 0x2) >> 1), (float)((k + 3 & 0x2) >> 1)).func_181675_d();
                     }
                 }
             }
             return;
         });
         TexturesAS.TEX_STAR_1.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             c.getStars().iterator();
             final Iterator iterator2;
             while (iterator2.hasNext()) {
@@ -88,7 +88,7 @@ public class RenderingConstellationUtils
                     final int u2 = (l + 1 & 0x2) >> 1;
                     final int v2 = (l + 2 & 0x2) >> 1;
                     final Vector3 pos3 = ofStar2.clone().add(dirU.clone().multiply(u2 << 1)).add(dirV.clone().multiply(v2 << 1));
-                    buf.func_227888_a_(matr, (float)pos3.getX(), (float)pos3.getY(), (float)pos3.getZ()).func_225586_a_(r, g, b, MathHelper.func_76125_a((int)(brightnessFn.get() * 255.0f), 0, 255)).func_225583_a_((float)u2, (float)v2).func_181675_d();
+                    buf.func_227888_a_(matr, (float)pos3.getX(), (float)pos3.getY(), (float)pos3.getZ()).func_225586_a_(r, g, b, Mth.func_76125_a((int)(brightnessFn.get() * 255.0f), 0, 255)).func_225583_a_((float)u2, (float)v2).func_181675_d();
                 }
             }
         });
@@ -119,7 +119,7 @@ public class RenderingConstellationUtils
         Vector3 dirV = new Vector3(0.0, 0.0, scale);
         final ConstellationBackgroundInfo backgroundInfo = ConstellationRenderInfos.getBackgroundRenderInfo(c);
         if (backgroundInfo != null) {
-            final IVertexBuilder buf = buffer.getBuffer(backgroundInfo.getRenderType());
+            final VertexConsumer buf = buffer.getBuffer(backgroundInfo.getRenderType());
             Vector3 offsetRender = thisOffset.clone().add(0.0, 0.005, 0.0);
             offsetRender = offsetRender.add(drawOffset);
             Vector3 pos2 = offsetRender.clone().add(dirU.clone().multiply(0)).add(dirV.clone().multiply(1));
@@ -131,7 +131,7 @@ public class RenderingConstellationUtils
             pos2 = offsetRender.clone().add(dirU.clone().multiply(0)).add(dirV.clone().multiply(0));
             pos2.drawPos(matr, buf).func_225586_a_(r, g, b, outlineAlpha).func_225583_a_(0.0f, 0.0f).func_181675_d();
         }
-        IVertexBuilder buf = buffer.getBuffer(RenderTypesAS.CONSTELLATION_WORLD_CONNECTION);
+        VertexConsumer buf = buffer.getBuffer(RenderTypesAS.CONSTELLATION_WORLD_CONNECTION);
         for (final StarConnection sc : c.getStarConnections()) {
             thisOffset.addY(0.001);
             dirU = new Vector3(sc.to.x, 0, sc.to.y).subtract(sc.from.x, 0.0, sc.from.y).multiply(starSize);
@@ -189,26 +189,26 @@ public class RenderingConstellationUtils
             final ConstellationBackgroundInfo backgroundInfo = ConstellationRenderInfos.getBackgroundRenderInfo(c);
             if (backgroundInfo != null) {
                 backgroundInfo.getBackgroundTexture().bindTexture();
-                RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
-                    final int alpha = MathHelper.func_76125_a((int)(brightnessFn.get() * brightness * 0.5 * 255.0), 0, 255);
+                RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
+                    final int alpha = Mth.func_76125_a((int)(brightnessFn.get() * brightness * 0.5 * 255.0), 0, 255);
                     final Vector3 bgVec = new Vector3(offsetX, offsetY, zLevel);
                     for (int i = 0; i < 4; ++i) {
                         final int u = (i + 1 & 0x2) >> 1;
                         final int v = (i + 2 & 0x2) >> 1;
                         final Vector3 pos = bgVec.clone().addX(width * u).addY(height * v);
-                        buf.func_227888_a_(offset, offsetX + width * u, offsetY + height * v, zLevel).func_225586_a_(r, g, b, MathHelper.func_76125_a((int)(alpha * 1.2f + 0.2f), 0, 255)).func_225583_a_((float)u, (float)v).func_181675_d();
+                        buf.func_227888_a_(offset, offsetX + width * u, offsetY + height * v, zLevel).func_225586_a_(r, g, b, Mth.func_76125_a((int)(alpha * 1.2f + 0.2f), 0, 255)).func_225583_a_((float)u, (float)v).func_181675_d();
                     }
                     return;
                 });
             }
             TexturesAS.TEX_STAR_CONNECTION.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
                 for (int j = 0; j < 2; ++j) {
                     c.getStarConnections().iterator();
                     final Iterator iterator;
                     while (iterator.hasNext()) {
                         final StarConnection sc = iterator.next();
-                        final int alpha2 = MathHelper.func_76125_a((int)(brightnessFn.get() * brightness * 255.0f), 0, 255);
+                        final int alpha2 = Mth.func_76125_a((int)(brightnessFn.get() * brightness * 255.0f), 0, 255);
                         final Vector3 fromStar = new Vector3(offsetX + sc.from.x * ulength, offsetY + sc.from.y * vlength, zLevel);
                         final Vector3 toStar = new Vector3(offsetX + sc.to.x * ulength, offsetY + sc.to.y * vlength, zLevel);
                         final Vector3 dir = toStar.clone().subtract(fromStar);
@@ -228,12 +228,12 @@ public class RenderingConstellationUtils
         }
         final Map<StarLocation, Rectangle2D.Float> starRectangles = new HashMap<StarLocation, Rectangle2D.Float>();
         TexturesAS.TEX_STAR_1.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             c.getStars().iterator();
             final Iterator iterator2;
             while (iterator2.hasNext()) {
                 final StarLocation sl = iterator2.next();
-                final int alpha3 = MathHelper.func_76125_a((int)(brightnessFn.get() * brightness * 255.0f), 0, 255);
+                final int alpha3 = Mth.func_76125_a((int)(brightnessFn.get() * brightness * 255.0f), 0, 255);
                 final int starX = sl.x;
                 final int starY = sl.y;
                 final Vector3 starVec = new Vector3(starX * ulength - ulength, starY * vlength - vlength, 0.0f).add(offsetX, offsetY, zLevel);
@@ -241,7 +241,7 @@ public class RenderingConstellationUtils
                     final int u3 = (l + 1 & 0x2) >> 1;
                     final int v3 = (l + 2 & 0x2) >> 1;
                     final Vector3 pos3 = starVec.clone().addX(ulength * u3 * 2.0f).addY(vlength * v3 * 2.0f);
-                    buf.func_227888_a_(offset, (float)pos3.getX(), (float)pos3.getY(), (float)pos3.getZ()).func_225586_a_(isKnown ? r : alpha3, isKnown ? g : alpha3, isKnown ? b : alpha3, MathHelper.func_76125_a((int)(alpha3 * 1.2f + 0.2f), 0, 255)).func_225583_a_((float)u3, (float)v3).func_181675_d();
+                    buf.func_227888_a_(offset, (float)pos3.getX(), (float)pos3.getY(), (float)pos3.getZ()).func_225586_a_(isKnown ? r : alpha3, isKnown ? g : alpha3, isKnown ? b : alpha3, Mth.func_76125_a((int)(alpha3 * 1.2f + 0.2f), 0, 255)).func_225583_a_((float)u3, (float)v3).func_181675_d();
                 }
                 starRectangles.put(sl, new Rectangle2D.Float((float)starVec.getX(), (float)starVec.getY(), ulength * 2.0f, vlength * 2.0f));
             }
@@ -260,7 +260,7 @@ public class RenderingConstellationUtils
     
     private static float flickerSin(final long wtime, final float partialTicks, final double divisor, final float div, final float move) {
         final double rad = (wtime % ((int)GeneralConfig.CONFIG.dayLength.get() / 2) + partialTicks) / divisor;
-        final float sin = MathHelper.func_76126_a((float)rad);
+        final float sin = Mth.func_76126_a((float)rad);
         return sin / div + move;
     }
 }

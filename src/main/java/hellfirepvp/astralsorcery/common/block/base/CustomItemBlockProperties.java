@@ -1,16 +1,16 @@
 package hellfirepvp.astralsorcery.common.block.base;
 
-import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
+import net.minecraft.client.renderer.blockentity.ItemStackTileEntityRenderer;
 import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 import java.util.Collections;
 import net.minecraftforge.common.ToolAction;
 import java.util.Map;
 import javax.annotation.Nonnull;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.item.Rarity;
+import net.minecraft.world.level.item.CreativeModeTab;
 import javax.annotation.Nullable;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 
 public interface CustomItemBlockProperties extends CustomItemBlock
 {

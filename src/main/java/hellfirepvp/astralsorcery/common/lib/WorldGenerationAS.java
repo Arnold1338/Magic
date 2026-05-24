@@ -2,21 +2,21 @@ package hellfirepvp.astralsorcery.common.lib;
 
 import net.minecraft.resources.ResourceKey;
 import java.util.Collections;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import java.util.Arrays;
-import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.level.biome.Biome;
 import hellfirepvp.astralsorcery.common.world.FeatureGenerationConfig;
 import hellfirepvp.astralsorcery.common.world.StructureGenerationConfig;
 import hellfirepvp.astralsorcery.common.world.placement.WorldFilteredPlacement;
 import hellfirepvp.astralsorcery.common.world.placement.RiverbedPlacement;
 import hellfirepvp.astralsorcery.common.world.placement.ChancePlacement;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import hellfirepvp.astralsorcery.common.world.feature.RockCrystalFeature;
 import hellfirepvp.astralsorcery.common.world.feature.ReplaceBlockFeature;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.level.levelgen.structure.Structure;
-import net.minecraft.world.gen.feature.structure.IStructurePieceType;
+import net.minecraft.world.level.levelgen.feature.NoneFeatureConfiguration;
+import net.minecraft.world.level.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.StructurePieceType;
 import net.minecraft.resources.ResourceLocation;
 
 public class WorldGenerationAS
@@ -26,12 +26,12 @@ public class WorldGenerationAS
         public static final ResourceLocation KEY_ANCIENT_SHRINE;
         public static final ResourceLocation KEY_DESERT_SHRINE;
         public static final ResourceLocation KEY_SMALL_SHRINE;
-        public static IStructurePieceType ANCIENT_SHRINE_PIECE;
-        public static IStructurePieceType DESERT_SHRINE_PIECE;
-        public static IStructurePieceType SMALL_SHRINE_PIECE;
-        public static Structure<NoFeatureConfig> STRUCTURE_ANCIENT_SHRINE;
-        public static Structure<NoFeatureConfig> STRUCTURE_DESERT_SHRINE;
-        public static Structure<NoFeatureConfig> STRUCTURE_SMALL_SHRINE;
+        public static StructurePieceType ANCIENT_SHRINE_PIECE;
+        public static StructurePieceType DESERT_SHRINE_PIECE;
+        public static StructurePieceType SMALL_SHRINE_PIECE;
+        public static Structure<NoneFeatureConfiguration> STRUCTURE_ANCIENT_SHRINE;
+        public static Structure<NoneFeatureConfiguration> STRUCTURE_DESERT_SHRINE;
+        public static Structure<NoneFeatureConfiguration> STRUCTURE_SMALL_SHRINE;
         
         static {
             KEY_ANCIENT_SHRINE = AstralSorcery.key("ancient_shrine");

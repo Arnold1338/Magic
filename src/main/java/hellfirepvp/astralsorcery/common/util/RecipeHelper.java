@@ -2,31 +2,31 @@ package hellfirepvp.astralsorcery.common.util;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.client.network.play.ClientPlayNetHandler;
+import net.minecraft.client.multiplayer.play.ClientPlayNetHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.util.thread.EffectiveSide;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.level.item.crafting.Recipe;
+import net.minecraft.world.level.Container;
+import net.minecraft.world.level.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import org.apache.commons.lang3.ObjectUtils;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.inventory.Inventory;
+import net.minecraft.world.level.item.crafting.RecipeType;
+import net.minecraft.world.Inventory;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.util.Tuple;
 import java.util.Optional;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.level.Level;
 import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.Collections;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.function.Predicate;
 
 public class RecipeHelper
@@ -53,8 +53,8 @@ public class RecipeHelper
     @Nonnull
     public static Optional<Tuple<ItemStack, Float>> findSmeltingResult(final World world, final ItemStack input) {
         final RecipeManager mgr = world.func_199532_z();
-        final IInventory inv = (IInventory)new Inventory(new ItemStack[] { input });
-        final Optional<Recipe<IInventory>> optRecipe = (Optional<Recipe<IInventory>>)ObjectUtils.firstNonNull((Object[])new Optional[] { mgr.func_215371_a(RecipeType.field_222150_b, inv, world), mgr.func_215371_a(RecipeType.field_222153_e, inv, world), mgr.func_215371_a(RecipeType.field_222152_d, inv, world), Optional.empty() });
+        final Container inv = (Container)new Inventory(new ItemStack[] { input });
+        final Optional<Recipe<Container>> optRecipe = (Optional<Recipe<Container>>)ObjectUtils.firstNonNull((Object[])new Optional[] { mgr.func_215371_a(RecipeType.field_222150_b, inv, world), mgr.func_215371_a(RecipeType.field_222153_e, inv, world), mgr.func_215371_a(RecipeType.field_222152_d, inv, world), Optional.empty() });
         return optRecipe.map(recipe -> {
             final ItemStack smeltResult = recipe.func_77572_b(inv).copy();
             float exp = 0.0f;

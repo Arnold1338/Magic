@@ -5,17 +5,17 @@ import java.util.Collection;
 import com.mojang.datafixers.kinds.App;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfiguredBlockStateList;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import java.util.ArrayList;
 import java.util.List;
 import com.mojang.serialization.Codec;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import java.util.function.Predicate;
 
 public class BlockStateList implements BlockPredicate, Predicate<BlockState>

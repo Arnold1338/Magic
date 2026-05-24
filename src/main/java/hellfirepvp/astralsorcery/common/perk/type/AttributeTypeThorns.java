@@ -1,18 +1,18 @@
 package hellfirepvp.astralsorcery.common.perk.type;
 
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.level.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.perk.modifier.AttributeModifierThorns;
@@ -55,7 +55,7 @@ public class AttributeTypeThorns extends PerkAttributeType
         if (reflectAmount <= 0.0f) {
             return;
         }
-        reflectAmount = MathHelper.func_76131_a(reflectAmount, 0.0f, 1.0f);
+        reflectAmount = Mth.func_76131_a(reflectAmount, 0.0f, 1.0f);
         final DamageSource source = event.getSource();
         LivingEntity reflectTarget = null;
         if (source.func_76364_f() != null && source.func_76364_f() instanceof LivingEntity && source.func_76364_f().isAlive()) {

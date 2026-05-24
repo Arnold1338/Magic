@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.item.useables;
 
-import net.minecraft.item.UseAction;
+import net.minecraft.world.item.UseAction;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
@@ -11,31 +11,31 @@ import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.constellation.IMajorConstellation;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.Util;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.InteractionHand;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.item.base.PerkExperienceRevealer;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 
 public class ItemShiftingStar extends Item implements PerkExperienceRevealer
 {
@@ -44,7 +44,7 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final ITooltipFlag flagIn) {
+    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         final IConstellation cst = this.getBaseConstellation();
         if (cst != null) {
             if (ResearchHelper.getClientProgress().hasConstellationDiscovered(cst)) {
@@ -72,7 +72,7 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
                 }
                 final double perkExp = prog.getPerkData().getPerkExp();
                 if (ResearchManager.setAttunedConstellation((Player)player, cst)) {
-                    ResearchManager.setExp((Player)player, MathHelper.func_76124_d(perkExp));
+                    ResearchManager.setExp((Player)player, Mth.func_76124_d(perkExp));
                     player.func_145747_a((Component)new Component("astralsorcery.progress.switch.attunement").func_240699_a_(ChatFormatting.BLUE), Util.NIL_UUID);
                     SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vector3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
                     return ItemStack.field_190927_a;
@@ -109,7 +109,7 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
                 final Vector3 center = Vector3.atEntityCorner((Entity)player).addY(player.func_213302_cg() / 2.0f);
                 final Vector3 v = Vector3.RotAxis.X_AXIS.clone();
                 final float originalAngle = i / (float)parts * 360.0f;
-                final double angle = originalAngle + MathHelper.func_76126_a(percCycle) * angleSwirl;
+                final double angle = originalAngle + Mth.func_76126_a(percCycle) * angleSwirl;
                 v.rotate(-Math.toRadians(angle), Vector3.RotAxis.Y_AXIS).normalize().multiply(4);
                 final Vector3 pos = center.clone().add(v);
                 final Vector3 mot = center.clone().subtract(pos).normalize().multiply(0.1);

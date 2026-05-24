@@ -12,26 +12,26 @@ import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.util.List;
 import java.util.function.Consumer;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationBaseItem;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.world.Container;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.block.LecternBlock;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.item.ItemUseContext;
+import net.minecraft.world.Inventory;
+import net.minecraft.world.level.Container;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.LecternBlock;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.item.ItemUseContext;
 import hellfirepvp.astralsorcery.common.container.factory.ContainerTomeProvider;
 import net.minecraft.server.level.ServerPlayer;
 import hellfirepvp.astralsorcery.common.GuiType;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.InteractionHand;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.item.base.PerkExperienceRevealer;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 
 public class ItemTome extends Item implements PerkExperienceRevealer
 {
@@ -58,7 +58,7 @@ public class ItemTome extends Item implements PerkExperienceRevealer
         return InteractionResult.PASS;
     }
     
-    public static IInventory getTomeStorage(final ItemStack stack, final Player player) {
+    public static Container getTomeStorage(final ItemStack stack, final Player player) {
         final Inventory inventory = new Inventory(27);
         getStoredConstellations(stack, player).stream().map(cst -> {
             final ItemStack cstPaper = new ItemStack((ItemLike)ItemsAS.CONSTELLATION_PAPER);
@@ -67,7 +67,7 @@ public class ItemTome extends Item implements PerkExperienceRevealer
             }
             return cstPaper;
         }).forEach((Consumer<? super Object>)inventory::func_174894_a);
-        return (IInventory)inventory;
+        return (Container)inventory;
     }
     
     public static List<IConstellation> getStoredConstellations(final ItemStack stack, final Player player) {

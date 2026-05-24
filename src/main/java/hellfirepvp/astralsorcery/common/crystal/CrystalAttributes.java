@@ -9,9 +9,9 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.util.Mth;
+import net.minecraft.network.chat.IFormattableTextComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -187,7 +187,7 @@ public final class CrystalAttributes
     public CrystalAttributes modifyLevel(final CrystalProperty prop, final int change, final boolean ignoreTierMax) {
         final Attribute existing = this.getAttribute(prop);
         if (existing != null && change != 0) {
-            final int newTier = MathHelper.func_76125_a(existing.getTier() + change, 0, ignoreTierMax ? Integer.MAX_VALUE : prop.getMaxTier());
+            final int newTier = Mth.func_76125_a(existing.getTier() + change, 0, ignoreTierMax ? Integer.MAX_VALUE : prop.getMaxTier());
             if (newTier <= 0) {
                 return this.transform(Function.identity(), Lists.newArrayList(), Lists.newArrayList((Object[])new CrystalProperty[] { prop }));
             }
@@ -201,7 +201,7 @@ public final class CrystalAttributes
             }
         }
         else if (change > 0) {
-            return this.transform(Function.identity(), Lists.newArrayList((Object[])new Attribute[] { new Attribute(prop, MathHelper.func_76125_a(change, 0, prop.getMaxTier())) }), Lists.newArrayList());
+            return this.transform(Function.identity(), Lists.newArrayList((Object[])new Attribute[] { new Attribute(prop, Mth.func_76125_a(change, 0, prop.getMaxTier())) }), Lists.newArrayList());
         }
         return this;
     }
@@ -240,7 +240,7 @@ public final class CrystalAttributes
     public CrystalAttributes clampMaxTier() {
         final CrystalAttributes attributes = this.copy();
         for (final Attribute attr : attributes.crystalAttributes) {
-            attr.tier = MathHelper.func_76125_a(attr.getTier(), 0, attr.getProperty().getMaxTier());
+            attr.tier = Mth.func_76125_a(attr.getTier(), 0, attr.getProperty().getMaxTier());
         }
         return attributes;
     }
@@ -350,7 +350,7 @@ public final class CrystalAttributes
             for (final Attribute attr : other.getCrystalAttributes()) {
                 final CrystalProperty property = attr.getProperty();
                 int cTier = this.properties.getOrDefault(property, 0);
-                cTier = MathHelper.func_76125_a(cTier + attr.getTier(), 0, this.ignoreTierCap ? Integer.MAX_VALUE : property.getMaxTier());
+                cTier = Mth.func_76125_a(cTier + attr.getTier(), 0, this.ignoreTierCap ? Integer.MAX_VALUE : property.getMaxTier());
                 this.properties.put(property, cTier);
             }
             return this;
@@ -358,7 +358,7 @@ public final class CrystalAttributes
         
         public Builder addProperty(final CrystalProperty property, final int tier) {
             int cTier = this.properties.getOrDefault(property, 0);
-            cTier = MathHelper.func_76125_a(cTier + tier, 0, this.ignoreTierCap ? Integer.MAX_VALUE : property.getMaxTier());
+            cTier = Mth.func_76125_a(cTier + tier, 0, this.ignoreTierCap ? Integer.MAX_VALUE : property.getMaxTier());
             this.properties.remove(property);
             if (cTier > 0) {
                 this.properties.put(property, cTier);
@@ -377,7 +377,7 @@ public final class CrystalAttributes
         public CrystalAttributes buildAverage(final int count) {
             final Map<CrystalProperty, Integer> average = new HashMap<CrystalProperty, Integer>();
             for (final CrystalProperty prop : this.properties.keySet()) {
-                final int newLevel = MathHelper.func_76123_f(this.properties.getOrDefault(prop, 0) / (float)count);
+                final int newLevel = Mth.func_76123_f(this.properties.getOrDefault(prop, 0) / (float)count);
                 if (newLevel > 0) {
                     average.put(prop, newLevel);
                 }

@@ -1,20 +1,20 @@
 package hellfirepvp.astralsorcery.datagen.data.recipes.altar;
 
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.builtin.ConstellationCopyStatsRecipe;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.item.Items;
 import hellfirepvp.astralsorcery.common.util.NameUtil;
 import net.minecraftforge.common.Tags;
 import hellfirepvp.astralsorcery.common.lib.TagsAS;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.level.material.Fluid;
 import hellfirepvp.astralsorcery.common.lib.FluidsAS;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 import net.minecraft.tags.TagKey;
 import net.minecraft.tags.ItemTags;
 import hellfirepvp.astralsorcery.common.lib.AltarRecipeEffectsAS;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.item.crafting.Ingredient;
 import hellfirepvp.astralsorcery.common.crafting.helper.ingredient.CrystalIngredient;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.AltarRecipeGrid;
 import net.minecraftforge.registries.ForgeRegistryEntry;

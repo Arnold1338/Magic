@@ -1,11 +1,11 @@
 package hellfirepvp.astralsorcery.common.util;
 
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.LivingEntity;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.level.damagesource.DamageSource;
 import javax.annotation.Nonnull;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 
 public class DamageUtil
 {

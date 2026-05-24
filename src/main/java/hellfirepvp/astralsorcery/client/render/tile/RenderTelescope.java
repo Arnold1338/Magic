@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import hellfirepvp.astralsorcery.client.model.builtin.ModelTelescope;
 import hellfirepvp.astralsorcery.common.tile.TileTelescope;
 
@@ -12,7 +12,7 @@ public class RenderTelescope extends CustomTileEntityRenderer<TileTelescope>
 {
     private static final ModelTelescope MODEL_TELESCOPE;
     
-    public RenderTelescope(final TileEntityRendererDispatcher tileRenderer) {
+    public RenderTelescope(final BlockEntityRenderDispatcher tileRenderer) {
         super(tileRenderer);
     }
     

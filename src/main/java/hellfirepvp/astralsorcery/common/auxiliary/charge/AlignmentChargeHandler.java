@@ -6,18 +6,18 @@ import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.perk.node.key.KeyChargeBalancing;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
-import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.common.network.play.server.PktSyncCharge;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.HashMap;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import java.util.UUID;
 import net.minecraftforge.fml.LogicalSide;
 import java.util.Map;
@@ -60,7 +60,7 @@ public class AlignmentChargeHandler implements ITickHandler
         }
         final float max = this.getMaximumCharge(player, side);
         final float current = this.getCurrentCharge(player, side);
-        return MathHelper.func_76131_a(current / max, 0.0f, 1.0f);
+        return Mth.func_76131_a(current / max, 0.0f, 1.0f);
     }
     
     public boolean hasCharge(final Player player, final LogicalSide side, final float charge) {
@@ -84,7 +84,7 @@ public class AlignmentChargeHandler implements ITickHandler
             return false;
         }
         if (!simulate) {
-            AlignmentChargeHandler.currentCharge.computeIfAbsent(side, s -> new HashMap()).put(player.getUUID(), MathHelper.func_76131_a(result, 0.0f, this.getMaximumCharge(player, side)));
+            AlignmentChargeHandler.currentCharge.computeIfAbsent(side, s -> new HashMap()).put(player.getUUID(), Mth.func_76131_a(result, 0.0f, this.getMaximumCharge(player, side)));
         }
         return true;
     }

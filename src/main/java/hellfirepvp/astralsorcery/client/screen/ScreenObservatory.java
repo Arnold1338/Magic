@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.client.screen;
 
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.container.ContainerTileEntity;
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.inventory.AbstractContainerMenu;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import java.awt.Color;
@@ -14,19 +14,19 @@ import hellfirepvp.astralsorcery.common.constellation.star.StarLocation;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.client.util.Blending;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import org.lwjgl.opengl.GL11;
-import net.minecraft.client.settings.PointOfView;
+import net.minecraft.client.options.PointOfView;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.common.event.EventFlags;
@@ -40,7 +40,7 @@ import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
 import javax.annotation.Nonnull;
 import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.client.screen.telescope.FullScreenDrawArea;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import java.util.ArrayList;
 import net.minecraft.client.Minecraft;
 import java.awt.geom.Point2D;
@@ -124,7 +124,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
         Minecraft.func_71410_x().field_71474_y.func_243229_a(PointOfView.FIRST_PERSON);
         final double guiFactor = Minecraft.func_71410_x().func_228018_at_().func_198100_s();
         GL11.glEnable(3089);
-        GL11.glScissor(MathHelper.func_76128_c(14.0 * guiFactor), MathHelper.func_76128_c(14.0 * guiFactor), MathHelper.func_76128_c((this.getGuiWidth() + 2) * guiFactor), MathHelper.func_76128_c((this.getGuiHeight() + 2) * guiFactor));
+        GL11.glScissor(Mth.func_76128_c(14.0 * guiFactor), Mth.func_76128_c(14.0 * guiFactor), Mth.func_76128_c((this.getGuiWidth() + 2) * guiFactor), Mth.func_76128_c((this.getGuiHeight() + 2) * guiFactor));
         this.drawObservatoryScreen(renderStack, pTicks);
         GL11.glDisable(3089);
         this.drawFrame(renderStack);
@@ -140,7 +140,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
         }
         else if (pitch <= -9.0f) {
             angleOpacity = 0.2f + 0.8f * ((Math.abs(pitch) - 10.0f) / 20.0f);
-            angleOpacity = MathHelper.func_76129_c(angleOpacity);
+            angleOpacity = Mth.func_76129_c(angleOpacity);
         }
         final float brMultiplier = angleOpacity;
         RenderSystem.disableAlphaTest();
@@ -169,7 +169,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
             final Random gen = ctx.getDayRandom();
             this.func_230926_e_(-9);
             TexturesAS.TEX_STAR_1.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
                 this.usedStars.iterator();
                 final Iterator iterator3;
                 while (iterator3.hasNext()) {
@@ -178,7 +178,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
                     final float brightness = 0.4f + RenderingConstellationUtils.stdFlicker(ClientScheduler.getClientTick(), pTicks, 10 + gen.nextInt(20)) * 0.5f;
                     final float brightness2 = this.multiplyStarBrightness(pTicks, brightness);
                     final float brightness3 = brightness2 * brMultiplier;
-                    RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).at(16.0f + star.x, 16.0f + star.y).dim(size2, size2).color(brightness3, brightness3, brightness3, brightness3).draw();
+                    RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(16.0f + star.x, 16.0f + star.y).dim(size2, size2).color(brightness3, brightness3, brightness3, brightness3).draw();
                 }
                 return;
             });
@@ -197,11 +197,11 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
                     if ((Math.abs(diffYaw) > size && Math.abs(diffYaw += 360.0f) > size) || Math.abs(diffPitch) > size) {
                         continue;
                     }
-                    final int wPart = MathHelper.func_76141_d(this.getGuiWidth() * 0.1f);
-                    final int hPart = MathHelper.func_76141_d(this.getGuiHeight() * 0.1f);
+                    final int wPart = Mth.func_76141_d(this.getGuiWidth() * 0.1f);
+                    final int hPart = Mth.func_76141_d(this.getGuiHeight() * 0.1f);
                     final float xFactor = diffYaw / 8.0f;
                     final float yFactor = diffPitch / 8.0f;
-                    final Map<StarLocation, Rectangle2D.Float> cstRenderInfo = RenderingConstellationUtils.renderConstellationIntoGUI(cst, renderStack, (float)(this.getGuiLeft() + wPart + MathHelper.func_76128_c(xFactor / guiFactor * this.getGuiWidth())), (float)(this.getGuiTop() + hPart + MathHelper.func_76128_c(yFactor / guiFactor * this.getGuiHeight())), (float)this.getGuiZLevel(), (float)MathHelper.func_76141_d(this.getGuiHeight() * 0.6f), (float)MathHelper.func_76141_d(this.getGuiHeight() * 0.6f), 2.0, () -> (0.2f + 0.7f * RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), pTicks, 5 + gen.nextInt(15)) * rainBr) * brMultiplier, ResearchHelper.getClientProgress().hasConstellationDiscovered(cst), true);
+                    final Map<StarLocation, Rectangle2D.Float> cstRenderInfo = RenderingConstellationUtils.renderConstellationIntoGUI(cst, renderStack, (float)(this.getGuiLeft() + wPart + Mth.func_76128_c(xFactor / guiFactor * this.getGuiWidth())), (float)(this.getGuiTop() + hPart + Mth.func_76128_c(yFactor / guiFactor * this.getGuiHeight())), (float)this.getGuiZLevel(), (float)Mth.func_76141_d(this.getGuiHeight() * 0.6f), (float)Mth.func_76141_d(this.getGuiHeight() * 0.6f), 2.0, () -> (0.2f + 0.7f * RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), pTicks, 5 + gen.nextInt(15)) * rainBr) * brMultiplier, ResearchHelper.getClientProgress().hasConstellationDiscovered(cst), true);
                     cstInfo.getFrameDrawInformation().putAll(cstRenderInfo);
                 }
             }
@@ -217,16 +217,16 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
     private void drawFrame(final PoseStack renderStack) {
         this.func_230926_e_(10);
         TexturesAS.TEX_GUI_OBSERVATORY.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
-            RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).at(0.0f, 0.0f).dim(16.0f, 16.0f).tex(0.0f, 0.0f, 0.4f, 0.4f).draw();
-            RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).at((float)(this.getGuiWidth() + 16), 0.0f).dim(16.0f, 16.0f).tex(0.4f, 0.0f, 0.4f, 0.4f).draw();
-            RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).at((float)(this.getGuiWidth() + 16), (float)(this.getGuiHeight() + 16)).dim(16.0f, 16.0f).tex(0.4f, 0.4f, 0.4f, 0.4f).draw();
-            RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).at(0.0f, (float)(this.getGuiHeight() + 16)).dim(16.0f, 16.0f).tex(0.0f, 0.4f, 0.4f, 0.4f).draw();
-            RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).at(16.0f, 0.0f).dim((float)this.getGuiWidth(), 16.0f).tex(0.8f, 0.0f, 0.05f, 0.4f).draw();
-            RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).at((float)(this.getGuiWidth() + 16), 16.0f).dim(16.0f, (float)this.getGuiHeight()).tex(0.0f, 0.85f, 0.4f, 0.05f).draw();
-            RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).at(16.0f, (float)(this.getGuiHeight() + 16)).dim((float)this.getGuiWidth(), 16.0f).tex(0.85f, 0.0f, 0.05f, 0.4f).draw();
-            RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).at(0.0f, 16.0f).dim(16.0f, (float)this.getGuiHeight()).tex(0.0f, 0.8f, 0.4f, 0.05f).draw();
+            RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(0.0f, 0.0f).dim(16.0f, 16.0f).tex(0.0f, 0.0f, 0.4f, 0.4f).draw();
+            RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at((float)(this.getGuiWidth() + 16), 0.0f).dim(16.0f, 16.0f).tex(0.4f, 0.0f, 0.4f, 0.4f).draw();
+            RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at((float)(this.getGuiWidth() + 16), (float)(this.getGuiHeight() + 16)).dim(16.0f, 16.0f).tex(0.4f, 0.4f, 0.4f, 0.4f).draw();
+            RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(0.0f, (float)(this.getGuiHeight() + 16)).dim(16.0f, 16.0f).tex(0.0f, 0.4f, 0.4f, 0.4f).draw();
+            RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(16.0f, 0.0f).dim((float)this.getGuiWidth(), 16.0f).tex(0.8f, 0.0f, 0.05f, 0.4f).draw();
+            RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at((float)(this.getGuiWidth() + 16), 16.0f).dim(16.0f, (float)this.getGuiHeight()).tex(0.0f, 0.85f, 0.4f, 0.05f).draw();
+            RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(16.0f, (float)(this.getGuiHeight() + 16)).dim((float)this.getGuiWidth(), 16.0f).tex(0.85f, 0.0f, 0.05f, 0.4f).draw();
+            RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(0.0f, 16.0f).dim(16.0f, (float)this.getGuiHeight()).tex(0.0f, 0.8f, 0.4f, 0.05f).draw();
             return;
         });
         this.func_230926_e_(0);

@@ -1,13 +1,13 @@
 package hellfirepvp.astralsorcery.common.crafting.serializer;
 
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.item.crafting.Recipe;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomMatcherRecipe;
 import net.minecraft.network.FriendlyByteBuf;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonArray;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.effect.AltarRecipeEffect;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.item.crafting.Ingredient;
 import com.google.gson.JsonSyntaxException;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.altar.AltarRecipeTypeHan
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.AltarRecipeGrid;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
-import net.minecraft.util.JSONUtils;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;

@@ -3,16 +3,16 @@ package hellfirepvp.astralsorcery.common.util.data;
 import com.mojang.math.Matrix4f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import java.util.function.Consumer;
-import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.level.ChunkPos;
 import net.minecraft.core.BlockPos;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.phys.Vec3;
 import net.minecraft.core.Vec3i;
 import java.util.Random;
 
@@ -85,9 +85,9 @@ public class Vector3
     public static Vector3 directionFromYawPitch(final float yaw, final float pitch) {
         final float radYaw = yaw * 0.017453292f;
         final float radPitch = pitch * 0.017453292f;
-        final float x = -MathHelper.func_76126_a(radYaw) * MathHelper.func_76134_b(radPitch);
-        final float y = -MathHelper.func_76126_a(radPitch);
-        final float z = MathHelper.func_76134_b(radYaw) * MathHelper.func_76134_b(radPitch);
+        final float x = -Mth.func_76126_a(radYaw) * Mth.func_76134_b(radPitch);
+        final float y = -Mth.func_76126_a(radPitch);
+        final float z = Mth.func_76134_b(radYaw) * Mth.func_76134_b(radPitch);
         return new Vector3(x, y, z);
     }
     
@@ -437,11 +437,11 @@ public class Vector3
     }
     
     public BlockPos toBlockPos() {
-        return new BlockPos(MathHelper.func_76128_c(this.x), MathHelper.func_76128_c(this.y), MathHelper.func_76128_c(this.z));
+        return new BlockPos(Mth.func_76128_c(this.x), Mth.func_76128_c(this.y), Mth.func_76128_c(this.z));
     }
     
     public ChunkPos toChunkPos() {
-        return new ChunkPos(MathHelper.func_76128_c(this.x) >> 4, MathHelper.func_76128_c(this.z) >> 4);
+        return new ChunkPos(Mth.func_76128_c(this.x) >> 4, Mth.func_76128_c(this.z) >> 4);
     }
     
     public Vector3 vectorFromHereTo(final Vector3 target) {
@@ -478,13 +478,13 @@ public class Vector3
     
     @Deprecated
     @OnlyIn(Dist.CLIENT)
-    public IVertexBuilder drawPos(final IVertexBuilder buf) {
+    public VertexConsumer drawPos(final VertexConsumer buf) {
         buf.func_225582_a_((double)(float)this.x, (double)(float)this.y, (double)(float)this.z);
         return buf;
     }
     
     @OnlyIn(Dist.CLIENT)
-    public IVertexBuilder drawPos(final Matrix4f renderMatrix, final IVertexBuilder buf) {
+    public VertexConsumer drawPos(final Matrix4f renderMatrix, final VertexConsumer buf) {
         buf.func_227888_a_(renderMatrix, (float)this.x, (float)this.y, (float)this.z);
         return buf;
     }

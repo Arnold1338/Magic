@@ -1,17 +1,17 @@
 package hellfirepvp.astralsorcery.datagen.data.recipes.builder;
 
 import javax.annotation.Nullable;
-import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.world.item.crafting.IRecipeSerializer;
 import com.google.gson.JsonObject;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 import hellfirepvp.astralsorcery.common.util.NameUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.data.IFinishedRecipe;
 import java.util.function.Consumer;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.item.crafting.Ingredient;
 
 public class StoneCuttingRecipeBuilder
 {

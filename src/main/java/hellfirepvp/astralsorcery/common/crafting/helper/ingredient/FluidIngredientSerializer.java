@@ -1,15 +1,15 @@
 package hellfirepvp.astralsorcery.common.crafting.helper.ingredient;
 
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.item.crafting.Ingredient;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.network.FriendlyByteBuf;
 import com.google.gson.JsonElement;
 import java.util.List;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.level.material.Fluid;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.JSONUtils;
+import com.google.gson.JsonObject;
 import net.minecraftforge.fluids.FluidStack;
 import java.util.ArrayList;
 import com.google.gson.JsonSyntaxException;

@@ -1,55 +1,55 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.block.BlockRenderType;
+import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.item.BlockItem;
+import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.level.LevelAccessor;
 import net.minecraft.core.Direction;
 import hellfirepvp.observerlib.common.data.WorldCacheDomain;
 import hellfirepvp.astralsorcery.common.lib.DataAS;
 import hellfirepvp.astralsorcery.common.data.world.GatewayCache;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.item.ItemAquamarine;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.level.Level;
-import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.level.InteractionHand;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileCelestialGateway;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.phys.HitResult;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.item.DyeColor;
 import hellfirepvp.astralsorcery.common.util.ColorUtils;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.item.ItemStack;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesGlass;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
 import hellfirepvp.observerlib.api.block.BlockStructureObserver;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.block.ContainerBlock;
+import net.minecraft.world.level.block.BaseEntityBlock;
 
-public class BlockCelestialGateway extends ContainerBlock implements CustomItemBlock, BlockStructureObserver
+public class BlockCelestialGateway extends BaseEntityBlock implements CustomItemBlock, BlockStructureObserver
 {
     private static final VoxelShape SHAPE;
     
@@ -58,7 +58,7 @@ public class BlockCelestialGateway extends ContainerBlock implements CustomItemB
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_190948_a(final ItemStack stack, @Nullable final IBlockReader worldIn, final List<Component> tooltip, final ITooltipFlag flagIn) {
+    public void func_190948_a(final ItemStack stack, @Nullable final IBlockReader worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         super.func_190948_a(stack, worldIn, (List)tooltip, flagIn);
         final DyeColor color = getColor(stack);
         if (color != null) {
@@ -66,7 +66,7 @@ public class BlockCelestialGateway extends ContainerBlock implements CustomItemB
         }
     }
     
-    public ItemStack getPickBlock(final BlockState state, final RayTraceResult target, final IBlockReader world, final BlockPos pos, final Player player) {
+    public ItemStack getPickBlock(final BlockState state, final HitResult target, final IBlockReader world, final BlockPos pos, final Player player) {
         final ItemStack stack = new ItemStack((ItemLike)BlocksAS.GATEWAY);
         final TileCelestialGateway gateway = MiscUtils.getTileAt(world, pos, TileCelestialGateway.class, true);
         if (gateway != null) {
@@ -78,11 +78,11 @@ public class BlockCelestialGateway extends ContainerBlock implements CustomItemB
         return stack;
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final ISelectionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final CollisionContext context) {
         return BlockCelestialGateway.SHAPE;
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockRayTraceResult hit) {
+    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
         final TileCelestialGateway gateway = MiscUtils.getTileAt((IBlockReader)world, pos, TileCelestialGateway.class, false);
         if (gateway != null && gateway.getOwner() != null && gateway.getOwner().isPlayer(player)) {
             if (gateway.isLocked()) {
@@ -182,8 +182,8 @@ public class BlockCelestialGateway extends ContainerBlock implements CustomItemB
         return false;
     }
     
-    public BlockRenderType func_149645_b(final BlockState state) {
-        return BlockRenderType.MODEL;
+    public RenderShape func_149645_b(final BlockState state) {
+        return RenderShape.MODEL;
     }
     
     @Nullable

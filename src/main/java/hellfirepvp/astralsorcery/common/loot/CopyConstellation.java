@@ -7,14 +7,14 @@ import hellfirepvp.astralsorcery.common.constellation.IMinorConstellation;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationItem;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationTile;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.level.storage.loot.LootContext;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.lib.LootAS;
-import net.minecraft.loot.LootFunctionType;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.loot.LootFunction;
+import net.minecraft.world.level.storage.loot.LootFunctionType;
+import net.minecraft.world.level.storage.loot.predicates.ILootCondition;
+import net.minecraft.world.level.storage.loot.LootFunction;
 
 public class CopyConstellation extends LootFunction
 {

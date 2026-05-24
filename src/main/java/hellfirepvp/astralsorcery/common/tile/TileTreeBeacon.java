@@ -29,27 +29,27 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXLightbeam;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraft.tags.TagKey;
 import net.minecraft.tags.BlockTags;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.level.block.Blocks;
 import java.util.Comparator;
 import java.util.function.Supplier;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import java.util.List;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.level.LevelAccessor;
 import net.minecraft.server.level.ServerLevel;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import net.minecraftforge.fml.LogicalSide;
@@ -57,12 +57,12 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.HashMap;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import java.util.UUID;
 import net.minecraft.core.BlockPos;
@@ -97,7 +97,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
     
     private void doHarvestCycle() {
         final boolean changed = this.starlight > 0.0f || !this.treeComponents.isEmpty();
-        final int cycles = Math.max(1, MathHelper.func_76123_f(this.starlight * 0.8f));
+        final int cycles = Math.max(1, Mth.func_76123_f(this.starlight * 0.8f));
         this.starlight = 0.0f;
         for (int i = 0; i < cycles; ++i) {
             final float filled = this.treeComponents.size() / (float)Config.CONFIG.maxCount.get();
@@ -194,7 +194,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
         final VFXColorFunction<?> colorFn = VFXColorFunction.constant(color);
         final float radius = ((Double)Config.CONFIG.range.get()).floatValue();
         final Vector3 thisPos = new Vector3((Vector3i)this.func_174877_v()).add(0.5, 0.5, 0.5);
-        final int amt = MathHelper.func_76128_c(radius * 3.141592653589793 / 8.0);
+        final int amt = Mth.func_76128_c(radius * 3.141592653589793 / 8.0);
         for (int i = 0; i < amt; ++i) {
             final Vector3 at = MiscUtils.getRandomCirclePosition(thisPos, Vector3.RotAxis.Y_AXIS, radius);
             MiscUtils.applyRandomOffset(at, TileTreeBeacon.rand, 0.35f);

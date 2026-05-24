@@ -1,32 +1,32 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.level.entity.Entity;
 import net.minecraft.server.level.ServerPlayer;
 import hellfirepvp.astralsorcery.common.container.factory.ContainerObservatoryProvider;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileObservatory;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.level.InteractionHand;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMisc;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.phys.AABB;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.astralsorcery.common.block.base.LargeBlock;
-import net.minecraft.block.ContainerBlock;
+import net.minecraft.world.level.block.BaseEntityBlock;
 
-public class BlockObservatory extends ContainerBlock implements LargeBlock, CustomItemBlock
+public class BlockObservatory extends BaseEntityBlock implements LargeBlock, CustomItemBlock
 {
     private static final AABB PLACEMENT_BOX;
     
@@ -43,7 +43,7 @@ public class BlockObservatory extends ContainerBlock implements LargeBlock, Cust
         return this.canPlaceAt(context) ? this.defaultBlockState() : null;
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World worldIn, final BlockPos pos, final Player player, final Hand handIn, final BlockRayTraceResult hit) {
+    public InteractionResult func_225533_a_(final BlockState state, final World worldIn, final BlockPos pos, final Player player, final Hand handIn, final BlockHitResult hit) {
         if (!worldIn.func_201670_d()) {
             final TileObservatory observatory = MiscUtils.getTileAt((IBlockReader)worldIn, pos, TileObservatory.class, false);
             if (observatory != null && observatory.isUsable() && !player.func_225608_bj_()) {
@@ -59,7 +59,7 @@ public class BlockObservatory extends ContainerBlock implements LargeBlock, Cust
         return InteractionResult.SUCCESS;
     }
     
-    public VoxelShape func_220071_b(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context) {
+    public VoxelShape func_220071_b(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
         return VoxelShapes.func_197880_a();
     }
     

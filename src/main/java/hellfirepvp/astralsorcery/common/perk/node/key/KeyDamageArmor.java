@@ -4,16 +4,16 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.entity.EquipmentSlot;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -56,7 +56,7 @@ public class KeyDamageArmor extends KeyPerk
                 float dmg = event.getAmount();
                 dmg *= (float)(dmgArmor * armorPieces * PerkAttributeHelper.getOrCreateMap(player, side).getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT));
                 event.setAmount(Math.max(event.getAmount() - dmg, 0.0f));
-                final int armorDmg = MathHelper.func_76123_f(dmg * 1.3f);
+                final int armorDmg = Mth.func_76123_f(dmg * 1.3f);
                 for (final ItemStack stack : player.func_184193_aE()) {
                     stack.func_222118_a(armorDmg, (LivingEntity)player, pl -> pl.func_213361_c(EquipmentSlot.MAINHAND));
                 }

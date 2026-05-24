@@ -1,11 +1,11 @@
 package hellfirepvp.astralsorcery.common.auxiliary;
 
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Iterator;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import java.util.LinkedList;
 import hellfirepvp.astralsorcery.common.tile.TileChalice;
@@ -15,19 +15,19 @@ import hellfirepvp.astralsorcery.common.util.RaytraceAssist;
 import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
 import hellfirepvp.astralsorcery.common.block.tile.BlockFountain;
 import hellfirepvp.astralsorcery.common.block.tile.BlockChalice;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.List;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 
 public class ChaliceHelper
 {
     @Nonnull
     public static List<BlockPos> findNearbyChalices(final World world, final BlockPos origin, final int distance) {
         final Vector3 thisVector = new Vector3((Vector3i)origin).add(0.5, 1.5, 0.5);
-        final List<BlockPos> foundChalices = BlockDiscoverer.searchForBlocksAround(world, origin, MathHelper.func_76125_a(distance, 0, 16), (w, pos, state) -> !pos.equals((Object)origin) && state.getBlock() instanceof BlockChalice && !w.func_175640_z(pos) && !(w.getBlockState(pos.func_177977_b()).getBlock() instanceof BlockFountain));
+        final List<BlockPos> foundChalices = BlockDiscoverer.searchForBlocksAround(world, origin, Mth.func_76125_a(distance, 0, 16), (w, pos, state) -> !pos.equals((Object)origin) && state.getBlock() instanceof BlockChalice && !w.func_175640_z(pos) && !(w.getBlockState(pos.func_177977_b()).getBlock() instanceof BlockFountain));
         foundChalices.removeIf(pos -> {
             final Vector3 chaliceVector = new Vector3((Vector3i)pos).add(0.5, 1.5, 0.5);
             final RaytraceAssist assist = new RaytraceAssist(thisVector, chaliceVector);

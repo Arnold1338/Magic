@@ -14,7 +14,7 @@ import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.perk.modifier.PerkAttributeModifier;
 import java.util.List;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.common.perk.modifier.DynamicAttributeModifier;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import java.util.UUID;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 
 public class DynamicModifierHelper
 {

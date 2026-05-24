@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.common.world.feature;
 
 import hellfirepvp.observerlib.common.data.WorldCacheDomain;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.lib.DataAS;
 import hellfirepvp.astralsorcery.common.data.world.RockCrystalBuffer;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.IServerWorld;
+import net.minecraft.world.level.IServerWorld;
 
 public class RockCrystalFeature extends ReplaceBlockFeature
 {

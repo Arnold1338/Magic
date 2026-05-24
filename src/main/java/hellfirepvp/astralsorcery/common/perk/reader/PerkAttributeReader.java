@@ -4,7 +4,7 @@ import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeMap;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import java.text.DecimalFormat;

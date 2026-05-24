@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.common.perk.type;
 
 import java.util.Locale;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.level.damagesource.DamageSource;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -40,7 +40,7 @@ public class AttributeTypeAllElementalResist extends PerkAttributeType
             float multiplier = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, ResearchHelper.getProgress(player, side), this, 1.0f);
             --multiplier;
             multiplier = AttributeEvent.postProcessModded(player, this, multiplier);
-            multiplier = 1.0f - MathHelper.func_76131_a(multiplier, 0.0f, 1.0f);
+            multiplier = 1.0f - Mth.func_76131_a(multiplier, 0.0f, 1.0f);
             event.setAmount(event.getAmount() * multiplier);
         }
     }

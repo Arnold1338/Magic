@@ -1,38 +1,38 @@
 package hellfirepvp.astralsorcery.common.world;
 
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.LevelAccessor;
 import hellfirepvp.astralsorcery.common.world.marker.MarkerManagerAS;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.level.ChunkPos;
-import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.world.level.IServerWorld;
+import net.minecraft.world.level.level.ChunkPos;
+import net.minecraft.core.MutableBoundingBox;
 import java.util.Random;
-import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.gen.feature.structure.StructureManager;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.world.level.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.structure.StructureManager;
+import net.minecraft.world.level.ISeedReader;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.gen.feature.template.Template;
-import net.minecraft.world.gen.feature.template.StructureProcessor;
-import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
-import net.minecraft.world.gen.feature.template.PlacementSettings;
+import net.minecraft.world.level.levelgen.feature.template.Template;
+import net.minecraft.world.level.levelgen.feature.template.StructureProcessor;
+import net.minecraft.world.level.levelgen.feature.template.BlockIgnoreStructureProcessor;
+import net.minecraft.world.level.levelgen.feature.template.PlacementSettings;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.gen.feature.template.TemplateManager;
-import net.minecraft.world.gen.feature.structure.IStructurePieceType;
-import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
+import net.minecraft.world.level.levelgen.feature.template.TemplateManager;
+import net.minecraft.world.level.levelgen.structure.StructurePieceType;
+import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
 
 public abstract class TemplateStructure extends TemplateStructurePiece
 {
     private int yOffset;
     
-    public TemplateStructure(final IStructurePieceType structurePieceTypeIn, final TemplateManager mgr, final BlockPos templatePosition) {
+    public TemplateStructure(final StructurePieceType structurePieceTypeIn, final TemplateManager mgr, final BlockPos templatePosition) {
         super(structurePieceTypeIn, 0);
         this.yOffset = 0;
         this.field_186178_c = templatePosition;
         this.loadTemplate(mgr);
     }
     
-    public TemplateStructure(final IStructurePieceType structurePieceTypeIn, final TemplateManager mgr, final CompoundTag nbt) {
+    public TemplateStructure(final StructurePieceType structurePieceTypeIn, final TemplateManager mgr, final CompoundTag nbt) {
         super(structurePieceTypeIn, nbt);
         this.yOffset = 0;
         this.loadTemplate(mgr);

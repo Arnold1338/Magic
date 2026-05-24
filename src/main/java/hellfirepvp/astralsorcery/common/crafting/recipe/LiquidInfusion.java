@@ -2,18 +2,18 @@ package hellfirepvp.astralsorcery.common.crafting.recipe;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Tuple;
-import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.world.item.crafting.IRecipeSerializer;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomRecipeSerializer;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.item.crafting.RecipeType;
 import com.google.gson.JsonElement;
 import hellfirepvp.astralsorcery.common.util.data.JsonHelper;
 import com.google.gson.JsonObject;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
@@ -22,12 +22,12 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.MapStream;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.tile.TileInfuser;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.level.level.material.Fluid;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomMatcherRecipe;
 
 public class LiquidInfusion extends CustomMatcherRecipe implements GatedRecipe.Progression
@@ -106,7 +106,7 @@ public class LiquidInfusion extends CustomMatcherRecipe implements GatedRecipe.P
     }
     
     public float getConsumptionChance() {
-        return MathHelper.func_76131_a(this.consumptionChance, 0.0f, 1.0f);
+        return Mth.func_76131_a(this.consumptionChance, 0.0f, 1.0f);
     }
     
     public boolean doesConsumeMultipleFluids() {

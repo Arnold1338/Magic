@@ -16,18 +16,18 @@ import net.minecraft.util.Tuple;
 import java.util.LinkedList;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;
 import javax.annotation.Nonnull;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.constellation.star.StarLocation;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.util.Set;
 import java.util.Iterator;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.HashSet;
 import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.DrawnConstellation;
 import java.util.List;
 import net.minecraft.resources.ResourceLocation;
@@ -71,7 +71,7 @@ public class EngravedStarMap
                 }
             }
             final IConstellation drawnConstellation = drawn.getConstellation();
-            final float percent = 0.1f + 0.9f * MathHelper.func_76131_a(foundPositions.size() * 1.5f / positions.size() * nightPerc, 0.0f, 1.0f);
+            final float percent = 0.1f + 0.9f * Mth.func_76131_a(foundPositions.size() * 1.5f / positions.size() * nightPerc, 0.0f, 1.0f);
             final float existingPercent = distributionMap.getOrDefault(drawnConstellation.getRegistryName(), 0.1f);
             if (percent >= existingPercent) {
                 distributionMap.put(drawnConstellation.getRegistryName(), percent);

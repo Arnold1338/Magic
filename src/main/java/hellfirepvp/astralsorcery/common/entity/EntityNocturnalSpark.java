@@ -1,15 +1,15 @@
 package hellfirepvp.astralsorcery.common.entity;
 
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraft.network.IPacket;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.phys.HitResult;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.EntityClassification;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.core.Vec3i;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -25,26 +25,26 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.Iterator;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.block.AirBlock;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.entity.EntityType;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.Level;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.entity.projectile.ThrowableEntity;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.entity.projectile.ThrowableEntity;
 
 public class EntityNocturnalSpark extends ThrowableEntity
 {
     private static final AABB NO_DUPE_BOX;
-    private static final DataParameter<Boolean> SPAWNING;
+    private static final EntityDataAccessor<Boolean> SPAWNING;
     private int ticksSpawning;
     
     public EntityNocturnalSpark(final World world) {
@@ -68,16 +68,16 @@ public class EntityNocturnalSpark extends ThrowableEntity
     }
     
     protected void func_70088_a() {
-        this.field_70180_af.func_187214_a((DataParameter)EntityNocturnalSpark.SPAWNING, (Object)false);
+        this.field_70180_af.func_187214_a((EntityDataAccessor)EntityNocturnalSpark.SPAWNING, (Object)false);
     }
     
     public void setSpawning() {
         this.func_213317_d(Vec3.field_186680_a);
-        this.field_70180_af.func_187227_b((DataParameter)EntityNocturnalSpark.SPAWNING, (Object)true);
+        this.field_70180_af.func_187227_b((EntityDataAccessor)EntityNocturnalSpark.SPAWNING, (Object)true);
     }
     
     public boolean isSpawning() {
-        return (boolean)this.field_70180_af.func_187225_a((DataParameter)EntityNocturnalSpark.SPAWNING);
+        return (boolean)this.field_70180_af.func_187225_a((EntityDataAccessor)EntityNocturnalSpark.SPAWNING);
     }
     
     public void func_70071_h_() {
@@ -172,7 +172,7 @@ public class EntityNocturnalSpark extends ThrowableEntity
             if (pos.func_177951_i((Vector3i)this.func_233580_cy_()) >= 16.0) {
                 return;
             }
-            EntityUtils.performWorldSpawningAt((ServerLevel)this.field_70170_p, pos, EntityClassification.MONSTER, SpawnReason.SPAWNER, true, 11);
+            EntityUtils.performWorldSpawningAt((ServerLevel)this.field_70170_p, pos, MobCategory.MONSTER, MobSpawnType.SPAWNER, true, 11);
         }
     }
     
@@ -194,8 +194,8 @@ public class EntityNocturnalSpark extends ThrowableEntity
         }
     }
     
-    protected void func_70227_a(final RayTraceResult result) {
-        if (RayTraceResult.Type.ENTITY.equals((Object)result.func_216346_c())) {
+    protected void func_70227_a(final HitResult result) {
+        if (HitResult.Type.ENTITY.equals((Object)result.func_216346_c())) {
             return;
         }
         final Vec3 hit = result.func_216347_e();
@@ -209,6 +209,6 @@ public class EntityNocturnalSpark extends ThrowableEntity
     
     static {
         NO_DUPE_BOX = new AABB(0.0, 0.0, 0.0, 1.0, 1.0, 1.0).func_186662_g(15.0);
-        SPAWNING = EntityDataManager.func_187226_a((Class)EntityNocturnalSpark.class, DataSerializers.field_187198_h);
+        SPAWNING = SynchedEntityData.func_187226_a((Class)EntityNocturnalSpark.class, EntityDataSerializers.field_187198_h);
     }
 }

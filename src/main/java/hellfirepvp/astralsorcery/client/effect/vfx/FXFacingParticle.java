@@ -4,7 +4,7 @@ import net.minecraft.util.Tuple;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -17,7 +17,7 @@ public class FXFacingParticle extends EntityVisualFX
     }
     
     @Override
-    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final IVertexBuilder vb, final float pTicks) {
+    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final VertexConsumer vb, final float pTicks) {
         final SpriteSheetResource ssr = ctx.getSprite();
         final Vector3 vec = this.getRenderPosition(pTicks);
         final int alpha = this.getAlpha(pTicks);

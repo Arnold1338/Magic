@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.datagen.data.recipes.well;
 
-import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.level.level.material.Fluids;
+import net.minecraft.world.level.item.Items;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import java.awt.Color;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.level.material.Fluid;
 import hellfirepvp.astralsorcery.common.lib.FluidsAS;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import hellfirepvp.astralsorcery.common.crafting.builder.WellRecipeBuilder;
 import hellfirepvp.astralsorcery.AstralSorcery;

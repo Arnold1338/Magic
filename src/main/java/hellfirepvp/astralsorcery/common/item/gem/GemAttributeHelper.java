@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.data.config.registry.sets.PerkAttributeEntry;
@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.data.config.registry.WeightedPerkAttribu
 import hellfirepvp.astralsorcery.common.perk.modifier.DynamicAttributeModifier;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.perk.DynamicModifierHelper;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.Random;
 
 public class GemAttributeHelper
@@ -87,7 +87,7 @@ public class GemAttributeHelper
                 else {
                     final float exp = 1.0f / gemType.amplifierModifier;
                     final float multiplierScale = (float)Math.pow(random.nextFloat(), exp);
-                    value = lower + MathHelper.func_76131_a(multiplierScale, 0.0f, 1.0f) * (higher - lower);
+                    value = lower + Mth.func_76131_a(multiplierScale, 0.0f, 1.0f) * (higher - lower);
                 }
                 final ModifierType mode = isMultiplicative ? ModifierType.STACKING_MULTIPLY : ModifierType.ADDED_MULTIPLY;
                 final float rValue = isMultiplicative ? (1.0f + value) : value;

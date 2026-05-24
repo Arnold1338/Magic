@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.network.play.server;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.data.research.ResearchSyncHelper;
 import net.minecraft.client.Minecraft;

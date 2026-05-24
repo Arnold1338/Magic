@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.registry;
 
 import hellfirepvp.astralsorcery.common.lib.MaterialsAS;
 import hellfirepvp.astralsorcery.common.block.base.MaterialBuilderAS;
-import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.level.material.MapColor;
 
 public class RegistryMaterials
 {

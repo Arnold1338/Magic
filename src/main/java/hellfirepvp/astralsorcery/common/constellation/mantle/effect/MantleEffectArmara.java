@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.constellation.mantle.effect;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -13,15 +13,15 @@ import hellfirepvp.astralsorcery.client.effect.function.VFXAlphaFunction;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.client.Minecraft;
 import java.util.Random;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.entity.player.Player;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -94,7 +94,7 @@ public class MantleEffectArmara extends MantleEffect
                     final float deg = (float)Math.toDegrees(lookVec.angle(anglePlayer));
                     if (deg < 70.0f) {
                         final float tansparentDegree = 40.0f;
-                        alpha *= MathHelper.func_76131_a((deg - tansparentDegree) / (80.0f - tansparentDegree), 0.0f, 1.0f);
+                        alpha *= Mth.func_76131_a((deg - tansparentDegree) / (80.0f - tansparentDegree), 0.0f, 1.0f);
                     }
                 }
                 EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(pos).alpha(VFXAlphaFunction.FADE_OUT).setAlphaMultiplier(alpha).color(VFXColorFunction.constant(ColorsAS.MANTLE_ARMARA_STACKS)).setScaleMultiplier(scale).setMaxAge(20 + MantleEffectArmara.rand.nextInt(20));

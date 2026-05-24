@@ -6,12 +6,12 @@ import java.util.function.Function;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.crystal.CrystalGenerator;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeGenItem;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.storage.loot.LootContext;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.lib.LootAS;
-import net.minecraft.loot.LootFunctionType;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.loot.LootFunction;
+import net.minecraft.world.level.storage.loot.LootFunctionType;
+import net.minecraft.world.level.storage.loot.predicates.ILootCondition;
+import net.minecraft.world.level.storage.loot.LootFunction;
 
 public class RandomCrystalProperty extends LootFunction
 {

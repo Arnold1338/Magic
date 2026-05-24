@@ -12,13 +12,13 @@ import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.data.research.GatedKnowledge;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.item.Item;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationItem;
 import hellfirepvp.astralsorcery.common.item.base.IConstellationFocus;
 
@@ -30,7 +30,7 @@ public abstract class ItemAttunedCrystalBase extends ItemCrystalBase implements 
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> toolTip, final ITooltipFlag flag) {
+    public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> toolTip, final TooltipFlag flag) {
         final CrystalAttributes.TooltipResult result = this.addCrystalPropertyToolTip(stack, toolTip);
         if (result != null) {
             final ProgressionTier tier = ResearchHelper.getClientProgress().getTierReached();

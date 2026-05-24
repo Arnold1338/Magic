@@ -1,16 +1,16 @@
 package hellfirepvp.astralsorcery.common.advancement.instance;
 
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.JSONUtils;
 import com.google.gson.JsonObject;
-import net.minecraft.loot.ConditionArraySerializer;
+import com.google.gson.JsonObject;
+import net.minecraft.world.level.storage.loot.ConditionArraySerializer;
 import hellfirepvp.astralsorcery.common.advancement.PerkLevelTrigger;
-import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.advancements.criterion.CriterionInstance;
+import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 
 public class PerkLevelInstance extends CriterionInstance
 {

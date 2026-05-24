@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.constellation.world;
 
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import javax.annotation.Nonnull;
 import java.util.Random;
 

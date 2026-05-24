@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.base.patreon.types;
 
 import java.util.EnumSet;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.entity.Pose;
+import net.minecraft.world.level.effect.MobEffects;
+import net.minecraft.world.entity.Pose;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
@@ -11,16 +11,16 @@ import hellfirepvp.astralsorcery.client.effect.function.VFXPositionController;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.client.effect.function.VFXAlphaFunction;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
@@ -62,7 +62,7 @@ public class TypeStarHalo extends PatreonEffect implements ITickHandler
             MiscUtils.applyRandomOffset(offset, TypeStarHalo.rand, 0.02f);
             final FXFacingParticle particle = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(headPos.clone().addY(0.4000000059604645).add(offset)).setAlphaMultiplier(0.8f).alpha(((VFXAlphaFunction<?>)((fx, alphaIn, pTicks) -> {
                 if (this.shouldDoEffect(player) && Minecraft.func_71410_x().field_71474_y.func_243230_g().func_243192_a() && player.field_70125_A < -30.0f) {
-                    return MathHelper.func_76131_a(1.0f - (Math.abs(player.field_70125_A) - 30.0f) / 15.0f, 0.0f, 1.0f) * alphaIn;
+                    return Mth.func_76131_a(1.0f - (Math.abs(player.field_70125_A) - 30.0f) / 15.0f, 0.0f, 1.0f) * alphaIn;
                 }
                 else {
                     return alphaIn;
@@ -75,7 +75,7 @@ public class TypeStarHalo extends PatreonEffect implements ITickHandler
             if (TypeStarHalo.rand.nextInt(5) == 0) {
                 starParticle = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(headPos.clone().addY(0.4000000059604645).add(offset)).setAlphaMultiplier(0.8f).color(VFXColorFunction.WHITE).alpha(((VFXAlphaFunction<?>)((fx, alphaIn, pTicks) -> {
                     if (this.shouldDoEffect(player) && Minecraft.func_71410_x().field_71474_y.func_243230_g().func_243192_a() && player.field_70125_A < -30.0f) {
-                        return MathHelper.func_76131_a(1.0f - (Math.abs(player.field_70125_A) - 30.0f) / 15.0f, 0.0f, 1.0f) * alphaIn;
+                        return Mth.func_76131_a(1.0f - (Math.abs(player.field_70125_A) - 30.0f) / 15.0f, 0.0f, 1.0f) * alphaIn;
                     }
                     else {
                         return alphaIn;

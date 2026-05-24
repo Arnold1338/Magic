@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.common.container.slot;
 
-import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.inventory.Slot;
+import net.minecraft.world.level.entity.player.Player;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.item.base.IConstellationFocus;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import net.minecraftforge.items.SlotItemHandler;

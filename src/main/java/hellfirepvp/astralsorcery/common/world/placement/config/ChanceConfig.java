@@ -5,17 +5,17 @@ import com.mojang.datafixers.kinds.Applicative;
 import com.mojang.datafixers.kinds.App;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.Random;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import com.mojang.serialization.Codec;
-import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 
-public class ChanceConfig implements IPlacementConfig
+public class ChanceConfig implements PlacementModifier
 {
     public static final Codec<ChanceConfig> CODEC;
     private final float chance;
     
     public ChanceConfig(final float chance) {
-        this.chance = MathHelper.func_76131_a(chance, 0.0f, 1.0f);
+        this.chance = Mth.func_76131_a(chance, 0.0f, 1.0f);
     }
     
     public boolean test(final Random rand) {

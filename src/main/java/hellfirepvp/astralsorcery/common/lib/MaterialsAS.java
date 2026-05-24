@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.lib;
 
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.level.material.Material;
 
 public class MaterialsAS
 {

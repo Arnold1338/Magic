@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.item.base.client;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 
 public interface ItemDynamicColor
 {

@@ -1,30 +1,30 @@
 package hellfirepvp.astralsorcery.common.advancement.instance;
 
-import net.minecraft.util.JSONUtils;
+import com.google.gson.JsonObject;
 import java.util.Iterator;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.minecraft.loot.ConditionArraySerializer;
+import net.minecraft.world.level.storage.loot.ConditionArraySerializer;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.function.Function;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 import net.minecraft.tags.Tag;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
 import java.util.Collection;
 import java.util.Arrays;
 import hellfirepvp.astralsorcery.common.advancement.AltarCraftTrigger;
 import java.util.ArrayList;
 import java.util.HashSet;
-import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.world.level.item.crafting.Ingredient;
 import java.util.List;
 import net.minecraft.resources.ResourceLocation;
 import java.util.Set;
-import net.minecraft.advancements.criterion.CriterionInstance;
+import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 
 public class AltarRecipeInstance extends CriterionInstance
 {

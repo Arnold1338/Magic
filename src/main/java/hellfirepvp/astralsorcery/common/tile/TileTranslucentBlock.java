@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.tile;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.nbt.CompoundTag;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import java.util.UUID;
 import hellfirepvp.astralsorcery.common.tile.base.TileFakedState;

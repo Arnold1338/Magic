@@ -1,27 +1,27 @@
 package hellfirepvp.astralsorcery.common.item.wand;
 
 import hellfirepvp.astralsorcery.common.util.block.BlockGeometry;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.phys.HitResult;
 import hellfirepvp.astralsorcery.common.util.RaytraceAssist;
 import java.util.ArrayList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.network.chat.IFormattableTextComponent;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import java.util.Random;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.level.LevelReader;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import com.google.common.collect.Iterables;
 import java.util.Collections;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import javax.annotation.Nonnull;
-import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.phys.BlockHitResult;
 import java.util.HashMap;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.util.math.RayTraceContext;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.ClipContext;
 import java.util.Iterator;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
@@ -35,19 +35,19 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import hellfirepvp.astralsorcery.common.util.MapStream;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.InteractionHand;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.item.ItemUseContext;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.item.ItemUseContext;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.util.RenderingOverlayUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import java.util.Map;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.util.Blending;
@@ -57,22 +57,22 @@ import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeConsumer;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemHeldRender;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemOverlayRender;
 import hellfirepvp.astralsorcery.common.item.base.ItemBlockStorage;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 
 public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOverlayRender, ItemHeldRender, AlignmentChargeConsumer
 {
@@ -83,7 +83,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final ITooltipFlag flagIn) {
+    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         tooltip.add((Component)getPlaceMode(stack).getDisplay().func_240699_a_(ChatFormatting.GOLD));
     }
     
@@ -108,11 +108,11 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
         Blending.ADDITIVEDARK.apply();
         RenderSystem.disableDepthTest();
         RenderSystem.disableAlphaTest();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_176600_a, buf -> placeStates.forEach((pos, state) -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_176600_a, buf -> placeStates.forEach((pos, state) -> {
             renderStack.func_227860_a_();
             renderStack.func_227861_a_(pos.getX() - offset.getX() + 0.10000000149011612, pos.getY() - offset.getY() + 0.10000000149011612, pos.getZ() - offset.getZ() + 0.10000000149011612);
             renderStack.func_227862_a_(0.8f, 0.8f, 0.8f);
-            RenderingUtils.renderSimpleBlockModel(state, renderStack, (IVertexBuilder)decorator.decorate(buf), pos, null, false);
+            RenderingUtils.renderSimpleBlockModel(state, renderStack, (VertexConsumer)decorator.decorate(buf), pos, null, false);
             renderStack.func_227865_b_();
         }));
         RenderSystem.enableAlphaTest();
@@ -196,7 +196,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
     private Map<BlockPos, BlockState> getPlayerPlaceableStates(final Player player, final ItemStack stack) {
         final PlaceMode mode = getPlaceMode(stack);
         final World world = player.func_130014_f_();
-        final BlockRayTraceResult rtr = MiscUtils.rayTraceLookBlock((Entity)player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.ANY, 60.0);
+        final BlockHitResult rtr = MiscUtils.rayTraceLookBlock((Entity)player, ClipContext.BlockMode.OUTLINE, ClipContext.FluidMode.ANY, 60.0);
         if (rtr == null && mode.needsOffset()) {
             return new HashMap<BlockPos, BlockState>();
         }
@@ -322,10 +322,10 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
             @Override
             public List<BlockPos> generatePlacementPositions(final World world, final Player player, final Direction placedAgainst, final BlockPos center) {
                 final BlockPos origin = player.func_233580_cy_().func_177977_b();
-                final RayTraceResult result = player.func_213324_a(60.0, 1.0f, false);
+                final HitResult result = player.func_213324_a(60.0, 1.0f, false);
                 BlockPos hit;
-                if (result instanceof BlockRayTraceResult) {
-                    hit = ((BlockRayTraceResult)result).func_216350_a();
+                if (result instanceof BlockHitResult) {
+                    hit = ((BlockHitResult)result).func_216350_a();
                 }
                 else {
                     hit = new BlockPos(result.func_216347_e());

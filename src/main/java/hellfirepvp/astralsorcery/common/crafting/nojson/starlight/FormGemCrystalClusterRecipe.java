@@ -8,19 +8,19 @@ import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 import java.util.Random;
 import net.minecraft.core.Vec3i;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.Optional;
 import hellfirepvp.astralsorcery.common.item.crystal.ItemCrystalBase;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.LevelAccessor;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.level.BlockGetter;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.entity.item.ItemEntity;
 import hellfirepvp.astralsorcery.common.item.dust.ItemIlluminationPowder;
 import hellfirepvp.astralsorcery.common.data.config.entry.CraftingConfig;
 import net.minecraftforge.api.distmarker.Dist;
@@ -29,10 +29,10 @@ import java.util.Collections;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import java.util.Arrays;
 import hellfirepvp.astralsorcery.common.crafting.helper.ingredient.CrystalIngredient;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.item.crafting.Ingredient;
 import java.util.List;
 import hellfirepvp.astralsorcery.AstralSorcery;
 
@@ -71,7 +71,7 @@ public class FormGemCrystalClusterRecipe extends LiquidStarlightRecipe
     
     @Override
     public void doServerCraftTick(final ItemEntity trigger, final World world, final BlockPos at) {
-        final Random r = new Random(MathHelper.func_180186_a((Vector3i)at));
+        final Random r = new Random(Mth.func_180186_a((Vector3i)at));
         if (this.getAndIncrementCraftingTick((Entity)trigger) > 50 + r.nextInt(20) && this.consumeItemEntityInBlock((IWorld)world, at, ItemsAS.ILLUMINATION_POWDER) != null && this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase) != null) {
             world.func_175656_a(at, BlocksAS.GEM_CRYSTAL_CLUSTER.defaultBlockState());
         }

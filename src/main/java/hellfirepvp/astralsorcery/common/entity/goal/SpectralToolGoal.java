@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.entity.goal;
 
 import java.util.EnumSet;
 import hellfirepvp.astralsorcery.common.entity.EntitySpectralTool;
-import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.Goal;
 
 public abstract class SpectralToolGoal extends Goal
 {

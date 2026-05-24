@@ -1,24 +1,24 @@
 package hellfirepvp.astralsorcery.common.item.dust;
 
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-import net.minecraft.dispenser.IBlockSource;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.InteractionHand;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.item.ItemUseContext;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.core.dispenser.BlockSource;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.dispenser.IDispenseItemBehavior;
-import net.minecraft.world.item.Item;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.world.level.item.Item;
 
-public abstract class ItemUsableDust extends Item implements IDispenseItemBehavior
+public abstract class ItemUsableDust extends Item implements DispenseItemBehavior
 {
     public ItemUsableDust() {
         super(new Item.Properties().func_200916_a(CommonProxy.ITEM_GROUP_AS));
     }
     
-    abstract boolean dispense(final IBlockSource p0);
+    abstract boolean dispense(final BlockSource p0);
     
     abstract boolean rightClickAir(final World p0, final Player p1, final ItemStack p2);
     
@@ -39,7 +39,7 @@ public abstract class ItemUsableDust extends Item implements IDispenseItemBehavi
         return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)held);
     }
     
-    public ItemStack dispense(final IBlockSource src, final ItemStack stack) {
+    public ItemStack dispense(final BlockSource src, final ItemStack stack) {
         if (this.dispense(src)) {
             stack.shrink(1);
         }

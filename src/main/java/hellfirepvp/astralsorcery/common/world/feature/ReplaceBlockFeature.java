@@ -1,15 +1,15 @@
 package hellfirepvp.astralsorcery.common.world.feature;
 
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.IServerWorld;
+import net.minecraft.world.level.levelgen.feature.FeatureConfiguration;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.IServerWorld;
 import net.minecraft.core.BlockPos;
 import java.util.Random;
-import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.world.level.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.ISeedReader;
 import com.mojang.serialization.Codec;
 import hellfirepvp.astralsorcery.common.world.feature.config.ReplaceBlockConfig;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 
 public class ReplaceBlockFeature extends Feature<ReplaceBlockConfig>
 {

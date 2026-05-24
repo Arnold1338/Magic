@@ -1,17 +1,17 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import hellfirepvp.astralsorcery.common.tile.TileCollectorCrystal;
 
 public class RenderCollectorCrystal extends CustomTileEntityRenderer<TileCollectorCrystal>
 {
-    public RenderCollectorCrystal(final TileEntityRendererDispatcher tileRenderer) {
+    public RenderCollectorCrystal(final BlockEntityRenderDispatcher tileRenderer) {
         super(tileRenderer);
     }
     

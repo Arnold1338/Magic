@@ -4,15 +4,15 @@ import java.util.function.BiFunction;
 import com.mojang.datafixers.kinds.Applicative;
 import com.mojang.datafixers.kinds.App;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.IServerWorld;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 import java.util.List;
 import java.util.function.Supplier;
 import com.mojang.serialization.Codec;
-import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 
-public class WorldFilterConfig implements IPlacementConfig
+public class WorldFilterConfig implements PlacementModifier
 {
     public static final Codec<WorldFilterConfig> CODEC;
     private final Supplier<Boolean> ignoreFilter;

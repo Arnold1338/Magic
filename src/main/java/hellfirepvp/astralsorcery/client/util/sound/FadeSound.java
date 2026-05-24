@@ -1,17 +1,17 @@
 package hellfirepvp.astralsorcery.client.util.sound;
 
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.client.Minecraft;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.sounds.SoundEvent;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.sound.CategorizedSoundEvent;
 import java.util.function.Predicate;
-import net.minecraft.client.audio.ISound;
-import net.minecraft.client.audio.ITickableSound;
-import net.minecraft.client.audio.SimpleSound;
+import net.minecraft.client.sounds.ISound;
+import net.minecraft.client.sounds.ITickableSound;
+import net.minecraft.client.sounds.SimpleSoundInstance;
 
-public class FadeSound extends SimpleSound implements ITickableSound, ISound
+public class FadeSound extends SimpleSoundInstance implements ITickableSound, ISound
 {
     private Predicate<FadeSound> func;
     private boolean hasStoppedPlaying;
@@ -61,12 +61,12 @@ public class FadeSound extends SimpleSound implements ITickableSound, ISound
     }
     
     public void setVolumeMultiplier(final float volumeMultiplier) {
-        this.volumeMultiplier = MathHelper.func_76131_a(volumeMultiplier, 0.0f, 1.0f);
+        this.volumeMultiplier = Mth.func_76131_a(volumeMultiplier, 0.0f, 1.0f);
     }
     
     public float func_147653_e() {
-        final float mulFadeIn = MathHelper.func_76131_a(this.tick / this.fadeInTicks, 0.0f, 1.0f);
-        final float mulFadeOut = MathHelper.func_76131_a(1.0f - this.stopTick / this.fadeOutTicks, 0.0f, 1.0f);
+        final float mulFadeIn = Mth.func_76131_a(this.tick / this.fadeInTicks, 0.0f, 1.0f);
+        final float mulFadeOut = Mth.func_76131_a(1.0f - this.stopTick / this.fadeOutTicks, 0.0f, 1.0f);
         return mulFadeIn * mulFadeOut * super.func_147653_e() * this.volumeMultiplier;
     }
     

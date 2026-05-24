@@ -1,21 +1,21 @@
 package hellfirepvp.astralsorcery.client.util.camera;
 
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.entity.player.Player;
 
 public class ClientCameraUtil
 {
     public static void positionCamera(final Player renderView, final float pTicks, final double x, final double y, final double z, final double prevX, final double prevY, final double prevZ, final double yaw, double yawPrev, final double pitch, final double pitchPrev) {
-        double dYaw = MathHelper.func_191273_b(yaw - yawPrev, 360.0);
+        double dYaw = Mth.func_191273_b(yaw - yawPrev, 360.0);
         if (dYaw > 180.0) {
             dYaw -= 360.0;
         }
         yawPrev = yaw - dYaw;
-        final float iYaw = MathHelper.func_219799_g(pTicks, (float)yawPrev, (float)yaw);
-        final float iPitch = MathHelper.func_219799_g(pTicks, (float)pitchPrev, (float)pitch);
+        final float iYaw = Mth.func_219799_g(pTicks, (float)yawPrev, (float)yaw);
+        final float iPitch = Mth.func_219799_g(pTicks, (float)pitchPrev, (float)pitch);
         final Minecraft mc = Minecraft.func_71410_x();
         Entity rv = mc.func_175606_aa();
         if (rv == null || !rv.equals((Object)renderView)) {

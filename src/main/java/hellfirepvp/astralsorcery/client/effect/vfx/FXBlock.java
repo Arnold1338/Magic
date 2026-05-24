@@ -4,12 +4,12 @@ import java.awt.Color;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
 import com.mojang.math.Vector3f;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 
 public class FXBlock extends EntityVisualFX
@@ -52,7 +52,7 @@ public class FXBlock extends EntityVisualFX
     }
     
     @Override
-    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final IVertexBuilder vb, final float pTicks) {
+    public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final VertexConsumer vb, final float pTicks) {
         if (this.blockState == null) {
             return;
         }

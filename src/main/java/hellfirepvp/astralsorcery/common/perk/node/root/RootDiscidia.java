@@ -2,15 +2,15 @@ package hellfirepvp.astralsorcery.common.perk.node.root;
 
 import net.minecraft.util.CombatTracker;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.level.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;

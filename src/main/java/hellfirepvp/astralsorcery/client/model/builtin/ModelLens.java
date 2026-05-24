@@ -2,13 +2,13 @@ package hellfirepvp.astralsorcery.client.model.builtin;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.model.Model;
+import net.minecraft.client.resources.model.Model;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
-import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.resources.model.ModelRenderer;
 
 public class ModelLens extends CustomModel
 {
@@ -34,7 +34,7 @@ public class ModelLens extends CustomModel
     }
     
     public void renderFrame(final PoseStack matrixStackIn, final MultiBufferSource buffer, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha) {
-        final IVertexBuilder vb = buffer.getBuffer(RenderTypesAS.MODEL_LENS_SOLID);
+        final VertexConsumer vb = buffer.getBuffer(RenderTypesAS.MODEL_LENS_SOLID);
         this.base.func_228309_a_(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         this.frame1.func_228309_a_(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         this.frame2.func_228309_a_(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
@@ -42,7 +42,7 @@ public class ModelLens extends CustomModel
     }
     
     public void renderGlass(final PoseStack matrixStackIn, final MultiBufferSource buffer, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha) {
-        final IVertexBuilder vb = buffer.getBuffer(RenderTypesAS.MODEL_LENS_GLASS);
+        final VertexConsumer vb = buffer.getBuffer(RenderTypesAS.MODEL_LENS_GLASS);
         this.lens.func_228309_a_(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         this.lens.field_78795_f = 0.0f;
         RenderingUtils.refreshDrawing(vb, RenderTypesAS.MODEL_LENS_GLASS);
@@ -55,6 +55,6 @@ public class ModelLens extends CustomModel
         this.renderGlass(matrixStackIn, buffer, packedLightIn, packedOverlayIn, 1.0f, 1.0f, 1.0f, 1.0f);
     }
     
-    public void func_225598_a_(final PoseStack matrixStackIn, final IVertexBuilder bufferIn, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha) {
+    public void func_225598_a_(final PoseStack matrixStackIn, final VertexConsumer bufferIn, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha) {
     }
 }

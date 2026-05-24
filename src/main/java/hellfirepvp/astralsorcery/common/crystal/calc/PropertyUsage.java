@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.crystal.calc;
 
 import java.util.Objects;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.network.chat.IFormattableTextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 

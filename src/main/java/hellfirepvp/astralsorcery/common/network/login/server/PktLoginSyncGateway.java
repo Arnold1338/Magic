@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.auxiliary.gateway.CelestialGatewayHandle
 import java.util.HashMap;
 import hellfirepvp.astralsorcery.common.data.world.GatewayCache;
 import java.util.Collection;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 import java.util.Map;
 import hellfirepvp.astralsorcery.common.network.base.ASLoginPacket;

@@ -1,18 +1,18 @@
 package hellfirepvp.astralsorcery.client.util.camera;
 
-import net.minecraft.util.HandSide;
+import net.minecraft.world.entity.HumanoidArm;
 import javax.annotation.Nonnull;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.level.entity.EquipmentSlot;
 import java.util.Collections;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.entity.Entity;
 import javax.annotation.Nullable;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.player.ClientPlayerEntity;
 
 public abstract class EntityCameraRenderView extends ClientPlayerEntity
 {
@@ -79,7 +79,7 @@ public abstract class EntityCameraRenderView extends ClientPlayerEntity
     public void func_184201_a(final EquipmentSlot slotIn, @Nullable final ItemStack stack) {
     }
     
-    public HandSide func_184591_cq() {
-        return HandSide.RIGHT;
+    public HumanoidArm func_184591_cq() {
+        return HumanoidArm.RIGHT;
     }
 }

@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.client.screen.base;
 
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.inventory.AbstractContainerMenu;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.world.level.entity.player.Inventory;
+import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import hellfirepvp.astralsorcery.common.container.ContainerTileEntity;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 
 public abstract class ContainerBaseScreen<T extends BlockEntity, C extends ContainerTileEntity<T>> extends ContainerScreen<C>
 {

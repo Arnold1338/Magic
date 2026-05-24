@@ -2,40 +2,40 @@ package hellfirepvp.astralsorcery.common.block.tile;
 
 import net.minecraft.network.FriendlyByteBuf;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.block.BlockRenderType;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.level.LevelReader;
+import net.minecraft.world.level.level.LevelAccessor;
 import net.minecraft.core.Direction;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.state.Property;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.state.StateContainer;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.level.block.state.Property;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.state.StateContainer;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileCelestialCrystals;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import net.minecraft.core.BlockPos;
 import java.util.Random;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.item.block.ItemBlockCelestialCrystalCluster;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.item.BlockItem;
+import net.minecraft.world.level.level.block.SoundType;
 import net.minecraftforge.common.ToolAction;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.level.block.state.BlockBehaviour;
 import hellfirepvp.astralsorcery.common.block.tile.crystal.CollectorCrystalType;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.level.material.Material;
+import net.minecraft.world.level.block.state.IntegerProperty;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.astralsorcery.common.block.base.BlockStarlightRecipient;
 import hellfirepvp.astralsorcery.common.block.base.BlockCrystalContainer;
@@ -70,7 +70,7 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
         builder.func_206894_a(new Property[] { (Property)BlockCelestialCrystalCluster.STAGE });
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final ISelectionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final CollisionContext context) {
         final Vec3 offset = state.func_191059_e(world, pos);
         VoxelShape shape = null;
         switch ((int)state.getValue((Property)BlockCelestialCrystalCluster.STAGE)) {
@@ -125,8 +125,8 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
         return false;
     }
     
-    public BlockRenderType func_149645_b(final BlockState state) {
-        return BlockRenderType.MODEL;
+    public RenderShape func_149645_b(final BlockState state) {
+        return RenderShape.MODEL;
     }
     
     @Nullable

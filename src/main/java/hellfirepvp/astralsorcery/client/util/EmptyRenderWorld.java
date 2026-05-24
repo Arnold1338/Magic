@@ -1,22 +1,22 @@
 package hellfirepvp.astralsorcery.client.util;
 
-import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.material.Fluids;
+import net.minecraft.world.level.level.material.FluidState;
+import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.level.block.state.BlockState;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.LightType;
-import net.minecraft.world.level.ColorResolver;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.LightType;
+import net.minecraft.world.level.level.ColorResolver;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.observerlib.api.client.StructureRenderLightManager;
-import net.minecraft.world.lighting.WorldLightManager;
+import net.minecraft.world.level.lighting.WorldLightManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.core.Direction;
 import java.util.function.Supplier;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.IBlockDisplayReader;
+import net.minecraft.world.level.level.biome.Biome;
+import net.minecraft.world.level.IBlockDisplayReader;
 
 public class EmptyRenderWorld implements IBlockDisplayReader
 {

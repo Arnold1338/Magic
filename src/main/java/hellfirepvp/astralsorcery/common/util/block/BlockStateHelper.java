@@ -1,11 +1,11 @@
 package hellfirepvp.astralsorcery.common.util.block;
 
-import net.minecraft.block.AirBlock;
-import net.minecraft.util.JSONUtils;
+import net.minecraft.world.level.block.AirBlock;
+import com.google.gson.JsonObject;
 import java.util.Optional;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import java.util.Locale;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.level.block.Blocks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Iterator;
@@ -14,11 +14,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.util.List;
 import java.util.Collection;
-import net.minecraft.state.Property;
+import net.minecraft.world.level.block.state.Property;
 import java.util.ArrayList;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import com.google.common.base.Splitter;
 
 public class BlockStateHelper

@@ -1,15 +1,15 @@
 package hellfirepvp.astralsorcery.common.entity;
 
-import net.minecraft.entity.ai.controller.MovementController;
+import net.minecraft.world.entity.ai.control.MoveControl;
 import hellfirepvp.astralsorcery.common.entity.goal.SpectralToolMeleeAttackGoal;
 import hellfirepvp.astralsorcery.common.entity.goal.SpectralToolBreakLogGoal;
 import hellfirepvp.astralsorcery.common.entity.goal.SpectralToolBreakBlockGoal;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.item.Items;
 import hellfirepvp.astralsorcery.common.constellation.mantle.effect.MantleEffectPelotrio;
 import java.util.function.BiFunction;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import javax.annotation.Nonnull;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -22,26 +22,26 @@ import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.entity.ai.controller.FlyingMovementController;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.level.entity.Mob;
+import net.minecraft.world.entity.ai.control.FlyingMoveControl;
+import net.minecraft.world.level.entity.EntityType;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.entity.goal.SpectralToolGoal;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.entity.FlyingEntity;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.world.entity.FlyingMob;
 
-public class EntitySpectralTool extends FlyingEntity
+public class EntitySpectralTool extends FlyingMob
 {
-    private static final DataParameter<ItemStack> ITEM;
+    private static final EntityDataAccessor<ItemStack> ITEM;
     private LivingEntity owningEntity;
     private SpectralToolGoal task;
     private BlockPos startPosition;
@@ -55,7 +55,7 @@ public class EntitySpectralTool extends FlyingEntity
         this.startPosition = null;
         this.remainingTime = 0;
         this.idleTime = 0;
-        this.field_70765_h = (MovementController)new FlyingMovementController((MobEntity)this, 10, false);
+        this.field_70765_h = (MoveControl)new FlyingMoveControl((MobEntity)this, 10, false);
     }
     
     public EntitySpectralTool(final World worldIn, final BlockPos spawnPos, final LivingEntity owner, final ToolTask task) {
@@ -73,13 +73,13 @@ public class EntitySpectralTool extends FlyingEntity
         return (EntityType.IFactory<EntitySpectralTool>)((type, world) -> new EntitySpectralTool(world));
     }
     
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
+    public static AttributeSupplier.MutableAttribute createAttributes() {
         return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233818_a_, 3.0).func_233815_a_(Attributes.field_233822_e_, 0.85);
     }
     
     protected void func_70088_a() {
         super.func_70088_a();
-        this.func_184212_Q().func_187214_a((DataParameter)EntitySpectralTool.ITEM, (Object)ItemStack.field_190927_a);
+        this.func_184212_Q().func_187214_a((EntityDataAccessor)EntitySpectralTool.ITEM, (Object)ItemStack.field_190927_a);
     }
     
     public boolean func_241849_j(final Entity entity) {
@@ -141,12 +141,12 @@ public class EntitySpectralTool extends FlyingEntity
     }
     
     private void setItem(@Nonnull final ItemStack tool) {
-        this.field_70180_af.func_187227_b((DataParameter)EntitySpectralTool.ITEM, (Object)tool);
+        this.field_70180_af.func_187227_b((EntityDataAccessor)EntitySpectralTool.ITEM, (Object)tool);
     }
     
     @Nonnull
     public ItemStack getItem() {
-        return (ItemStack)this.field_70180_af.func_187225_a((DataParameter)EntitySpectralTool.ITEM);
+        return (ItemStack)this.field_70180_af.func_187225_a((EntityDataAccessor)EntitySpectralTool.ITEM);
     }
     
     public void func_70108_f(final Entity entityIn) {
@@ -162,7 +162,7 @@ public class EntitySpectralTool extends FlyingEntity
     }
     
     static {
-        ITEM = EntityDataManager.func_187226_a((Class)EntitySpectralTool.class, DataSerializers.field_187196_f);
+        ITEM = SynchedEntityData.func_187226_a((Class)EntitySpectralTool.class, EntityDataSerializers.field_187196_f);
     }
     
     public static class ToolTask

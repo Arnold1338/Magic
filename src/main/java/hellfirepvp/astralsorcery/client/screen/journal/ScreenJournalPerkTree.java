@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.client.screen.journal;
 import net.minecraft.sounds.SoundEvent;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.sounds.SoundEvents;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.network.play.client.PktPerkGemModification;
 import net.minecraft.Util;
@@ -29,7 +29,7 @@ import hellfirepvp.astralsorcery.common.data.research.PerkAllocationType;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
@@ -37,17 +37,17 @@ import hellfirepvp.astralsorcery.common.perk.node.socket.GemSocketItem;
 import net.minecraft.network.chat.Style;
 import hellfirepvp.astralsorcery.common.data.research.PlayerPerkData;
 import net.minecraft.client.gui.Font;
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.network.chat.IFormattableTextComponent;
 import java.util.LinkedList;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.ITextProperties;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.item.useables.ItemPerkSeal;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -58,7 +58,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import java.awt.geom.Point2D;
 import hellfirepvp.astralsorcery.common.constellation.IMajorConstellation;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import java.util.Iterator;
@@ -75,7 +75,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.perk.node.socket.GemSocketPerk;
 import java.util.List;
 import hellfirepvp.astralsorcery.client.util.ScreenTextEntry;
@@ -193,12 +193,12 @@ public class ScreenJournalPerkTree extends ScreenJournal
             final AbstractPerk root = PerkTree.PERK_TREE.getRootPerk(LogicalSide.CLIENT, attunement);
             if (root != null) {
                 final Point2D.Float shift = this.sizeHandler.evRelativePos(root.getOffset());
-                this.moveMouse((float)MathHelper.func_76141_d(shift.x), (float)MathHelper.func_76141_d(shift.y));
+                this.moveMouse((float)Mth.func_76141_d(shift.x), (float)Mth.func_76141_d(shift.y));
                 shifted = true;
             }
         }
         if (!shifted) {
-            this.moveMouse((float)MathHelper.func_76141_d(this.sizeHandler.getTotalWidth() / 2.0f), (float)MathHelper.func_76141_d(this.sizeHandler.getTotalHeight() / 2.0f));
+            this.moveMouse((float)Mth.func_76141_d(this.sizeHandler.getTotalWidth() / 2.0f), (float)Mth.func_76141_d(this.sizeHandler.getTotalHeight() / 2.0f));
         }
         this.applyMovedMouseOffset();
     }
@@ -208,7 +208,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         this.thisFramePerks.clear();
         final double guiFactor = Minecraft.func_71410_x().func_228018_at_().func_198100_s();
         GL11.glEnable(3089);
-        GL11.glScissor(MathHelper.func_76128_c((this.guiLeft + 39) * guiFactor), MathHelper.func_76128_c((this.guiTop + 44) * guiFactor), MathHelper.func_76128_c((this.guiWidth - 76) * guiFactor), MathHelper.func_76128_c((this.guiHeight - 71) * guiFactor));
+        GL11.glScissor(Mth.func_76128_c((this.guiLeft + 39) * guiFactor), Mth.func_76128_c((this.guiTop + 44) * guiFactor), Mth.func_76128_c((this.guiWidth - 76) * guiFactor), Mth.func_76128_c((this.guiHeight - 71) * guiFactor));
         this.func_230926_e_(-50);
         this.drawBackground(renderStack);
         this.func_230926_e_(0);
@@ -293,7 +293,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         }
         if (!this.foundSeals.isEmpty() && ScreenJournalPerkTree.rectSealBox.contains(mouseX - this.guiLeft, mouseY - this.guiTop)) {
             final List<ITextProperties> toolTip2 = new ArrayList<ITextProperties>();
-            toolTip2.addAll(this.foundSeals.func_82840_a((Player)Minecraft.func_71410_x().field_71439_g, (ITooltipFlag)(Minecraft.func_71410_x().field_71474_y.field_82882_x ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL)));
+            toolTip2.addAll(this.foundSeals.func_82840_a((Player)Minecraft.func_71410_x().field_71439_g, (TooltipFlag)(Minecraft.func_71410_x().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
             toolTip2.add((ITextProperties)Component.field_240750_d_);
             toolTip2.add((ITextProperties)new Component("perk.info.astralsorcery.sealed.usage").func_240699_a_(ChatFormatting.GRAY));
             RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)mouseX, (float)mouseY, (float)this.getGuiZLevel(), toolTip2, this.field_230712_o_, false);
@@ -367,8 +367,8 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 return;
             }
             final Point2D.Float offset = this.sizeHandler.scalePointToGui(this, this.mousePosition, sMenuPerk.getPoint().getOffset());
-            float offsetX = (float)MathHelper.func_76141_d(offset.x);
-            float offsetY = (float)MathHelper.func_76141_d(offset.y);
+            float offsetX = (float)Mth.func_76141_d(offset.x);
+            float offsetY = (float)Mth.func_76141_d(offset.y);
             final float scale = this.sizeHandler.getScalingFactor();
             final float scaledSlotSize = 18.0f * scale;
             final int realWidth = Math.min(5, found.size());
@@ -390,11 +390,11 @@ public class ScreenJournalPerkTree extends ScreenJournal
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
             TexturesAS.TEX_GUI_MENU_SLOT_GEM_CONTEXT.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
                 for (int index2 = 0; index2 < found.size(); ++index2) {
                     final float addedX2 = index2 % 5 * scaledSlotSize;
                     final float addedY2 = index2 / 5 * scaledSlotSize;
-                    RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, inventoryOffsetX + addedX2, inventoryOffsetY + addedY2, (float)this.getGuiZLevel(), scaledSlotSize, scaledSlotSize).draw();
+                    RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, inventoryOffsetX + addedX2, inventoryOffsetY + addedY2, (float)this.getGuiZLevel(), scaledSlotSize, scaledSlotSize).draw();
                 }
                 return;
             });
@@ -439,7 +439,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         TexturesAS.TEX_GUI_TEXT_FIELD.bindTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, (float)(this.guiLeft + 300), (float)(this.guiTop + 16), (float)this.getGuiZLevel(), 88.5f, 15.0f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.guiLeft + 300), (float)(this.guiTop + 16), (float)this.getGuiZLevel(), 88.5f, 15.0f).draw());
         RenderSystem.disableBlend();
         String text = this.searchTextEntry.getText();
         int length = this.field_230712_o_.func_78256_a(text);
@@ -467,7 +467,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         TexturesAS.TEX_GUI_LINE_CONNECTION.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             PerkTree.PERK_TREE.getConnections().iterator();
             final Iterator iterator2;
             while (iterator2.hasNext()) {
@@ -544,7 +544,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         SpritesAS.SPR_PERK_SEAL.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             final Point2D.Float pOffset = perk.getPoint().getOffset();
             this.drawSeal(buf, renderStack, sealWidth, offset.x, offset.y, ClientScheduler.getClientTick() + (int)pOffset.x + (int)pOffset.y, sealFade * 0.75f);
             return;
@@ -553,7 +553,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         final float vLength = sealBreakSprite.getVWidth();
         final Tuple<Float, Float> uv = sealBreakSprite.getUVOffset(count);
         sealBreakSprite.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, offset.x - sealWidth, offset.y - sealWidth, (float)this.getGuiZLevel(), sealWidth * 2.0f, sealWidth * 2.0f).color(1.0f, 1.0f, 1.0f, 0.85f).tex((float)uv.func_76341_a(), (float)uv.func_76340_b(), uLength, vLength).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offset.x - sealWidth, offset.y - sealWidth, (float)this.getGuiZLevel(), sealWidth * 2.0f, sealWidth * 2.0f).color(1.0f, 1.0f, 1.0f, 0.85f).tex((float)uv.func_76341_a(), (float)uv.func_76340_b(), uLength, vLength).draw());
         RenderSystem.disableBlend();
         return true;
     }
@@ -577,7 +577,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         spritePerkUnlock.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, offset.x - unlockWidth, offset.y - unlockWidth, (float)this.getGuiZLevel(), unlockWidth * 2.0f, unlockWidth * 2.0f).tex((float)uv.func_76341_a(), (float)uv.func_76340_b(), uLength, vLength).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offset.x - unlockWidth, offset.y - unlockWidth, (float)this.getGuiZLevel(), unlockWidth * 2.0f, unlockWidth * 2.0f).tex((float)uv.func_76341_a(), (float)uv.func_76340_b(), uLength, vLength).draw());
         RenderSystem.disableBlend();
         return true;
     }
@@ -631,7 +631,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
             final int u = (i + 1 & 0x2) >> 1;
             final int v = (i + 2 & 0x2) >> 1;
             final Vector3 pos = starVec.clone().addX(size * u * 2.0).addY(size * v * 2.0);
-            pos.drawPos(offset, (IVertexBuilder)vb).func_227885_a_(1.0f, 1.0f, 1.0f, alpha).func_225583_a_((float)frameUV.func_76341_a() + uLength * u, (float)frameUV.func_76340_b() + vLength * v).func_181675_d();
+            pos.drawPos(offset, (VertexConsumer)vb).func_227885_a_(1.0f, 1.0f, 1.0f, alpha).func_225583_a_((float)frameUV.func_76341_a() + uLength * u, (float)frameUV.func_76340_b() + vLength * v).func_181675_d();
         }
     }
     
@@ -652,7 +652,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
             final int u = (i + 1 & 0x2) >> 1;
             final int v = (i + 2 & 0x2) >> 1;
             final Vector3 pos = starVec.clone().addX(size * u * 2.0f).addY(size * v * 2.0f);
-            pos.drawPos(offset, (IVertexBuilder)batch).func_227885_a_(0.8f, 0.1f, 0.1f, 1.0f).func_225583_a_((float)frameUV.func_76341_a() + uLength * u, (float)frameUV.func_76340_b() + vLength * v).func_181675_d();
+            pos.drawPos(offset, (VertexConsumer)batch).func_227885_a_(0.8f, 0.1f, 0.1f, 1.0f).func_225583_a_((float)frameUV.func_76341_a() + uLength * u, (float)frameUV.func_76340_b() + vLength * v).func_181675_d();
         }
     }
     
@@ -678,7 +678,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
             final int u = (i + 1 & 0x2) >> 1;
             final int v = (i + 2 & 0x2) >> 1;
             final Vector3 pos = vec00.clone().add(dir.clone().multiply(u)).add(vecV.clone().multiply(v));
-            pos.drawPos(offset, (IVertexBuilder)vb).func_227885_a_(rR, rG, rB, rA).func_225583_a_((float)u, (float)v).func_181675_d();
+            pos.drawPos(offset, (VertexConsumer)vb).func_227885_a_(rR, rG, rB, rA).func_225583_a_((float)u, (float)v).func_181675_d();
         }
     }
     
@@ -717,7 +717,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         RenderSystem.enableAlphaTest();
         RenderSystem.defaultAlphaFunc();
         TexturesAS.TEX_GUI_BACKGROUND_PERKS.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, (float)(this.guiLeft - 10), (float)(this.guiTop - 10), (float)this.getGuiZLevel(), (float)(this.guiWidth + 20), (float)(this.guiHeight + 20)).color(0.5f, 0.5f, 0.5f, 1.0f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.guiLeft - 10), (float)(this.guiTop - 10), (float)this.getGuiZLevel(), (float)(this.guiWidth + 20), (float)(this.guiHeight + 20)).color(0.5f, 0.5f, 0.5f, 1.0f).draw());
         RenderSystem.disableAlphaTest();
     }
     

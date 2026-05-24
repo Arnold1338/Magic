@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
 import com.mojang.blaze3d.vertex.BufferBuilder;
@@ -144,7 +144,7 @@ public class WavefrontObject
             return vbo;
         }
         buf.func_181668_a(this.getGLDrawingMode(), RenderTypesAS.POSITION_COLOR_TEX_NORMAL);
-        this.render((IVertexBuilder)buf);
+        this.render((VertexConsumer)buf);
         buf.func_178977_d();
         vbo.func_227875_a_(buf);
         return vbo;
@@ -177,7 +177,7 @@ public class WavefrontObject
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void render(final IVertexBuilder vb) {
+    public void render(final VertexConsumer vb) {
         for (final GroupObject groupObject : this.groupObjects) {
             groupObject.render(vb);
         }
@@ -188,7 +188,7 @@ public class WavefrontObject
         final List<String> groupList = Arrays.asList(groups);
         for (final GroupObject groupObject : this.groupObjects) {
             if (groupList.contains(groupObject.name)) {
-                groupObject.render((IVertexBuilder)vb);
+                groupObject.render((VertexConsumer)vb);
             }
         }
     }
@@ -203,7 +203,7 @@ public class WavefrontObject
                 }
             }
             if (!exclude) {
-                groupObject.render((IVertexBuilder)vb);
+                groupObject.render((VertexConsumer)vb);
             }
         }
     }

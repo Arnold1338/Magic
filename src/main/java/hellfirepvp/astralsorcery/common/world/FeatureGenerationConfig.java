@@ -9,9 +9,9 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.level.biome.Biome;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 

@@ -7,19 +7,19 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.DisplayEffectsScreen;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.level.effect.MobEffectInstance;
 import hellfirepvp.astralsorcery.client.resource.query.SpriteQuery;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.EffectType;
 import java.awt.Color;
 import java.util.Random;
-import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.level.effect.MobEffect;
 
 public abstract class EffectCustomTexture extends Effect
 {
@@ -47,7 +47,7 @@ public abstract class EffectCustomTexture extends Effect
         final SpriteSheetResource ssr = this.getSpriteQuery().resolveSprite();
         ssr.bindTexture();
         final Tuple<Float, Float> uvTpl = ssr.getUVOffset(ClientScheduler.getClientTick());
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, offsetX, offsetY, z, wh, wh).color(red, green, blue, 1.0f).tex((float)uvTpl.func_76341_a(), (float)uvTpl.func_76340_b(), ssr.getUWidth(), ssr.getVWidth()).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offsetX, offsetY, z, wh, wh).color(red, green, blue, 1.0f).tex((float)uvTpl.func_76341_a(), (float)uvTpl.func_76340_b(), ssr.getUWidth(), ssr.getVWidth()).draw());
     }
     
     @OnlyIn(Dist.CLIENT)
@@ -61,7 +61,7 @@ public abstract class EffectCustomTexture extends Effect
         final SpriteSheetResource ssr = this.getSpriteQuery().resolveSprite();
         ssr.bindTexture();
         final Tuple<Float, Float> uvTpl = ssr.getUVOffset(ClientScheduler.getClientTick());
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, offsetX, offsetY, z, wh, wh).color(red, green, blue, 1.0f).tex((float)uvTpl.func_76341_a(), (float)uvTpl.func_76340_b(), ssr.getUWidth(), ssr.getVWidth()).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offsetX, offsetY, z, wh, wh).color(red, green, blue, 1.0f).tex((float)uvTpl.func_76341_a(), (float)uvTpl.func_76340_b(), ssr.getUWidth(), ssr.getVWidth()).draw());
     }
     
     static {

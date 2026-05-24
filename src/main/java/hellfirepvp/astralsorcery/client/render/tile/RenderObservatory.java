@@ -1,15 +1,15 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.entity.player.Player;
 import com.mojang.math.Vector3f;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.entity.technical.EntityObservatoryHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import hellfirepvp.astralsorcery.client.model.builtin.ModelObservatory;
 import hellfirepvp.astralsorcery.common.tile.TileObservatory;
 
@@ -17,7 +17,7 @@ public class RenderObservatory extends CustomTileEntityRenderer<TileObservatory>
 {
     private static final ModelObservatory MODEL_OBSERVATORY;
     
-    public RenderObservatory(final TileEntityRendererDispatcher tileRenderer) {
+    public RenderObservatory(final BlockEntityRenderDispatcher tileRenderer) {
         super(tileRenderer);
     }
     

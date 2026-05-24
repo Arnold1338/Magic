@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.common.block.base;
 
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.item.BlockItemUseContext;
+import net.minecraft.world.level.phys.AABB;
 
 public interface LargeBlock
 {

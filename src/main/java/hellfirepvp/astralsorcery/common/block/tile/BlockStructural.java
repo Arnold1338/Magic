@@ -1,47 +1,47 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.level.block.Blocks;
 import java.util.Locale;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.world.IWorldWriter;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.IWorldWriter;
 import com.google.common.collect.Lists;
 import java.util.List;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.level.storage.loot.LootContext;
 import hellfirepvp.astralsorcery.common.GuiType;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.InteractionHand;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.level.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.event.EventFlags;
 import net.minecraft.client.particle.ParticleEngine;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.level.LevelReader;
 import javax.annotation.Nullable;
 import net.minecraftforge.common.ToolAction;
-import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.state.StateContainer;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.state.Property;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.block.state.StateContainer;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.level.item.CreativeModeTab;
+import net.minecraft.world.level.block.state.Property;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.SoundType;
+import net.minecraft.world.level.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.level.material.MapColor;
+import net.minecraft.world.level.level.material.Material;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.level.block.state.EnumProperty;
+import net.minecraft.world.level.level.block.Block;
 
 public class BlockStructural extends Block
 {
@@ -60,7 +60,7 @@ public class BlockStructural extends Block
         builder.func_206894_a(new Property[] { (Property)BlockStructural.BLOCK_TYPE });
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
         switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
             case TELESCOPE: {
                 return BlockStructural.STRUCT_TELESCOPE;
@@ -106,12 +106,12 @@ public class BlockStructural extends Block
     }
     
     @OnlyIn(Dist.CLIENT)
-    public boolean addHitEffects(final BlockState state, final World world, final RayTraceResult target, final ParticleEngine manager) {
-        if (target instanceof BlockRayTraceResult) {
+    public boolean addHitEffects(final BlockState state, final World world, final HitResult target, final ParticleEngine manager) {
+        if (target instanceof BlockHitResult) {
             EventFlags.PLAY_BLOCK_BREAK_EFFECTS.executeWithFlag(() -> {
                 switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
                     case TELESCOPE: {
-                        manager.func_180533_a(((BlockRayTraceResult)target).func_216350_a().func_177977_b(), BlocksAS.TELESCOPE.defaultBlockState());
+                        manager.func_180533_a(((BlockHitResult)target).func_216350_a().func_177977_b(), BlocksAS.TELESCOPE.defaultBlockState());
                         break;
                     }
                 }
@@ -121,7 +121,7 @@ public class BlockStructural extends Block
         return true;
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player entity, final Hand hand, final BlockRayTraceResult rayTraceResult) {
+    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player entity, final Hand hand, final BlockHitResult rayTraceResult) {
         switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
             case TELESCOPE: {
                 if (world.func_201670_d()) {
@@ -147,7 +147,7 @@ public class BlockStructural extends Block
         }
     }
     
-    public ItemStack getPickBlock(final BlockState state, final RayTraceResult target, final IBlockReader world, final BlockPos pos, final Player player) {
+    public ItemStack getPickBlock(final BlockState state, final HitResult target, final IBlockReader world, final BlockPos pos, final Player player) {
         switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
             case TELESCOPE: {
                 return BlockType.TELESCOPE.getSupportedState().getPickBlock(target, world, pos.func_177977_b(), player);
@@ -187,8 +187,8 @@ public class BlockStructural extends Block
         }
     }
     
-    public BlockRenderType func_149645_b(final BlockState p_149645_1_) {
-        return BlockRenderType.INVISIBLE;
+    public RenderShape func_149645_b(final BlockState p_149645_1_) {
+        return RenderShape.INVISIBLE;
     }
     
     static {
@@ -196,7 +196,7 @@ public class BlockStructural extends Block
         STRUCT_TELESCOPE = VoxelShapes.func_197873_a(0.0625, -1.0, 0.0625, 0.9375, 1.0, 0.9375);
     }
     
-    public enum BlockType implements IStringSerializable
+    public enum BlockType implements StringRepresentable
     {
         DUMMY(Blocks.field_150350_a.defaultBlockState()), 
         TELESCOPE(BlocksAS.TELESCOPE.defaultBlockState());

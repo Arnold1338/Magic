@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.integration.jei;
 
 import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import mezz.jei.api.gui.IRecipeLayout;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.AltarRecipeGrid;
@@ -18,8 +18,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import java.util.List;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import mezz.jei.api.helpers.IGuiHelper;
 import hellfirepvp.astralsorcery.common.block.tile.BlockAltar;
@@ -102,11 +102,11 @@ public class CategoryAltar extends JEICategory<SimpleAltarRecipe>
         final int centerY = 95;
         for (int additional = altarRecipe.getRelayInputs().size(), i = 0; i < additional; ++i) {
             double part = i / (double)additional * 2.0 * 3.141592653589793;
-            part = MathHelper.func_151237_a(part, 0.0, 6.283185307179586);
+            part = Mth.func_151237_a(part, 0.0, 6.283185307179586);
             part += 3.141592653589793;
             final double xAdd = Math.sin(part) * 60.0;
             final double yAdd = Math.cos(part) * 60.0;
-            itemStacks.init(25 + i, true, MathHelper.func_76128_c(centerX + xAdd), MathHelper.func_76128_c(centerY + yAdd));
+            itemStacks.init(25 + i, true, Mth.func_76128_c(centerX + xAdd), Mth.func_76128_c(centerY + yAdd));
         }
         itemStacks.init(itemStacks.getGuiIngredients().size(), false, 48, 18);
         itemStacks.set(ingredients);

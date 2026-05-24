@@ -1,13 +1,13 @@
 package hellfirepvp.astralsorcery.common.container.factory;
 
 import net.minecraftforge.fml.network.IContainerFactory;
-import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.inventory.AbstractContainerMenu;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import javax.annotation.Nonnull;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.entity.player.Inventory;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.network.FriendlyByteBuf;
 import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;

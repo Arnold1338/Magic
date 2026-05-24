@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.item.ItemStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.item.ItemStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.fluids.FluidStack;
 import hellfirepvp.astralsorcery.common.util.tile.PrecisionSingleFluidTank;
@@ -10,16 +10,16 @@ import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import java.awt.Color;
-import net.minecraft.world.IBlockDisplayReader;
+import net.minecraft.world.level.IBlockDisplayReader;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import hellfirepvp.astralsorcery.common.tile.TileWell;
 
 public class RenderWell extends CustomTileEntityRenderer<TileWell>
 {
-    public RenderWell(final TileEntityRendererDispatcher tileRenderer) {
+    public RenderWell(final BlockEntityRenderDispatcher tileRenderer) {
         super(tileRenderer);
     }
     
@@ -29,7 +29,7 @@ public class RenderWell extends CustomTileEntityRenderer<TileWell>
             final FluidStack contained = tank.getFluid();
             final TextureAtlasSprite tas = RenderingUtils.getParticleTexture(contained);
             final Color fluidColor = new Color(contained.getFluid().getAttributes().getColor((IBlockDisplayReader)tile.func_145831_w(), tile.func_174877_v()));
-            final IVertexBuilder buf = renderTypeBuffer.getBuffer(RenderTypesAS.TER_WELL_LIQUID);
+            final VertexConsumer buf = renderTypeBuffer.getBuffer(RenderTypesAS.TER_WELL_LIQUID);
             final Vector3 offset = new Vector3(0.5, 0.32, 0.5).addY(tank.getPercentageFilled() * 0.6);
             RenderingDrawUtils.renderAngleRotatedTexturedRectVB(buf, renderStack, offset, Vector3.RotAxis.Y_AXIS, (float)Math.toRadians(45.0), 0.54f, tas.func_94209_e(), tas.func_94206_g(), tas.func_94212_f() - tas.func_94209_e(), tas.func_94210_h() - tas.func_94206_g(), fluidColor.getRed(), fluidColor.getGreen(), fluidColor.getBlue(), 255);
         }

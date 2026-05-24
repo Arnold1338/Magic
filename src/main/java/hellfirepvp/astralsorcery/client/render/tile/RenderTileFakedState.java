@@ -1,24 +1,24 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import java.awt.Color;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.renderer.RenderType;
 import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
 import hellfirepvp.observerlib.client.util.RenderTypeDecorator;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.block.AirBlock;
+import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import hellfirepvp.astralsorcery.common.tile.base.TileFakedState;
 
 public class RenderTileFakedState extends CustomTileEntityRenderer<TileFakedState>
 {
-    public RenderTileFakedState(final TileEntityRendererDispatcher tileRenderer) {
+    public RenderTileFakedState(final BlockEntityRenderDispatcher tileRenderer) {
         super(tileRenderer);
     }
     
@@ -42,7 +42,7 @@ public class RenderTileFakedState extends CustomTileEntityRenderer<TileFakedStat
             return;
         });
         final BufferDecoratorBuilder decorator = BufferDecoratorBuilder.withColor((r, g, b, a) -> color);
-        final IVertexBuilder buf = renderTypeBuffer.getBuffer((RenderType)decorated);
+        final VertexConsumer buf = renderTypeBuffer.getBuffer((RenderType)decorated);
         RenderingUtils.renderSimpleBlockModel(fakedState, renderStack, decorator.decorate(buf), tile.func_174877_v(), tile, true);
     }
 }

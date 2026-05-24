@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.perk.node;
 import net.minecraftforge.common.ForgeConfigSpec;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 import javax.annotation.Nonnull;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreeConstellation;

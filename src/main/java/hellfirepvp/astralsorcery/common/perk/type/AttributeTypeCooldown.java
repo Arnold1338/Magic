@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.common.perk.type;
 
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
@@ -43,7 +43,7 @@ public class AttributeTypeCooldown extends PerkAttributeType
         float multiplier = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.SERVER).modifyValue(player, prog, this, 1.0f);
         --multiplier;
         multiplier = AttributeEvent.postProcessModded(player, this, multiplier);
-        multiplier = 1.0f - MathHelper.func_76131_a(multiplier, 0.0f, 1.0f);
+        multiplier = 1.0f - Mth.func_76131_a(multiplier, 0.0f, 1.0f);
         event.setCooldown(Math.round(event.getResultCooldown() * multiplier));
     }
 }

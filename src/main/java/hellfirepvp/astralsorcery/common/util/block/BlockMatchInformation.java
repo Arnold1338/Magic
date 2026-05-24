@@ -6,18 +6,18 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 import hellfirepvp.astralsorcery.common.util.data.JsonHelper;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.level.ItemLike;
 import com.google.gson.JsonObject;
 import javax.annotation.Nonnull;
-import net.minecraft.block.AirBlock;
+import net.minecraft.world.level.block.AirBlock;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.level.block.state.BlockState;
 import java.util.function.Predicate;
 
 public class BlockMatchInformation implements Predicate<BlockState>

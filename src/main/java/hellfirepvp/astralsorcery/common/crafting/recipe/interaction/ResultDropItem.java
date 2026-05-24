@@ -8,8 +8,8 @@ import hellfirepvp.astralsorcery.common.util.data.JsonHelper;
 import com.google.gson.JsonObject;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.item.ItemStack;
 
 public class ResultDropItem extends InteractionResult
 {

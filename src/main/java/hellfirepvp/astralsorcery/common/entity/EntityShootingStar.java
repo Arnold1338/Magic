@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.common.entity;
 
-import net.minecraft.network.datasync.IDataSerializer;
-import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.network.syncher.IDataSerializer;
+import net.minecraft.network.syncher.SynchedEntityData;
 import hellfirepvp.astralsorcery.common.util.data.ASDataSerializers;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraft.network.IPacket;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 import java.awt.Color;
 import java.util.Random;
@@ -19,23 +19,23 @@ import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.level.entity.EntityType;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import net.minecraft.world.level.Level;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.entity.projectile.ThrowableEntity;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.world.entity.projectile.ThrowableEntity;
 
 public class EntityShootingStar extends ThrowableEntity
 {
-    private static final DataParameter<Long> EFFECT_SEED;
+    private static final EntityDataAccessor<Long> EFFECT_SEED;
     
     protected EntityShootingStar(final World worldIn) {
         super((EntityType)EntityTypesAS.SHOOTING_STAR, worldIn);
-        this.field_70180_af.func_187227_b((DataParameter)EntityShootingStar.EFFECT_SEED, (Object)this.field_70146_Z.nextLong());
+        this.field_70180_af.func_187227_b((EntityDataAccessor)EntityShootingStar.EFFECT_SEED, (Object)this.field_70146_Z.nextLong());
     }
     
     protected EntityShootingStar(final double x, final double y, final double z, final World worldIn) {
@@ -48,11 +48,11 @@ public class EntityShootingStar extends ThrowableEntity
     }
     
     protected void func_70088_a() {
-        this.field_70180_af.func_187214_a((DataParameter)EntityShootingStar.EFFECT_SEED, (Object)0L);
+        this.field_70180_af.func_187214_a((EntityDataAccessor)EntityShootingStar.EFFECT_SEED, (Object)0L);
     }
     
     public long getEffectSeed() {
-        return (long)this.field_70180_af.func_187225_a((DataParameter)EntityShootingStar.EFFECT_SEED);
+        return (long)this.field_70180_af.func_187225_a((EntityDataAccessor)EntityShootingStar.EFFECT_SEED);
     }
     
     public void func_70071_h_() {
@@ -115,10 +115,10 @@ public class EntityShootingStar extends ThrowableEntity
     }
     
     public void func_70107_b(final double x, final double y, final double z) {
-        final int chunkX = MathHelper.func_76128_c(this.func_226277_ct_() / 16.0);
-        final int chunkZ = MathHelper.func_76128_c(this.func_226281_cx_() / 16.0);
-        final int newChunkX = MathHelper.func_76128_c(x / 16.0);
-        final int newChunkZ = MathHelper.func_76128_c(z / 16.0);
+        final int chunkX = Mth.func_76128_c(this.func_226277_ct_() / 16.0);
+        final int chunkZ = Mth.func_76128_c(this.func_226281_cx_() / 16.0);
+        final int newChunkX = Mth.func_76128_c(x / 16.0);
+        final int newChunkZ = Mth.func_76128_c(z / 16.0);
         if ((chunkX != newChunkX || chunkZ != newChunkZ) && !this.func_130014_f_().func_217354_b(newChunkX, newChunkZ)) {
             this.func_70106_y();
             return;
@@ -131,6 +131,6 @@ public class EntityShootingStar extends ThrowableEntity
     }
     
     static {
-        EFFECT_SEED = EntityDataManager.func_187226_a((Class)EntityShootingStar.class, (IDataSerializer)ASDataSerializers.LONG);
+        EFFECT_SEED = SynchedEntityData.func_187226_a((Class)EntityShootingStar.class, (IDataSerializer)ASDataSerializers.LONG);
     }
 }

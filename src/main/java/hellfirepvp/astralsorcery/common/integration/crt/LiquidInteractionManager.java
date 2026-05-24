@@ -1,16 +1,16 @@
 package hellfirepvp.astralsorcery.common.integration.crt;
 
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.item.crafting.RecipeType;
 import com.blamejared.crafttweaker.api.brackets.CommandStringDisplayable;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionRemoveRecipe;
 import com.blamejared.crafttweaker.impl.item.MCItemStackMutable;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.entity.EntityType;
 import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.ResultSpawnEntity;
 import com.blamejared.crafttweaker.impl.entity.MCEntityType;
 import com.blamejared.crafttweaker.api.actions.IAction;
 import com.blamejared.crafttweaker.api.CraftTweakerAPI;
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.item.crafting.Recipe;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
 import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.InteractionResult;
 import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInteraction;

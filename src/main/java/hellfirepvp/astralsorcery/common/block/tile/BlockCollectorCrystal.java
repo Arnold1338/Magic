@@ -1,20 +1,20 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.block.BlockRenderType;
+import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
 import java.util.UUID;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.item.Item;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.level.Level;
 import net.minecraftforge.common.ForgeHooks;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileCollectorCrystal;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.common.constellation.IMinorConstellation;
@@ -32,19 +32,19 @@ import hellfirepvp.astralsorcery.common.crystal.source.AttunedSourceInstance;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationItem;
 import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.item.block.ItemBlockCollectorCrystal;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.level.block.SoundType;
 import net.minecraftforge.common.ToolAction;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.level.material.Material;
 import hellfirepvp.astralsorcery.common.block.tile.crystal.CollectorCrystalType;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.observerlib.api.block.BlockStructureObserver;
 import hellfirepvp.astralsorcery.common.block.base.BlockStarlightNetwork;
@@ -61,7 +61,7 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
     public abstract Class<? extends ItemBlockCollectorCrystal> getItemBlockClass();
     
     @OnlyIn(Dist.CLIENT)
-    public void func_190948_a(final ItemStack stack, @Nullable final IBlockReader world, final List<Component> toolTip, final ITooltipFlag flag) {
+    public void func_190948_a(final ItemStack stack, @Nullable final IBlockReader world, final List<Component> toolTip, final TooltipFlag flag) {
         super.func_190948_a(stack, world, (List)toolTip, flag);
         final CrystalAttributes attr = CrystalAttributes.getCrystalAttributes(stack);
         CrystalAttributes.TooltipResult result = null;
@@ -93,7 +93,7 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
         }
     }
     
-    public VoxelShape func_220053_a(final BlockState p_220053_1_, final IBlockReader p_220053_2_, final BlockPos p_220053_3_, final ISelectionContext p_220053_4_) {
+    public VoxelShape func_220053_a(final BlockState p_220053_1_, final IBlockReader p_220053_2_, final BlockPos p_220053_3_, final CollisionContext p_220053_4_) {
         return BlockCollectorCrystal.SHAPE;
     }
     
@@ -124,8 +124,8 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
         return false;
     }
     
-    public BlockRenderType func_149645_b(final BlockState p_149645_1_) {
-        return BlockRenderType.MODEL;
+    public RenderShape func_149645_b(final BlockState p_149645_1_) {
+        return RenderShape.MODEL;
     }
     
     @Nullable

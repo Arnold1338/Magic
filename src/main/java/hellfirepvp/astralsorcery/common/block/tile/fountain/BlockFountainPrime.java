@@ -1,17 +1,17 @@
 package hellfirepvp.astralsorcery.common.block.tile.fountain;
 
 import hellfirepvp.astralsorcery.common.block.tile.BlockFountain;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.level.LevelReader;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.LevelAccessor;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.crafting.nojson.fountain.FountainEffect;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMarble;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 
 public abstract class BlockFountainPrime extends Block implements CustomItemBlock
 {

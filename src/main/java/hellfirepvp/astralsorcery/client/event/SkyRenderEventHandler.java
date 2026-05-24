@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.event;
 
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
@@ -10,7 +10,7 @@ import net.minecraftforge.client.ISkyRenderHandler;
 import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import java.util.List;
 import hellfirepvp.astralsorcery.client.sky.ChainingSkyRenderer;
-import net.minecraft.client.world.DimensionRenderInfo;
+import net.minecraft.client.multiplayer.DimensionRenderInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 

@@ -1,11 +1,11 @@
 package hellfirepvp.astralsorcery.common.advancement;
 
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.advancements.ICriterionInstance;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.loot.ConditionArrayParser;
+import net.minecraft.world.level.storage.loot.ConditionArrayParser;
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.advancement.instance.AltarRecipeInstance;

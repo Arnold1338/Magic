@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.effect.function;
 
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 
@@ -13,7 +13,7 @@ public interface VFXScaleFunction<T extends EntityVisualFX>
         final float currAge = Math.max(0.0f, (float)fx.getAge()) / fx.getMaxAge();
         return scaleIn * (1.0f - RenderingVectorUtils.interpolate(prevAge, currAge, pTicks));
     };
-    public static final VFXScaleFunction<EntityVisualFX> SHRINK_EXP = (fx, scaleIn, pTicks) -> MathHelper.func_76129_c(VFXScaleFunction.SHRINK.getScale(fx, scaleIn, pTicks));
+    public static final VFXScaleFunction<EntityVisualFX> SHRINK_EXP = (fx, scaleIn, pTicks) -> Mth.func_76129_c(VFXScaleFunction.SHRINK.getScale(fx, scaleIn, pTicks));
     
     float getScale(@Nonnull final T p0, final float p1, final float p2);
     

@@ -19,7 +19,7 @@ import hellfirepvp.astralsorcery.common.lib.PerkConvertersAS;
 import hellfirepvp.astralsorcery.common.lib.PerkCustomModifiersAS;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
-import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.item.enchantment.Enchantments;
 import hellfirepvp.astralsorcery.common.lib.PerkNamesAS;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;

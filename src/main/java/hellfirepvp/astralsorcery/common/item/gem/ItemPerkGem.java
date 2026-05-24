@@ -6,15 +6,15 @@ import hellfirepvp.astralsorcery.common.perk.node.socket.GemSocketPerk;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.perk.DynamicModifierHelper;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.perk.node.socket.GemSocketItem;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 
 public abstract class ItemPerkGem extends Item implements GemSocketItem
 {

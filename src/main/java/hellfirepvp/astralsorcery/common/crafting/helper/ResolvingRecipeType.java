@@ -7,17 +7,17 @@ import java.util.stream.Collectors;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 import java.util.Iterator;
-import net.minecraft.world.Container;
+import net.minecraft.world.level.Container;
 import java.util.Collection;
-import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.item.crafting.RecipeManager;
+import net.minecraft.world.level.item.crafting.Recipe;
 import java.util.ArrayList;
 import java.util.Collections;
 import hellfirepvp.astralsorcery.common.util.RecipeHelper;
 import java.util.List;
 import net.minecraft.core.Registry;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.item.crafting.RecipeType;
 import java.util.function.BiPredicate;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.items.IItemHandler;
@@ -52,9 +52,9 @@ public class ResolvingRecipeType<C extends IItemHandler, T extends IHandlerRecip
         if (mgr == null) {
             return Collections.emptyList();
         }
-        final Collection<Recipe<IInventory>> recipeSet = mgr.func_215366_a((RecipeType)this.type).values();
+        final Collection<Recipe<Container>> recipeSet = mgr.func_215366_a((RecipeType)this.type).values();
         final List<T> recipes = new ArrayList<T>(recipeSet.size());
-        for (final Recipe<IInventory> rec : recipeSet) {
+        for (final Recipe<Container> rec : recipeSet) {
             recipes.add((T)(IHandlerRecipe)rec);
         }
         return recipes;

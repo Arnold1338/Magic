@@ -6,13 +6,13 @@ import net.minecraft.network.FriendlyByteBuf;
 import com.google.gson.JsonParseException;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.JSONUtils;
 import com.google.gson.JsonObject;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
+import com.google.gson.JsonObject;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.entity.EntityType;
 
 public class ResultSpawnEntity extends InteractionResult
 {

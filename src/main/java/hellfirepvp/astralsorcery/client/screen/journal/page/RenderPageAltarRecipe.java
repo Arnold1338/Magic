@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.client.screen.journal.page;
 
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.ITextProperties;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.Collections;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;

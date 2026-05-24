@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.block.base;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import net.minecraft.core.BlockPos;
 import java.util.Random;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 
 public interface BlockStarlightRecipient
 {

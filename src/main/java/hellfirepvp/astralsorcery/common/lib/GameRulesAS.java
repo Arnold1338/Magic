@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.lib;
 
-import net.minecraft.world.GameRules;
+import net.minecraft.world.level.GameRules;
 
 public class GameRulesAS
 {

@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.constellation.world;
 
 import java.util.Iterator;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import java.util.HashSet;
 import hellfirepvp.astralsorcery.common.constellation.world.event.StarFall;
 import hellfirepvp.astralsorcery.common.constellation.world.event.LunarEclipse;

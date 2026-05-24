@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.util.nbt;
 
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.phys.AABB;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.core.BlockPos;
 import java.util.UUID;
@@ -13,11 +13,11 @@ import java.util.function.Consumer;
 import java.util.Optional;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.state.Property;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.Property;
+import net.minecraft.world.level.level.block.Blocks;
+import net.minecraft.world.level.level.block.state.BlockState;
 import java.util.function.BiConsumer;
 import javax.annotation.Nullable;
 import java.util.HashSet;
@@ -37,10 +37,10 @@ import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.IntArrayNBT;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import javax.annotation.Nonnull;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 
 public class NBTHelper
 {

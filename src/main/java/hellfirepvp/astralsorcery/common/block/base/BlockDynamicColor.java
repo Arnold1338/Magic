@@ -4,8 +4,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.core.BlockPos;
 import javax.annotation.Nullable;
-import net.minecraft.world.IBlockDisplayReader;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.IBlockDisplayReader;
+import net.minecraft.world.level.level.block.state.BlockState;
 
 public interface BlockDynamicColor
 {

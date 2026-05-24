@@ -5,15 +5,15 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.tuple.Pair;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeLimiter;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeMap;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
-import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.level.entity.ai.attributes.Attribute;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ReaderVanillaAttribute extends PerkAttributeReader
@@ -50,7 +50,7 @@ public class ReaderVanillaAttribute extends PerkAttributeReader
         if (PerkAttributeLimiter.hasLimit(this.getType())) {
             final Pair<Double, Double> limits = PerkAttributeLimiter.getLimit(this.getType());
             limit = (Double)limits.getRight();
-            limitStr = I18n.func_135052_a("perk.reader.astralsorcery.limit.default", new Object[] { MathHelper.func_76128_c((double)limit) });
+            limitStr = I18n.func_135052_a("perk.reader.astralsorcery.limit.default", new Object[] { Mth.func_76128_c((double)limit) });
         }
         double value = this.getDefaultValue(statMap, player, LogicalSide.CLIENT);
         value = statMap.modifyValue(player, ResearchHelper.getProgress(player, LogicalSide.CLIENT), this.getType(), (float)value);
@@ -71,7 +71,7 @@ public class ReaderVanillaAttribute extends PerkAttributeReader
             valueStr = PerkAttributeReader.formatDecimal(value);
         }
         else {
-            valueStr = String.valueOf(MathHelper.func_76128_c(value));
+            valueStr = String.valueOf(Mth.func_76128_c(value));
         }
         return valueStr;
     }

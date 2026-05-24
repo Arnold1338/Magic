@@ -1,19 +1,19 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import net.minecraft.pathfinding.PathType;
 import hellfirepvp.astralsorcery.common.GuiType;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.item.ItemParchment;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.level.InteractionHand;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
@@ -25,21 +25,21 @@ import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.Random;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import javax.annotation.Nullable;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.world.item.BlockItemUseContext;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesWood;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.LargeBlock;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.block.ContainerBlock;
+import net.minecraft.world.level.block.BaseEntityBlock;
 
-public class BlockRefractionTable extends ContainerBlock implements CustomItemBlock, LargeBlock
+public class BlockRefractionTable extends BaseEntityBlock implements CustomItemBlock, LargeBlock
 {
     private static final VoxelShape REFRACTION_TABLE;
     private static final AABB PLACEMENT_BOX;
@@ -48,7 +48,7 @@ public class BlockRefractionTable extends ContainerBlock implements CustomItemBl
         super(PropertiesWood.defaultInfusedWood().func_226896_b_());
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
         return BlockRefractionTable.REFRACTION_TABLE;
     }
     
@@ -75,7 +75,7 @@ public class BlockRefractionTable extends ContainerBlock implements CustomItemBl
         }
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockRayTraceResult hit) {
+    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
         final ItemStack held = player.func_184586_b(hand);
         if (!world.func_201670_d()) {
             final TileRefractionTable tft = MiscUtils.getTileAt((IBlockReader)world, pos, TileRefractionTable.class, true);

@@ -1,16 +1,16 @@
 package hellfirepvp.astralsorcery.common.item.tool;
 
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.world.level.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.level.item.CreativeModeTab;
 import java.util.Set;
 import com.google.common.collect.Sets;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.level.material.Material;
+import net.minecraft.world.level.item.Item;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.item.base.TypeEnchantableItem;
 
@@ -29,13 +29,13 @@ public class ItemCrystalPickaxe extends ItemCrystalTierItem implements TypeEncha
     }
     
     @Override
-    public boolean canEnchantItem(final ItemStack stack, final EnchantmentType type) {
-        return type == EnchantmentType.BREAKABLE || type == EnchantmentType.DIGGER;
+    public boolean canEnchantItem(final ItemStack stack, final EnchantmentCategory type) {
+        return type == EnchantmentCategory.BREAKABLE || type == EnchantmentCategory.DIGGER;
     }
     
     public boolean canApplyAtEnchantingTable(final ItemStack stack, final Enchantment enchantment) {
-        final EnchantmentType type = enchantment.field_77351_y;
-        return type == EnchantmentType.DIGGER || type == EnchantmentType.BREAKABLE;
+        final EnchantmentCategory type = enchantment.field_77351_y;
+        return type == EnchantmentCategory.DIGGER || type == EnchantmentCategory.BREAKABLE;
     }
     
     @Override

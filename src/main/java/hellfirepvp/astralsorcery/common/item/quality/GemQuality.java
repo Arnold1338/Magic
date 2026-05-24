@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.item.quality;
 
 import net.minecraft.network.chat.Component;
 import java.util.Locale;
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.network.chat.IFormattableTextComponent;
 import net.minecraft.ChatFormatting;
 
 public enum GemQuality

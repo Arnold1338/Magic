@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.perk.type.vanilla;
 
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import javax.annotation.Nonnull;
-import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.level.entity.ai.attributes.Attribute;
 
 public interface VanillaPerkAttributeType
 {

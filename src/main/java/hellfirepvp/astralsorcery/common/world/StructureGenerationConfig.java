@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.world;
 
-import net.minecraft.world.gen.settings.StructureSeparationSettings;
+import net.minecraft.world.level.levelgen.settings.StructureSeparationSettings;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
 

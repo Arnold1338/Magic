@@ -7,11 +7,11 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.render.ObjModelRender;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import com.mojang.math.Vector3f;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.effect.MobEffects;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.eventbus.api.IEventBus;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.base.patreon.FlareColor;
@@ -54,7 +54,7 @@ public class TypeWraithWings extends PatreonEffect
         final float swimAngle = player.func_205015_b(event.getPartialRenderTick());
         if (swimAngle > 0.0f) {
             final float waterPitch = player.func_70090_H() ? (-90.0f - player.field_70125_A) : -90.0f;
-            final float bodySwimAngle = MathHelper.func_219799_g(swimAngle, 0.0f, waterPitch);
+            final float bodySwimAngle = Mth.func_219799_g(swimAngle, 0.0f, waterPitch);
             renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(180.0f - rot));
             renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(bodySwimAngle));
             if (player.func_213314_bj()) {

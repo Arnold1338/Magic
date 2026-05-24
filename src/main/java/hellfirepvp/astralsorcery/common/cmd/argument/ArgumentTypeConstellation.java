@@ -5,7 +5,7 @@ import net.minecraft.network.chat.Component;
 import hellfirepvp.astralsorcery.common.constellation.IMinorConstellation;
 import hellfirepvp.astralsorcery.common.constellation.IMajorConstellation;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
-import net.minecraft.command.ISuggestionProvider;
+import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;

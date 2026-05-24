@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.item.base;
 
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 
 public interface IConstellationFocus
 {

@@ -1,10 +1,10 @@
 package hellfirepvp.astralsorcery.client.event;
 
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemHeldRender;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.level.entity.EquipmentSlot;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import java.util.function.Consumer;

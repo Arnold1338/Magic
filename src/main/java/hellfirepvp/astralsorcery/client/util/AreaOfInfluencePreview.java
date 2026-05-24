@@ -7,19 +7,19 @@ import java.awt.Color;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.event.TickEvent;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.tile.base.TileAreaOfInfluence;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXCube;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 
@@ -112,7 +112,7 @@ public class AreaOfInfluencePreview implements ITickHandler
             if (aoeTile != null) {
                 this.updateEffect(cube, sizeMultiplier, aoeTile);
             }
-            cube.setAlphaMultiplier(MathHelper.func_76131_a(cube.getAlphaMultiplier() - 0.025f, 0.0f, 0.75f));
+            cube.setAlphaMultiplier(Mth.func_76131_a(cube.getAlphaMultiplier() - 0.025f, 0.0f, 0.75f));
             if (!this.canRefresh(cube)) {
                 cube = null;
             }
@@ -125,7 +125,7 @@ public class AreaOfInfluencePreview implements ITickHandler
             if (cube.isRemoved()) {
                 EffectHelper.refresh(cube, EffectTemplatesAS.CUBE_AREA_OF_EFFECT);
             }
-            cube.setAlphaMultiplier(MathHelper.func_76131_a(cube.getAlphaMultiplier() + 0.025f, 0.0f, 0.75f));
+            cube.setAlphaMultiplier(Mth.func_76131_a(cube.getAlphaMultiplier() + 0.025f, 0.0f, 0.75f));
             this.updateEffect(cube, sizeMultiplier, aoeTile);
         }
         else {

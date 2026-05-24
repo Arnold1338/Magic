@@ -3,23 +3,23 @@ package hellfirepvp.astralsorcery.common.effect;
 import hellfirepvp.astralsorcery.client.resource.AssetLoader;
 import hellfirepvp.astralsorcery.client.resource.query.SpriteQuery;
 import java.util.Iterator;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.level.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.level.effect.MobEffect;
 import hellfirepvp.astralsorcery.common.lib.EffectsAS;
-import net.minecraft.world.GameRules;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.level.entity.Mob;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import java.util.ArrayList;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.EffectType;
 
 public class EffectDropModifier extends EffectCustomTexture
 {

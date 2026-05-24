@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.data.sync.server.DataLightConnections;
 import net.minecraftforge.fml.LogicalSide;
 import java.util.Iterator;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.function.Function;

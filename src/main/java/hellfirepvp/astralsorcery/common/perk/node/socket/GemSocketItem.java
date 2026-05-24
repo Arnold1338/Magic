@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.common.perk.node.socket;
 
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.network.chat.IFormattableTextComponent;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.perk.modifier.DynamicAttributeModifier;
 import java.util.List;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.item.ItemStack;
 
 public interface GemSocketItem
 {

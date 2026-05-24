@@ -11,8 +11,8 @@ import net.minecraft.server.level.ServerPlayer;
 import java.util.Objects;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.network.chat.IFormattableTextComponent;
 import java.util.UUID;
 
 public class PlayerReference

@@ -8,7 +8,7 @@ import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.phys.AABB;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import hellfirepvp.astralsorcery.common.item.base.IConstellationFocus;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
@@ -21,31 +21,31 @@ import hellfirepvp.astralsorcery.common.tile.TileSpectralRelay;
 import java.util.function.Function;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
 import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.world.level.ISeedReader;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipeContext;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.entity.EntityFlare;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.item.crafting.RecipeType;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.item.crafting.Recipe;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.util.sound.CategorizedSoundEvent;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.client.util.sound.PositionedLoopSound;
@@ -57,11 +57,11 @@ import hellfirepvp.astralsorcery.common.tile.base.TileEntitySynchronized;
 import net.minecraft.core.Direction;
 import java.util.HashSet;
 import java.util.HashMap;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import net.minecraft.resources.ResourceLocation;
 import java.util.Set;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.ActiveSimpleAltarRecipe;
 import java.util.Map;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventoryFiltered;
@@ -270,7 +270,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         this.starlightNextTick *= (int)0.9f;
         if (this.doesSeeSky()) {
             final int altarTier = this.getAltarType().ordinal() + 1;
-            float heightAmount = MathHelper.func_76131_a((float)Math.pow(this.func_174877_v().getY() / 7.0f, 1.5) / 65.0f, 0.0f, 1.0f);
+            float heightAmount = Mth.func_76131_a((float)Math.pow(this.func_174877_v().getY() / 7.0f, 1.5) / 65.0f, 0.0f, 1.0f);
             heightAmount *= DayTimeHelper.getCurrentDaytimeDistribution(this.func_145831_w());
             this.collectStarlight(heightAmount * altarTier * 60.0f, AltarCollectionCategory.HEIGHT);
             if (this.posDistribution == -1.0f) {
@@ -281,7 +281,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
                     this.posDistribution = 0.3f;
                 }
             }
-            float fieldAmount = MathHelper.func_76129_c(this.posDistribution);
+            float fieldAmount = Mth.func_76129_c(this.posDistribution);
             fieldAmount *= DayTimeHelper.getCurrentDaytimeDistribution(this.func_145831_w());
             this.collectStarlight(fieldAmount * altarTier * 65.0f, AltarCollectionCategory.FOSIC_FIELD);
         }
@@ -289,8 +289,8 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     }
     
     public void collectStarlight(final float percent, final AltarCollectionCategory category) {
-        final int collectable = MathHelper.func_76141_d(Math.min(percent, this.getRemainingCollectionCapacity(category)));
-        this.starlightNextTick = MathHelper.func_76125_a(this.starlightNextTick + collectable, 0, this.getAltarType().getStarlightCapacity());
+        final int collectable = Mth.func_76141_d(Math.min(percent, this.getRemainingCollectionCapacity(category)));
+        this.starlightNextTick = Mth.func_76125_a(this.starlightNextTick + collectable, 0, this.getAltarType().getStarlightCapacity());
         this.tickStarlightCollectionMap.computeIfPresent(category, (cat, remaining) -> Math.max(remaining - collectable, 0.0f));
         this.markForUpdate();
         this.preventNetworkSync();

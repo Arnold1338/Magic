@@ -8,8 +8,8 @@ import hellfirepvp.astralsorcery.common.base.Mods;
 import java.util.List;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.EntityType;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.data.config.registry.sets.EntityTechnicalEntry;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataAdapter;
 

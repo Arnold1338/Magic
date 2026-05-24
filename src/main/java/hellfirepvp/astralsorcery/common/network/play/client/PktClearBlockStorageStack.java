@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.network.play.client;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.fml.network.NetworkEvent;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.item.base.ItemBlockStorage;
 import net.minecraftforge.fml.LogicalSide;
 import javax.annotation.Nonnull;

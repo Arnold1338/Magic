@@ -4,7 +4,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.nbt.CompoundTag;
 import hellfirepvp.astralsorcery.common.lib.WorldGenerationAS;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraft.world.level.levelgen.feature.template.TemplateManager;
 import hellfirepvp.astralsorcery.common.world.TemplateStructure;
 
 public class AncientShrineStructure extends TemplateStructure

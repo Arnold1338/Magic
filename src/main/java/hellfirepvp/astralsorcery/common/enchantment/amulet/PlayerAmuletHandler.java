@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.common.enchantment.amulet;
 
 import java.util.EnumSet;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.level.entity.EquipmentSlot;
 import net.minecraftforge.event.TickEvent;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantment;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.item.ItemEnchantmentAmulet;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentHelper;
 import hellfirepvp.astralsorcery.common.event.DynamicEnchantmentEvent;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;

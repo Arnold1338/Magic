@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.lib;
 
 import net.minecraftforge.fluids.FluidStack;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.network.datasync.IDataSerializer;
+import net.minecraft.network.syncher.IDataSerializer;
 
 public class DataSerializersAS
 {

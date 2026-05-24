@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.common.util.loot;
 
 import java.util.Iterator;
-import net.minecraft.loot.LootParameter;
-import net.minecraft.loot.LootParameterSet;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParameter;
+import net.minecraft.world.level.storage.loot.LootParameterSet;
+import net.minecraft.world.level.level.storage.loot.LootContext;
 
 public class LootUtil
 {

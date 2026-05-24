@@ -4,20 +4,20 @@ import hellfirepvp.astralsorcery.common.constellation.IMinorConstellation;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.constellation.IMajorConstellation;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
-import net.minecraft.util.JSONUtils;
+import com.google.gson.JsonObject;
 import java.util.Iterator;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.minecraft.loot.ConditionArraySerializer;
+import net.minecraft.world.level.storage.loot.ConditionArraySerializer;
 import java.util.Collection;
 import java.util.Arrays;
 import java.util.HashSet;
-import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.util.Set;
-import net.minecraft.advancements.criterion.CriterionInstance;
+import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 
 public class ConstellationInstance extends CriterionInstance
 {

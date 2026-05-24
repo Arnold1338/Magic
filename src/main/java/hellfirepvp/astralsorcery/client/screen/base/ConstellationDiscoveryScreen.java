@@ -14,13 +14,13 @@ import hellfirepvp.astralsorcery.common.network.play.client.PktDiscoverConstella
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import java.awt.geom.Rectangle2D;
 import hellfirepvp.astralsorcery.common.constellation.star.StarConnection;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import com.google.common.collect.Iterables;
 import com.mojang.math.Matrix4f;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import java.util.Iterator;
@@ -33,11 +33,11 @@ import hellfirepvp.astralsorcery.client.ClientScheduler;
 import java.util.Random;
 import hellfirepvp.astralsorcery.client.util.MouseUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.client.Minecraft;
@@ -117,7 +117,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
     
     protected float multiplyStarBrightness(final float pTicks, float brightnessIn) {
         brightnessIn *= Minecraft.func_71410_x().field_71441_e.func_228330_j_(pTicks) * 2.0f;
-        return MathHelper.func_76131_a(brightnessIn * (1.0f - Minecraft.func_71410_x().field_71441_e.func_72867_j(pTicks)), 0.0f, 1.0f);
+        return Mth.func_76131_a(brightnessIn * (1.0f - Minecraft.func_71410_x().field_71441_e.func_72867_j(pTicks)), 0.0f, 1.0f);
     }
     
     public void func_230430_a_(final PoseStack renderStack, final int mouseX, final int mouseY, final float partialTicks) {
@@ -140,7 +140,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
         final float lineBreadth = 2.0f;
         final Supplier<Float> brightnessFn = () -> RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), pTicks, 5 + rand.nextInt(10));
         TexturesAS.TEX_STAR_CONNECTION.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             this.drawnLines.iterator();
             final Iterator iterator;
             while (iterator.hasNext()) {
@@ -173,7 +173,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
             final int u = (i + 1 & 0x2) >> 1;
             final int v = (i + 2 & 0x2) >> 1;
             final Vector3 pos = vec00.clone().add(dir.clone().multiply(u)).add(vecV.clone().multiply(v));
-            pos.drawPos(offset, (IVertexBuilder)buf).func_227885_a_(starBr, starBr, starBr, Math.max(0.0f, starBr)).func_225583_a_((float)u, (float)v).func_181675_d();
+            pos.drawPos(offset, (VertexConsumer)buf).func_227885_a_(starBr, starBr, starBr, Math.max(0.0f, starBr)).func_225583_a_((float)u, (float)v).func_181675_d();
         }
     }
     

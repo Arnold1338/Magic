@@ -11,7 +11,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import java.util.function.Consumer;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.tick.TimeoutList;
 
 public class EventHelperEntityFreeze

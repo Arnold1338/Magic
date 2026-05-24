@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.mixin;
 
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeMap;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.entity.ai.attributes.AttributeMap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import javax.annotation.Nullable;

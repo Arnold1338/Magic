@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.client.effect.source;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 import hellfirepvp.astralsorcery.client.effect.EffectProperties;
 import java.awt.Color;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import net.minecraft.client.Minecraft;
 import java.util.function.Function;

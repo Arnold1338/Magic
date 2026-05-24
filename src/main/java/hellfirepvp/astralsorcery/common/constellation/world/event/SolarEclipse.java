@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.constellation.world.event;
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
 import java.util.Random;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 
 public class SolarEclipse extends CelestialEvent
 {

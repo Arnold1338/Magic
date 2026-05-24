@@ -8,12 +8,12 @@ import com.google.gson.JsonElement;
 import java.util.List;
 import java.util.Collection;
 import net.minecraftforge.common.crafting.StackList;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.ArrayList;
 import java.util.stream.Stream;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.item.crafting.Ingredient;
 
 public class CrystalIngredient extends Ingredient
 {

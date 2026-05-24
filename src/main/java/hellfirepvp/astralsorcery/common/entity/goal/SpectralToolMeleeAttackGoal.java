@@ -4,15 +4,15 @@ import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.constellation.mantle.effect.MantleEffectPelotrio;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.ai.controller.MovementController;
+import net.minecraft.world.entity.ai.control.MoveControl;
 import java.util.List;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.phys.AABB;
 import hellfirepvp.astralsorcery.common.entity.EntitySpectralTool;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.LivingEntity;
 
 public class SpectralToolMeleeAttackGoal extends SpectralToolGoal
 {
@@ -24,12 +24,12 @@ public class SpectralToolMeleeAttackGoal extends SpectralToolGoal
     }
     
     private LivingEntity findClosestAttackableEntity() {
-        final List<LivingEntity> entities = this.getEntity().func_130014_f_().func_175647_a((Class)LivingEntity.class, new AABB(0.0, 0.0, 0.0, 0.0, 0.0, 0.0).func_186662_g(8.0).func_186670_a(this.getEntity().func_233580_cy_()), e -> e != null && e.isAlive() && e.level().func_220339_d() == EntityClassification.MONSTER);
+        final List<LivingEntity> entities = this.getEntity().func_130014_f_().func_175647_a((Class)LivingEntity.class, new AABB(0.0, 0.0, 0.0, 0.0, 0.0, 0.0).func_186662_g(8.0).func_186670_a(this.getEntity().func_233580_cy_()), e -> e != null && e.isAlive() && e.level().func_220339_d() == MobCategory.MONSTER);
         return EntityUtils.selectClosest((Collection<LivingEntity>)entities, entity -> Double.valueOf(entity.func_70032_d((Entity)this.getEntity())));
     }
     
     public boolean func_75250_a() {
-        final MovementController ctrl = this.getEntity().func_70605_aq();
+        final MoveControl ctrl = this.getEntity().func_70605_aq();
         return !ctrl.func_75640_a() || this.findClosestAttackableEntity() != null;
     }
     

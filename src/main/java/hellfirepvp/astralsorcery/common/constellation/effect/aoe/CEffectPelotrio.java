@@ -1,17 +1,17 @@
 package hellfirepvp.astralsorcery.common.constellation.effect.aoe;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffect;
 import java.util.Iterator;
 import java.util.List;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.level.effect.MobEffect;
+import net.minecraft.world.level.effect.MobEffectInstance;
 import hellfirepvp.astralsorcery.common.lib.EffectsAS;
 import hellfirepvp.astralsorcery.common.data.config.registry.EntityTransmutationRegistry;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.constellation.IMinorConstellation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -21,17 +21,17 @@ import hellfirepvp.astralsorcery.client.effect.source.orbital.FXOrbitalPelotrio;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.tile.TileRitualPedestal;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.server.level.ServerLevel;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.phys.AABB;
 import hellfirepvp.astralsorcery.common.event.PlayerAffectionFlags;
 import hellfirepvp.astralsorcery.common.constellation.effect.base.ListEntries;
 import hellfirepvp.astralsorcery.common.constellation.effect.base.CEffectAbstractList;
@@ -49,7 +49,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
             }
             else {
                 pos = world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos).above();
-                return ListEntries.EntitySpawnEntry.createEntry((ServerLevel)world, pos, SpawnReason.SPAWNER) != null;
+                return ListEntries.EntitySpawnEntry.createEntry((ServerLevel)world, pos, MobSpawnType.SPAWNER) != null;
             }
         });
     }
@@ -67,7 +67,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
             return null;
         }
         pos = world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos).above();
-        return ListEntries.EntitySpawnEntry.createEntry((ServerLevel)world, pos, SpawnReason.SPAWNER);
+        return ListEntries.EntitySpawnEntry.createEntry((ServerLevel)world, pos, MobSpawnType.SPAWNER);
     }
     
     @OnlyIn(Dist.CLIENT)
@@ -108,7 +108,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
             entry.setCounter(count);
             this.sendConstellationPing(world, new Vector3((Vector3i)entry.getPos()).add(0.5, 0.5, 0.5));
             if (count >= 10) {
-                entry.spawn((ServerLevel)world, SpawnReason.SPAWNER);
+                entry.spawn((ServerLevel)world, MobSpawnType.SPAWNER);
                 this.removeElement(entry);
             }
             update = true;

@@ -3,8 +3,8 @@ package hellfirepvp.astralsorcery.common.perk;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Nullable;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.data.config.entry.PerkConfig;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -32,7 +32,7 @@ public class PerkLevelManager
     }
     
     public static int getLevel(final double totalExp, final Player player, final LogicalSide side) {
-        return getLevel(MathHelper.func_76124_d(totalExp), player, side);
+        return getLevel(Mth.func_76124_d(totalExp), player, side);
     }
     
     private static int getLevel(final long totalExp, final Player player, final LogicalSide side) {
@@ -103,7 +103,7 @@ public class PerkLevelManager
             if (this.totalExpLevelRequired.isEmpty()) {
                 for (int i = 1; i <= this.levelCap; ++i) {
                     final long prev = this.totalExpLevelRequired.getOrDefault(i - 1, 0L);
-                    this.totalExpLevelRequired.put(i, prev + 150L + 100L * MathHelper.func_76128_c(Math.pow(1.2000000476837158, i)));
+                    this.totalExpLevelRequired.put(i, prev + 150L + 100L * Mth.func_76128_c(Math.pow(1.2000000476837158, i)));
                 }
             }
         }

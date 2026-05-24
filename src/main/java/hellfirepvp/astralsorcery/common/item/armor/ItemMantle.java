@@ -6,9 +6,9 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.constellation.mantle.MantleEffect;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.client.model.armor.ModelArmorMantle;
-import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.client.model.BipedModel;
 import java.awt.Color;
 import java.util.Collections;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
@@ -18,24 +18,24 @@ import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.mantle.effect.MantleEffectVicio;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.entity.LivingEntity;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.level.item.CreativeModeTab;
+import net.minecraft.world.level.item.Item;
+import net.minecraft.world.level.entity.EquipmentSlot;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.perk.modifier.DynamicAttributeModifier;
 import hellfirepvp.astralsorcery.common.util.object.CacheReference;
@@ -44,7 +44,7 @@ import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeConsumer;
 import hellfirepvp.astralsorcery.common.perk.source.provider.equipment.EquipmentAttributeModifierProvider;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationBaseItem;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemDynamicColor;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.level.item.ArmorItem;
 
 public class ItemMantle extends ArmorItem implements ItemDynamicColor, ConstellationBaseItem, EquipmentAttributeModifierProvider, AlignmentChargeConsumer
 {
@@ -79,7 +79,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final ITooltipFlag flagIn) {
+    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         final IConstellation cst = this.getConstellation(stack);
         if (cst instanceof IWeakConstellation) {
             tooltip.add((Component)cst.getConstellationName().func_240699_a_(ChatFormatting.BLUE));

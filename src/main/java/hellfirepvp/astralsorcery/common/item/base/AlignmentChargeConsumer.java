@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.item.base;
 
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.entity.player.Player;
 
 public interface AlignmentChargeConsumer extends AlignmentChargeRevealer
 {

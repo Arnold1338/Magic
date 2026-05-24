@@ -4,13 +4,13 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffect;
 import java.util.Iterator;
 import java.util.List;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.level.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.effect.MobEffectInstance;
+import net.minecraft.world.level.effect.MobEffects;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.entity.Mob;
 import hellfirepvp.astralsorcery.common.util.DamageSourceUtil;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import javax.annotation.Nullable;
@@ -29,15 +29,15 @@ import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.tile.TileRitualPedestal;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.data.config.registry.TechnicalEntityRegistry;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 import hellfirepvp.astralsorcery.common.event.PlayerAffectionFlags;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.constellation.effect.base.ConstellationEffectEntityCollect;
 
 public class CEffectDiscidia extends ConstellationEffectEntityCollect<LivingEntity>
@@ -71,7 +71,7 @@ public class CEffectDiscidia extends ConstellationEffectEntityCollect<LivingEnti
             if (CEffectDiscidia.rand.nextInt(6) != 0) {
                 continue;
             }
-            if (properties.isCorrupted() && entity instanceof MobEntity && entity.getClassification(false) == EntityClassification.MONSTER) {
+            if (properties.isCorrupted() && entity instanceof MobEntity && entity.getClassification(false) == MobCategory.MONSTER) {
                 entity.func_70691_i(damage);
                 entity.func_195064_c(new MobEffectInstance(Effects.field_76429_m, 30, 1));
             }

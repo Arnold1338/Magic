@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.common.perk.type;
 
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.level.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.perk.modifier.AttributeModifierLifeLeech;

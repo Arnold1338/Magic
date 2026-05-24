@@ -10,8 +10,8 @@ import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.ActiveSimpleAltarRecipe;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
@@ -37,7 +37,7 @@ public class EffectFocusDustSwirl extends AltarRecipeEffect implements IFocusEff
             for (int i = 0; i < parts; ++i) {
                 final Vector3 v = Vector3.RotAxis.X_AXIS.clone();
                 final float originalAngle = i / (float)parts * 360.0f;
-                final double angle = originalAngle + MathHelper.func_76126_a(percCycle) * angleSwirl;
+                final double angle = originalAngle + Mth.func_76126_a(percCycle) * angleSwirl;
                 v.rotate(-Math.toRadians(angle), Vector3.RotAxis.Y_AXIS).normalize().multiply(dst);
                 final Vector3 pos = center.clone().add(v);
                 final Vector3 mot = center.clone().subtract(pos).normalize().multiply(0.07);

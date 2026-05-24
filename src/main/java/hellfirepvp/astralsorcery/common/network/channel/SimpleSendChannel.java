@@ -3,11 +3,11 @@ package hellfirepvp.astralsorcery.common.network.channel;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.level.chunk.LevelChunk;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraft.server.level.ServerPlayer;
 import hellfirepvp.astralsorcery.common.network.base.ASPacket;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 public abstract class SimpleSendChannel

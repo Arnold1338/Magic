@@ -5,14 +5,14 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import javax.annotation.Nonnull;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.inventory.MenuType;
+import net.minecraft.world.inventory.INamedContainerProvider;
+import net.minecraft.world.level.inventory.AbstractContainerMenu;
 
 public abstract class CustomContainerProvider<C extends Container> implements INamedContainerProvider
 {

@@ -4,7 +4,7 @@ import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierSource;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import java.util.function.Consumer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;

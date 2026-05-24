@@ -17,10 +17,10 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.perk.PerkTree;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.perk.PerkLevelManager;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.util.MapStream;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -204,7 +204,7 @@ public class PlayerPerkData
         }
         final long expThisLevel = PerkLevelManager.getExpForLevel(currLevel, player, LogicalSide.SERVER);
         final long expNextLevel = PerkLevelManager.getExpForLevel(currLevel + 1, player, LogicalSide.SERVER);
-        final long cap = MathHelper.func_76124_d((double)((expNextLevel - expThisLevel) * 0.08f));
+        final long cap = Mth.func_76124_d((double)((expNextLevel - expThisLevel) * 0.08f));
         if (exp > cap) {
             exp = (double)cap;
         }

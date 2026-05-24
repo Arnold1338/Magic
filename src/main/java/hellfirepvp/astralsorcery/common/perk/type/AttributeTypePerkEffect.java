@@ -4,7 +4,7 @@ import hellfirepvp.astralsorcery.common.perk.type.vanilla.VanillaAttributeType;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierSource;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 
 public class AttributeTypePerkEffect extends PerkAttributeType

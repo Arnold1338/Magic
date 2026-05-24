@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.perk.node;
 
 import com.google.gson.JsonParseException;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;
-import net.minecraft.util.JSONUtils;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonObject;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreeConstellation;
 import org.apache.commons.lang3.Validate;

@@ -2,9 +2,9 @@ package hellfirepvp.astralsorcery.client.util.camera;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.entity.player.PlayerModelPart;
+import net.minecraft.world.entity.player.PlayerModelPart;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
+import net.minecraft.client.player.AbstractClientPlayerEntity;
 
 public class EntityClientReplacement extends AbstractClientPlayerEntity
 {

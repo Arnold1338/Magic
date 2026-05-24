@@ -2,11 +2,11 @@ package hellfirepvp.astralsorcery.client.model.builtin;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.model.Model;
+import net.minecraft.client.resources.model.Model;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
-import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.resources.model.ModelRenderer;
 
 public class ModelRefractionTable extends CustomModel
 {
@@ -86,10 +86,10 @@ public class ModelRefractionTable extends CustomModel
         this.treated_glass.func_228301_a_(-10.0f, -15.0f, -10.0f, 20.0f, 1.0f, 20.0f, 0.0f);
     }
     
-    public void func_225598_a_(final PoseStack matrixStackIn, final IVertexBuilder bufferIn, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha) {
+    public void func_225598_a_(final PoseStack matrixStackIn, final VertexConsumer bufferIn, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha) {
     }
     
-    public void renderFrame(final PoseStack matrixStackIn, final IVertexBuilder bufferIn, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha, final boolean hasParchment) {
+    public void renderFrame(final PoseStack matrixStackIn, final VertexConsumer bufferIn, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha, final boolean hasParchment) {
         this.fitting_l.func_228309_a_(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         this.fitting_r.func_228309_a_(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         this.support_1.func_228309_a_(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
@@ -116,7 +116,7 @@ public class ModelRefractionTable extends CustomModel
         }
     }
     
-    public void renderGlass(final PoseStack matrixStackIn, final IVertexBuilder bufferIn, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha) {
+    public void renderGlass(final PoseStack matrixStackIn, final VertexConsumer bufferIn, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha) {
         this.treated_glass.func_228309_a_(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
     }
 }

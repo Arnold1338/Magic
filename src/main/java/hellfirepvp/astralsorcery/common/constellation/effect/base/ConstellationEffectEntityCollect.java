@@ -3,13 +3,13 @@ package hellfirepvp.astralsorcery.common.constellation.effect.base;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffectProperties;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 import java.util.function.Predicate;
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffect;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 
 public abstract class ConstellationEffectEntityCollect<T extends Entity> extends ConstellationEffect
 {

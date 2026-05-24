@@ -1,31 +1,31 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.block.BlockRenderType;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileIlluminator;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.item.ItemStack;
 import javax.annotation.Nullable;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.util.VoxelUtils;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.level.level.block.Block;
 import java.util.ArrayList;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesGlass;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.block.ContainerBlock;
+import net.minecraft.world.level.block.BaseEntityBlock;
 
-public class BlockIlluminator extends ContainerBlock implements CustomItemBlock
+public class BlockIlluminator extends BaseEntityBlock implements CustomItemBlock
 {
     private final VoxelShape shape;
     
@@ -43,7 +43,7 @@ public class BlockIlluminator extends ContainerBlock implements CustomItemBlock
                 }
             }
         }
-        return VoxelUtils.combineAll(IBooleanFunction.field_223244_o_, shapes);
+        return VoxelUtils.combineAll(BooleanOp.field_223244_o_, shapes);
     }
     
     public void func_180633_a(final World world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
@@ -56,7 +56,7 @@ public class BlockIlluminator extends ContainerBlock implements CustomItemBlock
         }
     }
     
-    public VoxelShape func_220053_a(final BlockState p_220053_1_, final IBlockReader p_220053_2_, final BlockPos p_220053_3_, final ISelectionContext p_220053_4_) {
+    public VoxelShape func_220053_a(final BlockState p_220053_1_, final IBlockReader p_220053_2_, final BlockPos p_220053_3_, final CollisionContext p_220053_4_) {
         return this.shape;
     }
     
@@ -64,8 +64,8 @@ public class BlockIlluminator extends ContainerBlock implements CustomItemBlock
         return false;
     }
     
-    public BlockRenderType func_149645_b(final BlockState state) {
-        return BlockRenderType.MODEL;
+    public RenderShape func_149645_b(final BlockState state) {
+        return RenderShape.MODEL;
     }
     
     @Nullable

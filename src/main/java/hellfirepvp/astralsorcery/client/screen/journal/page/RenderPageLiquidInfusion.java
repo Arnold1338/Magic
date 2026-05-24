@@ -4,7 +4,7 @@ import java.util.List;
 import hellfirepvp.astralsorcery.common.data.research.ProgressionTier;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.network.chat.Component;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -12,9 +12,9 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraftforge.fluids.FluidStack;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.vertex.PoseStack;
 import javax.annotation.Nullable;
@@ -42,7 +42,7 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate
         this.renderExpectedIngredientInput(renderStack, renderX, renderY, z, 1.2f, 0L, this.recipe.getItemInput());
         BlockAtlasTexture.getInstance().bindTexture();
         final TextureAtlasSprite tas = RenderingUtils.getParticleTexture(new FluidStack(this.recipe.getLiquidInput(), 1000));
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
             renderStack.func_227860_a_();
             renderStack.func_227861_a_((double)x, (double)y, (double)z);
             this.renderLiquidInput(buf, renderStack, tas, 1, 0);
@@ -62,7 +62,7 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate
     }
     
     private void renderLiquidInput(final BufferBuilder buf, final PoseStack renderStack, final TextureAtlasSprite tas, final int x, final int y) {
-        RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, 28.0f + x * 25.15f, 76.0f + y * 25.15f, 0.0f, 22.3f, 22.3f).tex(tas).draw();
+        RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 28.0f + x * 25.15f, 76.0f + y * 25.15f, 0.0f, 22.3f, 22.3f).tex(tas).draw();
     }
     
     @Override

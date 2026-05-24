@@ -1,20 +1,20 @@
 package hellfirepvp.astralsorcery.common.util.sound;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.player.ClientPlayerEntity;
 import hellfirepvp.astralsorcery.client.util.sound.FadeSound;
 import hellfirepvp.astralsorcery.client.util.sound.FadeLoopSound;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.client.audio.ISound;
+import net.minecraft.client.sounds.ISound;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.util.sound.PositionedLoopSound;
 import java.util.function.Predicate;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.sounds.SoundEvent;
 
 public class SoundHelper

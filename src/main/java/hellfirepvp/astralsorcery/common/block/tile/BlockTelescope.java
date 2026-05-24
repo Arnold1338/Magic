@@ -1,36 +1,36 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.level.phys.shapes.Shapes;
 import hellfirepvp.astralsorcery.common.tile.TileTelescope;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.state.Property;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.block.state.Property;
+import net.minecraft.world.level.item.ItemStack;
 import javax.annotation.Nullable;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.GuiType;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.level.InteractionHand;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.level.level.BlockGetter;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesWood;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.block.ContainerBlock;
+import net.minecraft.world.level.block.BaseEntityBlock;
 
-public class BlockTelescope extends ContainerBlock implements CustomItemBlock
+public class BlockTelescope extends BaseEntityBlock implements CustomItemBlock
 {
     private static final VoxelShape TELESCOPE;
     
@@ -44,11 +44,11 @@ public class BlockTelescope extends ContainerBlock implements CustomItemBlock
         return false;
     }
     
-    public VoxelShape func_220053_a(final BlockState p_220053_1_, final IBlockReader p_220053_2_, final BlockPos p_220053_3_, final ISelectionContext p_220053_4_) {
+    public VoxelShape func_220053_a(final BlockState p_220053_1_, final IBlockReader p_220053_2_, final BlockPos p_220053_3_, final CollisionContext p_220053_4_) {
         return BlockTelescope.TELESCOPE;
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockRayTraceResult rayTraceResult) {
+    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult rayTraceResult) {
         if (world.func_201670_d()) {
             AstralSorcery.getProxy().openGui(player, GuiType.TELESCOPE, pos);
         }
@@ -67,8 +67,8 @@ public class BlockTelescope extends ContainerBlock implements CustomItemBlock
         super.func_220069_a(state, world, pos, block, fromPos, isMoving);
     }
     
-    public BlockRenderType func_149645_b(final BlockState state) {
-        return BlockRenderType.INVISIBLE;
+    public RenderShape func_149645_b(final BlockState state) {
+        return RenderShape.INVISIBLE;
     }
     
     @Nullable

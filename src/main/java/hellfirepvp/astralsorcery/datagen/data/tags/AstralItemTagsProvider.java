@@ -5,7 +5,7 @@ import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import net.minecraftforge.common.Tags;
 import hellfirepvp.astralsorcery.common.lib.TagsAS;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 import net.minecraft.tags.TagKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.data.ExistingFileHelper;

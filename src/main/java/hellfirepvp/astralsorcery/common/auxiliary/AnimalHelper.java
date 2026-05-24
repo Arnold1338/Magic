@@ -1,17 +1,17 @@
 package hellfirepvp.astralsorcery.common.auxiliary;
 
-import net.minecraft.entity.passive.SquidEntity;
+import net.minecraft.world.entity.animal.SquidEntity;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.List;
 import java.util.Random;
-import net.minecraft.world.level.Level;
-import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.entity.animal.AnimalEntity;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Iterator;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.LivingEntity;
 import java.util.LinkedList;
 
 public class AnimalHelper

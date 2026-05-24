@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.client.util.camera;
 
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.client.player.AbstractClientPlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.client.Minecraft;
 

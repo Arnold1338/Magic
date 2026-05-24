@@ -1,11 +1,11 @@
 package hellfirepvp.astralsorcery.datagen.data.recipes.transmutation;
 
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import hellfirepvp.astralsorcery.common.crafting.builder.BlockTransmutationBuilder;
 import hellfirepvp.astralsorcery.AstralSorcery;

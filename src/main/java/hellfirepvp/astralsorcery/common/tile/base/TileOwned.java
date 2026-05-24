@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.tile.base;
 
 import hellfirepvp.astralsorcery.common.util.PlayerReference;
 import javax.annotation.Nullable;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 
 public interface TileOwned
 {

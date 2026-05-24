@@ -4,7 +4,7 @@ import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import com.mojang.datafixers.types.Type;
 import hellfirepvp.astralsorcery.common.util.NameUtil;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.client.render.tile.RenderWell;
@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.client.render.tile.RenderCollectorCrystal;
 import hellfirepvp.astralsorcery.client.render.tile.RenderChalice;
 import hellfirepvp.astralsorcery.client.render.tile.RenderAttunementAltar;
 import java.util.function.Function;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.level.block.entity.BlockEntityType;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import hellfirepvp.astralsorcery.client.render.tile.RenderAltar;
 import hellfirepvp.astralsorcery.common.tile.TileWell;
@@ -48,7 +48,7 @@ import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import hellfirepvp.astralsorcery.common.tile.TileSpectralRelay;
 
 public class RegistryTileEntities

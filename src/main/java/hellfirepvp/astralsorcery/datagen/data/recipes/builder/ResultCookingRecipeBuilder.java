@@ -3,16 +3,16 @@ package hellfirepvp.astralsorcery.datagen.data.recipes.builder;
 import javax.annotation.Nullable;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.data.IFinishedRecipe;
 import java.util.function.Consumer;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.CookingRecipeSerializer;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.IRecipeSerializer;
+import net.minecraft.world.item.crafting.CookingRecipeSerializer;
+import net.minecraft.world.level.item.crafting.Ingredient;
+import net.minecraft.world.level.item.ItemStack;
 
 public class ResultCookingRecipeBuilder
 {

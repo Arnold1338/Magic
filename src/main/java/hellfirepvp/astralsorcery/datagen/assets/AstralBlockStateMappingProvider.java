@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.datagen.assets;
 
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.ModelFile;
 import java.util.Iterator;
 import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
@@ -18,12 +18,12 @@ import net.minecraft.core.Direction;
 import hellfirepvp.astralsorcery.common.block.tile.BlockLens;
 import hellfirepvp.astralsorcery.common.block.infusedwood.BlockInfusedWoodColumn;
 import hellfirepvp.astralsorcery.common.block.blackmarble.BlockBlackMarblePillar;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.block.SlabBlock;
+import net.minecraft.world.level.block.StairsBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraftforge.registries.IForgeRegistryEntry;
-import net.minecraft.state.Property;
+import net.minecraft.world.level.block.state.Property;
 import hellfirepvp.astralsorcery.common.block.marble.BlockMarblePillar;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraft.data.DataGenerator;

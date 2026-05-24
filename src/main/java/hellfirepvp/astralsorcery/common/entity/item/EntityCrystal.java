@@ -7,22 +7,22 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.crystal.CrystalProperty;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.level.ItemLike;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.entity.player.Player;
+import net.minecraft.world.level.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.item.enchantment.Enchantments;
 import hellfirepvp.astralsorcery.common.item.crystal.ItemCrystalBase;
 import hellfirepvp.astralsorcery.common.item.ItemChisel;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.InteractionHand;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.entity.Entity;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.entity.item.ItemEntity;
+import net.minecraft.world.level.entity.EntityType;
 import hellfirepvp.astralsorcery.common.entity.InteractableEntity;
 
 public class EntityCrystal extends EntityItemExplosionResistant implements InteractableEntity
@@ -83,7 +83,7 @@ public class EntityCrystal extends EntityItemExplosionResistant implements Inter
         if (created.isEmpty()) {
             return false;
         }
-        final int maxSplit = MathHelper.func_76123_f(thisAttributes.getTotalTierLevel() / 2.0f);
+        final int maxSplit = Mth.func_76123_f(thisAttributes.getTotalTierLevel() / 2.0f);
         if (maxSplit >= thisAttributes.getTotalTierLevel()) {
             return false;
         }

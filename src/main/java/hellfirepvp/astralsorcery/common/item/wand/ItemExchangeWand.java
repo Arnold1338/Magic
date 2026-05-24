@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.item.wand;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.network.chat.IFormattableTextComponent;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.nbt.CompoundTag;
@@ -13,12 +13,12 @@ import java.util.Collections;
 import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
 import hellfirepvp.astralsorcery.common.data.config.entry.WandsConfig;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import com.google.common.collect.Maps;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.level.InteractionHand;
 import java.util.Iterator;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
@@ -32,15 +32,15 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import hellfirepvp.astralsorcery.common.util.MapStream;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.item.ItemUseContext;
+import net.minecraft.world.level.InteractionResult;
+import net.minecraft.world.item.ItemUseContext;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.util.RenderingOverlayUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.Map;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.util.Blending;
@@ -50,29 +50,29 @@ import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.phys.BlockHitResult;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.util.math.RayTraceContext;
+import net.minecraft.world.level.ClipContext;
 import com.google.common.collect.Sets;
 import java.util.Set;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import net.minecraftforge.common.ToolAction;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.Level;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeConsumer;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemHeldRender;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemOverlayRender;
 import hellfirepvp.astralsorcery.common.item.base.ItemBlockStorage;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 
 public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOverlayRender, ItemHeldRender, AlignmentChargeConsumer
 {
@@ -83,7 +83,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final ITooltipFlag flagIn) {
+    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         tooltip.add((Component)getSizeMode(stack).getDisplay().func_240699_a_(ChatFormatting.GOLD));
     }
     
@@ -108,7 +108,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     }
     
     public float getAlignmentChargeCost(final Player player, final ItemStack stack) {
-        final BlockRayTraceResult hitResult = MiscUtils.rayTraceLookBlock(player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
+        final BlockHitResult hitResult = MiscUtils.rayTraceLookBlock(player, ClipContext.BlockMode.OUTLINE, ClipContext.FluidMode.NONE);
         if (hitResult == null) {
             return 0.0f;
         }
@@ -117,7 +117,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     
     @OnlyIn(Dist.CLIENT)
     public boolean renderInHand(final ItemStack stack, final PoseStack renderStack, final float pTicks) {
-        final BlockRayTraceResult hitResult = MiscUtils.rayTraceLookBlock((Player)Minecraft.func_71410_x().field_71439_g, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
+        final BlockHitResult hitResult = MiscUtils.rayTraceLookBlock((Player)Minecraft.func_71410_x().field_71439_g, ClipContext.BlockMode.OUTLINE, ClipContext.FluidMode.NONE);
         if (hitResult == null) {
             return true;
         }
@@ -136,11 +136,11 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         Blending.ADDITIVEDARK.apply();
         RenderSystem.disableDepthTest();
         RenderSystem.disableAlphaTest();
-        RenderingUtils.draw(7, DefaultVertexFormats.field_176600_a, buf -> placeStates.forEach((pos, state) -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.field_176600_a, buf -> placeStates.forEach((pos, state) -> {
             renderStack.func_227860_a_();
             renderStack.func_227861_a_(pos.getX() - offset.getX() + 0.10000000149011612, pos.getY() - offset.getY() + 0.10000000149011612, pos.getZ() - offset.getZ() + 0.10000000149011612);
             renderStack.func_227862_a_(0.8f, 0.8f, 0.8f);
-            RenderingUtils.renderSimpleBlockModel(state, renderStack, (IVertexBuilder)decorator.decorate(buf), pos, null, false);
+            RenderingUtils.renderSimpleBlockModel(state, renderStack, (VertexConsumer)decorator.decorate(buf), pos, null, false);
             renderStack.func_227865_b_();
         }));
         RenderSystem.enableAlphaTest();

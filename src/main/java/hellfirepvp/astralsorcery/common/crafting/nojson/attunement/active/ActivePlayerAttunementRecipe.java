@@ -8,12 +8,12 @@ import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.client.util.camera.ClientCameraManager;
 import hellfirepvp.astralsorcery.client.util.camera.ICameraPersistencyFunction;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.resources.ResourceKey;
 import hellfirepvp.astralsorcery.common.network.play.client.PktAttunePlayerConstellation;
 import hellfirepvp.astralsorcery.client.util.camera.ICameraTransformer;
 import hellfirepvp.astralsorcery.client.util.camera.ICameraStopListener;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.util.camera.ICameraTickListener;
 import net.minecraft.sounds.SoundEvent;
@@ -42,9 +42,9 @@ import hellfirepvp.astralsorcery.client.effect.function.impl.RenderOffsetNoisePl
 import hellfirepvp.astralsorcery.common.event.helper.EventHelperInvulnerability;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
 import net.minecraft.nbt.CompoundTag;
 import java.util.ArrayList;
@@ -241,7 +241,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
         return (renderView, focusedEntity) -> {
             if (focusedEntity != null) {
                 final float floatTick = ClientScheduler.getClientTick() % 40L / 40.0f;
-                final float sin = MathHelper.func_76126_a((float)(floatTick * 2.0f * 3.141592653589793)) / 2.0f + 0.5f;
+                final float sin = Mth.func_76126_a((float)(floatTick * 2.0f * 3.141592653589793)) / 2.0f + 0.5f;
                 focusedEntity.func_174805_g(false);
                 focusedEntity.func_70080_a(offset.getX(), offset.getY() + sin * 0.2, offset.getZ(), 0.0f, 0.0f);
                 focusedEntity.func_70080_a(offset.getX(), offset.getY() + sin * 0.2, offset.getZ(), 0.0f, 0.0f);

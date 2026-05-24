@@ -1,33 +1,33 @@
 package hellfirepvp.astralsorcery.common.auxiliary;
 
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import java.util.Iterator;
 import net.minecraft.core.Direction;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.state.Property;
+import net.minecraft.world.level.block.state.Property;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.NonNullList;
+import net.minecraft.world.level.item.ItemStack;
+import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.block.StemBlock;
+import net.minecraft.world.level.level.BlockGetter;
+import net.minecraft.world.level.block.StemBlock;
 import java.util.Random;
 import hellfirepvp.astralsorcery.common.constellation.effect.base.CEffectAbstractList;
 import java.util.HashMap;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.level.block.Blocks;
 import net.minecraftforge.common.IPlantable;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.block.NetherWartBlock;
-import net.minecraft.block.CactusBlock;
-import net.minecraft.block.SugarCaneBlock;
-import net.minecraft.block.DoublePlantBlock;
-import net.minecraft.block.TallGrassBlock;
-import net.minecraft.block.GrassBlock;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.CropsBlock;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.level.block.Block;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.block.NetherWartBlock;
+import net.minecraft.world.level.block.CactusBlock;
+import net.minecraft.world.level.block.SugarCaneBlock;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.TallGrassBlock;
+import net.minecraft.world.level.block.GrassBlock;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.CropsBlock;
+import net.minecraft.world.level.level.LevelAccessor;
 import javax.annotation.Nullable;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.BlockPos;
@@ -56,7 +56,7 @@ public class CropHelper
         if (b instanceof CropsBlock) {
             return new GrowableCropWrapper(pos);
         }
-        if (b instanceof IGrowable) {
+        if (b instanceof BonemealableBlock) {
             if (b instanceof GrassBlock) {
                 return null;
             }
@@ -157,7 +157,7 @@ public class CropHelper
         @Override
         public boolean canHarvest(final IWorld world) {
             final BlockState at = world.getBlockState(this.pos);
-            return at.getBlock() instanceof IGrowable && !(at.getBlock() instanceof StemBlock) && !((IGrowable)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false);
+            return at.getBlock() instanceof BonemealableBlock && !(at.getBlock() instanceof StemBlock) && !((BonemealableBlock)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false);
         }
         
         @Override
@@ -192,8 +192,8 @@ public class CropHelper
         @Override
         public boolean canGrow(final IWorld world) {
             final BlockState at = world.getBlockState(this.pos);
-            if (at.getBlock() instanceof IGrowable) {
-                if (((IGrowable)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false)) {
+            if (at.getBlock() instanceof BonemealableBlock) {
+                if (((BonemealableBlock)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false)) {
                     return true;
                 }
                 if (at.getBlock() instanceof StemBlock) {
@@ -209,9 +209,9 @@ public class CropHelper
                 return false;
             }
             final BlockState at = world.getBlockState(this.pos);
-            if (at.getBlock() instanceof IGrowable) {
-                if (((IGrowable)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false)) {
-                    ((IGrowable)at.getBlock()).func_225535_a_((ServerLevel)world, rand, this.pos, at);
+            if (at.getBlock() instanceof BonemealableBlock) {
+                if (((BonemealableBlock)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false)) {
+                    ((BonemealableBlock)at.getBlock()).func_225535_a_((ServerLevel)world, rand, this.pos, at);
                     return true;
                 }
                 if (at.getBlock() instanceof StemBlock && rand.nextInt(4) == 0) {
@@ -514,7 +514,7 @@ public class CropHelper
         @Override
         public boolean canGrow(final IWorld world) {
             final BlockState at = world.getBlockState(this.pos);
-            return at.getBlock() instanceof IGrowable && (((IGrowable)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false) || (at.getBlock() instanceof StemBlock && !this.stemHasCrop(world, (Block)((StemBlock)at.getBlock()).func_208486_d())));
+            return at.getBlock() instanceof BonemealableBlock && (((BonemealableBlock)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false) || (at.getBlock() instanceof StemBlock && !this.stemHasCrop(world, (Block)((StemBlock)at.getBlock()).func_208486_d())));
         }
         
         private boolean stemHasCrop(final IWorld world, final Block stemGrownBlock) {
@@ -530,12 +530,12 @@ public class CropHelper
         @Override
         public boolean tryGrow(final IWorld world, final Random rand) {
             final BlockState at = world.getBlockState(this.pos);
-            if (at.getBlock() instanceof IGrowable && world instanceof ServerLevel) {
-                if (((IGrowable)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false)) {
-                    if (!((IGrowable)at.getBlock()).func_180670_a((World)world, rand, this.pos, at) && rand.nextInt(20) != 0) {
+            if (at.getBlock() instanceof BonemealableBlock && world instanceof ServerLevel) {
+                if (((BonemealableBlock)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false)) {
+                    if (!((BonemealableBlock)at.getBlock()).func_180670_a((World)world, rand, this.pos, at) && rand.nextInt(20) != 0) {
                         return true;
                     }
-                    ((IGrowable)at.getBlock()).func_225535_a_((ServerLevel)world, rand, this.pos, at);
+                    ((BonemealableBlock)at.getBlock()).func_225535_a_((ServerLevel)world, rand, this.pos, at);
                     return true;
                 }
                 else if (at.getBlock() instanceof StemBlock) {

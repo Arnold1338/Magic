@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.util.draw;
 
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 
 public class BufferContext extends BufferBuilder

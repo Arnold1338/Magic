@@ -7,11 +7,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.text.LanguageMap;
+import net.minecraft.network.chat.LanguageMap;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.network.chat.IFormattableTextComponent;
 import javax.annotation.Nonnull;
-import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.item.enchantment.Enchantment;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentType;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantment;
 

@@ -2,14 +2,14 @@ package hellfirepvp.astralsorcery.common.block.tile.altar;
 
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.item.ItemStack;
 import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.item.Item;
 import java.util.function.Supplier;
 import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 

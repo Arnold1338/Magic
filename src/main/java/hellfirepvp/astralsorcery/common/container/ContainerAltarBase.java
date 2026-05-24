@@ -1,17 +1,17 @@
 package hellfirepvp.astralsorcery.common.container;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
+import net.minecraft.world.level.inventory.Slot;
+import net.minecraft.world.level.item.ItemStack;
 import java.util.Optional;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.player.Player;
 import javax.annotation.Nullable;
-import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.level.inventory.MenuType;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.level.entity.player.Inventory;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 
 public abstract class ContainerAltarBase extends ContainerTileEntity<TileAltar>

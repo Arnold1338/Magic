@@ -10,10 +10,10 @@ import hellfirepvp.astralsorcery.client.screen.container.ScreenContainerAltarAtt
 import hellfirepvp.astralsorcery.client.screen.container.ScreenContainerAltarDiscovery;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.level.entity.player.Inventory;
 import hellfirepvp.astralsorcery.client.screen.ScreenObservatory;
 import hellfirepvp.astralsorcery.common.container.ContainerObservatory;
-import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.level.inventory.MenuType;
 import net.minecraft.client.gui.ScreenManager;
 import hellfirepvp.astralsorcery.client.screen.container.ScreenContainerTome;
 import hellfirepvp.astralsorcery.common.container.factory.ContainerAltarRadianceProvider;
@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.container.factory.ContainerAltarAttuneme
 import hellfirepvp.astralsorcery.common.container.factory.ContainerAltarDiscoveryProvider;
 import hellfirepvp.astralsorcery.common.container.factory.ContainerObservatoryProvider;
 import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
-import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.inventory.AbstractContainerMenu;
 import net.minecraftforge.fml.network.IContainerFactory;
 import hellfirepvp.astralsorcery.common.container.factory.ContainerTomeProvider;
 

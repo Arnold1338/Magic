@@ -1,13 +1,13 @@
 package hellfirepvp.astralsorcery.common.crafting.recipe.interaction.jei;
 
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.Entity;
 import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.InteractionResult;
 import hellfirepvp.astralsorcery.client.util.LightmapUtil;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.math.Vector3f;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.entity.LivingEntity;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.ResultSpawnEntity;
 import com.mojang.blaze3d.vertex.PoseStack;

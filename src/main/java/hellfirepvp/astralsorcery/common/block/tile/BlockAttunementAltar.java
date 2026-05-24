@@ -1,24 +1,24 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.level.block.Block;
 import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.level.BlockGetter;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMarble;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.level.phys.AABB;
 import hellfirepvp.astralsorcery.common.block.base.LargeBlock;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.block.ContainerBlock;
+import net.minecraft.world.level.block.BaseEntityBlock;
 
-public class BlockAttunementAltar extends ContainerBlock implements CustomItemBlock, LargeBlock
+public class BlockAttunementAltar extends BaseEntityBlock implements CustomItemBlock, LargeBlock
 {
     private static final AABB PLACEMENT_BOX;
     private static final VoxelShape ATTUNEMENT_ALTAR;
@@ -37,11 +37,11 @@ public class BlockAttunementAltar extends ContainerBlock implements CustomItemBl
         return this.canPlaceAt(context) ? this.defaultBlockState() : null;
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
         return BlockAttunementAltar.ATTUNEMENT_ALTAR;
     }
     
-    public VoxelShape func_220071_b(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context) {
+    public VoxelShape func_220071_b(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
         return BlockAttunementAltar.ATTUNEMENT_ALTAR_COLLISION;
     }
     

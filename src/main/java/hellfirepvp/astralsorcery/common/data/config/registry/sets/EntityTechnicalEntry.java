@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.data.config.registry.sets;
 
 import javax.annotation.Nonnull;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.entity.EntityType;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.base.Mods;
 import net.minecraft.resources.ResourceLocation;

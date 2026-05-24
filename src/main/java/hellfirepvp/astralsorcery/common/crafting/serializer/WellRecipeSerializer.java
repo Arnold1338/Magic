@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.crafting.serializer;
 
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.item.crafting.Recipe;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomMatcherRecipe;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
@@ -9,10 +9,10 @@ import java.awt.Color;
 import hellfirepvp.astralsorcery.common.util.data.JsonHelper;
 import com.google.gson.JsonSyntaxException;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.level.material.Fluid;
 import com.google.gson.JsonElement;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.util.JSONUtils;
+import net.minecraft.world.level.item.crafting.Ingredient;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;

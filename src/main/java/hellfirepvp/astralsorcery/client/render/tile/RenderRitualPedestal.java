@@ -1,24 +1,24 @@
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.common.item.crystal.ItemAttunedCelestialCrystal;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.level.ItemLike;
+import net.minecraft.world.level.item.ItemStack;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.item.crystal.ItemAttunedRockCrystal;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import hellfirepvp.astralsorcery.common.tile.TileRitualPedestal;
 
 public class RenderRitualPedestal extends CustomTileEntityRenderer<TileRitualPedestal>
 {
-    public RenderRitualPedestal(final TileEntityRendererDispatcher tileRenderer) {
+    public RenderRitualPedestal(final BlockEntityRenderDispatcher tileRenderer) {
         super(tileRenderer);
     }
     

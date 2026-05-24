@@ -4,12 +4,12 @@ import java.util.function.BiFunction;
 import com.mojang.datafixers.kinds.Applicative;
 import com.mojang.datafixers.kinds.App;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.world.level.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.template.RuleTest;
 import com.mojang.serialization.Codec;
-import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.level.levelgen.feature.FeatureConfiguration;
 
-public class ReplaceBlockConfig implements IFeatureConfig
+public class ReplaceBlockConfig implements FeatureConfiguration
 {
     public static final Codec<ReplaceBlockConfig> CODEC;
     public final RuleTest target;

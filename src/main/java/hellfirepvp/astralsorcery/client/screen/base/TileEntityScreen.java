@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.client.screen.base;
 
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.util.tile.NamedInventoryTile;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.level.block.entity.BlockEntity;
 
 public class TileEntityScreen<T extends BlockEntity & NamedInventoryTile> extends WidthHeightScreen
 {

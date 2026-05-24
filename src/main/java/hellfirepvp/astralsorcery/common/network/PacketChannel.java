@@ -8,7 +8,7 @@ import java.util.List;
 import net.minecraft.resources.ResourceKey;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.level.Level;
 import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 import java.util.Collections;
 import org.apache.commons.lang3.tuple.Pair;
