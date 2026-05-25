@@ -71,7 +71,7 @@ public class ActiveLiquidInfusionRecipe
     private CompoundTag craftingData;
     private Object orbitalLiquid;
     
-    public ActiveLiquidInfusionRecipe(final World world, final BlockPos center, final LiquidInfusion recipeToCraft, final UUID playerCraftingUUID) {
+    public ActiveLiquidInfusionRecipe(final Level world, final BlockPos center, final LiquidInfusion recipeToCraft, final UUID playerCraftingUUID) {
         this(recipeToCraft, playerCraftingUUID);
         if (this.recipeToCraft.acceptsChaliceInput()) {
             this.findChalices(world, center);
@@ -87,15 +87,15 @@ public class ActiveLiquidInfusionRecipe
         this.playerCraftingUUID = playerCraftingUUID;
     }
     
-    private void findChalices(final World world, final BlockPos center) {
-        ChaliceHelper.findNearbyChalicesCombined(world, center, this.getChaliceRequiredFluidInput(), 8).ifPresent(chalices -> chalices.forEach(chalice -> this.supportingChalices.add(chalice.func_174877_v())));
+    private void findChalices(final Level world, final BlockPos center) {
+        ChaliceHelper.findNearbyChalicesCombined(world, center, this.getChaliceRequiredFluidInput(), 8).ifPresent(chalices -> chalices.forEach(chalice -> this.supportingChalices.add(chalice.getBlockState())));
     }
     
     public boolean matches(final TileInfuser infuser) {
         if (!this.getRecipeToCraft().matches(infuser, this.tryGetCraftingPlayerServer(), LogicalSide.SERVER)) {
             return false;
         }
-        if (!this.supportingChalices.isEmpty() && !ChaliceHelper.doChalicesContainCombined(infuser.func_145831_w(), this.supportingChalices, this.getChaliceRequiredFluidInput())) {
+        if (!this.supportingChalices.isEmpty() && !ChaliceHelper.doChalicesContainCombined(infuser.getLevel(), this.supportingChalices, this.getChaliceRequiredFluidInput())) {
             this.supportingChalices.clear();
         }
         return true;
@@ -158,7 +158,7 @@ public class ActiveLiquidInfusionRecipe
     
     @OnlyIn(Dist.CLIENT)
     private void playLiquidPoolEffect(final TileInfuser infuser, final FluidStack required) {
-        final List<BlockPos> posList = TileInfuser.getLiquidOffsets().stream().map(pos -> pos.func_177971_a((Vector3i)infuser.func_174877_v())).collect((Collector<? super Object, ?, List<BlockPos>>)Collectors.toList());
+        final List<BlockPos> posList = TileInfuser.getLiquidOffsets().stream().map(pos -> pos.func_177971_a((Vector3i)infuser.getBlockState())).collect((Collector<? super Object, ?, List<BlockPos>>)Collectors.toList());
         final BlockPos at = MiscUtils.getRandomEntry(posList, ActiveLiquidInfusionRecipe.rand);
         if (at != null) {
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)at).add(ActiveLiquidInfusionRecipe.rand.nextFloat(), 1.0f, ActiveLiquidInfusionRecipe.rand.nextFloat())).setScaleMultiplier(0.1f + ActiveLiquidInfusionRecipe.rand.nextFloat() * 0.15f).color((fx, pTicks) -> ColorizationHelper.getColor(required).orElse(Color.WHITE)).setAlphaMultiplier(1.0f).alpha(VFXAlphaFunction.FADE_OUT).setMotion(new Vector3(0.0, 0.15, 0.0)).setGravityStrength(0.005f + ActiveLiquidInfusionRecipe.rand.nextFloat() * 0.008f);
@@ -195,7 +195,7 @@ public class ActiveLiquidInfusionRecipe
         float chaliceSupplied = 0.0f;
         if (!this.supportingChalices.isEmpty()) {
             final FluidStack required = this.getChaliceRequiredFluidInput();
-            final Optional<List<TileChalice>> chalices = ChaliceHelper.findNearbyChalicesCombined(infuser.func_145831_w(), infuser.func_174877_v(), required, 8);
+            final Optional<List<TileChalice>> chalices = ChaliceHelper.findNearbyChalicesCombined(infuser.getLevel(), infuser.getBlockState(), required, 8);
             if (chalices.isPresent()) {
                 final FluidStack left = required.copy();
                 for (final TileChalice chalice : chalices.get()) {
@@ -215,14 +215,14 @@ public class ActiveLiquidInfusionRecipe
         if (infusion.doesConsumeMultipleFluids()) {
             for (final BlockPos at : TileInfuser.getLiquidOffsets()) {
                 if (ActiveLiquidInfusionRecipe.rand.nextFloat() < chance) {
-                    infuser.func_145831_w().func_180501_a(at.func_177971_a((Vector3i)infuser.func_174877_v()), Blocks.field_150350_a.defaultBlockState(), 11);
+                    infuser.getLevel().func_180501_a(at.func_177971_a((Vector3i)infuser.getBlockState()), Blocks.AIR.defaultBlockState(), 11);
                 }
             }
         }
         else {
-            final BlockPos at2 = MiscUtils.getRandomEntry(TileInfuser.getLiquidOffsets(), ActiveLiquidInfusionRecipe.rand).func_177971_a((Vector3i)infuser.func_174877_v());
+            final BlockPos at2 = MiscUtils.getRandomEntry(TileInfuser.getLiquidOffsets(), ActiveLiquidInfusionRecipe.rand).func_177971_a((Vector3i)infuser.getBlockState());
             if (ActiveLiquidInfusionRecipe.rand.nextFloat() < chance) {
-                infuser.func_145831_w().func_180501_a(at2, Blocks.field_150350_a.defaultBlockState(), 11);
+                infuser.getLevel().func_180501_a(at2, Blocks.AIR.defaultBlockState(), 11);
             }
         }
     }

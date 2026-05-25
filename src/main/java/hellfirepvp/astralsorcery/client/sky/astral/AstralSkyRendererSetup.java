@@ -29,10 +29,10 @@ class AstralSkyRendererSetup
                     x3 = (float)x;
                     x2 = (float)(x + scale);
                 }
-                buf.func_225582_a_((double)x2, (double)offsetY, (double)z).func_181675_d();
-                buf.func_225582_a_((double)x3, (double)offsetY, (double)z).func_181675_d();
-                buf.func_225582_a_((double)x3, (double)offsetY, (double)(z + scale)).func_181675_d();
-                buf.func_225582_a_((double)x2, (double)offsetY, (double)(z + scale)).func_181675_d();
+                buf.func_225582_a_((double)x2, (double)offsetY, (double)z).blockPosition();
+                buf.func_225582_a_((double)x3, (double)offsetY, (double)z).blockPosition();
+                buf.func_225582_a_((double)x3, (double)offsetY, (double)(z + scale)).blockPosition();
+                buf.func_225582_a_((double)x2, (double)offsetY, (double)(z + scale)).blockPosition();
             }
         }
     }
@@ -72,7 +72,7 @@ class AstralSkyRendererSetup
                     final double d21 = 0.0 * d12 - d18 * d13;
                     final double d22 = d21 * d9 - d19 * d10;
                     final double d23 = d19 * d9 + d21 * d10;
-                    starBuffer.func_225582_a_(d5 + d22, d6 + d20, d7 + d23).func_225583_a_((float)((j + 1 & 0x2) >> 1), (float)((j + 2 & 0x2) >> 1)).func_181675_d();
+                    starBuffer.func_225582_a_(d5 + d22, d6 + d20, d7 + d23).setPos((float)((j + 1 & 0x2) >> 1), (float)((j + 2 & 0x2) >> 1)).blockPosition();
                 }
             }
         }

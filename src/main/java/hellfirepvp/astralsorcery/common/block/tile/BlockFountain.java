@@ -26,10 +26,10 @@ public class BlockFountain extends BaseEntityBlock implements CustomItemBlock
     }
     
     protected VoxelShape createShape() {
-        final VoxelShape m1 = Block.func_208617_a(0.0, 10.0, 0.0, 16.0, 16.0, 16.0);
-        final VoxelShape m2 = Block.func_208617_a(4.0, 6.0, 4.0, 12.0, 10.0, 12.0);
-        final VoxelShape m3 = Block.func_208617_a(2.0, 0.0, 2.0, 14.0, 4.0, 14.0);
-        final VoxelShape m4 = Block.func_208617_a(0.0, 4.0, 0.0, 16.0, 6.0, 16.0);
+        final VoxelShape m1 = Block.of(0.0, 10.0, 0.0, 16.0, 16.0, 16.0);
+        final VoxelShape m2 = Block.of(4.0, 6.0, 4.0, 12.0, 10.0, 12.0);
+        final VoxelShape m3 = Block.of(2.0, 0.0, 2.0, 14.0, 4.0, 14.0);
+        final VoxelShape m4 = Block.of(0.0, 4.0, 0.0, 16.0, 6.0, 16.0);
         return VoxelUtils.combineAll(BooleanOp.field_223244_o_, m1, m2, m3, m4);
     }
     

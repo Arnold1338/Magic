@@ -66,7 +66,7 @@ public class PatreonFlare extends PatreonPartialEntity
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void tickEffects(final World world) {
+    public void tickEffects(final Level world) {
         super.tickEffects(world);
         if (!(boolean)RenderingConfig.CONFIG.patreonEffects.get() || PatreonFlare.rand.nextBoolean()) {
             return;

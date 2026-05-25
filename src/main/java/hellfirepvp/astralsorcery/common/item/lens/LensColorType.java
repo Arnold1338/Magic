@@ -63,9 +63,9 @@ public abstract class LensColorType
         return LensColorType.BY_NAME.get(name);
     }
     
-    public abstract void entityInBeam(final World p0, final Vector3 p1, final Vector3 p2, final Entity p3, final PartialEffectExecutor p4);
+    public abstract void entityInBeam(final Level p0, final Vector3 p1, final Vector3 p2, final Entity p3, final PartialEffectExecutor p4);
     
-    public abstract void blockInBeam(final World p0, final BlockPos p1, final BlockState p2, final PartialEffectExecutor p3);
+    public abstract void blockInBeam(final Level p0, final BlockPos p1, final BlockState p2, final PartialEffectExecutor p3);
     
     static {
         BY_NAME = new HashMap<ResourceLocation, LensColorType>();

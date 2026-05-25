@@ -91,7 +91,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d()) {
+        if (!this.getLevel().level()) {
             this.doCraftingCycle();
         }
         else if (this.getActiveRecipe() != null) {
@@ -117,13 +117,13 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
     public static void finishCraftingEffects(final PktPlayEffect pkt) {
         final ResourceLocation recipeName = ByteBufUtils.readResourceLocation(pkt.getExtraData());
         final BlockPos at = ByteBufUtils.readPos(pkt.getExtraData());
-        final World world = (World)Minecraft.getInstance().field_71441_e;
+        final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
             return;
         }
         final TileInfuser thisInfuser = MiscUtils.getTileAt((IBlockReader)world, at, TileInfuser.class, false);
         if (thisInfuser != null) {
-            final Recipe<?> recipe = (Recipe<?>)world.func_199532_z().func_215366_a((RecipeType)RecipeTypesAS.TYPE_INFUSION.getType()).get(recipeName);
+            final Recipe<?> recipe = (Recipe<?>)world.func_199532_z().getRecipeFor((RecipeType)RecipeTypesAS.TYPE_INFUSION.getType()).get(recipeName);
             if (recipe instanceof LiquidInfusion) {
                 final FluidStack stack = new FluidStack(((LiquidInfusion)recipe).getLiquidInput(), 1000);
                 final Vector3 pos = new Vector3((Vector3i)at).add(0.5, 1.0, 0.5);
@@ -165,14 +165,14 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
         this.activeRecipe.consumeFluidsInput(this);
         ForgeHooks.setCraftingPlayer((Player)null);
         this.abortCrafting();
-        SoundHelper.playSoundAround(SoundsAS.INFUSER_CRAFT_FINISH, this.func_145831_w(), (Vector3i)this.func_174877_v(), 1.0f, 1.0f);
+        SoundHelper.playSoundAround(SoundsAS.INFUSER_CRAFT_FINISH, this.getLevel(), (Vector3i)this.getBlockState(), 1.0f, 1.0f);
         final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.INFUSER_RECIPE_FINISH).addData(buf -> {
             ByteBufUtils.writeResourceLocation(buf, recipeName);
-            ByteBufUtils.writePos(buf, this.func_174877_v());
+            ByteBufUtils.writePos(buf, this.getBlockState());
             return;
         });
-        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.func_145831_w(), (Vector3i)this.func_174877_v(), 32.0));
-        EntityFlare.spawnAmbientFlare(this.func_145831_w(), this.func_174877_v().offset(-3 + TileInfuser.rand.nextInt(7), 1 + TileInfuser.rand.nextInt(3), -3 + TileInfuser.rand.nextInt(7)));
+        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vector3i)this.getBlockState(), 32.0));
+        EntityFlare.spawnAmbientFlare(this.getLevel(), this.getBlockState().offset(-3 + TileInfuser.rand.nextInt(7), 1 + TileInfuser.rand.nextInt(3), -3 + TileInfuser.rand.nextInt(7)));
         this.knownRecipes.add(recipeName);
     }
     
@@ -190,15 +190,15 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
         if (this.getActiveRecipe() != null) {
             return false;
         }
-        this.activeRecipe = new ActiveLiquidInfusionRecipe(this.func_145831_w(), this.func_174877_v(), recipe, crafter.getUUID());
+        this.activeRecipe = new ActiveLiquidInfusionRecipe(this.getLevel(), this.getBlockState(), recipe, crafter.getUUID());
         this.markForUpdate();
-        SoundHelper.playSoundAround(SoundsAS.INFUSER_CRAFT_START, SoundSource.BLOCKS, this.field_145850_b, new Vector3(this).add(0.5, 0.5, 0.5), 1.0f, 1.0f);
+        SoundHelper.playSoundAround(SoundsAS.INFUSER_CRAFT_START, SoundSource.BLOCKS, this.level, new Vector3(this).add(0.5, 0.5, 0.5), 1.0f, 1.0f);
         return true;
     }
     
     @Override
-    public boolean onInteract(final World world, final BlockPos pos, final Player player, final Direction side, final boolean sneak) {
-        if (!world.func_201670_d() && this.hasMultiblock() && !this.getItemInput().isEmpty()) {
+    public boolean onInteract(final Level world, final BlockPos pos, final Player player, final Direction side, final boolean sneak) {
+        if (!world.level() && this.hasMultiblock() && !this.getItemInput().isEmpty()) {
             if (this.getActiveRecipe() != null) {
                 if (this.getActiveRecipe().matches(this)) {
                     return true;
@@ -238,7 +238,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
     
     @Nonnull
     public Map<BlockPos, Fluid> getLiquids() {
-        return MapStream.ofKeys((Collection<BlockPos>)getLiquidOffsets(), pos -> this.func_145831_w().func_204610_c(this.func_174877_v().func_177971_a((Vector3i)pos)).func_206886_c()).toMap();
+        return MapStream.ofKeys((Collection<BlockPos>)getLiquidOffsets(), pos -> this.getLevel().func_204610_c(this.getBlockState().func_177971_a((Vector3i)pos)).func_206886_c()).toMap();
     }
     
     @Nonnull

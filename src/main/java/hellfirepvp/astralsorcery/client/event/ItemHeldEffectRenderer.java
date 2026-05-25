@@ -25,11 +25,11 @@ public class ItemHeldEffectRenderer
     private void onHeldRender(final RenderWorldLastEvent event) {
         final float pTicks = event.getPartialTicks();
         final PoseStack renderStack = event.getMatrixStack();
-        if (Minecraft.getInstance().field_71439_g == null || Minecraft.getInstance().field_71441_e == null) {
+        if (Minecraft.getInstance().player == null || Minecraft.getInstance().level == null) {
             return;
         }
         for (final EquipmentSlot type : EquipmentSlot.values()) {
-            if (this.doHeldRender(Minecraft.getInstance().field_71439_g.getItemBySlot(type), renderStack, pTicks)) {
+            if (this.doHeldRender(Minecraft.getInstance().player.getItemBySlot(type), renderStack, pTicks)) {
                 break;
             }
         }

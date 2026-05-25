@@ -62,15 +62,15 @@ public class FXBlock extends EntityVisualFX
         final Vector3 translate = this.getRenderPosition(pTicks).subtract(RenderingVectorUtils.getStandardTranslationRemovalVector(pTicks));
         final Vector3 rotation = this.getInterpolatedRotation(pTicks);
         final float scale = this.getScale(pTicks);
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(translate.getX(), translate.getY(), translate.getZ());
         renderStack.func_227861_a_(0.5, 0.5, 0.5);
-        renderStack.func_227862_a_(scale, scale, scale);
-        renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_((float)rotation.getX()));
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_((float)rotation.getY()));
-        renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_((float)rotation.getZ()));
+        renderStack.translate(scale, scale, scale);
+        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()(float)rotation.getX()));
+        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()(float)rotation.getY()));
+        renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()(float)rotation.getZ()));
         renderStack.func_227861_a_(-0.5, -0.5, -0.5);
         new BufferDecoratorBuilder().setColorDecorator((r, g, b, a) -> colorOverride).decorate(vb, decorated -> RenderingUtils.renderSimpleBlockModel(this.blockState, renderStack, decorated));
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
 }

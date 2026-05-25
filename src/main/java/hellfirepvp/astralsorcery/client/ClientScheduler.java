@@ -30,15 +30,15 @@ public class ClientScheduler implements ITickHandler
             final Iterator<Tuple<Runnable, Counter>> iterator = this.queue.iterator();
             while (iterator.hasNext()) {
                 final Tuple<Runnable, Counter> r = iterator.next();
-                ((Counter)r.func_76340_b()).decrement();
-                if (((Counter)r.func_76340_b()).getValue() <= 0) {
-                    ((Runnable)r.func_76341_a()).run();
+                ((Counter)r.getB()).decrement();
+                if (((Counter)r.getB()).getValue() <= 0) {
+                    ((Runnable)r.getA()).run();
                     iterator.remove();
                 }
             }
             this.inTick = false;
             for (final Tuple<Runnable, Integer> wait : this.waiting) {
-                this.queue.addLast((Tuple<Runnable, Counter>)new Tuple(wait.func_76341_a(), (Object)new Counter((int)wait.func_76340_b())));
+                this.queue.addLast((Tuple<Runnable, Counter>)new Tuple(wait.getA(), (Object)new Counter((int)wait.getB())));
             }
         }
         this.waiting.clear();

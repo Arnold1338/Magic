@@ -30,7 +30,7 @@ public abstract class ItemAttunedCrystalBase extends ItemCrystalBase implements 
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> toolTip, final TooltipFlag flag) {
+    public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> toolTip, final TooltipFlag flag) {
         final CrystalAttributes.TooltipResult result = this.addCrystalPropertyToolTip(stack, toolTip);
         if (result != null) {
             final ProgressionTier tier = ResearchHelper.getClientProgress().getTierReached();
@@ -38,20 +38,20 @@ public abstract class ItemAttunedCrystalBase extends ItemCrystalBase implements 
             final IWeakConstellation c = this.getAttunedConstellation(stack);
             if (c != null) {
                 if (GatedKnowledge.CRYSTAL_TUNE.canSee(tier) && ResearchHelper.getClientProgress().hasConstellationDiscovered(c)) {
-                    toolTip.add((Component)new Component("crystal.info.astralsorcery.attuned", new Object[] { c.getConstellationName().func_240699_a_(ChatFormatting.BLUE) }).func_240699_a_(ChatFormatting.GRAY));
+                    toolTip.add((Component)new Component("crystal.info.astralsorcery.attuned", new Object[] { c.getConstellationName().toString()ChatFormatting.BLUE) }).toString()ChatFormatting.GRAY));
                 }
                 else if (!addedMissing) {
-                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").func_240699_a_(ChatFormatting.GRAY));
+                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").toString()ChatFormatting.GRAY));
                     addedMissing = true;
                 }
             }
             final IMinorConstellation tr = this.getTraitConstellation(stack);
             if (tr != null) {
                 if (GatedKnowledge.CRYSTAL_TUNE.canSee(tier) && ResearchHelper.getClientProgress().hasConstellationDiscovered(tr)) {
-                    toolTip.add((Component)new Component("crystal.info.astralsorcery.trait", new Object[] { tr.getConstellationName().func_240699_a_(ChatFormatting.BLUE) }).func_240699_a_(ChatFormatting.GRAY));
+                    toolTip.add((Component)new Component("crystal.info.astralsorcery.trait", new Object[] { tr.getConstellationName().toString()ChatFormatting.BLUE) }).toString()ChatFormatting.GRAY));
                 }
                 else if (!addedMissing) {
-                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").func_240699_a_(ChatFormatting.GRAY));
+                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").toString()ChatFormatting.GRAY));
                 }
             }
         }

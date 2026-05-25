@@ -16,7 +16,7 @@ import net.minecraft.world.item.Item;
 public class ItemAttunedCelestialCrystal extends ItemAttunedCrystalBase
 {
     public ItemAttunedCelestialCrystal() {
-        super(new Item.Properties().func_208103_a(CommonProxy.RARITY_CELESTIAL).func_200916_a(CommonProxy.ITEM_GROUP_AS_CRYSTALS));
+        super(new Item.Properties().func_208103_a(CommonProxy.RARITY_CELESTIAL).hasModifier(CommonProxy.ITEM_GROUP_AS_CRYSTALS));
     }
     
     public void func_150895_a(final CreativeModeTab group, final NonNullList<ItemStack> items) {

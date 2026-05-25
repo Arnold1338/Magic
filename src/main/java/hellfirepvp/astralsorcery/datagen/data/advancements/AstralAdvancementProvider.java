@@ -67,7 +67,7 @@ public class AstralAdvancementProvider extends AdvancementProvider
     }
     
     private Path getPath(final Path base, final Advancement advancement) {
-        return base.resolve(String.format("data/%s/advancements/%s.json", advancement.func_192067_g().func_110624_b(), advancement.func_192067_g().func_110623_a()));
+        return base.resolve(String.format("data/%s/advancements/%s.json", advancement.func_192067_g().func_110624_b(), advancement.func_192067_g().addTransientModifier()));
     }
     
     private Component title(final String key) {

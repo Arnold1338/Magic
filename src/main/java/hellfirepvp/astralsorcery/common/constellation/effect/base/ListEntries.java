@@ -53,7 +53,7 @@ public class ListEntries
         public static EntitySpawnEntry createEntry(final ServerLevel world, final BlockPos pos, final MobSpawnType reason) {
             final Biome b = world.func_226691_t_(pos);
             final List<MobSpawnInfo.Spawners> applicable = new LinkedList<MobSpawnInfo.Spawners>();
-            if (DayTimeHelper.isNight((World)world)) {
+            if (DayTimeHelper.isNight((Level)world)) {
                 applicable.addAll(b.func_242433_b().func_242559_a(MobCategory.MONSTER));
             }
             else {
@@ -75,7 +75,7 @@ public class ListEntries
             if (this.type == null) {
                 return;
             }
-            final Entity e = this.type.func_200721_a((World)world);
+            final Entity e = this.type.func_200721_a((Level)world);
             if (e != null) {
                 e.func_184211_a("skip.spawn.deny");
                 final BlockPos at = this.getPos();
@@ -87,7 +87,7 @@ public class ListEntries
                         return;
                     }
                 }
-                world.func_217376_c(e);
+                world.addFreshEntity(e);
                 world.func_217379_c(2004, e.func_233580_cy_(), 0);
                 world.func_217379_c(2004, e.func_233580_cy_(), 0);
             }

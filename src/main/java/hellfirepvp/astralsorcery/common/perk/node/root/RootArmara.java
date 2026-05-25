@@ -65,7 +65,7 @@ public class RootArmara extends RootPerk
                 mul = 0.05f;
             }
         }
-        else if (event.getSource().func_76346_g() instanceof LivingEntity) {
+        else if (event.getSource().getEnchantments( instanceof LivingEntity) {
             mul = 3.0f;
         }
         float expGain = Math.min(event.getAmount() * mul, 70.0f);

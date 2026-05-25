@@ -64,7 +64,7 @@ public abstract class CrystalProperty extends ForgeRegistryEntry<CrystalProperty
     }
     
     public MutableComponent getName(final int currentTier) {
-        return (MutableComponent)new Component(String.format("crystal.property.%s.%s.name", this.getRegistryName().func_110624_b(), this.getRegistryName().func_110623_a()));
+        return (MutableComponent)new Component(String.format("crystal.property.%s.%s.name", this.getRegistryName().func_110624_b(), this.getRegistryName().addTransientModifier()));
     }
     
     public int compareTo(final CrystalProperty other) {

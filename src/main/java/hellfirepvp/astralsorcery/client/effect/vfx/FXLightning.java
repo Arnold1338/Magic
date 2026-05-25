@@ -140,15 +140,15 @@ public class FXLightning extends EntityVisualFX
         final Vector3 perp = aimPerp.clone().rotate(angle, aim).normalize();
         final Vector3 perpFrom = perp.clone().multiply(size);
         final Vector3 perpTo = perp.multiply(size);
-        final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
+        final Matrix4f matr = renderStack.last().translate();
         Vector3 vec = from.clone().add(perpFrom.clone().multiply(-1));
-        vec.drawPos(matr, buf).func_227885_a_(r, g, b, a).func_225583_a_(1.0f, 1.0f).func_181675_d();
+        vec.drawPos(matr, buf).pushPose()r, g, b, a).setPos(1.0f, 1.0f).blockPosition();
         vec = from.clone().add(perpFrom);
-        vec.drawPos(matr, buf).func_227885_a_(r, g, b, a).func_225583_a_(1.0f, 0.0f).func_181675_d();
+        vec.drawPos(matr, buf).pushPose()r, g, b, a).setPos(1.0f, 0.0f).blockPosition();
         vec = to.clone().add(perpTo);
-        vec.drawPos(matr, buf).func_227885_a_(r, g, b, a).func_225583_a_(0.0f, 0.0f).func_181675_d();
+        vec.drawPos(matr, buf).pushPose()r, g, b, a).setPos(0.0f, 0.0f).blockPosition();
         vec = to.clone().add(perpTo.clone().multiply(-1));
-        vec.drawPos(matr, buf).func_227885_a_(r, g, b, a).func_225583_a_(0.0f, 1.0f).func_181675_d();
+        vec.drawPos(matr, buf).pushPose()r, g, b, a).setPos(0.0f, 1.0f).blockPosition();
     }
     
     @Override

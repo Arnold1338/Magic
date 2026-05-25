@@ -87,11 +87,11 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         if (!this.initialized) {
             this.initialize();
         }
-        final Vec3 color = world.func_228318_a_(mc.field_71460_t.func_215316_n().func_216780_d(), pTicks);
+        final Vec3 color = world.func_228318_a_(mc.screen.func_215316_n().func_216780_d(), pTicks);
         float skyR = (float)color.field_72450_a;
         float skyG = (float)color.field_72448_b;
         float skyB = (float)color.field_72449_c;
-        final WorldContext ctx = SkyHandler.getContext((World)world, LogicalSide.CLIENT);
+        final WorldContext ctx = SkyHandler.getContext((Level)world, LogicalSide.CLIENT);
         if (ctx != null && ctx.getCelestialEventHandler().getSolarEclipse().isActiveNow()) {
             float perc = ctx.getCelestialEventHandler().getSolarEclipsePercent();
             perc = 0.05f + perc * 0.95f;
@@ -117,27 +117,27 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         RenderSystem.shadeModel(7424);
         RenderSystem.enableTexture();
         Blending.ADDITIVE_ALPHA.apply();
-        renderStack.func_227860_a_();
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(-90.0f));
-        renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(world.func_242415_f(pTicks) * 360.0f));
+        renderStack.popPose();
+        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()-90.0f));
+        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()world.func_242415_f(pTicks) * 360.0f));
         this.renderCelestials(world, renderStack, pTicks);
         this.renderStars(world, renderStack, pTicks);
-        renderStack.func_227865_b_();
-        renderStack.func_227860_a_();
-        renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(180.0f));
+        renderStack.scale();
+        renderStack.popPose();
+        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
         renderConstellationsSky(world, renderStack, pTicks);
-        renderStack.func_227865_b_();
+        renderStack.scale();
         RenderSystem.disableBlend();
         RenderSystem.enableAlphaTest();
         RenderSystem.enableFog();
         RenderSystem.disableTexture();
         RenderSystem.color4f(0.0f, 0.0f, 0.0f, 1.0f);
-        final double horizonDiff = Minecraft.getInstance().field_71439_g.func_174824_e(pTicks).field_72448_b - world.func_72912_H().func_239159_f_();
+        final double horizonDiff = Minecraft.getInstance().player.func_174824_e(pTicks).field_72448_b - world.func_72912_H().func_239159_f_();
         if (horizonDiff < 0.0) {
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_(0.0, 12.0, 0.0);
             this.skyHorizon.render(renderStack);
-            renderStack.func_227865_b_();
+            renderStack.scale();
         }
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.enableTexture();
@@ -146,7 +146,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
     }
     
     public static void renderConstellationsSky(final ClientLevel world, final PoseStack renderStack, final float pTicks) {
-        final WorldContext ctx = SkyHandler.getContext((World)world, LogicalSide.CLIENT);
+        final WorldContext ctx = SkyHandler.getContext((Level)world, LogicalSide.CLIENT);
         if (ctx == null) {
             return;
         }
@@ -188,7 +188,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
     }
     
     private void renderCelestials(final ClientLevel world, final PoseStack renderStack, final float pTicks) {
-        final WorldContext ctx = SkyHandler.getContext((World)world, LogicalSide.CLIENT);
+        final WorldContext ctx = SkyHandler.getContext((Level)world, LogicalSide.CLIENT);
         final float rainAlpha = 1.0f - world.func_72867_j(pTicks);
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, rainAlpha);
         if (ctx != null && ctx.getCelestialEventHandler().getSolarEclipse().isActiveNow()) {
@@ -208,10 +208,10 @@ public class AstralSkyRenderer implements ISkyRenderHandler
             }
             final float perc = eclTick / lunarHalf;
             RenderSystem.color4f(1.0f, 0.4f + 0.6f * perc, 0.4f + 0.6f * perc, rainAlpha);
-            this.renderMoon(renderStack, (World)world);
+            this.renderMoon(renderStack, (Level)world);
         }
         else {
-            this.renderMoon(renderStack, (World)world);
+            this.renderMoon(renderStack, (Level)world);
         }
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
     }
@@ -224,32 +224,32 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         for (float tick = eclipseTick; tick - part > 0.0f; tick -= part, ++u) {}
         final float uOffset = u;
         TexturesAS.TEX_SOLAR_ECLIPSE.bindTexture();
-        renderStack.func_227860_a_();
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(-90.0f));
-        final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
+        renderStack.popPose();
+        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()-90.0f));
+        final Matrix4f matr = renderStack.last().translate();
         RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
-            buf.func_227888_a_(matr, -sunSize, 100.0f, -sunSize).func_225583_a_(uOffset / 7.0f, 0.0f).func_181675_d();
-            buf.func_227888_a_(matr, sunSize, 100.0f, -sunSize).func_225583_a_((uOffset + 1.0f) / 7.0f, 0.0f).func_181675_d();
-            buf.func_227888_a_(matr, sunSize, 100.0f, sunSize).func_225583_a_((uOffset + 1.0f) / 7.0f, 1.0f).func_181675_d();
-            buf.func_227888_a_(matr, -sunSize, 100.0f, sunSize).func_225583_a_(uOffset / 7.0f, 1.0f).func_181675_d();
+            buf.func_227888_a_(matr, -sunSize, 100.0f, -sunSize).setPos(uOffset / 7.0f, 0.0f).blockPosition();
+            buf.func_227888_a_(matr, sunSize, 100.0f, -sunSize).setPos((uOffset + 1.0f) / 7.0f, 0.0f).blockPosition();
+            buf.func_227888_a_(matr, sunSize, 100.0f, sunSize).setPos((uOffset + 1.0f) / 7.0f, 1.0f).blockPosition();
+            buf.func_227888_a_(matr, -sunSize, 100.0f, sunSize).setPos(uOffset / 7.0f, 1.0f).blockPosition();
             return;
         });
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     private void renderSun(final PoseStack renderStack) {
         final float sunSize = 30.0f;
-        final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
+        final Matrix4f matr = renderStack.last().translate();
         Minecraft.getInstance().func_110434_K().func_110577_a(AstralSkyRenderer.REF_TEX_SUN);
         RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
-            buf.func_227888_a_(matr, -sunSize, 100.0f, -sunSize).func_225583_a_(0.0f, 0.0f).func_181675_d();
-            buf.func_227888_a_(matr, sunSize, 100.0f, -sunSize).func_225583_a_(1.0f, 0.0f).func_181675_d();
-            buf.func_227888_a_(matr, sunSize, 100.0f, sunSize).func_225583_a_(1.0f, 1.0f).func_181675_d();
-            buf.func_227888_a_(matr, -sunSize, 100.0f, sunSize).func_225583_a_(0.0f, 1.0f).func_181675_d();
+            buf.func_227888_a_(matr, -sunSize, 100.0f, -sunSize).setPos(0.0f, 0.0f).blockPosition();
+            buf.func_227888_a_(matr, sunSize, 100.0f, -sunSize).setPos(1.0f, 0.0f).blockPosition();
+            buf.func_227888_a_(matr, sunSize, 100.0f, sunSize).setPos(1.0f, 1.0f).blockPosition();
+            buf.func_227888_a_(matr, -sunSize, 100.0f, sunSize).setPos(0.0f, 1.0f).blockPosition();
         });
     }
     
-    private void renderMoon(final PoseStack renderStack, final World world) {
+    private void renderMoon(final PoseStack renderStack, final Level world) {
         final float moonSize = 20.0f;
         final int moonPhase = world.func_242414_af();
         final int i = moonPhase % 4;
@@ -258,37 +258,37 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         final float minV = j / 2.0f;
         final float maxU = (i + 1) / 4.0f;
         final float maxV = (j + 1) / 2.0f;
-        final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
+        final Matrix4f matr = renderStack.last().translate();
         Minecraft.getInstance().func_110434_K().func_110577_a(AstralSkyRenderer.REF_TEX_MOON_PHASES);
         RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
-            buf.func_227888_a_(matr, -moonSize, -100.0f, moonSize).func_225583_a_(maxU, maxV).func_181675_d();
-            buf.func_227888_a_(matr, moonSize, -100.0f, moonSize).func_225583_a_(minU, maxV).func_181675_d();
-            buf.func_227888_a_(matr, moonSize, -100.0f, -moonSize).func_225583_a_(minU, minV).func_181675_d();
-            buf.func_227888_a_(matr, -moonSize, -100.0f, -moonSize).func_225583_a_(maxU, minV).func_181675_d();
+            buf.func_227888_a_(matr, -moonSize, -100.0f, moonSize).setPos(maxU, maxV).blockPosition();
+            buf.func_227888_a_(matr, moonSize, -100.0f, moonSize).setPos(minU, maxV).blockPosition();
+            buf.func_227888_a_(matr, moonSize, -100.0f, -moonSize).setPos(minU, minV).blockPosition();
+            buf.func_227888_a_(matr, -moonSize, -100.0f, -moonSize).setPos(maxU, minV).blockPosition();
         });
     }
     
     private void renderDuskDawn(final float[] duskDawnColors, final PoseStack renderStack, final ClientLevel world, final float pTicks) {
         final float f3 = (Mth.func_76126_a(world.func_72929_e(pTicks)) < 0.0f) ? 180.0f : 0.0f;
-        renderStack.func_227860_a_();
-        renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(90.0f));
-        renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(f3));
-        renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(90.0f));
+        renderStack.popPose();
+        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()90.0f));
+        renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()f3));
+        renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()90.0f));
         final float r = duskDawnColors[0];
         final float g = duskDawnColors[1];
         final float b = duskDawnColors[2];
         final float a = duskDawnColors[3];
         RenderingUtils.draw(6, DefaultVertexFormat.field_181706_f, buf -> {
-            buf.func_225582_a_(0.0, 100.0, 0.0).func_227885_a_(r, g, b, a).func_181675_d();
+            buf.func_225582_a_(0.0, 100.0, 0.0).pushPose()r, g, b, a).blockPosition();
             for (int i = 0; i <= 16; ++i) {
                 final float f4 = i * 6.2831855f / 16.0f;
                 final float f5 = Mth.func_76126_a(f4);
                 final float f6 = Mth.func_76134_b(f4);
-                buf.func_225582_a_((double)(f5 * 120.0f), (double)(f6 * 120.0f), (double)(-f6 * 40.0f * a)).func_227885_a_(r, g, b, 0.0f).func_181675_d();
+                buf.func_225582_a_((double)(f5 * 120.0f), (double)(f6 * 120.0f), (double)(-f6 * 40.0f * a)).pushPose()r, g, b, 0.0f).blockPosition();
             }
             return;
         });
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     static {

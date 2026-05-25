@@ -30,7 +30,7 @@ public class EntityObservatoryHelper extends Entity
 {
     private static final EntityDataAccessor<BlockPos> FIXED;
     
-    public EntityObservatoryHelper(final World worldIn) {
+    public EntityObservatoryHelper(final Level worldIn) {
         super((EntityType)EntityTypesAS.OBSERVATORY_HELPER, worldIn);
     }
     
@@ -53,7 +53,7 @@ public class EntityObservatoryHelper extends Entity
     @Nullable
     public TileObservatory getAssociatedObservatory() {
         final BlockPos at = this.getFixedObservatoryPos();
-        final TileObservatory observatory = MiscUtils.getTileAt((IBlockReader)this.field_70170_p, at, TileObservatory.class, true);
+        final TileObservatory observatory = MiscUtils.getTileAt((IBlockReader)this.level(), at, TileObservatory.class, true);
         if (observatory == null) {
             return null;
         }
@@ -69,7 +69,7 @@ public class EntityObservatoryHelper extends Entity
         this.field_70145_X = true;
         final TileObservatory observatory;
         if ((observatory = this.getAssociatedObservatory()) == null) {
-            if (!this.field_70170_p.func_201670_d()) {
+            if (!this.level().level()) {
                 this.func_70106_y();
             }
             return;
@@ -79,8 +79,8 @@ public class EntityObservatoryHelper extends Entity
             this.applyObservatoryRotationsFrom(observatory, (Player)riding, true);
         }
         else {
-            this.field_70126_B = this.field_70177_z;
-            this.field_70127_C = this.field_70125_A;
+            this.field_70126_B = this.yRot;
+            this.field_70127_C = this.xRot;
         }
         if (!observatory.isUsable()) {
             this.func_184226_ay();
@@ -89,16 +89,16 @@ public class EntityObservatoryHelper extends Entity
     
     public void applyObservatoryRotationsFrom(final TileObservatory to, final Player riding, final boolean updateTile) {
         if (riding.field_71070_bA instanceof ContainerObservatory) {
-            this.field_70177_z = riding.field_70759_as;
+            this.yRot = riding.field_70759_as;
             this.field_70126_B = riding.field_70758_at;
-            this.field_70125_A = riding.field_70125_A;
+            this.xRot = riding.xRot;
             this.field_70127_C = riding.field_70127_C;
         }
         else {
-            this.field_70177_z = riding.field_70761_aq;
+            this.yRot = riding.field_70761_aq;
             this.field_70126_B = riding.field_70760_ar;
         }
-        to.updatePitchYaw(this.field_70125_A, this.field_70127_C, this.field_70177_z, this.field_70126_B);
+        to.updatePitchYaw(this.xRot, this.field_70127_C, this.yRot, this.field_70126_B);
         if (updateTile) {
             to.markForUpdate();
         }
@@ -107,7 +107,7 @@ public class EntityObservatoryHelper extends Entity
         final double yawRad = -Math.toRadians(to.observatoryYaw);
         final double xComp = 0.5 + Math.sin(yawRad) * xOffset - Math.cos(yawRad) * zOffset;
         final double zComp = 0.5 + Math.cos(yawRad) * xOffset + Math.sin(yawRad) * zOffset;
-        final Vector3 pos = new Vector3((Vector3i)to.func_174877_v()).add(xComp, 0.4000000059604645, zComp);
+        final Vector3 pos = new Vector3((Vector3i)to.getBlockState()).add(xComp, 0.4000000059604645, zComp);
         this.func_226286_f_(pos.getX(), pos.getY(), pos.getZ());
     }
     

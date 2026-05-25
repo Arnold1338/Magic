@@ -22,9 +22,9 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 public class SkyHandler implements ITickHandler
 {
     private static final SkyHandler instance;
-    private final Map<RegistryKey<World>, WorldContext> worldHandlersServer;
-    private final Map<RegistryKey<World>, WorldContext> worldHandlersClient;
-    private final Map<RegistryKey<World>, Boolean> skyRevertMap;
+    private final Map<RegistryKey<Level>, WorldContext> worldHandlersServer;
+    private final Map<RegistryKey<Level>, WorldContext> worldHandlersClient;
+    private final Map<RegistryKey<Level>, Boolean> skyRevertMap;
     
     private SkyHandler() {
         this.worldHandlersServer = Maps.newHashMap();
@@ -38,9 +38,9 @@ public class SkyHandler implements ITickHandler
     
     public void tick(final TickEvent.Type type, final Object... context) {
         if (type == TickEvent.Type.WORLD) {
-            final World w = (World)context[0];
-            if (!w.func_201670_d() && w instanceof ServerLevel) {
-                final RegistryKey<World> dimKey = (RegistryKey<World>)w.dimension();
+            final Level w = (Level)context[0];
+            if (!w.level() && w instanceof ServerLevel) {
+                final RegistryKey<Level> dimKey = (RegistryKey<Level>)w.dimension();
                 this.skyRevertMap.put(dimKey, false);
                 WorldContext ctx = this.worldHandlersServer.get(dimKey);
                 if (ctx == null) {
@@ -57,9 +57,9 @@ public class SkyHandler implements ITickHandler
     
     @OnlyIn(Dist.CLIENT)
     private void handleClientTick() {
-        final World w = (World)Minecraft.getInstance().field_71441_e;
+        final Level w = (Level)Minecraft.getInstance().level;
         if (w != null) {
-            final RegistryKey<World> dimKey = (RegistryKey<World>)w.dimension();
+            final RegistryKey<Level> dimKey = (RegistryKey<Level>)w.dimension();
             WorldContext ctx = this.worldHandlersClient.get(dimKey);
             if (ctx == null) {
                 final Optional<Long> seedOpt = WorldSeedCache.getSeedIfPresent(dimKey);
@@ -78,16 +78,16 @@ public class SkyHandler implements ITickHandler
     }
     
     @Nullable
-    public static WorldContext getContext(final World world) {
-        return getContext(world, world.func_201670_d() ? LogicalSide.CLIENT : LogicalSide.SERVER);
+    public static WorldContext getContext(final Level world) {
+        return getContext(world, world.level() ? LogicalSide.CLIENT : LogicalSide.SERVER);
     }
     
     @Nullable
-    public static WorldContext getContext(final World world, final LogicalSide dist) {
+    public static WorldContext getContext(final Level world, final LogicalSide dist) {
         if (world == null) {
             return null;
         }
-        final RegistryKey<World> dimKey = (RegistryKey<World>)world.dimension();
+        final RegistryKey<Level> dimKey = (RegistryKey<Level>)world.dimension();
         if (dist.isClient()) {
             return getInstance().worldHandlersClient.getOrDefault(dimKey, null);
         }
@@ -95,7 +95,7 @@ public class SkyHandler implements ITickHandler
     }
     
     public void revertWorldTimeTick(final ServerLevel world) {
-        final RegistryKey<World> dimKey = (RegistryKey<World>)world.dimension();
+        final RegistryKey<Level> dimKey = (RegistryKey<Level>)world.dimension();
         final Boolean state = this.skyRevertMap.get(dimKey);
         if (!world.isClientSide && state != null && !state) {
             this.skyRevertMap.put(dimKey, true);
@@ -107,7 +107,7 @@ public class SkyHandler implements ITickHandler
         this.worldHandlersClient.clear();
     }
     
-    public void informWorldUnload(final World world) {
+    public void informWorldUnload(final Level world) {
         this.worldHandlersServer.remove(world.dimension());
         this.worldHandlersClient.remove(world.dimension());
     }

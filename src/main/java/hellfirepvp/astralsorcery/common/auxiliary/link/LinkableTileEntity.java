@@ -17,16 +17,16 @@ import net.minecraft.world.level.Level;
 
 public interface LinkableTileEntity
 {
-    default World getLinkWorld() {
+    default Level getLinkWorld() {
         if (this instanceof BlockEntity) {
-            return ((BlockEntity)this).func_145831_w();
+            return ((BlockEntity)this).getLevel();
         }
         throw new IllegalStateException("LinkableTileEntity not implemented on BlockEntity: " + this.getClass());
     }
     
     default BlockPos getLinkPos() {
         if (this instanceof BlockEntity) {
-            return ((BlockEntity)this).func_174877_v();
+            return ((BlockEntity)this).getBlockState();
         }
         throw new IllegalStateException("LinkableTileEntity not implemented on BlockEntity: " + this.getClass());
     }
@@ -53,7 +53,7 @@ public interface LinkableTileEntity
             for (final BlockPos linkTo : Lists.newArrayList((Iterable)this.getLinkedPositions())) {
                 this.tryUnlink(player, linkTo);
             }
-            player.func_145747_a((Component)new Component("astralsorcery.misc.link.unlink.all").func_240699_a_(ChatFormatting.GREEN), Util.NIL_UUID);
+            player.func_145747_a((Component)new Component("astralsorcery.misc.link.unlink.all").toString()ChatFormatting.GREEN), Util.NIL_UUID);
             return false;
         }
         return true;

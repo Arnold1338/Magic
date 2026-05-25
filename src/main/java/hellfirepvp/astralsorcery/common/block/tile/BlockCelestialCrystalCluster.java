@@ -59,7 +59,7 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
     }
     
     @Override
-    public void receiveStarlight(final World world, final Random rand, final BlockPos pos, final IWeakConstellation starlightType, final double amount) {
+    public void receiveStarlight(final Level world, final Random rand, final BlockPos pos, final IWeakConstellation starlightType, final double amount) {
         final TileCelestialCrystals crystals = MiscUtils.getTileAt((IBlockReader)world, pos, TileCelestialCrystals.class, false);
         if (crystals != null) {
             crystals.grow((int)(18000.0 / amount));
@@ -104,16 +104,16 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
     
     public BlockState func_196271_a(final BlockState state, final Direction placedAgainst, final BlockState facingState, final IWorld world, final BlockPos pos, final BlockPos facingPos) {
         if (!this.func_196260_a(state, (IWorldReader)world, pos)) {
-            return Blocks.field_150350_a.defaultBlockState();
+            return Blocks.AIR.defaultBlockState();
         }
         return state;
     }
     
     public boolean func_196260_a(final BlockState state, final IWorldReader world, final BlockPos pos) {
-        return func_220064_c((IBlockReader)world, pos.func_177977_b());
+        return func_220064_c((IBlockReader)world, pos.renderItem());
     }
     
-    public void func_196243_a(final BlockState state, final World world, final BlockPos pos, final BlockState newState, final boolean isMoving) {
+    public void func_196243_a(final BlockState state, final Level world, final BlockPos pos, final BlockState newState, final boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             super.func_196243_a(state, world, pos, newState, isMoving);
             final PktPlayEffect effect = new PktPlayEffect(PktPlayEffect.Type.SMALL_CRYSTAL_BREAK).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vector3i)pos).add(state.func_191059_e((IBlockReader)world, pos)).add(0.5, 0.4, 0.5)));
@@ -135,11 +135,11 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
     }
     
     static {
-        GROWTH_STAGE_0 = Block.func_208617_a(4.0, 0.0, 5.0, 12.0, 8.0, 11.0);
-        GROWTH_STAGE_1 = Block.func_208617_a(4.0, 0.0, 5.0, 12.0, 10.0, 11.0);
-        GROWTH_STAGE_2 = Block.func_208617_a(2.0, 0.0, 4.0, 12.0, 12.0, 14.0);
-        GROWTH_STAGE_3 = Block.func_208617_a(2.0, 0.0, 2.0, 14.0, 14.0, 14.0);
-        GROWTH_STAGE_4 = Block.func_208617_a(2.0, 0.0, 2.0, 14.0, 16.0, 14.0);
+        GROWTH_STAGE_0 = Block.of(4.0, 0.0, 5.0, 12.0, 8.0, 11.0);
+        GROWTH_STAGE_1 = Block.of(4.0, 0.0, 5.0, 12.0, 10.0, 11.0);
+        GROWTH_STAGE_2 = Block.of(2.0, 0.0, 4.0, 12.0, 12.0, 14.0);
+        GROWTH_STAGE_3 = Block.of(2.0, 0.0, 2.0, 14.0, 14.0, 14.0);
+        GROWTH_STAGE_4 = Block.of(2.0, 0.0, 2.0, 14.0, 16.0, 14.0);
         BlockCelestialCrystalCluster.STAGE = IntegerProperty.func_177719_a("stage", 0, 4);
     }
 }

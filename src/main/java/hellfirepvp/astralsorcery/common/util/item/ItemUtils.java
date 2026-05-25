@@ -47,24 +47,24 @@ public class ItemUtils
     public static final IItemHandler EMPTY_INVENTORY;
     private static final Random rand;
     
-    public static ItemEntity dropItem(final World world, final double x, final double y, final double z, final ItemStack stack) {
+    public static ItemEntity dropItem(final Level world, final double x, final double y, final double z, final ItemStack stack) {
         if (world.isClientSide) {
             return null;
         }
         final ItemEntity ei = new ItemEntity(world, x, y, z, stack);
         ei.func_213317_d(new Vec3(0.0, 0.0, 0.0));
-        world.func_217376_c((Entity)ei);
+        world.addFreshEntity((Entity)ei);
         ei.func_174867_a(20);
         return ei;
     }
     
-    public static ItemEntity dropItemNaturally(final World world, final double x, final double y, final double z, final ItemStack stack) {
+    public static ItemEntity dropItemNaturally(final Level world, final double x, final double y, final double z, final ItemStack stack) {
         if (world.isClientSide) {
             return null;
         }
         final ItemEntity ei = new ItemEntity(world, x, y, z, stack);
         applyRandomDropOffset(ei);
-        world.func_217376_c((Entity)ei);
+        world.addFreshEntity((Entity)ei);
         ei.func_174867_a(20);
         return ei;
     }
@@ -75,7 +75,7 @@ public class ItemUtils
     
     public static void decrementItem(final Supplier<ItemStack> getFromInventory, final Consumer<ItemStack> setIntoInventory, final Consumer<ItemStack> handleExcess) {
         ItemStack toConsume = getFromInventory.get();
-        toConsume = copyStackWithSize(toConsume, toConsume.func_190916_E());
+        toConsume = copyStackWithSize(toConsume, toConsume.getCount());
         ItemStack toReplaceWith = ItemStack.EMPTY;
         if (toConsume.hasContainerItem()) {
             toReplaceWith = toConsume.getContainerItem();
@@ -86,9 +86,9 @@ public class ItemUtils
                 setIntoInventory.accept(toReplaceWith);
             }
             else if (ItemComparator.compare(toConsume, toReplaceWith, ItemComparator.Clause.Sets.ITEMSTACK_STRICT_NOAMOUNT)) {
-                toReplaceWith.grow(toConsume.func_190916_E());
-                if (toReplaceWith.func_190916_E() > toReplaceWith.func_77976_d()) {
-                    final int overcapped = toReplaceWith.func_190916_E() - toReplaceWith.func_77976_d();
+                toReplaceWith.grow(toConsume.getCount());
+                if (toReplaceWith.getCount() > toReplaceWith.func_77976_d()) {
+                    final int overcapped = toReplaceWith.getCount() - toReplaceWith.func_77976_d();
                     setIntoInventory.accept(copyStackWithSize(toReplaceWith, toReplaceWith.func_77976_d()));
                     handleExcess.accept(copyStackWithSize(toReplaceWith, overcapped));
                 }
@@ -115,11 +115,11 @@ public class ItemUtils
     }
     
     public static ItemStack dropItemToPlayer(final Player player, final ItemStack stack) {
-        final World world = player.func_130014_f_();
-        if (world.func_201670_d() || stack.isEmpty()) {
+        final Level world = player.level();
+        if (world.level() || stack.isEmpty()) {
             return stack;
         }
-        final ItemEntity item = new ItemEntity(world, player.func_226277_ct_(), player.func_226278_cu_(), player.func_226281_cx_(), stack);
+        final ItemEntity item = new ItemEntity(world, player.getX(), player.getY(), player.getZ(), stack);
         if (item.func_92059_d().isEmpty()) {
             return stack;
         }
@@ -153,7 +153,7 @@ public class ItemUtils
     @Nullable
     public static BlockState createBlockState(final ItemStack stack) {
         final Block b = Block.func_149634_a(stack.getItem());
-        if (b == Blocks.field_150350_a) {
+        if (b == Blocks.AIR) {
             return null;
         }
         return b.defaultBlockState();
@@ -175,7 +175,7 @@ public class ItemUtils
         for (int j = 0; j < handler.getSlots(); ++j) {
             final ItemStack s = handler.getStackInSlot(j);
             if (!s.isEmpty() && s.getItem() == i) {
-                out.add(copyStackWithSize(s, s.func_190916_E()));
+                out.add(copyStackWithSize(s, s.getCount()));
             }
         }
         return out;
@@ -206,7 +206,7 @@ public class ItemUtils
             else if (!ItemComparator.compare(s, match, ItemComparator.Clause.ITEM)) {
                 continue;
             }
-            stacksOut.add(copyStackWithSize(s, s.func_190916_E()));
+            stacksOut.add(copyStackWithSize(s, s.getCount()));
         }
         return stacksOut;
     }
@@ -233,7 +233,7 @@ public class ItemUtils
         for (int j = 0; j < handler.getSlots(); ++j) {
             final ItemStack s = handler.getStackInSlot(j);
             if (match.test(s)) {
-                stacksOut.put(j, copyStackWithSize(s, s.func_190916_E()));
+                stacksOut.put(j, copyStackWithSize(s, s.getCount()));
             }
         }
         return stacksOut;
@@ -241,7 +241,7 @@ public class ItemUtils
     
     public static boolean consumeFromPlayerInventory(final Player player, final ItemStack requestingItemStack, final ItemStack toConsume, final boolean simulate) {
         final int consumed = 0;
-        final ItemStack tryConsume = copyStackWithSize(toConsume, toConsume.func_190916_E() - consumed);
+        final ItemStack tryConsume = copyStackWithSize(toConsume, toConsume.getCount() - consumed);
         if (tryConsume.isEmpty()) {
             return true;
         }
@@ -258,13 +258,13 @@ public class ItemUtils
         if (contents.isEmpty()) {
             return false;
         }
-        int cAmt = toConsume.func_190916_E();
+        int cAmt = toConsume.getCount();
         for (final int slot : contents.keySet()) {
             final ItemStack inSlot = contents.get(slot);
-            final int toRemove = (cAmt > inSlot.func_190916_E()) ? inSlot.func_190916_E() : cAmt;
+            final int toRemove = (cAmt > inSlot.getCount()) ? inSlot.getCount() : cAmt;
             cAmt -= toRemove;
             if (!simulate) {
-                handler.setStackInSlot(slot, copyStackWithSize(inSlot, inSlot.func_190916_E() - toRemove));
+                handler.setStackInSlot(slot, copyStackWithSize(inSlot, inSlot.getCount() - toRemove));
             }
             if (cAmt <= 0) {
                 break;
@@ -273,7 +273,7 @@ public class ItemUtils
         return cAmt <= 0;
     }
     
-    public static void dropInventory(final IItemHandler handle, final World worldIn, final BlockPos pos) {
+    public static void dropInventory(final IItemHandler handle, final Level worldIn, final BlockPos pos) {
         if (worldIn.isClientSide) {
             return;
         }
@@ -293,8 +293,8 @@ public class ItemUtils
         if (st.isEmpty()) {
             return;
         }
-        st.func_190920_e(st.func_190916_E() - 1);
-        if (st.func_190916_E() <= 0) {
+        st.setCount(st.getCount() - 1);
+        if (st.getCount() <= 0) {
             handler.setStackInSlot(slot, ItemStack.EMPTY);
         }
     }
@@ -312,26 +312,26 @@ public class ItemUtils
         for (int i = start; i < end; ++i) {
             final ItemStack in = handler.getStackInSlot(i);
             if (in.isEmpty()) {
-                final int added = Math.min(stack.func_190916_E(), max);
-                stack.func_190920_e(stack.func_190916_E() - added);
+                final int added = Math.min(stack.getCount(), max);
+                stack.setCount(stack.getCount() - added);
                 handler.insertItem(i, copyStackWithSize(stack, added), false);
                 return true;
             }
             if (ItemComparator.compare(stack, in, ItemComparator.Clause.ITEM, ItemComparator.Clause.NBT_STRICT, ItemComparator.Clause.CAPABILITIES_COMPATIBLE)) {
-                final int space = max - in.func_190916_E();
-                final int added2 = Math.min(stack.func_190916_E(), space);
-                stack.func_190920_e(stack.func_190916_E() - added2);
-                handler.getStackInSlot(i).func_190920_e(handler.getStackInSlot(i).func_190916_E() + added2);
-                if (stack.func_190916_E() <= 0) {
+                final int space = max - in.getCount();
+                final int added2 = Math.min(stack.getCount(), space);
+                stack.setCount(stack.getCount() - added2);
+                handler.getStackInSlot(i).setCount(handler.getStackInSlot(i).getCount() + added2);
+                if (stack.getCount() <= 0) {
                     return true;
                 }
             }
         }
-        return stack.func_190916_E() == 0;
+        return stack.getCount() == 0;
     }
     
     public static boolean hasInventorySpace(@Nonnull final ItemStack stack, final IItemHandler handler, final int rangeMin, final int rangeMax) {
-        int size = stack.func_190916_E();
+        int size = stack.getCount();
         final int max = stack.func_77976_d();
         for (int i = rangeMin; i < rangeMax && size > 0; ++i) {
             final ItemStack in = handler.getStackInSlot(i);
@@ -339,7 +339,7 @@ public class ItemUtils
                 size -= max;
             }
             else if (ItemComparator.compare(stack, in, ItemComparator.Clause.ITEM, ItemComparator.Clause.NBT_STRICT, ItemComparator.Clause.CAPABILITIES_COMPATIBLE)) {
-                final int space = max - in.func_190916_E();
+                final int space = max - in.getCount();
                 size -= space;
             }
         }
@@ -351,7 +351,7 @@ public class ItemUtils
             return ItemStack.EMPTY;
         }
         final ItemStack s = stack.copy();
-        s.func_190920_e(amount);
+        s.setCount(amount);
         return s;
     }
     

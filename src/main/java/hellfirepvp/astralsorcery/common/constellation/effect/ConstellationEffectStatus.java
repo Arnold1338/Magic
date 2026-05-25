@@ -7,5 +7,5 @@ import net.minecraft.world.level.Level;
 
 public interface ConstellationEffectStatus
 {
-    boolean runStatusEffect(final World p0, final BlockPos p1, final int p2, final ConstellationEffectProperties p3, @Nullable final IMinorConstellation p4);
+    boolean runStatusEffect(final Level p0, final BlockPos p1, final int p2, final ConstellationEffectProperties p3, @Nullable final IMinorConstellation p4);
 }

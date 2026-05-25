@@ -291,7 +291,7 @@ public class NBTHelper
     @Nonnull
     public static CompoundTag getBlockStateNBTTag(BlockState state) {
         if (state.getBlock().getRegistryName() == null) {
-            state = Blocks.field_150350_a.defaultBlockState();
+            state = Blocks.AIR.defaultBlockState();
         }
         final CompoundTag tag = new CompoundTag();
         tag.putString("registryName", state.getBlock().getRegistryName().toString());
@@ -320,7 +320,7 @@ public class NBTHelper
     public static <T extends Comparable<T>> BlockState getBlockStateFromTag(final CompoundTag cmp, final BlockState _default) {
         final ResourceLocation key = new ResourceLocation(cmp.getString("registryName"));
         final Block block = (Block)ForgeRegistries.BLOCKS.getValue(key);
-        if (block == null || block == Blocks.field_150350_a) {
+        if (block == null || block == Blocks.AIR) {
             return _default;
         }
         BlockState state = block.defaultBlockState();
@@ -335,7 +335,7 @@ public class NBTHelper
                 try {
                     final Optional<T> opt = match.func_185929_b(valueStr);
                     if (opt.isPresent()) {
-                        state = (BlockState)state.func_206870_a((Property)match, (Comparable)opt.get());
+                        state = (BlockState)state.setValue((Property)match, (Comparable)opt.get());
                     }
                 }
                 catch (final Throwable t) {}

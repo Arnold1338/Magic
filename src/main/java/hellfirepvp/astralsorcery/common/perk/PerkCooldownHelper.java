@@ -56,7 +56,7 @@ public class PerkCooldownHelper
         if (!(perk instanceof CooldownPerk)) {
             return false;
         }
-        final TimeoutListContainer<UUID, ResourceLocation> container = player.func_130014_f_().isClientSide ? PerkCooldownHelper.perkCooldownsClient : PerkCooldownHelper.perkCooldowns;
+        final TimeoutListContainer<UUID, ResourceLocation> container = player.level().isClientSide ? PerkCooldownHelper.perkCooldownsClient : PerkCooldownHelper.perkCooldowns;
         final UUID playerUUID = player.getUUID();
         return container.hasList(playerUUID) && container.getOrCreateList(playerUUID).contains(perk.getRegistryName());
     }
@@ -65,7 +65,7 @@ public class PerkCooldownHelper
         if (!(perk instanceof CooldownPerk)) {
             return;
         }
-        final TimeoutListContainer<UUID, ResourceLocation> container = player.func_130014_f_().isClientSide ? PerkCooldownHelper.perkCooldownsClient : PerkCooldownHelper.perkCooldowns;
+        final TimeoutListContainer<UUID, ResourceLocation> container = player.level().isClientSide ? PerkCooldownHelper.perkCooldownsClient : PerkCooldownHelper.perkCooldowns;
         final UUID playerUUID = player.getUUID();
         container.getOrCreateList(playerUUID).setOrAddTimeout(cooldownTicks, perk.getRegistryName());
     }
@@ -74,7 +74,7 @@ public class PerkCooldownHelper
         if (!(perk instanceof CooldownPerk)) {
             return;
         }
-        final TimeoutListContainer<UUID, ResourceLocation> container = player.func_130014_f_().isClientSide ? PerkCooldownHelper.perkCooldownsClient : PerkCooldownHelper.perkCooldowns;
+        final TimeoutListContainer<UUID, ResourceLocation> container = player.level().isClientSide ? PerkCooldownHelper.perkCooldownsClient : PerkCooldownHelper.perkCooldowns;
         final UUID playerUUID = player.getUUID();
         if (!container.getOrCreateList(playerUUID).setTimeout(cooldownTicks, perk.getRegistryName())) {
             setCooldownActiveForPlayer(player, perk, cooldownTicks);
@@ -85,7 +85,7 @@ public class PerkCooldownHelper
         if (!(perk instanceof CooldownPerk)) {
             return -1;
         }
-        final TimeoutListContainer<UUID, ResourceLocation> container = player.func_130014_f_().isClientSide ? PerkCooldownHelper.perkCooldownsClient : PerkCooldownHelper.perkCooldowns;
+        final TimeoutListContainer<UUID, ResourceLocation> container = player.level().isClientSide ? PerkCooldownHelper.perkCooldownsClient : PerkCooldownHelper.perkCooldowns;
         final UUID playerUUID = player.getUUID();
         if (!container.hasList(playerUUID)) {
             return -1;

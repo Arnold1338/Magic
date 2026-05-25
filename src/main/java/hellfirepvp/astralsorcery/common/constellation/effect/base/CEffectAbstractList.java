@@ -79,7 +79,7 @@ public abstract class CEffectAbstractList<T extends ListEntry> extends Constella
     public abstract T recreateElement(final CompoundTag p0, final BlockPos p1);
     
     @Nullable
-    public abstract T createElement(final World p0, final BlockPos p1);
+    public abstract T createElement(final Level p0, final BlockPos p1);
     
     @Nonnull
     protected BlockPositionGenerator createPositionStrategy() {
@@ -92,7 +92,7 @@ public abstract class CEffectAbstractList<T extends ListEntry> extends Constella
     }
     
     private Predicate<BlockPos> createExcludeRitualPredicate() {
-        return pos -> (!pos.equals((Object)BlockPos.field_177992_a) && this.isLinkedRitual) || (!pos.equals((Object)TileRitualPedestal.RITUAL_ANCHOR_OFFEST) && (pos.getY() >= 3 || (!StructuresAS.STRUCT_RITUAL_PEDESTAL.hasBlockAt(pos) && !StructuresAS.STRUCT_RITUAL_PEDESTAL.hasBlockAt(pos.func_177977_b()) && !StructuresAS.STRUCT_RITUAL_PEDESTAL.hasBlockAt(pos.func_177979_c(2)) && !StructuresAS.STRUCT_RITUAL_PEDESTAL.hasBlockAt(pos.func_177979_c(3)) && !StructuresAS.STRUCT_RITUAL_PEDESTAL.hasBlockAt(pos.func_177979_c(4)))));
+        return pos -> (!pos.equals((Object)BlockPos.field_177992_a) && this.isLinkedRitual) || (!pos.equals((Object)TileRitualPedestal.RITUAL_ANCHOR_OFFEST) && (pos.getY() >= 3 || (!StructuresAS.STRUCT_RITUAL_PEDESTAL.hasBlockAt(pos) && !StructuresAS.STRUCT_RITUAL_PEDESTAL.hasBlockAt(pos.renderItem()) && !StructuresAS.STRUCT_RITUAL_PEDESTAL.hasBlockAt(pos.func_177979_c(2)) && !StructuresAS.STRUCT_RITUAL_PEDESTAL.hasBlockAt(pos.func_177979_c(3)) && !StructuresAS.STRUCT_RITUAL_PEDESTAL.hasBlockAt(pos.func_177979_c(4)))));
     }
     
     private Predicate<BlockPos> createExcludeRitualColumnPredicate() {
@@ -118,7 +118,7 @@ public abstract class CEffectAbstractList<T extends ListEntry> extends Constella
         this.elements.clear();
     }
     
-    public boolean isValid(final World world, final T element) {
+    public boolean isValid(final Level world, final T element) {
         return this.verifier.test(world, element.getPos(), world.getBlockState(element.getPos()));
     }
     
@@ -141,7 +141,7 @@ public abstract class CEffectAbstractList<T extends ListEntry> extends Constella
     }
     
     @Nonnull
-    public Either<T, BlockPos> peekNewPosition(final World world, final BlockPos pos, final ConstellationEffectProperties prop) {
+    public Either<T, BlockPos> peekNewPosition(final Level world, final BlockPos pos, final ConstellationEffectProperties prop) {
         if (this.excludesRitual || this.excludeRitualColumn) {
             MiscUtils.executeWithChunk((IWorldReader)world, pos, () -> this.isLinkedRitual = (MiscUtils.getTileAt((IBlockReader)world, pos, TileRitualLink.class, true) != null));
         }
@@ -171,7 +171,7 @@ public abstract class CEffectAbstractList<T extends ListEntry> extends Constella
     }
     
     @Nonnull
-    public Either<T, BlockPos> findNewPosition(final World world, final BlockPos pos, final ConstellationEffectProperties prop) {
+    public Either<T, BlockPos> findNewPosition(final Level world, final BlockPos pos, final ConstellationEffectProperties prop) {
         return (Either<T, BlockPos>)this.peekNewPosition(world, pos, prop).ifLeft(entry -> {
             if (!this.hasElement(entry.getPos())) {
                 this.elements.add((T)entry);

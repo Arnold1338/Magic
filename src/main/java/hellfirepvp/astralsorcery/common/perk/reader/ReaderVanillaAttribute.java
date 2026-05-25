@@ -34,7 +34,7 @@ public class ReaderVanillaAttribute extends PerkAttributeReader
     
     @Override
     public double getDefaultValue(final PerkAttributeMap statMap, final Player player, final LogicalSide side) {
-        return player.func_110148_a((Attribute)this.attribute.get()).func_111125_b();
+        return player.getAttribute((Attribute)this.attribute.get()).func_111125_b();
     }
     
     @Override
@@ -55,7 +55,7 @@ public class ReaderVanillaAttribute extends PerkAttributeReader
         double value = this.getDefaultValue(statMap, player, LogicalSide.CLIENT);
         value = statMap.modifyValue(player, ResearchHelper.getProgress(player, LogicalSide.CLIENT), this.getType(), (float)value);
         String postProcess = "";
-        final double post = AttributeEvent.postProcessVanilla(value, player.func_110148_a((Attribute)this.attribute.get()));
+        final double post = AttributeEvent.postProcessVanilla(value, player.getAttribute((Attribute)this.attribute.get()));
         if (Math.abs(value - post) > 1.0E-4 && (limit == null || Math.abs(post - limit) > 1.0E-4)) {
             if (Math.abs(post) >= 1.0E-4) {
                 postProcess = I18n.func_135052_a("perk.reader.astralsorcery.postprocess.default", new Object[] { this.formatForDisplay(post) });

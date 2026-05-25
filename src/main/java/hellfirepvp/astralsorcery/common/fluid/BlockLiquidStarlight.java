@@ -45,7 +45,7 @@ public class BlockLiquidStarlight extends FlowingFluidBlock
         super((Supplier)fluidSupplier, AbstractBlock.Properties.func_200945_a(Material.field_151586_h).func_200942_a().func_235838_a_(state -> 15).func_200943_b(100.0f).func_222380_e());
     }
     
-    public void func_196262_a(final BlockState state, final World world, final BlockPos pos, final Entity entity) {
+    public void func_196262_a(final BlockState state, final Level world, final BlockPos pos, final Entity entity) {
         super.func_196262_a(state, world, pos, entity);
         if ((int)state.getValue((Property)BlockLiquidStarlight.field_176367_b) != 0) {
             return;
@@ -55,25 +55,25 @@ public class BlockLiquidStarlight extends FlowingFluidBlock
         }
         else if (entity instanceof ItemEntity) {
             LiquidStarlightCraftingRegistry.tryCraft((ItemEntity)entity, pos);
-            if (!world.func_201670_d() && ((ItemEntity)entity).func_92059_d().isEmpty()) {
+            if (!world.level() && ((ItemEntity)entity).func_92059_d().isEmpty()) {
                 entity.func_70106_y();
             }
         }
     }
     
-    public void func_220082_b(final BlockState state, final World worldIn, final BlockPos pos, final BlockState oldState, final boolean isMoving) {
+    public void func_220082_b(final BlockState state, final Level worldIn, final BlockPos pos, final BlockState oldState, final boolean isMoving) {
         if (this.reactWithNeighbors(worldIn, pos, state)) {
             worldIn.func_205219_F_().func_205360_a(pos, (Object)state.getFluidState().func_206886_c(), this.getFluid().func_205569_a((IWorldReader)worldIn));
         }
     }
     
-    public void func_220069_a(final BlockState state, final World worldIn, final BlockPos pos, final Block blockIn, final BlockPos fromPos, final boolean isMoving) {
+    public void func_220069_a(final BlockState state, final Level worldIn, final BlockPos pos, final Block blockIn, final BlockPos fromPos, final boolean isMoving) {
         if (this.reactWithNeighbors(worldIn, pos, state)) {
             worldIn.func_205219_F_().func_205360_a(pos, (Object)state.getFluidState().func_206886_c(), this.getFluid().func_205569_a((IWorldReader)worldIn));
         }
     }
     
-    private boolean reactWithNeighbors(final World world, final BlockPos pos, final BlockState state) {
+    private boolean reactWithNeighbors(final Level world, final BlockPos pos, final BlockState state) {
         for (final Direction dir : Direction.values()) {
             final FluidState otherState = world.func_204610_c(pos.func_177972_a(dir));
             Fluid otherFluid = otherState.func_206886_c();
@@ -109,7 +109,7 @@ public class BlockLiquidStarlight extends FlowingFluidBlock
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_180655_c(final BlockState state, final World world, final BlockPos pos, final Random rand) {
+    public void func_180655_c(final BlockState state, final Level world, final BlockPos pos, final Random rand) {
         final Integer level = (Integer)state.getValue((Property)BlockLiquidStarlight.field_176367_b);
         final double percHeight = 1.0 - (level + 1.0) / 8.0;
         playLiquidStarlightBlockEffect(rand, new Vector3((Vector3i)pos).addY(percHeight * rand.nextFloat()), 1.0f);

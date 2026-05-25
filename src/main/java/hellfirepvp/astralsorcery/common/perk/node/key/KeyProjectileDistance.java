@@ -36,8 +36,8 @@ public class KeyProjectileDistance extends KeyPerk
     private void onProjDamage(final LivingHurtEvent event) {
         if (event.getSource().func_76352_a()) {
             final DamageSource source = event.getSource();
-            if (source.func_76346_g() != null && source.func_76346_g() instanceof Player) {
-                final Player player = (Player)source.func_76346_g();
+            if (source.getEnchantments( != null && source.getEnchantments( instanceof Player) {
+                final Player player = (Player)source.getEnchantments(;
                 final LogicalSide side = this.getSide((Entity)player);
                 final PlayerProgress prog = ResearchHelper.getProgress(player, side);
                 if (prog.getPerkData().hasPerkEffect(this)) {

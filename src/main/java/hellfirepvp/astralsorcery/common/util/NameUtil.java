@@ -8,11 +8,11 @@ import net.minecraft.resources.ResourceLocation;
 public class NameUtil
 {
     public static ResourceLocation prefixPath(final ResourceLocation key, final String prefix) {
-        return new ResourceLocation(key.func_110624_b(), prefix + key.func_110623_a());
+        return new ResourceLocation(key.func_110624_b(), prefix + key.addTransientModifier());
     }
     
     public static ResourceLocation suffixPath(final ResourceLocation key, final String suffix) {
-        return new ResourceLocation(key.func_110624_b(), key.func_110623_a() + suffix);
+        return new ResourceLocation(key.func_110624_b(), key.addTransientModifier() + suffix);
     }
     
     public static ResourceLocation fromClass(final Object object) {

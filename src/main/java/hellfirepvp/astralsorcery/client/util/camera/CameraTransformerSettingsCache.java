@@ -30,12 +30,12 @@ public abstract class CameraTransformerSettingsCache implements ICameraTransform
         this.viewBobbing = mc.field_71474_y.field_74336_f;
         this.hideGui = mc.field_71474_y.field_74319_N;
         this.thirdPersonView = mc.field_71474_y.func_243230_g();
-        final Player player = (Player)mc.field_71439_g;
+        final Player player = (Player)mc.player;
         this.flying = player.field_71075_bZ.field_75100_b;
-        this.startPosition = new Vector3(player.func_226277_ct_(), player.func_226278_cu_(), player.func_226281_cx_());
-        this.startYaw = player.field_70177_z;
-        this.startPitch = player.field_70125_A;
-        player.func_70016_h(0.0, 0.0, 0.0);
+        this.startPosition = new Vector3(player.getX(), player.getY(), player.getZ());
+        this.startYaw = player.yRot;
+        this.startPitch = player.xRot;
+        player.setDeltaMovement(0.0, 0.0, 0.0);
         this.active = true;
     }
     
@@ -46,10 +46,10 @@ public abstract class CameraTransformerSettingsCache implements ICameraTransform
             settings.field_74336_f = this.viewBobbing;
             settings.field_74319_N = this.hideGui;
             settings.func_243229_a(this.thirdPersonView);
-            final Player player = (Player)Minecraft.getInstance().field_71439_g;
+            final Player player = (Player)Minecraft.getInstance().player;
             player.field_71075_bZ.field_75100_b = this.flying;
             player.func_70080_a(this.startPosition.getX(), this.startPosition.getY(), this.startPosition.getZ(), this.startYaw, this.startPitch);
-            player.func_70016_h(0.0, 0.0, 0.0);
+            player.setDeltaMovement(0.0, 0.0, 0.0);
             this.active = false;
         }
     }
@@ -63,7 +63,7 @@ public abstract class CameraTransformerSettingsCache implements ICameraTransform
         settings.field_74319_N = true;
         settings.field_74336_f = false;
         settings.func_243229_a(PointOfView.THIRD_PERSON_BACK);
-        Minecraft.getInstance().field_71439_g.field_71075_bZ.field_75100_b = true;
-        Minecraft.getInstance().field_71439_g.func_70016_h(0.0, 0.0, 0.0);
+        Minecraft.getInstance().player.field_71075_bZ.field_75100_b = true;
+        Minecraft.getInstance().player.setDeltaMovement(0.0, 0.0, 0.0);
     }
 }

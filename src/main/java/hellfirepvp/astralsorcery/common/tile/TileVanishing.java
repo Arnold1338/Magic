@@ -33,12 +33,12 @@ public class TileVanishing extends TileEntityTick
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d() && this.getTicksExisted() % 5 == 0) {
+        if (!this.getLevel().level() && this.getTicksExisted() % 5 == 0) {
             boolean removeBlock = true;
-            final List<Player> players = this.func_145831_w().func_217357_a((Class)Player.class, TileVanishing.SEARCH_BOX.func_186670_a(this.func_174877_v()));
+            final List<Player> players = this.getLevel().func_217357_a((Class)Player.class, TileVanishing.SEARCH_BOX.func_186670_a(this.getBlockState()));
             for (final Player player : players) {
                 if (ItemMantle.getEffect((LivingEntity)player, ConstellationsAS.aevitas) != null) {
-                    final double yDiff = player.func_226278_cu_() - this.func_174877_v().getY();
+                    final double yDiff = player.getY() - this.getBlockState().getY();
                     if (player.func_233570_aj_() && yDiff >= 0.95 && yDiff <= 1.15) {
                         if (player.func_225608_bj_()) {
                             break;
@@ -54,10 +54,10 @@ public class TileVanishing extends TileEntityTick
                 }
             }
             if (removeBlock) {
-                this.func_145831_w().func_217377_a(this.func_174877_v(), false);
+                this.getLevel().func_217377_a(this.getBlockState(), false);
             }
         }
-        if (this.func_145831_w().func_201670_d()) {
+        if (this.getLevel().level()) {
             this.tickClient();
         }
     }

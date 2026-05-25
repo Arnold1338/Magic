@@ -48,8 +48,8 @@ public abstract class BlockAltar extends BlockStarlightNetwork implements Custom
         return this.type;
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
-        if (!world.func_201670_d() && player instanceof ServerPlayer) {
+    public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
+        if (!world.level() && player instanceof ServerPlayer) {
             final TileAltar altar = MiscUtils.getTileAt((IBlockReader)world, pos, TileAltar.class, true);
             if (altar != null) {
                 CustomContainerProvider<?> provider = null;
@@ -88,7 +88,7 @@ public abstract class BlockAltar extends BlockStarlightNetwork implements Custom
     }
     
     @Override
-    public void func_196243_a(final BlockState state, final World worldIn, final BlockPos pos, final BlockState newState, final boolean isMoving) {
+    public void func_196243_a(final BlockState state, final Level worldIn, final BlockPos pos, final BlockState newState, final boolean isMoving) {
         if (!(newState.getBlock() instanceof BlockAltar)) {
             final TileAltar ta = MiscUtils.getTileAt((IBlockReader)worldIn, pos, TileAltar.class, true);
             if (ta != null && !worldIn.isClientSide) {

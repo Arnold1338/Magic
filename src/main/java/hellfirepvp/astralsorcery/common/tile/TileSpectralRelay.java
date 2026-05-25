@@ -65,18 +65,18 @@ public class TileSpectralRelay extends TileEntityTick
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d()) {
-            if (!this.func_145831_w().isEmptyBlock(this.func_174877_v().above())) {
+        if (!this.getLevel().level()) {
+            if (!this.getLevel().isEmptyBlock(this.getBlockState().above())) {
                 final ItemStack in = this.getInventory().getStackInSlot(0);
                 if (!in.isEmpty()) {
-                    final ItemStack out = ItemUtils.copyStackWithSize(in, in.func_190916_E());
-                    ItemUtils.dropItem(this.func_145831_w(), this.func_174877_v().getX(), this.func_174877_v().getY(), this.func_174877_v().getZ(), out);
+                    final ItemStack out = ItemUtils.copyStackWithSize(in, in.getCount());
+                    ItemUtils.dropItem(this.getLevel(), this.getBlockState().getX(), this.getBlockState().getY(), this.getBlockState().getZ(), out);
                     this.getInventory().setStackInSlot(0, ItemStack.EMPTY);
                 }
             }
             if (this.hasMultiblock() && this.hasGlassLens() && this.altarPos != null) {
-                MiscUtils.executeWithChunk((IWorldReader)this.func_145831_w(), this.altarPos, () -> {
-                    final TileAltar ta = MiscUtils.getTileAt((IBlockReader)this.func_145831_w(), this.altarPos, TileAltar.class, true);
+                MiscUtils.executeWithChunk((IWorldReader)this.getLevel(), this.altarPos, () -> {
+                    final TileAltar ta = MiscUtils.getTileAt((IBlockReader)this.getLevel(), this.altarPos, TileAltar.class, true);
                     if (ta == null) {
                         this.updateAltarLinkState();
                     }
@@ -99,22 +99,22 @@ public class TileSpectralRelay extends TileEntityTick
         this.updateRelayProximity();
     }
     
-    public static void cascadeRelayProximityUpdates(final World world, final BlockPos pos) {
-        if (world.func_201670_d()) {
+    public static void cascadeRelayProximityUpdates(final Level world, final BlockPos pos) {
+        if (world.level()) {
             return;
         }
         foreachNearbyRelay(world, pos, TileSpectralRelay::updateRelayProximity);
     }
     
     private void updateRelayProximity() {
-        if (this.func_145831_w().func_201670_d() || !this.hasGlassLens()) {
+        if (this.getLevel().level() || !this.hasGlassLens()) {
             return;
         }
         this.setClosestRelayPos(null);
-        final BlockPos thisPos = this.func_174877_v();
+        final BlockPos thisPos = this.getBlockState();
         final Vec3 thisVPos = Vec3.func_237491_b_((Vector3i)thisPos);
-        foreachNearbyRelay(this.func_145831_w(), thisPos, relay -> {
-            final BlockPos relayPos = relay.func_174877_v();
+        foreachNearbyRelay(this.getLevel(), thisPos, relay -> {
+            final BlockPos relayPos = relay.getBlockState();
             if (!relayPos.equals((Object)thisPos)) {
                 final Vec3 relayVPos = Vec3.func_237491_b_((Vector3i)relayPos);
                 final BlockPos otherClosestPos = relay.closestRelayPos;
@@ -128,7 +128,7 @@ public class TileSpectralRelay extends TileEntityTick
         });
     }
     
-    private static void foreachNearbyRelay(final World world, final BlockPos pos, final Consumer<TileSpectralRelay> relayConsumer) {
+    private static void foreachNearbyRelay(final Level world, final BlockPos pos, final Consumer<TileSpectralRelay> relayConsumer) {
         final List<BlockPos> nearbyRelays = BlockDiscoverer.searchForBlocksAround(world, pos, 8, (world1, pos1, state) -> {
             final TileSpectralRelay relay;
             return state.getBlock() instanceof BlockSpectralRelay && (relay = MiscUtils.getTileAt((IBlockReader)world1, pos1, TileSpectralRelay.class, false)) != null && relay.hasGlassLens() && relay.hasMultiblock();
@@ -169,9 +169,9 @@ public class TileSpectralRelay extends TileEntityTick
     
     private void provideStarlight(final TileAltar ta) {
         if (this.doesSeeSky()) {
-            float heightAmount = Mth.func_76131_a((float)Math.pow(this.func_174877_v().getY() / 7.0f, 1.5) / 60.0f, 0.0f, 1.0f);
+            float heightAmount = Mth.canEnchant((float)Math.pow(this.getBlockState().getY() / 7.0f, 1.5) / 60.0f, 0.0f, 1.0f);
             heightAmount = 0.7f + heightAmount * 0.3f;
-            heightAmount *= DayTimeHelper.getCurrentDaytimeDistribution(this.func_145831_w());
+            heightAmount *= DayTimeHelper.getCurrentDaytimeDistribution(this.getLevel());
             heightAmount *= this.proximityMultiplier;
             if (heightAmount > 1.0E-4) {
                 ta.collectStarlight(heightAmount * 45.0f, AltarCollectionCategory.RELAY);
@@ -208,8 +208,8 @@ public class TileSpectralRelay extends TileEntityTick
     }
     
     private void updateAltarPos() {
-        final Set<BlockPos> altarPositions = BlockDiscoverer.searchForTileEntitiesAround(this.func_145831_w(), this.func_174877_v(), 16, tile -> tile instanceof TileAltar);
-        final Vec3 thisPos = Vec3.func_237491_b_((Vector3i)this.func_174877_v());
+        final Set<BlockPos> altarPositions = BlockDiscoverer.searchForTileEntitiesAround(this.getLevel(), this.getBlockState(), 16, tile -> tile instanceof TileAltar);
+        final Vec3 thisPos = Vec3.func_237491_b_((Vector3i)this.getBlockState());
         BlockPos closestAltar = null;
         for (final BlockPos other : altarPositions) {
             if (closestAltar == null || other.func_218138_a((IPosition)thisPos, false) < closestAltar.func_218138_a((IPosition)thisPos, false)) {
@@ -227,7 +227,7 @@ public class TileSpectralRelay extends TileEntityTick
             this.proximityMultiplier = 1.0f;
         }
         else {
-            this.proximityMultiplier = Mth.func_76131_a((float)new Vector3((Vector3i)this.func_174877_v()).distance((Vector3i)this.closestRelayPos) / 8.0f, 0.0f, 1.0f);
+            this.proximityMultiplier = Mth.canEnchant((float)new Vector3((Vector3i)this.getBlockState()).distance((Vector3i)this.closestRelayPos) / 8.0f, 0.0f, 1.0f);
         }
     }
     

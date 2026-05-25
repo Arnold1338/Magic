@@ -5,9 +5,9 @@ import net.minecraft.world.level.Level;
 
 public interface IConstellationSpecialShowup extends IConstellation
 {
-    boolean doesShowUp(final World p0, final long p1);
+    boolean doesShowUp(final Level p0, final long p1);
     
-    float getDistribution(final World p0, final long p1, final boolean p2);
+    float getDistribution(final Level p0, final long p1, final boolean p2);
     
     default long dayToWorldTime(final long day) {
         return day * (int)GeneralConfig.CONFIG.dayLength.get();

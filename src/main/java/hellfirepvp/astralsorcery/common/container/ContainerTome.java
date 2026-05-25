@@ -41,19 +41,19 @@ public class ContainerTome extends Container
             for (int j = 0; j < 9; ++j) {
                 final int index = j + i * 9 + 9;
                 if (index == this.tomeIndex) {
-                    this.func_75146_a((Slot)new SlotUnclickable((Container)playerInv, index, 8 + j * 18, 84 + i * 18));
+                    this.render((Slot)new SlotUnclickable((Container)playerInv, index, 8 + j * 18, 84 + i * 18));
                 }
                 else {
-                    this.func_75146_a(new Slot((Container)playerInv, index, 8 + j * 18, 84 + i * 18));
+                    this.render(new Slot((Container)playerInv, index, 8 + j * 18, 84 + i * 18));
                 }
             }
         }
         for (int i = 0; i < 9; ++i) {
             if (i == this.tomeIndex) {
-                this.func_75146_a((Slot)new SlotUnclickable((Container)playerInv, i, 8 + i * 18, 142));
+                this.render((Slot)new SlotUnclickable((Container)playerInv, i, 8 + i * 18, 142));
             }
             else {
-                this.func_75146_a(new Slot((Container)playerInv, i, 8 + i * 18, 142));
+                this.render(new Slot((Container)playerInv, i, 8 + i * 18, 142));
             }
         }
     }
@@ -61,7 +61,7 @@ public class ContainerTome extends Container
     private void buildSlots(final IItemHandler handle) {
         for (int i = 0; i < 3; ++i) {
             for (int xx = 0; xx < 9; ++xx) {
-                this.func_75146_a((Slot)new SlotConstellationPaper(this, handle, i * 9 + xx, 8 + xx * 18, 13 + i * 18));
+                this.render((Slot)new SlotConstellationPaper(this, handle, i * 9 + xx, 8 + xx * 18, 13 + i * 18));
             }
         }
     }
@@ -88,13 +88,13 @@ public class ContainerTome extends Container
             else if (!this.func_75135_a(itemstack2, 0, 36, false)) {
                 return ItemStack.EMPTY;
             }
-            if (itemstack2.func_190916_E() == 0) {
+            if (itemstack2.getCount() == 0) {
                 slot.func_75215_d(ItemStack.EMPTY);
             }
             else {
                 slot.func_75218_e();
             }
-            if (itemstack2.func_190916_E() == itemstack.func_190916_E()) {
+            if (itemstack2.getCount() == itemstack.getCount()) {
                 return ItemStack.EMPTY;
             }
             slot.func_190901_a(playerIn, itemstack2);

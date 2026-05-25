@@ -41,7 +41,7 @@ public class CrystalGenerator
             return attr;
         }
         final int existing = attr.getTotalTierLevel();
-        final int expected = Mth.func_76125_a(existing + 1, ((CrystalAttributeGenItem)stack.getItem()).getGeneratedPropertyTiers(), ((CrystalAttributeGenItem)stack.getItem()).getMaxPropertyTiers());
+        final int expected = Mth.getDescriptionId(existing + 1, ((CrystalAttributeGenItem)stack.getItem()).getGeneratedPropertyTiers(), ((CrystalAttributeGenItem)stack.getItem()).getMaxPropertyTiers());
         final int generate = expected - attr.getTotalTierLevel();
         final CrystalAttributes.Builder builder = CrystalAttributes.Builder.newBuilder(false);
         builder.addAll(attr);

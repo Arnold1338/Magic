@@ -20,9 +20,9 @@ public class BlockAltarAttunement extends BlockAltar
     }
     
     protected VoxelShape createShape() {
-        final VoxelShape base = Block.func_208617_a(0.0, 0.0, 0.0, 16.0, 2.0, 16.0);
-        final VoxelShape pillar = Block.func_208617_a(4.0, 2.0, 4.0, 12.0, 10.0, 12.0);
-        final VoxelShape head = Block.func_208617_a(0.0, 10.0, 0.0, 16.0, 16.0, 16.0);
+        final VoxelShape base = Block.of(0.0, 0.0, 0.0, 16.0, 2.0, 16.0);
+        final VoxelShape pillar = Block.of(4.0, 2.0, 4.0, 12.0, 10.0, 12.0);
+        final VoxelShape head = Block.of(0.0, 10.0, 0.0, 16.0, 16.0, 16.0);
         return VoxelUtils.combineAll(BooleanOp.field_223244_o_, base, pillar, head);
     }
     

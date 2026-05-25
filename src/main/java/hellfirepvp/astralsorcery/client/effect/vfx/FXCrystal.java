@@ -60,20 +60,20 @@ public class FXCrystal extends EntityVisualFX implements EntityDynamicFX
         final float scale = this.getScale(pTicks);
         if (this.lightRayColor != null) {
             final long seed = 5863439008313086302L;
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_(vec.getX(), vec.getY(), vec.getZ());
             RenderingDrawUtils.renderLightRayFan(renderStack, (MultiBufferSource)drawBuffer, this.lightRayColor, seed, 5, 1.0f, 50);
-            renderStack.func_227865_b_();
+            renderStack.scale();
             drawBuffer.draw();
         }
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(vec.getX(), vec.getY() - 0.05000000074505806, vec.getZ());
-        renderStack.func_227862_a_(scale, scale, scale);
-        renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_((float)this.rotation.getX()));
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_((float)this.rotation.getY()));
-        renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_((float)this.rotation.getZ()));
+        renderStack.translate(scale, scale, scale);
+        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()(float)this.rotation.getX()));
+        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()(float)this.rotation.getY()));
+        renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()(float)this.rotation.getZ()));
         BufferDecoratorBuilder.withColor((r, g, b, a) -> new int[] { c.getRed(), c.getGreen(), c.getBlue(), alpha }).decorate(drawBuffer.getBuffer(ctx.getRenderType()), decorated -> ObjModelRender.renderCrystal(renderStack, decorated, drawBuffer::draw));
-        renderStack.func_227865_b_();
+        renderStack.scale();
         if (this.alternativeTexture != null) {
             ctx.getSprite().bindTexture();
         }

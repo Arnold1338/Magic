@@ -10,7 +10,7 @@ import net.minecraft.world.item.Item;
 public class ItemCelestialCrystal extends ItemCrystalBase
 {
     public ItemCelestialCrystal() {
-        super(new Item.Properties().func_200916_a(CommonProxy.ITEM_GROUP_AS).func_208103_a(CommonProxy.RARITY_CELESTIAL));
+        super(new Item.Properties().hasModifier(CommonProxy.ITEM_GROUP_AS).func_208103_a(CommonProxy.RARITY_CELESTIAL));
     }
     
     @Override

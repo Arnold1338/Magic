@@ -29,7 +29,7 @@ public class JournalPageLiquidInfusion implements JournalPage
                 throw new IllegalStateException("Not connected to a server, but calling GUI code?");
             }
             else {
-                return (LiquidInfusion)mgr.func_215366_a((RecipeType)RecipeTypesAS.TYPE_INFUSION.getType()).values().stream().map(r -> (LiquidInfusion)r).filter(r -> outputTest.test(r.getOutput(ItemStack.EMPTY))).findFirst().orElse(null);
+                return (LiquidInfusion)mgr.getRecipeFor((RecipeType)RecipeTypesAS.TYPE_INFUSION.getType()).values().stream().map(r -> (LiquidInfusion)r).filter(r -> outputTest.test(r.getOutput(ItemStack.EMPTY))).findFirst().orElse(null);
             }
         });
     }

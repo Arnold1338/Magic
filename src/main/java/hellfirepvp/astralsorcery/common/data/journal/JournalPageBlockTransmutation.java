@@ -29,7 +29,7 @@ public class JournalPageBlockTransmutation implements JournalPage
                 throw new IllegalStateException("Not connected to a server, but calling GUI code?");
             }
             else {
-                return (BlockTransmutation)mgr.func_215366_a((RecipeType)RecipeTypesAS.TYPE_BLOCK_TRANSMUTATION.getType()).values().stream().map(r -> (BlockTransmutation)r).filter(r -> outputTest.test(r.getOutputDisplay())).findFirst().orElse(null);
+                return (BlockTransmutation)mgr.getRecipeFor((RecipeType)RecipeTypesAS.TYPE_BLOCK_TRANSMUTATION.getType()).values().stream().map(r -> (BlockTransmutation)r).filter(r -> outputTest.test(r.getOutputDisplay())).findFirst().orElse(null);
             }
         });
     }

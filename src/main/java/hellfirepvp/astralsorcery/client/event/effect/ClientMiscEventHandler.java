@@ -54,7 +54,7 @@ public class ClientMiscEventHandler
         if (ClientMiscEventHandler.attemptLoad && ClientMiscEventHandler.obj == null) {
             return;
         }
-        if (player.func_184218_aH() || player.func_184613_cA()) {
+        if (player.isInWater() || player.func_184613_cA()) {
             return;
         }
         final Vec3 motion = player.func_213322_ci();
@@ -63,21 +63,21 @@ public class ClientMiscEventHandler
         final float r = ma * (Math.abs(ClientScheduler.getClientTick() % 80L - 40L) / 40.0f) + (65.0f - ma) * Math.max(0.0f, Math.min(1.0f, (float)new Vector3(motion.field_72450_a, 0.0, motion.field_72449_c).length()));
         final float rot = RenderingVectorUtils.interpolateRotation(player.field_70760_ar, player.field_70761_aq, event.getPartialRenderTick());
         final PoseStack renderStack = event.getMatrixStack();
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         final float swimAngle = player.func_205015_b(event.getPartialRenderTick());
         if (swimAngle > 0.0f) {
-            final float waterPitch = player.func_70090_H() ? (-90.0f - player.field_70125_A) : -90.0f;
+            final float waterPitch = player.func_70090_H() ? (-90.0f - player.xRot) : -90.0f;
             final float bodySwimAngle = Mth.func_219799_g(swimAngle, 0.0f, waterPitch);
-            renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(180.0f - rot));
-            renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(bodySwimAngle));
+            renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f - rot));
+            renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()bodySwimAngle));
             if (player.func_213314_bj()) {
                 renderStack.func_227861_a_(0.0, -1.0, 0.30000001192092896);
             }
         }
         else {
-            renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(180.0f - rot));
+            renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f - rot));
         }
-        renderStack.func_227862_a_(0.07f, 0.07f, 0.07f);
+        renderStack.translate(0.07f, 0.07f, 0.07f);
         renderStack.func_227861_a_(0.0, 5.5, 0.7 - r / ma * (f ? 0.5 : 0.2));
         if (ClientMiscEventHandler.vboR == null) {
             ClientMiscEventHandler.vboR = ClientMiscEventHandler.obj.batchOnly(Tessellator.func_178181_a().func_178180_c(), "wR");
@@ -88,25 +88,25 @@ public class ClientMiscEventHandler
         RenderTypesAS.MODEL_DEMON_WINGS.func_228547_a_();
         RenderSystem.enableTexture();
         Minecraft.getInstance().func_110434_K().func_110577_a(ClientMiscEventHandler.tex);
-        renderStack.func_227860_a_();
-        renderStack.func_227863_a_(Vector3f.field_229180_c_.func_229187_a_(20.0f + r));
+        renderStack.popPose();
+        renderStack.mulPose(Vector3f.field_229180_c_.getMultiBufferSource()20.0f + r));
         ClientMiscEventHandler.vboR.func_177359_a();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227892_a_(0L);
-        ClientMiscEventHandler.vboR.func_227874_a_(renderStack.func_227866_c_().func_227870_a_(), 7);
+        ClientMiscEventHandler.vboR.func_227874_a_(renderStack.last().translate(), 7);
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227895_d_();
         VertexBuffer.func_177361_b();
-        renderStack.func_227865_b_();
-        renderStack.func_227860_a_();
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(20.0f + r));
+        renderStack.scale();
+        renderStack.popPose();
+        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()20.0f + r));
         ClientMiscEventHandler.vboL.func_177359_a();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227892_a_(0L);
-        ClientMiscEventHandler.vboL.func_227874_a_(renderStack.func_227866_c_().func_227870_a_(), 7);
+        ClientMiscEventHandler.vboL.func_227874_a_(renderStack.last().translate(), 7);
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227895_d_();
         VertexBuffer.func_177361_b();
-        renderStack.func_227865_b_();
+        renderStack.scale();
         BlockAtlasTexture.getInstance().bindTexture();
         RenderTypesAS.MODEL_DEMON_WINGS.func_228549_b_();
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     static {

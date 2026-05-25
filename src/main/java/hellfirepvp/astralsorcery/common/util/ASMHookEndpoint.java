@@ -15,7 +15,7 @@ public class ASMHookEndpoint
 {
     public static double getOverriddenSeenEntityReachMaximum(final ServerPlayNetHandler handler, final double original) {
         final Player player = (Player)handler.field_147369_b;
-        final PlayerProgress prog = ResearchHelper.getProgress(player, player.func_130014_f_().func_201670_d() ? LogicalSide.CLIENT : LogicalSide.SERVER);
+        final PlayerProgress prog = ResearchHelper.getProgress(player, player.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER);
         if (prog.isValid() && prog.getPerkData().hasPerkEffect(perk -> perk instanceof KeyEntityReach)) {
             return 9.99999999E8;
         }
@@ -24,9 +24,9 @@ public class ASMHookEndpoint
     
     @OnlyIn(Dist.CLIENT)
     public static double getOverriddenCreativeEntityReach(final double defaultExtendedReach) {
-        final PlayerProgress prog = ResearchHelper.getProgress((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT);
+        final PlayerProgress prog = ResearchHelper.getProgress((Player)Minecraft.getInstance().player, LogicalSide.CLIENT);
         if (prog.isValid() && prog.getPerkData().hasPerkEffect(perk -> perk instanceof KeyEntityReach)) {
-            return Math.max(defaultExtendedReach, Minecraft.getInstance().field_71442_b.func_78757_d());
+            return Math.max(defaultExtendedReach, Minecraft.getInstance().gameMode.func_78757_d());
         }
         return defaultExtendedReach;
     }

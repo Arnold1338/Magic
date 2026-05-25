@@ -63,20 +63,20 @@ public class ItemCrystalAxe extends ItemCrystalTierItem implements TypeEnchantab
     }
     
     public InteractionResult func_195939_a(final ItemUseContext context) {
-        final World world = context.func_195991_k();
+        final Level world = context.func_195991_k();
         final BlockPos blockpos = context.func_195995_a();
         final BlockState blockstate = world.getBlockState(blockpos);
         final BlockState block = blockstate.getToolModifiedState(world, blockpos, context.func_195999_j(), context.func_195996_i(), ToolType.AXE);
         if (block != null) {
             final Player playerentity = context.func_195999_j();
             world.func_184133_a(playerentity, blockpos, SoundEvents.field_203255_y, SoundSource.BLOCKS, 1.0f, 1.0f);
-            if (!world.func_201670_d()) {
+            if (!world.level()) {
                 world.func_180501_a(blockpos, block, 11);
                 if (playerentity != null) {
                     context.func_195996_i().func_222118_a(1, (LivingEntity)playerentity, stack -> stack.func_213334_d(context.func_221531_n()));
                 }
             }
-            return InteractionResult.func_233537_a_(world.func_201670_d());
+            return InteractionResult.func_233537_a_(world.level());
         }
         return InteractionResult.PASS;
     }

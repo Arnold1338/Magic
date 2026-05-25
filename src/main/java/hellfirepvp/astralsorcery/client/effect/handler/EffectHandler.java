@@ -84,7 +84,7 @@ public final class EffectHandler
         }
         Entity rView = Minecraft.getInstance().func_175606_aa();
         if (rView == null) {
-            rView = (Entity)Minecraft.getInstance().field_71439_g;
+            rView = (Entity)Minecraft.getInstance().player;
         }
         if (rView == null) {
             cleanUp();

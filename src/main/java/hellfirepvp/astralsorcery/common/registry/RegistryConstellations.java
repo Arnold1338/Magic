@@ -208,13 +208,13 @@ public class RegistryConstellations
         register(ConstellationsAS.mineralis);
         ConstellationsAS.horologium = new Constellation.WeakSpecial("horologium", ColorsAS.CONSTELLATION_HOROLOGIUM) {
             @Override
-            public boolean doesShowUp(final World world, final long day) {
+            public boolean doesShowUp(final Level world, final long day) {
                 final WorldContext ctx = SkyHandler.getContext(world);
                 return ctx != null && ctx.getCelestialEventHandler().getSolarEclipse().isActiveDay();
             }
             
             @Override
-            public float getDistribution(final World world, final long day, final boolean showsUp) {
+            public float getDistribution(final Level world, final long day, final boolean showsUp) {
                 return showsUp ? 1.0f : 0.25f;
             }
         };
@@ -274,13 +274,13 @@ public class RegistryConstellations
         register(ConstellationsAS.fornax);
         ConstellationsAS.pelotrio = new Constellation.WeakSpecial("pelotrio", ColorsAS.CONSTELLATION_PELOTRIO) {
             @Override
-            public boolean doesShowUp(final World world, final long day) {
+            public boolean doesShowUp(final Level world, final long day) {
                 final MoonPhase phase = MoonPhase.fromWorld((IWorld)world);
                 return phase == MoonPhase.NEW || phase == MoonPhase.FULL;
             }
             
             @Override
-            public float getDistribution(final World world, final long day, final boolean showingUp) {
+            public float getDistribution(final Level world, final long day, final boolean showingUp) {
                 if (showingUp) {
                     return 1.0f;
                 }

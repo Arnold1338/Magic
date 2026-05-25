@@ -60,7 +60,7 @@ public class EntityFlare extends FlyingMob
     private int followingEntityId;
     private Object texClientSprite;
     
-    public EntityFlare(final World worldIn) {
+    public EntityFlare(final Level worldIn) {
         super((EntityType)EntityTypesAS.FLARE, worldIn);
         this.entityAge = 0;
         this.currentMoveTarget = null;
@@ -77,8 +77,8 @@ public class EntityFlare extends FlyingMob
         return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233818_a_, 1.0);
     }
     
-    public static void spawnAmbientFlare(final World world, final BlockPos at) {
-        if (world.func_201670_d() || (int)EntityConfig.CONFIG.flareAmbientSpawnChance.get() <= 0) {
+    public static void spawnAmbientFlare(final Level world, final BlockPos at) {
+        if (world.level() || (int)EntityConfig.CONFIG.flareAmbientSpawnChance.get() <= 0) {
             return;
         }
         final float nightPercent = DayTimeHelper.getCurrentDaytimeDistribution(world);
@@ -88,7 +88,7 @@ public class EntityFlare extends FlyingMob
                     final EntityFlare flare = (EntityFlare)EntityTypesAS.FLARE.func_200721_a(world);
                     flare.setPos(at.getX() + 0.5, at.getY() + 0.5, at.getZ() + 0.5);
                     flare.setAmbient(true);
-                    world.func_217376_c((Entity)flare);
+                    world.addFreshEntity((Entity)flare);
                 }
             });
         }
@@ -113,7 +113,7 @@ public class EntityFlare extends FlyingMob
         if (this.followingEntityId == -1) {
             return null;
         }
-        final Entity e = this.field_70170_p.func_73045_a(this.followingEntityId);
+        final Entity e = this.level().getEntityById(this.followingEntityId);
         if (e == null || !e.isAlive() || !(e instanceof LivingEntity)) {
             return null;
         }
@@ -123,22 +123,22 @@ public class EntityFlare extends FlyingMob
     public void func_70071_h_() {
         super.tick();
         ++this.entityAge;
-        if (this.func_130014_f_().func_201670_d()) {
+        if (this.level().level()) {
             this.tickClient();
         }
         else {
-            if (this.isAmbient() && this.entityAge > 600 && this.field_70146_Z.nextInt(600) == 0) {
+            if (this.isAmbient() && this.entityAge > 600 && this.random.nextInt(600) == 0) {
                 DamageUtil.attackEntityFrom((Entity)this, CommonProxy.DAMAGE_SOURCE_STELLAR, 1.0f);
             }
             if (this.isAlive()) {
-                if ((boolean)EntityConfig.CONFIG.flareAttackBats.get() && this.field_70146_Z.nextInt(30) == 0) {
-                    final BatEntity closest = EntityUtils.getClosestEntity((IWorld)this.func_130014_f_(), BatEntity.class, this.func_174813_aQ().func_186662_g(10.0), Vector3.atEntityCenter((Entity)this));
+                if ((boolean)EntityConfig.CONFIG.flareAttackBats.get() && this.random.nextInt(30) == 0) {
+                    final BatEntity closest = EntityUtils.getClosestEntity((IWorld)this.level(), BatEntity.class, this.func_174813_aQ().func_186662_g(10.0), Vector3.atEntityCenter((Entity)this));
                     if (closest != null) {
                         this.doLightningAttack((LivingEntity)closest, 100.0f);
                     }
                 }
-                if ((boolean)EntityConfig.CONFIG.flareAttackPhantoms.get() && this.field_70146_Z.nextInt(30) == 0) {
-                    final PhantomEntity closest2 = EntityUtils.getClosestEntity((IWorld)this.func_130014_f_(), PhantomEntity.class, this.func_174813_aQ().func_186662_g(10.0), Vector3.atEntityCenter((Entity)this));
+                if ((boolean)EntityConfig.CONFIG.flareAttackPhantoms.get() && this.random.nextInt(30) == 0) {
+                    final PhantomEntity closest2 = EntityUtils.getClosestEntity((IWorld)this.level(), PhantomEntity.class, this.func_174813_aQ().func_186662_g(10.0), Vector3.atEntityCenter((Entity)this));
                     if (closest2 != null) {
                         this.doLightningAttack((LivingEntity)closest2, 100.0f);
                     }
@@ -148,10 +148,10 @@ public class EntityFlare extends FlyingMob
                     if (atTarget) {
                         this.currentMoveTarget = null;
                     }
-                    if (this.currentMoveTarget == null && this.field_70146_Z.nextInt(150) == 0) {
-                        final BlockPos newTarget = this.func_233580_cy_().offset(this.field_70146_Z.nextInt(31) * (this.field_70146_Z.nextBoolean() ? 1 : -1), this.field_70146_Z.nextInt(31) * (this.field_70146_Z.nextBoolean() ? 1 : -1), this.field_70146_Z.nextInt(31) * (this.field_70146_Z.nextBoolean() ? 1 : -1));
+                    if (this.currentMoveTarget == null && this.random.nextInt(150) == 0) {
+                        final BlockPos newTarget = this.func_233580_cy_().offset(this.random.nextInt(31) * (this.random.nextBoolean() ? 1 : -1), this.random.nextInt(31) * (this.random.nextBoolean() ? 1 : -1), this.random.nextInt(31) * (this.random.nextBoolean() ? 1 : -1));
                         if (newTarget.getY() > 1 && newTarget.getY() < 254 && new Vector3((Vector3i)newTarget).distance((Entity)this) >= 5.0) {
-                            MiscUtils.executeWithChunk((IWorldReader)this.func_130014_f_(), newTarget, () -> this.currentMoveTarget = new Vector3((Vector3i)newTarget));
+                            MiscUtils.executeWithChunk((IWorldReader)this.level(), newTarget, () -> this.currentMoveTarget = new Vector3((Vector3i)newTarget));
                         }
                     }
                 }
@@ -199,8 +199,8 @@ public class EntityFlare extends FlyingMob
                     }
                 }
                 final LivingEntity target = this.func_70638_az();
-                if (target != null && target.isAlive() && target.func_70032_d((Entity)this) < 10.0f && this.field_70146_Z.nextInt(40) == 0) {
-                    DamageUtil.shotgunAttack(target, e -> this.doLightningAttack(e, 2.0f + this.field_70146_Z.nextFloat() * 2.0f));
+                if (target != null && target.isAlive() && target.func_70032_d((Entity)this) < 10.0f && this.random.nextInt(40) == 0) {
+                    DamageUtil.shotgunAttack(target, e -> this.doLightningAttack(e, 2.0f + this.random.nextFloat() * 2.0f));
                 }
                 this.doMovement();
             }
@@ -215,9 +215,9 @@ public class EntityFlare extends FlyingMob
         else if (this.isAlive()) {
             EffectHelper.refresh(this.texClientSprite, EffectTemplatesAS.FACING_SPRITE);
         }
-        if (this.field_70146_Z.nextBoolean()) {
-            final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.atEntityCorner((Entity)this).add(this.field_70146_Z.nextFloat() * 0.2 * (this.field_70146_Z.nextBoolean() ? 1 : -1), this.func_213302_cg() / 2.0f + this.field_70146_Z.nextFloat() * 0.2 * (this.field_70146_Z.nextBoolean() ? 1 : -1), this.field_70146_Z.nextFloat() * 0.2 * (this.field_70146_Z.nextBoolean() ? 1 : -1))).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.15f + this.field_70146_Z.nextFloat() * 0.1f);
-            if (this.field_70146_Z.nextBoolean()) {
+        if (this.random.nextBoolean()) {
+            final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.atEntityCorner((Entity)this).add(this.random.nextFloat() * 0.2 * (this.random.nextBoolean() ? 1 : -1), this.func_213302_cg() / 2.0f + this.random.nextFloat() * 0.2 * (this.random.nextBoolean() ? 1 : -1), this.random.nextFloat() * 0.2 * (this.random.nextBoolean() ? 1 : -1))).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.15f + this.random.nextFloat() * 0.1f);
+            if (this.random.nextBoolean()) {
                 p.color(VFXColorFunction.WHITE);
             }
         }
@@ -231,15 +231,15 @@ public class EntityFlare extends FlyingMob
             buf.writeInt(ColorsAS.EFFECT_LIGHTNING.getRGB());
             return;
         });
-        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.func_130014_f_(), (Vector3i)this.func_233580_cy_(), 32.0));
+        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.level(), (Vector3i)this.func_233580_cy_(), 32.0));
     }
     
     private void doMovement() {
         if (this.currentMoveTarget != null) {
             final Vec3 motion = this.func_213322_ci();
-            final double motionX = (Math.signum(this.currentMoveTarget.getX() - this.func_226277_ct_()) * 0.5 - motion.func_82615_a()) * (this.isAmbient() ? 0.01 : 0.025);
-            final double motionY = (Math.signum(this.currentMoveTarget.getY() - this.func_226278_cu_()) * 0.7 - motion.func_82617_b()) * (this.isAmbient() ? 0.01 : 0.025);
-            final double motionZ = (Math.signum(this.currentMoveTarget.getZ() - this.func_226281_cx_()) * 0.5 - motion.func_82616_c()) * (this.isAmbient() ? 0.01 : 0.025);
+            final double motionX = (Math.signum(this.currentMoveTarget.getX() - this.getX()) * 0.5 - motion.getX()) * (this.isAmbient() ? 0.01 : 0.025);
+            final double motionY = (Math.signum(this.currentMoveTarget.getY() - this.getY()) * 0.7 - motion.getY()) * (this.isAmbient() ? 0.01 : 0.025);
+            final double motionZ = (Math.signum(this.currentMoveTarget.getZ() - this.getZ()) * 0.5 - motion.getZ()) * (this.isAmbient() ? 0.01 : 0.025);
             this.func_213317_d(motion.func_72441_c(motionX, motionY, motionZ));
             this.field_191988_bg = 0.2f;
         }
@@ -278,7 +278,7 @@ public class EntityFlare extends FlyingMob
     
     protected void func_70609_aI() {
         this.func_70106_y();
-        if (this.func_130014_f_().func_201670_d()) {
+        if (this.level().level()) {
             this.tickClientDeathEffects();
         }
     }
@@ -291,15 +291,15 @@ public class EntityFlare extends FlyingMob
         final List<Vector3> posList = MiscUtils.getCirclePositions(Vector3.atEntityCorner((Entity)this).addY(this.func_213302_cg() / 2.0f), Vector3.positiveYRandom(), 0.3, 10);
         posList.addAll(MiscUtils.getCirclePositions(Vector3.atEntityCorner((Entity)this).addY(this.func_213302_cg() / 2.0f), Vector3.positiveYRandom(), 0.8, 20));
         posList.forEach(pos -> {
-            final FXFacingParticle p2 = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(pos.add(Vector3.random().multiply(0.45f))).setScaleMultiplier(0.1f + this.field_70146_Z.nextFloat() * 0.25f).alpha(VFXAlphaFunction.FADE_OUT).setMaxAge(30 + this.field_70146_Z.nextInt(40));
-            if (this.field_70146_Z.nextBoolean()) {
+            final FXFacingParticle p2 = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(pos.add(Vector3.random().multiply(0.45f))).setScaleMultiplier(0.1f + this.random.nextFloat() * 0.25f).alpha(VFXAlphaFunction.FADE_OUT).setMaxAge(30 + this.random.nextInt(40));
+            if (this.random.nextBoolean()) {
                 p2.color(VFXColorFunction.WHITE);
             }
             return;
         });
         for (int i = 0; i < 10; ++i) {
-            final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.atEntityCorner((Entity)this).add(this.field_70146_Z.nextFloat() * 0.15 * (this.field_70146_Z.nextBoolean() ? 1 : -1), this.func_213302_cg() / 2.0f + this.field_70146_Z.nextFloat() * 0.15 * (this.field_70146_Z.nextBoolean() ? 1 : -1), this.field_70146_Z.nextFloat() * 0.15 * (this.field_70146_Z.nextBoolean() ? 1 : -1))).alpha(VFXAlphaFunction.FADE_OUT).setMotion(Vector3.random().multiply(0.05f)).setScaleMultiplier(0.25f + this.field_70146_Z.nextFloat() * 0.1f).setMaxAge(40 + this.field_70146_Z.nextInt(40));
-            if (this.field_70146_Z.nextBoolean()) {
+            final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.atEntityCorner((Entity)this).add(this.random.nextFloat() * 0.15 * (this.random.nextBoolean() ? 1 : -1), this.func_213302_cg() / 2.0f + this.random.nextFloat() * 0.15 * (this.random.nextBoolean() ? 1 : -1), this.random.nextFloat() * 0.15 * (this.random.nextBoolean() ? 1 : -1))).alpha(VFXAlphaFunction.FADE_OUT).setMotion(Vector3.random().multiply(0.05f)).setScaleMultiplier(0.25f + this.random.nextFloat() * 0.1f).setMaxAge(40 + this.random.nextInt(40));
+            if (this.random.nextBoolean()) {
                 p.color(VFXColorFunction.WHITE);
             }
         }

@@ -27,7 +27,7 @@ public class WorldMeltableRegistry extends CustomRecipeRegistry<WorldMeltableRec
     }
     
     @Nullable
-    public WorldMeltableRecipe getRecipeFor(final World world, final BlockPos pos) {
+    public WorldMeltableRecipe getRecipeFor(final Level world, final BlockPos pos) {
         return this.getRecipes().stream().filter(recipe -> recipe.canMelt(world, pos)).findFirst().orElse(null);
     }
     

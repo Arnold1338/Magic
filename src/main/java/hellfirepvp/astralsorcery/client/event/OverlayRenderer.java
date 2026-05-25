@@ -28,8 +28,8 @@ public class OverlayRenderer
         if (event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
             return;
         }
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
-        if (player == null || Minecraft.getInstance().field_71441_e == null) {
+        final Player player = (Player)Minecraft.getInstance().player;
+        if (player == null || Minecraft.getInstance().level == null) {
             return;
         }
         final PoseStack renderStack = event.getMatrixStack();

@@ -40,29 +40,29 @@ import net.minecraft.world.item.Item;
 public class ItemShiftingStar extends Item implements PerkExperienceRevealer
 {
     public ItemShiftingStar() {
-        super(new Item.Properties().func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         final IConstellation cst = this.getBaseConstellation();
         if (cst != null) {
             if (ResearchHelper.getClientProgress().hasConstellationDiscovered(cst)) {
-                tooltip.add((Component)cst.getConstellationName().func_240699_a_(ChatFormatting.BLUE));
+                tooltip.add((Component)cst.getConstellationName().toString()ChatFormatting.BLUE));
             }
             else {
-                tooltip.add((Component)new Component("astralsorcery.misc.noinformation").func_240699_a_(ChatFormatting.GRAY));
+                tooltip.add((Component)new Component("astralsorcery.misc.noinformation").toString()ChatFormatting.GRAY));
             }
         }
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final World worldIn, final Player playerIn, final Hand handIn) {
+    public InteractionResult<ItemStack> func_77659_a(final Level worldIn, final Player playerIn, final Hand handIn) {
         playerIn.func_184598_c(handIn);
         return (InteractionResult<ItemStack>)super.func_77659_a(worldIn, playerIn, handIn);
     }
     
-    public ItemStack func_77654_b(final ItemStack stack, final World worldIn, final LivingEntity entityLiving) {
-        if (!worldIn.func_201670_d() && entityLiving instanceof ServerPlayer) {
+    public ItemStack func_77654_b(final ItemStack stack, final Level worldIn, final LivingEntity entityLiving) {
+        if (!worldIn.level() && entityLiving instanceof ServerPlayer) {
             final ServerPlayer player = (ServerPlayer)entityLiving;
             final IMajorConstellation cst = this.getBaseConstellation();
             if (cst != null) {
@@ -73,13 +73,13 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
                 final double perkExp = prog.getPerkData().getPerkExp();
                 if (ResearchManager.setAttunedConstellation((Player)player, cst)) {
                     ResearchManager.setExp((Player)player, Mth.func_76124_d(perkExp));
-                    player.func_145747_a((Component)new Component("astralsorcery.progress.switch.attunement").func_240699_a_(ChatFormatting.BLUE), Util.NIL_UUID);
+                    player.func_145747_a((Component)new Component("astralsorcery.progress.switch.attunement").toString()ChatFormatting.BLUE), Util.NIL_UUID);
                     SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vector3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
                     return ItemStack.EMPTY;
                 }
             }
             else if (ResearchManager.setAttunedConstellation((Player)player, null)) {
-                player.func_145747_a((Component)new Component("astralsorcery.progress.remove.attunement").func_240699_a_(ChatFormatting.BLUE), Util.NIL_UUID);
+                player.func_145747_a((Component)new Component("astralsorcery.progress.remove.attunement").toString()ChatFormatting.BLUE), Util.NIL_UUID);
                 SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vector3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
                 return ItemStack.EMPTY;
             }
@@ -88,7 +88,7 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
     }
     
     public void onUsingTick(final ItemStack stack, final LivingEntity player, final int count) {
-        if (player.func_130014_f_().func_201670_d()) {
+        if (player.level().level()) {
             this.playUseEffects(player, this.func_77626_a(stack) - count, this.func_77626_a(stack));
         }
     }
@@ -97,8 +97,8 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
     private void playUseEffects(final LivingEntity player, final int tick, final int total) {
         final IMajorConstellation cst = this.getBaseConstellation();
         if (cst == null) {
-            final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.atEntityCorner((Entity)player).addY(player.func_213302_cg() / 2.0f)).setMotion(new Vector3(-0.1 + ItemShiftingStar.field_77697_d.nextFloat() * 0.2, 0.01, -0.1 + ItemShiftingStar.field_77697_d.nextFloat() * 0.2)).setScaleMultiplier(0.2f + ItemShiftingStar.field_77697_d.nextFloat());
-            if (ItemShiftingStar.field_77697_d.nextBoolean()) {
+            final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.atEntityCorner((Entity)player).addY(player.func_213302_cg() / 2.0f)).setMotion(new Vector3(-0.1 + ItemShiftingStar.count.nextFloat() * 0.2, 0.01, -0.1 + ItemShiftingStar.count.nextFloat() * 0.2)).setScaleMultiplier(0.2f + ItemShiftingStar.count.nextFloat());
+            if (ItemShiftingStar.count.nextBoolean()) {
                 p.color(VFXColorFunction.WHITE);
             }
         }
@@ -113,11 +113,11 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
                 v.rotate(-Math.toRadians(angle), Vector3.RotAxis.Y_AXIS).normalize().multiply(4);
                 final Vector3 pos = center.clone().add(v);
                 final Vector3 mot = center.clone().subtract(pos).normalize().multiply(0.1);
-                final FXFacingParticle p2 = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(pos).setScaleMultiplier(0.25f + ItemShiftingStar.field_77697_d.nextFloat() * 0.4f).setMotion(mot).setMaxAge(50);
-                if (ItemShiftingStar.field_77697_d.nextInt(4) == 0) {
+                final FXFacingParticle p2 = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(pos).setScaleMultiplier(0.25f + ItemShiftingStar.count.nextFloat() * 0.4f).setMotion(mot).setMaxAge(50);
+                if (ItemShiftingStar.count.nextInt(4) == 0) {
                     p2.color(VFXColorFunction.WHITE);
                 }
-                else if (ItemShiftingStar.field_77697_d.nextInt(3) == 0) {
+                else if (ItemShiftingStar.count.nextInt(3) == 0) {
                     p2.color(VFXColorFunction.constant(cst.getConstellationColor().brighter()));
                 }
                 else {

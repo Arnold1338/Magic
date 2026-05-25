@@ -29,8 +29,8 @@ public class AttributeTypeCooldown extends PerkAttributeType
     
     private void onCooldown(final CooldownSetEvent event) {
         final Player player = event.getPlayer();
-        final World world = player.func_130014_f_();
-        if (world.func_201670_d()) {
+        final Level world = player.level();
+        if (world.level()) {
             return;
         }
         final PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
@@ -43,7 +43,7 @@ public class AttributeTypeCooldown extends PerkAttributeType
         float multiplier = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.SERVER).modifyValue(player, prog, this, 1.0f);
         --multiplier;
         multiplier = AttributeEvent.postProcessModded(player, this, multiplier);
-        multiplier = 1.0f - Mth.func_76131_a(multiplier, 0.0f, 1.0f);
+        multiplier = 1.0f - Mth.canEnchant(multiplier, 0.0f, 1.0f);
         event.setCooldown(Math.round(event.getResultCooldown() * multiplier));
     }
 }

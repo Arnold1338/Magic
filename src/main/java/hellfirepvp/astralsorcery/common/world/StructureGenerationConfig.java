@@ -12,7 +12,7 @@ public class StructureGenerationConfig extends FeatureGenerationConfig
     private ForgeConfigSpec.IntValue separation;
     
     public StructureGenerationConfig(final ResourceLocation featureName, final int spacing, final int separation) {
-        this(featureName.func_110623_a(), spacing, separation);
+        this(featureName.addTransientModifier(), spacing, separation);
     }
     
     public StructureGenerationConfig(final String featureName, final int spacing, final int separation) {

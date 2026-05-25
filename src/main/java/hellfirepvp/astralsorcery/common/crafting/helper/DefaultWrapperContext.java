@@ -6,9 +6,9 @@ import net.minecraftforge.items.IItemHandler;
 public class DefaultWrapperContext extends RecipeCraftingContext<IHandlerRecipe, IItemHandler>
 {
     private final IItemHandler handler;
-    private final World world;
+    private final Level world;
     
-    public DefaultWrapperContext(final IItemHandler handler, final World world) {
+    public DefaultWrapperContext(final IItemHandler handler, final Level world) {
         this.handler = handler;
         this.world = world;
     }
@@ -17,7 +17,7 @@ public class DefaultWrapperContext extends RecipeCraftingContext<IHandlerRecipe,
         return this.handler;
     }
     
-    public World getWorld() {
+    public Level getWorld() {
         return this.world;
     }
 }

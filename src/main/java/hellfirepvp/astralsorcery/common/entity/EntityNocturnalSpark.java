@@ -47,20 +47,20 @@ public class EntityNocturnalSpark extends ThrowableEntity
     private static final EntityDataAccessor<Boolean> SPAWNING;
     private int ticksSpawning;
     
-    public EntityNocturnalSpark(final World world) {
+    public EntityNocturnalSpark(final Level world) {
         super((EntityType)EntityTypesAS.NOCTURNAL_SPARK, world);
         this.ticksSpawning = 0;
     }
     
-    public EntityNocturnalSpark(final double x, final double y, final double z, final World world) {
+    public EntityNocturnalSpark(final double x, final double y, final double z, final Level world) {
         super((EntityType)EntityTypesAS.NOCTURNAL_SPARK, x, y, z, world);
         this.ticksSpawning = 0;
     }
     
-    public EntityNocturnalSpark(final LivingEntity thrower, final World world) {
+    public EntityNocturnalSpark(final LivingEntity thrower, final Level world) {
         super((EntityType)EntityTypesAS.NOCTURNAL_SPARK, thrower, world);
         this.ticksSpawning = 0;
-        this.func_234612_a_((Entity)thrower, thrower.field_70125_A, thrower.field_70177_z, 0.0f, 0.7f, 0.9f);
+        this.func_234612_a_((Entity)thrower, thrower.xRot, thrower.yRot, 0.0f, 0.7f, 0.9f);
     }
     
     public static EntityType.IFactory<EntityNocturnalSpark> factory() {
@@ -85,7 +85,7 @@ public class EntityNocturnalSpark extends ThrowableEntity
         if (!this.isAlive()) {
             return;
         }
-        if (!this.field_70170_p.func_201670_d()) {
+        if (!this.level().level()) {
             this.removeLights();
             if (this.isSpawning()) {
                 ++this.ticksSpawning;
@@ -102,10 +102,10 @@ public class EntityNocturnalSpark extends ThrowableEntity
     }
     
     private void removeLights() {
-        if (this.func_130014_f_() instanceof ServerLevel) {
-            final ServerLevel sWorld = (ServerLevel)this.func_130014_f_();
+        if (this.level() instanceof ServerLevel) {
+            final ServerLevel sWorld = (ServerLevel)this.level();
             if (this.field_70173_aa % 5 == 0) {
-                final List<BlockPos> lightPositions = BlockDiscoverer.searchForBlocksAround((World)sWorld, this.func_233580_cy_(), 8, (world, pos, state) -> !(state.getBlock() instanceof AirBlock) && state.func_185887_b((IBlockReader)world, pos) != -1.0f && state.getLightValue((IBlockReader)world, pos) > 3);
+                final List<BlockPos> lightPositions = BlockDiscoverer.searchForBlocksAround((Level)sWorld, this.func_233580_cy_(), 8, (world, pos, state) -> !(state.getBlock() instanceof AirBlock) && state.func_185887_b((IBlockReader)world, pos) != -1.0f && state.getLightValue((IBlockReader)world, pos) > 3);
                 for (final BlockPos light : lightPositions) {
                     if (!BlockUtils.breakBlockWithoutPlayer(sWorld, light, sWorld.getBlockState(light), ItemStack.EMPTY, true, true)) {
                         sWorld.func_217377_a(light, false);
@@ -116,7 +116,7 @@ public class EntityNocturnalSpark extends ThrowableEntity
     }
     
     private void removeDuplicates() {
-        final List<EntityNocturnalSpark> sparks = this.field_70170_p.func_217357_a((Class)EntityNocturnalSpark.class, EntityNocturnalSpark.NO_DUPE_BOX.func_186670_a(this.func_233580_cy_()));
+        final List<EntityNocturnalSpark> sparks = this.level().func_217357_a((Class)EntityNocturnalSpark.class, EntityNocturnalSpark.NO_DUPE_BOX.func_186670_a(this.func_233580_cy_()));
         for (final EntityNocturnalSpark spark : sparks) {
             if (this.equals((Object)spark)) {
                 continue;
@@ -136,23 +136,23 @@ public class EntityNocturnalSpark extends ThrowableEntity
         if (this.isSpawning()) {
             for (int i = 0; i < 15; ++i) {
                 final Vector3 thisPos = Vector3.atEntityCorner((Entity)this).addY(1.0);
-                MiscUtils.applyRandomOffset(thisPos, this.field_70146_Z, (float)(2 + this.field_70146_Z.nextInt(4)));
+                MiscUtils.applyRandomOffset(thisPos, this.random, (float)(2 + this.random.nextInt(4)));
                 final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(thisPos).setScaleMultiplier(4.0f).alpha(VFXAlphaFunction.PYRAMID).setAlphaMultiplier(0.7f).color(VFXColorFunction.constant(Color.BLACK));
-                if (this.field_70146_Z.nextInt(5) == 0) {
+                if (this.random.nextInt(5) == 0) {
                     this.randomizeColor(p);
                 }
-                if (this.field_70146_Z.nextInt(20) == 0) {
+                if (this.random.nextInt(20) == 0) {
                     final Vector3 at = Vector3.atEntityCorner((Entity)this);
-                    MiscUtils.applyRandomOffset(at, this.field_70146_Z, 2.0f);
+                    MiscUtils.applyRandomOffset(at, this.random, 2.0f);
                     final Vector3 to = Vector3.atEntityCorner((Entity)this);
-                    MiscUtils.applyRandomOffset(to, this.field_70146_Z, 2.0f);
+                    MiscUtils.applyRandomOffset(to, this.random, 2.0f);
                     EffectHelper.of(EffectTemplatesAS.LIGHTNING).spawn(at).makeDefault(to).color(VFXColorFunction.constant(Color.BLACK));
                 }
             }
         }
         else {
             for (int j = 0; j < 6; ++j) {
-                final FXFacingParticle p2 = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.atEntityCorner((Entity)this)).setMotion(new Vector3(0.04f - this.field_70146_Z.nextFloat() * 0.08f, 0.04f - this.field_70146_Z.nextFloat() * 0.08f, 0.04f - this.field_70146_Z.nextFloat() * 0.08f)).setScaleMultiplier(0.25f);
+                final FXFacingParticle p2 = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.atEntityCorner((Entity)this)).setMotion(new Vector3(0.04f - this.random.nextFloat() * 0.08f, 0.04f - this.random.nextFloat() * 0.08f, 0.04f - this.random.nextFloat() * 0.08f)).setScaleMultiplier(0.25f);
                 this.randomizeColor(p2);
             }
             FXFacingParticle p2 = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.atEntityCorner((Entity)this));
@@ -165,20 +165,20 @@ public class EntityNocturnalSpark extends ThrowableEntity
     }
     
     private void spawnCycle() {
-        if (this.field_70146_Z.nextInt(12) == 0 && this.field_70170_p instanceof ServerLevel) {
+        if (this.random.nextInt(12) == 0 && this.level() instanceof ServerLevel) {
             BlockPos pos = this.func_233580_cy_();
-            pos.offset(this.field_70146_Z.nextInt(2) - this.field_70146_Z.nextInt(2), 1, this.field_70146_Z.nextInt(2) - this.field_70146_Z.nextInt(2));
-            pos = BlockUtils.firstSolidDown((IBlockReader)this.field_70170_p, pos).above();
+            pos.offset(this.random.nextInt(2) - this.random.nextInt(2), 1, this.random.nextInt(2) - this.random.nextInt(2));
+            pos = BlockUtils.firstSolidDown((IBlockReader)this.level(), pos).above();
             if (pos.func_177951_i((Vector3i)this.func_233580_cy_()) >= 16.0) {
                 return;
             }
-            EntityUtils.performWorldSpawningAt((ServerLevel)this.field_70170_p, pos, MobCategory.MONSTER, MobSpawnType.SPAWNER, true, 11);
+            EntityUtils.performWorldSpawningAt((ServerLevel)this.level(), pos, MobCategory.MONSTER, MobSpawnType.SPAWNER, true, 11);
         }
     }
     
     @OnlyIn(Dist.CLIENT)
     private void randomizeColor(final FXFacingParticle p) {
-        switch (this.field_70146_Z.nextInt(3)) {
+        switch (this.random.nextInt(3)) {
             case 0: {
                 p.color(VFXColorFunction.constant(ColorsAS.NOCTURNAL_POWDER_1));
                 break;

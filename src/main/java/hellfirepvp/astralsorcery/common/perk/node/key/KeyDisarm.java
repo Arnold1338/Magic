@@ -39,20 +39,20 @@ public class KeyDisarm extends KeyPerk
     
     private void onAttack(final LivingHurtEvent event) {
         final DamageSource source = event.getSource();
-        if (source.func_76346_g() != null && source.func_76346_g() instanceof Player) {
-            final Player player = (Player)source.func_76346_g();
+        if (source.getEnchantments( != null && source.getEnchantments( instanceof Player) {
+            final Player player = (Player)source.getEnchantments(;
             final LogicalSide side = this.getSide((Entity)player);
             final PlayerProgress prog = ResearchHelper.getProgress(player, side);
             if (prog.getPerkData().hasPerkEffect(this)) {
                 final float chance = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT, ((Double)KeyDisarm.CONFIG.dropChance.get()).floatValue());
-                final float currentChance = Mth.func_76131_a(chance, 0.0f, 1.0f);
+                final float currentChance = Mth.canEnchant(chance, 0.0f, 1.0f);
                 for (final EquipmentSlot slot : EquipmentSlot.values()) {
                     if (KeyDisarm.rand.nextFloat() < currentChance) {
                         final LivingEntity attacked = event.getEntityLiving();
                         final ItemStack stack = attacked.getItemBySlot(slot);
                         if (!stack.isEmpty()) {
                             attacked.func_184201_a(slot, ItemStack.EMPTY);
-                            ItemUtils.dropItemNaturally(attacked.field_70170_p, attacked.func_226277_ct_(), attacked.func_226278_cu_(), attacked.func_226281_cx_(), stack);
+                            ItemUtils.dropItemNaturally(attacked.level(), attacked.getX(), attacked.getY(), attacked.getZ(), stack);
                             break;
                         }
                     }

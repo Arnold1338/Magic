@@ -83,7 +83,7 @@ public class DataPatreonFlares extends AbstractData
     }
     
     @Override
-    public void clear(final RegistryKey<World> dim) {
+    public void clear(final RegistryKey<Level> dim) {
     }
     
     @Override

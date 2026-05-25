@@ -49,7 +49,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
     public float pullFactor;
     private LivingEntity throwingEntity;
     
-    public EntityGrapplingHook(final World world) {
+    public EntityGrapplingHook(final Level world) {
         super((EntityType)EntityTypesAS.GRAPPLING_HOOK, world);
         this.launchedThrower = false;
         this.timeout = 0;
@@ -58,14 +58,14 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
         this.pullFactor = 0.0f;
     }
     
-    public EntityGrapplingHook(final LivingEntity thrower, final World world) {
+    public EntityGrapplingHook(final LivingEntity thrower, final Level world) {
         super((EntityType)EntityTypesAS.GRAPPLING_HOOK, thrower, world);
         this.launchedThrower = false;
         this.timeout = 0;
         this.previousDist = 0;
         this.despawning = -1;
         this.pullFactor = 0.0f;
-        this.shoot(Vector3.directionFromYawPitch(thrower.field_70177_z, thrower.field_70125_A), 1.5f);
+        this.shoot(Vector3.directionFromYawPitch(thrower.yRot, thrower.xRot), 1.5f);
         this.throwingEntity = thrower;
     }
     
@@ -92,7 +92,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
         final int idPull = (int)this.field_70180_af.func_187225_a((EntityDataAccessor)EntityGrapplingHook.PULLING_ENTITY);
         if (idPull > 0) {
             try {
-                return (LivingEntity)this.field_70170_p.func_73045_a(idPull);
+                return (LivingEntity)this.level().getEntityById(idPull);
             }
             catch (final Exception ex) {}
         }
@@ -102,7 +102,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
     public float despawnPercentage(final float partial) {
         float p = this.despawning - (1.0f - partial);
         p /= 10.0f;
-        return Mth.func_76131_a(p, 0.0f, 1.0f);
+        return Mth.canEnchant(p, 0.0f, 1.0f);
     }
     
     public boolean isDespawning() {
@@ -139,7 +139,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
         if (!this.isPulling() && this.field_70173_aa >= 30) {
             this.setDespawning();
         }
-        if (this.field_70170_p.func_201670_d()) {
+        if (this.level().level()) {
             if (!this.isPulling()) {
                 this.pullFactor += 0.02f;
             }
@@ -149,7 +149,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
         }
         if (this.isDespawning()) {
             this.despawnTick();
-            if (this.field_70170_p.func_201670_d() && this.despawning == 3) {
+            if (this.level().level() && this.despawning == 3) {
                 this.playDespawnSparkles();
             }
         }
@@ -159,22 +159,22 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
             if (this.isAlive() && this.isPulling()) {
                 if (this.getPulling() != null) {
                     final LivingEntity at = this.getPulling();
-                    this.setPos(at.func_226277_ct_(), at.func_226278_cu_(), at.func_226281_cx_());
+                    this.setPos(at.getX(), at.getY(), at.getZ());
                 }
                 if ((this.getPulling() != null && this.field_70173_aa > 60 && dist < 2.0) || (this.getPulling() == null && this.field_70173_aa > 15 && dist < 2.0) || this.timeout > 15) {
                     this.setDespawning();
                 }
                 else {
                     thrower.field_70143_R = -2.0f;
-                    double mx = this.func_226277_ct_() - thrower.func_226277_ct_();
-                    double my = this.func_226278_cu_() - thrower.func_226278_cu_();
-                    double mz = this.func_226281_cx_() - thrower.func_226281_cx_();
+                    double mx = this.getX() - thrower.getX();
+                    double my = this.getY() - thrower.getY();
+                    double mz = this.getZ() - thrower.getZ();
                     mx /= dist * 5.0;
                     my /= dist * 5.0;
                     mz /= dist * 5.0;
                     Vec3 v2 = new Vec3(mx, my, mz);
                     if (v2.func_72433_c() > 0.25) {
-                        v2 = v2.func_72432_b();
+                        v2 = v2.add();
                         mx = v2.field_72450_a / 4.0;
                         my = v2.field_72448_b / 4.0;
                         mz = v2.field_72449_c / 4.0;
@@ -208,11 +208,11 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
             final Vector3 ePos = RenderingVectorUtils.interpolatePosition((Entity)this, 1.0f);
             final List<Vector3> positions = this.buildLine(1.0f);
             for (final Vector3 pos : positions) {
-                if (this.field_70146_Z.nextBoolean()) {
+                if (this.random.nextBoolean()) {
                     final Vector3 motion = Vector3.random().multiply(0.005f);
                     final Vector3 at = pos.add(ePos);
-                    final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).setScaleMultiplier(0.3f + this.field_70146_Z.nextFloat() * 0.3f).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.constant(ColorsAS.DEFAULT_GENERIC_PARTICLE)).setMotion(motion).setMaxAge(25 + this.field_70146_Z.nextInt(20));
-                    if (!this.field_70146_Z.nextBoolean()) {
+                    final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).setScaleMultiplier(0.3f + this.random.nextFloat() * 0.3f).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.constant(ColorsAS.DEFAULT_GENERIC_PARTICLE)).setMotion(motion).setMaxAge(25 + this.random.nextInt(20));
+                    if (!this.random.nextBoolean()) {
                         continue;
                     }
                     p.color(VFXColorFunction.WHITE);
@@ -233,7 +233,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
         final int id = additionalData.readInt();
         try {
             if (id > 0) {
-                this.throwingEntity = (LivingEntity)this.field_70170_p.func_73045_a(id);
+                this.throwingEntity = (LivingEntity)this.level().getEntityById(id);
             }
         }
         catch (final Exception ex) {}

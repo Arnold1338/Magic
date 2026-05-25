@@ -68,7 +68,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
         final Set<IConstellation> used = new HashSet<IConstellation>();
         for (final DrawArea area : drawAreas) {
             final Collection<IConstellation> available = Lists.newArrayList((Iterable)ctx.getActiveCelestialsHandler().getActiveConstellations());
-            available.removeIf(c -> !(c instanceof IMajorConstellation) || used.contains(c) || !c.canDiscover((Player)Minecraft.getInstance().field_71439_g, ResearchHelper.getClientProgress()));
+            available.removeIf(c -> !(c instanceof IMajorConstellation) || used.contains(c) || !c.canDiscover((Player)Minecraft.getInstance().player, ResearchHelper.getClientProgress()));
             final IConstellation cst = MiscUtils.getRandomEntry(available, gen);
             if (cst instanceof IMajorConstellation) {
                 used.add(cst);
@@ -95,15 +95,15 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
     }
     
     private void drawTelescopeCell(final PoseStack renderStack, final float pTicks) {
-        final boolean canSeeSky = this.canObserverSeeSky(Minecraft.getInstance().field_71439_g.func_233580_cy_(), 1);
-        final float pitch = Minecraft.getInstance().field_71439_g.func_195050_f(pTicks);
+        final boolean canSeeSky = this.canObserverSeeSky(Minecraft.getInstance().player.func_233580_cy_(), 1);
+        final float pitch = Minecraft.getInstance().player.func_195050_f(pTicks);
         float angleOpacity = 0.0f;
         if (pitch < -60.0f) {
             angleOpacity = 1.0f;
         }
         else if (pitch < -10.0f) {
             angleOpacity = (Math.abs(pitch) - 10.0f) / 50.0f;
-            if (DayTimeHelper.isNight((World)Minecraft.getInstance().field_71441_e)) {
+            if (DayTimeHelper.isNight((Level)Minecraft.getInstance().level)) {
                 angleOpacity *= angleOpacity;
             }
         }
@@ -120,22 +120,22 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
             RenderSystem.disableBlend();
             return;
         }
-        final WorldContext ctx = SkyHandler.getContext((World)Minecraft.getInstance().field_71441_e, LogicalSide.CLIENT);
+        final WorldContext ctx = SkyHandler.getContext((Level)Minecraft.getInstance().level, LogicalSide.CLIENT);
         if (ctx != null && canSeeSky) {
             final Random gen = ctx.getDayRandom();
             final double guiFactor = Minecraft.getInstance().func_228018_at_().func_198100_s();
-            float playerYaw = Minecraft.getInstance().field_71439_g.field_70177_z % 360.0f;
+            float playerYaw = Minecraft.getInstance().player.yRot % 360.0f;
             if (playerYaw < 0.0f) {
                 playerYaw += 360.0f;
             }
             if (playerYaw >= 180.0f) {
                 playerYaw -= 360.0f;
             }
-            final float playerPitch = Minecraft.getInstance().field_71439_g.field_70125_A;
+            final float playerPitch = Minecraft.getInstance().player.xRot;
             this.func_230926_e_(-9);
             final float starSize = 5.0f;
             TexturesAS.TEX_STAR_1.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
+            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
                 this.usedStars.iterator();
                 final Iterator iterator3;
                 while (iterator3.hasNext()) {
@@ -162,7 +162,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
                     if ((Math.abs(diffYaw) > maxDistance && Math.abs(playerYaw + 360.0f) > maxDistance) || Math.abs(diffPitch) > maxDistance) {
                         continue;
                     }
-                    final float rainBr = 1.0f - Minecraft.getInstance().field_71441_e.func_72867_j(pTicks);
+                    final float rainBr = 1.0f - Minecraft.getInstance().level.func_72867_j(pTicks);
                     final int wPart = Mth.func_76141_d(this.getGuiWidth() * 0.1f);
                     final int hPart = Mth.func_76141_d(this.getGuiHeight() * 0.1f);
                     final float xFactor = diffYaw / 8.0f;
@@ -194,7 +194,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
         final Minecraft mc = Minecraft.getInstance();
         final double xDiff = mc.field_71417_B.func_198024_e() - xPos / (mc.func_228018_at_().func_198107_o() / (double)mc.func_228018_at_().func_198105_m());
         double yDiff = mc.field_71417_B.func_198026_f() - yPos / (mc.func_228018_at_().func_198087_p() / (double)mc.func_228018_at_().func_198083_n());
-        if (Minecraft.getInstance().field_71439_g != null && Minecraft.getInstance().field_71439_g.func_195050_f(1.0f) <= -89.99f && yDiff > 0.0) {
+        if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.func_195050_f(1.0f) <= -89.99f && yDiff > 0.0) {
             yDiff = 0.0;
         }
         for (final Point2D.Float float1 : this.usedStars) {
@@ -226,7 +226,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
     
     private void drawSkyBackground(final PoseStack renderStack, final float pTicks, final boolean canSeeSky, final float angleOpacity) {
         final Tuple<Color, Color> rgbFromTo = SkyScreen.getSkyGradient(canSeeSky, angleOpacity, pTicks);
-        RenderingDrawUtils.drawGradientRect(renderStack, (float)this.getGuiZLevel(), (float)(this.guiLeft + 4), (float)(this.guiTop + 4), (float)(this.guiLeft + this.guiWidth - 8), (float)(this.guiTop + this.guiHeight - 8), ((Color)rgbFromTo.func_76341_a()).getRGB(), ((Color)rgbFromTo.func_76340_b()).getRGB());
+        RenderingDrawUtils.drawGradientRect(renderStack, (float)this.getGuiZLevel(), (float)(this.guiLeft + 4), (float)(this.guiTop + 4), (float)(this.guiLeft + this.guiWidth - 8), (float)(this.guiTop + this.guiHeight - 8), ((Color)rgbFromTo.getA()).getRGB(), ((Color)rgbFromTo.getB()).getRGB());
     }
     
     @Override

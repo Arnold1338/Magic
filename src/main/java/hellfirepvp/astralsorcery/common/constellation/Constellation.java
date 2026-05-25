@@ -189,7 +189,7 @@ public abstract class Constellation extends BaseConstellation implements IConste
             for (final MoonPhase mp : this.phases) {
                 int index;
                 for (index = mp.ordinal() + ((int)(rSeed % MoonPhase.values().length) + MoonPhase.values().length); index >= MoonPhase.values().length; index -= MoonPhase.values().length) {}
-                index = Mth.func_76125_a(index, 0, MoonPhase.values().length - 1);
+                index = Mth.getDescriptionId(index, 0, MoonPhase.values().length - 1);
                 final MoonPhase offset = MoonPhase.values()[index];
                 if (!shifted.contains(offset)) {
                     shifted.add(offset);

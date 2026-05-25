@@ -33,12 +33,12 @@ public class EntityShootingStar extends ThrowableEntity
 {
     private static final EntityDataAccessor<Long> EFFECT_SEED;
     
-    protected EntityShootingStar(final World worldIn) {
+    protected EntityShootingStar(final Level worldIn) {
         super((EntityType)EntityTypesAS.SHOOTING_STAR, worldIn);
-        this.field_70180_af.func_187227_b((EntityDataAccessor)EntityShootingStar.EFFECT_SEED, (Object)this.field_70146_Z.nextLong());
+        this.field_70180_af.func_187227_b((EntityDataAccessor)EntityShootingStar.EFFECT_SEED, (Object)this.random.nextLong());
     }
     
-    protected EntityShootingStar(final double x, final double y, final double z, final World worldIn) {
+    protected EntityShootingStar(final double x, final double y, final double z, final Level worldIn) {
         this(worldIn);
         this.setPos(x, y, z);
     }
@@ -58,22 +58,22 @@ public class EntityShootingStar extends ThrowableEntity
     public void func_70071_h_() {
         this.adjustMotion();
         super.tick();
-        if (this.field_70170_p.func_201670_d()) {
+        if (this.level().level()) {
             this.spawnEffects();
         }
     }
     
     private void adjustMotion() {
         final Vec3 motion = this.func_213322_ci();
-        final double y = Math.min(-0.699999988079071, motion.func_82617_b());
-        this.func_213317_d(new Vec3(motion.func_82615_a(), y, motion.func_82616_c()));
+        final double y = Math.min(-0.699999988079071, motion.getY());
+        this.func_213317_d(new Vec3(motion.getX(), y, motion.getZ()));
     }
     
     @OnlyIn(Dist.CLIENT)
     private void spawnEffects() {
         final float maxRenderPosDist = 96.0f;
         final VFXRenderOffsetFunction<FXFacingParticle> renderFn = (fx, iPos, pTicks) -> {
-            final Player pl = (Player)Minecraft.getInstance().field_71439_g;
+            final Player pl = (Player)Minecraft.getInstance().player;
             if (pl == null) {
                 return iPos;
             }
@@ -88,7 +88,7 @@ public class EntityShootingStar extends ThrowableEntity
             }
         };
         final VFXScaleFunction<EntityVisualFX> scaleFn = (fx, scaleIn, pTicks) -> {
-            final Player pl2 = (Player)Minecraft.getInstance().field_71439_g;
+            final Player pl2 = (Player)Minecraft.getInstance().player;
             if (pl2 == null) {
                 return scaleIn;
             }
@@ -100,26 +100,26 @@ public class EntityShootingStar extends ThrowableEntity
         };
         final Vector3 thisPosition = Vector3.atEntityCorner((Entity)this);
         for (int i = 0; i < 4; ++i) {
-            if (this.field_70146_Z.nextFloat() <= 0.75f) {
-                final Vector3 dir = new Vector3(this.func_213322_ci()).clone().multiply(this.field_70146_Z.nextFloat() * -0.6f);
-                dir.setX(dir.getX() + this.field_70146_Z.nextFloat() * 0.008 * (this.field_70146_Z.nextBoolean() ? 1 : -1));
-                dir.setZ(dir.getZ() + this.field_70146_Z.nextFloat() * 0.008 * (this.field_70146_Z.nextBoolean() ? 1 : -1));
-                EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(thisPosition).color(VFXColorFunction.WHITE).setMotion(dir).setAlphaMultiplier(0.85f).setScaleMultiplier(1.2f + this.field_70146_Z.nextFloat() * 0.5f).scale(VFXScaleFunction.SHRINK.andThen(scaleFn)).alpha(VFXAlphaFunction.FADE_OUT).renderOffset(renderFn).setMaxAge(90 + this.field_70146_Z.nextInt(40));
+            if (this.random.nextFloat() <= 0.75f) {
+                final Vector3 dir = new Vector3(this.func_213322_ci()).clone().multiply(this.random.nextFloat() * -0.6f);
+                dir.setX(dir.getX() + this.random.nextFloat() * 0.008 * (this.random.nextBoolean() ? 1 : -1));
+                dir.setZ(dir.getZ() + this.random.nextFloat() * 0.008 * (this.random.nextBoolean() ? 1 : -1));
+                EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(thisPosition).color(VFXColorFunction.WHITE).setMotion(dir).setAlphaMultiplier(0.85f).setScaleMultiplier(1.2f + this.random.nextFloat() * 0.5f).scale(VFXScaleFunction.SHRINK.andThen(scaleFn)).alpha(VFXAlphaFunction.FADE_OUT).renderOffset(renderFn).setMaxAge(90 + this.random.nextInt(40));
             }
         }
-        final float scale = 4.0f + this.field_70146_Z.nextFloat() * 3.0f;
-        final int age = 5 + this.field_70146_Z.nextInt(2);
+        final float scale = 4.0f + this.random.nextFloat() * 3.0f;
+        final int age = 5 + this.random.nextInt(2);
         final Random effectSeed = new Random(this.getEffectSeed());
         EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(thisPosition).color(VFXColorFunction.constant(Color.getHSBColor(effectSeed.nextFloat() * 360.0f, 1.0f, 1.0f))).setScaleMultiplier(scale).scale(VFXScaleFunction.SHRINK.andThen(scaleFn)).renderOffset(renderFn).alpha(VFXAlphaFunction.FADE_OUT).setMaxAge(age);
         EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(thisPosition).color(VFXColorFunction.WHITE).setScaleMultiplier(scale * 0.6f).scale(VFXScaleFunction.SHRINK.andThen(scaleFn)).renderOffset(renderFn).alpha(VFXAlphaFunction.FADE_OUT).setMaxAge(Math.round(age * 1.5f));
     }
     
     public void func_70107_b(final double x, final double y, final double z) {
-        final int chunkX = Mth.func_76128_c(this.func_226277_ct_() / 16.0);
-        final int chunkZ = Mth.func_76128_c(this.func_226281_cx_() / 16.0);
+        final int chunkX = Mth.func_76128_c(this.getX() / 16.0);
+        final int chunkZ = Mth.func_76128_c(this.getZ() / 16.0);
         final int newChunkX = Mth.func_76128_c(x / 16.0);
         final int newChunkZ = Mth.func_76128_c(z / 16.0);
-        if ((chunkX != newChunkX || chunkZ != newChunkZ) && !this.func_130014_f_().func_217354_b(newChunkX, newChunkZ)) {
+        if ((chunkX != newChunkX || chunkZ != newChunkZ) && !this.level().func_217354_b(newChunkX, newChunkZ)) {
             this.func_70106_y();
             return;
         }

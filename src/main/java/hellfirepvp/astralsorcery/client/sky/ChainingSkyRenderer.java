@@ -60,10 +60,10 @@ public class ChainingSkyRenderer implements ISkyRenderHandler
         RenderSystem.depthMask(false);
         final float alphaSubRain = 1.0f - world.func_72867_j(pTicks);
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, alphaSubRain);
-        renderStack.func_227860_a_();
-        renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(180.0f));
+        renderStack.popPose();
+        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
         AstralSkyRenderer.renderConstellationsSky(world, renderStack, pTicks);
-        renderStack.func_227865_b_();
+        renderStack.scale();
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.depthMask(true);
         RenderSystem.disableTexture();

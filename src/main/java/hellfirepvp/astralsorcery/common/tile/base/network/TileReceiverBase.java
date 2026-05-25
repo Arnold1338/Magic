@@ -22,13 +22,13 @@ public abstract class TileReceiverBase<T extends ITransmissionReceiver> extends 
     @Nonnull
     @Override
     public BlockPos getTrPos() {
-        return this.func_174877_v();
+        return this.getBlockState();
     }
     
     @Nonnull
     @Override
-    public World getTrWorld() {
-        return this.func_145831_w();
+    public Level getTrWorld() {
+        return this.getLevel();
     }
     
     @Override

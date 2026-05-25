@@ -73,11 +73,11 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
     private void pullEntities(final TileFountain fountain) {
         final Vector3 at = new Vector3(fountain).add(0.5, 0.5, 0.5);
         final Vector3 vortexAt = at.clone().addY(-4.0);
-        final AABB captureBox = new AABB(0.0, 0.0, 0.0, 1.0, 1.0, 1.0).func_186670_a(fountain.func_174877_v().func_177979_c(4)).func_186662_g(2.0);
+        final AABB captureBox = new AABB(0.0, 0.0, 0.0, 1.0, 1.0, 1.0).func_186670_a(fountain.getBlockState().func_177979_c(4)).func_186662_g(2.0);
         final AABB pullBox = captureBox.func_186662_g(14.0);
         final float boxCapacity = 125.0f;
         float density = 0.0f;
-        final List<LivingEntity> captured = fountain.func_145831_w().func_217357_a((Class)LivingEntity.class, captureBox);
+        final List<LivingEntity> captured = fountain.getLevel().func_217357_a((Class)LivingEntity.class, captureBox);
         final Iterator<LivingEntity> iterator = captured.iterator();
         LivingEntity le = null;
         while (iterator.hasNext()) {
@@ -91,10 +91,10 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
                 if (entitySize > boxCapacity) {
                     final Vector3 heldPos = vortexAt.clone().addY(-1.0);
                     if (heldPos.distanceSquared((Entity)le) >= 0.4000000059604645) {
-                        le.func_70080_a(heldPos.getX(), heldPos.getY(), heldPos.getZ(), le.field_70177_z, le.field_70125_A);
+                        le.func_70080_a(heldPos.getX(), heldPos.getY(), heldPos.getZ(), le.yRot, le.xRot);
                     }
                     if (le instanceof EnderDragonEntity) {
-                        final GameRules rules = fountain.func_145831_w().func_82736_K();
+                        final GameRules rules = fountain.getLevel().func_82736_K();
                         final boolean prev = rules.func_223586_b(GameRules.field_223599_b);
                         ((GameRules.BooleanValue)rules.func_223585_a(GameRules.field_223599_b)).func_223570_a(false, (MinecraftServer)null);
                         le.func_70636_d();
@@ -109,7 +109,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
         }
         final float upkeep = Math.max(0.0f, density / boxCapacity);
         fountain.consumeLiquidStarlight(Mth.func_76123_f(upkeep / 3.0f));
-        final List<LivingEntity> pulling = fountain.func_145831_w().func_217357_a((Class)LivingEntity.class, pullBox);
+        final List<LivingEntity> pulling = fountain.getLevel().func_217357_a((Class)LivingEntity.class, pullBox);
         pulling.removeAll(captured);
         for (final LivingEntity le2 : pulling) {
             if (le2 != null && le2.isAlive() && !(le2 instanceof Player)) {
@@ -124,7 +124,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
                             le.func_70634_a(nextPos.getX(), nextPos.getY(), nextPos.getZ());
                         }
                         else {
-                            le.func_70080_a(nextPos.getX(), nextPos.getY(), nextPos.getZ(), le.field_70177_z, le.field_70125_A);
+                            le.func_70080_a(nextPos.getX(), nextPos.getY(), nextPos.getZ(), le.yRot, le.xRot);
                         }
                         le.func_213317_d(Vec3.field_186680_a);
                     }
@@ -139,7 +139,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
                 }
                 final Vector3 randomRanges = new Vector3(Math.max(0.0, (captureBox.func_216364_b() - le2.func_213311_cf()) / 2.0), Math.max(0.0, (captureBox.func_216360_c() - le2.func_213302_cg()) / 2.0), Math.max(0.0, (captureBox.func_216362_d() - le2.func_213311_cf()) / 2.0));
                 final Vector3 randomPos = vortexAt.clone().add(randomRanges.getX() * FountainEffectVortex.rand.nextFloat() * (FountainEffectVortex.rand.nextBoolean() ? 1 : -1), randomRanges.getY() * FountainEffectVortex.rand.nextFloat() * (FountainEffectVortex.rand.nextBoolean() ? 1 : -1), randomRanges.getZ() * FountainEffectVortex.rand.nextFloat() * (FountainEffectVortex.rand.nextBoolean() ? 1 : -1));
-                le2.func_70080_a(randomPos.getX(), randomPos.getY(), randomPos.getZ(), le2.field_70177_z, le2.field_70125_A);
+                le2.func_70080_a(randomPos.getX(), randomPos.getY(), randomPos.getZ(), le2.yRot, le2.xRot);
             }
         }
     }
@@ -156,7 +156,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
             }
             ctx.fountainSprite = sprite;
         }
-        final BlockPos fountainPos = fountain.func_174877_v();
+        final BlockPos fountainPos = fountain.getBlockState();
         final float segmentPercent = this.getSegmentPercent(currentSegment, operationTick);
         switch (currentSegment) {
             case STARTUP: {
@@ -246,7 +246,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
     @Override
     public void transition(final TileFountain fountain, final VortexContext context, final LogicalSide side, final OperationSegment prevSegment, final OperationSegment nextSegment) {
         if (side.isClient() && nextSegment == OperationSegment.RUNNING) {
-            this.doVortexExplosion(fountain.func_174877_v());
+            this.doVortexExplosion(fountain.getBlockState());
         }
     }
     

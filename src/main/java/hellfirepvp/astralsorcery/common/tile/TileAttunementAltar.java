@@ -96,7 +96,7 @@ public class TileAttunementAltar extends TileEntityTick
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d()) {
+        if (!this.getLevel().level()) {
             if (!this.doesSeeSky() || !this.hasMultiblock()) {
                 if (this.activeConstellation != null) {
                     this.activeConstellation = null;
@@ -152,9 +152,9 @@ public class TileAttunementAltar extends TileEntityTick
             }
             if (this.activeConstellation != null) {
                 for (final BlockPos pos : this.getConstellationPositions(this.activeConstellation)) {
-                    final TileSpectralRelay relay = MiscUtils.getTileAt((IBlockReader)this.func_145831_w(), pos, TileSpectralRelay.class, false);
+                    final TileSpectralRelay relay = MiscUtils.getTileAt((IBlockReader)this.getLevel(), pos, TileSpectralRelay.class, false);
                     if (relay != null && !relay.getInventory().getStackInSlot(0).isEmpty()) {
-                        ItemUtils.dropInventory((IItemHandler)relay.getInventory(), this.func_145831_w(), pos.above());
+                        ItemUtils.dropInventory((IItemHandler)relay.getInventory(), this.getLevel(), pos.above());
                         relay.getInventory().clearInventory();
                     }
                 }
@@ -168,8 +168,8 @@ public class TileAttunementAltar extends TileEntityTick
             this.currentRecipe.stopCrafting(this);
             this.currentRecipe = null;
             this.markForUpdate();
-            EntityFlare.spawnAmbientFlare(this.func_145831_w(), this.func_174877_v().offset(-5 + TileAttunementAltar.rand.nextInt(11), 1 + TileAttunementAltar.rand.nextInt(3), -5 + TileAttunementAltar.rand.nextInt(11)));
-            EntityFlare.spawnAmbientFlare(this.func_145831_w(), this.func_174877_v().offset(-5 + TileAttunementAltar.rand.nextInt(11), 1 + TileAttunementAltar.rand.nextInt(3), -5 + TileAttunementAltar.rand.nextInt(11)));
+            EntityFlare.spawnAmbientFlare(this.getLevel(), this.getBlockState().offset(-5 + TileAttunementAltar.rand.nextInt(11), 1 + TileAttunementAltar.rand.nextInt(3), -5 + TileAttunementAltar.rand.nextInt(11)));
+            EntityFlare.spawnAmbientFlare(this.getLevel(), this.getBlockState().offset(-5 + TileAttunementAltar.rand.nextInt(11), 1 + TileAttunementAltar.rand.nextInt(3), -5 + TileAttunementAltar.rand.nextInt(11)));
         }
     }
     
@@ -206,7 +206,7 @@ public class TileAttunementAltar extends TileEntityTick
                     sprite.requestRemoval();
                 }
             }
-            final float night = DayTimeHelper.getCurrentDaytimeDistribution(this.func_145831_w());
+            final float night = DayTimeHelper.getCurrentDaytimeDistribution(this.getLevel());
             for (final BlockPos key2 : positions) {
                 if (!this.activeStarSprites.containsKey(key2)) {
                     final FXFacingSprite sprite2 = EffectHelper.of(EffectTemplatesAS.FACING_SPRITE).spawn(new Vector3((Vector3i)key2).add(0.5, 0.5, 0.5)).setSprite(SpritesAS.SPR_RELAY_FLARE).setScaleMultiplier(1.4f).refresh(fx -> this.canPlayConstellationActiveEffects());
@@ -251,8 +251,8 @@ public class TileAttunementAltar extends TileEntityTick
         final VFXColorFunction<?> beamColor = VFXColorFunction.constant(ColorsAS.DEFAULT_GENERIC_PARTICLE);
         final float beamSize = 0.8f;
         for (final Tuple<BlockPos, BlockPos> conn : this.getConstellationConnectionPositions(this.activeConstellation)) {
-            final Vector3 from = new Vector3((Vector3i)conn.func_76341_a()).add(0.5, 0.5, 0.5);
-            final Vector3 to = new Vector3((Vector3i)conn.func_76340_b()).add(0.5, 0.5, 0.5);
+            final Vector3 from = new Vector3((Vector3i)conn.getA()).add(0.5, 0.5, 0.5);
+            final Vector3 to = new Vector3((Vector3i)conn.getB()).add(0.5, 0.5, 0.5);
             if (this.getTicksExisted() % 50 == 0) {
                 EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).spawn(from).setup(to, beamSize, beamSize).color(beamColor);
                 EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).spawn(to).setup(from, beamSize, beamSize).color(beamColor);
@@ -284,8 +284,8 @@ public class TileAttunementAltar extends TileEntityTick
     
     @OnlyIn(Dist.CLIENT)
     public boolean canPlayConstellationActiveEffects() {
-        final WorldContext ctx = SkyHandler.getContext(this.func_145831_w(), LogicalSide.CLIENT);
-        return ctx != null && !this.func_145837_r() && this.hasMultiblock() && this.doesSeeSky() && this.getActiveConstellation() != null && DayTimeHelper.isNight(this.func_145831_w()) && ctx.getConstellationHandler().isActiveCurrently(this.getActiveConstellation(), MoonPhase.fromWorld((IWorld)this.func_145831_w()));
+        final WorldContext ctx = SkyHandler.getContext(this.getLevel(), LogicalSide.CLIENT);
+        return ctx != null && !this.func_145837_r() && this.hasMultiblock() && this.doesSeeSky() && this.getActiveConstellation() != null && DayTimeHelper.isNight(this.getLevel()) && ctx.getConstellationHandler().isActiveCurrently(this.getActiveConstellation(), MoonPhase.fromWorld((IWorld)this.getLevel()));
     }
     
     @OnlyIn(Dist.CLIENT)
@@ -301,20 +301,20 @@ public class TileAttunementAltar extends TileEntityTick
         if (this.canPlayConstellationActiveEffects()) {
             return;
         }
-        final WorldContext ctx = SkyHandler.getContext(this.func_145831_w(), LogicalSide.CLIENT);
+        final WorldContext ctx = SkyHandler.getContext(this.getLevel(), LogicalSide.CLIENT);
         if (ctx == null) {
             return;
         }
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
-        if (player == null || player.func_195048_a(Vec3.func_237489_a_((Vector3i)this.func_174877_v())) >= 256.0) {
+        final Player player = (Player)Minecraft.getInstance().player;
+        if (player == null || player.func_195048_a(Vec3.func_237489_a_((Vector3i)this.getBlockState())) >= 256.0) {
             return;
         }
         final Tuple<Hand, ItemStack> heldTpl = MiscUtils.getMainOrOffHand((LivingEntity)player, stack -> stack.getItem() instanceof ItemConstellationPaper);
         if (heldTpl != null) {
-            final ItemStack cstPaper = (ItemStack)heldTpl.func_76340_b();
+            final ItemStack cstPaper = (ItemStack)heldTpl.getB();
             final IConstellation cst = ((ItemConstellationPaper)cstPaper.getItem()).getConstellation(cstPaper);
             if (cst != null && ResearchHelper.getClientProgress().hasConstellationDiscovered(cst)) {
-                final float night = DayTimeHelper.getCurrentDaytimeDistribution(this.func_145831_w());
+                final float night = DayTimeHelper.getCurrentDaytimeDistribution(this.getLevel());
                 if (night >= 0.1f) {
                     for (final BlockPos pos : this.getConstellationPositions(cst)) {
                         this.playConstellationHighlightParticles(cst, pos, night);
@@ -339,7 +339,7 @@ public class TileAttunementAltar extends TileEntityTick
     
     @OnlyIn(Dist.CLIENT)
     private void playAltarConstellationHighlightParticles(final IConstellation cst, final float nightPercent) {
-        final Vector3 at = new Vector3((Vector3i)this.func_174877_v()).add(0.5, 0.0, 0.5).add(Vector3.random().setY(0).multiply(0.65f));
+        final Vector3 at = new Vector3((Vector3i)this.getBlockState()).add(0.5, 0.0, 0.5).add(Vector3.random().setY(0).multiply(0.65f));
         EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).color(VFXColorFunction.constant(cst.getConstellationColor().brighter())).setGravityStrength(-0.0015f).setMotion(Vector3.random().addY(3.0).normalize().multiply(0.03 + TileAttunementAltar.rand.nextFloat() * 0.015)).setAlphaMultiplier(0.85f * nightPercent).setScaleMultiplier(0.2f + TileAttunementAltar.rand.nextFloat() * 0.1f).alpha(VFXAlphaFunction.FADE_OUT);
     }
     
@@ -382,7 +382,7 @@ public class TileAttunementAltar extends TileEntityTick
     
     @Nullable
     private IConstellation searchActiveConstellation() {
-        final WorldContext ctx = SkyHandler.getContext(this.func_145831_w());
+        final WorldContext ctx = SkyHandler.getContext(this.getLevel());
         if (ctx == null) {
             return null;
         }
@@ -391,10 +391,10 @@ public class TileAttunementAltar extends TileEntityTick
         for (final IConstellation cst : RegistriesAS.REGISTRY_CONSTELLATIONS.getValues()) {
             boolean isValid = true;
             for (final BlockPos expectedRelayPos : this.getConstellationPositions(cst)) {
-                if (expectedRelayPos.equals((Object)this.func_174877_v())) {
+                if (expectedRelayPos.equals((Object)this.getBlockState())) {
                     continue;
                 }
-                final BlockEntity tile = MiscUtils.getTileAt((IBlockReader)this.func_145831_w(), expectedRelayPos, BlockEntity.class, true);
+                final BlockEntity tile = MiscUtils.getTileAt((IBlockReader)this.getLevel(), expectedRelayPos, BlockEntity.class, true);
                 if (!(tile instanceof TileSpectralRelay) && !(tile instanceof TileAttunementAltar)) {
                     isValid = false;
                     break;
@@ -405,7 +405,7 @@ public class TileAttunementAltar extends TileEntityTick
                 break;
             }
         }
-        if (match != null && cstHandler.isActiveCurrently(match, MoonPhase.fromWorld((IWorld)this.func_145831_w()))) {
+        if (match != null && cstHandler.isActiveCurrently(match, MoonPhase.fromWorld((IWorld)this.getLevel()))) {
             return match;
         }
         return null;
@@ -416,7 +416,7 @@ public class TileAttunementAltar extends TileEntityTick
         for (final StarLocation sl : cst.getStars()) {
             final int x = sl.x / 2;
             final int z = sl.y / 2;
-            offsetPositions.add(new BlockPos(x - 7, 0, z - 7).func_177971_a((Vector3i)this.func_174877_v()));
+            offsetPositions.add(new BlockPos(x - 7, 0, z - 7).func_177971_a((Vector3i)this.getBlockState()));
         }
         return offsetPositions;
     }
@@ -430,7 +430,7 @@ public class TileAttunementAltar extends TileEntityTick
             final int fZ = from.y / 2;
             final int tX = to.x / 2;
             final int tZ = to.y / 2;
-            offsetPositions.add((Tuple<BlockPos, BlockPos>)new Tuple((Object)new BlockPos(fX - 7, 0, fZ - 7).func_177971_a((Vector3i)this.func_174877_v()), (Object)new BlockPos(tX - 7, 0, tZ - 7).func_177971_a((Vector3i)this.func_174877_v())));
+            offsetPositions.add((Tuple<BlockPos, BlockPos>)new Tuple((Object)new BlockPos(fX - 7, 0, fZ - 7).func_177971_a((Vector3i)this.getBlockState()), (Object)new BlockPos(tX - 7, 0, tZ - 7).func_177971_a((Vector3i)this.getBlockState())));
         }
         return offsetPositions;
     }

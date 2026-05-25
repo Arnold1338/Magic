@@ -81,16 +81,16 @@ public abstract class MantleEffect extends ForgeRegistryEntry<MantleEffect> impl
     
     @OnlyIn(Dist.CLIENT)
     protected void playCapeSparkles(final Player player, float chance) {
-        if (player == Minecraft.getInstance().field_71439_g && Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a()) {
+        if (player == Minecraft.getInstance().player && Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a()) {
             chance *= 0.1f;
         }
         if (MantleEffect.rand.nextFloat() < chance) {
             final Color c = this.getAssociatedConstellation().getConstellationColor();
             if (c != null) {
                 final float width = player.func_213311_cf() * 0.8f;
-                final double x = player.func_226277_ct_() + MantleEffect.rand.nextFloat() * width * (MantleEffect.rand.nextBoolean() ? 1 : -1);
-                final double y = player.func_226278_cu_() + MantleEffect.rand.nextFloat() * (player.func_213302_cg() / 3.0f);
-                final double z = player.func_226281_cx_() + MantleEffect.rand.nextFloat() * width * (MantleEffect.rand.nextBoolean() ? 1 : -1);
+                final double x = player.getX() + MantleEffect.rand.nextFloat() * width * (MantleEffect.rand.nextBoolean() ? 1 : -1);
+                final double y = player.getY() + MantleEffect.rand.nextFloat() * (player.func_213302_cg() / 3.0f);
+                final double z = player.getZ() + MantleEffect.rand.nextFloat() * width * (MantleEffect.rand.nextBoolean() ? 1 : -1);
                 final Vector3 pos = new Vector3(x, y, z);
                 final FXFacingParticle fx = this.spawnFacingParticle(player, pos).color(VFXColorFunction.constant(c)).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.4f + MantleEffect.rand.nextFloat() * 0.4f).setMaxAge(20 + MantleEffect.rand.nextInt(10));
                 if (MantleEffect.rand.nextInt(3) == 0) {

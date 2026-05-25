@@ -128,11 +128,11 @@ public abstract class SizeHandler
     }
     
     public float clampX(final float centerX) {
-        return Mth.func_76131_a(centerX, 0.0f, this.getTotalWidth());
+        return Mth.canEnchant(centerX, 0.0f, this.getTotalWidth());
     }
     
     public float clampY(final float centerY) {
-        return Mth.func_76131_a(centerY, 0.0f, this.getTotalHeight());
+        return Mth.canEnchant(centerY, 0.0f, this.getTotalHeight());
     }
     
     public float evRelativePosX(final float relativeX) {

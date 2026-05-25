@@ -48,7 +48,7 @@ public class KeyGrowables extends KeyPerk implements PlayerTickPerk
             final float fRadius = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT, (float)(int)KeyGrowables.CONFIG.radius.get());
             final int rRadius = Math.max(Mth.func_76141_d(fRadius), 1);
             final BlockPos pos = player.func_233580_cy_().offset(KeyGrowables.rand.nextInt(rRadius * 2) + 1 - rRadius, KeyGrowables.rand.nextInt(rRadius * 2) + 1 - rRadius, KeyGrowables.rand.nextInt(rRadius * 2) + 1 - rRadius);
-            final World w = player.func_130014_f_();
+            final Level w = player.level();
             final CropHelper.GrowablePlant plant = CropHelper.wrapPlant((IWorld)w, pos);
             PktPlayEffect pkt = null;
             if (plant != null) {

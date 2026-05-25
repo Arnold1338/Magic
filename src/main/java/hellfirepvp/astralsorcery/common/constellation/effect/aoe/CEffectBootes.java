@@ -52,7 +52,7 @@ public class CEffectBootes extends ConstellationEffectEntityCollect<LivingEntity
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void playClientEffect(final World world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
+    public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         if (CEffectBootes.rand.nextInt(3) == 0) {
             final ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
             final Vector3 playAt = new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5).add(CEffectBootes.rand.nextFloat() * (prop.getSize() / 2.0) * (CEffectBootes.rand.nextBoolean() ? 1 : -1), CEffectBootes.rand.nextFloat() * (prop.getSize() / 4.0), CEffectBootes.rand.nextFloat() * (prop.getSize() / 2.0) * (CEffectBootes.rand.nextBoolean() ? 1 : -1));
@@ -63,7 +63,7 @@ public class CEffectBootes extends ConstellationEffectEntityCollect<LivingEntity
     }
     
     @Override
-    public boolean playEffect(final World world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
+    public boolean playEffect(final Level world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
         boolean didEffect = false;
         final List<LivingEntity> entities = this.collectEntities(world, pos, properties);
         Collections.shuffle(entities);
@@ -90,7 +90,7 @@ public class CEffectBootes extends ConstellationEffectEntityCollect<LivingEntity
                     final List<ItemStack> drops = new ArrayList<ItemStack>();
                     ItemStack drop = null;
                     rawDrops.forEach(drop -> {
-                        for (int i = 0; i < drop.func_190916_E(); ++i) {
+                        for (int i = 0; i < drop.getCount(); ++i) {
                             drops.add(ItemUtils.copyStackWithSize(drop, 1));
                         }
                         return;
@@ -99,7 +99,7 @@ public class CEffectBootes extends ConstellationEffectEntityCollect<LivingEntity
                     final Iterator iterator2;
                     while (iterator2.hasNext()) {
                         drop = iterator2.next();
-                        if (CEffectBootes.rand.nextFloat() < (double)CEffectBootes.CONFIG.herdingLootChance.get() && ItemUtils.dropItemNaturally(world, entity.func_226277_ct_(), entity.func_226278_cu_(), entity.func_226281_cx_(), drop) != null) {
+                        if (CEffectBootes.rand.nextFloat() < (double)CEffectBootes.CONFIG.herdingLootChance.get() && ItemUtils.dropItemNaturally(world, entity.getX(), entity.getY(), entity.getZ(), drop) != null) {
                             didEffectFlag = true;
                         }
                     }

@@ -93,7 +93,7 @@ public class FXSpritePlane extends EntityVisualFX implements EntityDynamicFX
         }
         final RenderTypeDecorator decorated = RenderTypeDecorator.wrapSetup(ctx.getRenderType(), ssr::bindTexture, () -> BlockAtlasTexture.getInstance().bindTexture());
         final VertexConsumer buf = drawBuffer.getBuffer((RenderType)decorated);
-        RenderingDrawUtils.renderAngleRotatedTexturedRectVB(buf, renderStack, vec, axis, (float)Math.toRadians(deg), scale, (float)uvOffset.func_76341_a(), (float)uvOffset.func_76340_b(), ssr.getULength(), ssr.getVLength(), color.getRed(), color.getGreen(), color.getBlue(), alpha);
+        RenderingDrawUtils.renderAngleRotatedTexturedRectVB(buf, renderStack, vec, axis, (float)Math.toRadians(deg), scale, (float)uvOffset.getA(), (float)uvOffset.getB(), ssr.getULength(), ssr.getVLength(), color.getRed(), color.getGreen(), color.getBlue(), alpha);
         drawBuffer.draw();
     }
 }

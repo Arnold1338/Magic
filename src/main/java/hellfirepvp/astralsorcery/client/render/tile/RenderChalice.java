@@ -41,14 +41,14 @@ public class RenderChalice extends CustomTileEntityRenderer<TileChalice>
         final float vPart = vlength * percSize;
         final float uOffset = tas.func_94209_e() + ulength / 2.0f - uPart / 2.0f;
         final float vOffset = tas.func_94206_g() + vlength / 2.0f - vPart / 2.0f;
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(0.5, 1.399999976158142, 0.5);
-        renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_((float)rotation.getX()));
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_((float)rotation.getY()));
-        renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_((float)rotation.getZ()));
-        renderStack.func_227862_a_(percSize, percSize, percSize);
+        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()(float)rotation.getX()));
+        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()(float)rotation.getY()));
+        renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()(float)rotation.getZ()));
+        renderStack.translate(percSize, percSize, percSize);
         final VertexConsumer buf = renderTypeBuffer.getBuffer(RenderTypesAS.TER_CHALICE_LIQUID);
-        RenderingDrawUtils.renderTexturedCubeCentralColorNormal(renderStack, buf, uOffset, vOffset, uPart, vPart, color.getRed(), color.getGreen(), color.getBlue(), 255, renderStack.func_227866_c_().func_227872_b_());
-        renderStack.func_227865_b_();
+        RenderingDrawUtils.renderTexturedCubeCentralColorNormal(renderStack, buf, uOffset, vOffset, uPart, vPart, color.getRed(), color.getGreen(), color.getBlue(), 255, renderStack.last().func_227872_b_());
+        renderStack.scale();
     }
 }

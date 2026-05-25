@@ -28,6 +28,6 @@ public enum GemQuality
     }
     
     public MutableComponent getDisplayName() {
-        return new Component("item.astralsorcery.gem_quality.%s", new Object[] { this.name().toLowerCase(Locale.ROOT) }).func_240699_a_(this.color);
+        return new Component("item.astralsorcery.gem_quality.%s", new Object[] { this.name().toLowerCase(Locale.ROOT) }).toString()this.color);
     }
 }

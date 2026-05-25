@@ -159,12 +159,12 @@ public class SimpleAltarRecipe extends CustomMatcherRecipe implements GatedRecip
     @OnlyIn(Dist.CLIENT)
     public ItemStack getOutputForRender(final Iterable<ItemStack> inventoryContents) {
         final ItemStack first = (ItemStack)Iterables.getFirst((Iterable)this.outputs, (Object)ItemStack.EMPTY);
-        return ItemUtils.copyStackWithSize(first, first.func_190916_E());
+        return ItemUtils.copyStackWithSize(first, first.getCount());
     }
     
     @Nonnull
     public List<ItemStack> getOutputs(final TileAltar altar) {
-        return MiscUtils.transformList(this.outputs, stack -> ItemUtils.copyStackWithSize(stack, stack.func_190916_E()));
+        return MiscUtils.transformList(this.outputs, stack -> ItemUtils.copyStackWithSize(stack, stack.getCount()));
     }
     
     public void setFocusConstellation(final IConstellation focusConstellation) {
@@ -185,7 +185,7 @@ public class SimpleAltarRecipe extends CustomMatcherRecipe implements GatedRecip
     }
     
     public void addOutput(final ItemStack output) {
-        this.outputs.add(ItemUtils.copyStackWithSize(output, output.func_190916_E()));
+        this.outputs.add(ItemUtils.copyStackWithSize(output, output.getCount()));
     }
     
     public boolean matches(final LogicalSide side, final Player crafter, final TileAltar altar, final boolean ignoreStarlightRequirement) {

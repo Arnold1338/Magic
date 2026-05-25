@@ -45,7 +45,7 @@ public class SimplePrismTransmissionNode implements IPrismTransmissionNode
         return this.thisPos;
     }
     
-    public void updateIgnoreBlockCollisionState(final World world, final boolean ignoreBlockCollision) {
+    public void updateIgnoreBlockCollisionState(final Level world, final boolean ignoreBlockCollision) {
         this.ignoreBlockCollision = ignoreBlockCollision;
         final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(world);
         if (handle != null) {
@@ -68,22 +68,22 @@ public class SimplePrismTransmissionNode implements IPrismTransmissionNode
     }
     
     @Override
-    public boolean notifyUnlink(final World world, final BlockPos to) {
+    public boolean notifyUnlink(final Level world, final BlockPos to) {
         return this.nextNodes.remove(to) != null;
     }
     
     @Override
-    public void notifyLink(final World world, final BlockPos pos) {
+    public void notifyLink(final Level world, final BlockPos pos) {
         this.addLink(world, pos, true, false);
     }
     
-    private void addLink(final World world, final BlockPos pos, final boolean doRayCheck, final boolean previousRayState) {
+    private void addLink(final Level world, final BlockPos pos, final boolean doRayCheck, final boolean previousRayState) {
         final PrismNext nextNode = new PrismNext(this, world, this.thisPos, pos, doRayCheck, previousRayState);
         this.nextNodes.put(pos, nextNode);
     }
     
     @Override
-    public boolean notifyBlockChange(final World world, final BlockPos at) {
+    public boolean notifyBlockChange(final Level world, final BlockPos at) {
         boolean anyChange = false;
         for (final PrismNext next : this.nextNodes.values()) {
             if (next.notifyBlockPlace(world, this.thisPos, at)) {
@@ -94,12 +94,12 @@ public class SimplePrismTransmissionNode implements IPrismTransmissionNode
     }
     
     @Override
-    public void notifySourceLink(final World world, final BlockPos source) {
+    public void notifySourceLink(final Level world, final BlockPos source) {
         this.sourcesToThis.add(source);
     }
     
     @Override
-    public void notifySourceUnlink(final World world, final BlockPos source) {
+    public void notifySourceUnlink(final Level world, final BlockPos source) {
         this.sourcesToThis.remove(source);
     }
     
@@ -187,7 +187,7 @@ public class SimplePrismTransmissionNode implements IPrismTransmissionNode
         private final BlockPos pos;
         private RaytraceAssist rayAssist;
         
-        private PrismNext(final SimplePrismTransmissionNode parent, final World world, final BlockPos start, final BlockPos end, final boolean doRayTest, final boolean oldRayState) {
+        private PrismNext(final SimplePrismTransmissionNode parent, final Level world, final BlockPos start, final BlockPos end, final boolean doRayTest, final boolean oldRayState) {
             this.parent = parent;
             this.pos = end;
             this.rayAssist = new RaytraceAssist(start, end);
@@ -200,7 +200,7 @@ public class SimplePrismTransmissionNode implements IPrismTransmissionNode
             this.distanceSq = end.func_218138_a((IPosition)Vec3.func_237491_b_((Vector3i)start), false);
         }
         
-        private boolean notifyBlockPlace(final World world, final BlockPos connect, final BlockPos at) {
+        private boolean notifyBlockPlace(final Level world, final BlockPos connect, final BlockPos at) {
             final Vec3 bPosAt = Vec3.func_237491_b_((Vector3i)at);
             final double dstStart = connect.func_218138_a((IPosition)bPosAt, false);
             final double dstEnd = this.pos.func_218138_a((IPosition)bPosAt, false);

@@ -60,7 +60,7 @@ public class BlockStateList implements BlockPredicate, Predicate<BlockState>
     }
     
     @Override
-    public boolean test(final World world, final BlockPos pos, final BlockState state) {
+    public boolean test(final Level world, final BlockPos pos, final BlockState state) {
         return this.configuredMatches.stream().anyMatch(predicate -> predicate.test(world, pos, state));
     }
     

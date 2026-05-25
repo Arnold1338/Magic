@@ -62,7 +62,7 @@ public class RockCrystalBuffer extends SectionWorldData<BufferSection>
     public void readFromNBT(final CompoundTag nbt) {
     }
     
-    public void updateTick(final World world) {
+    public void updateTick(final Level world) {
     }
     
     public static class BufferSection extends WorldSection

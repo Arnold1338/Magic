@@ -104,13 +104,13 @@ public class ScreenJournalPages extends ScreenJournal implements NavigationArrow
         this.func_230926_e_(100);
         int pageYOffset = 20;
         if (this.currentPageOffset == 0) {
-            final int width = this.field_230712_o_.func_238414_a_((ITextProperties)this.func_231171_q_());
-            renderStack.func_227860_a_();
+            final int width = this.fogColor.func_238414_a_((ITextProperties)this.func_231171_q_());
+            renderStack.popPose();
             renderStack.func_227861_a_((double)(this.guiLeft + 117), (double)(this.guiTop + 22), (double)this.getGuiZLevel());
-            renderStack.func_227862_a_(1.3f, 1.3f, 1.0f);
+            renderStack.translate(1.3f, 1.3f, 1.0f);
             renderStack.func_227861_a_((double)(-width / 2.0f), 0.0, 0.0);
-            RenderingDrawUtils.renderStringAt(this.field_230712_o_, renderStack, (ITextProperties)this.func_231171_q_(), 14540253);
-            renderStack.func_227865_b_();
+            RenderingDrawUtils.renderStringAt(this.fogColor, renderStack, (ITextProperties)this.func_231171_q_(), 14540253);
+            renderStack.scale();
             RenderSystem.enableBlend();
             Blending.DEFAULT.apply();
             TexturesAS.TEX_GUI_BOOK_UNDERLINE.bindTexture();

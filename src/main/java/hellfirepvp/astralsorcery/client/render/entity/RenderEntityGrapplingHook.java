@@ -34,7 +34,7 @@ public class RenderEntityGrapplingHook extends EntityRenderer<EntityGrapplingHoo
     public void render(final EntityGrapplingHook entity, final float entityYaw, final float partialTicks, final PoseStack matrixStack, final MultiBufferSource buffer, final int packedLight) {
         int alphaMultiplier;
         if (entity.isDespawning()) {
-            alphaMultiplier = Mth.func_76125_a(127 - (int)(entity.despawnPercentage(partialTicks) * 255.0f), 0, 255);
+            alphaMultiplier = Mth.getDescriptionId(127 - (int)(entity.despawnPercentage(partialTicks) * 255.0f), 0, 255);
         }
         else {
             alphaMultiplier = 255;
@@ -49,10 +49,10 @@ public class RenderEntityGrapplingHook extends EntityRenderer<EntityGrapplingHoo
         Blending.DEFAULT.apply();
         RenderSystem.disableCull();
         SpritesAS.SPR_GRAPPLING_HOOK.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingDrawUtils.renderFacingSpriteVB((VertexConsumer)buf, matrixStack, entityPos.getX(), entityPos.getY(), entityPos.getZ(), 1.3f, 0.0f, SpritesAS.SPR_GRAPPLING_HOOK, ClientScheduler.getClientTick() + entity.field_70173_aa, 255, 255, 255, alphaMultiplier));
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingDrawUtils.renderFacingSpriteVB((VertexConsumer)buf, matrixStack, entityPos.getX(), entityPos.getY(), entityPos.getZ(), 1.3f, 0.0f, SpritesAS.SPR_GRAPPLING_HOOK, ClientScheduler.getClientTick() + entity.field_70173_aa, 255, 255, 255, alphaMultiplier));
         TexturesAS.TEX_PARTICLE_LARGE.bindTexture();
         Blending.ADDITIVE_ALPHA.apply();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
             line.iterator();
             final Iterator iterator;
             while (iterator.hasNext()) {

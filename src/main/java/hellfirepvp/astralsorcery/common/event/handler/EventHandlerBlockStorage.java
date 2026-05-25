@@ -17,7 +17,7 @@ public class EventHandlerBlockStorage
     
     private static void onClickBlockServer(final PlayerInteractEvent.LeftClickBlock event) {
         final ItemStack held = event.getItemStack();
-        if (!event.getWorld().func_201670_d() && !held.isEmpty() && held.getItem() instanceof ItemBlockStorage) {
+        if (!event.getWorld().level() && !held.isEmpty() && held.getItem() instanceof ItemBlockStorage) {
             ItemBlockStorage.clearContainerFor(event.getPlayer());
         }
     }

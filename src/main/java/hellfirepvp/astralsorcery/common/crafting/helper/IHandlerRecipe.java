@@ -7,9 +7,9 @@ import net.minecraftforge.items.IItemHandler;
 
 public interface IHandlerRecipe<I extends IItemHandler> extends Recipe<Container>
 {
-    boolean matches(final I p0, final World p1);
+    boolean matches(final I p0, final Level p1);
     
-    default boolean func_77569_a(final Container inv, final World worldIn) {
+    default boolean func_77569_a(final Container inv, final Level worldIn) {
         return false;
     }
 }

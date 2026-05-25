@@ -22,13 +22,13 @@ public abstract class BlockFoliageTemplate extends Block implements CustomItemBl
     
     public BlockState func_196271_a(final BlockState state, final Direction dir, final BlockState facingState, final IWorld world, final BlockPos pos, final BlockPos facingPos) {
         if (!state.func_196955_c((IWorldReader)world, pos)) {
-            return Blocks.field_150350_a.defaultBlockState();
+            return Blocks.AIR.defaultBlockState();
         }
         return super.func_196271_a(state, dir, facingState, world, pos, facingPos);
     }
     
     public boolean func_196260_a(final BlockState state, final IWorldReader world, final BlockPos pos) {
-        final BlockPos blockpos = pos.func_177977_b();
+        final BlockPos blockpos = pos.renderItem();
         if (state.getBlock() == this) {
             return world.getBlockState(blockpos).canSustainPlant((IBlockReader)world, blockpos, Direction.UP, (IPlantable)this);
         }

@@ -51,9 +51,9 @@ public class CEffectDiscidia extends ConstellationEffectEntityCollect<LivingEnti
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void playClientEffect(final World world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
+    public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         final Vector3 playAt = new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5);
-        if (pos.equals((Object)pedestal.func_174877_v())) {
+        if (pos.equals((Object)pedestal.getBlockState())) {
             playAt.add(CEffectDiscidia.rand.nextFloat() * 0.1 * (CEffectDiscidia.rand.nextBoolean() ? 1 : -1), CEffectDiscidia.rand.nextFloat() * 5.0f, CEffectDiscidia.rand.nextFloat() * 0.1 * (CEffectDiscidia.rand.nextBoolean() ? 1 : -1));
         }
         final Vector3 motion = Vector3.random().setY(0).multiply(0.05);
@@ -61,7 +61,7 @@ public class CEffectDiscidia extends ConstellationEffectEntityCollect<LivingEnti
     }
     
     @Override
-    public boolean playEffect(final World world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
+    public boolean playEffect(final Level world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
         boolean didEffect = false;
         final float damage = ((Double)CEffectDiscidia.CONFIG.damage.get()).floatValue();
         final Player owner = this.getOwningPlayerInWorld(world, pos);
@@ -72,7 +72,7 @@ public class CEffectDiscidia extends ConstellationEffectEntityCollect<LivingEnti
                 continue;
             }
             if (properties.isCorrupted() && entity instanceof MobEntity && entity.getClassification(false) == MobCategory.MONSTER) {
-                entity.func_70691_i(damage);
+                entity.heal(damage);
                 entity.func_195064_c(new MobEffectInstance(Effects.field_76429_m, 30, 1));
             }
             else {

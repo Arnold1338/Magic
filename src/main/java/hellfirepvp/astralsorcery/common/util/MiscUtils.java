@@ -88,7 +88,7 @@ public class MiscUtils
         if (world == null || pos == null) {
             return null;
         }
-        if (world instanceof IWorld && !((IWorld)world).func_72863_F().func_222865_a(new ChunkPos(pos)) && !forceChunkLoad) {
+        if (world instanceof IWorld && !((IWorld)world).getChunkSource().func_222865_a(new ChunkPos(pos)) && !forceChunkLoad) {
             return null;
         }
         final BlockEntity te = world.func_175625_s(pos);
@@ -103,17 +103,17 @@ public class MiscUtils
     
     public static boolean canEntityTickAt(final IWorld world, final BlockPos pos) {
         final ChunkPos chPos = new ChunkPos(pos);
-        if (!world.func_72863_F().func_222865_a(chPos)) {
+        if (!world.getChunkSource().func_222865_a(chPos)) {
             return false;
         }
-        if (world.func_201670_d() || !(world instanceof ServerLevel)) {
+        if (world.level() || !(world instanceof ServerLevel)) {
             return true;
         }
-        final ServerChunkProvider chunkProvider = ((ServerLevel)world).func_72863_F();
+        final ServerChunkProvider chunkProvider = ((ServerLevel)world).getChunkSource();
         return !chunkProvider.field_217237_a.func_219243_d(chPos);
     }
     
-    public static List<BlockSnapshot> captureBlockChanges(final World world, final Runnable r) {
+    public static List<BlockSnapshot> captureBlockChanges(final Level world, final Runnable r) {
         world.captureBlockSnapshots = true;
         r.run();
         world.captureBlockSnapshots = false;
@@ -153,7 +153,7 @@ public class MiscUtils
         if (values.length == 0) {
             throw new IllegalArgumentException(enumClazz.getName() + " has no enum constants.");
         }
-        return values[Mth.func_76125_a(index, 0, values.length - 1)];
+        return values[Mth.getDescriptionId(index, 0, values.length - 1)];
     }
     
     @Nullable
@@ -197,11 +197,11 @@ public class MiscUtils
         return minElement;
     }
     
-    public static boolean canSeeSky(final World world, final BlockPos at, final boolean loadChunk, final boolean defaultValue) {
+    public static boolean canSeeSky(final Level world, final BlockPos at, final boolean loadChunk, final boolean defaultValue) {
         return canSeeSky(world, at, loadChunk, false, defaultValue);
     }
     
-    public static boolean canSeeSky(final World world, final BlockPos at, final boolean loadChunk, final boolean allowInNoSkyWorlds, final boolean defaultValue) {
+    public static boolean canSeeSky(final Level world, final BlockPos at, final boolean loadChunk, final boolean allowInNoSkyWorlds, final boolean defaultValue) {
         if (world.func_82736_K().func_223586_b((GameRules.RuleKey)GameRulesAS.IGNORE_SKYLIGHT_CHECK_RULE)) {
             return true;
         }
@@ -341,10 +341,10 @@ public class MiscUtils
         }
         if (target instanceof Player) {
             final Player plTarget = (Player)target;
-            if (target.func_130014_f_() instanceof ServerLevel && target.func_130014_f_().func_73046_m() != null && target.func_130014_f_().func_73046_m().func_71219_W()) {
+            if (target.level() instanceof ServerLevel && target.level().func_73046_m() != null && target.level().func_73046_m().func_71219_W()) {
                 return false;
             }
-            if (plTarget.func_175149_v() || plTarget.func_184812_l_()) {
+            if (plTarget.func_175149_v() || plTarget.getVehicle()) {
                 return false;
             }
             if (source instanceof Player && !((Player)source).func_96122_a(plTarget)) {
@@ -355,13 +355,13 @@ public class MiscUtils
     }
     
     public static boolean canPlayerBreakBlockPos(final Player player, final BlockPos tryBreak) {
-        final BlockEvent.BreakEvent ev = new BlockEvent.BreakEvent(player.func_130014_f_(), tryBreak, player.func_130014_f_().getBlockState(tryBreak), player);
+        final BlockEvent.BreakEvent ev = new BlockEvent.BreakEvent(player.level(), tryBreak, player.level().getBlockState(tryBreak), player);
         MinecraftForge.EVENT_BUS.post((Event)ev);
         return !ev.isCanceled();
     }
     
     public static boolean canPlayerPlaceBlockPos(final Player player, final BlockState tryPlace, final BlockPos pos, final Direction againstSide) {
-        final World world = player.func_130014_f_();
+        final Level world = player.level();
         world.captureBlockSnapshots = true;
         world.func_175656_a(pos, tryPlace);
         world.captureBlockSnapshots = false;
@@ -397,10 +397,10 @@ public class MiscUtils
     @Nullable
     public static Tuple<Hand, ItemStack> getMainOrOffHand(final LivingEntity entity, final Predicate<ItemStack> acceptorFnc) {
         Hand hand = InteractionHand.MAIN_HAND;
-        ItemStack held = entity.func_184586_b(hand);
+        ItemStack held = entity.getItemInHand(hand);
         if (held.isEmpty() || !acceptorFnc.test(held)) {
             hand = InteractionHand.OFF_HAND;
-            held = entity.func_184586_b(hand);
+            held = entity.getItemInHand(hand);
         }
         if (held.isEmpty() || !acceptorFnc.test(held)) {
             return null;
@@ -416,23 +416,23 @@ public class MiscUtils
     }
     
     @Nullable
-    public static <T extends Entity> T transferEntityTo(T entity, final RegistryKey<World> target, final BlockPos targetPos) {
-        if (entity.func_130014_f_().isClientSide) {
+    public static <T extends Entity> T transferEntityTo(T entity, final RegistryKey<Level> target, final BlockPos targetPos) {
+        if (entity.level().isClientSide) {
             return null;
         }
         entity.func_226284_e_(false);
-        final RegistryKey<World> src = (RegistryKey<World>)entity.func_130014_f_().dimension();
+        final RegistryKey<Level> src = (RegistryKey<Level>)entity.level().dimension();
         if (!src.equals(target)) {
             if (!ForgeHooks.onTravelToDimension((Entity)entity, (RegistryKey)target)) {
                 return null;
             }
             final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
-            final ServerLevel targetWorld = srv.func_71218_a((RegistryKey)target);
+            final ServerLevel targetWorld = srv.getLevel((RegistryKey)target);
             if (targetWorld == null) {
                 return null;
             }
             if (entity instanceof ServerPlayer) {
-                ((ServerPlayer)entity).func_200619_a(targetWorld, targetPos.getX() + 0.5, targetPos.getY() + 0.1, targetPos.getZ() + 0.5, entity.field_70177_z, entity.field_70125_A);
+                ((ServerPlayer)entity).func_200619_a(targetWorld, targetPos.getX() + 0.5, targetPos.getY() + 0.1, targetPos.getZ() + 0.5, entity.yRot, entity.xRot);
             }
             else {
                 entity = (T)entity.changeDimension(targetWorld, (ITeleporter)new NoOpTeleporter(targetWorld, targetPos));
@@ -446,11 +446,11 @@ public class MiscUtils
     }
     
     @Nullable
-    public static BlockPos itDownTopBlock(final World world, final BlockPos at) {
+    public static BlockPos itDownTopBlock(final Level world, final BlockPos at) {
         final IChunk chunk = world.func_217349_x(at);
         BlockPos downPos = null;
         for (BlockPos blockpos = new BlockPos(at.getX(), chunk.func_76625_h() + 16, at.getZ()); blockpos.getY() >= 0; blockpos = downPos) {
-            downPos = blockpos.func_177977_b();
+            downPos = blockpos.renderItem();
             final BlockState test = world.getBlockState(downPos);
             if (!world.isEmptyBlock(downPos) && !test.func_235714_a_((ITag)BlockTags.field_206952_E) && test.func_224755_d((IBlockReader)world, downPos, Direction.UP)) {
                 break;
@@ -489,22 +489,22 @@ public class MiscUtils
     
     @Nullable
     public static BlockHitResult rayTraceLookBlock(final Player player) {
-        return rayTraceLookBlock(player, player.func_110148_a((Attribute)ForgeMod.REACH_DISTANCE.get()).func_111126_e());
+        return rayTraceLookBlock(player, player.getAttribute((Attribute)ForgeMod.REACH_DISTANCE.get()).func_111126_e());
     }
     
     @Nonnull
     public static HitResult rayTraceLook(final Player player) {
-        return rayTraceLook(player, player.func_110148_a((Attribute)ForgeMod.REACH_DISTANCE.get()).func_111126_e());
+        return rayTraceLook(player, player.getAttribute((Attribute)ForgeMod.REACH_DISTANCE.get()).func_111126_e());
     }
     
     @Nullable
     public static BlockHitResult rayTraceLookBlock(final Player player, final ClipContext.BlockMode blockMode, final ClipContext.FluidMode fluidMode) {
-        return rayTraceLookBlock((Entity)player, blockMode, fluidMode, player.func_110148_a((Attribute)ForgeMod.REACH_DISTANCE.get()).func_111126_e());
+        return rayTraceLookBlock((Entity)player, blockMode, fluidMode, player.getAttribute((Attribute)ForgeMod.REACH_DISTANCE.get()).func_111126_e());
     }
     
     @Nonnull
     public static HitResult rayTraceLook(final Player player, final ClipContext.BlockMode blockMode, final ClipContext.FluidMode fluidMode) {
-        return rayTraceLook((Entity)player, blockMode, fluidMode, player.func_110148_a((Attribute)ForgeMod.REACH_DISTANCE.get()).func_111126_e());
+        return rayTraceLook((Entity)player, blockMode, fluidMode, player.getAttribute((Attribute)ForgeMod.REACH_DISTANCE.get()).func_111126_e());
     }
     
     @Nullable
@@ -528,11 +528,11 @@ public class MiscUtils
     
     @Nonnull
     public static HitResult rayTraceLook(final Entity entity, final ClipContext.BlockMode blockMode, final ClipContext.FluidMode fluidMode, final double reachDst) {
-        final Vec3 pos = new Vec3(entity.func_226277_ct_(), entity.func_226278_cu_() + entity.func_70047_e(), entity.func_226281_cx_());
+        final Vec3 pos = new Vec3(entity.getX(), entity.getY() + entity.func_70047_e(), entity.getZ());
         final Vec3 lookVec = entity.func_70040_Z();
         final Vec3 end = pos.func_72441_c(lookVec.field_72450_a * reachDst, lookVec.field_72448_b * reachDst, lookVec.field_72449_c * reachDst);
         final ClipContext ctx = new ClipContext(pos, end, blockMode, fluidMode, entity);
-        return (HitResult)entity.field_70170_p.func_217299_a(ctx);
+        return (HitResult)entity.level().func_217299_a(ctx);
     }
     
     public static Color calcRandomConstellationColor(final float perc) {
@@ -574,7 +574,7 @@ public class MiscUtils
     
     public static <T> T executeWithChunk(final IWorldReader world, final BlockPos pos, final Supplier<T> run, final T defaultValue) {
         if (world instanceof ServerLevel && LogCategory.UNINTENDED_CHUNK_LOADING.isEnabled()) {
-            final ServerChunkProvider provider = ((ServerLevel)world).func_72863_F();
+            final ServerChunkProvider provider = ((ServerLevel)world).getChunkSource();
             final int prev = provider.func_73152_e();
             try {
                 if (provider.func_222865_a(new ChunkPos(pos))) {
@@ -582,7 +582,7 @@ public class MiscUtils
                 }
             }
             finally {
-                final int current = ((ServerLevel)world).func_72863_F().func_73152_e();
+                final int current = ((ServerLevel)world).getChunkSource().func_73152_e();
                 if (current > prev) {
                     AstralSorcery.log.warn("Astral Sorcery loaded a chunk when it intended not to!");
                     AstralSorcery.log.warn("Previous chunk count: " + prev);
@@ -593,7 +593,7 @@ public class MiscUtils
             }
         }
         else if (world instanceof IWorld) {
-            final AbstractChunkProvider provider2 = ((IWorld)world).func_72863_F();
+            final AbstractChunkProvider provider2 = ((IWorld)world).getChunkSource();
             if (provider2.func_222866_a(pos)) {
                 return run.get();
             }

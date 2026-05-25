@@ -19,7 +19,7 @@ public abstract class InteractionResult
         return this.id;
     }
     
-    public abstract void doResult(final World p0, final Vector3 p1);
+    public abstract void doResult(final Level p0, final Vector3 p1);
     
     public abstract void read(final JsonObject p0) throws JsonParseException;
     

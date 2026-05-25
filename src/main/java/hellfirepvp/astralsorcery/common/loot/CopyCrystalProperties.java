@@ -26,7 +26,7 @@ public class CopyCrystalProperties extends LootFunction
     }
     
     protected ItemStack func_215859_a(final ItemStack stack, final LootContext context) {
-        if (context.func_216033_a(LootParameters.field_216288_h)) {
+        if (context.hasParam(LootParameters.field_216288_h)) {
             final BlockEntity tile = (BlockEntity)context.getParamOrNull(LootParameters.field_216288_h);
             if (tile instanceof CrystalAttributeTile && stack.getItem() instanceof CrystalAttributeItem) {
                 CrystalAttributes attr = ((CrystalAttributeTile)tile).getAttributes();

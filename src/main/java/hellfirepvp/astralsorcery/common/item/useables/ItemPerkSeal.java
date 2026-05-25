@@ -16,7 +16,7 @@ import net.minecraft.world.item.Item;
 public class ItemPerkSeal extends Item
 {
     public ItemPerkSeal() {
-        super(new Item.Properties().func_200918_c(0).func_200917_a(16).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().func_200918_c(0).func_200917_a(16).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     public static int getPlayerSealCount(final Player player) {

@@ -16,7 +16,7 @@ import net.minecraft.world.item.Item;
 public class ItemLinkingTool extends Item implements IItemLinkingTool
 {
     public ItemLinkingTool() {
-        super(new Item.Properties().func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     public boolean shouldInterceptBlockInteract(final LogicalSide side, final Player player, final Hand hand, final BlockPos pos, final Direction face) {
@@ -28,8 +28,8 @@ public class ItemLinkingTool extends Item implements IItemLinkingTool
     }
     
     public boolean doBlockInteract(final LogicalSide side, final Player player, final Hand hand, final BlockPos pos, final Direction face) {
-        final World world = player.func_130014_f_();
-        if (!world.func_201670_d()) {
+        final Level world = player.level();
+        if (!world.level()) {
             final LinkHandler.LinkSession session = LinkHandler.getActiveSession(player);
             if (session != null && session.getType() == LinkHandler.LinkType.ENTITY) {
                 final LinkHandler.RightClickResult result = LinkHandler.onInteractBlock(player, world, pos, player.func_225608_bj_());
@@ -54,8 +54,8 @@ public class ItemLinkingTool extends Item implements IItemLinkingTool
             return false;
         }
         final LivingEntity target = (LivingEntity)interacted;
-        final World world = player.func_130014_f_();
-        if (!world.func_201670_d()) {
+        final Level world = player.level();
+        if (!world.level()) {
             final LinkHandler.LinkSession session = LinkHandler.getActiveSession(player);
             if (session == null || session.getType() == LinkHandler.LinkType.ENTITY) {
                 final LinkHandler.RightClickResult result = LinkHandler.onInteractEntity(player, target);

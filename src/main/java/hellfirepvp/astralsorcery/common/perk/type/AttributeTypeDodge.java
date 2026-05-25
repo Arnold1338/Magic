@@ -56,7 +56,7 @@ public class AttributeTypeDodge extends PerkAttributeType
     }
     
     static {
-        CONFIG = new Config("type." + PerkAttributeTypesAS.KEY_ATTR_TYPE_INC_DODGE.func_110623_a());
+        CONFIG = new Config("type." + PerkAttributeTypesAS.KEY_ATTR_TYPE_INC_DODGE.addTransientModifier());
     }
     
     private static class Config extends ConfigEntry

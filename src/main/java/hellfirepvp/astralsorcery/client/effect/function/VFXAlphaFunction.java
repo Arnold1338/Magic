@@ -15,7 +15,7 @@ public interface VFXAlphaFunction<T extends EntityVisualFX>
     };
     
     default <T extends EntityVisualFX> VFXAlphaFunction<T> proximity(final Supplier<Vector3> targetSupplier, final float distance) {
-        return (fx, alpha, pTicks) -> alpha * Mth.func_76131_a((float)fx.getRenderPosition(pTicks).distance(targetSupplier.get()) / distance, 0.0f, 1.0f);
+        return (fx, alpha, pTicks) -> alpha * Mth.canEnchant((float)fx.getRenderPosition(pTicks).distance(targetSupplier.get()) / distance, 0.0f, 1.0f);
     }
     
     float getAlpha(final T p0, final float p1, final float p2);
@@ -31,7 +31,7 @@ public interface VFXAlphaFunction<T extends EntityVisualFX>
                 return alphaIn;
             }
             else {
-                final float mul = Mth.func_76131_a((fadeInTicks - (fx.getAge() + pTicks)) / fadeInTicks, 0.0f, 1.0f);
+                final float mul = Mth.canEnchant((fadeInTicks - (fx.getAge() + pTicks)) / fadeInTicks, 0.0f, 1.0f);
                 return alphaIn * mul;
             }
         };

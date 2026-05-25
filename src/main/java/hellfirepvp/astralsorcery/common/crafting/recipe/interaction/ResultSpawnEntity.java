@@ -36,13 +36,13 @@ public class ResultSpawnEntity extends InteractionResult
     }
     
     @Override
-    public void doResult(final World world, final Vector3 at) {
+    public void doResult(final Level world, final Vector3 at) {
         final Entity e = this.entityType.func_200721_a(world);
         if (!(e instanceof LivingEntity)) {
             return;
         }
         e.func_70012_b(at.getX(), at.getY(), at.getZ(), world.field_73012_v.nextFloat() * 360.0f, 0.0f);
-        world.func_217376_c(e);
+        world.addFreshEntity(e);
     }
     
     @Override

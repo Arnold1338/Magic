@@ -80,6 +80,6 @@ public class StorageNetworkBuffer extends GlobalWorldData
         this.rebuildAccessContext();
     }
     
-    public void updateTick(final World world) {
+    public void updateTick(final Level world) {
     }
 }

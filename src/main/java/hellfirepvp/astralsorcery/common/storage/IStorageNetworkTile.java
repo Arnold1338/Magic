@@ -8,7 +8,7 @@ public interface IStorageNetworkTile<T extends IStorageNetworkTile<T>> extends I
 {
     T getAssociatedCore();
     
-    World getNetworkWorld();
+    Level getNetworkWorld();
     
     void receiveMappingChange(final StorageNetworkHandler.MappingChange p0);
     

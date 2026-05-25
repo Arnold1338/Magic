@@ -9,11 +9,11 @@ import net.minecraft.client.player.AbstractClientPlayerEntity;
 public class EntityClientReplacement extends AbstractClientPlayerEntity
 {
     public EntityClientReplacement() {
-        super(Minecraft.getInstance().field_71441_e, Minecraft.getInstance().field_71439_g.func_146103_bH());
+        super(Minecraft.getInstance().level, Minecraft.getInstance().player.func_146103_bH());
     }
     
     @OnlyIn(Dist.CLIENT)
     public boolean func_175148_a(final PlayerModelPart part) {
-        return Minecraft.getInstance().field_71439_g != null && Minecraft.getInstance().field_71439_g.func_175148_a(part);
+        return Minecraft.getInstance().player != null && Minecraft.getInstance().player.func_175148_a(part);
     }
 }

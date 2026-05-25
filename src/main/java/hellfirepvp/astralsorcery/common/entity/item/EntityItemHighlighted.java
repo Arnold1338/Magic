@@ -22,20 +22,20 @@ public class EntityItemHighlighted extends EntityCustomItemReplacement
     private static final EntityDataAccessor<Integer> DATA_COLOR;
     private static final int NO_COLOR = -16777216;
     
-    public EntityItemHighlighted(final EntityType<? extends ItemEntity> type, final World world) {
+    public EntityItemHighlighted(final EntityType<? extends ItemEntity> type, final Level world) {
         super(type, world);
         ReflectionHelper.setSkipItemPhysicsRender(this);
         this.func_213323_x_();
     }
     
-    public EntityItemHighlighted(final EntityType<? extends ItemEntity> type, final World world, final double x, final double y, final double z) {
+    public EntityItemHighlighted(final EntityType<? extends ItemEntity> type, final Level world, final double x, final double y, final double z) {
         this(type, world);
         this.setPos(x, y, z);
-        this.field_70177_z = this.field_70146_Z.nextFloat() * 360.0f;
-        this.func_213293_j(this.field_70146_Z.nextDouble() * 0.2 - 0.1, 0.2, this.field_70146_Z.nextDouble() * 0.2 - 0.1);
+        this.yRot = this.random.nextFloat() * 360.0f;
+        this.func_213293_j(this.random.nextDouble() * 0.2 - 0.1, 0.2, this.random.nextDouble() * 0.2 - 0.1);
     }
     
-    public EntityItemHighlighted(final EntityType<? extends ItemEntity> type, final World world, final double x, final double y, final double z, final ItemStack stack) {
+    public EntityItemHighlighted(final EntityType<? extends ItemEntity> type, final Level world, final double x, final double y, final double z, final ItemStack stack) {
         this(type, world, x, y, z);
         this.func_92058_a(stack);
         this.lifespan = (stack.isEmpty() ? 6000 : stack.getEntityLifespan(world));

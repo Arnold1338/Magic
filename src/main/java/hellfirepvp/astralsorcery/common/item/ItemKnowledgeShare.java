@@ -39,7 +39,7 @@ import net.minecraft.world.item.Item;
 public class ItemKnowledgeShare extends Item
 {
     public ItemKnowledgeShare() {
-        super(new Item.Properties().func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     public void func_150895_a(final CreativeModeTab group, final NonNullList<ItemStack> items) {
@@ -52,25 +52,25 @@ public class ItemKnowledgeShare extends Item
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> tooltip, final TooltipFlag flag) {
+    public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> tooltip, final TooltipFlag flag) {
         if (isCreative(stack)) {
-            tooltip.add((Component)new Component("astralsorcery.misc.knowledge.inscribed.creative").func_240699_a_(ChatFormatting.LIGHT_PURPLE));
+            tooltip.add((Component)new Component("astralsorcery.misc.knowledge.inscribed.creative").toString()ChatFormatting.LIGHT_PURPLE));
             return;
         }
         if (getKnowledge(stack) == null) {
-            tooltip.add((Component)new Component("astralsorcery.misc.knowledge.missing").func_240699_a_(ChatFormatting.GRAY));
+            tooltip.add((Component)new Component("astralsorcery.misc.knowledge.missing").toString()ChatFormatting.GRAY));
         }
         else {
             final MutableComponent name = getKnowledgeOwnerName(stack);
             if (name != null) {
-                tooltip.add((Component)new Component("astralsorcery.misc.knowledge.inscribed", new Object[] { name }).func_240699_a_(ChatFormatting.BLUE));
+                tooltip.add((Component)new Component("astralsorcery.misc.knowledge.inscribed", new Object[] { name }).toString()ChatFormatting.BLUE));
             }
         }
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final World world, final Player player, final Hand hand) {
-        final ItemStack held = player.func_184586_b(hand);
-        if (held.isEmpty() || world.func_201670_d() || !(held.getItem() instanceof ItemKnowledgeShare)) {
+    public InteractionResult<ItemStack> func_77659_a(final Level world, final Player player, final Hand hand) {
+        final ItemStack held = player.getItemInHand(hand);
+        if (held.isEmpty() || world.level() || !(held.getItem() instanceof ItemKnowledgeShare)) {
             return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)held);
         }
         if (!isCreative(held) && (player.func_225608_bj_() || getKnowledge(held) == null)) {
@@ -85,7 +85,7 @@ public class ItemKnowledgeShare extends Item
     public InteractionResult func_195939_a(final ItemUseContext context) {
         final ItemStack stack = context.func_195996_i();
         final Player player = context.func_195999_j();
-        if (stack.isEmpty() || player == null || context.func_195991_k().func_201670_d() || !(stack.getItem() instanceof ItemKnowledgeShare)) {
+        if (stack.isEmpty() || player == null || context.func_195991_k().level() || !(stack.getItem() instanceof ItemKnowledgeShare)) {
             return InteractionResult.SUCCESS;
         }
         if (!isCreative(stack) && (player.func_225608_bj_() || getKnowledge(stack) == null)) {
@@ -186,7 +186,7 @@ public class ItemKnowledgeShare extends Item
         final CompoundTag knowledge = new CompoundTag();
         progress.storeKnowledge(knowledge);
         final CompoundTag compound = NBTHelper.getPersistentData(stack);
-        compound.putString("knowledgeOwnerName", Component.Serializer.func_150696_a(player.func_145748_c_()));
+        compound.putString("knowledgeOwnerName", Component.Serializer.func_150696_a(player.getDisplayName()));
         compound.putUUID("knowledgeOwnerUUID", player.getUUID());
         compound.put("knowledgeTag", (Tag)knowledge);
     }

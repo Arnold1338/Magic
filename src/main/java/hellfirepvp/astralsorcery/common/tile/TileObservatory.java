@@ -46,7 +46,7 @@ public class TileObservatory extends TileEntityTick implements NamedInventoryTil
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d()) {
+        if (!this.getLevel().level()) {
             if (this.entityHelperRef == null) {
                 this.createNewObservatoryEntity();
             }
@@ -64,22 +64,22 @@ public class TileObservatory extends TileEntityTick implements NamedInventoryTil
             for (int zz = -1; zz <= 1; ++zz) {
                 if (xx != 0 || zz != 0) {
                     final BlockPos other = this.field_174879_c.offset(xx, 0, zz);
-                    if (!MiscUtils.canSeeSky(this.func_145831_w(), other, false, true)) {
+                    if (!MiscUtils.canSeeSky(this.getLevel(), other, false, true)) {
                         return false;
                     }
                 }
             }
         }
-        return MiscUtils.canSeeSky(this.func_145831_w(), this.func_174877_v().above(), true, false);
+        return MiscUtils.canSeeSky(this.getLevel(), this.getBlockState().above(), true, false);
     }
     
     private Entity createNewObservatoryEntity() {
         this.setEntityHelperRef(null);
         this.entityIdServerRef = null;
-        final EntityObservatoryHelper helper = (EntityObservatoryHelper)EntityTypesAS.OBSERVATORY_HELPER.func_200721_a(this.func_145831_w());
-        helper.setFixedObservatoryPos(this.func_174877_v());
+        final EntityObservatoryHelper helper = (EntityObservatoryHelper)EntityTypesAS.OBSERVATORY_HELPER.func_200721_a(this.getLevel());
+        helper.setFixedObservatoryPos(this.getBlockState());
         helper.func_70080_a(this.field_174879_c.getX() + 0.5, this.field_174879_c.getY() + 0.1, this.field_174879_c.getZ() + 0.5, 0.0f, 0.0f);
-        this.func_145831_w().func_217376_c((Entity)helper);
+        this.getLevel().addFreshEntity((Entity)helper);
         this.setEntityHelperRef(helper.getUUID());
         this.entityIdServerRef = helper.func_145782_y();
         return helper;
@@ -90,7 +90,7 @@ public class TileObservatory extends TileEntityTick implements NamedInventoryTil
         if (entityUUID == null) {
             return null;
         }
-        for (final Entity e : this.field_145850_b.func_217357_a((Class)Entity.class, new AABB(this.field_174879_c.offset(-3, -1, -3), this.field_174879_c.offset(3, 2, 3)))) {
+        for (final Entity e : this.level.func_217357_a((Class)Entity.class, new AABB(this.field_174879_c.offset(-3, -1, -3), this.field_174879_c.offset(3, 2, 3)))) {
             if (e.getUUID().equals(entityUUID)) {
                 this.entityIdServerRef = e.func_145782_y();
                 return e;
@@ -104,7 +104,7 @@ public class TileObservatory extends TileEntityTick implements NamedInventoryTil
         if (this.getEntityHelperRef() == null || this.entityIdServerRef == null) {
             return null;
         }
-        return this.func_145831_w().func_73045_a((int)this.entityIdServerRef);
+        return this.getLevel().getEntityById((int)this.entityIdServerRef);
     }
     
     @Nullable

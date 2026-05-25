@@ -77,7 +77,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
     }
     
     @Override
-    public void update(final World world) {
+    public void update(final Level world) {
         super.update(world);
         ++this.ticksExisted;
         if (!this.hasMultiblock || this.channelingType == null || this.attributes == null) {
@@ -94,7 +94,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         }
     }
     
-    private void doRitualEffect(final World world) {
+    private void doRitualEffect(final Level world) {
         final ConstellationEffectProperties properties = this.effect.createProperties(this.getMirrorCount());
         if (this.channelingTrait != null) {
             this.channelingTrait.affectConstellationEffect(properties);
@@ -141,7 +141,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         this.collectedStarlight = 0.0;
     }
     
-    private void collectStarlight(final World world) {
+    private void collectStarlight(final Level world) {
         final WorldContext ctx = SkyHandler.getContext(world, LogicalSide.SERVER);
         if (ctx == null) {
             return;
@@ -163,7 +163,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
     }
     
     @Override
-    public void onStarlightReceive(final World world, final IWeakConstellation type, final double amount) {
+    public void onStarlightReceive(final Level world, final IWeakConstellation type, final double amount) {
         if (this.channelingType != null && this.hasMultiblock && this.channelingType.equals(type)) {
             this.collectedStarlight += amount / 2.0;
             this.findNextMirror(world);
@@ -171,7 +171,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
     }
     
     @Override
-    public boolean syncTileData(final World world, final TileRitualPedestal tile) {
+    public boolean syncTileData(final Level world, final TileRitualPedestal tile) {
         tile.setReceiverData(this.effect != null, this.offsetMirrors, this.attributes);
         this.markDirty(world);
         return true;
@@ -210,7 +210,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         if (!this.hasMultiblock || this.effect == null) {
             this.collectedStarlight = 0.0;
         }
-        this.markDirty(trp.func_145831_w());
+        this.markDirty(trp.getLevel());
         return super.updateFromTileEntity(tile);
     }
     
@@ -219,7 +219,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         return TileRitualPedestal.class;
     }
     
-    private void findNextMirror(final World world) {
+    private void findNextMirror(final Level world) {
         if (this.offsetMirrors.size() >= 5 || this.effect == null || this.channelingType == null) {
             return;
         }
@@ -260,7 +260,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         }
     }
     
-    private void validateMirrorPositions(final World world) {
+    private void validateMirrorPositions(final Level world) {
         final WorldNetworkHandler handle = WorldNetworkHandler.getNetworkHandler(world);
         final List<BlockPos> srcLinkingToThis = this.getSources();
         boolean needsUpdate = false;

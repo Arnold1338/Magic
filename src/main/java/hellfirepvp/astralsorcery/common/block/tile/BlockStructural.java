@@ -50,7 +50,7 @@ public class BlockStructural extends Block
     
     public BlockStructural() {
         super(AbstractBlock.Properties.func_200949_a(Material.field_175972_I, MaterialColor.field_151660_b).func_200947_a(SoundType.field_185853_f));
-        this.func_180632_j((BlockState)this.defaultBlockState().func_206870_a((Property)BlockStructural.BLOCK_TYPE, (Comparable)BlockType.TELESCOPE));
+        this.func_180632_j((BlockState)this.defaultBlockState().setValue((Property)BlockStructural.BLOCK_TYPE, (Comparable)BlockType.TELESCOPE));
     }
     
     public void func_149666_a(final CreativeModeTab group, final NonNullList<ItemStack> items) {
@@ -92,11 +92,11 @@ public class BlockStructural extends Block
     }
     
     @OnlyIn(Dist.CLIENT)
-    public boolean addDestroyEffects(final BlockState state, final World world, final BlockPos pos, final ParticleEngine manager) {
+    public boolean addDestroyEffects(final BlockState state, final Level world, final BlockPos pos, final ParticleEngine manager) {
         EventFlags.PLAY_BLOCK_BREAK_EFFECTS.executeWithFlag(() -> {
             switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
                 case TELESCOPE: {
-                    manager.func_180533_a(pos.func_177977_b(), BlocksAS.TELESCOPE.defaultBlockState());
+                    manager.func_180533_a(pos.renderItem(), BlocksAS.TELESCOPE.defaultBlockState());
                     break;
                 }
             }
@@ -106,12 +106,12 @@ public class BlockStructural extends Block
     }
     
     @OnlyIn(Dist.CLIENT)
-    public boolean addHitEffects(final BlockState state, final World world, final HitResult target, final ParticleEngine manager) {
+    public boolean addHitEffects(final BlockState state, final Level world, final HitResult target, final ParticleEngine manager) {
         if (target instanceof BlockHitResult) {
             EventFlags.PLAY_BLOCK_BREAK_EFFECTS.executeWithFlag(() -> {
                 switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
                     case TELESCOPE: {
-                        manager.func_180533_a(((BlockHitResult)target).func_216350_a().func_177977_b(), BlocksAS.TELESCOPE.defaultBlockState());
+                        manager.func_180533_a(((BlockHitResult)target).func_216350_a().renderItem(), BlocksAS.TELESCOPE.defaultBlockState());
                         break;
                     }
                 }
@@ -121,11 +121,11 @@ public class BlockStructural extends Block
         return true;
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player entity, final Hand hand, final BlockHitResult rayTraceResult) {
+    public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player entity, final Hand hand, final BlockHitResult rayTraceResult) {
         switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
             case TELESCOPE: {
-                if (world.func_201670_d()) {
-                    AstralSorcery.getProxy().openGui(entity, GuiType.TELESCOPE, pos.func_177977_b());
+                if (world.level()) {
+                    AstralSorcery.getProxy().openGui(entity, GuiType.TELESCOPE, pos.renderItem());
                 }
                 return InteractionResult.SUCCESS;
             }
@@ -150,7 +150,7 @@ public class BlockStructural extends Block
     public ItemStack getPickBlock(final BlockState state, final HitResult target, final IBlockReader world, final BlockPos pos, final Player player) {
         switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
             case TELESCOPE: {
-                return BlockType.TELESCOPE.getSupportedState().getPickBlock(target, world, pos.func_177977_b(), player);
+                return BlockType.TELESCOPE.getSupportedState().getPickBlock(target, world, pos.renderItem(), player);
             }
             default: {
                 return super.getPickBlock(state, target, world, pos, player);
@@ -158,10 +158,10 @@ public class BlockStructural extends Block
         }
     }
     
-    public void func_220069_a(final BlockState state, final World world, final BlockPos pos, final Block block, final BlockPos fromPos, final boolean isMoving) {
+    public void func_220069_a(final BlockState state, final Level world, final BlockPos pos, final Block block, final BlockPos fromPos, final boolean isMoving) {
         switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
             case TELESCOPE: {
-                if (world.isEmptyBlock(pos.func_177977_b())) {
+                if (world.isEmptyBlock(pos.renderItem())) {
                     world.func_217377_a(pos, isMoving);
                 }
                 return;
@@ -178,7 +178,7 @@ public class BlockStructural extends Block
         }
         switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
             case TELESCOPE: {
-                if (world.isEmptyBlock(pos.func_177977_b())) {
+                if (world.isEmptyBlock(pos.renderItem())) {
                     ((IWorldWriter)world).func_217377_a(pos, false);
                     break;
                 }
@@ -198,7 +198,7 @@ public class BlockStructural extends Block
     
     public enum BlockType implements StringRepresentable
     {
-        DUMMY(Blocks.field_150350_a.defaultBlockState()), 
+        DUMMY(Blocks.AIR.defaultBlockState()), 
         TELESCOPE(BlocksAS.TELESCOPE.defaultBlockState());
         
         private final BlockState supportedState;

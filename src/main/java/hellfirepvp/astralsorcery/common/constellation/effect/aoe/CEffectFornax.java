@@ -67,15 +67,15 @@ public class CEffectFornax extends CEffectAbstractList<ListEntries.PosEntry>
     
     @Nullable
     @Override
-    public ListEntries.PosEntry createElement(final World world, final BlockPos pos) {
+    public ListEntries.PosEntry createElement(final Level world, final BlockPos pos) {
         return new ListEntries.PosEntry(pos);
     }
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void playClientEffect(final World world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
+    public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         final Vector3 motion = Vector3.random().multiply(0.04);
-        if (pos.equals((Object)pedestal.func_174877_v())) {
+        if (pos.equals((Object)pedestal.getBlockState())) {
             motion.setY(0);
         }
         else {
@@ -86,7 +86,7 @@ public class CEffectFornax extends CEffectAbstractList<ListEntries.PosEntry>
     }
     
     @Override
-    public boolean playEffect(final World world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
+    public boolean playEffect(final Level world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
         if (!(world instanceof ServerLevel)) {
             return false;
         }

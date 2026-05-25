@@ -41,7 +41,7 @@ public class KeyStoneEnrichment extends KeyPerk implements PlayerTickPerk
                 float radius = (float)(int)KeyStoneEnrichment.CONFIG.enrichmentRadius.get();
                 radius *= PerkAttributeHelper.getOrCreateMap(player, side).getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT);
                 final Vector3 vec = Vector3.atEntityCenter((Entity)player).add(KeyStoneEnrichment.rand.nextFloat() * radius * 2.0f - radius, KeyStoneEnrichment.rand.nextFloat() * radius * 2.0f - radius, KeyStoneEnrichment.rand.nextFloat() * radius * 2.0f - radius);
-                final World world = player.func_130014_f_();
+                final Level world = player.level();
                 final BlockPos pos = vec.toBlockPos();
                 if (BlockTags.field_242172_aH.func_230235_a_((Object)world.getBlockState(pos).getBlock())) {
                     final Block block = OreBlockRarityRegistry.STONE_ENRICHMENT.getRandomBlock(KeyStoneEnrichment.rand);

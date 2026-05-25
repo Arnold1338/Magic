@@ -13,8 +13,8 @@ import hellfirepvp.observerlib.common.event.BlockChangeNotifier;
 
 public class EventHandlerAutoLink implements BlockChangeNotifier.Listener
 {
-    public void onChange(final World world, final Chunk chunk, final BlockPos pos, final BlockState oldState, final BlockState newState) {
-        if (world.func_201670_d() || !chunk.func_201589_g().func_209003_a(ChunkStatus.field_222617_m)) {
+    public void onChange(final Level world, final Chunk chunk, final BlockPos pos, final BlockState oldState, final BlockState newState) {
+        if (world.level() || !chunk.func_201589_g().func_209003_a(ChunkStatus.field_222617_m)) {
             return;
         }
         final Block oldB = oldState.getBlock();

@@ -56,7 +56,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
         this.queueRemoval = new HashSet<BlockPos>();
     }
     
-    public WorldNetworkHandler getNetworkHandler(final World world) {
+    public WorldNetworkHandler getNetworkHandler(final Level world) {
         return new WorldNetworkHandler(this, world);
     }
     
@@ -64,7 +64,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
         return new ChunkNetworkData(sectionX, sectionZ);
     }
     
-    public void updateTick(final World world) {
+    public void updateTick(final Level world) {
         this.cleanupQueuedChunks();
         final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(world);
         final Iterator<Map.Entry<BlockPos, IIndependentStarlightSource>> iterator = this.starlightSources.entrySet().iterator();
@@ -89,7 +89,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
                     AstralSorcery.log.warn("Block that gets purged: " + BlockStateHelper.serialize(actual));
                     iterator.remove();
                     if (world.func_175656_a(pos, actual.getFluidState().func_206883_i())) {
-                        final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vector3i)pos);
+                        final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vec3i)pos);
                         if (data != null) {
                             data.removeSourceTile(pos);
                         }
@@ -99,7 +99,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
         }
     }
     
-    public void onLoad(final World world) {
+    public void onLoad(final Level world) {
         super.onLoad(world);
         if (LightNetworkConfig.CONFIG.performNetworkIntegrityCheck.get()) {
             AstralSorcery.log.info("[LightNetworkIntegrityCheck] Performing StarlightNetwork integrity check for world " + world.dimension().func_240901_a_());
@@ -148,7 +148,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
     
     private void cleanupQueuedChunks() {
         for (final BlockPos pos : this.queueRemoval) {
-            final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vector3i)pos);
+            final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vec3i)pos);
             if (data != null && data.isEmpty()) {
                 this.removeSection((WorldSection)data);
             }
@@ -158,7 +158,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
     
     @Nullable
     public ChunkSectionNetworkData getSectionData(final BlockPos pos) {
-        final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vector3i)pos);
+        final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vec3i)pos);
         if (data == null) {
             return null;
         }
@@ -228,7 +228,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
     }
     
     public void addSource(final IStarlightSource<?> source, final BlockPos pos) {
-        final ChunkNetworkData data = (ChunkNetworkData)this.getOrCreateSection((Vector3i)pos);
+        final ChunkNetworkData data = (ChunkNetworkData)this.getOrCreateSection((Vec3i)pos);
         data.addSourceTile(pos, source);
         final IIndependentStarlightSource newSource = this.addIndependentSource(pos, source);
         if (newSource != null) {
@@ -253,13 +253,13 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
     }
     
     public void addTransmission(final IStarlightTransmission<?> transmission, final BlockPos pos) {
-        final ChunkNetworkData data = (ChunkNetworkData)this.getOrCreateSection((Vector3i)pos);
+        final ChunkNetworkData data = (ChunkNetworkData)this.getOrCreateSection((Vec3i)pos);
         data.addTransmissionTile(pos, transmission);
         this.markDirty((WorldSection)data);
     }
     
     public void removeSource(final BlockPos pos) {
-        final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vector3i)pos);
+        final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vec3i)pos);
         if (data == null) {
             return;
         }
@@ -274,7 +274,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
     }
     
     public void removeTransmission(final BlockPos pos) {
-        final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vector3i)pos);
+        final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vec3i)pos);
         if (data == null) {
             return;
         }
@@ -284,7 +284,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
     }
     
     private void checkIntegrity(final BlockPos actualPos) {
-        final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vector3i)actualPos);
+        final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vec3i)actualPos);
         if (data == null) {
             return;
         }

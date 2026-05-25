@@ -44,18 +44,18 @@ public interface IPrismTransmissionNode extends ILocatable
         return false;
     }
     
-    default void onTransmissionTick(final World world, final float starlightAmt, final IWeakConstellation type) {
+    default void onTransmissionTick(final Level world, final float starlightAmt, final IWeakConstellation type) {
     }
     
-    boolean notifyUnlink(final World p0, final BlockPos p1);
+    boolean notifyUnlink(final Level p0, final BlockPos p1);
     
-    void notifyLink(final World p0, final BlockPos p1);
+    void notifyLink(final Level p0, final BlockPos p1);
     
-    void notifySourceLink(final World p0, final BlockPos p1);
+    void notifySourceLink(final Level p0, final BlockPos p1);
     
-    void notifySourceUnlink(final World p0, final BlockPos p1);
+    void notifySourceUnlink(final Level p0, final BlockPos p1);
     
-    boolean notifyBlockChange(final World p0, final BlockPos p1);
+    boolean notifyBlockChange(final Level p0, final BlockPos p1);
     
     List<NodeConnection<IPrismTransmissionNode>> queryNext(final WorldNetworkHandler p0);
     
@@ -65,13 +65,13 @@ public interface IPrismTransmissionNode extends ILocatable
         return false;
     }
     
-    default void update(final World world) {
+    default void update(final Level world) {
     }
     
     default void postLoad(final IWorld world) {
     }
     
-    default void markDirty(final World world) {
+    default void markDirty(final Level world) {
         ((LightNetworkBuffer)DataAS.DOMAIN_AS.getData(world, (WorldCacheDomain.SaveKey)DataAS.KEY_STARLIGHT_NETWORK)).markDirty((Vector3i)this.getLocationPos());
     }
     

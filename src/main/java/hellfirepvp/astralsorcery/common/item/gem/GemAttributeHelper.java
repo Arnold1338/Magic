@@ -87,7 +87,7 @@ public class GemAttributeHelper
                 else {
                     final float exp = 1.0f / gemType.amplifierModifier;
                     final float multiplierScale = (float)Math.pow(random.nextFloat(), exp);
-                    value = lower + Mth.func_76131_a(multiplierScale, 0.0f, 1.0f) * (higher - lower);
+                    value = lower + Mth.canEnchant(multiplierScale, 0.0f, 1.0f) * (higher - lower);
                 }
                 final ModifierType mode = isMultiplicative ? ModifierType.STACKING_MULTIPLY : ModifierType.ADDED_MULTIPLY;
                 final float rValue = isMultiplicative ? (1.0f + value) : value;

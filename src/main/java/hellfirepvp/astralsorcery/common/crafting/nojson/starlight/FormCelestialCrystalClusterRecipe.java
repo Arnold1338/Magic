@@ -63,8 +63,8 @@ public class FormCelestialCrystalClusterRecipe extends LiquidStarlightRecipe
     }
     
     @Override
-    public boolean matches(final ItemEntity trigger, final World world, final BlockPos at) {
-        if (!world.getBlockState(at.func_177977_b()).func_215682_a((IBlockReader)world, at.func_177977_b(), (Entity)trigger, Direction.UP)) {
+    public boolean matches(final ItemEntity trigger, final Level world, final BlockPos at) {
+        if (!world.getBlockState(at.renderItem()).func_215682_a((IBlockReader)world, at.renderItem(), (Entity)trigger, Direction.UP)) {
             return false;
         }
         final List<Entity> otherEntities = this.getEntitiesInBlock((IWorld)world, at);
@@ -74,10 +74,10 @@ public class FormCelestialCrystalClusterRecipe extends LiquidStarlightRecipe
     }
     
     @Override
-    public void doServerCraftTick(final ItemEntity trigger, final World world, final BlockPos at) {
+    public void doServerCraftTick(final ItemEntity trigger, final Level world, final BlockPos at) {
         final Random r = new Random(Mth.func_180186_a((Vector3i)at));
         final ItemStack crystalFound;
-        if (!world.func_201670_d() && this.getAndIncrementCraftingTick((Entity)trigger) > 50 + r.nextInt(20) && this.consumeItemEntityInBlock((IWorld)world, at, ItemsAS.STARDUST) != null && (crystalFound = this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null && world.func_175656_a(at, BlocksAS.CELESTIAL_CRYSTAL_CLUSTER.defaultBlockState())) {
+        if (!world.level() && this.getAndIncrementCraftingTick((Entity)trigger) > 50 + r.nextInt(20) && this.consumeItemEntityInBlock((IWorld)world, at, ItemsAS.STARDUST) != null && (crystalFound = this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null && world.func_175656_a(at, BlocksAS.CELESTIAL_CRYSTAL_CLUSTER.defaultBlockState())) {
             final TileCelestialCrystals cluster = MiscUtils.getTileAt((IBlockReader)world, at, TileCelestialCrystals.class, true);
             if (cluster != null) {
                 final CrystalAttributes attr = ((CrystalAttributeItem)crystalFound.getItem()).getAttributes(crystalFound);
@@ -90,7 +90,7 @@ public class FormCelestialCrystalClusterRecipe extends LiquidStarlightRecipe
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void doClientEffectTick(final ItemEntity trigger, final World world, final BlockPos at) {
+    public void doClientEffectTick(final ItemEntity trigger, final Level world, final BlockPos at) {
         for (int i = 0; i < 3; ++i) {
             final Vector3 pos = Vector3.atEntityCorner((Entity)trigger);
             MiscUtils.applyRandomOffset(pos, FormCelestialCrystalClusterRecipe.rand, 0.15f);

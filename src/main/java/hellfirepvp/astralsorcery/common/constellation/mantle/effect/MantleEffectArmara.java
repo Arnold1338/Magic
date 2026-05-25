@@ -94,7 +94,7 @@ public class MantleEffectArmara extends MantleEffect
                     final float deg = (float)Math.toDegrees(lookVec.angle(anglePlayer));
                     if (deg < 70.0f) {
                         final float tansparentDegree = 40.0f;
-                        alpha *= Mth.func_76131_a((deg - tansparentDegree) / (80.0f - tansparentDegree), 0.0f, 1.0f);
+                        alpha *= Mth.canEnchant((deg - tansparentDegree) / (80.0f - tansparentDegree), 0.0f, 1.0f);
                     }
                 }
                 EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(pos).alpha(VFXAlphaFunction.FADE_OUT).setAlphaMultiplier(alpha).color(VFXColorFunction.constant(ColorsAS.MANTLE_ARMARA_STACKS)).setScaleMultiplier(scale).setMaxAge(20 + MantleEffectArmara.rand.nextInt(20));
@@ -104,9 +104,9 @@ public class MantleEffectArmara extends MantleEffect
     }
     
     private void onHurt(final LivingHurtEvent event) {
-        final World world = event.getEntity().func_130014_f_();
+        final Level world = event.getEntity().level();
         final LivingEntity hurt = event.getEntityLiving();
-        if (world.func_201670_d()) {
+        if (world.level()) {
             return;
         }
         final MantleEffectArmara armara = ItemMantle.getEffect(hurt, ConstellationsAS.armara);

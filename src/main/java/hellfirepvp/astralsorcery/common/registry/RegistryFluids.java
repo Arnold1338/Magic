@@ -42,7 +42,7 @@ public class RegistryFluids
     }
     
     private static ForgeFlowingFluid.Properties makeProperties(final Class<? extends ForgeFlowingFluid> fluidClass, final Function<FluidAttributes.Builder, FluidAttributes.Builder> postProcess, final Supplier<ForgeFlowingFluid> stillFluidSupplier, final Supplier<ForgeFlowingFluid> flowingFluidSupplier) {
-        final String name = NameUtil.fromClass(fluidClass, "Fluid").func_110623_a();
+        final String name = NameUtil.fromClass(fluidClass, "Fluid").addTransientModifier();
         return new ForgeFlowingFluid.Properties((Supplier)stillFluidSupplier, (Supplier)flowingFluidSupplier, (FluidAttributes.Builder)postProcess.apply(builderFor(name)));
     }
     

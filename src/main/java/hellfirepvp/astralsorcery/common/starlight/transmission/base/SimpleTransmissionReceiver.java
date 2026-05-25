@@ -32,7 +32,7 @@ public abstract class SimpleTransmissionReceiver<T extends TileReceiverBase<?>> 
     }
     
     @Override
-    public void update(final World world) {
+    public void update(final Level world) {
         if (this.needsTileSync) {
             final T tile = this.getTileAtPos(world);
             if (tile != null && this.syncTileData(world, tile)) {
@@ -45,7 +45,7 @@ public abstract class SimpleTransmissionReceiver<T extends TileReceiverBase<?>> 
         this.needsTileSync = true;
     }
     
-    public abstract boolean syncTileData(final World p0, final T p1);
+    public abstract boolean syncTileData(final Level p0, final T p1);
     
     public abstract Class<T> getTileClass();
     
@@ -55,17 +55,17 @@ public abstract class SimpleTransmissionReceiver<T extends TileReceiverBase<?>> 
     }
     
     @Override
-    public void notifySourceLink(final World world, final BlockPos source) {
+    public void notifySourceLink(final Level world, final BlockPos source) {
         this.sourcesToThis.add(source);
     }
     
     @Override
-    public void notifySourceUnlink(final World world, final BlockPos source) {
+    public void notifySourceUnlink(final Level world, final BlockPos source) {
         this.sourcesToThis.remove(source);
     }
     
     @Override
-    public boolean notifyBlockChange(final World world, final BlockPos changed) {
+    public boolean notifyBlockChange(final Level world, final BlockPos changed) {
         return false;
     }
     
@@ -75,7 +75,7 @@ public abstract class SimpleTransmissionReceiver<T extends TileReceiverBase<?>> 
     }
     
     @Nullable
-    public T getTileAtPos(final World world) {
+    public T getTileAtPos(final Level world) {
         return MiscUtils.getTileAt((IBlockReader)world, this.getLocationPos(), this.getTileClass(), false);
     }
     

@@ -31,17 +31,17 @@ import net.minecraft.world.entity.projectile.ThrowableEntity;
 
 public class EntityIlluminationSpark extends ThrowableEntity
 {
-    public EntityIlluminationSpark(final World world) {
+    public EntityIlluminationSpark(final Level world) {
         super((EntityType)EntityTypesAS.ILLUMINATION_SPARK, world);
     }
     
-    public EntityIlluminationSpark(final double x, final double y, final double z, final World world) {
+    public EntityIlluminationSpark(final double x, final double y, final double z, final Level world) {
         super((EntityType)EntityTypesAS.ILLUMINATION_SPARK, x, y, z, world);
     }
     
-    public EntityIlluminationSpark(final LivingEntity thrower, final World world) {
+    public EntityIlluminationSpark(final LivingEntity thrower, final Level world) {
         super((EntityType)EntityTypesAS.ILLUMINATION_SPARK, thrower, world);
-        this.func_234612_a_((Entity)thrower, thrower.field_70125_A, thrower.field_70177_z, 0.0f, 0.7f, 0.9f);
+        this.func_234612_a_((Entity)thrower, thrower.xRot, thrower.yRot, 0.0f, 0.7f, 0.9f);
     }
     
     public static EntityType.IFactory<EntityIlluminationSpark> factory() {
@@ -53,7 +53,7 @@ public class EntityIlluminationSpark extends ThrowableEntity
     
     public void func_70071_h_() {
         super.tick();
-        if (this.field_70170_p.func_201670_d()) {
+        if (this.level().level()) {
             this.spawnEffects();
         }
     }
@@ -61,7 +61,7 @@ public class EntityIlluminationSpark extends ThrowableEntity
     @OnlyIn(Dist.CLIENT)
     private void spawnEffects() {
         for (int i = 0; i < 6; ++i) {
-            final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.atEntityCorner((Entity)this)).setMotion(new Vector3(0.04f - this.field_70146_Z.nextFloat() * 0.08f, 0.04f - this.field_70146_Z.nextFloat() * 0.08f, 0.04f - this.field_70146_Z.nextFloat() * 0.08f)).setScaleMultiplier(0.25f);
+            final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.atEntityCorner((Entity)this)).setMotion(new Vector3(0.04f - this.random.nextFloat() * 0.08f, 0.04f - this.random.nextFloat() * 0.08f, 0.04f - this.random.nextFloat() * 0.08f)).setScaleMultiplier(0.25f);
             this.randomizeColor(p);
         }
         FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.atEntityCorner((Entity)this));
@@ -74,7 +74,7 @@ public class EntityIlluminationSpark extends ThrowableEntity
     
     @OnlyIn(Dist.CLIENT)
     private void randomizeColor(final FXFacingParticle p) {
-        switch (this.field_70146_Z.nextInt(3)) {
+        switch (this.random.nextInt(3)) {
             case 0: {
                 p.color(VFXColorFunction.constant(ColorsAS.ILLUMINATION_POWDER_1));
                 break;
@@ -91,7 +91,7 @@ public class EntityIlluminationSpark extends ThrowableEntity
     }
     
     protected void func_70227_a(final HitResult result) {
-        if (this.field_70170_p.func_201670_d()) {
+        if (this.level().level()) {
             return;
         }
         if (!(result instanceof BlockHitResult) || !(this.func_234616_v_() instanceof Player)) {
@@ -102,11 +102,11 @@ public class EntityIlluminationSpark extends ThrowableEntity
         final BlockHitResult brtr = (BlockHitResult)result;
         final BlockItemUseContext bCtx = new BlockItemUseContext(new ItemUseContext(player, InteractionHand.MAIN_HAND, brtr));
         BlockPos pos = bCtx.func_195995_a();
-        if (!BlockUtils.isReplaceable(this.field_70170_p, pos)) {
+        if (!BlockUtils.isReplaceable(this.level(), pos)) {
             pos = pos.func_177972_a(bCtx.func_196000_l());
         }
-        if (!ForgeEventFactory.onBlockPlace((Entity)player, BlockSnapshot.create(this.field_70170_p.dimension(), (IWorld)this.field_70170_p, pos), bCtx.func_196000_l())) {
-            this.field_70170_p.func_175656_a(pos, BlocksAS.FLARE_LIGHT.defaultBlockState());
+        if (!ForgeEventFactory.onBlockPlace((Entity)player, BlockSnapshot.create(this.level().dimension(), (IWorld)this.level(), pos), bCtx.func_196000_l())) {
+            this.level().func_175656_a(pos, BlocksAS.FLARE_LIGHT.defaultBlockState());
         }
         this.func_70106_y();
     }

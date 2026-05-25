@@ -28,7 +28,7 @@ public class ConfiguredBlockStateList implements BlockPredicate, Predicate<Block
     }
     
     @Override
-    public boolean test(final World world, final BlockPos pos, final BlockState state) {
+    public boolean test(final Level world, final BlockPos pos, final BlockState state) {
         if (this.resolvedConfiguration == null) {
             this.resolvedConfiguration = BlockStateList.fromConfig((List<String>)this.configList.get());
         }

@@ -26,7 +26,7 @@ public abstract class JEICategory<T extends Recipe<?>> implements IRecipeCategor
     }
     
     protected static String category(final ResourceLocation categoryId) {
-        return String.format("jei.category.%s.%s", categoryId.func_110624_b(), categoryId.func_110623_a());
+        return String.format("jei.category.%s.%s", categoryId.func_110624_b(), categoryId.addTransientModifier());
     }
     
     protected static List<ItemStack> ingredientStacks(final Ingredient ingredient) {

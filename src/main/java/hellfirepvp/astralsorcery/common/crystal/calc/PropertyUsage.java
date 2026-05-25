@@ -13,7 +13,7 @@ public class PropertyUsage extends ForgeRegistryEntry<PropertyUsage>
     }
     
     public MutableComponent getName() {
-        return (MutableComponent)new Component(String.format("crystal.usage.%s.%s.name", this.getRegistryName().func_110624_b(), this.getRegistryName().func_110623_a()));
+        return (MutableComponent)new Component(String.format("crystal.usage.%s.%s.name", this.getRegistryName().func_110624_b(), this.getRegistryName().addTransientModifier()));
     }
     
     public boolean equals(final Object o) {

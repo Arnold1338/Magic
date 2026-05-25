@@ -61,7 +61,7 @@ public class RenderInfo implements ITickHandler
     
     @Nullable
     public Camera getARI() {
-        final GameRenderer gr = Minecraft.getInstance().field_71460_t;
+        final GameRenderer gr = Minecraft.getInstance().screen;
         if (gr != null) {
             return gr.func_215316_n();
         }

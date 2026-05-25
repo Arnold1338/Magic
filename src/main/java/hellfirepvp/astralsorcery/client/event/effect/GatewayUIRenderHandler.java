@@ -57,7 +57,7 @@ public class GatewayUIRenderHandler implements ITickHandler
         return GatewayUIRenderHandler.INSTANCE;
     }
     
-    public GatewayUI getOrCreateUI(final World world, final BlockPos pos, final Vector3 renderPos) {
+    public GatewayUI getOrCreateUI(final Level world, final BlockPos pos, final Vector3 renderPos) {
         if (this.currentUI == null || !this.currentUI.getDimType().equals(world.dimension()) || !this.currentUI.getPos().equals((Object)pos)) {
             this.currentUI = GatewayUI.create(world, pos, renderPos, 5.5);
         }
@@ -75,7 +75,7 @@ public class GatewayUIRenderHandler implements ITickHandler
         if (this.currentUI == null) {
             return true;
         }
-        final World world = (World)Minecraft.getInstance().field_71441_e;
+        final Level world = (Level)Minecraft.getInstance().level;
         final TileCelestialGateway gateway;
         if (world == null || this.currentUI.getVisibleTicks() <= 0 || !this.currentUI.getDimType().equals(world.dimension()) || (gateway = MiscUtils.getTileAt((IBlockReader)world, this.currentUI.getPos(), TileCelestialGateway.class, true)) == null || !gateway.doesSeeSky() || !gateway.hasMultiblock()) {
             this.currentUI = null;
@@ -90,7 +90,7 @@ public class GatewayUIRenderHandler implements ITickHandler
         final float pTicks = event.getPartialTicks();
         final PoseStack renderStack = event.getMatrixStack();
         final Vector3 renderOffset = this.currentUI.getRenderCenter();
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().player;
         final double dst = renderOffset.distance(Vector3.atEntityCorner((Entity)player).addY(1.5));
         if (dst > 3.0) {
             return;
@@ -108,7 +108,7 @@ public class GatewayUIRenderHandler implements ITickHandler
         if (node == null || !node.isLocked() || node.getOwner() == null || node.getAllowedUsers().isEmpty()) {
             return;
         }
-        final UUID currentUUID = (Minecraft.getInstance().field_71439_g != null) ? Minecraft.getInstance().field_71439_g.getUUID() : null;
+        final UUID currentUUID = (Minecraft.getInstance().player != null) ? Minecraft.getInstance().player.getUUID() : null;
         final HitResult mouseOverRtr = Minecraft.getInstance().field_71476_x;
         BlockPos blockSelected;
         if (mouseOverRtr != null && mouseOverRtr.func_216346_c() == HitResult.Type.BLOCK && mouseOverRtr instanceof BlockHitResult) {
@@ -118,7 +118,7 @@ public class GatewayUIRenderHandler implements ITickHandler
             blockSelected = null;
         }
         final Color c = ColorsAS.CONSTELLATION_TYPE_MAJOR;
-        final float alpha = Mth.func_76131_a(1.0f - (float)(distance / 2.0), 0.0f, 1.0f);
+        final float alpha = Mth.canEnchant(1.0f - (float)(distance / 2.0), 0.0f, 1.0f);
         node.getAllowedUsers().forEach((index, playerRef) -> {
             final BlockPos drawPos = TileCelestialGateway.getAllowedUserOffset(index).func_177971_a((Vector3i)node.getPos());
             final Vector3 at = new Vector3((Vector3i)drawPos).add(0.5, 0.001, 0.5).subtract(RenderingVectorUtils.getStandardTranslationRemovalVector(pTicks));
@@ -134,8 +134,8 @@ public class GatewayUIRenderHandler implements ITickHandler
     }
     
     private void renderGatewayFocusedEntry(final PoseStack renderStack, final Vector3 renderOffset, final float pTicks) {
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
-        final GatewayUI.GatewayEntry entry = this.findMatchingEntry(Mth.func_76142_g(player.field_70177_z), Mth.func_76142_g(player.field_70125_A));
+        final Player player = (Player)Minecraft.getInstance().player;
+        final GatewayUI.GatewayEntry entry = this.findMatchingEntry(Mth.func_76142_g(player.yRot), Mth.func_76142_g(player.xRot));
         if (entry != null) {
             final Component display = entry.getNode().getDisplayName();
             if (display != null && !display.getString().isEmpty()) {
@@ -151,7 +151,7 @@ public class GatewayUIRenderHandler implements ITickHandler
     }
     
     private void renderGatewayShieldOverlay(final PoseStack renderStack, final Vector3 renderOffset, final double distance, final float pTicks) {
-        final float alpha = Mth.func_76131_a(1.0f - (float)(distance / 2.0), 0.0f, 1.0f);
+        final float alpha = Mth.canEnchant(1.0f - (float)(distance / 2.0), 0.0f, 1.0f);
         final Color c = ColorsAS.CONSTELLATION_SINGLE_STAR;
         final int red = c.getRed();
         final int green = c.getGreen();
@@ -167,7 +167,7 @@ public class GatewayUIRenderHandler implements ITickHandler
         RenderSystem.enableDepthTest();
         RenderSystem.depthMask(false);
         TexturesAS.TEX_STAR_1.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
             for (int i = 0; i < 300; ++i) {
                 final Vector3 at = Vector3.random(rand).normalize().multiply(this.currentUI.getSphereRadius() * 0.9).add(renderOffset);
                 if (at.getY() >= this.currentUI.getPos().getY()) {

@@ -27,20 +27,20 @@ import hellfirepvp.astralsorcery.common.entity.InteractableEntity;
 
 public class EntityStarmetal extends EntityCustomItemReplacement implements InteractableEntity
 {
-    public EntityStarmetal(final EntityType<? extends ItemEntity> type, final World world) {
+    public EntityStarmetal(final EntityType<? extends ItemEntity> type, final Level world) {
         super(type, world);
         ReflectionHelper.setSkipItemPhysicsRender(this);
         this.func_213323_x_();
     }
     
-    public EntityStarmetal(final EntityType<? extends ItemEntity> type, final World world, final double x, final double y, final double z) {
+    public EntityStarmetal(final EntityType<? extends ItemEntity> type, final Level world, final double x, final double y, final double z) {
         this(type, world);
         this.setPos(x, y, z);
-        this.field_70177_z = this.field_70146_Z.nextFloat() * 360.0f;
-        this.func_213293_j(this.field_70146_Z.nextDouble() * 0.2 - 0.1, 0.2, this.field_70146_Z.nextDouble() * 0.2 - 0.1);
+        this.yRot = this.random.nextFloat() * 360.0f;
+        this.func_213293_j(this.random.nextDouble() * 0.2 - 0.1, 0.2, this.random.nextDouble() * 0.2 - 0.1);
     }
     
-    public EntityStarmetal(final EntityType<? extends ItemEntity> type, final World world, final double x, final double y, final double z, final ItemStack stack) {
+    public EntityStarmetal(final EntityType<? extends ItemEntity> type, final Level world, final double x, final double y, final double z, final ItemStack stack) {
         this(type, world, x, y, z);
         this.func_92058_a(stack);
         this.lifespan = (stack.isEmpty() ? 6000 : stack.getEntityLifespan(world));
@@ -59,17 +59,17 @@ public class EntityStarmetal extends EntityCustomItemReplacement implements Inte
     }
     
     public boolean func_85031_j(final Entity entity) {
-        if (!this.func_130014_f_().func_201670_d() && entity instanceof ServerPlayer) {
-            final ItemStack held = ((ServerPlayer)entity).func_184586_b(InteractionHand.MAIN_HAND);
+        if (!this.level().level() && entity instanceof ServerPlayer) {
+            final ItemStack held = ((ServerPlayer)entity).getItemInHand(InteractionHand.MAIN_HAND);
             if (!held.isEmpty() && held.getItem() instanceof ItemChisel) {
                 final ItemStack thisStack = this.func_92059_d();
                 if (!thisStack.isEmpty() && thisStack.getItem() instanceof ItemStarmetalIngot) {
                     boolean doDamage = false;
-                    if (this.field_70146_Z.nextFloat() < 0.4f) {
-                        final int fortuneLevel = EnchantmentHelper.func_77506_a(Enchantments.field_185308_t, held);
+                    if (this.random.nextFloat() < 0.4f) {
+                        final int fortuneLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, held);
                         doDamage = this.createStardust(fortuneLevel);
                     }
-                    if (doDamage || this.field_70146_Z.nextFloat() < 0.35f) {
+                    if (doDamage || this.random.nextFloat() < 0.35f) {
                         held.func_222118_a(1, (LivingEntity)entity, player -> player.func_213334_d(InteractionHand.MAIN_HAND));
                     }
                 }
@@ -80,10 +80,10 @@ public class EntityStarmetal extends EntityCustomItemReplacement implements Inte
     
     private boolean createStardust(final int fortuneLevel) {
         final ItemStack created = new ItemStack((ItemLike)ItemsAS.STARDUST);
-        ItemUtils.dropItemNaturally(this.func_130014_f_(), this.func_226277_ct_(), this.func_226278_cu_() + 0.25, this.func_226281_cx_(), created);
+        ItemUtils.dropItemNaturally(this.level(), this.getX(), this.getY() + 0.25, this.getZ(), created);
         float breakIngot = 0.9f;
-        breakIngot -= Mth.func_76125_a(fortuneLevel, 0, 10) * 0.06f;
-        if (this.field_70146_Z.nextFloat() < breakIngot) {
+        breakIngot -= Mth.getDescriptionId(fortuneLevel, 0, 10) * 0.06f;
+        if (this.random.nextFloat() < breakIngot) {
             final ItemStack thisStack = this.func_92059_d();
             thisStack.shrink(1);
             this.func_92058_a(thisStack);

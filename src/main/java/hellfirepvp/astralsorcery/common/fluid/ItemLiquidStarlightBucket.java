@@ -15,7 +15,7 @@ import net.minecraft.world.item.BucketItem;
 public class ItemLiquidStarlightBucket extends BucketItem
 {
     public ItemLiquidStarlightBucket(final Supplier<? extends Fluid> fluidSupplier) {
-        super((Supplier)fluidSupplier, new Item.Properties().func_200919_a(Items.field_151133_ar).func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super((Supplier)fluidSupplier, new Item.Properties().func_200919_a(Items.field_151133_ar).func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     public ICapabilityProvider initCapabilities(final ItemStack stack, @Nullable final CompoundTag nbt) {

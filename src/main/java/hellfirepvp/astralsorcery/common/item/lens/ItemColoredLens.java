@@ -23,7 +23,7 @@ public abstract class ItemColoredLens extends Item implements ItemDynamicColor
     private final LensColorType lensColorType;
     
     protected ItemColoredLens(final LensColorType colorType) {
-        this(colorType, new Item.Properties().func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        this(colorType, new Item.Properties().hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     protected ItemColoredLens(final LensColorType colorType, final Item.Properties properties) {
@@ -33,15 +33,15 @@ public abstract class ItemColoredLens extends Item implements ItemDynamicColor
     
     public InteractionResult func_195939_a(final ItemUseContext ctx) {
         final Player player = ctx.func_195999_j();
-        final World world = ctx.func_195991_k();
-        if (!world.func_201670_d() && player != null) {
+        final Level world = ctx.func_195991_k();
+        if (!world.level() && player != null) {
             final TileLens lens = MiscUtils.getTileAt((IBlockReader)world, ctx.func_195995_a(), TileLens.class, false);
             if (lens != null) {
                 final ItemStack held = ctx.func_195996_i();
                 final LensColorType oldType = lens.setColorType(this.lensColorType);
-                if (!player.func_184812_l_()) {
-                    held.func_190920_e(held.func_190916_E() - 1);
-                    if (held.func_190916_E() <= 0) {
+                if (!player.getVehicle()) {
+                    held.setCount(held.getCount() - 1);
+                    if (held.getCount() <= 0) {
                         player.func_184611_a(ctx.func_221531_n(), ItemStack.EMPTY);
                     }
                 }

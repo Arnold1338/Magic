@@ -80,9 +80,9 @@ public class StorageCache
         }
         for (final StoredItemStack stack : stacks) {
             final ItemStack sample = stack.getTemplateStack();
-            final int amountToRemove = sample.func_190916_E();
+            final int amountToRemove = sample.getCount();
             final ItemStack notInserted = inv.insertItem(slot, sample, simulate);
-            final int addedCount = amountToRemove - notInserted.func_190916_E();
+            final int addedCount = amountToRemove - notInserted.getCount();
             if (addedCount > 0) {
                 if (!simulate) {
                     if (!stack.removeAmount(addedCount)) {
@@ -110,9 +110,9 @@ public class StorageCache
         for (int i = 0; i < inv.getSlots(); ++i) {
             for (final StoredItemStack stack : stacks) {
                 final ItemStack sample = stack.getTemplateStack();
-                final int amountToRemove = sample.func_190916_E();
+                final int amountToRemove = sample.getCount();
                 final ItemStack notInserted = inv.insertItem(i, sample, simulate);
-                final int addedCount = amountToRemove - notInserted.func_190916_E();
+                final int addedCount = amountToRemove - notInserted.getCount();
                 if (addedCount > 0) {
                     change = true;
                 }

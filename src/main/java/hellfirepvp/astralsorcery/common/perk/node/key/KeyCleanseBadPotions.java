@@ -34,7 +34,7 @@ public class KeyCleanseBadPotions extends KeyPerk
     
     private void onHeal(final LivingHealEvent event) {
         final LivingEntity entity = event.getEntityLiving();
-        if (entity instanceof Player && !entity.field_70170_p.func_201670_d()) {
+        if (entity instanceof Player && !entity.level().level()) {
             final Player player = (Player)entity;
             final List<MobEffectInstance> badEffects = player.func_70651_bq().stream().filter(p -> p.func_188419_a().func_220303_e() == EffectType.HARMFUL).collect((Collector<? super Object, ?, List<MobEffectInstance>>)Collectors.toList());
             if (badEffects.isEmpty()) {
@@ -58,6 +58,6 @@ public class KeyCleanseBadPotions extends KeyPerk
             return 0.0f;
         }
         final float chance = (3.0f / (healed * -0.6666667f) + 5.0f) / 5.0f;
-        return Mth.func_76131_a(chance, 0.0f, 1.0f);
+        return Mth.canEnchant(chance, 0.0f, 1.0f);
     }
 }

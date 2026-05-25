@@ -9,7 +9,7 @@ import net.minecraft.world.item.Item;
 public class ItemChisel extends Item
 {
     public ItemChisel() {
-        super(new Item.Properties().func_200918_c(72).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().func_200918_c(72).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     public int getItemEnchantability(final ItemStack stack) {
@@ -17,6 +17,6 @@ public class ItemChisel extends Item
     }
     
     public boolean canApplyAtEnchantingTable(final ItemStack stack, final Enchantment enchantment) {
-        return super.canApplyAtEnchantingTable(stack, enchantment) || enchantment == Enchantments.field_185308_t;
+        return super.canApplyAtEnchantingTable(stack, enchantment) || enchantment == Enchantments.BLOCK_FORTUNE;
     }
 }

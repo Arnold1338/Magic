@@ -51,8 +51,8 @@ public class IntegrationBotania
             if (sItem instanceof IBlockProvider) {
                 final IBlockProvider provider = (IBlockProvider)sItem;
                 final int blockCount = provider.getBlockCount(player, requestingItemStack, s, consumeBlock);
-                if (blockCount == -1 || blockCount > toConsume.func_190916_E()) {
-                    for (int i = 0; i < toConsume.func_190916_E(); ++i) {
+                if (blockCount == -1 || blockCount > toConsume.getCount()) {
+                    for (int i = 0; i < toConsume.getCount(); ++i) {
                         if (!provider.provideBlock(player, requestingItemStack, s, consumeBlock, !simulate)) {
                             return false;
                         }

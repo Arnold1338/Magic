@@ -71,7 +71,7 @@ import net.minecraft.world.item.Item;
 public class ItemResonator extends Item implements OverrideInteractItem
 {
     public ItemResonator() {
-        super(new Item.Properties().func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     public void func_150895_a(final CreativeModeTab group, final NonNullList<ItemStack> items) {
@@ -86,19 +86,19 @@ public class ItemResonator extends Item implements OverrideInteractItem
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> tooltip, final TooltipFlag extended) {
-        final ResonatorUpgrade current = getCurrentUpgrade((Player)Minecraft.getInstance().field_71439_g, stack);
+    public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> tooltip, final TooltipFlag extended) {
+        final ResonatorUpgrade current = getCurrentUpgrade((Player)Minecraft.getInstance().player, stack);
         for (final ResonatorUpgrade upgrade : getUpgrades(stack)) {
             final ChatFormatting color = upgrade.equals(current) ? ChatFormatting.GOLD : ChatFormatting.BLUE;
-            tooltip.add((Component)new Component(upgrade.getUnlocalizedTypeName()).func_240699_a_(color));
+            tooltip.add((Component)new Component(upgrade.getUnlocalizedTypeName()).toString()color));
         }
     }
     
-    public void func_77663_a(final ItemStack stack, final World world, final Entity entity, final int slot, boolean selected) {
+    public void func_77663_a(final ItemStack stack, final Level world, final Entity entity, final int slot, boolean selected) {
         if (!selected) {
-            selected = (entity instanceof LivingEntity && ((LivingEntity)entity).func_184592_cb() == stack);
+            selected = (entity instanceof LivingEntity && ((LivingEntity)entity).getOffhandItem() == stack);
         }
-        if (!world.func_201670_d()) {
+        if (!world.level()) {
             if (selected && entity instanceof ServerPlayer) {
                 final ServerPlayer player = (ServerPlayer)entity;
                 if (getCurrentUpgrade((Player)player, stack) == ResonatorUpgrade.FLUID_FIELDS) {
@@ -106,9 +106,9 @@ public class ItemResonator extends Item implements OverrideInteractItem
                     if (distribution <= 1.0E-4) {
                         return;
                     }
-                    if (ItemResonator.field_77697_d.nextFloat() < distribution && ItemResonator.field_77697_d.nextInt(12) == 0) {
-                        final int offsetX = ItemResonator.field_77697_d.nextInt(30) * (ItemResonator.field_77697_d.nextBoolean() ? 1 : -1);
-                        final int offsetZ = ItemResonator.field_77697_d.nextInt(30) * (ItemResonator.field_77697_d.nextBoolean() ? 1 : -1);
+                    if (ItemResonator.count.nextFloat() < distribution && ItemResonator.count.nextInt(12) == 0) {
+                        final int offsetX = ItemResonator.count.nextInt(30) * (ItemResonator.count.nextBoolean() ? 1 : -1);
+                        final int offsetZ = ItemResonator.count.nextInt(30) * (ItemResonator.count.nextBoolean() ? 1 : -1);
                         final BlockPos pos = world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, new BlockPos((Vector3i)entity.func_233580_cy_()).offset(offsetX, 0, offsetZ));
                         if (pos.func_177951_i((Vector3i)entity.func_233580_cy_()) > 5625.0) {
                             return;
@@ -137,12 +137,12 @@ public class ItemResonator extends Item implements OverrideInteractItem
     }
     
     @OnlyIn(Dist.CLIENT)
-    private void clientInventoryTick(final ItemStack stack, final World world, final Entity entity, final int slot, final boolean selected) {
+    private void clientInventoryTick(final ItemStack stack, final Level world, final Entity entity, final int slot, final boolean selected) {
         if (!(entity instanceof Player)) {
             return;
         }
         final Player player = (Player)entity;
-        if (selected && getCurrentUpgrade(player, stack) == ResonatorUpgrade.STARLIGHT && WorldSeedCache.getSeedIfPresent((RegistryKey<World>)world.dimension()).isPresent()) {
+        if (selected && getCurrentUpgrade(player, stack) == ResonatorUpgrade.STARLIGHT && WorldSeedCache.getSeedIfPresent((RegistryKey<Level>)world.dimension()).isPresent()) {
             final float distribution = DayTimeHelper.getCurrentDaytimeDistribution(world);
             if (distribution <= 1.0E-4) {
                 return;
@@ -156,12 +156,12 @@ public class ItemResonator extends Item implements OverrideInteractItem
                 for (int zz = -48; zz <= 48; ++zz) {
                     mPos.func_189533_g((Vector3i)world.func_205770_a(Heightmap.Type.WORLD_SURFACE, (BlockPos)mPos.func_181079_c(offsetX + xx, 0, offsetZ + zz)));
                     mPos.func_185336_p(Math.max(mPos.getY(), minY));
-                    final float perc = SkyCollectionHelper.getSkyNoiseDistributionClient((RegistryKey<World>)world.dimension(), (BlockPos)mPos).get();
+                    final float perc = SkyCollectionHelper.getSkyNoiseDistributionClient((RegistryKey<Level>)world.dimension(), (BlockPos)mPos).get();
                     final float fPerc = (float)Math.pow((perc - 0.4f) * 1.65f, 2.0);
-                    if (perc >= 0.4f && ItemResonator.field_77697_d.nextFloat() <= fPerc && ItemResonator.field_77697_d.nextFloat() <= fPerc && ItemResonator.field_77697_d.nextInt(6) == 0) {
-                        EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)mPos).add(ItemResonator.field_77697_d.nextFloat(), 0.15, ItemResonator.field_77697_d.nextFloat())).color(VFXColorFunction.constant(ColorsAS.RESONATOR_STARFIELD)).setScaleMultiplier(4.0f).setAlphaMultiplier(distribution * fPerc);
-                        if (perc >= 0.8f && ItemResonator.field_77697_d.nextInt(3) == 0) {
-                            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)mPos).add(ItemResonator.field_77697_d.nextFloat(), 0.15, ItemResonator.field_77697_d.nextFloat())).setScaleMultiplier(0.3f).color(VFXColorFunction.WHITE).setGravityStrength(-0.001f).setAlphaMultiplier(distribution);
+                    if (perc >= 0.4f && ItemResonator.count.nextFloat() <= fPerc && ItemResonator.count.nextFloat() <= fPerc && ItemResonator.count.nextInt(6) == 0) {
+                        EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)mPos).add(ItemResonator.count.nextFloat(), 0.15, ItemResonator.count.nextFloat())).color(VFXColorFunction.constant(ColorsAS.RESONATOR_STARFIELD)).setScaleMultiplier(4.0f).setAlphaMultiplier(distribution * fPerc);
+                        if (perc >= 0.8f && ItemResonator.count.nextInt(3) == 0) {
+                            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)mPos).add(ItemResonator.count.nextFloat(), 0.15, ItemResonator.count.nextFloat())).setScaleMultiplier(0.3f).color(VFXColorFunction.WHITE).setGravityStrength(-0.001f).setAlphaMultiplier(distribution);
                         }
                     }
                 }
@@ -170,14 +170,14 @@ public class ItemResonator extends Item implements OverrideInteractItem
     }
     
     public boolean shouldInterceptBlockInteract(final LogicalSide side, final Player player, final Hand hand, final BlockPos pos, final Direction face) {
-        final ResonatorUpgrade upgrade = getCurrentUpgrade(player, player.func_184586_b(hand));
-        return upgrade == ResonatorUpgrade.AREA_SIZE && MiscUtils.getTileAt((IBlockReader)player.func_130014_f_(), pos, TileAreaOfInfluence.class, false) != null;
+        final ResonatorUpgrade upgrade = getCurrentUpgrade(player, player.getItemInHand(hand));
+        return upgrade == ResonatorUpgrade.AREA_SIZE && MiscUtils.getTileAt((IBlockReader)player.level(), pos, TileAreaOfInfluence.class, false) != null;
     }
     
     public boolean doBlockInteract(final LogicalSide side, final Player player, final Hand hand, final BlockPos pos, final Direction face) {
-        final ResonatorUpgrade upgrade = getCurrentUpgrade(player, player.func_184586_b(hand));
-        if (upgrade == ResonatorUpgrade.AREA_SIZE && player.func_130014_f_().func_201670_d()) {
-            final TileAreaOfInfluence aoeTile = MiscUtils.getTileAt((IBlockReader)player.func_130014_f_(), pos, TileAreaOfInfluence.class, false);
+        final ResonatorUpgrade upgrade = getCurrentUpgrade(player, player.getItemInHand(hand));
+        if (upgrade == ResonatorUpgrade.AREA_SIZE && player.level().level()) {
+            final TileAreaOfInfluence aoeTile = MiscUtils.getTileAt((IBlockReader)player.level(), pos, TileAreaOfInfluence.class, false);
             if (aoeTile != null) {
                 this.playAreaOfInfluenceEffect(aoeTile);
             }
@@ -190,11 +190,11 @@ public class ItemResonator extends Item implements OverrideInteractItem
         AreaOfInfluencePreview.INSTANCE.showOrRemoveIdentical(aoeTile);
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final World world, final Player player, final Hand hand) {
-        if (!world.func_201670_d() && player.func_225608_bj_() && cycleUpgrade(player, player.func_184586_b(hand))) {
-            return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)player.func_184586_b(hand));
+    public InteractionResult<ItemStack> func_77659_a(final Level world, final Player player, final Hand hand) {
+        if (!world.level() && player.func_225608_bj_() && cycleUpgrade(player, player.getItemInHand(hand))) {
+            return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)player.getItemInHand(hand));
         }
-        return (InteractionResult<ItemStack>)InteractionResult.func_226250_c_((Object)player.func_184586_b(hand));
+        return (InteractionResult<ItemStack>)InteractionResult.func_226250_c_((Object)player.getItemInHand(hand));
     }
     
     public static boolean cycleUpgrade(@Nonnull final Player player, final ItemStack stack) {
@@ -247,7 +247,7 @@ public class ItemResonator extends Item implements OverrideInteractItem
         }
         final CompoundTag cmp = NBTHelper.getPersistentData(stack);
         final int current = cmp.getInt("selected_upgrade");
-        final ResonatorUpgrade upgrade = ResonatorUpgrade.values()[Mth.func_76125_a(current, 0, ResonatorUpgrade.values().length - 1)];
+        final ResonatorUpgrade upgrade = ResonatorUpgrade.values()[Mth.getDescriptionId(current, 0, ResonatorUpgrade.values().length - 1)];
         if (viewing != null && !upgrade.canSwitchTo(viewing, stack)) {
             return ResonatorUpgrade.STARLIGHT;
         }

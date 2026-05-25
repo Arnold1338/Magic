@@ -40,14 +40,14 @@ public class CEffectLucerna extends ConstellationEffect implements Constellation
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void playClientEffect(final World world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
+    public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         if (ClientScheduler.getClientTick() % 20L == 0L) {
             EffectHelper.spawnSource(new FXOrbitalLucerna(new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5)).setOrbitAxis(Vector3.RotAxis.Y_AXIS).setOrbitRadius(0.8 + CEffectLucerna.rand.nextFloat() * 0.7).setTicksPerRotation(20 + CEffectLucerna.rand.nextInt(20)));
         }
     }
     
     @Override
-    public boolean runStatusEffect(final World world, final BlockPos pos, final int mirrorAmount, final ConstellationEffectProperties modified, @Nullable final IMinorConstellation possibleTraitEffect) {
+    public boolean runStatusEffect(final Level world, final BlockPos pos, final int mirrorAmount, final ConstellationEffectProperties modified, @Nullable final IMinorConstellation possibleTraitEffect) {
         if (modified.isCorrupted()) {
             if (world instanceof ServerLevel && DayTimeHelper.isNight(world) && CEffectLucerna.rand.nextBoolean()) {
                 SkyHandler.getInstance().revertWorldTimeTick((ServerLevel)world);
@@ -85,7 +85,7 @@ public class CEffectLucerna extends ConstellationEffect implements Constellation
     }
     
     @Override
-    public boolean playEffect(final World world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
+    public boolean playEffect(final Level world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
         return false;
     }
     

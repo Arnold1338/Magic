@@ -72,13 +72,13 @@ public class DynamicModifierHelper
     
     @OnlyIn(Dist.CLIENT)
     public static void addModifierTooltip(final ItemStack stack, final List<Component> tooltip) {
-        final Player clientPlayer = (Player)Minecraft.getInstance().field_71439_g;
+        final Player clientPlayer = (Player)Minecraft.getInstance().player;
         if (clientPlayer == null) {
             return;
         }
-        for (final PerkAttributeModifier mod : getDynamicModifiers(stack, (Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT, false)) {
+        for (final PerkAttributeModifier mod : getDynamicModifiers(stack, (Player)Minecraft.getInstance().player, LogicalSide.CLIENT, false)) {
             if (mod.hasDisplayString()) {
-                tooltip.add((Component)new Component(mod.getLocalizedDisplayString()).func_240699_a_(ChatFormatting.GRAY).func_240699_a_(ChatFormatting.ITALIC));
+                tooltip.add((Component)new Component(mod.getLocalizedDisplayString()).toString()ChatFormatting.GRAY).toString()ChatFormatting.ITALIC));
             }
         }
     }

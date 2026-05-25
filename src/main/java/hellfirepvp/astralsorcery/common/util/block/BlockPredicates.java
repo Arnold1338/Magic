@@ -36,18 +36,18 @@ public class BlockPredicates
     }
     
     public static <T extends BlockEntity> BlockPredicate doesTileExist(final T tile, final boolean loadTileWorldAndChunk) {
-        final RegistryKey<World> dim = (RegistryKey<World>)tile.func_145831_w().dimension();
+        final RegistryKey<Level> dim = (RegistryKey<Level>)tile.getLevel().dimension();
         final BlockEntityType<?> tileType = (BlockEntityType<?>)tile.func_200662_C();
         final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
         return (world, pos, state) -> {
             if (loadTileWorldAndChunk || srv.forgeGetWorldMap().containsKey(dim)) {
-                final World foundWorld = (World)srv.func_71218_a(dim);
+                final Level foundWorld = (Level)srv.getLevel(dim);
                 if (foundWorld == null) {
                     return !loadTileWorldAndChunk;
                 }
                 else {
                     if (!loadTileWorldAndChunk) {
-                        if (!foundWorld.func_72863_F().func_222865_a(new ChunkPos(pos))) {
+                        if (!foundWorld.getChunkSource().func_222865_a(new ChunkPos(pos))) {
                             return true;
                         }
                     }

@@ -55,8 +55,8 @@ public enum GuiType
     @Nullable
     @OnlyIn(Dist.CLIENT)
     public Screen deserialize(final CompoundTag data) {
-        final World clWorld = (World)Minecraft.getInstance().field_71441_e;
-        final Player clPlayer = (Player)Minecraft.getInstance().field_71439_g;
+        final Level clWorld = (Level)Minecraft.getInstance().level;
+        final Player clPlayer = (Player)Minecraft.getInstance().player;
         if (clWorld == null || clPlayer == null) {
             return null;
         }

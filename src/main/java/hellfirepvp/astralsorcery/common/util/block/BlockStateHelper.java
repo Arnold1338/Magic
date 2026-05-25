@@ -76,7 +76,7 @@ public class BlockStateHelper
     @Nonnull
     public static Block deserializeBlock(@Nonnull final String serialized) {
         final Block block = (Block)ForgeRegistries.BLOCKS.getValue(new ResourceLocation(serialized));
-        return (block == null) ? Blocks.field_150350_a : block;
+        return (block == null) ? Blocks.AIR : block;
     }
     
     @Nonnull
@@ -92,7 +92,7 @@ public class BlockStateHelper
         }
         final Block block = (Block)ForgeRegistries.BLOCKS.getValue(key);
         BlockState state = block.defaultBlockState();
-        if (!block.equals(Blocks.field_150350_a) && hasProperties) {
+        if (!block.equals(Blocks.AIR) && hasProperties) {
             final List<String> strProps = BlockStateHelper.PROP_SPLITTER.splitToList((CharSequence)serialized.substring(propIndex, serialized.length() - 1));
             for (final String serializedProperty : strProps) {
                 final List<String> propertyValues = BlockStateHelper.PROP_ELEMENT_SPLITTER.splitToList((CharSequence)serializedProperty);
@@ -104,7 +104,7 @@ public class BlockStateHelper
                     if (!value.isPresent()) {
                         continue;
                     }
-                    state = (BlockState)state.func_206870_a((Property)property, (Comparable)value.get());
+                    state = (BlockState)state.setValue((Property)property, (Comparable)value.get());
                 }
             }
         }
@@ -116,7 +116,7 @@ public class BlockStateHelper
         final String key = JSONUtils.func_151200_h(object, "block");
         final Block b = (Block)ForgeRegistries.BLOCKS.getValue(new ResourceLocation(key));
         if (b == null || b instanceof AirBlock) {
-            return Blocks.field_150350_a.defaultBlockState();
+            return Blocks.AIR.defaultBlockState();
         }
         BlockState state = b.defaultBlockState();
         if (isMissingStateInformation(object)) {
@@ -134,7 +134,7 @@ public class BlockStateHelper
                     if (!value.isPresent()) {
                         continue;
                     }
-                    state = (BlockState)state.func_206870_a((Property)property, (Comparable)value.get());
+                    state = (BlockState)state.setValue((Property)property, (Comparable)value.get());
                 }
             }
         }

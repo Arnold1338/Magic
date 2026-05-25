@@ -109,14 +109,14 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d()) {
+        if (!this.getLevel().level()) {
             this.doesSeeSky();
             this.hasMultiblock();
             this.updateLinkTile();
             this.updateBlockConfigurations();
         }
         this.effectWork.update(this.working);
-        if (this.func_145831_w().func_201670_d() && this.working) {
+        if (this.getLevel().level() && this.working) {
             this.playEffects();
         }
     }
@@ -124,17 +124,17 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     private void updateBlockConfigurations() {
         if (this.ticksExisted % 20 == 0) {
             for (final BlockPos offset : TileRitualPedestal.RITUAL_CIRCLE_OFFSETS) {
-                final BlockPos pos = this.func_174877_v().func_177971_a((Vector3i)offset);
-                MiscUtils.executeWithChunk((IWorldReader)this.func_145831_w(), pos, pos, at -> {
+                final BlockPos pos = this.getBlockState().func_177971_a((Vector3i)offset);
+                MiscUtils.executeWithChunk((IWorldReader)this.getLevel(), pos, pos, at -> {
                     final BlockState savedState = this.offsetConfigurations.get(offset);
-                    if (this.func_145831_w().isEmptyBlock(at)) {
+                    if (this.getLevel().isEmptyBlock(at)) {
                         if (savedState != null) {
                             this.offsetConfigurations.remove(offset);
                             this.markForUpdate();
                         }
                     }
                     else {
-                        final BlockState actualState = this.func_145831_w().getBlockState(at);
+                        final BlockState actualState = this.getLevel().getBlockState(at);
                         if (savedState == null || !savedState.equals(actualState)) {
                             this.offsetConfigurations.put(offset, actualState);
                             this.markForUpdate();
@@ -147,8 +147,8 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     
     private void updateLinkTile() {
         final boolean hasLink = this.ritualLinkTo != null;
-        final BlockPos link = this.func_174877_v().func_177971_a((Vector3i)TileRitualPedestal.RITUAL_ANCHOR_OFFEST);
-        final TileRitualLink linkTile = MiscUtils.getTileAt((IBlockReader)this.field_145850_b, link, TileRitualLink.class, true);
+        final BlockPos link = this.getBlockState().func_177971_a((Vector3i)TileRitualPedestal.RITUAL_ANCHOR_OFFEST);
+        final TileRitualLink linkTile = MiscUtils.getTileAt((IBlockReader)this.level, link, TileRitualLink.class, true);
         boolean hasLinkNow;
         if (linkTile != null) {
             this.ritualLinkTo = linkTile.getLinkedTo();
@@ -220,7 +220,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     @Nonnull
     @Override
     public BlockPos getEffectOriginPosition() {
-        return this.func_174877_v();
+        return this.getBlockState();
     }
     
     @Nonnull
@@ -231,8 +231,8 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     
     @Nonnull
     @Override
-    public RegistryKey<World> getDimension() {
-        return (RegistryKey<World>)this.func_145831_w().dimension();
+    public RegistryKey<Level> getDimension() {
+        return (RegistryKey<Level>)this.getLevel().dimension();
     }
     
     @Override
@@ -242,7 +242,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     
     @OnlyIn(Dist.CLIENT)
     private void playEffects() {
-        float alphaDaytime = DayTimeHelper.getCurrentDaytimeDistribution(this.func_145831_w());
+        float alphaDaytime = DayTimeHelper.getCurrentDaytimeDistribution(this.getLevel());
         alphaDaytime *= 0.8f;
         final float percRunning = this.effectWork.getAsPercentage();
         final int chance = 15 + (int)((1.0f - percRunning) * 50.0f);
@@ -259,10 +259,10 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
         final List<BlockPos> activeMirrors = this.offsetMirrors.entrySet().stream().filter(Map.Entry::getValue).map((Function<? super Object, ?>)Map.Entry::getKey).collect((Collector<? super Object, ?, List<BlockPos>>)Collectors.toList());
         final IWeakConstellation ritualConstellation = this.getRitualConstellation();
         if (this.working && ritualConstellation != null) {
-            if (!activeMirrors.isEmpty() && DayTimeHelper.isNight(this.func_145831_w()) && TileRitualPedestal.rand.nextInt(chance * 2) == 0) {
+            if (!activeMirrors.isEmpty() && DayTimeHelper.isNight(this.getLevel()) && TileRitualPedestal.rand.nextInt(chance * 2) == 0) {
                 final Vector3 from2 = new Vector3(this).add(0.5, 0.1, 0.5);
                 MiscUtils.applyRandomOffset(from2, TileRitualPedestal.rand, 2.0f);
-                from2.setY(this.func_174877_v().getY() - 0.6 + 1.0f * TileRitualPedestal.rand.nextFloat() * (TileRitualPedestal.rand.nextBoolean() ? 1 : -1));
+                from2.setY(this.getBlockState().getY() - 0.6 + 1.0f * TileRitualPedestal.rand.nextFloat() * (TileRitualPedestal.rand.nextBoolean() ? 1 : -1));
                 EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).setOwner(this.ownerUUID).spawn(from2).setup(from2.clone().addY(5 + TileRitualPedestal.rand.nextInt(3)), 1.2999999523162842, 1.2999999523162842).setAlphaMultiplier(alphaDaytime).color(VFXColorFunction.constant(ritualConstellation.getConstellationColor())).setMaxAge(64);
             }
             if (this.ritualHaloEffect == null) {
@@ -271,7 +271,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
             if (this.ritualHaloEffect != null) {
                 final FXSpritePlane effectPlane = (FXSpritePlane)this.ritualHaloEffect;
                 EffectHelper.refresh(effectPlane, EffectTemplatesAS.TEXTURE_SPRITE);
-                final float dayTimeMul = DayTimeHelper.getCurrentDaytimeDistribution(this.func_145831_w());
+                final float dayTimeMul = DayTimeHelper.getCurrentDaytimeDistribution(this.getLevel());
                 effectPlane.setAlphaMultiplier(Math.max(0.05f, dayTimeMul * 0.75f));
             }
             final Vector3 offset = Vector3.random().setY(0).normalize().multiply(TileRitualPedestal.rand.nextFloat() * 4.0f * (TileRitualPedestal.rand.nextBoolean() ? 1 : -1));
@@ -280,12 +280,12 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
                 this.clientEffectInstance = null;
             }
             if (this.clientEffectInstance == null) {
-                this.clientEffectInstance = ConstellationEffectRegistry.createInstance(ILocatable.fromPos(this.func_174877_v()), ritualConstellation);
+                this.clientEffectInstance = ConstellationEffectRegistry.createInstance(ILocatable.fromPos(this.getBlockState()), ritualConstellation);
             }
             if (this.clientEffectInstance != null) {
-                this.clientEffectInstance.playClientEffect(this.func_145831_w(), this.func_174877_v(), this, percRunning, this.isFullyEnhanced());
-                if (this.ritualLinkTo != null && this.func_145831_w().func_195588_v(this.ritualLinkTo)) {
-                    this.clientEffectInstance.playClientEffect(this.func_145831_w(), this.ritualLinkTo, this, percRunning, this.isFullyEnhanced());
+                this.clientEffectInstance.playClientEffect(this.getLevel(), this.getBlockState(), this, percRunning, this.isFullyEnhanced());
+                if (this.ritualLinkTo != null && this.getLevel().func_195588_v(this.ritualLinkTo)) {
+                    this.clientEffectInstance.playClientEffect(this.getLevel(), this.ritualLinkTo, this, percRunning, this.isFullyEnhanced());
                 }
             }
             final CrystalAttributes prop = this.getAttributes();
@@ -302,7 +302,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
                         to = new Vector3(this).add(0.5, 3.5 + TileRitualPedestal.rand.nextFloat() * 2.5, 0.5);
                     }
                     else {
-                        final BlockPos mirror = MiscUtils.getRandomEntry(activeMirrors, TileRitualPedestal.rand).func_177971_a((Vector3i)this.func_174877_v());
+                        final BlockPos mirror = MiscUtils.getRandomEntry(activeMirrors, TileRitualPedestal.rand).func_177971_a((Vector3i)this.getBlockState());
                         to = new Vector3((Vector3i)mirror).add(0.5, 0.5, 0.5);
                     }
                     EffectHelper.of(EffectTemplatesAS.LIGHTNING).setOwner(this.ownerUUID).spawn(from3).makeDefault(to).color(VFXColorFunction.constant(ritualConstellation.getConstellationColor()));
@@ -328,7 +328,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     }
     
     public Map<BlockPos, Boolean> getMirrors() {
-        return MapStream.of(this.offsetMirrors).mapKey(pos -> pos.func_177971_a((Vector3i)this.func_174877_v())).toMap();
+        return MapStream.of(this.offsetMirrors).mapKey(pos -> pos.func_177971_a((Vector3i)this.getBlockState())).toMap();
     }
     
     public int getMirrorCount() {
@@ -341,16 +341,16 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     
     @Nullable
     public Player getOwner() {
-        if (this.ownerUUID == null || this.field_145850_b == null) {
+        if (this.ownerUUID == null || this.level == null) {
             return null;
         }
-        return this.field_145850_b.getPlayerByUUID(this.ownerUUID);
+        return this.level.getPlayerByUUID(this.ownerUUID);
     }
     
     @Nonnull
     public ItemStack getCurrentCrystal() {
         final ItemStack crystal = this.inventory.getStackInSlot(0);
-        return ItemUtils.copyStackWithSize(crystal, crystal.func_190916_E());
+        return ItemUtils.copyStackWithSize(crystal, crystal.getCount());
     }
     
     @Nullable
@@ -407,7 +407,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     @Nonnull
     public ItemStack tryPlaceCrystalInPedestal(@Nonnull final ItemStack crystal) {
         final ItemStack currentCatalyst = this.inventory.getStackInSlot(0);
-        final ItemStack toInsert = ItemUtils.copyStackWithSize(crystal, Math.min(crystal.func_190916_E(), 1));
+        final ItemStack toInsert = ItemUtils.copyStackWithSize(crystal, Math.min(crystal.getCount(), 1));
         if (toInsert.isEmpty()) {
             if (!this.inventory.canExtractItem(0, 1)) {
                 return ItemStack.EMPTY;
@@ -424,7 +424,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
             }
             if (currentCatalyst.isEmpty()) {
                 this.inventory.setStackInSlot(0, toInsert);
-                return ItemUtils.copyStackWithSize(crystal, Math.max(0, crystal.func_190916_E() - 1));
+                return ItemUtils.copyStackWithSize(crystal, Math.max(0, crystal.getCount() - 1));
             }
             return crystal;
         }

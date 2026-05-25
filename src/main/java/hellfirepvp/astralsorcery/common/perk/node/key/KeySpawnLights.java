@@ -40,9 +40,9 @@ public class KeySpawnLights extends KeyPerk implements PlayerTickPerk
                 for (int attempts = 4; attempts > 0; --attempts) {
                     final int radius = (int)KeySpawnLights.CONFIG.lightSpawnRadius.get();
                     final BlockPos pos = player.func_233580_cy_().offset(KeySpawnLights.rand.nextInt(radius) * (KeySpawnLights.rand.nextBoolean() ? 1 : -1), KeySpawnLights.rand.nextInt(radius) * (KeySpawnLights.rand.nextBoolean() ? 1 : -1), KeySpawnLights.rand.nextInt(radius) * (KeySpawnLights.rand.nextBoolean() ? 1 : -1));
-                    if (MiscUtils.executeWithChunk((IWorldReader)player.func_130014_f_(), pos, () -> {
-                        if (TileIlluminator.ILLUMINATOR_CHECK.test(player.func_130014_f_(), pos, player.func_130014_f_().getBlockState(pos)) && AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)KeySpawnLights.CONFIG.chargeCost.get(), true)) {
-                            if (player.func_130014_f_().func_175656_a(pos, BlocksAS.FLARE_LIGHT.defaultBlockState())) {
+                    if (MiscUtils.executeWithChunk((IWorldReader)player.level(), pos, () -> {
+                        if (TileIlluminator.ILLUMINATOR_CHECK.test(player.level(), pos, player.level().getBlockState(pos)) && AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)KeySpawnLights.CONFIG.chargeCost.get(), true)) {
+                            if (player.level().func_175656_a(pos, BlocksAS.FLARE_LIGHT.defaultBlockState())) {
                                 AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)KeySpawnLights.CONFIG.chargeCost.get(), false);
                                 return Boolean.valueOf(true);
                             }

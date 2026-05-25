@@ -26,7 +26,7 @@ public final class EffectRegistrar
     }
     
     private static void register(final FXSource<?, ?> src) {
-        if (Minecraft.getInstance().func_147113_T() || Minecraft.getInstance().field_71439_g == null) {
+        if (Minecraft.getInstance().func_147113_T() || Minecraft.getInstance().player == null) {
             return;
         }
         if (!Thread.currentThread().getName().contains("Render thread")) {
@@ -37,7 +37,7 @@ public final class EffectRegistrar
     }
     
     private static <T extends EntityVisualFX> void register(final T effect, final EffectProperties<T> properties) {
-        if (AssetLibrary.isReloading() || effect == null || Minecraft.getInstance().func_147113_T() || Minecraft.getInstance().field_71439_g == null || !RenderingUtils.canEffectExist(effect)) {
+        if (AssetLibrary.isReloading() || effect == null || Minecraft.getInstance().func_147113_T() || Minecraft.getInstance().player == null || !RenderingUtils.canEffectExist(effect)) {
             return;
         }
         if (!Thread.currentThread().getName().contains("Render thread")) {

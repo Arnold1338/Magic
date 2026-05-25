@@ -43,15 +43,15 @@ public class PerkTreeGem<T extends AbstractPerk & GemSocketPerk> extends PerkTre
     @OnlyIn(Dist.CLIENT)
     @Override
     public void renderAt(final AllocationStatus status, final PoseStack renderStack, final long spriteOffsetTick, final float pTicks, final float x, final float y, final float zLevel, final float scale) {
-        final ItemStack stack = this.getPerk().getContainedItem((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT);
+        final ItemStack stack = this.getPerk().getContainedItem((Player)Minecraft.getInstance().player, LogicalSide.CLIENT);
         if (!stack.isEmpty()) {
             final float posX = x - 8.0f * scale;
             final float posY = y - 8.0f * scale;
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_((double)posX, (double)posY, (double)(zLevel - 50.0f));
-            renderStack.func_227862_a_(scale, scale, 1.0f);
+            renderStack.translate(scale, scale, 1.0f);
             RenderingUtils.renderItemStackGUI(renderStack, stack, null);
-            renderStack.func_227865_b_();
+            renderStack.scale();
         }
     }
     
@@ -70,7 +70,7 @@ public class PerkTreeGem<T extends AbstractPerk & GemSocketPerk> extends PerkTre
             haloSize *= 1.5;
         }
         final Tuple<Float, Float> frameUV = tex.getUVOffset(spriteOffsetTick);
-        RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, x - haloSize, y - haloSize, zLevel, haloSize * 2.0f, haloSize * 2.0f).color(1.0f, 1.0f, 1.0f, 0.85f).tex((float)frameUV.func_76341_a(), (float)frameUV.func_76340_b(), tex.getULength(), tex.getVLength()).draw();
+        RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, x - haloSize, y - haloSize, zLevel, haloSize * 2.0f, haloSize * 2.0f).color(1.0f, 1.0f, 1.0f, 0.85f).tex((float)frameUV.getA(), (float)frameUV.getB(), tex.getULength(), tex.getVLength()).draw();
         super.renderPerkAtBatch(drawCtx, renderStack, status, spriteOffsetTick, pTicks, x, y, zLevel, scale);
         final float actualSize = this.getRenderSize() * scale;
         return new Rectangle2D.Float(-actualSize, -actualSize, actualSize * 2.0f, actualSize * 2.0f);

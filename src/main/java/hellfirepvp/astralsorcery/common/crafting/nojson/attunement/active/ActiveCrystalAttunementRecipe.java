@@ -73,7 +73,7 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
     @Override
     public boolean matches(final TileAttunementAltar altar) {
         final Entity entity;
-        return super.matches(altar) && (entity = altar.func_145831_w().func_73045_a(this.entityId)) != null && entity.isAlive() && entity instanceof ItemEntity && this.constellation.equals(altar.getActiveConstellation()) && AttuneCrystalRecipe.isApplicableCrystal((ItemEntity)entity, altar.getActiveConstellation());
+        return super.matches(altar) && (entity = altar.getLevel().getEntityById(this.entityId)) != null && entity.isAlive() && entity instanceof ItemEntity && this.constellation.equals(altar.getActiveConstellation()) && AttuneCrystalRecipe.isApplicableCrystal((ItemEntity)entity, altar.getActiveConstellation());
     }
     
     @Override
@@ -86,12 +86,12 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
     
     @Override
     public void finishRecipe(final TileAttunementAltar altar) {
-        final ItemEntity crystal = this.getEntity(altar.func_145831_w());
+        final ItemEntity crystal = this.getEntity(altar.getLevel());
         if (crystal != null) {
             ItemStack stack = crystal.func_92059_d();
             if (!(stack.getItem() instanceof ConstellationItem) && stack.getItem() instanceof ItemCrystalBase) {
                 final CompoundTag tag = stack.getTag();
-                stack = new ItemStack((ItemLike)((ItemCrystalBase)stack.getItem()).getTunedItemVariant(), stack.func_190916_E());
+                stack = new ItemStack((ItemLike)((ItemCrystalBase)stack.getItem()).getTunedItemVariant(), stack.getCount());
                 stack.setTag(tag);
             }
             if (stack.getItem() instanceof ConstellationItem) {
@@ -108,7 +108,7 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
                 crystal.func_92058_a(stack);
                 final UUID throwerUUID = crystal.func_200214_m();
                 if (throwerUUID != null) {
-                    final Player thrower = altar.func_145831_w().getPlayerByUUID(throwerUUID);
+                    final Player thrower = altar.getLevel().getPlayerByUUID(throwerUUID);
                     if (thrower instanceof ServerPlayer) {
                         AdvancementsAS.ATTUNE_CRYSTAL.trigger((ServerPlayer)thrower, altar.getActiveConstellation());
                     }
@@ -119,7 +119,7 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
     
     @Override
     public void doTick(final LogicalSide side, final TileAttunementAltar altar) {
-        final ItemEntity crystal = this.getEntity(altar.func_145831_w());
+        final ItemEntity crystal = this.getEntity(altar.getLevel());
         if (crystal == null) {
             return;
         }
@@ -141,7 +141,7 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
             this.itemAttuneSound = SoundHelper.playSoundLoopFadeInClient(SoundsAS.ATTUNEMENT_ATLAR_ITEM_LOOP, new Vector3(altar).add(0.5, 1.0, 0.5), 1.0f, 1.0f, false, activeTest).setFadeInTicks(20.0f).setFadeOutTicks(20.0f);
         }
         if (this.getTick() == 0) {
-            SoundHelper.playSoundClientWorld(SoundsAS.ATTUNEMENT_ATLAR_ITEM_START, altar.func_174877_v(), 1.0f, 1.0f);
+            SoundHelper.playSoundClientWorld(SoundsAS.ATTUNEMENT_ATLAR_ITEM_START, altar.getBlockState(), 1.0f, 1.0f);
         }
         if (this.getTick() >= 80 && (this.attunementFlare == null || ((EntityComplexFX)this.attunementFlare).isRemoved())) {
             this.attunementFlare = EffectHelper.of(EffectTemplatesAS.FACING_SPRITE).spawn(new Vector3(altar).add(0.5, 1.75, 0.5)).setSprite(SpritesAS.SPR_ATTUNEMENT_FLARE).setScaleMultiplier(2.5f).refresh(fx -> altar.canPlayConstellationActiveEffects() && altar.getActiveRecipe() == this);
@@ -232,7 +232,7 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
     @Override
     public void stopEffects(final TileAttunementAltar altar) {
         if (this.isFinished(altar)) {
-            SoundHelper.playSoundClientWorld(SoundsAS.ATTUNEMENT_ATLAR_ITEM_FINISH, altar.func_174877_v().above(), 1.0f, 1.0f);
+            SoundHelper.playSoundClientWorld(SoundsAS.ATTUNEMENT_ATLAR_ITEM_FINISH, altar.getBlockState().above(), 1.0f, 1.0f);
         }
         if (this.innerOrbital1 != null) {
             ((EntityComplexFX)this.innerOrbital1).requestRemoval();
@@ -243,8 +243,8 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
     }
     
     @Nullable
-    private ItemEntity getEntity(final World world) {
-        final Entity entity = world.func_73045_a(this.entityId);
+    private ItemEntity getEntity(final Level world) {
+        final Entity entity = world.getEntityById(this.entityId);
         if (entity != null && entity.isAlive() && entity instanceof ItemEntity) {
             return (ItemEntity)entity;
         }

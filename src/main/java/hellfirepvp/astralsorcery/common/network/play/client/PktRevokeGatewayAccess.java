@@ -28,7 +28,7 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 
 public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess>
 {
-    private RegistryKey<World> dim;
+    private RegistryKey<Level> dim;
     private BlockPos pos;
     private UUID revokeUUID;
     
@@ -38,7 +38,7 @@ public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess>
         this.revokeUUID = null;
     }
     
-    public PktRevokeGatewayAccess(final RegistryKey<World> dim, final BlockPos pos, final UUID revokeUUID) {
+    public PktRevokeGatewayAccess(final RegistryKey<Level> dim, final BlockPos pos, final UUID revokeUUID) {
         this.dim = null;
         this.pos = BlockPos.field_177992_a;
         this.revokeUUID = null;
@@ -71,7 +71,7 @@ public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess>
                 final Player sender = (Player)context.getSender();
                 if (sender != null) {
                     final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
-                    final World world = (World)srv.func_71218_a((RegistryKey)packet.dim);
+                    final Level world = (Level)srv.getLevel((RegistryKey)packet.dim);
                     final TileCelestialGateway gateway = MiscUtils.getTileAt((IBlockReader)world, packet.pos, TileCelestialGateway.class, false);
                     if (gateway != null && gateway.isLocked() && gateway.getOwner() != null && gateway.getOwner().isPlayer(sender)) {
                         final BlockPos testPos = Vector3.atEntityCorner((Entity)sender).toBlockPos();
@@ -79,11 +79,11 @@ public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess>
                         if (gateway.equals(playerGateway)) {
                             final PlayerReference removedPlayer = gateway.removeAllowedUser(packet.revokeUUID);
                             if (removedPlayer != null) {
-                                final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.GATEWAY_REVOKE_EFFECT).addData(buffer -> ByteBufUtils.writePos(buffer, gateway.func_174877_v()));
+                                final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.GATEWAY_REVOKE_EFFECT).addData(buffer -> ByteBufUtils.writePos(buffer, gateway.getBlockState()));
                                 PacketChannel.CHANNEL.sendToPlayer(sender, pkt);
                                 new Component("astralsorcery.misc.link.gateway.unlink", new Object[] { removedPlayer.getPlayerName() });
                                 final Component translationTextComponent;
-                                final Component accessGrantedMessage = (Component)translationTextComponent.func_240699_a_(ChatFormatting.GREEN);
+                                final Component accessGrantedMessage = (Component)translationTextComponent.toString()ChatFormatting.GREEN);
                                 sender.func_145747_a(accessGrantedMessage, Util.NIL_UUID);
                             }
                         }

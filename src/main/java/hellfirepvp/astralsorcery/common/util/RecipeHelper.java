@@ -42,7 +42,7 @@ public class RecipeHelper
     }
     
     @Nonnull
-    public static Optional<Tuple<ItemStack, Float>> findSmeltingResult(final World world, final BlockState input) {
+    public static Optional<Tuple<ItemStack, Float>> findSmeltingResult(final Level world, final BlockState input) {
         final ItemStack stack = ItemUtils.createBlockStack(input);
         if (stack.isEmpty()) {
             return Optional.empty();
@@ -51,7 +51,7 @@ public class RecipeHelper
     }
     
     @Nonnull
-    public static Optional<Tuple<ItemStack, Float>> findSmeltingResult(final World world, final ItemStack input) {
+    public static Optional<Tuple<ItemStack, Float>> findSmeltingResult(final Level world, final ItemStack input) {
         final RecipeManager mgr = world.func_199532_z();
         final Container inv = (Container)new Inventory(new ItemStack[] { input });
         final Optional<Recipe<Container>> optRecipe = (Optional<Recipe<Container>>)ObjectUtils.firstNonNull((Object[])new Optional[] { mgr.func_215371_a(RecipeType.field_222150_b, inv, world), mgr.func_215371_a(RecipeType.field_222153_e, inv, world), mgr.func_215371_a(RecipeType.field_222152_d, inv, world), Optional.empty() });

@@ -41,7 +41,7 @@ public class CEffectVicio extends ConstellationEffect implements ConstellationEf
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void playClientEffect(final World world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
+    public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         if (CEffectVicio.rand.nextInt(3) == 0) {
             final Vector3 r = new Vector3(pos.getX() + CEffectVicio.rand.nextFloat() * 4.0f * (CEffectVicio.rand.nextBoolean() ? 1 : -1) + 0.5, pos.getY() + CEffectVicio.rand.nextFloat() * 2.0f + 0.5, pos.getZ() + CEffectVicio.rand.nextFloat() * 4.0f * (CEffectVicio.rand.nextBoolean() ? 1 : -1) + 0.5);
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(r).setMotion(Vector3.random().setY(0).multiply(0.03f)).setScaleMultiplier(0.45f).color(VFXColorFunction.constant(ColorsAS.RITUAL_CONSTELLATION_VICIO)).setGravityStrength(-0.002f).setMaxAge(40);
@@ -50,12 +50,12 @@ public class CEffectVicio extends ConstellationEffect implements ConstellationEf
     }
     
     @Override
-    public boolean playEffect(final World world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
+    public boolean playEffect(final Level world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
         return false;
     }
     
     @Override
-    public boolean runStatusEffect(final World world, final BlockPos pos, final int mirrorAmount, final ConstellationEffectProperties modified, @Nullable final IMinorConstellation possibleTraitEffect) {
+    public boolean runStatusEffect(final Level world, final BlockPos pos, final int mirrorAmount, final ConstellationEffectProperties modified, @Nullable final IMinorConstellation possibleTraitEffect) {
         boolean foundPlayer = false;
         final double range = modified.getSize();
         if (modified.isCorrupted()) {

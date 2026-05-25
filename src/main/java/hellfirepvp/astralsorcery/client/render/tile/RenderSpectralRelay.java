@@ -17,10 +17,10 @@ public class RenderSpectralRelay extends CustomTileEntityRenderer<TileSpectralRe
     public void render(final TileSpectralRelay tile, final float pTicks, final PoseStack renderStack, final MultiBufferSource renderTypeBuffer, final int combinedLight, final int combinedOverlay) {
         final ItemStack stack = tile.getInventory().getStackInSlot(0);
         if (!stack.isEmpty()) {
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_(0.5, 0.10000000149011612, 0.5);
             RenderingUtils.renderItemAsEntity(stack, renderStack, renderTypeBuffer, 0.0, 0.0, 0.0, combinedLight, pTicks, tile.getTicksExisted());
-            renderStack.func_227865_b_();
+            renderStack.scale();
         }
     }
 }

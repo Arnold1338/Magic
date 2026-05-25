@@ -60,7 +60,7 @@ public class TileCollectorCrystal extends TileSourceBase<SimpleTransmissionSourc
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d()) {
+        if (!this.getLevel().level()) {
             this.doesSeeSky();
             this.hasMultiblock();
         }
@@ -88,7 +88,7 @@ public class TileCollectorCrystal extends TileSourceBase<SimpleTransmissionSourc
                     this.effectOrbitals[i] = null;
                 }
             }
-            final BlockPos starlightSource = MiscUtils.getRandomEntry(TileCollectorCrystal.OFFSETS_LIQUID_STARLIGHT, TileCollectorCrystal.rand).func_177971_a((Vector3i)this.func_174877_v());
+            final BlockPos starlightSource = MiscUtils.getRandomEntry(TileCollectorCrystal.OFFSETS_LIQUID_STARLIGHT, TileCollectorCrystal.rand).func_177971_a((Vector3i)this.getBlockState());
             final Vector3 from = new Vector3((Vector3i)starlightSource).add(TileCollectorCrystal.rand.nextFloat(), 0.85f, TileCollectorCrystal.rand.nextFloat());
             final Vector3 motion = thisPos.clone().subtract(from).normalize().multiply(0.08f);
             final Color particleColor = MiscUtils.eitherOf(TileCollectorCrystal.rand, new Color[] { Color.WHITE, c, c.brighter() });
@@ -222,7 +222,7 @@ public class TileCollectorCrystal extends TileSourceBase<SimpleTransmissionSourc
     }
     
     public AABB getRenderBoundingBox() {
-        return TileCollectorCrystal.BOX.func_186662_g(1.0).func_186670_a(this.func_174877_v());
+        return TileCollectorCrystal.BOX.func_186662_g(1.0).func_186670_a(this.getBlockState());
     }
     
     @Nonnull

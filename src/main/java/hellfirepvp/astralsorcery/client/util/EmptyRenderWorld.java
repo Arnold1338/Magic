@@ -49,7 +49,7 @@ public class EmptyRenderWorld implements IBlockDisplayReader
     }
     
     public BlockState func_180495_p(final BlockPos blockPos) {
-        return Blocks.field_150350_a.defaultBlockState();
+        return Blocks.AIR.defaultBlockState();
     }
     
     public FluidState func_204610_c(final BlockPos blockPos) {

@@ -88,11 +88,11 @@ public class ScreenJournalClusterRenderer
             for (final Rectangle r : this.clickableNodes.keySet()) {
                 if (r.contains(mouseX, mouseY)) {
                     final ITextProperties name = (ITextProperties)this.clickableNodes.get(r).getName();
-                    renderStack.func_227860_a_();
+                    renderStack.popPose();
                     renderStack.func_227861_a_(r.getX(), r.getY(), (double)(zLevel + 200.0f));
-                    renderStack.func_227862_a_(this.progressionSizeHandler.getScalingFactor(), this.progressionSizeHandler.getScalingFactor(), 1.0f);
-                    RenderingDrawUtils.renderBlueTooltipComponents(renderStack, 0.0f, 0.0f, 0.0f, Lists.newArrayList((Object[])new ITextProperties[] { name }), Minecraft.getInstance().field_71466_p, false);
-                    renderStack.func_227865_b_();
+                    renderStack.translate(this.progressionSizeHandler.getScalingFactor(), this.progressionSizeHandler.getScalingFactor(), 1.0f);
+                    RenderingDrawUtils.renderBlueTooltipComponents(renderStack, 0.0f, 0.0f, 0.0f, Lists.newArrayList((Object[])new ITextProperties[] { name }), Minecraft.getInstance().font, false);
+                    renderStack.scale();
                 }
             }
         }
@@ -152,7 +152,7 @@ public class ScreenJournalClusterRenderer
         this.alpha = this.progressionSizeHandler.getScalingFactor();
         this.alpha -= 0.25f;
         this.alpha /= 0.75f;
-        this.alpha = Mth.func_76131_a(this.alpha, 0.0f, 1.0f);
+        this.alpha = Mth.canEnchant(this.alpha, 0.0f, 1.0f);
         final Map<ResearchNode, Point2D.Float> displayPositions = new HashMap<ResearchNode, Point2D.Float>();
         final Iterator<ResearchNode> iterator = this.progression.getResearchNodes().iterator();
         ResearchNode node = null;
@@ -183,15 +183,15 @@ public class ScreenJournalClusterRenderer
         final float pxWH = this.progressionSizeHandler.getZoomedWHNode() / 16.0f;
         switch (node.getNodeRenderType()) {
             case ITEMSTACK: {
-                renderStack.func_227860_a_();
+                renderStack.popPose();
                 renderStack.func_227861_a_((double)offsetX, (double)offsetY, 0.0);
-                renderStack.func_227862_a_(this.progressionSizeHandler.getScalingFactor(), this.progressionSizeHandler.getScalingFactor(), 1.0f);
+                renderStack.translate(this.progressionSizeHandler.getScalingFactor(), this.progressionSizeHandler.getScalingFactor(), 1.0f);
                 renderStack.func_227861_a_(3.0, 3.0, 100.0);
-                renderStack.func_227862_a_(0.75f, 0.75f, 1.0f);
+                renderStack.translate(0.75f, 0.75f, 1.0f);
                 RenderHelper.func_227780_a_();
-                RenderingUtils.renderTranslucentItemStackModelGUI(node.getRenderItemStack(ClientScheduler.getClientTick()), renderStack, Color.WHITE, Blending.DEFAULT, Mth.func_76125_a((int)(this.alpha * 255.0f), 0, 255));
+                RenderingUtils.renderTranslucentItemStackModelGUI(node.getRenderItemStack(ClientScheduler.getClientTick()), renderStack, Color.WHITE, Blending.DEFAULT, Mth.getDescriptionId((int)(this.alpha * 255.0f), 0, 255));
                 RenderHelper.func_74518_a();
-                renderStack.func_227865_b_();
+                renderStack.scale();
                 break;
             }
             case TEXTURE_SPRITE: {
@@ -203,21 +203,21 @@ public class ScreenJournalClusterRenderer
                 final SpriteSheetResource res = node.getSpriteTexture().resolveSprite();
                 res.getResource().bindTexture();
                 final Tuple<Float, Float> uvTexture = res.getUVOffset(ClientScheduler.getClientTick());
-                renderStack.func_227860_a_();
+                renderStack.popPose();
                 renderStack.func_227861_a_((double)offsetX, (double)offsetY, 0.0);
                 RenderSystem.enableBlend();
                 RenderSystem.defaultBlendFunc();
-                RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
-                    final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
-                    buf.func_227888_a_(matr, pxWH, zoomedWH - pxWH, zLevel).func_227885_a_(r, g, b, a).func_225583_a_((float)uvTexture.func_76341_a(), (float)uvTexture.func_76340_b() + res.getVLength()).func_181675_d();
-                    buf.func_227888_a_(matr, zoomedWH - pxWH, zoomedWH - pxWH, zLevel).func_227885_a_(r, g, b, a).func_225583_a_((float)uvTexture.func_76341_a() + res.getULength(), (float)uvTexture.func_76340_b() + res.getVLength()).func_181675_d();
-                    buf.func_227888_a_(matr, zoomedWH - pxWH, pxWH, zLevel).func_227885_a_(r, g, b, a).func_225583_a_((float)uvTexture.func_76341_a() + res.getULength(), (float)uvTexture.func_76340_b()).func_181675_d();
-                    buf.func_227888_a_(matr, pxWH, pxWH, zLevel).func_227885_a_(r, g, b, a).func_225583_a_((float)uvTexture.func_76341_a(), (float)uvTexture.func_76340_b()).func_181675_d();
+                RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+                    final Matrix4f matr = renderStack.last().translate();
+                    buf.func_227888_a_(matr, pxWH, zoomedWH - pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA(), (float)uvTexture.getB() + res.getVLength()).blockPosition();
+                    buf.func_227888_a_(matr, zoomedWH - pxWH, zoomedWH - pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA() + res.getULength(), (float)uvTexture.getB() + res.getVLength()).blockPosition();
+                    buf.func_227888_a_(matr, zoomedWH - pxWH, pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA() + res.getULength(), (float)uvTexture.getB()).blockPosition();
+                    buf.func_227888_a_(matr, pxWH, pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA(), (float)uvTexture.getB()).blockPosition();
                     return;
                 });
                 RenderSystem.defaultBlendFunc();
                 RenderSystem.disableBlend();
-                renderStack.func_227865_b_();
+                renderStack.scale();
                 break;
             }
         }
@@ -253,9 +253,9 @@ public class ScreenJournalClusterRenderer
     }
     
     private void drawLinePart(final VertexConsumer buf, final PoseStack renderStack, final double lx, final double ly, final double hx, final double hy, final float zLevel, final float brightness) {
-        final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
-        buf.func_227888_a_(offset, (float)lx, (float)ly, zLevel).func_227885_a_(brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).func_181675_d();
-        buf.func_227888_a_(offset, (float)hx, (float)hy, zLevel).func_227885_a_(brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).func_181675_d();
+        final Matrix4f offset = renderStack.last().translate();
+        buf.func_227888_a_(offset, (float)lx, (float)ly, zLevel).pushPose()brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).blockPosition();
+        buf.func_227888_a_(offset, (float)hx, (float)hy, zLevel).pushPose()brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).blockPosition();
     }
     
     private float evaluateBrightness(final int segment, final int activeSegment) {
@@ -268,11 +268,11 @@ public class ScreenJournalClusterRenderer
     
     private void drawResearchItemBackground(final double zoomedWH, final double xAdd, final double yAdd, final float zLevel) {
         RenderSystem.enableBlend();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
-            buf.func_225582_a_(xAdd, yAdd + zoomedWH, (double)zLevel).func_227885_a_(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(0.0f, 1.0f).func_181675_d();
-            buf.func_225582_a_(xAdd + zoomedWH, yAdd + zoomedWH, (double)zLevel).func_227885_a_(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(1.0f, 1.0f).func_181675_d();
-            buf.func_225582_a_(xAdd + zoomedWH, yAdd, (double)zLevel).func_227885_a_(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(1.0f, 0.0f).func_181675_d();
-            buf.func_225582_a_(xAdd, yAdd, (double)zLevel).func_227885_a_(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(0.0f, 0.0f).func_181675_d();
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+            buf.func_225582_a_(xAdd, yAdd + zoomedWH, (double)zLevel).pushPose()this.alpha, this.alpha, this.alpha, this.alpha).setPos(0.0f, 1.0f).blockPosition();
+            buf.func_225582_a_(xAdd + zoomedWH, yAdd + zoomedWH, (double)zLevel).pushPose()this.alpha, this.alpha, this.alpha, this.alpha).setPos(1.0f, 1.0f).blockPosition();
+            buf.func_225582_a_(xAdd + zoomedWH, yAdd, (double)zLevel).pushPose()this.alpha, this.alpha, this.alpha, this.alpha).setPos(1.0f, 0.0f).blockPosition();
+            buf.func_225582_a_(xAdd, yAdd, (double)zLevel).pushPose()this.alpha, this.alpha, this.alpha, this.alpha).setPos(0.0f, 0.0f).blockPosition();
             return;
         });
         RenderSystem.disableBlend();

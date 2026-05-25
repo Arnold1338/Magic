@@ -53,7 +53,7 @@ public class SpectralToolBreakLogGoal extends SpectralToolGoal
         if (!ctrl.func_75640_a()) {
             return true;
         }
-        final BlockPos validPos = BlockDiscoverer.searchAreaForFirst(this.getEntity().func_130014_f_(), this.getEntity().getStartPosition(), 8, Vector3.atEntityCorner((Entity)this.getEntity()), this.breakableLogs());
+        final BlockPos validPos = BlockDiscoverer.searchAreaForFirst(this.getEntity().level(), this.getEntity().getStartPosition(), 8, Vector3.atEntityCorner((Entity)this.getEntity()), this.breakableLogs());
         return validPos != null;
     }
     
@@ -63,7 +63,7 @@ public class SpectralToolBreakLogGoal extends SpectralToolGoal
     
     public void func_75249_e() {
         super.func_75249_e();
-        final BlockPos validPos = BlockDiscoverer.searchAreaForFirst(this.getEntity().func_130014_f_(), this.getEntity().getStartPosition(), 10, Vector3.atEntityCorner((Entity)this.getEntity()), this.breakableLogs());
+        final BlockPos validPos = BlockDiscoverer.searchAreaForFirst(this.getEntity().level(), this.getEntity().getStartPosition(), 10, Vector3.atEntityCorner((Entity)this.getEntity()), this.breakableLogs());
         if (validPos != null) {
             this.selectedBreakPos = validPos;
             this.getEntity().func_70605_aq().func_75642_a(this.selectedBreakPos.getX() + 0.5, this.selectedBreakPos.getY() + 0.5, this.selectedBreakPos.getZ() + 0.5, this.getSpeed());
@@ -84,7 +84,7 @@ public class SpectralToolBreakLogGoal extends SpectralToolGoal
         if (this.actionCooldown < 0) {
             this.actionCooldown = 0;
         }
-        final World world = this.getEntity().func_130014_f_();
+        final Level world = this.getEntity().level();
         boolean resetTimer = false;
         if (world.isEmptyBlock(this.selectedBreakPos)) {
             this.selectedBreakPos = null;
@@ -106,7 +106,7 @@ public class SpectralToolBreakLogGoal extends SpectralToolGoal
                         for (final ItemStack dropped : BlockDropCaptureAssist.getCapturedStacksAndStop()) {
                             final ItemStack remainder = ItemUtils.dropItemToPlayer((Player)owner, dropped);
                             if (!remainder.isEmpty()) {
-                                ItemUtils.dropItemNaturally(world, owner.func_226277_ct_(), owner.func_226278_cu_(), owner.func_226281_cx_(), remainder);
+                                ItemUtils.dropItemNaturally(world, owner.getX(), owner.getY(), owner.getZ(), remainder);
                             }
                         }
                     }

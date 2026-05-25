@@ -25,7 +25,7 @@ public class ContainerAltarConstellationProvider extends CustomContainerProvider
     
     @Override
     protected void writeExtraData(final FriendlyByteBuf buf) {
-        ByteBufUtils.writePos(buf, this.ta.func_174877_v());
+        ByteBufUtils.writePos(buf, this.ta.getBlockState());
     }
     
     @Nonnull
@@ -37,7 +37,7 @@ public class ContainerAltarConstellationProvider extends CustomContainerProvider
     private static ContainerAltarConstellation createFromPacket(final int id, final Inventory plInventory, final FriendlyByteBuf data) {
         final BlockPos at = ByteBufUtils.readPos(data);
         final Player player = plInventory.field_70458_d;
-        final TileAltar ta = MiscUtils.getTileAt((IBlockReader)player.func_130014_f_(), at, TileAltar.class, true);
+        final TileAltar ta = MiscUtils.getTileAt((IBlockReader)player.level(), at, TileAltar.class, true);
         return new ContainerAltarConstellation(ta, plInventory, id);
     }
     

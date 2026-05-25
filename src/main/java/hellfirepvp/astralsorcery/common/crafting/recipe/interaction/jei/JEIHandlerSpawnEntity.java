@@ -36,18 +36,18 @@ public class JEIHandlerSpawnEntity extends JEIInteractionResultHandler
         if (!(result instanceof ResultSpawnEntity)) {
             return;
         }
-        final Entity le = ((ResultSpawnEntity)result).getEntityType().func_200721_a((World)Minecraft.getInstance().field_71441_e);
+        final Entity le = ((ResultSpawnEntity)result).getEntityType().func_200721_a((Level)Minecraft.getInstance().level);
         if (!(le instanceof LivingEntity)) {
             return;
         }
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(55.0, 35.0, 500.0);
-        renderStack.func_227862_a_(15.0f, 15.0f, 15.0f);
-        renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(180.0f));
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(145.0f));
+        renderStack.translate(15.0f, 15.0f, 15.0f);
+        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
+        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()145.0f));
         final MultiBufferSource.Impl buffer = MultiBufferSource.func_228455_a_(Tessellator.func_178181_a().func_178180_c());
         Minecraft.getInstance().func_175598_ae().func_229084_a_(le, 0.0, 0.0, 0.0, 0.0f, 0.0f, renderStack, (MultiBufferSource)buffer, LightmapUtil.getPackedFullbrightCoords());
         buffer.func_228461_a_();
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
 }

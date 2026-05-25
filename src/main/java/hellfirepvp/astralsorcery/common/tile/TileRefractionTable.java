@@ -64,10 +64,10 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (this.func_145831_w().func_201670_d()) {
+        if (this.getLevel().level()) {
             this.playEngravingEffects();
         }
-        else if (DayTimeHelper.isNight(this.func_145831_w()) && this.doesSeeSky() && isValidGlassStack(this.getGlassStack())) {
+        else if (DayTimeHelper.isNight(this.getLevel()) && this.doesSeeSky() && isValidGlassStack(this.getGlassStack())) {
             final EngravedStarMap starMap = ItemInfusedGlass.getEngraving(this.getGlassStack());
             if (starMap != null && !this.hasParchment() && !this.getInputStack().isEmpty() && starMap.canAffect(this.getInputStack())) {
                 ++this.runTick;
@@ -77,7 +77,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
                     if (glassStack.func_96631_a(1, TileRefractionTable.rand, (ServerPlayer)null)) {
                         glassStack.shrink(1);
                         this.setGlassStack(glassStack);
-                        SoundHelper.playSoundAround(SoundEvents.field_187561_bM, SoundSource.BLOCKS, this.func_145831_w(), (Vector3i)this.func_174877_v(), TileRefractionTable.rand.nextFloat() * 0.5f + 1.0f, TileRefractionTable.rand.nextFloat() * 0.2f + 0.8f);
+                        SoundHelper.playSoundAround(SoundEvents.field_187561_bM, SoundSource.BLOCKS, this.getLevel(), (Vector3i)this.getBlockState(), TileRefractionTable.rand.nextFloat() * 0.5f + 1.0f, TileRefractionTable.rand.nextFloat() * 0.2f + 0.8f);
                     }
                     this.resetWorkTick();
                 }
@@ -101,7 +101,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
             EffectHelper.refresh(this.effectHalo, EffectTemplatesAS.TEXTURE_SPRITE);
         }
         if (this.effectHalo == null) {
-            this.effectHalo = EffectHelper.of(EffectTemplatesAS.TEXTURE_SPRITE).spawn(new Vector3(this).add(0.5, 0.8, 0.5)).setSprite(SpritesAS.SPR_HALO_INFUSION).setAxis(Vector3.RotAxis.Y_AXIS).setNoRotation(0.0f).setScaleMultiplier(0.8f).setAlphaMultiplier(0.8f).alpha((fx, alpha, pTicks) -> Mth.func_76131_a(alpha * this.getRunProgress(), 0.0f, 1.0f)).refresh(RefreshFunction.tileExistsAnd(this, (thisTile, fx) -> thisTile.getRunProgress() > 0.0f));
+            this.effectHalo = EffectHelper.of(EffectTemplatesAS.TEXTURE_SPRITE).spawn(new Vector3(this).add(0.5, 0.8, 0.5)).setSprite(SpritesAS.SPR_HALO_INFUSION).setAxis(Vector3.RotAxis.Y_AXIS).setNoRotation(0.0f).setScaleMultiplier(0.8f).setAlphaMultiplier(0.8f).alpha((fx, alpha, pTicks) -> Mth.canEnchant(alpha * this.getRunProgress(), 0.0f, 1.0f)).refresh(RefreshFunction.tileExistsAnd(this, (thisTile, fx) -> thisTile.getRunProgress() > 0.0f));
         }
         final Vector3 offset = new Vector3(-0.3125, 1.505, -0.1875);
         final int random = TileRefractionTable.rand.nextInt(ColorsAS.REFRACTION_TABLE_COLORS.length);
@@ -158,7 +158,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
     public void engraveGlass(final List<DrawnConstellation> constellations) {
         if (this.hasParchment() && this.hasUnengravedGlass()) {
             --this.parchmentCount;
-            ItemInfusedGlass.setEngraving(this.getGlassStack(), EngravedStarMap.buildStarMap(this.func_145831_w(), constellations));
+            ItemInfusedGlass.setEngraving(this.getGlassStack(), EngravedStarMap.buildStarMap(this.getLevel(), constellations));
             this.markForUpdate();
         }
     }
@@ -205,17 +205,17 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
     }
     
     public float getRunProgress() {
-        return Mth.func_76131_a(this.runTick / 200.0f, 0.0f, 1.0f);
+        return Mth.canEnchant(this.runTick / 200.0f, 0.0f, 1.0f);
     }
     
     public void dropContents() {
         final Vector3 at = new Vector3(this).add(0.5, 0.5, 0.5);
         if (!this.getGlassStack().isEmpty()) {
-            ItemUtils.dropItemNaturally(this.func_145831_w(), at.getX(), at.getY(), at.getZ(), this.getGlassStack());
+            ItemUtils.dropItemNaturally(this.getLevel(), at.getX(), at.getY(), at.getZ(), this.getGlassStack());
             this.setGlassStack(ItemStack.EMPTY);
         }
         if (!this.getInputStack().isEmpty()) {
-            ItemUtils.dropItemNaturally(this.func_145831_w(), at.getX(), at.getY(), at.getZ(), this.getInputStack());
+            ItemUtils.dropItemNaturally(this.getLevel(), at.getX(), at.getY(), at.getZ(), this.getInputStack());
             this.setInputStack(ItemStack.EMPTY);
         }
         this.markForUpdate();

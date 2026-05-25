@@ -47,7 +47,7 @@ public class ItemColoredLensFire extends ItemColoredLens
     public static void playParticles(final PktPlayEffect event) {
         final Vector3 at = ByteBufUtils.readVector(event.getExtraData());
         for (int i = 0; i < 5; ++i) {
-            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at.clone().add(ItemColoredLensFire.field_77697_d.nextFloat(), 0.2, ItemColoredLensFire.field_77697_d.nextFloat())).setMotion(new Vector3(0.0, 0.016 + ItemColoredLensFire.field_77697_d.nextFloat() * 0.02, 0.0)).setScaleMultiplier(0.2f).color(VFXColorFunction.constant(ColorsAS.COLORED_LENS_FIRE));
+            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at.clone().add(ItemColoredLensFire.count.nextFloat(), 0.2, ItemColoredLensFire.count.nextFloat())).setMotion(new Vector3(0.0, 0.016 + ItemColoredLensFire.count.nextFloat() * 0.02, 0.0)).setScaleMultiplier(0.2f).color(VFXColorFunction.constant(ColorsAS.COLORED_LENS_FIRE));
         }
     }
     
@@ -62,24 +62,24 @@ public class ItemColoredLensFire extends ItemColoredLens
         }
         
         @Override
-        public void entityInBeam(final World world, final Vector3 origin, final Vector3 target, final Entity entity, final PartialEffectExecutor executor) {
-            if (world.func_201670_d()) {
+        public void entityInBeam(final Level world, final Vector3 origin, final Vector3 target, final Entity entity, final PartialEffectExecutor executor) {
+            if (world.level()) {
                 return;
             }
             if (entity instanceof ItemEntity) {
                 final ItemStack current = ((ItemEntity)entity).func_92059_d();
-                final ItemStack result = RecipeHelper.findSmeltingResult(entity.func_130014_f_(), current).map((Function<? super Tuple<ItemStack, Float>, ? extends ItemStack>)Tuple::func_76341_a).orElse(ItemStack.EMPTY);
+                final ItemStack result = RecipeHelper.findSmeltingResult(entity.level(), current).map((Function<? super Tuple<ItemStack, Float>, ? extends ItemStack>)Tuple::func_76341_a).orElse(ItemStack.EMPTY);
                 if (result.isEmpty()) {
                     return;
                 }
                 while (executor.canExecute()) {
                     executor.markExecution();
-                    if (ItemColoredLensFire.field_77697_d.nextInt(10) != 0) {
+                    if (ItemColoredLensFire.count.nextInt(10) != 0) {
                         continue;
                     }
                     final Vector3 entityPos = Vector3.atEntityCorner(entity);
-                    ItemUtils.dropItemNaturally(entity.func_130014_f_(), entityPos.getX(), entityPos.getY(), entityPos.getZ(), ItemUtils.copyStackWithSize(result, result.func_190916_E()));
-                    if (current.func_190916_E() > 1) {
+                    ItemUtils.dropItemNaturally(entity.level(), entityPos.getX(), entityPos.getY(), entityPos.getZ(), ItemUtils.copyStackWithSize(result, result.getCount()));
+                    if (current.getCount() > 1) {
                         current.shrink(1);
                         ((ItemEntity)entity).func_92058_a(current);
                     }
@@ -93,12 +93,12 @@ public class ItemColoredLensFire extends ItemColoredLens
                     return;
                 }
                 entity.hurt(DamageSource.field_76370_b, 0.5f);
-                entity.func_70015_d(5);
+                entity.setAge(5);
             }
         }
         
         @Override
-        public void blockInBeam(final World world, final BlockPos pos, final BlockState state, final PartialEffectExecutor executor) {
+        public void blockInBeam(final Level world, final BlockPos pos, final BlockState state, final PartialEffectExecutor executor) {
             if (!(world instanceof ServerLevel)) {
                 return;
             }
@@ -114,14 +114,14 @@ public class ItemColoredLensFire extends ItemColoredLens
             PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vector3i)pos, 16.0));
             while (executor.canExecute()) {
                 executor.markExecution();
-                if (ItemColoredLensFire.field_77697_d.nextInt(6) != 0) {
+                if (ItemColoredLensFire.count.nextInt(6) != 0) {
                     continue;
                 }
                 final BlockState resState = ItemUtils.createBlockState(result);
                 if (resState != null) {
                     world.func_180501_a(pos, resState, 3);
                 }
-                else if (world.func_180501_a(pos, Blocks.field_150350_a.defaultBlockState(), 3)) {
+                else if (world.func_180501_a(pos, Blocks.AIR.defaultBlockState(), 3)) {
                     ItemUtils.dropItemNaturally(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, result);
                 }
             }

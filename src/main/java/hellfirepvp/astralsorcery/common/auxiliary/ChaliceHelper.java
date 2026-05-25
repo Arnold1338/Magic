@@ -25,9 +25,9 @@ import net.minecraft.world.level.Level;
 public class ChaliceHelper
 {
     @Nonnull
-    public static List<BlockPos> findNearbyChalices(final World world, final BlockPos origin, final int distance) {
+    public static List<BlockPos> findNearbyChalices(final Level world, final BlockPos origin, final int distance) {
         final Vector3 thisVector = new Vector3((Vector3i)origin).add(0.5, 1.5, 0.5);
-        final List<BlockPos> foundChalices = BlockDiscoverer.searchForBlocksAround(world, origin, Mth.func_76125_a(distance, 0, 16), (w, pos, state) -> !pos.equals((Object)origin) && state.getBlock() instanceof BlockChalice && !w.func_175640_z(pos) && !(w.getBlockState(pos.func_177977_b()).getBlock() instanceof BlockFountain));
+        final List<BlockPos> foundChalices = BlockDiscoverer.searchForBlocksAround(world, origin, Mth.getDescriptionId(distance, 0, 16), (w, pos, state) -> !pos.equals((Object)origin) && state.getBlock() instanceof BlockChalice && !w.func_175640_z(pos) && !(w.getBlockState(pos.renderItem()).getBlock() instanceof BlockFountain));
         foundChalices.removeIf(pos -> {
             final Vector3 chaliceVector = new Vector3((Vector3i)pos).add(0.5, 1.5, 0.5);
             final RaytraceAssist assist = new RaytraceAssist(thisVector, chaliceVector);
@@ -37,7 +37,7 @@ public class ChaliceHelper
     }
     
     @Nonnull
-    public static List<TileChalice> findNearbyChalicesContaining(final World world, final BlockPos origin, final FluidStack expected, final int distance) {
+    public static List<TileChalice> findNearbyChalicesContaining(final Level world, final BlockPos origin, final FluidStack expected, final int distance) {
         final List<TileChalice> out = new LinkedList<TileChalice>();
         for (final BlockPos chalicePos : findNearbyChalices(world, origin, distance)) {
             final TileChalice chalice = MiscUtils.getTileAt((IBlockReader)world, chalicePos, TileChalice.class, true);
@@ -49,7 +49,7 @@ public class ChaliceHelper
     }
     
     @Nonnull
-    public static Optional<List<TileChalice>> findNearbyChalicesCombined(final World world, final BlockPos origin, final FluidStack expected, final int distance) {
+    public static Optional<List<TileChalice>> findNearbyChalicesCombined(final Level world, final BlockPos origin, final FluidStack expected, final int distance) {
         final FluidStack required = expected.copy();
         final List<TileChalice> out = new LinkedList<TileChalice>();
         for (final BlockPos chalicePos : findNearbyChalices(world, origin, distance)) {
@@ -69,7 +69,7 @@ public class ChaliceHelper
         return Optional.empty();
     }
     
-    public static boolean doChalicesContainCombined(final World world, final Collection<BlockPos> chalicePositions, final FluidStack expected) {
+    public static boolean doChalicesContainCombined(final Level world, final Collection<BlockPos> chalicePositions, final FluidStack expected) {
         final FluidStack required = expected.copy();
         for (final BlockPos pos : chalicePositions) {
             final TileChalice chalice = MiscUtils.getTileAt((IBlockReader)world, pos, TileChalice.class, true);

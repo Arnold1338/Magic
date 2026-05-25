@@ -58,7 +58,7 @@ public class PktRequestPerkSealAction extends ASPacket<PktRequestPerkSealAction>
             @OnlyIn(Dist.CLIENT)
             @Override
             public void handleClient(final PktRequestPerkSealAction packet, final NetworkEvent.Context context) {
-                final Screen current = Minecraft.getInstance().field_71462_r;
+                final Screen current = Minecraft.getInstance().gui;
                 if (current instanceof ScreenJournalPerkTree) {
                     PerkTree.PERK_TREE.getPerk(LogicalSide.CLIENT, packet.perkKey).ifPresent(perk -> {
                         if (!packet.doSealing) {

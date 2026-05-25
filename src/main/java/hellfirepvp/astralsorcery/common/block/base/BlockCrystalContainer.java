@@ -42,7 +42,7 @@ public abstract class BlockCrystalContainer extends BaseEntityBlock
         return stack;
     }
     
-    public void func_180633_a(final World world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
+    public void func_180633_a(final Level world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
         final Item i = stack.getItem();
         if (i instanceof CrystalAttributeItem) {
             final CrystalAttributeTile cat = MiscUtils.getTileAt((IBlockReader)world, pos, CrystalAttributeTile.class, true);

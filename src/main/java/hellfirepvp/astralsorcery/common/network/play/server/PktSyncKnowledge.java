@@ -117,7 +117,7 @@ public class PktSyncKnowledge extends ASPacket<PktSyncKnowledge>
             @Override
             public void handleClient(final PktSyncKnowledge packet, final NetworkEvent.Context context) {
                 context.enqueueWork(() -> {
-                    final Player player = (Player)Minecraft.getInstance().field_71439_g;
+                    final Player player = (Player)Minecraft.getInstance().player;
                     if (player != null) {
                         if (packet.state == 0) {
                             ResearchSyncHelper.recieveProgressFromServer(packet, player);

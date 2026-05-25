@@ -70,15 +70,15 @@ public class BlockUtils
     }
     
     public static BlockPos firstSolidDown(final IBlockReader world, BlockPos at) {
-        for (BlockState state = world.getBlockState(at); at.getY() > 0 && !state.func_185904_a().func_76230_c() && state.getFluidState().func_206888_e(); at = at.func_177977_b(), state = world.getBlockState(at)) {}
+        for (BlockState state = world.getBlockState(at); at.getY() > 0 && !state.func_185904_a().func_76230_c() && state.getFluidState().func_206888_e(); at = at.renderItem(), state = world.getBlockState(at)) {}
         return at;
     }
     
-    public static boolean isReplaceable(final World world, final BlockPos pos) {
+    public static boolean isReplaceable(final Level world, final BlockPos pos) {
         return isReplaceable(world, pos, world.getBlockState(pos));
     }
     
-    public static boolean isReplaceable(final World world, final BlockPos pos, final BlockState state) {
+    public static boolean isReplaceable(final Level world, final BlockPos pos, final BlockState state) {
         if (world.isEmptyBlock(pos)) {
             return true;
         }
@@ -97,7 +97,7 @@ public class BlockUtils
         if (EffectUtils.func_205135_a(entity)) {
             breakSpeed *= 1.0f + (EffectUtils.func_205134_b(entity) + 1.0f) * 0.2f;
         }
-        if (entity.func_70644_a(Effects.field_76419_f)) {
+        if (entity.hasEffect(Effects.field_76419_f)) {
             float fatigueMultiplier = 0.0f;
             switch (entity.func_70660_b(Effects.field_76419_f).func_76458_c()) {
                 case 0: {
@@ -128,7 +128,7 @@ public class BlockUtils
         return breakSpeed;
     }
     
-    public static boolean isFluidBlock(final World world, final BlockPos pos) {
+    public static boolean isFluidBlock(final Level world, final BlockPos pos) {
         return isFluidBlock(world.getBlockState(pos));
     }
     
@@ -172,7 +172,7 @@ public class BlockUtils
         return true;
     }
     
-    public static boolean canToolBreakBlockWithoutPlayer(@Nonnull final World world, @Nonnull final BlockPos pos, @Nonnull final BlockState state, @Nonnull final ItemStack stack) {
+    public static boolean canToolBreakBlockWithoutPlayer(@Nonnull final Level world, @Nonnull final BlockPos pos, @Nonnull final BlockState state, @Nonnull final ItemStack stack) {
         if (state.func_185887_b((IBlockReader)world, pos) == -1.0f) {
             return false;
         }
@@ -208,10 +208,10 @@ public class BlockUtils
         int xp;
         try {
             boolean preCancelEvent = false;
-            if (!heldItem.isEmpty() && !heldItem.getItem().func_195938_a(stateBroken, (World)world, pos, (Player)fakePlayer)) {
+            if (!heldItem.isEmpty() && !heldItem.getItem().func_195938_a(stateBroken, (Level)world, pos, (Player)fakePlayer)) {
                 preCancelEvent = true;
             }
-            final BlockEvent.BreakEvent event = new BlockEvent.BreakEvent((World)world, pos, stateBroken, (Player)fakePlayer);
+            final BlockEvent.BreakEvent event = new BlockEvent.BreakEvent((Level)world, pos, stateBroken, (Player)fakePlayer);
             event.setCanceled(preCancelEvent);
             MinecraftForge.EVENT_BUS.post((Event)event);
             if (event.isCanceled()) {
@@ -239,7 +239,7 @@ public class BlockUtils
         }
         final ItemStack heldCopy = heldItem.isEmpty() ? ItemStack.EMPTY : heldItem.copy();
         try {
-            heldCopy.func_179548_a((World)world, stateBroken, pos, (Player)fakePlayer);
+            heldCopy.func_179548_a((Level)world, stateBroken, pos, (Player)fakePlayer);
         }
         catch (final Exception exc3) {
             return false;
@@ -249,17 +249,17 @@ public class BlockUtils
         world.captureBlockSnapshots = true;
         try {
             if (breakBlock) {
-                if (!stateBroken.removedByPlayer((World)world, pos, (Player)fakePlayer, harvestable, Fluids.field_204541_a.func_207188_f())) {
-                    restoreWorldState((World)world, wasCapturingStates, previousCapturedStates);
+                if (!stateBroken.removedByPlayer((Level)world, pos, (Player)fakePlayer, harvestable, Fluids.field_204541_a.func_207188_f())) {
+                    restoreWorldState((Level)world, wasCapturingStates, previousCapturedStates);
                     return false;
                 }
             }
             else {
-                stateBroken.getBlock().func_176208_a((World)world, pos, stateBroken, (Player)fakePlayer);
+                stateBroken.getBlock().func_176208_a((Level)world, pos, stateBroken, (Player)fakePlayer);
             }
         }
         catch (final Exception exc4) {
-            restoreWorldState((World)world, wasCapturingStates, previousCapturedStates);
+            restoreWorldState((Level)world, wasCapturingStates, previousCapturedStates);
             return false;
         }
         stateBroken.getBlock().func_176206_d((IWorld)world, pos, stateBroken);
@@ -267,10 +267,10 @@ public class BlockUtils
             try {
                 final BlockEntity tileentity = MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true);
                 final ItemStack harvestStack = heldCopy.isEmpty() ? ItemStack.EMPTY : heldCopy.copy();
-                stateBroken.getBlock().func_180657_a((World)world, (Player)fakePlayer, pos, stateBroken, tileentity, harvestStack);
+                stateBroken.getBlock().func_180657_a((Level)world, (Player)fakePlayer, pos, stateBroken, tileentity, harvestStack);
             }
             catch (final Exception exc4) {
-                restoreWorldState((World)world, wasCapturingStates, previousCapturedStates);
+                restoreWorldState((Level)world, wasCapturingStates, previousCapturedStates);
                 return false;
             }
         }
@@ -283,7 +283,7 @@ public class BlockUtils
             world.restoringBlockSnapshots = true;
             world.capturedBlockSnapshots.forEach(s -> s.restore(true));
             world.restoringBlockSnapshots = false;
-            world.capturedBlockSnapshots.forEach(s -> world.func_175656_a(s.getPos(), Blocks.field_150350_a.defaultBlockState()));
+            world.capturedBlockSnapshots.forEach(s -> world.func_175656_a(s.getPos(), Blocks.AIR.defaultBlockState()));
         }
         finally {
             BlockDropCaptureAssist.getCapturedStacksAndStop();
@@ -294,7 +294,7 @@ public class BlockUtils
         return true;
     }
     
-    private static void restoreWorldState(final World world, final boolean prevCaptureFlag, final List<BlockSnapshot> prevSnapshots) {
+    private static void restoreWorldState(final Level world, final boolean prevCaptureFlag, final List<BlockSnapshot> prevSnapshots) {
         world.captureBlockSnapshots = false;
         world.restoringBlockSnapshots = true;
         world.capturedBlockSnapshots.forEach(s -> s.restore(true));

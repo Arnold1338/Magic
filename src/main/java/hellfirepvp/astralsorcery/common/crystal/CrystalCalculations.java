@@ -64,12 +64,12 @@ public class CrystalCalculations
     
     public static float getThroughputMultiplier(final CrystalAttributes attributes) {
         final CalculationContext ctx = CalculationContext.Builder.newBuilder().addUsage(CrystalPropertiesAS.Usages.USE_LENS_TRANSFER).build();
-        return Mth.func_76131_a((float)calculate(1.0, attributes, ctx), 0.0f, 1.0f);
+        return Mth.canEnchant((float)calculate(1.0, attributes, ctx), 0.0f, 1.0f);
     }
     
     public static float getThroughputEffectMultiplier(final CrystalAttributes attributes) {
         final CalculationContext ctx = CalculationContext.Builder.newBuilder().addUsage(CrystalPropertiesAS.Usages.USE_LENS_EFFECT).build();
-        return Mth.func_76131_a((float)calculate(1.0, attributes, ctx), 0.0f, 1.0f);
+        return Mth.canEnchant((float)calculate(1.0, attributes, ctx), 0.0f, 1.0f);
     }
     
     public static int getToolDurability(int durability, final ItemStack tool) {

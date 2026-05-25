@@ -59,7 +59,7 @@ public class KeyStepAssist extends KeyPerk implements PlayerTickPerk, CooldownPe
     }
     
     private void onTeleport(final EntityTravelToDimensionEvent event) {
-        if (!event.getEntity().func_130014_f_().func_201670_d() && event.getEntity() instanceof Player) {
+        if (!event.getEntity().level().level() && event.getEntity() instanceof Player) {
             PerkCooldownHelper.removeAllCooldowns((Player)event.getEntity(), LogicalSide.SERVER);
         }
     }

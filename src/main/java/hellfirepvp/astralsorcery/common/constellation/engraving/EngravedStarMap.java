@@ -45,7 +45,7 @@ public class EngravedStarMap
         this.drawInformation = drawnConstellations;
     }
     
-    public static EngravedStarMap buildStarMap(final World world, final List<DrawnConstellation> constellations) {
+    public static EngravedStarMap buildStarMap(final Level world, final List<DrawnConstellation> constellations) {
         final float nightPerc = DayTimeHelper.getCurrentDaytimeDistribution(world);
         final Map<DrawnConstellation, List<Rectangle2D.Double>> cstCoordinates = new HashMap<DrawnConstellation, List<Rectangle2D.Double>>();
         for (final DrawnConstellation drawnCst : constellations) {
@@ -71,7 +71,7 @@ public class EngravedStarMap
                 }
             }
             final IConstellation drawnConstellation = drawn.getConstellation();
-            final float percent = 0.1f + 0.9f * Mth.func_76131_a(foundPositions.size() * 1.5f / positions.size() * nightPerc, 0.0f, 1.0f);
+            final float percent = 0.1f + 0.9f * Mth.canEnchant(foundPositions.size() * 1.5f / positions.size() * nightPerc, 0.0f, 1.0f);
             final float existingPercent = distributionMap.getOrDefault(drawnConstellation.getRegistryName(), 0.1f);
             if (percent >= existingPercent) {
                 distributionMap.put(drawnConstellation.getRegistryName(), percent);
@@ -125,7 +125,7 @@ public class EngravedStarMap
         }
         Tuple<EngravingEffect.ApplicableEffect, Float> tpl = null;
         engravings.sort(Comparator.comparing(tpl -> {
-            final EngravingEffect.ApplicableEffect effect3 = (EngravingEffect.ApplicableEffect)tpl.func_76341_a();
+            final EngravingEffect.ApplicableEffect effect3 = (EngravingEffect.ApplicableEffect)tpl.getA();
             if (effect3 instanceof EngravingEffect.EnchantmentEffect) {
                 if (!((EngravingEffect.EnchantmentEffect)effect3).isIgnoreCompatibility()) {
                     return Integer.valueOf(0);
@@ -141,8 +141,8 @@ public class EngravedStarMap
         final Iterator<Tuple<EngravingEffect.ApplicableEffect, Float>> iterator3 = engravings.iterator();
         while (iterator3.hasNext()) {
             tpl = iterator3.next();
-            final EngravingEffect.ApplicableEffect effect2 = (EngravingEffect.ApplicableEffect)tpl.func_76341_a();
-            final float distribution2 = (float)tpl.func_76340_b();
+            final EngravingEffect.ApplicableEffect effect2 = (EngravingEffect.ApplicableEffect)tpl.getA();
+            final float distribution2 = (float)tpl.getB();
             stack = effect2.apply(stack, distribution2, EngravedStarMap.rand);
         }
         return stack;

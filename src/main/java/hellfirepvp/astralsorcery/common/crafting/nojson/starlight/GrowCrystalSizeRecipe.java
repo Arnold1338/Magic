@@ -56,19 +56,19 @@ public class GrowCrystalSizeRecipe extends LiquidStarlightRecipe
     }
     
     @Override
-    public boolean matches(final ItemEntity trigger, final World world, final BlockPos at) {
+    public boolean matches(final ItemEntity trigger, final Level world, final BlockPos at) {
         final List<Entity> otherEntities = this.getEntitiesInBlock((IWorld)world, at);
         otherEntities.remove(trigger);
         return otherEntities.isEmpty();
     }
     
     @Override
-    public void doServerCraftTick(final ItemEntity trigger, final World world, final BlockPos at) {
+    public void doServerCraftTick(final ItemEntity trigger, final Level world, final BlockPos at) {
         final Random r = new Random(Mth.func_180186_a((Vector3i)at));
-        if (!world.func_201670_d() && this.getAndIncrementCraftingTick((Entity)trigger) > 80 + r.nextInt(40)) {
+        if (!world.level() && this.getAndIncrementCraftingTick((Entity)trigger) > 80 + r.nextInt(40)) {
             final ItemStack stack = trigger.func_92059_d();
             CrystalAttributes attr = ((ItemCrystalBase)stack.getItem()).getAttributes(stack);
-            if (attr != null && world.func_175656_a(at, Blocks.field_150350_a.defaultBlockState())) {
+            if (attr != null && world.func_175656_a(at, Blocks.AIR.defaultBlockState())) {
                 if (attr.getTotalTierLevel() >= ((ItemCrystalBase)stack.getItem()).getMaxPropertyTiers()) {
                     return;
                 }
@@ -86,7 +86,7 @@ public class GrowCrystalSizeRecipe extends LiquidStarlightRecipe
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void doClientEffectTick(final ItemEntity trigger, final World world, final BlockPos at) {
+    public void doClientEffectTick(final ItemEntity trigger, final Level world, final BlockPos at) {
         Color c = ColorsAS.DEFAULT_GENERIC_PARTICLE;
         if (trigger.func_92059_d().getItem() instanceof ItemRockCrystal || trigger.func_92059_d().getItem() instanceof ItemAttunedRockCrystal) {
             c = ColorsAS.ROCK_CRYSTAL;

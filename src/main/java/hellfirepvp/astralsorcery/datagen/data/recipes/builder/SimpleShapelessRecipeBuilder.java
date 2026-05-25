@@ -77,7 +77,7 @@ public class SimpleShapelessRecipeBuilder
     }
     
     public void build(final Consumer<IFinishedRecipe> consumerIn, ResourceLocation id) {
-        String path = id.func_110623_a();
+        String path = id.addTransientModifier();
         if (this.subDirectory != null && !this.subDirectory.isEmpty()) {
             path = this.subDirectory + "/" + path;
         }

@@ -59,12 +59,12 @@ public abstract class ConstellationEffect
     }
     
     @OnlyIn(Dist.CLIENT)
-    public abstract void playClientEffect(final World p0, final BlockPos p1, final TileRitualPedestal p2, final float p3, final boolean p4);
+    public abstract void playClientEffect(final Level p0, final BlockPos p1, final TileRitualPedestal p2, final float p3, final boolean p4);
     
-    public abstract boolean playEffect(final World p0, final BlockPos p1, final ConstellationEffectProperties p2, @Nullable final IMinorConstellation p3);
+    public abstract boolean playEffect(final Level p0, final BlockPos p1, final ConstellationEffectProperties p2, @Nullable final IMinorConstellation p3);
     
     @Nullable
-    public TileRitualPedestal getPedestal(final World world, BlockPos pos) {
+    public TileRitualPedestal getPedestal(final Level world, BlockPos pos) {
         final BlockEntity te = MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, false);
         if (te instanceof TileRitualLink) {
             final TileRitualLink link = (TileRitualLink)te;
@@ -109,7 +109,7 @@ public abstract class ConstellationEffect
     }
     
     @Nullable
-    public Player getOwningPlayerInWorld(final World world, final BlockPos pos) {
+    public Player getOwningPlayerInWorld(final Level world, final BlockPos pos) {
         final TileRitualPedestal pedestal = this.getPedestal(world, pos);
         if (pedestal != null) {
             return pedestal.getOwner();
@@ -117,11 +117,11 @@ public abstract class ConstellationEffect
         return null;
     }
     
-    public void sendConstellationPing(final World world, final Vector3 at) {
+    public void sendConstellationPing(final Level world, final Vector3 at) {
         sendConstellationPing(world, at, this.getConstellation());
     }
     
-    public static void sendConstellationPing(final World world, final Vector3 at, final IConstellation cst) {
+    public static void sendConstellationPing(final Level world, final Vector3 at, final IConstellation cst) {
         final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.CONSTELLATION_EFFECT_PING).addData(buf -> {
             ByteBufUtils.writeVector(buf, at);
             ByteBufUtils.writeRegistryEntry(buf, (net.minecraftforge.registries.IForgeRegistryEntry<Object>)cst);
@@ -131,7 +131,7 @@ public abstract class ConstellationEffect
     }
     
     protected void markPlayerAffected(final Player player) {
-        if (player.func_130014_f_().func_201670_d()) {
+        if (player.level().level()) {
             return;
         }
         PlayerAffectionFlags.markPlayerAffected(player, this.getPlayerAffectionFlag());

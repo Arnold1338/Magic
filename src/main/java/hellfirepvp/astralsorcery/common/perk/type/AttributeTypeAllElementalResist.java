@@ -40,7 +40,7 @@ public class AttributeTypeAllElementalResist extends PerkAttributeType
             float multiplier = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, ResearchHelper.getProgress(player, side), this, 1.0f);
             --multiplier;
             multiplier = AttributeEvent.postProcessModded(player, this, multiplier);
-            multiplier = 1.0f - Mth.func_76131_a(multiplier, 0.0f, 1.0f);
+            multiplier = 1.0f - Mth.canEnchant(multiplier, 0.0f, 1.0f);
             event.setAmount(event.getAmount() * multiplier);
         }
     }

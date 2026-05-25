@@ -13,12 +13,12 @@ public interface ITransmissionReceiver extends IPrismTransmissionNode
         return new LinkedList<NodeConnection<IPrismTransmissionNode>>();
     }
     
-    default void notifyLink(final World world, final BlockPos to) {
+    default void notifyLink(final Level world, final BlockPos to) {
     }
     
-    default boolean notifyUnlink(final World world, final BlockPos to) {
+    default boolean notifyUnlink(final Level world, final BlockPos to) {
         return false;
     }
     
-    void onStarlightReceive(final World p0, final IWeakConstellation p1, final double p2);
+    void onStarlightReceive(final Level p0, final IWeakConstellation p1, final double p2);
 }

@@ -21,8 +21,8 @@ public class TileEntityScreen<T extends BlockEntity & NamedInventoryTile> extend
     @Override
     public void func_231023_e_() {
         super.func_231023_e_();
-        final World clWorld = (World)Minecraft.getInstance().field_71441_e;
-        if (this.tile.func_145837_r() || clWorld == null || !clWorld.dimension().equals(this.tile.func_145831_w().dimension())) {
+        final Level clWorld = (Level)Minecraft.getInstance().level;
+        if (this.tile.func_145837_r() || clWorld == null || !clWorld.dimension().equals(this.tile.getLevel().dimension())) {
             this.func_231175_as__();
         }
     }

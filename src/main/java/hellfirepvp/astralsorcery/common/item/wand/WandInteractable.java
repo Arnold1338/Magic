@@ -7,5 +7,5 @@ import net.minecraft.world.level.Level;
 
 public interface WandInteractable
 {
-    boolean onInteract(final World p0, final BlockPos p1, final Player p2, final Direction p3, final boolean p4);
+    boolean onInteract(final Level p0, final BlockPos p1, final Player p2, final Direction p3, final boolean p4);
 }

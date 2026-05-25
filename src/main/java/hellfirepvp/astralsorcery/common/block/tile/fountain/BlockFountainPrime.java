@@ -24,7 +24,7 @@ public abstract class BlockFountainPrime extends Block implements CustomItemBloc
     
     public BlockState func_196271_a(final BlockState state, final Direction placedAgainst, final BlockState facingState, final IWorld world, final BlockPos pos, final BlockPos facingPos) {
         if (!this.func_196260_a(state, (IWorldReader)world, pos)) {
-            return Blocks.field_150350_a.defaultBlockState();
+            return Blocks.AIR.defaultBlockState();
         }
         return state;
     }

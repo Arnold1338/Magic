@@ -36,26 +36,26 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor
     private static final Random rand;
     
     public ItemEnchantmentAmulet() {
-        super(new Item.Properties().func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         super.func_77624_a(stack, worldIn, (List)tooltip, flagIn);
         final List<AmuletEnchantment> enchantments = getAmuletEnchantments(stack);
         for (final AmuletEnchantment ench : enchantments) {
-            tooltip.add((Component)ench.getDisplay().func_240699_a_(ChatFormatting.BLUE));
+            tooltip.add((Component)ench.getDisplay().toString()ChatFormatting.BLUE));
         }
         if (getAmuletColor(stack).map(color -> color == -1).orElse(false)) {
-            tooltip.add((Component)new Component("astralsorcery.amulet.color.colorless").func_240699_a_(ChatFormatting.ITALIC).func_240699_a_(ChatFormatting.GRAY));
+            tooltip.add((Component)new Component("astralsorcery.amulet.color.colorless").toString()ChatFormatting.ITALIC).toString()ChatFormatting.GRAY));
         }
     }
     
-    public void func_77663_a(final ItemStack stack, final World worldIn, final Entity entityIn, final int itemSlot, final boolean isSelected) {
-        if (!worldIn.func_201670_d() && !getAmuletColor(stack).isPresent()) {
+    public void func_77663_a(final ItemStack stack, final Level worldIn, final Entity entityIn, final int itemSlot, final boolean isSelected) {
+        if (!worldIn.level() && !getAmuletColor(stack).isPresent()) {
             freezeAmuletColor(stack);
         }
-        if (!worldIn.func_201670_d() && getAmuletEnchantments(stack).isEmpty()) {
+        if (!worldIn.level() && getAmuletEnchantments(stack).isEmpty()) {
             AmuletRandomizeHelper.rollAmulet(stack);
         }
         super.func_77663_a(stack, worldIn, entityIn, itemSlot, isSelected);

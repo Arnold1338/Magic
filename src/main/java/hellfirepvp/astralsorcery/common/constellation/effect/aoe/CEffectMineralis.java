@@ -73,13 +73,13 @@ public class CEffectMineralis extends CEffectAbstractList<ListEntries.PosEntry>
     
     @Nullable
     @Override
-    public ListEntries.PosEntry createElement(final World world, final BlockPos pos) {
+    public ListEntries.PosEntry createElement(final Level world, final BlockPos pos) {
         return new ListEntries.PosEntry(pos);
     }
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void playClientEffect(final World world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
+    public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         final ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
         if (CEffectMineralis.rand.nextFloat() < 0.6f) {
             final Color c = MiscUtils.eitherOf(CEffectMineralis.rand, (Supplier<Color>[])new Supplier[] { () -> ColorsAS.CONSTELLATION_MINERALIS, () -> ColorsAS.CONSTELLATION_MINERALIS.brighter() });
@@ -89,7 +89,7 @@ public class CEffectMineralis extends CEffectAbstractList<ListEntries.PosEntry>
     }
     
     @Override
-    public boolean playEffect(final World world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
+    public boolean playEffect(final Level world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
         return this.peekNewPosition(world, pos, properties).mapLeft(entry -> {
             final BlockPos at = entry.getPos();
             final BlockState atState = world.getBlockState(at);

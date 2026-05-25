@@ -17,7 +17,7 @@ public class StarlightReceiverAltar extends SimpleTransmissionReceiver<TileAltar
     }
     
     @Override
-    public void onStarlightReceive(final World world, final IWeakConstellation type, final double amount) {
+    public void onStarlightReceive(final Level world, final IWeakConstellation type, final double amount) {
         final TileAltar altar = this.getTileAtPos(world);
         if (altar != null) {
             final int altarTier = altar.getAltarType().ordinal();
@@ -26,7 +26,7 @@ public class StarlightReceiverAltar extends SimpleTransmissionReceiver<TileAltar
     }
     
     @Override
-    public boolean syncTileData(final World world, final TileAltar tile) {
+    public boolean syncTileData(final Level world, final TileAltar tile) {
         return true;
     }
     

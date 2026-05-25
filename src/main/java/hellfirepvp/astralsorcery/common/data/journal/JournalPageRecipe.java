@@ -34,12 +34,12 @@ public class JournalPageRecipe implements JournalPage
                 throw new IllegalStateException("Not connected to a server, but calling GUI code?");
             }
             else {
-                final Recipe recipe = mgr.func_215366_a((RecipeType)RecipeTypesAS.TYPE_ALTAR.getType()).get(recipeId);
+                final Recipe recipe = mgr.getRecipeFor((RecipeType)RecipeTypesAS.TYPE_ALTAR.getType()).get(recipeId);
                 if (recipe != null) {
                     return recipe;
                 }
                 else {
-                    final Recipe recipe2 = mgr.func_215366_a(RecipeType.field_222149_a).get(recipeId);
+                    final Recipe recipe2 = mgr.getRecipeFor(RecipeType.field_222149_a).get(recipeId);
                     if (recipe2 != null) {
                         return recipe2;
                     }
@@ -58,12 +58,12 @@ public class JournalPageRecipe implements JournalPage
                 throw new IllegalStateException("Not connected to a server, but calling GUI code?");
             }
             else {
-                final Recipe<?> recipe = (Recipe<?>)mgr.func_215366_a((RecipeType)RecipeTypesAS.TYPE_ALTAR.getType()).values().stream().map(r -> (SimpleAltarRecipe)r).filter(r -> outputTest.test(r.getOutputForRender((Iterable<ItemStack>)Collections.emptyList()))).findFirst().orElse(null);
+                final Recipe<?> recipe = (Recipe<?>)mgr.getRecipeFor((RecipeType)RecipeTypesAS.TYPE_ALTAR.getType()).values().stream().map(r -> (SimpleAltarRecipe)r).filter(r -> outputTest.test(r.getOutputForRender((Iterable<ItemStack>)Collections.emptyList()))).findFirst().orElse(null);
                 if (recipe != null) {
                     return recipe;
                 }
                 else {
-                    final Recipe<?> recipe2 = (Recipe<?>)mgr.func_215366_a(RecipeType.field_222149_a).values().stream().filter(r -> outputTest.test(r.func_77571_b())).findFirst().orElse(null);
+                    final Recipe<?> recipe2 = (Recipe<?>)mgr.getRecipeFor(RecipeType.field_222149_a).values().stream().filter(r -> outputTest.test(r.func_77571_b())).findFirst().orElse(null);
                     if (recipe2 != null) {
                         return recipe2;
                     }
@@ -82,12 +82,12 @@ public class JournalPageRecipe implements JournalPage
                 throw new IllegalStateException("Not connected to a server, but calling GUI code?");
             }
             else {
-                final Recipe<?> recipe = (Recipe<?>)mgr.func_215366_a(RecipeType.field_222149_a).values().stream().filter(r -> outputTest.test(r.func_77571_b())).findFirst().orElse(null);
+                final Recipe<?> recipe = (Recipe<?>)mgr.getRecipeFor(RecipeType.field_222149_a).values().stream().filter(r -> outputTest.test(r.func_77571_b())).findFirst().orElse(null);
                 if (recipe != null) {
                     return recipe;
                 }
                 else {
-                    final Recipe<?> recipe2 = (Recipe<?>)mgr.func_215366_a((RecipeType)RecipeTypesAS.TYPE_ALTAR.getType()).values().stream().map(r -> (SimpleAltarRecipe)r).filter(r -> outputTest.test(r.getOutputForRender((Iterable<ItemStack>)Collections.emptyList()))).findFirst().orElse(null);
+                    final Recipe<?> recipe2 = (Recipe<?>)mgr.getRecipeFor((RecipeType)RecipeTypesAS.TYPE_ALTAR.getType()).values().stream().map(r -> (SimpleAltarRecipe)r).filter(r -> outputTest.test(r.getOutputForRender((Iterable<ItemStack>)Collections.emptyList()))).findFirst().orElse(null);
                     if (recipe2 != null) {
                         return recipe2;
                     }

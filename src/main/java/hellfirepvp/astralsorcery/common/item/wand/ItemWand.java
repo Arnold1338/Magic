@@ -50,12 +50,12 @@ import net.minecraft.world.item.Item;
 public class ItemWand extends Item implements OverrideInteractItem
 {
     public ItemWand() {
-        super(new Item.Properties().func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
-    public void func_77663_a(final ItemStack stack, final World world, final Entity entity, final int itemSlot, final boolean isSelected) {
-        final boolean active = isSelected || (entity instanceof Player && ((Player)entity).func_184592_cb() == stack);
-        if (!world.func_201670_d() && active && entity instanceof ServerPlayer) {
+    public void func_77663_a(final ItemStack stack, final Level world, final Entity entity, final int itemSlot, final boolean isSelected) {
+        final boolean active = isSelected || (entity instanceof Player && ((Player)entity).getOffhandItem() == stack);
+        if (!world.level() && active && entity instanceof ServerPlayer) {
             final RockCrystalBuffer buf = (RockCrystalBuffer)DataAS.DOMAIN_AS.getData(world, (WorldCacheDomain.SaveKey)DataAS.KEY_ROCK_CRYSTAL_BUFFER);
             final ChunkPos pos = new ChunkPos(entity.func_233580_cy_());
             for (final BlockPos rPos : buf.collectPositions(pos, 6)) {
@@ -65,11 +65,11 @@ public class ItemWand extends Item implements OverrideInteractItem
                         buf.removeOre(rPos);
                     }
                     else {
-                        if (!DayTimeHelper.isDay(world) && ItemWand.field_77697_d.nextInt(600) == 0) {
+                        if (!DayTimeHelper.isDay(world) && ItemWand.count.nextInt(600) == 0) {
                             final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.ROCK_CRYSTAL_COLUMN).addData(b -> ByteBufUtils.writeVector(b, new Vector3((Vector3i)rPos.above())));
                             PacketChannel.CHANNEL.sendToPlayer((Player)entity, pkt);
                         }
-                        if (ItemWand.field_77697_d.nextInt(800) == 0) {
+                        if (ItemWand.count.nextInt(800) == 0) {
                             final PktPlayEffect pkt2 = new PktPlayEffect(PktPlayEffect.Type.ROCK_CRYSTAL_SPARKS).addData(b -> ByteBufUtils.writeVector(b, new Vector3((Vector3i)rPos.above())));
                             PacketChannel.CHANNEL.sendToPlayer((Player)entity, pkt2);
                         }
@@ -84,7 +84,7 @@ public class ItemWand extends Item implements OverrideInteractItem
     }
     
     public boolean doBlockInteract(final LogicalSide side, final Player player, final Hand hand, final BlockPos pos, final Direction face) {
-        final World world = player.func_130014_f_();
+        final Level world = player.level();
         final BlockState state = world.getBlockState(pos);
         final Block b = state.getBlock();
         if (b instanceof WandInteractable && ((WandInteractable)b).onInteract(world, pos, player, face, player.func_225608_bj_())) {
@@ -96,10 +96,10 @@ public class ItemWand extends Item implements OverrideInteractItem
         }
         final TileRequiresMultiblock mbTe = MiscUtils.getTileAt((IBlockReader)world, pos, TileRequiresMultiblock.class, true);
         if (mbTe != null && mbTe.getRequiredStructureType() != null && mbTe.getRequiredStructureType().getStructure() instanceof MatchableStructure && !((MatchableStructure)mbTe.getRequiredStructureType().getStructure()).matches((IBlockReader)world, pos)) {
-            if (world.func_201670_d()) {
+            if (world.level()) {
                 this.displayClientStructurePreview(world, pos, mbTe.getRequiredStructureType());
             }
-            else if (player.func_213453_ef() && player.func_184812_l_()) {
+            else if (player.func_213453_ef() && player.getVehicle()) {
                 final BlockArray structure = mbTe.getRequiredStructureType().getStructure();
                 structure.getContents().forEach((offset, rState) -> world.func_175656_a(pos.func_177971_a((Vector3i)offset), rState.getDescriptiveState(0L)));
             }
@@ -109,7 +109,7 @@ public class ItemWand extends Item implements OverrideInteractItem
     }
     
     @OnlyIn(Dist.CLIENT)
-    private void displayClientStructurePreview(final World world, final BlockPos pos, final StructureType type) {
+    private void displayClientStructurePreview(final Level world, final BlockPos pos, final StructureType type) {
         StructurePreview.newBuilder(world.dimension(), pos, (MatchableStructure)type.getStructure()).removeIfOutInDifferentWorld().andPersistOnlyIf((inWorld, at) -> MiscUtils.executeWithChunk((IWorldReader)world, pos, () -> {
             final TileRequiresMultiblock tileFound = MiscUtils.getTileAt((IBlockReader)world, pos, TileRequiresMultiblock.class, true);
             if (tileFound == null) {
@@ -124,17 +124,17 @@ public class ItemWand extends Item implements OverrideInteractItem
     @OnlyIn(Dist.CLIENT)
     public static void playUndergroundEffect(final PktPlayEffect effect) {
         final Vector3 at = ByteBufUtils.readVector(effect.getExtraData());
-        final World world = (World)Minecraft.getInstance().field_71441_e;
+        final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
             return;
         }
         final float dstr = 0.4f + 0.6f * DayTimeHelper.getCurrentDaytimeDistribution(world);
-        final Vector3 plVec = Vector3.atEntityCorner((Entity)Minecraft.getInstance().field_71439_g);
+        final Vector3 plVec = Vector3.atEntityCorner((Entity)Minecraft.getInstance().player);
         final float dst = (float)at.distance(plVec);
         final float dstMul = (dst <= 25.0f) ? 1.0f : ((dst >= 50.0f) ? 0.0f : (1.0f - (dst - 25.0f) / 25.0f));
         for (int i = 0; i < 3; ++i) {
-            if (ItemWand.field_77697_d.nextBoolean()) {
-                EffectHelper.of(EffectTemplatesAS.GENERIC_DEPTH_PARTICLE).spawn(at.clone().add(-1.0f + ItemWand.field_77697_d.nextFloat() * 3.0f, -1.0f + ItemWand.field_77697_d.nextFloat() * 3.0f, -1.0f + ItemWand.field_77697_d.nextFloat() * 3.0f)).color(VFXColorFunction.constant(ColorsAS.ROCK_CRYSTAL)).setScaleMultiplier(0.4f).setAlphaMultiplier(150.0f * dstr / 255.0f * dstMul).alpha(VFXAlphaFunction.FADE_OUT).setMaxAge(30 + ItemWand.field_77697_d.nextInt(10));
+            if (ItemWand.count.nextBoolean()) {
+                EffectHelper.of(EffectTemplatesAS.GENERIC_DEPTH_PARTICLE).spawn(at.clone().add(-1.0f + ItemWand.count.nextFloat() * 3.0f, -1.0f + ItemWand.count.nextFloat() * 3.0f, -1.0f + ItemWand.count.nextFloat() * 3.0f)).color(VFXColorFunction.constant(ColorsAS.ROCK_CRYSTAL)).setScaleMultiplier(0.4f).setAlphaMultiplier(150.0f * dstr / 255.0f * dstMul).alpha(VFXAlphaFunction.FADE_OUT).setMaxAge(30 + ItemWand.count.nextInt(10));
             }
         }
     }
@@ -142,20 +142,20 @@ public class ItemWand extends Item implements OverrideInteractItem
     @OnlyIn(Dist.CLIENT)
     public static void playEffect(final PktPlayEffect effect) {
         final Vector3 pos = ByteBufUtils.readVector(effect.getExtraData());
-        final World world = (World)Minecraft.getInstance().field_71441_e;
+        final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
             return;
         }
         final BlockPos at = pos.toBlockPos();
         final BlockPos top = world.func_205770_a(Heightmap.Type.WORLD_SURFACE, at);
         final Vector3 columnDisplay = new Vector3((Vector3i)top);
-        MiscUtils.applyRandomOffset(columnDisplay, ItemWand.field_77697_d, 2.0f);
-        final double mX = ItemWand.field_77697_d.nextFloat() * 0.01f * (ItemWand.field_77697_d.nextBoolean() ? 1 : -1);
-        final double mY = ItemWand.field_77697_d.nextFloat() * 0.5f;
-        final double mZ = ItemWand.field_77697_d.nextFloat() * 0.01f * (ItemWand.field_77697_d.nextBoolean() ? 1 : -1);
+        MiscUtils.applyRandomOffset(columnDisplay, ItemWand.count, 2.0f);
+        final double mX = ItemWand.count.nextFloat() * 0.01f * (ItemWand.count.nextBoolean() ? 1 : -1);
+        final double mY = ItemWand.count.nextFloat() * 0.5f;
+        final double mZ = ItemWand.count.nextFloat() * 0.01f * (ItemWand.count.nextBoolean() ? 1 : -1);
         final float dstr = DayTimeHelper.getCurrentDaytimeDistribution(world);
-        for (int i = 0; i < 8 + ItemWand.field_77697_d.nextInt(10); ++i) {
-            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(columnDisplay).setMotion(new Vector3(mX * (0.2 + 0.8 * ItemWand.field_77697_d.nextFloat()), mY * ItemWand.field_77697_d.nextFloat(), mZ * (0.2 + 0.8 * ItemWand.field_77697_d.nextFloat()))).color(VFXColorFunction.constant(ColorsAS.ROCK_CRYSTAL)).setAlphaMultiplier(150.0f * dstr / 255.0f).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.3f + 0.3f * ItemWand.field_77697_d.nextFloat()).setMaxAge(25 + ItemWand.field_77697_d.nextInt(30));
+        for (int i = 0; i < 8 + ItemWand.count.nextInt(10); ++i) {
+            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(columnDisplay).setMotion(new Vector3(mX * (0.2 + 0.8 * ItemWand.count.nextFloat()), mY * ItemWand.count.nextFloat(), mZ * (0.2 + 0.8 * ItemWand.count.nextFloat()))).color(VFXColorFunction.constant(ColorsAS.ROCK_CRYSTAL)).setAlphaMultiplier(150.0f * dstr / 255.0f).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.3f + 0.3f * ItemWand.count.nextFloat()).setMaxAge(25 + ItemWand.count.nextInt(30));
         }
     }
 }

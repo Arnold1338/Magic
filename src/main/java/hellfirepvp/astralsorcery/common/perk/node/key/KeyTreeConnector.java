@@ -53,7 +53,7 @@ public class KeyTreeConnector extends MajorPerk
             final ListTag listTokens = new ListTag();
             for (final AbstractPerk otherPerk : PerkTree.PERK_TREE.getConnectedPerks(LogicalSide.SERVER, this)) {
                 if (ResearchManager.forceApplyPerk(player, otherPerk, PlayerPerkAllocation.unlock())) {
-                    final ResourceLocation token = AstralSorcery.key("connector_tk_" + otherPerk.getRegistryName().func_110623_a());
+                    final ResourceLocation token = AstralSorcery.key("connector_tk_" + otherPerk.getRegistryName().addTransientModifier());
                     if (!ResearchManager.grantFreePerkPoint(player, token)) {
                         continue;
                     }

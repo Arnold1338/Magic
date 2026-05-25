@@ -70,7 +70,7 @@ public class ProgressGatedPerk extends AbstractPerk
     @Override
     public boolean addLocalizedTooltip(final Collection<MutableComponent> tooltip) {
         if (!this.canSeeClient()) {
-            tooltip.add(new Component("perk.info.astralsorcery.missing_progress").func_240699_a_(ChatFormatting.RED));
+            tooltip.add(new Component("perk.info.astralsorcery.missing_progress").toString()ChatFormatting.RED));
             return false;
         }
         return super.addLocalizedTooltip(tooltip);
@@ -78,7 +78,7 @@ public class ProgressGatedPerk extends AbstractPerk
     
     @OnlyIn(Dist.CLIENT)
     public final boolean canSeeClient() {
-        return this.canSee((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT);
+        return this.canSee((Player)Minecraft.getInstance().player, LogicalSide.CLIENT);
     }
     
     public final boolean canSee(final Player player, final LogicalSide side) {

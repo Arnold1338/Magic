@@ -6,7 +6,7 @@ import net.minecraft.world.level.Level;
 
 public abstract class CelestialEvent
 {
-    public abstract void tick(final World p0, final Random p1, final WorldContext p2);
+    public abstract void tick(final Level p0, final Random p1, final WorldContext p2);
     
     public abstract boolean isActiveNow();
     

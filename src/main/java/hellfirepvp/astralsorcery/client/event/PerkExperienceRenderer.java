@@ -57,7 +57,7 @@ public class PerkExperienceRenderer implements ITickHandler
             return;
         }
         final PoseStack renderStack = event.getMatrixStack();
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().player;
         final float frameHeight = 128.0f;
         final float frameWidth = 32.0f;
         final float frameOffsetX = 0.0f;
@@ -65,7 +65,7 @@ public class PerkExperienceRenderer implements ITickHandler
         RenderSystem.enableBlend();
         RenderSystem.disableAlphaTest();
         TexturesAS.TEX_OVERLAY_EXP_FRAME.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, frameOffsetX, frameOffsetY, 10.0f, frameWidth, frameHeight).color(1.0f, 1.0f, 1.0f, this.visibilityReveal * 0.9f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, frameOffsetX, frameOffsetY, 10.0f, frameWidth, frameHeight).color(1.0f, 1.0f, 1.0f, this.visibilityReveal * 0.9f).draw());
         final PlayerPerkData perkData = ResearchHelper.getClientProgress().getPerkData();
         final float perc = perkData.getPercentToNextLevel(player, LogicalSide.CLIENT);
         final float expHeight = 78.0f * perc;
@@ -73,30 +73,30 @@ public class PerkExperienceRenderer implements ITickHandler
         final float expOffsetX = 0.0f;
         final float expOffsetY = 27.5f + (1.0f - perc) * 78.0f;
         TexturesAS.TEX_OVERLAY_EXP_BAR.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, expOffsetX, expOffsetY, 10.0f, expWidth, expHeight).color(1.0f, 0.9f, 0.0f, this.visibilityReveal * 0.9f).tex(0.0f, 0.0f, 1.0f, 1.0f - perc).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, expOffsetX, expOffsetY, 10.0f, expWidth, expHeight).color(1.0f, 0.9f, 0.0f, this.visibilityReveal * 0.9f).tex(0.0f, 0.0f, 1.0f, 1.0f - perc).draw());
         final String strLevel = String.valueOf(perkData.getPerkLevel(player, LogicalSide.CLIENT));
         final Component txtLevel = new Component(strLevel);
-        final int strLength = Minecraft.getInstance().field_71466_p.func_238414_a_((ITextProperties)txtLevel);
-        renderStack.func_227860_a_();
+        final int strLength = Minecraft.getInstance().font.func_238414_a_((ITextProperties)txtLevel);
+        renderStack.popPose();
         renderStack.func_227861_a_((double)(15.0f - strLength / 2.0f), 94.0, 20.0);
-        renderStack.func_227862_a_(1.2f, 1.2f, 1.0f);
+        renderStack.translate(1.2f, 1.2f, 1.0f);
         int c = 14540253;
         c |= (int)(255.0f * this.visibilityReveal) << 24;
         if (this.visibilityReveal > 1.0E-5) {
             RenderingDrawUtils.renderStringAt((ITextProperties)txtLevel, renderStack, null, c, true);
         }
-        renderStack.func_227865_b_();
+        renderStack.scale();
         BlockAtlasTexture.getInstance().bindTexture();
     }
     
     public void tick(final TickEvent.Type type, final Object... context) {
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().player;
         if (player != null) {
-            ItemStack held = player.func_184586_b(InteractionHand.MAIN_HAND);
+            ItemStack held = player.getItemInHand(InteractionHand.MAIN_HAND);
             if (!held.isEmpty() && held.getItem() instanceof PerkExperienceRevealer && ((PerkExperienceRevealer)held.getItem()).shouldReveal(held)) {
                 this.revealExperience(20);
             }
-            held = player.func_184586_b(InteractionHand.OFF_HAND);
+            held = player.getItemInHand(InteractionHand.OFF_HAND);
             if (!held.isEmpty() && held.getItem() instanceof PerkExperienceRevealer && ((PerkExperienceRevealer)held.getItem()).shouldReveal(held)) {
                 this.revealExperience(20);
             }

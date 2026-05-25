@@ -26,11 +26,11 @@ public abstract class CustomRecipeBuilder<R extends CustomMatcherRecipe>
     
     public void build(final Consumer<IFinishedRecipe> consumerIn, @Nullable final String directory) {
         final R recipe = this.validateAndGet();
-        String saveId = recipe.func_199560_c().func_110623_a();
+        String saveId = recipe.func_199560_c().addTransientModifier();
         if (directory != null) {
             saveId = directory + "/" + saveId;
         }
-        saveId = this.getSerializer().getRegistryName().func_110623_a() + "/" + saveId;
+        saveId = this.getSerializer().getRegistryName().addTransientModifier() + "/" + saveId;
         final ResourceLocation id = new ResourceLocation(recipe.func_199560_c().func_110624_b(), saveId);
         if (!CustomRecipeBuilder.builtRecipes.computeIfAbsent((RecipeType<?>)recipe.func_222127_g(), type -> new HashSet()).add(id)) {
             throw new IllegalArgumentException("Tried to register recipe with id " + id + " twice for type " + Registry.field_218367_H.func_177774_c((Object)recipe.func_222127_g()));

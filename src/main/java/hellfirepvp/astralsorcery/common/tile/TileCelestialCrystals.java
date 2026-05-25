@@ -38,13 +38,13 @@ public class TileCelestialCrystals extends TileEntityTick implements CrystalAttr
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d()) {
+        if (!this.getLevel().level()) {
             if (this.getGrowth() < 4 && this.doesSeeSky()) {
                 this.tryGrowWithChance(18000);
             }
         }
         else {
-            final BlockState downState = this.func_145831_w().getBlockState(this.func_174877_v().func_177977_b());
+            final BlockState downState = this.getLevel().getBlockState(this.getBlockState().renderItem());
             if (downState.getBlock() instanceof BlockStarmetalOre) {
                 this.playStarmetalParticles();
             }
@@ -72,14 +72,14 @@ public class TileCelestialCrystals extends TileEntityTick implements CrystalAttr
     }
     
     public void tryGrowWithChance(int growthChance) {
-        final BlockState downState = this.func_145831_w().getBlockState(this.func_174877_v().func_177977_b());
+        final BlockState downState = this.getLevel().getBlockState(this.getBlockState().renderItem());
         if (downState.getBlock() instanceof BlockStarmetalOre) {
             growthChance *= (int)0.6;
             if (TileCelestialCrystals.rand.nextInt(400) == 0) {
-                this.func_145831_w().func_175656_a(this.func_174877_v().func_177977_b(), CraftingConfig.CONFIG.getStarmetalRevertBlockState());
+                this.getLevel().func_175656_a(this.getBlockState().renderItem(), CraftingConfig.CONFIG.getStarmetalRevertBlockState());
             }
         }
-        final float distribution = DayTimeHelper.getCurrentDaytimeDistribution(this.func_145831_w());
+        final float distribution = DayTimeHelper.getCurrentDaytimeDistribution(this.getLevel());
         growthChance *= (int)(1.0f - 0.5f * distribution);
         this.grow(growthChance);
     }
@@ -94,13 +94,13 @@ public class TileCelestialCrystals extends TileEntityTick implements CrystalAttr
     }
     
     public int getGrowth() {
-        final BlockState current = this.func_145831_w().getBlockState(this.func_174877_v());
+        final BlockState current = this.getLevel().getBlockState(this.getBlockState());
         return (int)current.getValue((Property)BlockCelestialCrystalCluster.STAGE);
     }
     
     public void setGrowth(final int stage) {
-        final BlockState next = (BlockState)BlocksAS.CELESTIAL_CRYSTAL_CLUSTER.defaultBlockState().func_206870_a((Property)BlockCelestialCrystalCluster.STAGE, (Comparable)stage);
-        this.func_145831_w().func_175656_a(this.func_174877_v(), next);
+        final BlockState next = (BlockState)BlocksAS.CELESTIAL_CRYSTAL_CLUSTER.defaultBlockState().setValue((Property)BlockCelestialCrystalCluster.STAGE, (Comparable)stage);
+        this.getLevel().func_175656_a(this.getBlockState(), next);
     }
     
     @Override

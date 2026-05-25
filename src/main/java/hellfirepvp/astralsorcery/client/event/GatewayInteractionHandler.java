@@ -55,8 +55,8 @@ public class GatewayInteractionHandler
     
     private static void onAccessRevoke(final PlayerInteractEvent.RightClickBlock event) {
         final Player player = event.getPlayer();
-        final World world = event.getWorld();
-        if (player == null || world == null || !world.func_201670_d() || event.getHand() != InteractionHand.MAIN_HAND) {
+        final Level world = event.getWorld();
+        if (player == null || world == null || !world.level() || event.getHand() != InteractionHand.MAIN_HAND) {
             return;
         }
         final GatewayUI ui = GatewayUIRenderHandler.getInstance().getCurrentUI();
@@ -72,15 +72,15 @@ public class GatewayInteractionHandler
             return;
         }
         final BlockPos clickedPos = event.getPos();
-        MapStream.of(node.getAllowedUsers()).filter(tpl -> TileCelestialGateway.getAllowedUserOffset((int)tpl.func_76341_a()).func_177971_a((Vector3i)node.getPos()).func_177977_b().equals((Object)clickedPos)).findAny().map((Function<? super net.minecraft.util.Tuple<Integer, PlayerReference>, ?>)Tuple::func_76340_b).ifPresent(playerRef -> {
-            final PktRevokeGatewayAccess pkt = new PktRevokeGatewayAccess((RegistryKey<World>)world.dimension(), gateway.func_174877_v(), playerRef.getPlayerUUID());
+        MapStream.of(node.getAllowedUsers()).filter(tpl -> TileCelestialGateway.getAllowedUserOffset((int)tpl.getA()).func_177971_a((Vector3i)node.getPos()).renderItem().equals((Object)clickedPos)).findAny().map((Function<? super net.minecraft.util.Tuple<Integer, PlayerReference>, ?>)Tuple::func_76340_b).ifPresent(playerRef -> {
+            final PktRevokeGatewayAccess pkt = new PktRevokeGatewayAccess((RegistryKey<Level>)world.dimension(), gateway.getBlockState(), playerRef.getPlayerUUID());
             PacketChannel.CHANNEL.sendToServer(pkt);
         });
     }
     
     private static void clientTick(final TickEvent.ClientTickEvent event) {
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
-        final World world = (World)Minecraft.getInstance().field_71441_e;
+        final Player player = (Player)Minecraft.getInstance().player;
+        final Level world = (Level)Minecraft.getInstance().level;
         if (player == null || world == null) {
             GatewayInteractionHandler.focusingEntry = null;
             GatewayInteractionHandler.focusTicks = 0;
@@ -98,7 +98,7 @@ public class GatewayInteractionHandler
             GatewayInteractionHandler.focusTicks = 0;
             return;
         }
-        final GatewayUI.GatewayEntry entry = GatewayUIRenderHandler.getInstance().findMatchingEntry(Mth.func_76142_g(player.field_70177_z), Mth.func_76142_g(player.field_70125_A));
+        final GatewayUI.GatewayEntry entry = GatewayUIRenderHandler.getInstance().findMatchingEntry(Mth.func_76142_g(player.yRot), Mth.func_76142_g(player.xRot));
         if (entry == null) {
             GatewayInteractionHandler.focusingEntry = null;
             GatewayInteractionHandler.focusTicks = 0;
@@ -162,7 +162,7 @@ public class GatewayInteractionHandler
             }
         }
         if (GatewayInteractionHandler.focusTicks > 95) {
-            Minecraft.getInstance().field_71439_g.func_226284_e_(false);
+            Minecraft.getInstance().player.func_226284_e_(false);
             final PktRequestTeleport pkt = new PktRequestTeleport(GatewayInteractionHandler.focusingEntry.getNodeDimension(), GatewayInteractionHandler.focusingEntry.getNode().getPos());
             PacketChannel.CHANNEL.sendToServer(pkt);
             GatewayInteractionHandler.focusingEntry = null;

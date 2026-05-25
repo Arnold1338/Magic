@@ -35,7 +35,7 @@ import net.minecraft.world.item.SwordItem;
 public class ItemCrystalSword extends SwordItem implements CrystalAttributeItem, TypeEnchantableItem
 {
     public ItemCrystalSword() {
-        super((IItemTier)CrystalToolTier.getInstance(), 0, 0.0f, new Item.Properties().setNoRepair().func_200918_c(CrystalToolTier.getInstance().func_200926_a()).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super((IItemTier)CrystalToolTier.getInstance(), 0, 0.0f, new Item.Properties().setNoRepair().func_200918_c(CrystalToolTier.getInstance().func_200926_a()).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     public void func_150895_a(final CreativeModeTab group, final NonNullList<ItemStack> stacks) {
@@ -47,7 +47,7 @@ public class ItemCrystalSword extends SwordItem implements CrystalAttributeItem,
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> tooltip, final TooltipFlag flag) {
+    public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> tooltip, final TooltipFlag flag) {
         final CrystalAttributes attr = this.getAttributes(stack);
         if (attr != null) {
             attr.addTooltip(tooltip, CalculationContext.Builder.newBuilder().addUsage(CrystalPropertiesAS.Usages.USE_TOOL_DURABILITY).addUsage(CrystalPropertiesAS.Usages.USE_TOOL_EFFECTIVENESS).build());

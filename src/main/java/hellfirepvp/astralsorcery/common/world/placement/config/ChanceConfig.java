@@ -15,7 +15,7 @@ public class ChanceConfig implements PlacementModifier
     private final float chance;
     
     public ChanceConfig(final float chance) {
-        this.chance = Mth.func_76131_a(chance, 0.0f, 1.0f);
+        this.chance = Mth.canEnchant(chance, 0.0f, 1.0f);
     }
     
     public boolean test(final Random rand) {

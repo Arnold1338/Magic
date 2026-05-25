@@ -60,21 +60,21 @@ public class TypeBlockRing extends PatreonEffect
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public void onRenderLast(final RenderWorldLastEvent event) {
-        final Player pl = (Player)Minecraft.getInstance().field_71439_g;
+        final Player pl = (Player)Minecraft.getInstance().player;
         if (Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a() && pl != null && pl.getUUID().equals(this.playerUUID)) {
             final PoseStack renderStack = event.getMatrixStack();
             int alpha = 88;
-            if (pl.field_70125_A >= 35.0f) {
-                alpha *= (int)Math.max(0.0f, (55.0f - pl.field_70125_A) / 20.0f);
+            if (pl.xRot >= 35.0f) {
+                alpha *= (int)Math.max(0.0f, (55.0f - pl.xRot) / 20.0f);
             }
             if (Minecraft.func_238218_y_()) {
                 RenderSystem.clear(256, Minecraft.field_142025_a);
             }
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_(0.0, -0.5, 0.0);
-            renderStack.func_227862_a_(0.5f, 0.5f, 0.5f);
+            renderStack.translate(0.5f, 0.5f, 0.5f);
             this.renderRingAt(renderStack, pl, alpha, event.getPartialTicks());
-            renderStack.func_227865_b_();
+            renderStack.scale();
         }
     }
     
@@ -112,11 +112,11 @@ public class TypeBlockRing extends PatreonEffect
                 final Vector3 dir = new Vector3(offset.getX() - this.distance, (float)offset.getY(), 0.0f);
                 dir.rotate(Math.toRadians(angle), Vector3.RotAxis.Y_AXIS);
                 dir.multiply(new Vector3(0.2f, 0.1f, 0.2f));
-                renderStack.func_227860_a_();
+                renderStack.popPose();
                 renderStack.func_227861_a_(dir.getX(), dir.getY(), dir.getZ());
-                renderStack.func_227862_a_(0.09f, 0.09f, 0.09f);
-                RenderingUtils.draw(7, DefaultVertexFormat.field_227852_q_, buf -> RenderingDrawUtils.renderTexturedCubeCentralColorLighted((VertexConsumer)buf, renderStack, tas.func_94209_e(), tas.func_94206_g(), tas.func_94212_f() - tas.func_94209_e(), tas.func_94210_h() - tas.func_94206_g(), 255, 255, 255, alphaMultiplier, LightmapUtil.getPackedLightCoords((IBlockDisplayReader)player.func_130014_f_(), player.func_233580_cy_())));
-                renderStack.func_227865_b_();
+                renderStack.translate(0.09f, 0.09f, 0.09f);
+                RenderingUtils.draw(7, DefaultVertexFormat.field_227852_q_, buf -> RenderingDrawUtils.renderTexturedCubeCentralColorLighted((VertexConsumer)buf, renderStack, tas.func_94209_e(), tas.func_94206_g(), tas.func_94212_f() - tas.func_94209_e(), tas.func_94210_h() - tas.func_94206_g(), 255, 255, 255, alphaMultiplier, LightmapUtil.getPackedLightCoords((IBlockDisplayReader)player.level(), player.func_233580_cy_())));
+                renderStack.scale();
             }
         }
         Blending.DEFAULT.apply();

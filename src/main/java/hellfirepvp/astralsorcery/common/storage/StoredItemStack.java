@@ -14,7 +14,7 @@ public class StoredItemStack
     private int amount;
     
     StoredItemStack(final ItemStack stack) {
-        this(stack, stack.func_190916_E());
+        this(stack, stack.getCount());
     }
     
     private StoredItemStack(final ItemStack stack, final int amount) {
@@ -52,7 +52,7 @@ public class StoredItemStack
     
     public boolean combineIntoThis(final ItemStack other) {
         if (ItemComparator.compare(this.stack, other, ItemComparator.Clause.Sets.ITEMSTACK_STRICT_NOAMOUNT)) {
-            this.amount += other.func_190916_E();
+            this.amount += other.getCount();
             return true;
         }
         return false;

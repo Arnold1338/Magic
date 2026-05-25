@@ -53,7 +53,7 @@ public class MantleEffectVicio extends MantleEffect
     @Override
     protected void tickClient(final Player player) {
         super.tickClient(player);
-        if (player.func_184613_cA() || (!player.func_184812_l_() && !player.func_175149_v() && player.field_71075_bZ.field_75100_b)) {
+        if (player.func_184613_cA() || (!player.getVehicle() && !player.func_175149_v() && player.field_71075_bZ.field_75100_b)) {
             if (!Minecraft.getInstance().field_71474_y.func_243230_g().func_243193_b()) {
                 this.playCapeSparkles(player, 0.1f);
             }
@@ -70,7 +70,7 @@ public class MantleEffectVicio extends MantleEffect
     @OnlyIn(Dist.CLIENT)
     @Override
     protected FXFacingParticle spawnFacingParticle(final Player player, final Vector3 at) {
-        if (player.func_184613_cA() || (!player.func_184812_l_() && !player.func_175149_v() && player.field_71075_bZ.field_75100_b)) {
+        if (player.func_184613_cA() || (!player.getVehicle() && !player.func_175149_v() && player.field_71075_bZ.field_75100_b)) {
             at.subtract(player.func_213322_ci().func_216372_d(1.5, 1.5, 1.5));
         }
         return super.spawnFacingParticle(player, at);
@@ -80,7 +80,7 @@ public class MantleEffectVicio extends MantleEffect
         if (elytraStack.getItem() instanceof ItemMantle) {
             final MantleEffect effect = ItemMantle.getEffect((LivingEntity)wearingEntity, ConstellationsAS.vicio);
             PlayerProgress progress;
-            if (wearingEntity.func_130014_f_().func_201670_d()) {
+            if (wearingEntity.level().level()) {
                 progress = ResearchHelper.getClientProgress();
             }
             else {

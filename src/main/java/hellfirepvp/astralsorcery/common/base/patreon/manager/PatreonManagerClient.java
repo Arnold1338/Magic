@@ -27,12 +27,12 @@ public class PatreonManagerClient implements ITickHandler
     }
     
     public void tick(final TickEvent.Type type, final Object... context) {
-        final World clWorld = (World)Minecraft.getInstance().field_71441_e;
-        final Player thisPlayer = (Player)Minecraft.getInstance().field_71439_g;
+        final Level clWorld = (Level)Minecraft.getInstance().level;
+        final Player thisPlayer = (Player)Minecraft.getInstance().player;
         if (clWorld == null || thisPlayer == null) {
             return;
         }
-        final RegistryKey<World> clientWorld = (RegistryKey<World>)clWorld.dimension();
+        final RegistryKey<Level> clientWorld = (RegistryKey<Level>)clWorld.dimension();
         final Vector3 thisPlayerPos = Vector3.atEntityCenter((Entity)thisPlayer);
         SyncDataHolder.executeClient(SyncDataHolder.DATA_PATREON_FLARES, ClientPatreonFlares.class, data -> {
             data.getEntities().iterator();

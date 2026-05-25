@@ -39,7 +39,7 @@ public class BlockTelescope extends BaseEntityBlock implements CustomItemBlock
     }
     
     @OnlyIn(Dist.CLIENT)
-    public boolean addDestroyEffects(final BlockState state, final World world, final BlockPos pos, final ParticleEngine manager) {
+    public boolean addDestroyEffects(final BlockState state, final Level world, final BlockPos pos, final ParticleEngine manager) {
         RenderingUtils.playBlockBreakParticles(pos.above(), BlocksAS.TELESCOPE.defaultBlockState(), BlocksAS.TELESCOPE.defaultBlockState());
         return false;
     }
@@ -48,19 +48,19 @@ public class BlockTelescope extends BaseEntityBlock implements CustomItemBlock
         return BlockTelescope.TELESCOPE;
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult rayTraceResult) {
-        if (world.func_201670_d()) {
+    public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult rayTraceResult) {
+        if (world.level()) {
             AstralSorcery.getProxy().openGui(player, GuiType.TELESCOPE, pos);
         }
         return InteractionResult.SUCCESS;
     }
     
-    public void func_180633_a(final World world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
-        world.func_175656_a(pos.above(), (BlockState)BlocksAS.STRUCTURAL.defaultBlockState().func_206870_a((Property)BlockStructural.BLOCK_TYPE, (Comparable)BlockStructural.BlockType.TELESCOPE));
+    public void func_180633_a(final Level world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
+        world.func_175656_a(pos.above(), (BlockState)BlocksAS.STRUCTURAL.defaultBlockState().setValue((Property)BlockStructural.BLOCK_TYPE, (Comparable)BlockStructural.BlockType.TELESCOPE));
         super.func_180633_a(world, pos, state, placer, stack);
     }
     
-    public void func_220069_a(final BlockState state, final World world, final BlockPos pos, final Block block, final BlockPos fromPos, final boolean isMoving) {
+    public void func_220069_a(final BlockState state, final Level world, final BlockPos pos, final Block block, final BlockPos fromPos, final boolean isMoving) {
         if (world.isEmptyBlock(pos.above())) {
             world.func_217377_a(pos, isMoving);
         }

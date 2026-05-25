@@ -30,12 +30,12 @@ public class CelestialGatewayHandler
     public static final CelestialGatewayHandler INSTANCE;
     private CelestialGatewayFilter filter;
     private boolean startUp;
-    private final SidedReference<Map<RegistryKey<World>, Collection<GatewayCache.GatewayNode>>> cache;
+    private final SidedReference<Map<RegistryKey<Level>, Collection<GatewayCache.GatewayNode>>> cache;
     
     private CelestialGatewayHandler() {
         this.filter = null;
         this.startUp = false;
-        this.cache = new SidedReference<Map<RegistryKey<World>, Collection<GatewayCache.GatewayNode>>>();
+        this.cache = new SidedReference<Map<RegistryKey<Level>, Collection<GatewayCache.GatewayNode>>>();
     }
     
     private CelestialGatewayFilter getFilter() {
@@ -45,13 +45,13 @@ public class CelestialGatewayHandler
         return this.filter;
     }
     
-    public void addPosition(final World world, final GatewayCache.GatewayNode node) {
-        if (world.func_201670_d()) {
+    public void addPosition(final Level world, final GatewayCache.GatewayNode node) {
+        if (world.level()) {
             return;
         }
-        final RegistryKey<World> dimKey = (RegistryKey<World>)world.dimension();
+        final RegistryKey<Level> dimKey = (RegistryKey<Level>)world.dimension();
         if (!this.cache.getData(LogicalSide.SERVER).map(map -> map.get(dimKey)).isPresent()) {
-            this.forceLoad((RegistryKey<World>)world.dimension());
+            this.forceLoad((RegistryKey<Level>)world.dimension());
         }
         final Optional<Collection<GatewayCache.GatewayNode>> worldData = this.cache.getData(LogicalSide.SERVER).map(map -> map.get(dimKey));
         if (!worldData.isPresent()) {
@@ -66,11 +66,11 @@ public class CelestialGatewayHandler
         }
     }
     
-    public void removePosition(final World world, final BlockPos pos) {
-        if (world.func_201670_d()) {
+    public void removePosition(final Level world, final BlockPos pos) {
+        if (world.level()) {
             return;
         }
-        final RegistryKey<World> dimKey = (RegistryKey<World>)world.dimension();
+        final RegistryKey<Level> dimKey = (RegistryKey<Level>)world.dimension();
         final Optional<Collection<GatewayCache.GatewayNode>> worldData = this.cache.getData(LogicalSide.SERVER).map(map -> map.get(dimKey));
         if (!worldData.isPresent()) {
             return;
@@ -84,9 +84,9 @@ public class CelestialGatewayHandler
         }
     }
     
-    private void forceLoad(final RegistryKey<World> world) {
+    private void forceLoad(final RegistryKey<Level> world) {
         final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
-        srv.func_71218_a((RegistryKey)world);
+        srv.getLevel((RegistryKey)world);
     }
     
     public void onServerStart() {
@@ -105,10 +105,10 @@ public class CelestialGatewayHandler
             return;
         }
         final IWorld world = event.getWorld();
-        if (world.func_201670_d() || !(world instanceof World)) {
+        if (world.level() || !(world instanceof Level)) {
             return;
         }
-        this.loadIntoCache((World)world);
+        this.loadIntoCache((Level)world);
         this.syncToAll();
     }
     
@@ -117,28 +117,28 @@ public class CelestialGatewayHandler
         PacketChannel.CHANNEL.sendToAll(pkt);
     }
     
-    public Collection<GatewayCache.GatewayNode> getGatewaysForWorld(final World world, final LogicalSide side) {
+    public Collection<GatewayCache.GatewayNode> getGatewaysForWorld(final Level world, final LogicalSide side) {
         return this.cache.getData(side).map(data -> data.getOrDefault(world.dimension(), Collections.emptyList())).orElse((Collection<GatewayCache.GatewayNode>)Collections.emptyList());
     }
     
-    public Map<RegistryKey<World>, Collection<GatewayCache.GatewayNode>> getGatewayCache(final LogicalSide side) {
+    public Map<RegistryKey<Level>, Collection<GatewayCache.GatewayNode>> getGatewayCache(final LogicalSide side) {
         return this.cache.getData(side).orElse(Collections.emptyMap());
     }
     
     @Nullable
-    public GatewayCache.GatewayNode getGatewayNode(final World world, final LogicalSide side, final BlockPos pos) {
+    public GatewayCache.GatewayNode getGatewayNode(final Level world, final LogicalSide side, final BlockPos pos) {
         return this.cache.getData(side).map(data -> data.get(world.dimension())).orElse(Collections.emptyList()).stream().filter(node -> node.getPos().equals((Object)pos)).findFirst().orElse(null);
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void updateClientCache(@Nullable final Map<RegistryKey<World>, Collection<GatewayCache.GatewayNode>> positions) {
+    public void updateClientCache(@Nullable final Map<RegistryKey<Level>, Collection<GatewayCache.GatewayNode>> positions) {
         this.cache.setData(LogicalSide.CLIENT, positions);
     }
     
-    private void loadIntoCache(final World world) {
+    private void loadIntoCache(final Level world) {
         final GatewayCache cache = (GatewayCache)DataAS.DOMAIN_AS.getData(world, (WorldCacheDomain.SaveKey)DataAS.KEY_GATEWAY_CACHE);
-        final Map<RegistryKey<World>, Collection<GatewayCache.GatewayNode>> gatewayCache = this.cache.getData(LogicalSide.SERVER).orElse(new HashMap());
-        gatewayCache.put((RegistryKey<World>)world.dimension(), new HashSet<GatewayCache.GatewayNode>(cache.getGatewayPositions()));
+        final Map<RegistryKey<Level>, Collection<GatewayCache.GatewayNode>> gatewayCache = this.cache.getData(LogicalSide.SERVER).orElse(new HashMap());
+        gatewayCache.put((RegistryKey<Level>)world.dimension(), new HashSet<GatewayCache.GatewayNode>(cache.getGatewayPositions()));
         this.cache.setData(LogicalSide.SERVER, gatewayCache);
     }
     

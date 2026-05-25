@@ -12,7 +12,7 @@ public class LootUtil
     
     public static boolean doesContextFulfillSet(final LootContext ctx, final LootParameterSet set) {
         for (final LootParameter<?> required : set.func_216277_a()) {
-            if (!ctx.func_216033_a((LootParameter)required)) {
+            if (!ctx.hasParam((LootParameter)required)) {
                 return false;
             }
         }

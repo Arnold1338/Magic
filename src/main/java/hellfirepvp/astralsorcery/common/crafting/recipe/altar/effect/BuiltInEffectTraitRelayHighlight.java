@@ -43,7 +43,7 @@ public class BuiltInEffectTraitRelayHighlight extends AltarRecipeEffect
                         continue;
                     }
                     final WrappedIngredient match = additionalIngredients.get(stack.getStackIndex());
-                    final TileSpectralRelay relay = MiscUtils.getTileAt((IBlockReader)altar.func_145831_w(), stack.getRealPosition(), TileSpectralRelay.class, false);
+                    final TileSpectralRelay relay = MiscUtils.getTileAt((IBlockReader)altar.getLevel(), stack.getRealPosition(), TileSpectralRelay.class, false);
                     if (relay == null) {
                         continue;
                     }
@@ -101,16 +101,16 @@ public class BuiltInEffectTraitRelayHighlight extends AltarRecipeEffect
                         continue;
                     }
                     final WrappedIngredient match = additionalIngredients.get(stack.getStackIndex());
-                    final BlockPos offset = stack.getRealPosition().func_177973_b((Vector3i)altar.func_174877_v());
-                    final TileSpectralRelay relay = MiscUtils.getTileAt((IBlockReader)altar.func_145831_w(), stack.getRealPosition(), TileSpectralRelay.class, false);
+                    final BlockPos offset = stack.getRealPosition().func_177973_b((Vector3i)altar.getBlockState());
+                    final TileSpectralRelay relay = MiscUtils.getTileAt((IBlockReader)altar.getLevel(), stack.getRealPosition(), TileSpectralRelay.class, false);
                     if (relay != null && match.getIngredient().test(relay.getInventory().getStackInSlot(0))) {
                         continue;
                     }
                     final ItemStack potential = match.getRandomMatchingStack(this.getClientTick());
-                    renderStack.func_227860_a_();
+                    renderStack.popPose();
                     renderStack.func_227861_a_(0.5 + offset.getX(), 0.35 + offset.getY(), 0.5 + offset.getZ());
                     RenderingUtils.renderTranslucentItemStack(potential, renderStack, pTicks);
-                    renderStack.func_227865_b_();
+                    renderStack.scale();
                 }
             }
         }

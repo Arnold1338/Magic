@@ -49,7 +49,7 @@ import net.minecraft.world.item.Item;
 public class ItemConstellationPaper extends Item implements ItemDynamicColor, ConstellationBaseItem
 {
     public ItemConstellationPaper() {
-        super(new Item.Properties().func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS_PAPERS));
+        super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS_PAPERS));
     }
     
     public void func_150895_a(final CreativeModeTab group, final NonNullList<ItemStack> items) {
@@ -64,22 +64,22 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> toolTip, final TooltipFlag flag) {
+    public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> toolTip, final TooltipFlag flag) {
         final IConstellation c = this.getConstellation(stack);
-        if (c != null && c.canDiscover((Player)Minecraft.getInstance().field_71439_g, ResearchHelper.getClientProgress())) {
-            toolTip.add((Component)c.getConstellationName().func_240699_a_(ChatFormatting.BLUE));
+        if (c != null && c.canDiscover((Player)Minecraft.getInstance().player, ResearchHelper.getClientProgress())) {
+            toolTip.add((Component)c.getConstellationName().toString()ChatFormatting.BLUE));
         }
         else {
-            toolTip.add((Component)new Component("astralsorcery.misc.noinformation").func_240699_a_(ChatFormatting.GRAY));
+            toolTip.add((Component)new Component("astralsorcery.misc.noinformation").toString()ChatFormatting.GRAY));
         }
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final World world, final Player player, final Hand hand) {
-        final ItemStack held = player.func_184586_b(hand);
+    public InteractionResult<ItemStack> func_77659_a(final Level world, final Player player, final Hand hand) {
+        final ItemStack held = player.getItemInHand(hand);
         if (held.isEmpty()) {
             return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)held);
         }
-        if (world.func_201670_d() && this.getConstellation(held) != null) {
+        if (world.level() && this.getConstellation(held) != null) {
             SoundHelper.playSoundClient(SoundsAS.GUI_JOURNAL_PAGE, 1.0f, 1.0f);
             AstralSorcery.getProxy().openGui(player, GuiType.CONSTELLATION_PAPER, this.getConstellation(held));
         }
@@ -91,8 +91,8 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
     }
     
     @Nullable
-    public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
-        final EntityItemExplosionResistant res = new EntityItemExplosionResistant(EntityTypesAS.ITEM_EXPLOSION_RESISTANT, world, location.func_226277_ct_(), location.func_226278_cu_(), location.func_226281_cx_(), itemstack);
+    public Entity createEntity(final Level world, final Entity location, final ItemStack itemstack) {
+        final EntityItemExplosionResistant res = new EntityItemExplosionResistant(EntityTypesAS.ITEM_EXPLOSION_RESISTANT, world, location.getX(), location.getY(), location.getZ(), itemstack);
         res.func_70020_e(location.func_189511_e(new CompoundTag()));
         if (itemstack.getItem() instanceof ItemConstellationPaper) {
             final IConstellation cst = this.getConstellation(itemstack);
@@ -106,7 +106,7 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
         return (Entity)res;
     }
     
-    public void func_77663_a(final ItemStack stack, final World world, final Entity entity, final int slot, final boolean isSelected) {
+    public void func_77663_a(final ItemStack stack, final Level world, final Entity entity, final int slot, final boolean isSelected) {
         if (world.isClientSide || !(entity instanceof Player)) {
             return;
         }

@@ -37,13 +37,13 @@ public class AttributeTypePotionDuration extends PerkAttributeType
     }
     
     private void modifyPotionDuration(final Player player, final MobEffectInstance newSetEffect, final MobEffectInstance existingEffect) {
-        if (player.func_130014_f_().func_201670_d() || newSetEffect.func_188419_a().func_220303_e().equals((Object)EffectType.HARMFUL) || existingEffect.func_76458_c() < newSetEffect.func_76458_c()) {
+        if (player.level().level() || newSetEffect.func_188419_a().func_220303_e().equals((Object)EffectType.HARMFUL) || existingEffect.func_76458_c() < newSetEffect.func_76458_c()) {
             return;
         }
-        float newDuration = (float)existingEffect.func_76459_b();
+        float newDuration = (float)existingEffect.getAmplifier();
         newDuration = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.SERVER).modifyValue(player, ResearchHelper.getProgress(player, LogicalSide.SERVER), this, newDuration);
         newDuration = AttributeEvent.postProcessModded(player, this, newDuration);
-        if (newSetEffect.func_76459_b() < newDuration) {
+        if (newSetEffect.getAmplifier() < newDuration) {
             newSetEffect.field_76460_b = Mth.func_76141_d(newDuration);
         }
     }

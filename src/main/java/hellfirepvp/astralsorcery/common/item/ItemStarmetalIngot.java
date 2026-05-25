@@ -15,7 +15,7 @@ import net.minecraft.world.item.Item;
 public class ItemStarmetalIngot extends Item
 {
     public ItemStarmetalIngot() {
-        super(new Item.Properties().func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     public boolean hasCustomEntity(final ItemStack stack) {
@@ -23,8 +23,8 @@ public class ItemStarmetalIngot extends Item
     }
     
     @Nullable
-    public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
-        final EntityStarmetal res = new EntityStarmetal(EntityTypesAS.ITEM_STARMETAL_INGOT, world, location.func_226277_ct_(), location.func_226278_cu_(), location.func_226281_cx_(), itemstack);
+    public Entity createEntity(final Level world, final Entity location, final ItemStack itemstack) {
+        final EntityStarmetal res = new EntityStarmetal(EntityTypesAS.ITEM_STARMETAL_INGOT, world, location.getX(), location.getY(), location.getZ(), itemstack);
         res.func_70020_e(location.func_189511_e(new CompoundTag()));
         if (location instanceof ItemEntity) {
             res.setReplacedEntity((ItemEntity)location);

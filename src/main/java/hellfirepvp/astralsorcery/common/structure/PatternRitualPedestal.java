@@ -15,7 +15,7 @@ public class PatternRitualPedestal extends PatternBlockArray
     }
     
     private void makeStructure() {
-        final BlockState air = Blocks.field_150350_a.defaultBlockState();
+        final BlockState air = Blocks.AIR.defaultBlockState();
         this.addBlockCube(MatchableState.REQUIRES_AIR, -2, 0, -2, 2, 2, 2);
         this.addBlockCube(MatchableState.REQUIRES_AIR, -3, 0, -1, 3, 2, 1);
         this.addBlockCube(MatchableState.REQUIRES_AIR, -1, 0, -3, 1, 2, 3);

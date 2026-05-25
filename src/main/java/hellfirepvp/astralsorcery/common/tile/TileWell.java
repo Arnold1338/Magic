@@ -88,13 +88,13 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell>
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d()) {
+        if (!this.getLevel().level()) {
             if (this.doesSeeSky()) {
                 this.collectStarlight();
             }
             final ItemStack stack = this.getInventory().getStackInSlot(0);
             if (!stack.isEmpty()) {
-                if (!this.func_145831_w().isEmptyBlock(this.func_174877_v().above())) {
+                if (!this.getLevel().isEmptyBlock(this.getBlockState().above())) {
                     this.breakCatalyst();
                 }
                 else {
@@ -113,13 +113,13 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell>
                         if (gain > 0.0 && this.tank.getFluidAmount() <= 2000) {
                             this.fillAndDiscardRest(this.runningRecipe, gain);
                             if (TileWell.rand.nextInt(750) == 0) {
-                                EntityFlare.spawnAmbientFlare(this.func_145831_w(), this.func_174877_v().offset(-3 + TileWell.rand.nextInt(7), 1, -3 + TileWell.rand.nextInt(7)));
+                                EntityFlare.spawnAmbientFlare(this.getLevel(), this.getBlockState().offset(-3 + TileWell.rand.nextInt(7), 1, -3 + TileWell.rand.nextInt(7)));
                             }
                         }
                         this.starlightBuffer = 0.0;
                         if (TileWell.rand.nextInt(1 + (int)(1000.0f * (statMultiplier * this.runningRecipe.getShatterMultiplier()))) == 0) {
                             this.breakCatalyst();
-                            EntityFlare.spawnAmbientFlare(this.func_145831_w(), this.func_174877_v().offset(-3 + TileWell.rand.nextInt(7), 1, -3 + TileWell.rand.nextInt(7)));
+                            EntityFlare.spawnAmbientFlare(this.getLevel(), this.getBlockState().offset(-3 + TileWell.rand.nextInt(7), 1, -3 + TileWell.rand.nextInt(7)));
                         }
                     }
                     else {
@@ -155,8 +155,8 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell>
         this.inventory.setStackInSlot(0, ItemStack.EMPTY);
         this.runningRecipe = null;
         final PktPlayEffect effect = new PktPlayEffect(PktPlayEffect.Type.SMALL_CRYSTAL_BREAK).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3(this).add(0.5, 1.3, 0.5)));
-        PacketChannel.CHANNEL.sendToAllAround(effect, PacketChannel.pointFromPos(this.func_145831_w(), (Vector3i)this.func_174877_v(), 32.0));
-        SoundHelper.playSoundAround(SoundEvents.field_187561_bM, this.func_145831_w(), (Vector3i)this.func_174877_v(), 1.0f, 1.0f);
+        PacketChannel.CHANNEL.sendToAllAround(effect, PacketChannel.pointFromPos(this.getLevel(), (Vector3i)this.getBlockState(), 32.0));
+        SoundHelper.playSoundAround(SoundEvents.field_187561_bM, this.getLevel(), (Vector3i)this.getBlockState(), 1.0f, 1.0f);
         this.markForUpdate();
     }
     
@@ -192,9 +192,9 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell>
     }
     
     private void collectStarlight() {
-        double sbDayDistribution = DayTimeHelper.getCurrentDaytimeDistribution(this.field_145850_b);
+        double sbDayDistribution = DayTimeHelper.getCurrentDaytimeDistribution(this.level);
         sbDayDistribution = 0.3 + 0.7 * sbDayDistribution;
-        final int yLevel = this.func_174877_v().getY();
+        final int yLevel = this.getBlockState().getY();
         float dstr;
         if (yLevel > 120) {
             dstr = 1.0f;
@@ -203,8 +203,8 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell>
             dstr = yLevel / 120.0f;
         }
         if (this.posDistribution == -1.0f) {
-            if (this.field_145850_b instanceof ISeedReader) {
-                this.posDistribution = SkyCollectionHelper.getSkyNoiseDistribution((ISeedReader)this.field_145850_b, this.func_174877_v());
+            if (this.level instanceof ISeedReader) {
+                this.posDistribution = SkyCollectionHelper.getSkyNoiseDistribution((ISeedReader)this.level, this.getBlockState());
             }
             else {
                 this.posDistribution = 0.3f;

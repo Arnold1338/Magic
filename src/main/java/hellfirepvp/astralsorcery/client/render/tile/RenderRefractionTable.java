@@ -26,15 +26,15 @@ public class RenderRefractionTable extends CustomTileEntityRenderer<TileRefracti
     public void render(final TileRefractionTable tile, final float pTicks, final PoseStack renderStack, final MultiBufferSource renderTypeBuffer, final int combinedLight, final int combinedOverlay) {
         if (!tile.hasParchment() && !tile.getInputStack().isEmpty()) {
             final ItemStack input = tile.getInputStack();
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_(0.5, 0.8500000238418579, 0.5);
-            renderStack.func_227862_a_(0.625f, 0.625f, 0.625f);
+            renderStack.translate(0.625f, 0.625f, 0.625f);
             Minecraft.getInstance().func_175599_af().func_229110_a_(input, ItemTransforms.TransformType.GROUND, combinedLight, combinedOverlay, renderStack, renderTypeBuffer);
-            renderStack.func_227865_b_();
+            renderStack.scale();
         }
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(0.5, 1.5, 0.5);
-        renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(180.0f));
+        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
         RenderType type = RenderRefractionTable.MODEL_REFRACTION_TABLE.getGeneralType();
         VertexConsumer vb = renderTypeBuffer.getBuffer(type);
         RenderRefractionTable.MODEL_REFRACTION_TABLE.renderFrame(renderStack, vb, combinedLight, combinedOverlay, 1.0f, 1.0f, 1.0f, 1.0f, tile.hasParchment());
@@ -45,7 +45,7 @@ public class RenderRefractionTable extends CustomTileEntityRenderer<TileRefracti
             RenderRefractionTable.MODEL_REFRACTION_TABLE.renderGlass(renderStack, vb, combinedLight, combinedOverlay, 1.0f, 1.0f, 1.0f, 1.0f);
             RenderingUtils.refreshDrawing(vb, type);
         }
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     static {

@@ -55,7 +55,7 @@ public class MantleEffectLucerna extends MantleEffect
     @OnlyIn(Dist.CLIENT)
     private void playBlockHighlight(final Player player, final Color highlightColor, final Predicate<BlockEntity> test) {
         float chance = 0.9f;
-        final Set<BlockPos> positions = BlockDiscoverer.searchForTileEntitiesAround(player.func_130014_f_(), player.func_233580_cy_(), (int)MantleEffectLucerna.CONFIG.range.get(), test);
+        final Set<BlockPos> positions = BlockDiscoverer.searchForTileEntitiesAround(player.level(), player.func_233580_cy_(), (int)MantleEffectLucerna.CONFIG.range.get(), test);
         for (final BlockPos pos : positions) {
             if (MantleEffectLucerna.rand.nextFloat() > chance) {
                 continue;
@@ -75,7 +75,7 @@ public class MantleEffectLucerna extends MantleEffect
     @OnlyIn(Dist.CLIENT)
     private void playEntityHighlight(final Player player) {
         final AABB box = new AABB(0.0, 0.0, 0.0, 0.0, 0.0, 0.0).func_186662_g((double)(int)MantleEffectLucerna.CONFIG.range.get()).func_186670_a(player.func_233580_cy_());
-        final List<LivingEntity> entities = player.func_130014_f_().func_217357_a((Class)LivingEntity.class, box);
+        final List<LivingEntity> entities = player.level().func_217357_a((Class)LivingEntity.class, box);
         for (final LivingEntity entity : entities) {
             if (entity.isAlive() && !entity.equals((Object)player)) {
                 if (MantleEffectLucerna.rand.nextInt(8) != 0) {

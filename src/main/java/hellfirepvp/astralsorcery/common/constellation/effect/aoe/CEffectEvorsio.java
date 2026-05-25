@@ -67,15 +67,15 @@ public class CEffectEvorsio extends CEffectAbstractList<ListEntries.PosEntry>
     
     @Nullable
     @Override
-    public ListEntries.PosEntry createElement(final World world, final BlockPos pos) {
+    public ListEntries.PosEntry createElement(final Level world, final BlockPos pos) {
         return new ListEntries.PosEntry(pos);
     }
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void playClientEffect(final World world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
+    public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         float addY = 1.0f;
-        if (!pedestal.func_174877_v().equals((Object)pos)) {
+        if (!pedestal.getBlockState().equals((Object)pos)) {
             addY = 0.0f;
         }
         final Vector3 motion = Vector3.random().multiply(0.1);
@@ -83,7 +83,7 @@ public class CEffectEvorsio extends CEffectAbstractList<ListEntries.PosEntry>
     }
     
     @Override
-    public boolean playEffect(final World world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
+    public boolean playEffect(final Level world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
         return world instanceof ServerLevel && this.peekNewPosition(world, pos, properties).mapLeft(newEntry -> {
             final BlockPos at = newEntry.getPos();
             if (properties.isCorrupted()) {
@@ -127,7 +127,7 @@ public class CEffectEvorsio extends CEffectAbstractList<ListEntries.PosEntry>
         }).ifRight(attemptedBreak -> this.sendConstellationPing(world, new Vector3((Vector3i)attemptedBreak).add(0.5, 0.5, 0.5))).left().orElse(false);
     }
     
-    private boolean canBreakBlock(final World world, final BlockPos pos, final BlockState state, final Predicate<BlockState> blacklist) {
+    private boolean canBreakBlock(final Level world, final BlockPos pos, final BlockState state, final Predicate<BlockState> blacklist) {
         if (blacklist.test(state)) {
             return false;
         }

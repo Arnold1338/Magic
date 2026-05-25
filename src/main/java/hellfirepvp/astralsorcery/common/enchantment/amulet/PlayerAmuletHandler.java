@@ -25,10 +25,10 @@ public class PlayerAmuletHandler implements ITickHandler
             return;
         }
         final Tuple<ItemStack, Player> linkedAmulet = AmuletEnchantmentHelper.getWornAmulet(event.getEnchantedItemStack());
-        if (linkedAmulet == null || ((ItemStack)linkedAmulet.func_76341_a()).isEmpty() || linkedAmulet.func_76340_b() == null) {
+        if (linkedAmulet == null || ((ItemStack)linkedAmulet.getA()).isEmpty() || linkedAmulet.getB() == null) {
             return;
         }
-        event.getEnchantmentsToApply().addAll(ItemEnchantmentAmulet.getAmuletEnchantments((ItemStack)linkedAmulet.func_76341_a()));
+        event.getEnchantmentsToApply().addAll(ItemEnchantmentAmulet.getAmuletEnchantments((ItemStack)linkedAmulet.getA()));
     }
     
     public void tick(final TickEvent.Type type, final Object... context) {

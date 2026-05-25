@@ -27,11 +27,11 @@ public class ContainerAltarTrait extends ContainerAltarBase
     void bindPlayerInventory(final Inventory plInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
-                this.func_75146_a(new Slot((Container)plInventory, j + i * 9 + 9, 48 + j * 18, 120 + i * 18));
+                this.render(new Slot((Container)plInventory, j + i * 9 + 9, 48 + j * 18, 120 + i * 18));
             }
         }
         for (int i = 0; i < 9; ++i) {
-            this.func_75146_a(new Slot((Container)plInventory, i, 48 + i * 18, 178));
+            this.render(new Slot((Container)plInventory, i, 48 + i * 18, 178));
         }
     }
     
@@ -39,10 +39,10 @@ public class ContainerAltarTrait extends ContainerAltarBase
     void bindAltarInventory(final TileInventory altarInventory) {
         for (int yy = 0; yy < 5; ++yy) {
             for (int xx = 0; xx < 5; ++xx) {
-                this.func_75146_a((Slot)new SlotItemHandler((IItemHandler)altarInventory, xx + yy * 5, 84 + xx * 18, 11 + yy * 18));
+                this.render((Slot)new SlotItemHandler((IItemHandler)altarInventory, xx + yy * 5, 84 + xx * 18, 11 + yy * 18));
             }
         }
-        this.func_75146_a((Slot)(this.focusSlot = new SlotConstellationFocus((IItemHandler)altarInventory, this.getTileEntity(), 35, 11)));
+        this.render((Slot)(this.focusSlot = new SlotConstellationFocus((IItemHandler)altarInventory, this.getTileEntity(), 35, 11)));
     }
     
     @Override

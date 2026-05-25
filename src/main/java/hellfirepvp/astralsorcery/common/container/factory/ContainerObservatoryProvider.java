@@ -25,7 +25,7 @@ public class ContainerObservatoryProvider extends CustomContainerProvider<Contai
     
     @Override
     protected void writeExtraData(final FriendlyByteBuf buf) {
-        ByteBufUtils.writePos(buf, this.observatory.func_174877_v());
+        ByteBufUtils.writePos(buf, this.observatory.getBlockState());
     }
     
     @Nonnull
@@ -37,7 +37,7 @@ public class ContainerObservatoryProvider extends CustomContainerProvider<Contai
     private static ContainerObservatory createFromPacket(final int windowId, final Inventory plInventory, final FriendlyByteBuf data) {
         final BlockPos at = ByteBufUtils.readPos(data);
         final Player player = plInventory.field_70458_d;
-        final TileObservatory observatory = MiscUtils.getTileAt((IBlockReader)player.func_130014_f_(), at, TileObservatory.class, true);
+        final TileObservatory observatory = MiscUtils.getTileAt((IBlockReader)player.level(), at, TileObservatory.class, true);
         return new ContainerObservatory(observatory, windowId);
     }
     

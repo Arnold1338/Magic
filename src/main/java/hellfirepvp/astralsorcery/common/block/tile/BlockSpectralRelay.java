@@ -42,9 +42,9 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
         return BlockSpectralRelay.RELAY;
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
-        if (!world.func_201670_d()) {
-            final ItemStack held = player.func_184586_b(hand);
+    public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
+        if (!world.level()) {
+            final ItemStack held = player.getItemInHand(hand);
             final TileSpectralRelay tar = MiscUtils.getTileAt((IBlockReader)world, pos, TileSpectralRelay.class, true);
             if (tar != null) {
                 final TileInventory inv = tar.getInventory();
@@ -61,7 +61,7 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
                     }
                     inv.setStackInSlot(0, ItemUtils.copyStackWithSize(held, 1));
                     world.func_184148_a((Player)null, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), SoundEvents.field_187638_cR, SoundSource.PLAYERS, 0.2f, ((world.field_73012_v.nextFloat() - world.field_73012_v.nextFloat()) * 0.7f + 1.0f) * 2.0f);
-                    if (!player.func_184812_l_()) {
+                    if (!player.getVehicle()) {
                         held.shrink(1);
                     }
                     tar.updateAltarLinkState();
@@ -81,29 +81,29 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
     }
     
     @Override
-    public void func_196243_a(final BlockState state, final World worldIn, final BlockPos pos, final BlockState newState, final boolean isMoving) {
+    public void func_196243_a(final BlockState state, final Level worldIn, final BlockPos pos, final BlockState newState, final boolean isMoving) {
         super.func_196243_a(state, worldIn, pos, newState, isMoving);
-        if (!worldIn.func_201670_d()) {
+        if (!worldIn.level()) {
             TileSpectralRelay.cascadeRelayProximityUpdates(worldIn, pos);
         }
     }
     
     public BlockState func_196271_a(final BlockState state, final Direction placedAgainst, final BlockState facingState, final IWorld world, final BlockPos pos, final BlockPos facingPos) {
         if (!this.func_196260_a(state, (IWorldReader)world, pos)) {
-            return Blocks.field_150350_a.defaultBlockState();
+            return Blocks.AIR.defaultBlockState();
         }
         return state;
     }
     
     public boolean func_196260_a(final BlockState state, final IWorldReader world, final BlockPos pos) {
-        return func_220064_c((IBlockReader)world, pos.func_177977_b());
+        return func_220064_c((IBlockReader)world, pos.renderItem());
     }
     
     public boolean func_149740_M(final BlockState p_149740_1_) {
         return true;
     }
     
-    public int func_180641_l(final BlockState state, final World world, final BlockPos pos) {
+    public int func_180641_l(final BlockState state, final Level world, final BlockPos pos) {
         final TileSpectralRelay tsr = MiscUtils.getTileAt((IBlockReader)world, pos, TileSpectralRelay.class, false);
         if (tsr != null) {
             return tsr.getInventory().getStackInSlot(0).isEmpty() ? 0 : 15;
@@ -125,6 +125,6 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
     }
     
     static {
-        RELAY = Block.func_208617_a(2.0, 0.0, 2.0, 14.0, 2.0, 14.0);
+        RELAY = Block.of(2.0, 0.0, 2.0, 14.0, 2.0, 14.0);
     }
 }

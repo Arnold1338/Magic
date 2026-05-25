@@ -22,7 +22,7 @@ public class BlockTranslucentBlock extends BlockFakedState
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_180655_c(final BlockState state, final World world, final BlockPos pos, final Random rand) {
+    public void func_180655_c(final BlockState state, final Level world, final BlockPos pos, final Random rand) {
         this.playParticles(world, pos, rand);
     }
     

@@ -26,7 +26,7 @@ import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeItem;
 public abstract class ItemBlockCollectorCrystal extends ItemBlockCustom implements CrystalAttributeItem, ConstellationItem
 {
     public ItemBlockCollectorCrystal(final Block block, final Item.Properties itemProperties) {
-        super(block, itemProperties.func_200916_a(CommonProxy.ITEM_GROUP_AS_CRYSTALS).func_200917_a(1));
+        super(block, itemProperties.hasModifier(CommonProxy.ITEM_GROUP_AS_CRYSTALS).func_200917_a(1));
     }
     
     public void func_150895_a(final CreativeModeTab group, final NonNullList<ItemStack> stacks) {

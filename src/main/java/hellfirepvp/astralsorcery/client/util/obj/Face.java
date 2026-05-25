@@ -36,7 +36,7 @@ public class Face
             if (this.textureCoordinates[i].v > averageV) {
                 offsetV = -offsetV;
             }
-            vb.func_225582_a_((double)this.vertices[i].x, (double)this.vertices[i].y, (double)this.vertices[i].z).func_225586_a_(255, 255, 255, 255).func_225583_a_(this.textureCoordinates[i].u + offsetU, this.textureCoordinates[i].v + offsetV).func_225584_a_(this.faceNormal.x, this.faceNormal.y, this.faceNormal.z).func_181675_d();
+            vb.func_225582_a_((double)this.vertices[i].x, (double)this.vertices[i].y, (double)this.vertices[i].z).setPos(255, 255, 255, 255).setPos(this.textureCoordinates[i].u + offsetU, this.textureCoordinates[i].v + offsetV).func_225584_a_(this.faceNormal.x, this.faceNormal.y, this.faceNormal.z).blockPosition();
         }
     }
     

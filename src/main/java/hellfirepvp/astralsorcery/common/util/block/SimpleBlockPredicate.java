@@ -36,13 +36,13 @@ public class SimpleBlockPredicate implements BlockPredicate, Predicate<BlockStat
     public static SimpleBlockPredicate fromConfig(final String serialized) {
         if (BlockStateHelper.isMissingStateInformation(serialized)) {
             final Block b = BlockStateHelper.deserializeBlock(serialized);
-            if (b != Blocks.field_150350_a) {
+            if (b != Blocks.AIR) {
                 return new SimpleBlockPredicate(b);
             }
         }
         else {
             final BlockState state = BlockStateHelper.deserialize(serialized);
-            if (state.getBlock() != Blocks.field_150350_a) {
+            if (state.getBlock() != Blocks.AIR) {
                 return new SimpleBlockPredicate(new BlockState[] { state });
             }
         }
@@ -56,7 +56,7 @@ public class SimpleBlockPredicate implements BlockPredicate, Predicate<BlockStat
     }
     
     @Override
-    public boolean test(final World world, final BlockPos pos, final BlockState state) {
+    public boolean test(final Level world, final BlockPos pos, final BlockState state) {
         return this.test(state);
     }
 }

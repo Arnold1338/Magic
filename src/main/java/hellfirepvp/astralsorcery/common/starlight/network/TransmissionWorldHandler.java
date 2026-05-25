@@ -40,9 +40,9 @@ public class TransmissionWorldHandler
     private final Map<IIndependentStarlightSource, TransmissionChain> cachedSourceChain;
     private final Map<BlockPos, List<IIndependentStarlightSource>> posToSourceMap;
     private final Set<BlockPos> sourcePosBuilding;
-    private final RegistryKey<World> dim;
+    private final RegistryKey<Level> dim;
     
-    public TransmissionWorldHandler(final RegistryKey<World> dimKey) {
+    public TransmissionWorldHandler(final RegistryKey<Level> dimKey) {
         this.involvedSourceMap = new HashMap<ChunkPos, List<IIndependentStarlightSource>>();
         this.activeChunkMap = new HashMap<IIndependentStarlightSource, List<ChunkPos>>();
         this.cachedSourceChain = new HashMap<IIndependentStarlightSource, TransmissionChain>();
@@ -52,13 +52,13 @@ public class TransmissionWorldHandler
     }
     
     public void tick(final ServerLevel world) {
-        final WorldNetworkHandler handler = WorldNetworkHandler.getNetworkHandler((World)world);
+        final WorldNetworkHandler handler = WorldNetworkHandler.getNetworkHandler((Level)world);
         for (final Tuple<BlockPos, IIndependentStarlightSource> sourceTuple : handler.getAllSources()) {
-            final BlockPos at = (BlockPos)sourceTuple.func_76341_a();
-            final IIndependentStarlightSource source = (IIndependentStarlightSource)sourceTuple.func_76340_b();
+            final BlockPos at = (BlockPos)sourceTuple.getA();
+            final IIndependentStarlightSource source = (IIndependentStarlightSource)sourceTuple.getB();
             if (!this.cachedSourceChain.containsKey(source) && !this.sourcePosBuilding.contains(at)) {
                 this.sourcePosBuilding.add(at);
-                this.buildNetworkChain((World)world, source, handler, at);
+                this.buildNetworkChain((Level)world, source, handler, at);
             }
             final List<ChunkPos> activeChunks = this.activeChunkMap.get(source);
             if (activeChunks != null) {
@@ -77,13 +77,13 @@ public class TransmissionWorldHandler
                     final BlockPos pos = rec.getLocationPos();
                     multiplier = lossMultipliers.get(pos);
                     if (multiplier != null) {
-                        rec.onStarlightReceive((World)world, type, starlight * multiplier);
+                        rec.onStarlightReceive((Level)world, type, starlight * multiplier);
                     }
                 }
                 if (starlight > 0.01f) {
                     chain.getTransmissionUpdates().forEach((node, multiplier) -> {
                         if (multiplier >= 0.01f) {
-                            node.onTransmissionTick((World)world, starlight * multiplier, type);
+                            node.onTransmissionTick((Level)world, starlight * multiplier, type);
                         }
                         return;
                     });
@@ -95,19 +95,19 @@ public class TransmissionWorldHandler
                         if (b instanceof BlockStarlightRecipient) {
                             final Float multiplier2 = lossMultipliers.get(endPointPos);
                             if (multiplier2 != null) {
-                                ((BlockStarlightRecipient)b).receiveStarlight((World)world, TransmissionWorldHandler.rand, endPointPos, type, starlight * multiplier2);
+                                ((BlockStarlightRecipient)b).receiveStarlight((Level)world, TransmissionWorldHandler.rand, endPointPos, type, starlight * multiplier2);
                             }
                         }
                         else {
-                            final StarlightNetworkRegistry.IStarlightBlockHandler handle = StarlightNetworkRegistry.getStarlightHandler((World)world, endPointPos, endState, type);
+                            final StarlightNetworkRegistry.IStarlightBlockHandler handle = StarlightNetworkRegistry.getStarlightHandler((Level)world, endPointPos, endState, type);
                             if (handle != null) {
                                 final Float multiplier3 = lossMultipliers.get(endPointPos);
                                 if (multiplier3 != null) {
-                                    handle.receiveStarlight((World)world, TransmissionWorldHandler.rand, endPointPos, endState, type, starlight * multiplier3);
+                                    handle.receiveStarlight((Level)world, TransmissionWorldHandler.rand, endPointPos, endState, type, starlight * multiplier3);
                                 }
                             }
                             else {
-                                chain.updatePosAsResolved((World)world, endPointPos);
+                                chain.updatePosAsResolved((Level)world, endPointPos);
                             }
                         }
                     });
@@ -116,11 +116,11 @@ public class TransmissionWorldHandler
         }
     }
     
-    private void buildNetworkChain(final World world, final IIndependentStarlightSource source, final WorldNetworkHandler handler, final BlockPos sourcePos) {
+    private void buildNetworkChain(final Level world, final IIndependentStarlightSource source, final WorldNetworkHandler handler, final BlockPos sourcePos) {
         TransmissionChain.buildNetworkChain(world, this, source, handler, sourcePos);
     }
     
-    void updateNetworkChainData(final World world, final TransmissionChain chain, final IIndependentStarlightSource source, final WorldNetworkHandler handle, final BlockPos sourcePos) {
+    void updateNetworkChainData(final Level world, final TransmissionChain chain, final IIndependentStarlightSource source, final WorldNetworkHandler handle, final BlockPos sourcePos) {
         this.sourcePosBuilding.remove(sourcePos);
         this.cachedSourceChain.put(source, chain);
         final List<ChunkPos> activeChunks = new LinkedList<ChunkPos>();

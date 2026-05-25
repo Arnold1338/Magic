@@ -7,7 +7,7 @@ import net.minecraft.world.item.Item;
 public class ItemRockCrystal extends ItemCrystalBase
 {
     public ItemRockCrystal() {
-        super(new Item.Properties().func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     @Override

@@ -68,7 +68,7 @@ public class PerkTreePoint<T extends AbstractPerk> implements PerkRender
         final BufferBuilder buf = drawCtx.getContext(grp);
         final float size = this.renderSize * scale;
         final Tuple<Float, Float> frameUV = tex.getUVOffset(spriteOffsetTick);
-        RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, x - size, y - size, zLevel, size * 2.0f, size * 2.0f).tex((float)frameUV.func_76341_a(), (float)frameUV.func_76340_b(), tex.getULength(), tex.getVLength()).draw();
+        RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, x - size, y - size, zLevel, size * 2.0f, size * 2.0f).tex((float)frameUV.getA(), (float)frameUV.getB(), tex.getULength(), tex.getVLength()).draw();
         return new Rectangle2D.Float(-size, -size, size * 2.0f, size * 2.0f);
     }
     

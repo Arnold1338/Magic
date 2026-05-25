@@ -54,7 +54,7 @@ public class ConstellationHandler
         return this.lastRecordedDay;
     }
     
-    public void tick(final World world) {
+    public void tick(final Level world) {
         if (this.activeMap.isEmpty()) {
             this.initialize();
         }
@@ -66,7 +66,7 @@ public class ConstellationHandler
         }
     }
     
-    private void updateActiveConstellations(final World world) {
+    private void updateActiveConstellations(final Level world) {
         this.visibleSpecialConstellations.clear();
         final MoonPhase ph = MoonPhase.fromWorld((IWorld)world);
         final LinkedList<IConstellation> active = new LinkedList<IConstellation>(this.activeMap.computeIfAbsent(ph, p -> Lists.newLinkedList()));

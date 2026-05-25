@@ -56,7 +56,7 @@ public class MergeCrystalsRecipe extends LiquidStarlightRecipe
     }
     
     @Override
-    public boolean matches(final ItemEntity trigger, final World world, final BlockPos at) {
+    public boolean matches(final ItemEntity trigger, final Level world, final BlockPos at) {
         final List<Entity> otherEntities = this.getEntitiesInBlock((IWorld)world, at);
         otherEntities.remove(trigger);
         final Optional<Entity> crystalEntity = otherEntities.stream().filter(e -> e instanceof ItemEntity).filter(e -> ((ItemEntity)e).func_92059_d().getItem() instanceof ItemCrystalBase).findFirst();
@@ -64,11 +64,11 @@ public class MergeCrystalsRecipe extends LiquidStarlightRecipe
     }
     
     @Override
-    public void doServerCraftTick(final ItemEntity trigger, final World world, final BlockPos at) {
+    public void doServerCraftTick(final ItemEntity trigger, final Level world, final BlockPos at) {
         final Random r = new Random(Mth.func_180186_a((Vector3i)at));
         final ItemStack crystalFoundOne;
         final ItemStack crystalFoundTwo;
-        if (!world.func_201670_d() && this.getAndIncrementCraftingTick((Entity)trigger) > 40 + r.nextInt(20) && (crystalFoundOne = this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null && (crystalFoundTwo = this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null && world.func_180501_a(at, Blocks.field_150350_a.defaultBlockState(), 11)) {
+        if (!world.level() && this.getAndIncrementCraftingTick((Entity)trigger) > 40 + r.nextInt(20) && (crystalFoundOne = this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null && (crystalFoundTwo = this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null && world.func_180501_a(at, Blocks.AIR.defaultBlockState(), 11)) {
             final ItemCrystalBase crystalOne = (ItemCrystalBase)crystalFoundOne.getItem();
             CrystalAttributes attrOne = crystalOne.getAttributes(crystalFoundOne);
             attrOne = ((attrOne != null) ? attrOne : CrystalAttributes.Builder.newBuilder(false).build());
@@ -94,12 +94,12 @@ public class MergeCrystalsRecipe extends LiquidStarlightRecipe
                 }
             }
             resultCrystal.setAttributes(resultStack, resultBuilder.build());
-            ItemUtils.dropItemNaturally(world, trigger.func_226277_ct_(), trigger.func_226278_cu_(), trigger.func_226281_cx_(), resultStack);
+            ItemUtils.dropItemNaturally(world, trigger.getX(), trigger.getY(), trigger.getZ(), resultStack);
         }
     }
     
     @Override
-    public void doClientEffectTick(final ItemEntity trigger, final World world, final BlockPos at) {
+    public void doClientEffectTick(final ItemEntity trigger, final Level world, final BlockPos at) {
         for (int i = 0; i < 3; ++i) {
             final Vector3 pos = Vector3.atEntityCenter((Entity)trigger);
             MiscUtils.applyRandomOffset(pos, MergeCrystalsRecipe.rand, 0.15f);

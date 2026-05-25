@@ -64,7 +64,7 @@ public class IndependentCrystalSource implements IIndependentStarlightSource
             return 0.0f;
         }
         final IWeakConstellation cst = this.getStarlightType();
-        final WorldContext ctx = SkyHandler.getContext((World)world, LogicalSide.SERVER);
+        final WorldContext ctx = SkyHandler.getContext((Level)world, LogicalSide.SERVER);
         if (ctx == null || cst == null) {
             return 0.0f;
         }
@@ -78,11 +78,11 @@ public class IndependentCrystalSource implements IIndependentStarlightSource
                 buf.writeInt(this.constellation.getConstellationColor().darker().getRGB());
                 return;
             });
-            PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos((World)world, (Vector3i)pos, 32.0));
+            PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos((Level)world, (Vector3i)pos, 32.0));
         }
         final Function<Float, Float> distrFunction = this.getDistributionFunc();
         float perc = CrystalCalculations.getCollectorCrystalCollectionRate(this);
-        perc *= distrFunction.apply(0.3f + 0.7f * DayTimeHelper.getCurrentDaytimeDistribution((World)world));
+        perc *= distrFunction.apply(0.3f + 0.7f * DayTimeHelper.getCurrentDaytimeDistribution((Level)world));
         perc *= (float)this.collectionDstMultiplier;
         perc *= (float)(1.0 + 0.3 * this.posDistribution);
         perc *= (float)(0.4 + 0.6 * ctx.getDistributionHandler().getDistribution(cst));

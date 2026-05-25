@@ -40,7 +40,7 @@ public class ResolvingRecipeType<C extends IItemHandler, T extends IHandlerRecip
         this.type = (RecipeType<T>)new RecipeType<T>() {
             @Override
             public String toString() {
-                return ResolvingRecipeType.this.id.func_110623_a();
+                return ResolvingRecipeType.this.id.addTransientModifier();
             }
         };
         Registry.func_218322_a(Registry.field_218367_H, this.getRegistryName(), (Object)this.getType());
@@ -52,7 +52,7 @@ public class ResolvingRecipeType<C extends IItemHandler, T extends IHandlerRecip
         if (mgr == null) {
             return Collections.emptyList();
         }
-        final Collection<Recipe<Container>> recipeSet = mgr.func_215366_a((RecipeType)this.type).values();
+        final Collection<Recipe<Container>> recipeSet = mgr.getRecipeFor((RecipeType)this.type).values();
         final List<T> recipes = new ArrayList<T>(recipeSet.size());
         for (final Recipe<Container> rec : recipeSet) {
             recipes.add((T)(IHandlerRecipe)rec);

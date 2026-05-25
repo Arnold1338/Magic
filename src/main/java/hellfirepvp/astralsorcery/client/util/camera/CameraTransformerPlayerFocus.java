@@ -21,8 +21,8 @@ public class CameraTransformerPlayerFocus extends CameraTransformerSettingsCache
     public void onStartTransforming(final float pTicks) {
         super.onStartTransforming(pTicks);
         final EntityClientReplacement repl = new EntityClientReplacement();
-        repl.func_70020_e(Minecraft.getInstance().field_71439_g.func_189511_e(new CompoundTag()));
-        Minecraft.getInstance().field_71441_e.func_217408_a(repl.func_145782_y(), (AbstractClientPlayerEntity)repl);
+        repl.func_70020_e(Minecraft.getInstance().player.func_189511_e(new CompoundTag()));
+        Minecraft.getInstance().level.func_217408_a(repl.func_145782_y(), (AbstractClientPlayerEntity)repl);
         this.clientEntity = repl;
         this.entity.setAsRenderViewEntity();
     }
@@ -31,16 +31,16 @@ public class CameraTransformerPlayerFocus extends CameraTransformerSettingsCache
     public void onStopTransforming(final float pTicks) {
         super.onStopTransforming(pTicks);
         final Minecraft mc = Minecraft.getInstance();
-        if (mc.field_71441_e != null) {
-            mc.field_71441_e.func_217413_d(this.clientEntity.func_145782_y());
+        if (mc.level != null) {
+            mc.level.func_217413_d(this.clientEntity.func_145782_y());
         }
-        if (mc.field_71439_g != null) {
-            final Player player = (Player)mc.field_71439_g;
-            player.func_70080_a(this.clientEntity.func_226277_ct_(), this.clientEntity.func_226278_cu_(), this.clientEntity.func_226281_cx_(), this.clientEntity.field_70177_z, this.clientEntity.field_70125_A);
-            player.func_70016_h(0.0, 0.0, 0.0);
+        if (mc.player != null) {
+            final Player player = (Player)mc.player;
+            player.func_70080_a(this.clientEntity.getX(), this.clientEntity.getY(), this.clientEntity.getZ(), this.clientEntity.yRot, this.clientEntity.xRot);
+            player.setDeltaMovement(0.0, 0.0, 0.0);
         }
         ClientCameraUtil.resetCamera();
-        if (mc.field_71441_e != null) {
+        if (mc.level != null) {
             this.entity.onStopTransforming();
         }
     }

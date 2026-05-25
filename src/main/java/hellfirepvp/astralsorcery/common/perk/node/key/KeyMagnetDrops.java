@@ -34,8 +34,8 @@ public class KeyMagnetDrops extends KeyPerk
     
     private void onEntityLoot(final LivingDropsEvent event) {
         final DamageSource source = event.getSource();
-        if (source.func_76346_g() != null && source.func_76346_g() instanceof Player) {
-            final Player player = (Player)source.func_76346_g();
+        if (source.getEnchantments( != null && source.getEnchantments( instanceof Player) {
+            final Player player = (Player)source.getEnchantments(;
             final LogicalSide side = this.getSide((Entity)player);
             final PlayerProgress prog = ResearchHelper.getProgress(player, side);
             if (prog.getPerkData().hasPerkEffect(this)) {
@@ -43,7 +43,7 @@ public class KeyMagnetDrops extends KeyPerk
                 for (final ItemEntity drop : event.getDrops()) {
                     final ItemStack remain = ItemUtils.dropItemToPlayer(player, drop.func_92059_d());
                     if (!remain.isEmpty()) {
-                        final ItemEntity newDrop = new ItemEntity(drop.func_130014_f_(), drop.func_226277_ct_(), drop.func_226278_cu_(), drop.func_226281_cx_());
+                        final ItemEntity newDrop = new ItemEntity(drop.level(), drop.getX(), drop.getY(), drop.getZ());
                         newDrop.func_180432_n((Entity)drop);
                         remaining.add(newDrop);
                     }

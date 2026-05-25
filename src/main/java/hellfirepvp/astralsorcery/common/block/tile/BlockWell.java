@@ -54,13 +54,13 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock
     }
     
     protected VoxelShape createShape() {
-        final VoxelShape footing = Block.func_208617_a(1.0, 0.0, 1.0, 15.0, 2.0, 15.0);
-        final VoxelShape floor = Block.func_208617_a(3.0, 2.0, 3.0, 13.0, 4.0, 13.0);
-        final VoxelShape basinFloor = Block.func_208617_a(1.0, 4.0, 1.0, 15.0, 5.0, 15.0);
-        final VoxelShape w1 = Block.func_208617_a(1.0, 5.0, 1.0, 2.0, 16.0, 14.0);
-        final VoxelShape w2 = Block.func_208617_a(2.0, 5.0, 1.0, 15.0, 16.0, 2.0);
-        final VoxelShape w3 = Block.func_208617_a(14.0, 5.0, 2.0, 15.0, 16.0, 15.0);
-        final VoxelShape w4 = Block.func_208617_a(1.0, 5.0, 14.0, 14.0, 16.0, 15.0);
+        final VoxelShape footing = Block.of(1.0, 0.0, 1.0, 15.0, 2.0, 15.0);
+        final VoxelShape floor = Block.of(3.0, 2.0, 3.0, 13.0, 4.0, 13.0);
+        final VoxelShape basinFloor = Block.of(1.0, 4.0, 1.0, 15.0, 5.0, 15.0);
+        final VoxelShape w1 = Block.of(1.0, 5.0, 1.0, 2.0, 16.0, 14.0);
+        final VoxelShape w2 = Block.of(2.0, 5.0, 1.0, 15.0, 16.0, 2.0);
+        final VoxelShape w3 = Block.of(14.0, 5.0, 2.0, 15.0, 16.0, 15.0);
+        final VoxelShape w4 = Block.of(1.0, 5.0, 14.0, 14.0, 16.0, 15.0);
         return VoxelUtils.combineAll(BooleanOp.field_223244_o_, footing, floor, basinFloor, w1, w2, w3, w4);
     }
     
@@ -68,9 +68,9 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock
         return this.shape;
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
-        if (!world.func_201670_d()) {
-            final ItemStack heldItem = player.func_184586_b(hand);
+    public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
+        if (!world.level()) {
+            final ItemStack heldItem = player.getItemInHand(hand);
             if (!heldItem.isEmpty()) {
                 final TileWell tw = MiscUtils.getTileAt((IBlockReader)world, pos, TileWell.class, false);
                 if (tw == null) {
@@ -87,10 +87,10 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock
                     }
                     handle.setStackInSlot(0, ItemUtils.copyStackWithSize(heldItem, 1));
                     world.func_184148_a((Player)null, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), SoundEvents.field_187638_cR, SoundSource.PLAYERS, 0.2f, ((world.field_73012_v.nextFloat() - world.field_73012_v.nextFloat()) * 0.7f + 1.0f) * 2.0f);
-                    if (!player.func_184812_l_()) {
+                    if (!player.getVehicle()) {
                         heldItem.shrink(1);
                     }
-                    if (heldItem.func_190916_E() <= 0) {
+                    if (heldItem.getCount() <= 0) {
                         player.func_184611_a(hand, ItemStack.EMPTY);
                     }
                 }
@@ -108,7 +108,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock
     }
     
     @Override
-    public void func_196243_a(final BlockState state, final World worldIn, final BlockPos pos, final BlockState newState, final boolean isMoving) {
+    public void func_196243_a(final BlockState state, final Level worldIn, final BlockPos pos, final BlockState newState, final boolean isMoving) {
         final TileWell tw = MiscUtils.getTileAt((IBlockReader)worldIn, pos, TileWell.class, true);
         if (tw != null && !worldIn.isClientSide) {
             final ItemStack stack = tw.getInventory().getStackInSlot(0);
@@ -123,7 +123,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock
         return true;
     }
     
-    public int func_180641_l(final BlockState state, final World world, final BlockPos pos) {
+    public int func_180641_l(final BlockState state, final Level world, final BlockPos pos) {
         final TileWell tw = MiscUtils.getTileAt((IBlockReader)world, pos, TileWell.class, false);
         if (tw != null) {
             final int fluidPart = Mth.func_76123_f(tw.getTank().getPercentageFilled() * 8.0f);

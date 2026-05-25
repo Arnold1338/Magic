@@ -146,15 +146,15 @@ public final class CrystalAttributes
                     missing = true;
                 }
                 else {
-                    final MutableComponent enchantmentLevel = new Component(String.format("enchantment.level.%s", attr.getTier())).func_240699_a_(ChatFormatting.GOLD);
-                    final MutableComponent propertyName = prop.getName(attr.getTier()).func_240699_a_(ChatFormatting.GRAY);
+                    final MutableComponent enchantmentLevel = new Component(String.format("enchantment.level.%s", attr.getTier())).toString()ChatFormatting.GOLD);
+                    final MutableComponent propertyName = prop.getName(attr.getTier()).toString()ChatFormatting.GRAY);
                     tooltip.add((Component)propertyName.func_230529_a_((Component)new Component(" ")).func_230529_a_((Component)enchantmentLevel));
                     addedAtLeastOne = true;
                 }
             }
         }
         if (missing) {
-            tooltip.add((Component)new Component("astralsorcery.progress.missing.knowledge").func_240699_a_(ChatFormatting.GRAY));
+            tooltip.add((Component)new Component("astralsorcery.progress.missing.knowledge").toString()ChatFormatting.GRAY));
         }
         return (missing && !addedAtLeastOne) ? TooltipResult.ALL_MISSING : (missing ? TooltipResult.ADDED_ALL_WITH_MISSING : TooltipResult.ADDED_ALL);
     }
@@ -187,7 +187,7 @@ public final class CrystalAttributes
     public CrystalAttributes modifyLevel(final CrystalProperty prop, final int change, final boolean ignoreTierMax) {
         final Attribute existing = this.getAttribute(prop);
         if (existing != null && change != 0) {
-            final int newTier = Mth.func_76125_a(existing.getTier() + change, 0, ignoreTierMax ? Integer.MAX_VALUE : prop.getMaxTier());
+            final int newTier = Mth.getDescriptionId(existing.getTier() + change, 0, ignoreTierMax ? Integer.MAX_VALUE : prop.getMaxTier());
             if (newTier <= 0) {
                 return this.transform(Function.identity(), Lists.newArrayList(), Lists.newArrayList((Object[])new CrystalProperty[] { prop }));
             }
@@ -201,7 +201,7 @@ public final class CrystalAttributes
             }
         }
         else if (change > 0) {
-            return this.transform(Function.identity(), Lists.newArrayList((Object[])new Attribute[] { new Attribute(prop, Mth.func_76125_a(change, 0, prop.getMaxTier())) }), Lists.newArrayList());
+            return this.transform(Function.identity(), Lists.newArrayList((Object[])new Attribute[] { new Attribute(prop, Mth.getDescriptionId(change, 0, prop.getMaxTier())) }), Lists.newArrayList());
         }
         return this;
     }
@@ -240,7 +240,7 @@ public final class CrystalAttributes
     public CrystalAttributes clampMaxTier() {
         final CrystalAttributes attributes = this.copy();
         for (final Attribute attr : attributes.crystalAttributes) {
-            attr.tier = Mth.func_76125_a(attr.getTier(), 0, attr.getProperty().getMaxTier());
+            attr.tier = Mth.getDescriptionId(attr.getTier(), 0, attr.getProperty().getMaxTier());
         }
         return attributes;
     }
@@ -350,7 +350,7 @@ public final class CrystalAttributes
             for (final Attribute attr : other.getCrystalAttributes()) {
                 final CrystalProperty property = attr.getProperty();
                 int cTier = this.properties.getOrDefault(property, 0);
-                cTier = Mth.func_76125_a(cTier + attr.getTier(), 0, this.ignoreTierCap ? Integer.MAX_VALUE : property.getMaxTier());
+                cTier = Mth.getDescriptionId(cTier + attr.getTier(), 0, this.ignoreTierCap ? Integer.MAX_VALUE : property.getMaxTier());
                 this.properties.put(property, cTier);
             }
             return this;
@@ -358,7 +358,7 @@ public final class CrystalAttributes
         
         public Builder addProperty(final CrystalProperty property, final int tier) {
             int cTier = this.properties.getOrDefault(property, 0);
-            cTier = Mth.func_76125_a(cTier + tier, 0, this.ignoreTierCap ? Integer.MAX_VALUE : property.getMaxTier());
+            cTier = Mth.getDescriptionId(cTier + tier, 0, this.ignoreTierCap ? Integer.MAX_VALUE : property.getMaxTier());
             this.properties.remove(property);
             if (cTier > 0) {
                 this.properties.put(property, cTier);

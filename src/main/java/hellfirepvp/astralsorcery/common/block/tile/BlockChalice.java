@@ -40,17 +40,17 @@ public class BlockChalice extends BaseEntityBlock implements CustomItemBlock
         return BlockChalice.CHALICE;
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult brtr) {
-        final ItemStack interact = player.func_184586_b(hand);
+    public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult brtr) {
+        final ItemStack interact = player.getItemInHand(hand);
         final TileChalice tc = MiscUtils.getTileAt((IBlockReader)world, pos, TileChalice.class, true);
         if (tc != null) {
             final IFluidHandlerItem handlerItem = (IFluidHandlerItem)FluidUtil.getFluidHandler(interact).orElse((Object)null);
             if (handlerItem != null) {
-                if (!world.func_201670_d()) {
+                if (!world.level()) {
                     final FluidStack st = FluidUtil.getFluidContained(interact).orElse(FluidStack.EMPTY);
                     if (st.isEmpty()) {
                         final FluidActionResult far = FluidUtil.tryFillContainer(interact, tc.getTankAccess(), 1000, player, true);
-                        if (far.isSuccess() && !player.func_184812_l_()) {
+                        if (far.isSuccess() && !player.getVehicle()) {
                             interact.shrink(1);
                             player.func_184611_a(hand, interact);
                             player.getInventory().func_191975_a(world, far.getResult());
@@ -58,7 +58,7 @@ public class BlockChalice extends BaseEntityBlock implements CustomItemBlock
                     }
                     else {
                         final FluidActionResult far = FluidUtil.tryEmptyContainer(interact, tc.getTankAccess(), 1000, player, true);
-                        if (far.isSuccess() && !player.func_184812_l_()) {
+                        if (far.isSuccess() && !player.getVehicle()) {
                             interact.shrink(1);
                             player.func_184611_a(hand, interact);
                             player.getInventory().func_191975_a(world, far.getResult());
@@ -75,7 +75,7 @@ public class BlockChalice extends BaseEntityBlock implements CustomItemBlock
         return true;
     }
     
-    public int func_180641_l(final BlockState state, final World world, final BlockPos pos) {
+    public int func_180641_l(final BlockState state, final Level world, final BlockPos pos) {
         final TileChalice tc = MiscUtils.getTileAt((IBlockReader)world, pos, TileChalice.class, false);
         if (tc != null) {
             return Mth.func_76123_f(tc.getTank().getPercentageFilled() * 15.0f);

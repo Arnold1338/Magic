@@ -39,16 +39,16 @@ public class BlockIlluminator extends BaseEntityBlock implements CustomItemBlock
         for (int xx = 0; xx < 3; ++xx) {
             for (int yy = 0; yy < 3; ++yy) {
                 for (int zz = 0; zz < 3; ++zz) {
-                    shapes.add(Block.func_208617_a((double)(1 + xx * 5), (double)(1 + yy * 5), (double)(1 + zz * 5), (double)(5 + xx * 5), (double)(5 + yy * 5), (double)(5 + zz * 5)));
+                    shapes.add(Block.of((double)(1 + xx * 5), (double)(1 + yy * 5), (double)(1 + zz * 5), (double)(5 + xx * 5), (double)(5 + yy * 5), (double)(5 + zz * 5)));
                 }
             }
         }
         return VoxelUtils.combineAll(BooleanOp.field_223244_o_, shapes);
     }
     
-    public void func_180633_a(final World world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
+    public void func_180633_a(final Level world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
         super.func_180633_a(world, pos, state, placer, stack);
-        if (!world.func_201670_d() && placer instanceof Player) {
+        if (!world.level() && placer instanceof Player) {
             final TileIlluminator illuminator = MiscUtils.getTileAt((IBlockReader)world, pos, TileIlluminator.class, true);
             if (illuminator != null) {
                 illuminator.setPlayerPlaced(true);

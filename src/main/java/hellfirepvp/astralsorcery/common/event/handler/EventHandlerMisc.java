@@ -41,7 +41,7 @@ public class EventHandlerMisc
     }
     
     private static void onCrystalToss(final ItemTossEvent event) {
-        if (!event.getPlayer().func_130014_f_().func_201670_d()) {
+        if (!event.getPlayer().level().level()) {
             final ItemStack thrown = event.getEntityItem().func_92059_d();
             if (thrown.getItem() instanceof ItemCrystalBase) {
                 event.getEntityItem().func_200216_c(event.getPlayer().getUUID());
@@ -50,7 +50,7 @@ public class EventHandlerMisc
     }
     
     private static void onLecternOpen(final PlayerInteractEvent.RightClickBlock event) {
-        if (event.getWorld().func_201670_d()) {
+        if (event.getWorld().level()) {
             return;
         }
         final LecternTileEntity lectern = MiscUtils.getTileAt((IBlockReader)event.getWorld(), event.getPos(), LecternTileEntity.class, false);
@@ -65,7 +65,7 @@ public class EventHandlerMisc
     
     private static void onChunkLoad(final ChunkEvent.Load event) {
         final IChunk ch = event.getChunk();
-        if (ch instanceof Chunk && !event.getWorld().func_201670_d()) {
+        if (ch instanceof Chunk && !event.getWorld().level()) {
             ((Chunk)ch).getCapability((Capability)CapabilitiesAS.CHUNK_FLUID).ifPresent(entry -> {
                 if (!entry.isInitialized()) {
                     final IWorld w = event.getWorld();
@@ -84,7 +84,7 @@ public class EventHandlerMisc
     }
     
     private static void onPlayerSleepEclipse(final PlayerSleepInBedEvent event) {
-        final WorldContext ctx = SkyHandler.getContext(event.getEntityLiving().func_130014_f_());
+        final WorldContext ctx = SkyHandler.getContext(event.getEntityLiving().level());
         if (ctx != null && ctx.getCelestialEventHandler().getSolarEclipse().isActiveNow() && event.getResultStatus() == null) {
             event.setResult(Player.SleepResult.NOT_POSSIBLE_NOW);
         }

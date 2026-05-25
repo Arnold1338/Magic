@@ -16,13 +16,13 @@ public class WorldFilterConfig implements PlacementModifier
 {
     public static final Codec<WorldFilterConfig> CODEC;
     private final Supplier<Boolean> ignoreFilter;
-    private final Supplier<List<RegistryKey<World>>> worldFilter;
+    private final Supplier<List<RegistryKey<Level>>> worldFilter;
     
-    public WorldFilterConfig(final boolean ignoreFilter, final List<RegistryKey<World>> worldFilter) {
+    public WorldFilterConfig(final boolean ignoreFilter, final List<RegistryKey<Level>> worldFilter) {
         this(() -> ignoreFilter, () -> worldFilter);
     }
     
-    public WorldFilterConfig(final Supplier<Boolean> ignoreFilter, final Supplier<List<RegistryKey<World>>> worldFilter) {
+    public WorldFilterConfig(final Supplier<Boolean> ignoreFilter, final Supplier<List<RegistryKey<Level>>> worldFilter) {
         this.ignoreFilter = ignoreFilter;
         this.worldFilter = worldFilter;
     }

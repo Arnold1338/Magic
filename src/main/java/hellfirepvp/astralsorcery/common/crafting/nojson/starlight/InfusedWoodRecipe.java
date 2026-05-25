@@ -52,20 +52,20 @@ public class InfusedWoodRecipe extends LiquidStarlightRecipe
     }
     
     @Override
-    public boolean matches(final ItemEntity trigger, final World world, final BlockPos at) {
+    public boolean matches(final ItemEntity trigger, final Level world, final BlockPos at) {
         return true;
     }
     
     @Override
-    public void doServerCraftTick(final ItemEntity trigger, final World world, final BlockPos at) {
+    public void doServerCraftTick(final ItemEntity trigger, final Level world, final BlockPos at) {
         if (this.getAndIncrementCraftingTick((Entity)trigger) > 5 && this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> !stack.isEmpty() && stack.getItem().func_206844_a((ITag)ItemTags.field_200038_h)) != null) {
-            ItemUtils.dropItemNaturally(world, trigger.func_226277_ct_(), trigger.func_226278_cu_(), trigger.func_226281_cx_(), new ItemStack((ItemLike)BlocksAS.INFUSED_WOOD));
+            ItemUtils.dropItemNaturally(world, trigger.getX(), trigger.getY(), trigger.getZ(), new ItemStack((ItemLike)BlocksAS.INFUSED_WOOD));
         }
     }
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void doClientEffectTick(final ItemEntity trigger, final World world, final BlockPos at) {
+    public void doClientEffectTick(final ItemEntity trigger, final Level world, final BlockPos at) {
         for (int i = 0; i < 4; ++i) {
             final Vector3 pos = new Vector3((Vector3i)at).add(0.5, 0.5, 0.5);
             MiscUtils.applyRandomOffset(pos, InfusedWoodRecipe.rand, 0.5f);

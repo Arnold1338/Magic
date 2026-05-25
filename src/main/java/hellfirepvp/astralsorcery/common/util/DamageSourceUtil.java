@@ -74,7 +74,7 @@ public class DamageSourceUtil
             dst = (DamageSource)new EntityDamageSource(src.func_76355_l(), (directSource != null) ? directSource : src.func_76364_f());
         }
         else {
-            dst = (DamageSource)new IndirectEntityDamageSource(src.func_76355_l(), (directSource != null) ? directSource : src.func_76364_f(), (trueSource != null) ? trueSource : ((directSource != null) ? directSource : src.func_76346_g()));
+            dst = (DamageSource)new IndirectEntityDamageSource(src.func_76355_l(), (directSource != null) ? directSource : src.func_76364_f(), (trueSource != null) ? trueSource : ((directSource != null) ? directSource : src.getEnchantments());
         }
         copy(src, dst);
         return dst;

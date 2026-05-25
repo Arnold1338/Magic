@@ -55,7 +55,7 @@ public class BlockPrism extends BlockStarlightNetwork implements CustomItemBlock
     
     public BlockPrism() {
         super(PropertiesGlass.coatedGlass().harvestTool(ToolType.PICKAXE));
-        this.func_180632_j((BlockState)((BlockState)((BlockState)this.func_176194_O().func_177621_b()).func_206870_a((Property)BlockPrism.PLACED_AGAINST, (Comparable)Direction.DOWN)).func_206870_a((Property)BlockPrism.HAS_COLORED_LENS, (Comparable)false));
+        this.func_180632_j((BlockState)((BlockState)((BlockState)this.func_176194_O().func_177621_b()).setValue((Property)BlockPrism.PLACED_AGAINST, (Comparable)Direction.DOWN)).setValue((Property)BlockPrism.HAS_COLORED_LENS, (Comparable)false));
     }
     
     @Override
@@ -63,22 +63,22 @@ public class BlockPrism extends BlockStarlightNetwork implements CustomItemBlock
         return ItemBlockPrism.class;
     }
     
-    public void func_176208_a(final World world, final BlockPos pos, final BlockState state, final Player player) {
+    public void func_176208_a(final Level world, final BlockPos pos, final BlockState state, final Player player) {
         final TilePrism lens = MiscUtils.getTileAt((IBlockReader)world, pos, TilePrism.class, true);
-        if (lens != null && !world.func_201670_d() && !player.func_184812_l_() && lens.getColorType() != null) {
+        if (lens != null && !world.level() && !player.getVehicle() && lens.getColorType() != null) {
             final ItemStack drop = lens.getColorType().getStack();
             ItemUtils.dropItemNaturally(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop);
         }
         super.func_176208_a(world, pos, state, player);
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
-        if (!world.func_201670_d() && player.func_225608_bj_()) {
+    public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
+        if (!world.level() && player.func_225608_bj_()) {
             final TilePrism lens = MiscUtils.getTileAt((IBlockReader)world, pos, TilePrism.class, true);
             if (lens != null && lens.getColorType() != null) {
                 final ItemStack drop = lens.getColorType().getStack();
-                if (!player.func_184812_l_()) {
-                    if (player.func_184586_b(hand).isEmpty()) {
+                if (!player.getVehicle()) {
+                    if (player.getItemInHand(hand).isEmpty()) {
                         player.func_184611_a(hand, drop);
                     }
                     else if (!player.getInventory().func_70441_a(drop)) {
@@ -99,11 +99,11 @@ public class BlockPrism extends BlockStarlightNetwork implements CustomItemBlock
     
     @Nullable
     public BlockState func_196258_a(final BlockItemUseContext context) {
-        return (BlockState)this.defaultBlockState().func_206870_a((Property)BlockPrism.PLACED_AGAINST, (Comparable)context.func_196000_l().func_176734_d());
+        return (BlockState)this.defaultBlockState().setValue((Property)BlockPrism.PLACED_AGAINST, (Comparable)context.func_196000_l().func_176734_d());
     }
     
     @Override
-    public void func_196243_a(final BlockState state, final World worldIn, final BlockPos pos, final BlockState newState, final boolean isMoving) {
+    public void func_196243_a(final BlockState state, final Level worldIn, final BlockPos pos, final BlockState newState, final boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             super.func_196243_a(state, worldIn, pos, newState, isMoving);
         }

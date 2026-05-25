@@ -39,17 +39,17 @@ public class LinearLuckBonus extends LootFunction
         if (tool != null) {
             int luck = 0;
             final Entity e = (Entity)lootContext.getParamOrNull(LootContextParams.THIS_ENTITY);
-            if (e instanceof Player && ((Player)e).func_70644_a(Effects.field_188425_z)) {
-                luck += ((Player)e).func_70660_b(Effects.field_188425_z).func_76458_c() + 1;
+            if (e instanceof Player && ((Player)e).hasEffect(MobEffects.LEVITATION)) {
+                luck += ((Player)e).func_70660_b(MobEffects.LEVITATION).func_76458_c() + 1;
             }
-            luck += EnchantmentHelper.func_77506_a(Enchantments.field_185308_t, tool);
-            luck += EnchantmentHelper.func_77506_a(Enchantments.field_185304_p, tool);
-            final Random rand = lootContext.func_216032_b();
+            luck += EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
+            luck += EnchantmentHelper.getItemEnchantmentLevel(Enchantments.field_185304_p, tool);
+            final Random rand = lootContext.getRandom();
             int size = 0;
             for (int i = 0; i < luck; ++i) {
                 size += rand.nextInt(3) + 1;
             }
-            itemStack.func_190920_e(itemStack.func_190916_E() + size);
+            itemStack.setCount(itemStack.getCount() + size);
         }
         return itemStack;
     }

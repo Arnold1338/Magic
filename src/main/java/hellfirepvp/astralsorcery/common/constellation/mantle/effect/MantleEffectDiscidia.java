@@ -58,10 +58,10 @@ public class MantleEffectDiscidia extends MantleEffect
     
     private void onAttack(final LivingAttackEvent event) {
         final LivingEntity attacked = event.getEntityLiving();
-        final World world = attacked.func_130014_f_();
+        final Level world = attacked.level();
         final DamageSource source = event.getSource();
-        final Entity attacker = source.func_76346_g();
-        if (world.func_201670_d()) {
+        final Entity attacker = source.getEnchantments(;
+        if (world.level()) {
             return;
         }
         if (attacker instanceof Player) {
@@ -84,9 +84,9 @@ public class MantleEffectDiscidia extends MantleEffect
     }
     
     private void onHurt(final LivingHurtEvent event) {
-        final World world = event.getEntity().func_130014_f_();
+        final Level world = event.getEntity().level();
         final LivingEntity hurt = event.getEntityLiving();
-        if (world.func_201670_d()) {
+        if (world.level()) {
             return;
         }
         final MantleEffectDiscidia armara = ItemMantle.getEffect(hurt, ConstellationsAS.discidia);

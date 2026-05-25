@@ -20,7 +20,7 @@ public class SolarEclipse extends CelestialEvent
     }
     
     @Override
-    public void tick(final World world, final Random rand, final WorldContext ctx) {
+    public void tick(final Level world, final Random rand, final WorldContext ctx) {
         for (int i = 0; i < 12 + rand.nextInt(12); ++i) {
             rand.nextLong();
         }

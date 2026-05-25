@@ -67,18 +67,18 @@ public abstract class TileSourceBase<T extends ITransmissionSource> extends Tile
     @Nonnull
     @Override
     public BlockPos getTrPos() {
-        return this.func_174877_v();
+        return this.getBlockState();
     }
     
     @Nonnull
     @Override
-    public World getTrWorld() {
-        return this.func_145831_w();
+    public Level getTrWorld() {
+        return this.getLevel();
     }
     
     @Override
     public void onBlockLinkCreate(final Player player, final BlockPos other) {
-        if (other.equals((Object)this.func_174877_v())) {
+        if (other.equals((Object)this.getBlockState())) {
             return;
         }
         if (TransmissionNetworkHelper.createTransmissionLink(this, other)) {
@@ -99,7 +99,7 @@ public abstract class TileSourceBase<T extends ITransmissionSource> extends Tile
     
     @Override
     public boolean tryLinkBlock(final Player player, final BlockPos other) {
-        return !other.equals((Object)this.func_174877_v()) && TransmissionNetworkHelper.canCreateTransmissionLink(this, other);
+        return !other.equals((Object)this.getBlockState()) && TransmissionNetworkHelper.canCreateTransmissionLink(this, other);
     }
     
     @Override
@@ -109,7 +109,7 @@ public abstract class TileSourceBase<T extends ITransmissionSource> extends Tile
     
     @Override
     public boolean tryUnlink(final Player player, final BlockPos other) {
-        if (other.equals((Object)this.func_174877_v())) {
+        if (other.equals((Object)this.getBlockState())) {
             return false;
         }
         if (TransmissionNetworkHelper.hasTransmissionLink(this, other)) {

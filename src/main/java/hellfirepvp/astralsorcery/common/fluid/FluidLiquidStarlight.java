@@ -22,7 +22,7 @@ public abstract class FluidLiquidStarlight extends ForgeFlowingFluid
     {
         public Flowing(final ForgeFlowingFluid.Properties properties) {
             super(properties, null);
-            this.func_207183_f((FluidState)((FluidState)this.func_207182_e().func_177621_b()).func_206870_a((Property)Flowing.field_207210_b, (Comparable)7));
+            this.func_207183_f((FluidState)((FluidState)this.func_207182_e().func_177621_b()).setValue((Property)Flowing.field_207210_b, (Comparable)7));
         }
         
         protected void func_207184_a(final StateContainer.Builder<Fluid, FluidState> builder) {

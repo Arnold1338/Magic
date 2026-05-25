@@ -38,12 +38,12 @@ public class TileRitualLink extends TileEntityTick implements LinkableTileEntity
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (this.func_145831_w().func_201670_d()) {
+        if (this.getLevel().level()) {
             this.playClientEffects();
         }
         else if (this.linkedTo != null) {
-            MiscUtils.executeWithChunk((IWorldReader)this.func_145831_w(), this.linkedTo, () -> {
-                final TileRitualLink link = MiscUtils.getTileAt((IBlockReader)this.func_145831_w(), this.linkedTo, TileRitualLink.class, true);
+            MiscUtils.executeWithChunk((IWorldReader)this.getLevel(), this.linkedTo, () -> {
+                final TileRitualLink link = MiscUtils.getTileAt((IBlockReader)this.getLevel(), this.linkedTo, TileRitualLink.class, true);
                 if (link == null) {
                     this.linkedTo = null;
                     this.markForUpdate();
@@ -90,16 +90,16 @@ public class TileRitualLink extends TileEntityTick implements LinkableTileEntity
     @Override
     public void onBlockLinkCreate(final Player player, final BlockPos other) {
         if (this.linkedTo != null) {
-            final TileRitualLink otherLink = MiscUtils.getTileAt((IBlockReader)player.func_130014_f_(), this.linkedTo, TileRitualLink.class, true);
+            final TileRitualLink otherLink = MiscUtils.getTileAt((IBlockReader)player.level(), this.linkedTo, TileRitualLink.class, true);
             if (otherLink != null) {
                 otherLink.linkedTo = null;
                 otherLink.markForUpdate();
             }
         }
         this.linkedTo = other;
-        final TileRitualLink otherLink = MiscUtils.getTileAt((IBlockReader)player.func_130014_f_(), other, TileRitualLink.class, true);
+        final TileRitualLink otherLink = MiscUtils.getTileAt((IBlockReader)player.level(), other, TileRitualLink.class, true);
         if (otherLink != null) {
-            otherLink.linkedTo = this.func_174877_v();
+            otherLink.linkedTo = this.getBlockState();
             otherLink.markForUpdate();
         }
         this.markForUpdate();
@@ -111,8 +111,8 @@ public class TileRitualLink extends TileEntityTick implements LinkableTileEntity
     
     @Override
     public boolean tryLinkBlock(final Player player, final BlockPos other) {
-        final TileRitualLink otherLink = MiscUtils.getTileAt((IBlockReader)player.func_130014_f_(), other, TileRitualLink.class, true);
-        return otherLink != null && otherLink.linkedTo == null && !other.equals((Object)this.func_174877_v());
+        final TileRitualLink otherLink = MiscUtils.getTileAt((IBlockReader)player.level(), other, TileRitualLink.class, true);
+        return otherLink != null && otherLink.linkedTo == null && !other.equals((Object)this.getBlockState());
     }
     
     @Override
@@ -122,11 +122,11 @@ public class TileRitualLink extends TileEntityTick implements LinkableTileEntity
     
     @Override
     public boolean tryUnlink(final Player player, final BlockPos other) {
-        final TileRitualLink otherLink = MiscUtils.getTileAt((IBlockReader)player.func_130014_f_(), other, TileRitualLink.class, true);
+        final TileRitualLink otherLink = MiscUtils.getTileAt((IBlockReader)player.level(), other, TileRitualLink.class, true);
         if (otherLink == null || otherLink.linkedTo == null) {
             return false;
         }
-        if (otherLink.linkedTo.equals((Object)this.func_174877_v())) {
+        if (otherLink.linkedTo.equals((Object)this.getBlockState())) {
             this.linkedTo = null;
             otherLink.linkedTo = null;
             otherLink.markForUpdate();

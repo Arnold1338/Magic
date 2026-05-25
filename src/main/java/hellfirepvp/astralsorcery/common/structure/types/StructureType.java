@@ -30,10 +30,10 @@ public class StructureType implements IForgeRegistryEntry<StructureType>
     }
     
     public Component getDisplayName() {
-        return (Component)new Component(String.format("structure.%s.%s.name", this.name.func_110624_b(), this.name.func_110623_a()));
+        return (Component)new Component(String.format("structure.%s.%s.name", this.name.func_110624_b(), this.name.addTransientModifier()));
     }
     
-    public ChangeSubscriber<ChangeObserverStructure> observe(final World world, final BlockPos pos) {
+    public ChangeSubscriber<ChangeObserverStructure> observe(final Level world, final BlockPos pos) {
         return (ChangeSubscriber<ChangeObserverStructure>)ObserverHelper.getHelper().observeArea(world, pos, (ObserverProvider)new ObserverProviderStructure(this.getRegistryName()));
     }
     

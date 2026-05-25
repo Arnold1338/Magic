@@ -34,10 +34,10 @@ public class CommandAttune implements Command<CommandSourceStack>
         final Player player = (Player)((EntitySelector)context.getArgument("player", (Class)EntitySelector.class)).func_197340_a((CommandSourceStack)context.getSource());
         final IMajorConstellation cst = (IMajorConstellation)context.getArgument("constellation", (Class)IConstellation.class);
         if (ResearchManager.setAttunedConstellation(player, cst)) {
-            ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Success! Player has been attuned to ").func_230529_a_((Component)cst.getConstellationName().func_240699_a_(ChatFormatting.BLUE)).func_240699_a_(ChatFormatting.GREEN), true);
+            ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Success! Player has been attuned to ").func_230529_a_((Component)cst.getConstellationName().toString()ChatFormatting.BLUE)).toString()ChatFormatting.GREEN), true);
         }
         else {
-            ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Failed! Player specified doesn't seem to have the research progress necessary!").func_240699_a_(ChatFormatting.RED), true);
+            ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Failed! Player specified doesn't seem to have the research progress necessary!").toString()ChatFormatting.RED), true);
         }
         return 0;
     }

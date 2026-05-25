@@ -81,12 +81,12 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
     @Override
     public boolean matches(final TileAttunementAltar altar) {
         final Player player;
-        return super.matches(altar) && (player = altar.func_145831_w().getPlayerByUUID(this.playerUUID)) != null && player.isAlive();
+        return super.matches(altar) && (player = altar.getLevel().getPlayerByUUID(this.playerUUID)) != null && player.isAlive();
     }
     
     @Override
     public void startCrafting(final TileAttunementAltar altar) {
-        final Player player = altar.func_145831_w().getPlayerByUUID(this.playerUUID);
+        final Player player = altar.getLevel().getPlayerByUUID(this.playerUUID);
         if (player != null && player.isAlive()) {
             final Vector3 offset = new Vector3(altar).add(0.5f, 1.2f, 0.5f);
             player.func_70080_a(offset.getX(), offset.getY(), offset.getZ(), 0.0f, 0.0f);
@@ -100,7 +100,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
     
     @Override
     public void finishRecipe(final TileAttunementAltar altar) {
-        final Player player = altar.func_145831_w().getPlayerByUUID(this.playerUUID);
+        final Player player = altar.getLevel().getPlayerByUUID(this.playerUUID);
         if (player != null) {
             ResearchManager.setAttunedConstellation(player, this.constellation);
         }
@@ -109,7 +109,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
     @Override
     public void doTick(final LogicalSide side, final TileAttunementAltar altar) {
         if (side.isServer()) {
-            final Player player = altar.func_145831_w().getPlayerByUUID(this.playerUUID);
+            final Player player = altar.getLevel().getPlayerByUUID(this.playerUUID);
             if (player != null) {
                 EventHelperInvulnerability.makeInvulnerable(player);
             }
@@ -221,7 +221,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
     
     @OnlyIn(Dist.CLIENT)
     private void doClientSetup(final TileAttunementAltar altar) {
-        if (this.cameraHack == null && Minecraft.getInstance().field_71439_g != null && Minecraft.getInstance().field_71439_g.getUUID().equals(this.getPlayerUUID())) {
+        if (this.cameraHack == null && Minecraft.getInstance().player != null && Minecraft.getInstance().player.getUUID().equals(this.getPlayerUUID())) {
             final Vector3 offset = new Vector3(altar).add(0.5, 6.0, 0.5);
             final CameraPathBuilder builder = CameraPathBuilder.builder(offset.clone().add(4.0f, 0.0f, 4.0f), new Vector3(altar).add(0.5, 0.5, 0.5));
             builder.addCircularPoints(offset, CameraPathBuilder.DynamicRadiusGetter.dyanmicIncrease(5.0, 0.025), 200, 2);
@@ -249,20 +249,20 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
                 focusedEntity.field_70758_at = 0.0f;
                 focusedEntity.field_70761_aq = 0.0f;
                 focusedEntity.field_70760_ar = 0.0f;
-                focusedEntity.func_70016_h(0.0, 0.0, 0.0);
+                focusedEntity.setDeltaMovement(0.0, 0.0, 0.0);
             }
         };
     }
     
     @OnlyIn(Dist.CLIENT)
     private ICameraStopListener createAttunementListener(final TileAttunementAltar altar) {
-        final BlockPos at = altar.func_174877_v();
+        final BlockPos at = altar.getBlockState();
         return () -> {
             if (this.cameraHack != null) {
                 final ICameraTransformer transformer = (ICameraTransformer)this.cameraHack;
                 final ICameraPersistencyFunction persistency = transformer.getPersistencyFunction();
                 if (persistency.isExpired() && !persistency.wasForciblyStopped()) {
-                    final PktAttunePlayerConstellation attuneRequest = new PktAttunePlayerConstellation(this.constellation, (RegistryKey<World>)altar.func_145831_w().dimension(), at);
+                    final PktAttunePlayerConstellation attuneRequest = new PktAttunePlayerConstellation(this.constellation, (RegistryKey<Level>)altar.getLevel().dimension(), at);
                     PacketChannel.CHANNEL.sendToServer(attuneRequest);
                 }
             }

@@ -54,7 +54,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void playClientEffect(final World world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
+    public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         if (pedestal.getTicksExisted() % 20 == 0) {
             EffectHelper.spawnSource(new FXOrbitalArmara(new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5)).setOrbitRadius(0.8 + CEffectArmara.rand.nextFloat() * 0.7).setOrbitAxis(Vector3.RotAxis.Y_AXIS).setTicksPerRotation(20 + CEffectArmara.rand.nextInt(20)));
         }
@@ -74,8 +74,8 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
             for (final Entity e : projectiles) {
                 if (e.isAlive() && TechnicalEntityRegistry.INSTANCE.canAffect(e)) {
                     if (e instanceof ProjectileEntity) {
-                        final double xRatio = pos.getX() + 0.5 - e.func_226277_ct_();
-                        final double zRatio = pos.getZ() + 0.5 - e.func_226281_cx_();
+                        final double xRatio = pos.getX() + 0.5 - e.getX();
+                        final double zRatio = pos.getZ() + 0.5 - e.getZ();
                         final float f = Mth.func_76133_a(xRatio * xRatio + zRatio * zRatio);
                         final Vector3 motion = new Vector3(e.func_213322_ci());
                         motion.multiply(new Vector3(0.5, 1.0, 0.5));
@@ -86,7 +86,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
                         if (!(e instanceof MobEntity)) {
                             continue;
                         }
-                        ((LivingEntity)e).func_233627_a_(0.4f, pos.getX() + 0.5 - e.func_226277_ct_(), pos.getZ() + 0.5 - e.func_226281_cx_());
+                        ((LivingEntity)e).func_233627_a_(0.4f, pos.getX() + 0.5 - e.getX(), pos.getZ() + 0.5 - e.getZ());
                     }
                 }
             }
@@ -94,7 +94,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
     }
     
     @Override
-    public boolean playEffect(final World world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
+    public boolean playEffect(final Level world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
         final int toAdd = 2 + CEffectArmara.rand.nextInt(5);
         final WorldBlockPos at = WorldBlockPos.wrapServer(world, pos);
         final TickTokenMap.SimpleTickToken<Double> token = EventHelperSpawnDeny.spawnDenyRegions.get(at);
@@ -116,8 +116,8 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
                 for (final Entity e : projectiles) {
                     if (e.isAlive() && TechnicalEntityRegistry.INSTANCE.canAffect(e)) {
                         if (e instanceof ProjectileEntity) {
-                            final double xRatio = pos.getX() + 0.5 - e.func_226277_ct_();
-                            final double zRatio = pos.getZ() + 0.5 - e.func_226281_cx_();
+                            final double xRatio = pos.getX() + 0.5 - e.getX();
+                            final double zRatio = pos.getZ() + 0.5 - e.getZ();
                             final float f = Mth.func_76133_a(xRatio * xRatio + zRatio * zRatio);
                             final Vector3 motion = new Vector3(e.func_213322_ci());
                             motion.multiply(new Vector3(0.5, 1.0, 0.5));
@@ -128,7 +128,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
                             if (!(e instanceof MobEntity)) {
                                 continue;
                             }
-                            ((LivingEntity)e).func_233627_a_(0.4f, pos.getX() + 0.5 - e.func_226277_ct_(), pos.getZ() + 0.5 - e.func_226281_cx_());
+                            ((LivingEntity)e).func_233627_a_(0.4f, pos.getX() + 0.5 - e.getX(), pos.getZ() + 0.5 - e.getZ());
                         }
                     }
                 }

@@ -35,7 +35,7 @@ public class RecipeDyeableChangeColor extends SpecialRecipe
         this.colorFn = colorFn;
     }
     
-    public boolean matches(final CraftingInventory inv, final World worldIn) {
+    public boolean matches(final CraftingInventory inv, final Level worldIn) {
         return this.tryFindValidRecipeAndDye(inv) != null;
     }
     
@@ -44,8 +44,8 @@ public class RecipeDyeableChangeColor extends SpecialRecipe
         if (itemColorTpl == null) {
             return ItemStack.EMPTY;
         }
-        final ItemStack out = ItemUtils.copyStackWithSize((ItemStack)itemColorTpl.func_76340_b(), 1);
-        this.colorFn.accept(out, (DyeColor)itemColorTpl.func_76341_a());
+        final ItemStack out = ItemUtils.copyStackWithSize((ItemStack)itemColorTpl.getB(), 1);
+        this.colorFn.accept(out, (DyeColor)itemColorTpl.getA());
         return out;
     }
     

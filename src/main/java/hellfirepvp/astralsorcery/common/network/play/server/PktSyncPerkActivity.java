@@ -108,7 +108,7 @@ public class PktSyncPerkActivity extends ASPacket<PktSyncPerkActivity>
             @Override
             public void handleClient(final PktSyncPerkActivity packet, final NetworkEvent.Context context) {
                 context.enqueueWork(() -> {
-                    final Player player = (Player)Minecraft.getInstance().field_71439_g;
+                    final Player player = (Player)Minecraft.getInstance().player;
                     if (player != null) {
                         switch (packet.type) {
                             case CLEARALL: {

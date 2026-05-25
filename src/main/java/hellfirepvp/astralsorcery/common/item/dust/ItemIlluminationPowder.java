@@ -24,19 +24,19 @@ public class ItemIlluminationPowder extends ItemUsableDust
     boolean dispense(final BlockSource dispenser) {
         final BlockPos at = dispenser.func_180699_d();
         final Direction face = (Direction)dispenser.func_189992_e().getValue((Property)DispenserBlock.field_176441_a);
-        final EntityIlluminationSpark nocSpark = new EntityIlluminationSpark(at.getX(), at.getY(), at.getZ(), (World)dispenser.func_197524_h());
+        final EntityIlluminationSpark nocSpark = new EntityIlluminationSpark(at.getX(), at.getY(), at.getZ(), (Level)dispenser.func_197524_h());
         nocSpark.func_70186_c((double)face.func_82601_c(), (double)(face.func_96559_d() + 0.1f), (double)face.func_82599_e(), 0.7f, 0.9f);
-        return dispenser.func_197524_h().func_217376_c((Entity)nocSpark);
+        return dispenser.func_197524_h().addFreshEntity((Entity)nocSpark);
     }
     
     @Override
-    boolean rightClickAir(final World world, final Player player, final ItemStack dust) {
-        return world.func_217376_c((Entity)new EntityIlluminationSpark((LivingEntity)player, world));
+    boolean rightClickAir(final Level world, final Player player, final ItemStack dust) {
+        return world.addFreshEntity((Entity)new EntityIlluminationSpark((LivingEntity)player, world));
     }
     
     @Override
     boolean rightClickBlock(final ItemUseContext ctx) {
-        final World world = ctx.func_195991_k();
+        final Level world = ctx.func_195991_k();
         BlockPos pos = ctx.func_195995_a();
         final Player player = ctx.func_195999_j();
         if (player == null) {

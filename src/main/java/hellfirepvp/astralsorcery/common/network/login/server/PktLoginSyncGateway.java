@@ -20,10 +20,10 @@ import hellfirepvp.astralsorcery.common.network.base.ASLoginPacket;
 
 public class PktLoginSyncGateway extends ASLoginPacket<PktLoginSyncGateway>
 {
-    private Map<RegistryKey<World>, Collection<GatewayCache.GatewayNode>> positions;
+    private Map<RegistryKey<Level>, Collection<GatewayCache.GatewayNode>> positions;
     
     public PktLoginSyncGateway() {
-        this.positions = new HashMap<RegistryKey<World>, Collection<GatewayCache.GatewayNode>>();
+        this.positions = new HashMap<RegistryKey<Level>, Collection<GatewayCache.GatewayNode>>();
     }
     
     public static PktLoginSyncGateway makeLogin() {
@@ -53,7 +53,7 @@ public class PktLoginSyncGateway extends ASLoginPacket<PktLoginSyncGateway>
         return (Decoder<PktLoginSyncGateway>)(buffer -> {
             final PktLoginSyncGateway pkt = new PktLoginSyncGateway();
             for (int dimSize = buffer.readInt(), i = 0; i < dimSize; ++i) {
-                final net.minecraft.util.RegistryKey<World> dim = ByteBufUtils.readVanillaRegistryEntry(buffer);
+                final net.minecraft.util.RegistryKey<Level> dim = ByteBufUtils.readVanillaRegistryEntry(buffer);
                 pkt.positions.put(dim, ByteBufUtils.readList(buffer, GatewayCache.GatewayNode::read));
             }
             return pkt;

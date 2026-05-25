@@ -27,11 +27,11 @@ public class ScreenContainerAltarDiscovery extends ScreenContainerAltar<Containe
         final SimpleAltarRecipe recipe = this.findRecipe(false);
         if (recipe != null) {
             final ItemStack out = recipe.getOutputForRender(this.func_212873_a_().getTileEntity().getInventory());
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_(130.0, 20.0, 0.0);
-            renderStack.func_227862_a_(1.7f, 1.7f, 1.0f);
+            renderStack.translate(1.7f, 1.7f, 1.0f);
             RenderingUtils.renderItemStackGUI(renderStack, out, null);
-            renderStack.func_227865_b_();
+            renderStack.scale();
         }
     }
     

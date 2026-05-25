@@ -56,7 +56,7 @@ public class ResultCookingRecipeBuilder
     }
     
     public void build(final Consumer<IFinishedRecipe> consumerIn, ResourceLocation id) {
-        id = new ResourceLocation(id.func_110624_b(), this.recipeSerializer.getRegistryName().func_110623_a() + "/" + id.func_110623_a());
+        id = new ResourceLocation(id.func_110624_b(), this.recipeSerializer.getRegistryName().addTransientModifier() + "/" + id.addTransientModifier());
         consumerIn.accept((IFinishedRecipe)new Result(id, this.ingredient, this.result, this.experience, this.cookingTime, (IRecipeSerializer<? extends AbstractCookingRecipe>)this.recipeSerializer));
     }
     
@@ -81,7 +81,7 @@ public class ResultCookingRecipeBuilder
         public void func_218610_a(final JsonObject json) {
             final JsonObject itemResult = new JsonObject();
             itemResult.addProperty("item", this.result.getItem().getRegistryName().toString());
-            itemResult.addProperty("count", (Number)this.result.func_190916_E());
+            itemResult.addProperty("count", (Number)this.result.getCount());
             json.add("ingredient", this.ingredient.func_200304_c());
             json.add("result", (JsonElement)itemResult);
             json.addProperty("experience", (Number)this.experience);

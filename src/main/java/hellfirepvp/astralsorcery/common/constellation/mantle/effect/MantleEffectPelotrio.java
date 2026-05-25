@@ -41,18 +41,18 @@ public class MantleEffectPelotrio extends MantleEffect
     }
     
     private void onHurt(final LivingAttackEvent event) {
-        final World world = event.getEntityLiving().func_130014_f_();
-        if (world.func_201670_d()) {
+        final Level world = event.getEntityLiving().level();
+        if (world.level()) {
             return;
         }
         final LivingEntity attacked = event.getEntityLiving();
-        final Entity attacker = event.getSource().func_76346_g();
+        final Entity attacker = event.getSource().getEnchantments(;
         if (attacker instanceof Player) {
             if (attacked instanceof ServerPlayer && MiscUtils.isPlayerFakeMP((ServerPlayer)attacked)) {
                 return;
             }
             final Player player = (Player)attacker;
-            if (ItemMantle.getEffect((LivingEntity)player, ConstellationsAS.pelotrio) != null && MantleEffectPelotrio.rand.nextFloat() < (double)MantleEffectPelotrio.CONFIG.chanceSpawnSword.get() && AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectPelotrio.CONFIG.chargeCostPerSword.get()) && world.func_217376_c((Entity)new EntitySpectralTool(world, player.func_233580_cy_().above(), (LivingEntity)player, EntitySpectralTool.ToolTask.createAttackTask()))) {
+            if (ItemMantle.getEffect((LivingEntity)player, ConstellationsAS.pelotrio) != null && MantleEffectPelotrio.rand.nextFloat() < (double)MantleEffectPelotrio.CONFIG.chanceSpawnSword.get() && AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectPelotrio.CONFIG.chargeCostPerSword.get()) && world.addFreshEntity((Entity)new EntitySpectralTool(world, player.func_233580_cy_().above(), (LivingEntity)player, EntitySpectralTool.ToolTask.createAttackTask()))) {
                 AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectPelotrio.CONFIG.chargeCostPerSword.get(), false);
             }
         }
@@ -60,19 +60,19 @@ public class MantleEffectPelotrio extends MantleEffect
     
     private void onBreak(final BlockEvent.BreakEvent event) {
         final IWorld world = event.getWorld();
-        if (world.func_201670_d() || !(world instanceof World)) {
+        if (world.level() || !(world instanceof Level)) {
             return;
         }
         final Player player = event.getPlayer();
         if ((!(player instanceof ServerPlayer) || !MiscUtils.isPlayerFakeMP((ServerPlayer)player)) && ItemMantle.getEffect((LivingEntity)player, ConstellationsAS.pelotrio) != null) {
             final BlockState state = event.getState();
             if ((state.getHarvestTool() == ToolType.AXE || !state.func_235783_q_()) && (state.func_235714_a_((ITag)BlockTags.field_200031_h) || state.func_235714_a_((ITag)BlockTags.field_206952_E)) && !player.func_184614_ca().isEmpty() && player.func_184614_ca().getToolTypes().contains(ToolType.AXE)) {
-                if (MantleEffectPelotrio.rand.nextFloat() < (double)MantleEffectPelotrio.CONFIG.chanceSpawnAxe.get() && AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectPelotrio.CONFIG.chargeCostPerAxe.get()) && world.func_217376_c((Entity)new EntitySpectralTool((World)world, player.func_233580_cy_(), (LivingEntity)player, EntitySpectralTool.ToolTask.createLogTask()))) {
+                if (MantleEffectPelotrio.rand.nextFloat() < (double)MantleEffectPelotrio.CONFIG.chanceSpawnAxe.get() && AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectPelotrio.CONFIG.chargeCostPerAxe.get()) && world.addFreshEntity((Entity)new EntitySpectralTool((Level)world, player.func_233580_cy_(), (LivingEntity)player, EntitySpectralTool.ToolTask.createLogTask()))) {
                     AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectPelotrio.CONFIG.chargeCostPerAxe.get(), false);
                 }
                 return;
             }
-            if ((state.getHarvestTool() == ToolType.PICKAXE || !state.func_235783_q_()) && !player.func_184614_ca().isEmpty() && player.func_184614_ca().getToolTypes().contains(ToolType.PICKAXE) && MantleEffectPelotrio.rand.nextFloat() < (double)MantleEffectPelotrio.CONFIG.chanceSpawnPickaxe.get() && AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectPelotrio.CONFIG.chargeCostPerPickaxe.get()) && world.func_217376_c((Entity)new EntitySpectralTool((World)world, player.func_233580_cy_(), (LivingEntity)player, EntitySpectralTool.ToolTask.createPickaxeTask()))) {
+            if ((state.getHarvestTool() == ToolType.PICKAXE || !state.func_235783_q_()) && !player.func_184614_ca().isEmpty() && player.func_184614_ca().getToolTypes().contains(ToolType.PICKAXE) && MantleEffectPelotrio.rand.nextFloat() < (double)MantleEffectPelotrio.CONFIG.chanceSpawnPickaxe.get() && AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectPelotrio.CONFIG.chargeCostPerPickaxe.get()) && world.addFreshEntity((Entity)new EntitySpectralTool((Level)world, player.func_233580_cy_(), (LivingEntity)player, EntitySpectralTool.ToolTask.createPickaxeTask()))) {
                 AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectPelotrio.CONFIG.chargeCostPerPickaxe.get(), false);
             }
         }

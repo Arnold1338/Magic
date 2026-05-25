@@ -56,7 +56,7 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler
     public void tick(final TickEvent.Type type, final Object... context) {
         final Player player = (Player)context[0];
         final LogicalSide side = (LogicalSide)context[1];
-        if (side.isClient() && this.shouldDoEffect(player) && Minecraft.getInstance().field_71439_g != null && Minecraft.getInstance().field_71439_g.getUUID().equals(this.playerUUID) && !Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a()) {
+        if (side.isClient() && this.shouldDoEffect(player) && Minecraft.getInstance().player != null && Minecraft.getInstance().player.getUUID().equals(this.playerUUID) && !Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a()) {
             this.playEffects(player);
         }
     }
@@ -72,7 +72,7 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler
         final double offset = Math.cos(f * 2.0f * 3.141592653589793) * 0.03;
         final Vector3 look = new Vector3(1, 0, 0).rotate(Math.toRadians(360.0f - rot), Vector3.RotAxis.Y_AXIS).normalize();
         final Vector3 pos = Vector3.atEntityCorner((Entity)player);
-        pos.setY(player.func_226278_cu_() + yOffset + offset);
+        pos.setY(player.getY() + yOffset + offset);
         for (int i = 0; i < 4; ++i) {
             final double height = -0.1 + Math.min(TypeCelestialWings.rand.nextFloat() * 1.3, TypeCelestialWings.rand.nextFloat() * 1.3);
             final double distance = 1.2000000476837158 - TypeCelestialWings.rand.nextFloat() * 0.6 * (1.0 - Math.max(0.0, height));
@@ -90,7 +90,7 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler
     }
     
     private boolean shouldDoEffect(final Player player) {
-        return player.getUUID().equals(this.playerUUID) && !player.func_184218_aH() && !player.func_184613_cA() && !player.func_70644_a(Effects.field_76441_p);
+        return player.getUUID().equals(this.playerUUID) && !player.isInWater() && !player.func_184613_cA() && !player.hasEffect(Effects.field_76441_p);
     }
     
     @SubscribeEvent
@@ -112,17 +112,17 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler
         }
         final float f = Math.abs(ClientScheduler.getSystemClientTick() % 240L - 120.0f) / 120.0f;
         final double offset = Math.cos(f * 2.0f * 3.141592653589793) * 0.03;
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(0.0, yOffset + offset, 0.0);
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(180.0f - rot));
-        renderStack.func_227862_a_(0.02f, 0.02f, 0.02f);
+        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f - rot));
+        renderStack.translate(0.02f, 0.02f, 0.02f);
         RenderTypesAS.MODEL_CELESTIAL_WINGS.func_228547_a_();
         renderStack.func_227861_a_(-25.0, 0.0, 0.0);
         ObjModelRender.renderCelestialWings(renderStack);
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(180.0f));
+        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
         renderStack.func_227861_a_(-50.0, 0.0, 0.0);
         ObjModelRender.renderCelestialWings(renderStack);
-        renderStack.func_227865_b_();
+        renderStack.scale();
         RenderTypesAS.MODEL_CELESTIAL_WINGS.func_228549_b_();
     }
     

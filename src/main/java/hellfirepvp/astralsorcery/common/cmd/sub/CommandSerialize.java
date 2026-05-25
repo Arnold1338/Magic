@@ -45,7 +45,7 @@ public class CommandSerialize
     private static int serializeLook(final CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         final Player player = (Player)((CommandSourceStack)context.getSource()).func_197035_h();
         final BlockHitResult result = MiscUtils.rayTraceLookBlock(player);
-        final BlockState state = (result == null) ? Blocks.field_150350_a.defaultBlockState() : player.func_130014_f_().getBlockState(result.func_216350_a());
+        final BlockState state = (result == null) ? Blocks.AIR.defaultBlockState() : player.level().getBlockState(result.func_216350_a());
         final String serialized = BlockStateHelper.serialize(state);
         final MutableComponent msg = (MutableComponent)new Component(serialized);
         final Style s = Style.field_240709_b_.func_240712_a_(ChatFormatting.GREEN).func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, (Object)new Component("Copy"))).func_240715_a_(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, serialized));

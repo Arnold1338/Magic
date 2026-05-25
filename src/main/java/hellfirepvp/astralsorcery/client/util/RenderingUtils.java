@@ -120,7 +120,7 @@ public class RenderingUtils
     
     @Nullable
     public static TextureAtlasSprite getParticleTexture(final BlockState state, @Nullable final BlockPos positionHint) {
-        final World world = (World)Minecraft.getInstance().field_71441_e;
+        final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
             return null;
         }
@@ -137,7 +137,7 @@ public class RenderingUtils
     }
     
     public static void playBlockBreakParticles(final BlockPos pos, @Nullable final BlockState actualState, final BlockState particleState) {
-        final ClientLevel world = Minecraft.getInstance().field_71441_e;
+        final ClientLevel world = Minecraft.getInstance().level;
         final ParticleEngine mgr = Minecraft.getInstance().field_71452_i;
         VoxelShape voxelshape;
         try {
@@ -180,26 +180,26 @@ public class RenderingUtils
         final int r = rgb >> 16 & 0xFF;
         final int g = rgb >> 8 & 0xFF;
         final int b = rgb >> 0 & 0xFF;
-        return new Color(Mth.func_76125_a((int)(r * mul), 0, 255), Mth.func_76125_a((int)(g * mul), 0, 255), Mth.func_76125_a((int)(b * mul), 0, 255));
+        return new Color(Mth.getDescriptionId((int)(r * mul), 0, 255), Mth.getDescriptionId((int)(g * mul), 0, 255), Mth.getDescriptionId((int)(b * mul), 0, 255));
     }
     
     public static Color clampToColor(final int r, final int g, final int b) {
-        return new Color(Mth.func_76125_a((int)(float)r, 0, 255), Mth.func_76125_a((int)(float)g, 0, 255), Mth.func_76125_a((int)(float)b, 0, 255));
+        return new Color(Mth.getDescriptionId((int)(float)r, 0, 255), Mth.getDescriptionId((int)(float)g, 0, 255), Mth.getDescriptionId((int)(float)b, 0, 255));
     }
     
     public static boolean canEffectExist(final EntityComplexFX fx) {
         Entity view = Minecraft.getInstance().func_175606_aa();
         if (view == null) {
-            view = (Entity)Minecraft.getInstance().field_71439_g;
+            view = (Entity)Minecraft.getInstance().player;
         }
         return view != null && fx.getPosition().distanceSquared(view) <= RenderingConfig.CONFIG.getMaxEffectRenderDistanceSq();
     }
     
     public static void translate(final PoseStack renderStack, final float x, final float y, final float z, final Consumer<PoseStack> fn) {
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_((double)x, (double)y, (double)z);
         fn.accept(renderStack);
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     public static void draw(final int drawMode, final VertexFormat format, final Consumer<BufferBuilder> fn) {
@@ -246,30 +246,30 @@ public class RenderingUtils
     }
     
     public static int renderInWorldText(final ITextProperties text, final Color color, final float scale, final Vector3 at, final PoseStack renderStack, final float pTicks, final boolean facePlayer) {
-        final FontRenderer fr = Minecraft.getInstance().field_71466_p;
-        renderStack.func_227860_a_();
+        final FontRenderer fr = Minecraft.getInstance().font;
+        renderStack.popPose();
         renderStack.func_227861_a_(at.getX(), at.getY(), at.getZ());
-        renderStack.func_227862_a_(scale, -scale, scale);
+        renderStack.translate(scale, -scale, scale);
         if (facePlayer) {
             Entity le = Minecraft.getInstance().field_175622_Z;
             if (le == null) {
-                le = (Entity)Minecraft.getInstance().field_71439_g;
+                le = (Entity)Minecraft.getInstance().player;
             }
-            final float iYaw = RenderingVectorUtils.interpolate(Mth.func_76142_g(le.field_70126_B), Mth.func_76142_g(le.field_70177_z), pTicks);
-            renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(-iYaw + 180.0f));
+            final float iYaw = RenderingVectorUtils.interpolate(Mth.func_76142_g(le.field_70126_B), Mth.func_76142_g(le.yRot), pTicks);
+            renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()-iYaw + 180.0f));
         }
-        final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
+        final Matrix4f matr = renderStack.last().translate();
         final int length = fr.func_238414_a_(text);
         final MultiBufferSource.Impl buffers = MultiBufferSource.func_228455_a_(Tessellator.func_178181_a().func_178180_c());
         final FormattedCharSequence processedText = LanguageMap.func_74808_a().func_241870_a(text);
         final int drawnLength = fr.func_238416_a_(processedText, -(length / 2.0f), 0.0f, color.getRGB(), false, matr, (MultiBufferSource)buffers, true, 0, LightmapUtil.getPackedFullbrightCoords());
         buffers.func_228461_a_();
-        renderStack.func_227865_b_();
+        renderStack.scale();
         return drawnLength;
     }
     
     public static void renderItemAsEntity(final ItemStack stack, final PoseStack renderStack, final MultiBufferSource buffers, final double x, final double y, final double z, final int combinedLight, final float pTicks, final int age) {
-        final ItemEntity ei = new ItemEntity((World)Minecraft.getInstance().field_71441_e, x, y, z, stack);
+        final ItemEntity ei = new ItemEntity((Level)Minecraft.getInstance().level, x, y, z, stack);
         ei.field_70292_b = age;
         ei.field_70290_d = 0.0f;
         ReflectionHelper.setSkipItemPhysicsRender(ei);
@@ -277,15 +277,15 @@ public class RenderingUtils
     }
     
     public static void renderItemStackGUI(final PoseStack renderStack, final ItemStack stack, @Nullable final String alternativeText) {
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(0.0, 0.0, 100.0);
         FontRenderer font = stack.getItem().getFontRenderer(stack);
         if (font == null) {
-            font = Minecraft.getInstance().field_71466_p;
+            font = Minecraft.getInstance().font;
         }
         renderTranslucentItemStackModelGUI(stack, renderStack, Color.WHITE, Blending.DEFAULT, 255);
         mcdefault_renderItemOverlayIntoGUI(font, renderStack, stack, Minecraft.getInstance().func_184121_ak(), alternativeText);
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     public static void renderTranslucentItemStack(final ItemStack stack, final PoseStack renderStack, final float pTicks) {
@@ -293,13 +293,13 @@ public class RenderingUtils
     }
     
     public static void renderTranslucentItemStack(final ItemStack stack, final PoseStack renderStack, final float pTicks, final Color overlayColor, final int alpha) {
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         final float sinBobY = Mth.func_76126_a((ClientScheduler.getClientTick() + pTicks) / 10.0f) * 0.1f + 0.1f;
         renderStack.func_227861_a_(0.0, (double)sinBobY, 0.0);
         final float ageRotate = (ClientScheduler.getClientTick() + pTicks) / 20.0f;
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229193_c_(ageRotate));
+        renderStack.mulPose(Vector3f.field_229181_d_.func_229193_c_(ageRotate));
         renderTranslucentItemStackModelGround(stack, renderStack, overlayColor, Blending.PREALPHA, alpha);
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     public static void renderTranslucentItemStackModelGround(final ItemStack stack, final PoseStack renderStack, final Color overlayColor, final Blending blendMode, final int alpha) {
@@ -334,16 +334,16 @@ public class RenderingUtils
         RenderSystem.enableBlend();
         blendMode.apply();
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(8.0, 8.0, 0.0);
-        renderStack.func_227862_a_(16.0f, -16.0f, 16.0f);
+        renderStack.translate(16.0f, -16.0f, 16.0f);
         final BakedModel bakedModel = ForgeHooksClient.handleCameraTransforms(renderStack, getItemModel(stack), ItemTransforms.TransformType.GUI, false);
         final boolean isSideLit = bakedModel.func_230044_c_();
         if (!isSideLit) {
             RenderHelper.func_227783_c_();
         }
         final MultiBufferSource.Impl buffer = Minecraft.getInstance().func_228019_au_().func_228487_b_();
-        renderItemModelWithColor(stack, ItemTransforms.TransformType.GUI, bakedModel, renderStack, (MultiBufferSource)buffer, LightmapUtil.getPackedFullbrightCoords(), OverlayTexture.field_229196_a_, overlayColor, Mth.func_76125_a(alpha, 0, 255));
+        renderItemModelWithColor(stack, ItemTransforms.TransformType.GUI, bakedModel, renderStack, (MultiBufferSource)buffer, LightmapUtil.getPackedFullbrightCoords(), OverlayTexture.field_229196_a_, overlayColor, Mth.getDescriptionId(alpha, 0, 255));
         buffer.func_228461_a_();
         if (!isSideLit) {
             RenderHelper.func_227784_d_();
@@ -353,7 +353,7 @@ public class RenderingUtils
         RenderSystem.disableAlphaTest();
         RenderSystem.disableRescaleNormal();
         RenderSystem.enableDepthTest();
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     @Deprecated
@@ -362,15 +362,15 @@ public class RenderingUtils
             return;
         }
         RenderSystem.disableLighting();
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(0.0, 0.0, 100.0);
-        if (stack.func_190916_E() > 1 || text != null) {
-            final ITextProperties display = (ITextProperties)new Component((String)ObjectUtils.firstNonNull((Object[])new String[] { text, String.valueOf(stack.func_190916_E()) }));
+        if (stack.getCount() > 1 || text != null) {
+            final ITextProperties display = (ITextProperties)new Component((String)ObjectUtils.firstNonNull((Object[])new String[] { text, String.valueOf(stack.getCount()) }));
             final int length = fr.func_238414_a_(display);
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_((double)(17 - length), 9.0, 0.0);
             RenderingDrawUtils.renderStringAt(display, renderStack, fr, -1, true);
-            renderStack.func_227865_b_();
+            renderStack.scale();
         }
         if (stack.getItem().showDurabilityBar(stack)) {
             RenderSystem.disableDepthTest();
@@ -380,7 +380,7 @@ public class RenderingUtils
             final float health = (float)stack.getItem().getDurabilityForDisplay(stack);
             final float durabilityPercent = 13.0f - health * 13.0f;
             final int color = stack.getItem().getRGBDurabilityForDisplay(stack);
-            draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
+            draw(7, DefaultVertexFormat.fogColor, buf -> {
                 RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 2.0f, 13.0f, 0.0f, 13.0f, 2.0f).color(0, 0, 0, 255).draw();
                 RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 2.0f, 13.0f, 0.0f, durabilityPercent, 1.0f).color(color >> 16 & 0xFF, color >> 8 & 0xFF, color & 0xFF, 255).draw();
                 return;
@@ -390,27 +390,27 @@ public class RenderingUtils
             RenderSystem.enableTexture();
             RenderSystem.enableDepthTest();
         }
-        final ClientPlayerEntity player = Minecraft.getInstance().field_71439_g;
-        final float cooldownPercent = (player == null) ? 0.0f : player.func_184811_cZ().func_185143_a(stack.getItem(), pTicks);
+        final ClientPlayerEntity player = Minecraft.getInstance().player;
+        final float cooldownPercent = (player == null) ? 0.0f : player.isSleeping().func_185143_a(stack.getItem(), pTicks);
         if (cooldownPercent > 0.0f) {
             RenderSystem.disableDepthTest();
             RenderSystem.disableTexture();
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
-            draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 16.0f * (1.0f - cooldownPercent), 0.0f, 16.0f, 16.0f * cooldownPercent).color(255, 255, 255, 127).draw());
+            draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 16.0f * (1.0f - cooldownPercent), 0.0f, 16.0f, 16.0f * cooldownPercent).color(255, 255, 255, 127).draw());
             RenderSystem.enableTexture();
             RenderSystem.enableDepthTest();
         }
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     private static BakedModel getItemModel(final ItemStack stack) {
-        return Minecraft.getInstance().func_175599_af().func_184393_a(stack, (World)Minecraft.getInstance().field_71441_e, (LivingEntity)Minecraft.getInstance().field_71439_g);
+        return Minecraft.getInstance().func_175599_af().func_184393_a(stack, (Level)Minecraft.getInstance().level, (LivingEntity)Minecraft.getInstance().player);
     }
     
     private static void renderItemModelWithColor(final ItemStack stack, final ItemTransforms.TransformType transformType, final BakedModel model, final PoseStack renderStack, final MultiBufferSource buffer, final int combinedLight, final int combinedOverlay, final Color c, final int alpha) {
         if (!stack.isEmpty()) {
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_(-0.5, -0.5, -0.5);
             final boolean renderThirdPersonView = transformType == ItemTransforms.TransformType.GUI || transformType == ItemTransforms.TransformType.GROUND || transformType == ItemTransforms.TransformType.FIXED;
             if (model.func_188618_c() || (stack.getItem() == Items.field_203184_eO && !renderThirdPersonView)) {
@@ -436,23 +436,23 @@ public class RenderingUtils
                 final RenderType rType2 = RenderTypeLookup.func_239219_a_(stack, true);
                 VertexConsumer vertexBuilder2;
                 if (stack.getItem() instanceof CompassItem && stack.func_77962_s()) {
-                    renderStack.func_227860_a_();
-                    final PoseStack.Entry topEntry = renderStack.func_227866_c_();
+                    renderStack.popPose();
+                    final PoseStack.Entry topEntry = renderStack.last();
                     if (transformType == ItemTransforms.TransformType.GUI) {
-                        topEntry.func_227870_a_().func_226592_a_(0.5f);
+                        topEntry.translate().func_226592_a_(0.5f);
                     }
                     else if (transformType.func_241716_a_()) {
-                        topEntry.func_227870_a_().func_226592_a_(0.75f);
+                        topEntry.translate().func_226592_a_(0.75f);
                     }
                     vertexBuilder2 = ItemRenderer.func_241732_b_(buffer, rType2, topEntry);
-                    renderStack.func_227865_b_();
+                    renderStack.scale();
                 }
                 else {
                     vertexBuilder2 = ItemRenderer.func_239391_c_(buffer, rType2, true, stack.func_77962_s());
                 }
                 renderColoredItemModel(stack, model, renderStack, vertexBuilder2, combinedLight, combinedOverlay, c, alpha);
             }
-            renderStack.func_227865_b_();
+            renderStack.scale();
         }
     }
     
@@ -482,7 +482,7 @@ public class RenderingUtils
             final float g = (col >> 8 & 0xFF) / 255.0f;
             final float b = (col & 0xFF) / 255.0f;
             final float a = color.getAlpha() / 255.0f;
-            vb.addVertexData(renderStack.func_227866_c_(), bakedquad, r, g, b, a, combinedLight, combinedOverlay, true);
+            vb.addVertexData(renderStack.last(), bakedquad, r, g, b, a, combinedLight, combinedOverlay, true);
         }
     }
     
@@ -492,7 +492,7 @@ public class RenderingUtils
     
     public static void renderSimpleBlockModel(final BlockState state, final PoseStack renderStack, final VertexConsumer vb, final BlockPos pos, @Nullable final BlockEntity te, final boolean checkRenderSide) {
         if (RenderingUtils.plainRenderWorld == null) {
-            RenderingUtils.plainRenderWorld = (IBlockDisplayReader)new EmptyRenderWorld(() -> RegistryUtil.client().getValue(Registry.field_239720_u_, Biomes.field_76772_c));
+            RenderingUtils.plainRenderWorld = (IBlockDisplayReader)new EmptyRenderWorld(() -> RegistryUtil.client().getValue(Registries.BIOME, Biomes.field_76772_c));
         }
         final RenderShape brt = state.func_185901_i();
         if (brt == RenderShape.INVISIBLE) {
@@ -522,7 +522,7 @@ public class RenderingUtils
         }
         if (brt == RenderShape.MODEL) {
             final BakedModel model = brd.func_184389_a(state);
-            brd.func_175019_b().renderModel((IBlockDisplayReader)Minecraft.getInstance().field_71441_e, model, state, pos, renderStack, buf, checkRenderSide, RenderingUtils.rand, state.func_209533_a(pos), combinedOverlayIn, data);
+            brd.func_175019_b().renderModel((IBlockDisplayReader)Minecraft.getInstance().level, model, state, pos, renderStack, buf, checkRenderSide, RenderingUtils.rand, state.func_209533_a(pos), combinedOverlayIn, data);
         }
     }
     

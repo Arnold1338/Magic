@@ -15,7 +15,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 public class StarlightUpdateHandler implements ITickHandler
 {
     private static final StarlightUpdateHandler instance;
-    private static final Map<RegistryKey<World>, List<IPrismTransmissionNode>> updateRequired;
+    private static final Map<RegistryKey<Level>, List<IPrismTransmissionNode>> updateRequired;
     private static final Object accessLock;
     
     private StarlightUpdateHandler() {
@@ -26,8 +26,8 @@ public class StarlightUpdateHandler implements ITickHandler
     }
     
     public void tick(final TickEvent.Type type, final Object... context) {
-        final World world = (World)context[0];
-        if (world.func_201670_d()) {
+        final Level world = (Level)context[0];
+        if (world.level()) {
             return;
         }
         final List<IPrismTransmissionNode> nodes = this.getNodes(world);
@@ -38,23 +38,23 @@ public class StarlightUpdateHandler implements ITickHandler
         }
     }
     
-    private List<IPrismTransmissionNode> getNodes(final World world) {
-        return StarlightUpdateHandler.updateRequired.computeIfAbsent((RegistryKey<World>)world.dimension(), k -> new LinkedList());
+    private List<IPrismTransmissionNode> getNodes(final Level world) {
+        return StarlightUpdateHandler.updateRequired.computeIfAbsent((RegistryKey<Level>)world.dimension(), k -> new LinkedList());
     }
     
-    public void removeNode(final World world, final IPrismTransmissionNode node) {
+    public void removeNode(final Level world, final IPrismTransmissionNode node) {
         synchronized (StarlightUpdateHandler.accessLock) {
             this.getNodes(world).remove(node);
         }
     }
     
-    public void addNode(final World world, final IPrismTransmissionNode node) {
+    public void addNode(final Level world, final IPrismTransmissionNode node) {
         synchronized (StarlightUpdateHandler.accessLock) {
             this.getNodes(world).add(node);
         }
     }
     
-    public void informWorldLoad(final World world) {
+    public void informWorldLoad(final Level world) {
         synchronized (StarlightUpdateHandler.accessLock) {
             StarlightUpdateHandler.updateRequired.remove(world.dimension());
         }
@@ -80,7 +80,7 @@ public class StarlightUpdateHandler implements ITickHandler
     
     static {
         instance = new StarlightUpdateHandler();
-        updateRequired = new HashMap<RegistryKey<World>, List<IPrismTransmissionNode>>();
+        updateRequired = new HashMap<RegistryKey<Level>, List<IPrismTransmissionNode>>();
         accessLock = new Object();
     }
 }

@@ -28,7 +28,7 @@ import net.minecraft.resources.ResourceKey;
 
 public class GatewayUI
 {
-    private final RegistryKey<World> dimType;
+    private final RegistryKey<Level> dimType;
     private final BlockPos pos;
     private final Vector3 renderCenter;
     private final double sphereRadius;
@@ -36,7 +36,7 @@ public class GatewayUI
     private final List<GatewayEntry> gatewayEntries;
     private int visibleTicks;
     
-    private GatewayUI(final RegistryKey<World> dimType, final BlockPos pos, final Vector3 renderCenter, final double sphereRadius) {
+    private GatewayUI(final RegistryKey<Level> dimType, final BlockPos pos, final Vector3 renderCenter, final double sphereRadius) {
         this.playerConstellations = new HashMap<UUID, IConstellation>();
         this.gatewayEntries = new ArrayList<GatewayEntry>();
         this.visibleTicks = 20;
@@ -62,14 +62,14 @@ public class GatewayUI
         }
     }
     
-    public static GatewayUI create(final World world, final BlockPos tilePos, final Vector3 renderPos, final double sphereRadius) {
+    public static GatewayUI create(final Level world, final BlockPos tilePos, final Vector3 renderPos, final double sphereRadius) {
         final GatewayCache.GatewayNode gatewayNode = CelestialGatewayHandler.INSTANCE.getGatewayNode(world, LogicalSide.CLIENT, tilePos);
         if (gatewayNode == null) {
             return null;
         }
-        final RegistryKey<World> dimType = (RegistryKey<World>)world.dimension();
+        final RegistryKey<Level> dimType = (RegistryKey<Level>)world.dimension();
         final GatewayUI ui = new GatewayUI(dimType, tilePos, renderPos, sphereRadius);
-        final Player thisPlayer = (Player)Minecraft.getInstance().field_71439_g;
+        final Player thisPlayer = (Player)Minecraft.getInstance().player;
         for (final GatewayCache.GatewayNode node : CelestialGatewayHandler.INSTANCE.getGatewaysForWorld(world, LogicalSide.CLIENT)) {
             if (!node.hasAccess(thisPlayer)) {
                 continue;
@@ -89,7 +89,7 @@ public class GatewayUI
                         continue;
                     }
                     else {
-                        appendEntry(ui, node2, (RegistryKey<World>)dimTypeKey, false, sphereRadius);
+                        appendEntry(ui, node2, (RegistryKey<Level>)dimTypeKey, false, sphereRadius);
                     }
                 }
                 return;
@@ -98,7 +98,7 @@ public class GatewayUI
         return ui;
     }
     
-    private static void appendEntry(final GatewayUI ui, final GatewayCache.GatewayNode node, final RegistryKey<World> nodeDimType, final boolean sameWorld, final double sphereRadius) {
+    private static void appendEntry(final GatewayUI ui, final GatewayCache.GatewayNode node, final RegistryKey<Level> nodeDimType, final boolean sameWorld, final double sphereRadius) {
         final Vector3 renderPos = ui.getRenderCenter();
         final Vector3 nodePos = new Vector3((Vector3i)node.getPos());
         if (sameWorld) {
@@ -166,7 +166,7 @@ public class GatewayUI
         }
     }
     
-    public RegistryKey<World> getDimType() {
+    public RegistryKey<Level> getDimType() {
         return this.dimType;
     }
     
@@ -184,7 +184,7 @@ public class GatewayUI
     
     @Nullable
     public GatewayCache.GatewayNode getThisGatewayNode() {
-        return CelestialGatewayHandler.INSTANCE.getGatewayNode((World)Minecraft.getInstance().field_71441_e, LogicalSide.CLIENT, this.getPos());
+        return CelestialGatewayHandler.INSTANCE.getGatewayNode((Level)Minecraft.getInstance().level, LogicalSide.CLIENT, this.getPos());
     }
     
     @Nullable
@@ -211,12 +211,12 @@ public class GatewayUI
     public static class GatewayEntry
     {
         private final GatewayCache.GatewayNode node;
-        private final RegistryKey<World> nodeDimension;
+        private final RegistryKey<Level> nodeDimension;
         private final Vector3 relativePos;
         private final float yaw;
         private final float pitch;
         
-        private GatewayEntry(final GatewayCache.GatewayNode node, final RegistryKey<World> nodeDimension, final Vector3 relativePos) {
+        private GatewayEntry(final GatewayCache.GatewayNode node, final RegistryKey<Level> nodeDimension, final Vector3 relativePos) {
             this.node = node;
             this.nodeDimension = nodeDimension;
             this.relativePos = relativePos.clone();
@@ -232,7 +232,7 @@ public class GatewayUI
             return this.node;
         }
         
-        public RegistryKey<World> getNodeDimension() {
+        public RegistryKey<Level> getNodeDimension() {
             return this.nodeDimension;
         }
         

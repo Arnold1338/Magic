@@ -45,13 +45,13 @@ public class LightbeamRenderHelper implements ITickHandler
             this.ticksExisted = 0;
             Entity rView = Minecraft.getInstance().func_175606_aa();
             if (rView == null) {
-                rView = (Entity)Minecraft.getInstance().field_71439_g;
+                rView = (Entity)Minecraft.getInstance().player;
             }
             if (rView != null) {
                 final Entity renderView = rView;
-                final RegistryKey<World> dimKey = (RegistryKey<World>)renderView.func_130014_f_().dimension();
+                final RegistryKey<Level> dimKey = (RegistryKey<Level>)renderView.level().dimension();
                 SyncDataHolder.executeClient(SyncDataHolder.DATA_LIGHT_CONNECTIONS, ClientLightConnections.class, data -> {
-                    data.getClientConnections((RegistryKey<World>)dimKey).entrySet().iterator();
+                    data.getClientConnections((RegistryKey<Level>)dimKey).entrySet().iterator();
                     final Iterator iterator;
                     while (iterator.hasNext()) {
                         final Map.Entry<BlockPos, Set<BlockPos>> entry = iterator.next();
@@ -59,7 +59,7 @@ public class LightbeamRenderHelper implements ITickHandler
                         if (renderView.func_70092_e((double)at.getX(), (double)at.getY(), (double)at.getZ()) <= RenderingConfig.CONFIG.getMaxEffectRenderDistanceSq()) {
                             final Vector3 source = new Vector3((Vector3i)at).add(0.5, 0.5, 0.5);
                             Color overlay = null;
-                            final TileLens lens = MiscUtils.getTileAt((IBlockReader)renderView.func_130014_f_(), at, TileLens.class, true);
+                            final TileLens lens = MiscUtils.getTileAt((IBlockReader)renderView.level(), at, TileLens.class, true);
                             if (lens != null && lens.getColorType() != null) {
                                 overlay = lens.getColorType().getColor();
                             }

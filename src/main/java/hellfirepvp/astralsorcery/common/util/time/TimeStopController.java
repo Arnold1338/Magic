@@ -26,14 +26,14 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 
 public class TimeStopController implements ITickHandler
 {
-    private static final Map<RegistryKey<World>, List<TimeStopZone>> activeTimeStopZones;
+    private static final Map<RegistryKey<Level>, List<TimeStopZone>> activeTimeStopZones;
     public static final TimeStopController INSTANCE;
     
     private TimeStopController() {
     }
     
     @Nullable
-    public static TimeStopZone tryGetZoneAt(final World world, final BlockPos pos) {
+    public static TimeStopZone tryGetZoneAt(final Level world, final BlockPos pos) {
         if (world.isClientSide) {
             return null;
         }
@@ -47,19 +47,19 @@ public class TimeStopController implements ITickHandler
     }
     
     @Nonnull
-    public static TimeStopZone freezeWorldAt(@Nonnull final TimeStopZone.EntityTargetController controller, @Nonnull final World world, @Nonnull final BlockPos offset, final float range, final int maxAge) {
+    public static TimeStopZone freezeWorldAt(@Nonnull final TimeStopZone.EntityTargetController controller, @Nonnull final Level world, @Nonnull final BlockPos offset, final float range, final int maxAge) {
         final TimeStopZone stopZone = new TimeStopZone(controller, range, offset, world, maxAge);
-        final List<TimeStopZone> zones = TimeStopController.activeTimeStopZones.computeIfAbsent((RegistryKey<World>)world.dimension(), id -> new LinkedList());
+        final List<TimeStopZone> zones = TimeStopController.activeTimeStopZones.computeIfAbsent((RegistryKey<Level>)world.dimension(), id -> new LinkedList());
         zones.add(stopZone);
-        SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, DataTimeFreezeEffects.class, data -> data.addNewEffect((RegistryKey<World>)world.dimension(), TimeStopEffectHelper.fromZone(stopZone)));
+        SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, DataTimeFreezeEffects.class, data -> data.addNewEffect((RegistryKey<Level>)world.dimension(), TimeStopEffectHelper.fromZone(stopZone)));
         return stopZone;
     }
     
-    public static void onWorldUnload(final World world) {
-        if (world.func_201670_d()) {
+    public static void onWorldUnload(final Level world) {
+        if (world.level()) {
             return;
         }
-        final RegistryKey<World> dimKey = (RegistryKey<World>)world.dimension();
+        final RegistryKey<Level> dimKey = (RegistryKey<Level>)world.dimension();
         for (final TimeStopZone stop : TimeStopController.activeTimeStopZones.getOrDefault(dimKey, Collections.emptyList())) {
             stop.stopEffect();
         }
@@ -67,7 +67,7 @@ public class TimeStopController implements ITickHandler
     }
     
     public static boolean isFrozenDirectly(final Entity e) {
-        if (e.func_130014_f_().func_201670_d()) {
+        if (e.level().level()) {
             return SyncDataHolder.computeClient(SyncDataHolder.DATA_TIME_FREEZE_ENTITIES, ClientTimeFreezeEntities.class, data -> data.isFrozen(e)).orElse(false);
         }
         return SyncDataHolder.computeServer(SyncDataHolder.DATA_TIME_FREEZE_ENTITIES, DataTimeFreezeEntities.class, data -> data.isFrozen(e)).orElse(false);
@@ -76,30 +76,30 @@ public class TimeStopController implements ITickHandler
     public static boolean skipLivingTick(final LivingEntity e) {
         if (isFrozenDirectly((Entity)e)) {
             boolean shouldFreeze = true;
-            if (!e.isAlive() || e.func_110143_aJ() <= 0.0f) {
+            if (!e.isAlive() || e.getMaxHealth() <= 0.0f) {
                 shouldFreeze = false;
             }
             if (e instanceof EnderDragonEntity && ((EnderDragonEntity)e).func_184670_cT().func_188756_a().func_188652_i() == PhaseType.field_188750_j) {
                 shouldFreeze = false;
             }
             if (shouldFreeze) {
-                if (e.field_70170_p.func_201670_d()) {
+                if (e.level().level()) {
                     for (int amt = (int)Mth.func_76129_c(e.func_213311_cf() * e.func_213302_cg()), i = 0; i < amt; ++i) {
-                        if (e.field_70170_p.field_73012_v.nextInt(5) == 0) {
+                        if (e.level().field_73012_v.nextInt(5) == 0) {
                             TimeStopEffectHelper.playEntityParticles(e);
                         }
                     }
                 }
-                if (!e.func_130014_f_().func_201670_d()) {
+                if (!e.level().level()) {
                     TimeStopZone.handleImportantEntityTicks(e);
                     return true;
                 }
             }
         }
-        final List<TimeStopZone> freezeAreas = TimeStopController.activeTimeStopZones.get(e.func_130014_f_().dimension());
+        final List<TimeStopZone> freezeAreas = TimeStopController.activeTimeStopZones.get(e.level().dimension());
         if (freezeAreas != null && !freezeAreas.isEmpty()) {
             for (final TimeStopZone stop : freezeAreas) {
-                if (stop.interceptEntityTick(e) && !e.func_130014_f_().func_201670_d()) {
+                if (stop.interceptEntityTick(e) && !e.level().level()) {
                     TimeStopZone.handleImportantEntityTicks(e);
                     return true;
                 }
@@ -109,13 +109,13 @@ public class TimeStopController implements ITickHandler
     }
     
     public void tick(final TickEvent.Type type, final Object... context) {
-        for (final Map.Entry<RegistryKey<World>, List<TimeStopZone>> zoneMap : TimeStopController.activeTimeStopZones.entrySet()) {
+        for (final Map.Entry<RegistryKey<Level>, List<TimeStopZone>> zoneMap : TimeStopController.activeTimeStopZones.entrySet()) {
             final Iterator<TimeStopZone> iterator = zoneMap.getValue().iterator();
             while (iterator.hasNext()) {
                 final TimeStopZone zone = iterator.next();
                 if (zone.shouldDespawn()) {
                     zone.stopEffect();
-                    SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, DataTimeFreezeEffects.class, data -> data.removeEffect((RegistryKey<World>)zoneMap.getKey(), TimeStopEffectHelper.fromZone(zone)));
+                    SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, DataTimeFreezeEffects.class, data -> data.removeEffect((RegistryKey<Level>)zoneMap.getKey(), TimeStopEffectHelper.fromZone(zone)));
                     iterator.remove();
                 }
                 else {
@@ -124,7 +124,7 @@ public class TimeStopController implements ITickHandler
                         continue;
                     }
                     zone.stopEffect();
-                    SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, DataTimeFreezeEffects.class, data -> data.removeEffect((RegistryKey<World>)zoneMap.getKey(), TimeStopEffectHelper.fromZone(zone)));
+                    SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, DataTimeFreezeEffects.class, data -> data.removeEffect((RegistryKey<Level>)zoneMap.getKey(), TimeStopEffectHelper.fromZone(zone)));
                     iterator.remove();
                 }
             }
@@ -144,7 +144,7 @@ public class TimeStopController implements ITickHandler
     }
     
     static {
-        activeTimeStopZones = new HashMap<RegistryKey<World>, List<TimeStopZone>>();
+        activeTimeStopZones = new HashMap<RegistryKey<Level>, List<TimeStopZone>>();
         INSTANCE = new TimeStopController();
     }
 }

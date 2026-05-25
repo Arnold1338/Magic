@@ -20,11 +20,11 @@ public class ItemComparator
             }
         }
         if (lClauses.contains(Clause.AMOUNT_EXACT)) {
-            if (thisStack.func_190916_E() != sampleCompare.func_190916_E()) {
+            if (thisStack.getCount() != sampleCompare.getCount()) {
                 return false;
             }
         }
-        else if (lClauses.contains(Clause.AMOUNT_LEAST) && thisStack.func_190916_E() > sampleCompare.func_190916_E()) {
+        else if (lClauses.contains(Clause.AMOUNT_LEAST) && thisStack.getCount() > sampleCompare.getCount()) {
             return false;
         }
         final boolean thisHasTag = thisStack.hasTag() && !thisStack.getTag().isEmpty();

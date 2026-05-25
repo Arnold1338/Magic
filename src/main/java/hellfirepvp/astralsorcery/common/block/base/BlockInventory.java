@@ -18,7 +18,7 @@ public abstract class BlockInventory extends BlockCrystalContainer
         super(builder);
     }
     
-    public void func_196243_a(final BlockState state, final World worldIn, final BlockPos pos, final BlockState newState, final boolean isMoving) {
+    public void func_196243_a(final BlockState state, final Level worldIn, final BlockPos pos, final BlockState newState, final boolean isMoving) {
         final BlockEntity te = MiscUtils.getTileAt((IBlockReader)worldIn, pos, BlockEntity.class, true);
         if (te != null && !worldIn.isClientSide) {
             final LazyOptional<IItemHandler> opt = (LazyOptional<IItemHandler>)te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);

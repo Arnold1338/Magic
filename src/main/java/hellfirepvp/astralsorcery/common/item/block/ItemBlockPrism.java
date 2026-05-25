@@ -25,7 +25,7 @@ public class ItemBlockPrism extends ItemBlockCustom implements CrystalAttributeI
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         super.func_77624_a(stack, worldIn, (List)tooltip, flagIn);
         final CrystalAttributes attr = this.getAttributes(stack);
         if (attr != null) {

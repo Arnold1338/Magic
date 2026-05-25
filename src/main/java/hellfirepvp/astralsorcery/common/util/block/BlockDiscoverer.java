@@ -29,7 +29,7 @@ import net.minecraft.world.level.Level;
 
 public class BlockDiscoverer
 {
-    public static Set<BlockPos> discoverBlocksWithSameStateAroundChain(final World world, final BlockPos origin, final BlockState match, int length, @Nullable final Direction originalBreakDirection, final BlockPredicate addCheck) {
+    public static Set<BlockPos> discoverBlocksWithSameStateAroundChain(final Level world, final BlockPos origin, final BlockState match, int length, @Nullable final Direction originalBreakDirection, final BlockPredicate addCheck) {
         final Set<BlockPos> out = new HashSet<BlockPos>();
         BlockPos offset = new BlockPos((Vector3i)origin);
     Label_0019:
@@ -59,7 +59,7 @@ public class BlockDiscoverer
         return out;
     }
     
-    public static Set<BlockPos> searchForTileEntitiesAround(final World world, final BlockPos origin, final int distance, final Predicate<BlockEntity> match) {
+    public static Set<BlockPos> searchForTileEntitiesAround(final Level world, final BlockPos origin, final int distance, final Predicate<BlockEntity> match) {
         final Set<BlockPos> out = new HashSet<BlockPos>();
         final int minChX = origin.getX() - distance >> 4;
         final int minChZ = origin.getZ() - distance >> 4;
@@ -69,14 +69,14 @@ public class BlockDiscoverer
             for (int chZ = minChZ; chZ <= maxChZ; ++chZ) {
                 final Chunk ch = world.func_212866_a_(chX, chZ);
                 if (ch != null) {
-                    out.addAll(ch.func_177434_r().values().stream().filter(tile -> tile.func_174877_v().func_218141_a((Vector3i)origin, (double)distance)).filter((Predicate<? super Object>)match).map((Function<? super Object, ?>)BlockEntity::func_174877_v).collect((Collector<? super Object, ?, Collection<? extends BlockPos>>)Collectors.toList()));
+                    out.addAll(ch.func_177434_r().values().stream().filter(tile -> tile.getBlockState().func_218141_a((Vector3i)origin, (double)distance)).filter((Predicate<? super Object>)match).map((Function<? super Object, ?>)BlockEntity::func_174877_v).collect((Collector<? super Object, ?, Collection<? extends BlockPos>>)Collectors.toList()));
                 }
             }
         }
         return out;
     }
     
-    public static List<BlockPos> searchForBlocksAround(final World world, final BlockPos origin, final int cubeSize, final BlockPredicate match) {
+    public static List<BlockPos> searchForBlocksAround(final Level world, final BlockPos origin, final int cubeSize, final BlockPredicate match) {
         final List<BlockPos> out = new ArrayList<BlockPos>();
         final BlockPos.Mutable offset = new BlockPos.Mutable();
         for (int xx = -cubeSize; xx <= cubeSize; ++xx) {
@@ -97,7 +97,7 @@ public class BlockDiscoverer
     }
     
     @Nullable
-    public static BlockPos searchAreaForFirst(final World world, final BlockPos center, final int radius, @Nullable final Vector3 offsetFrom, final BlockPredicate acceptor) {
+    public static BlockPos searchAreaForFirst(final Level world, final BlockPos center, final int radius, @Nullable final Vector3 offsetFrom, final BlockPredicate acceptor) {
         for (int r = 0; r <= radius; ++r) {
             final Set<BlockPos> posList = new HashSet<BlockPos>();
             for (int xx = -r; xx <= r; ++xx) {
@@ -133,14 +133,14 @@ public class BlockDiscoverer
         return null;
     }
     
-    public static List<BlockPos> discoverBlocksWithSameStateAround(final World world, final BlockPos origin, final boolean onlyExposed, final int cubeSize, final int limit, final boolean searchCorners) {
+    public static List<BlockPos> discoverBlocksWithSameStateAround(final Level world, final BlockPos origin, final boolean onlyExposed, final int cubeSize, final int limit, final boolean searchCorners) {
         return MiscUtils.executeWithChunk((IWorldReader)world, origin, () -> {
             final BlockState state = world.getBlockState(origin);
             return discoverBlocksWithSameStateAround(BlockPredicates.isState(state), world, origin, onlyExposed, cubeSize, limit, searchCorners);
         }, Lists.newArrayList());
     }
     
-    public static List<BlockPos> discoverBlocksWithSameStateAround(final BlockPredicate match, final World world, final BlockPos origin, final boolean onlyExposed, final int cubeSize, final int limit, final boolean searchCorners) {
+    public static List<BlockPos> discoverBlocksWithSameStateAround(final BlockPredicate match, final Level world, final BlockPos origin, final boolean onlyExposed, final int cubeSize, final int limit, final boolean searchCorners) {
         final List<BlockPos> foundResult = new ArrayList<BlockPos>();
         foundResult.add(origin);
         final List<BlockPos> visited = new LinkedList<BlockPos>();
@@ -206,7 +206,7 @@ public class BlockDiscoverer
         return (int)Mth.func_76132_a(Mth.func_76132_a((double)(p1.getX() - p2.getX()), (double)(p1.getY() - p2.getY())), (double)(p1.getZ() - p2.getZ()));
     }
     
-    private static boolean isExposedToAir(final World world, final BlockPos pos) {
+    private static boolean isExposedToAir(final Level world, final BlockPos pos) {
         for (final Direction face : Direction.values()) {
             final BlockPos offset = pos.func_177972_a(face);
             if (MiscUtils.executeWithChunk((IWorldReader)world, offset, () -> BlockUtils.isReplaceable(world, offset), false)) {

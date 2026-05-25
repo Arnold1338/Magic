@@ -46,7 +46,7 @@ public class ClientPatreonFlares extends ClientData<ClientPatreonFlares>
     }
     
     @Override
-    public void clear(final RegistryKey<World> dim) {
+    public void clear(final RegistryKey<Level> dim) {
     }
     
     @Override

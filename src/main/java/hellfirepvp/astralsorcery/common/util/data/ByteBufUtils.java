@@ -175,7 +175,7 @@ public class ByteBufUtils
     
     public static <T> RegistryKey<T> readVanillaRegistryEntry(final FriendlyByteBuf buf) {
         final ResourceLocation registryName = readResourceLocation(buf);
-        return (RegistryKey<T>)RegistryKey.func_240903_a_(RegistryKey.func_240904_a_(registryName), readResourceLocation(buf));
+        return (RegistryKey<T>)RegistryKey.func_240903_a_(ResourceKey.create(registryName), readResourceLocation(buf));
     }
     
     public static void writeResourceLocation(final FriendlyByteBuf buf, final ResourceLocation key) {
@@ -289,7 +289,7 @@ public class ByteBufUtils
             if (property != null) {
                 final Optional<T> value = property.func_185929_b(valueStr);
                 if (value.isPresent()) {
-                    state = (BlockState)state.func_206870_a((Property)property, (Comparable)value.get());
+                    state = (BlockState)state.setValue((Property)property, (Comparable)value.get());
                 }
             }
         }

@@ -49,7 +49,7 @@ public class BlockLens extends BlockStarlightNetwork implements CustomItemBlock
     
     public BlockLens() {
         super(PropertiesGlass.coatedGlass().harvestTool(ToolType.PICKAXE));
-        this.func_180632_j((BlockState)((BlockState)this.func_176194_O().func_177621_b()).func_206870_a((Property)BlockLens.PLACED_AGAINST, (Comparable)Direction.DOWN));
+        this.func_180632_j((BlockState)((BlockState)this.func_176194_O().func_177621_b()).setValue((Property)BlockLens.PLACED_AGAINST, (Comparable)Direction.DOWN));
     }
     
     @Override
@@ -57,21 +57,21 @@ public class BlockLens extends BlockStarlightNetwork implements CustomItemBlock
         return ItemBlockLens.class;
     }
     
-    public void func_176208_a(final World world, final BlockPos pos, final BlockState state, final Player player) {
+    public void func_176208_a(final Level world, final BlockPos pos, final BlockState state, final Player player) {
         final TileLens lens = MiscUtils.getTileAt((IBlockReader)world, pos, TileLens.class, true);
-        if (lens != null && !world.func_201670_d() && !player.func_184812_l_() && lens.getColorType() != null) {
+        if (lens != null && !world.level() && !player.getVehicle() && lens.getColorType() != null) {
             final ItemStack drop = lens.getColorType().getStack();
             ItemUtils.dropItemNaturally(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop);
         }
         super.func_176208_a(world, pos, state, player);
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
-        if (!world.func_201670_d() && player.func_225608_bj_()) {
+    public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
+        if (!world.level() && player.func_225608_bj_()) {
             final TileLens lens = MiscUtils.getTileAt((IBlockReader)world, pos, TileLens.class, true);
             if (lens != null && lens.getColorType() != null) {
                 final ItemStack drop = lens.getColorType().getStack();
-                if (player.func_184586_b(hand).isEmpty()) {
+                if (player.getItemInHand(hand).isEmpty()) {
                     player.func_184611_a(hand, drop);
                 }
                 else if (!player.getInventory().func_70441_a(drop)) {
@@ -91,7 +91,7 @@ public class BlockLens extends BlockStarlightNetwork implements CustomItemBlock
     
     @Nullable
     public BlockState func_196258_a(final BlockItemUseContext context) {
-        return (BlockState)this.defaultBlockState().func_206870_a((Property)BlockLens.PLACED_AGAINST, (Comparable)context.func_196000_l().func_176734_d());
+        return (BlockState)this.defaultBlockState().setValue((Property)BlockLens.PLACED_AGAINST, (Comparable)context.func_196000_l().func_176734_d());
     }
     
     public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {

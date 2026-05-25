@@ -170,7 +170,7 @@ public class ScreenJournalProgression extends ScreenJournal
     }
     
     private void drawSearchResults(final PoseStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
-        final FontRenderer fr = Minecraft.getInstance().field_71466_p;
+        final FontRenderer fr = Minecraft.getInstance().font;
         final int lineHeight = 12;
         int offsetX = this.getGuiLeft() + 35;
         int offsetY = this.getGuiTop() + 26;
@@ -184,10 +184,10 @@ public class ScreenJournalProgression extends ScreenJournal
             final List<FormattedCharSequence> nodeTitle = fr.func_238425_b_((ITextProperties)node.getName(), 170);
             float maxLength = 0.0f;
             for (final FormattedCharSequence line : nodeTitle) {
-                renderStack.func_227860_a_();
+                renderStack.popPose();
                 renderStack.func_227861_a_((double)offsetX, (double)offsetY, (double)this.getGuiZLevel());
                 final float length = RenderingDrawUtils.renderStringAt(line, renderStack, fr, 13684944, false);
-                renderStack.func_227865_b_();
+                renderStack.scale();
                 if (length > maxLength) {
                     maxLength = length;
                 }
@@ -210,10 +210,10 @@ public class ScreenJournalProgression extends ScreenJournal
             final List<FormattedCharSequence> nodeTitle = fr.func_238425_b_((ITextProperties)node.getName(), 170);
             float maxLength = 0.0f;
             for (final FormattedCharSequence line : nodeTitle) {
-                renderStack.func_227860_a_();
+                renderStack.popPose();
                 renderStack.func_227861_a_((double)offsetX, (double)offsetY, (double)this.getGuiZLevel());
                 final float length = RenderingDrawUtils.renderStringAt(line, renderStack, fr, 13684944, false);
-                renderStack.func_227865_b_();
+                renderStack.scale();
                 if (length > maxLength) {
                     maxLength = length;
                 }
@@ -238,14 +238,14 @@ public class ScreenJournalProgression extends ScreenJournal
         TexturesAS.TEX_GUI_TEXT_FIELD.bindTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.guiLeft + 300), (float)(this.guiTop + 16), (float)this.getGuiZLevel(), 88.5f, 15.0f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.guiLeft + 300), (float)(this.guiTop + 16), (float)this.getGuiZLevel(), 88.5f, 15.0f).draw());
         RenderSystem.disableBlend();
         String text = this.searchTextEntry.getText();
-        int length = this.field_230712_o_.func_78256_a(text);
+        int length = this.fogColor.func_78256_a(text);
         final boolean addDots = length > 75;
         while (length > 75) {
             text = text.substring(1);
-            length = this.field_230712_o_.func_78256_a("..." + text);
+            length = this.fogColor.func_78256_a("..." + text);
         }
         if (addDots) {
             text = "..." + text;
@@ -253,10 +253,10 @@ public class ScreenJournalProgression extends ScreenJournal
         if (ClientScheduler.getClientTick() % 20L > 10L) {
             text += "_";
         }
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_((double)(this.guiLeft + 304), (double)(this.guiTop + 20), (double)this.getGuiZLevel());
-        RenderingDrawUtils.renderStringAt(this.field_230712_o_, renderStack, (ITextProperties)new Component(text), 13421772);
-        renderStack.func_227865_b_();
+        RenderingDrawUtils.renderStringAt(this.fogColor, renderStack, (ITextProperties)new Component(text), 13421772);
+        renderStack.scale();
     }
     
     private void drawSearchPageNavArrows(final PoseStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
@@ -268,46 +268,46 @@ public class ScreenJournalProgression extends ScreenJournal
             width = 30;
             height = 15;
             this.searchPrevRct = new Rectangle(this.guiLeft + 25, this.guiTop + 220, width, height);
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_(this.searchPrevRct.getX() + width / 2.0f, this.searchPrevRct.getY() + height / 2.0f, (double)this.getGuiZLevel());
             vFrom = 0.5f;
             if (this.searchPrevRct.contains(mouseX, mouseY)) {
                 uFrom = 0.5f;
-                renderStack.func_227862_a_(1.1f, 1.1f, 1.0f);
+                renderStack.translate(1.1f, 1.1f, 1.0f);
             }
             else {
                 uFrom = 0.0f;
                 final double t = ClientScheduler.getClientTick() + pTicks;
                 final float sin = (float)Math.sin(t / 4.0) / 32.0f + 1.0f;
-                renderStack.func_227862_a_(sin, sin, 1.0f);
+                renderStack.translate(sin, sin, 1.0f);
             }
             renderStack.func_227861_a_((double)(-(width / 2.0f)), (double)(-(height / 2.0f)), 0.0);
             TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
-            renderStack.func_227865_b_();
+            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
+            renderStack.scale();
         }
         final int nextDoublePageIndex = this.searchPageOffset * 2 + 2;
         if (this.searchResultPageIndex.size() >= nextDoublePageIndex + 1) {
             final int width2 = 30;
             final int height2 = 15;
             this.searchNextRct = new Rectangle(this.guiLeft + 367, this.guiTop + 220, width2, height2);
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_(this.searchNextRct.getX() + width2 / 2.0f, this.searchNextRct.getY() + height2 / 2.0f, (double)this.getGuiZLevel());
             final float vFrom2 = 0.0f;
             if (this.searchNextRct.contains(mouseX, mouseY)) {
                 final float uFrom2 = 0.5f;
-                renderStack.func_227862_a_(1.1f, 1.1f, 1.0f);
+                renderStack.translate(1.1f, 1.1f, 1.0f);
             }
             else {
                 final float uFrom2 = 0.0f;
                 final double t2 = ClientScheduler.getClientTick() + pTicks;
                 final float sin2 = (float)Math.sin(t2 / 4.0) / 32.0f + 1.0f;
-                renderStack.func_227862_a_(sin2, sin2, 1.0f);
+                renderStack.translate(sin2, sin2, 1.0f);
             }
             renderStack.func_227861_a_((double)(-(width2 / 2.0f)), (double)(-(height2 / 2.0f)), 0.0);
             TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
-            renderStack.func_227865_b_();
+            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
+            renderStack.scale();
         }
     }
     
@@ -333,7 +333,7 @@ public class ScreenJournalProgression extends ScreenJournal
             }
         }
         this.searchResult.sort(Comparator.comparing(node -> node.getName().getString()));
-        final FontRenderer fr = Minecraft.getInstance().field_71466_p;
+        final FontRenderer fr = Minecraft.getInstance().font;
         int addedPages = 0;
         int pageIndex = 0;
         while (addedPages < this.searchResult.size()) {

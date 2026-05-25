@@ -56,13 +56,13 @@ public class MantleEffectBootes extends MantleEffect
         if (mantle.isEmpty() || !(mantle.getItem() instanceof ItemMantle)) {
             return;
         }
-        final World world = player.func_130014_f_();
+        final Level world = player.level();
         final List<EntityFlare> flares = this.gatherFlares(world, mantle);
         if (flares.size() < (int)MantleEffectBootes.CONFIG.maxFlareCount.get() && player.field_70173_aa % 80 == 0 && AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectBootes.CONFIG.chargeCostPerFlare.get()) && MantleEffectBootes.rand.nextInt(4) == 0) {
-            final EntityFlare flare = (EntityFlare)EntityTypesAS.FLARE.func_200721_a(player.func_130014_f_());
-            flare.setPos(player.func_226277_ct_(), player.func_226278_cu_(), player.func_226281_cx_());
+            final EntityFlare flare = (EntityFlare)EntityTypesAS.FLARE.func_200721_a(player.level());
+            flare.setPos(player.getX(), player.getY(), player.getZ());
             flare.setFollowingTarget((LivingEntity)player);
-            if (world.func_217376_c((Entity)flare)) {
+            if (world.addFreshEntity((Entity)flare)) {
                 flares.add(flare);
                 AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectBootes.CONFIG.chargeCostPerFlare.get(), false);
             }
@@ -77,7 +77,7 @@ public class MantleEffectBootes extends MantleEffect
                 else if (player.func_70032_d((Entity)flare2) < 35.0f) {
                     continue;
                 }
-                flare2.func_70080_a(player.func_226277_ct_(), player.func_226278_cu_(), player.func_226281_cx_(), 0.0f, 0.0f);
+                flare2.func_70080_a(player.getX(), player.getY(), player.getZ(), 0.0f, 0.0f);
             }
         }
         this.setEntityIds(mantle, (List<Integer>)flares.stream().map((Function<? super Object, ?>)Entity::func_145782_y).collect((Collector<? super Object, ?, List<? super Object>>)Collectors.toList()));
@@ -93,8 +93,8 @@ public class MantleEffectBootes extends MantleEffect
     private void onAttacked(final LivingAttackEvent event) {
         final LivingEntity attacked = event.getEntityLiving();
         final DamageSource src = event.getSource();
-        if (!attacked.func_130014_f_().func_201670_d() && src.func_76346_g() instanceof LivingEntity) {
-            final LivingEntity attacker = (LivingEntity)src.func_76346_g();
+        if (!attacked.level().level() && src.getEnchantments( instanceof LivingEntity) {
+            final LivingEntity attacker = (LivingEntity)src.getEnchantments(;
             if (ItemMantle.getEffect(attacker, ConstellationsAS.bootes) != null && attacked.isAlive()) {
                 if (attacked instanceof Player && !MiscUtils.canPlayerAttackServer(attacker, attacked)) {
                     return;
@@ -106,8 +106,8 @@ public class MantleEffectBootes extends MantleEffect
     
     private void onHurt(final LivingHurtEvent event) {
         final LivingEntity hurt = event.getEntityLiving();
-        if (!hurt.func_130014_f_().func_201670_d() && ItemMantle.getEffect(hurt, ConstellationsAS.bootes) != null) {
-            final Entity source = event.getSource().func_76346_g();
+        if (!hurt.level().level() && ItemMantle.getEffect(hurt, ConstellationsAS.bootes) != null) {
+            final Entity source = event.getSource().getEnchantments(;
             if (source instanceof LivingEntity) {
                 this.forEachFlare(hurt, flare -> flare.func_70624_b((LivingEntity)source));
             }
@@ -119,13 +119,13 @@ public class MantleEffectBootes extends MantleEffect
         if (mantle.isEmpty() || !(mantle.getItem() instanceof ItemMantle)) {
             return;
         }
-        this.gatherFlares(owner.func_130014_f_(), mantle).forEach(fn);
+        this.gatherFlares(owner.level(), mantle).forEach(fn);
     }
     
-    protected List<EntityFlare> gatherFlares(final World world, final ItemStack mantleStack) {
+    protected List<EntityFlare> gatherFlares(final Level world, final ItemStack mantleStack) {
         final List<EntityFlare> flares = new ArrayList<EntityFlare>();
         for (final int flareId : this.getEntityIds(mantleStack)) {
-            final Entity e = world.func_73045_a(flareId);
+            final Entity e = world.getEntityById(flareId);
             if (e instanceof EntityFlare && e.isAlive()) {
                 flares.add((EntityFlare)e);
             }

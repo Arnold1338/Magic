@@ -16,24 +16,24 @@ public interface NavigationArrowScreen
         final float width = 30.0f;
         final float height = 15.0f;
         final Rectangle rectArrow = new Rectangle(offsetLeft, offsetTop, (int)width, (int)height);
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(rectArrow.getX() + width / 2.0f, rectArrow.getY() + height / 2.0f, 0.0);
         final float vFrom = (direction == Type.LEFT) ? 0.5f : 0.0f;
         float uFrom;
         if (rectArrow.contains(mouseX, mouseY)) {
             uFrom = 0.5f;
-            renderStack.func_227862_a_(1.1f, 1.1f, 1.1f);
+            renderStack.translate(1.1f, 1.1f, 1.1f);
         }
         else {
             uFrom = 0.0f;
             final double t = ClientScheduler.getClientTick() + pTicks;
             final float sin = (float)Math.sin(t / 4.0) / 32.0f + 1.0f;
-            renderStack.func_227862_a_(sin, sin, sin);
+            renderStack.translate(sin, sin, sin);
         }
         renderStack.func_227861_a_((double)(-(width / 2.0f)), (double)(-(height / 2.0f)), 0.0);
         TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, (float)guiZLevel, width, height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
-        renderStack.func_227865_b_();
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, (float)guiZLevel, width, height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
+        renderStack.scale();
         return rectArrow;
     }
     

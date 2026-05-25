@@ -28,12 +28,12 @@ public class StarlightTransmissionPrism extends CrystalPrismTransmissionNode
         }
         final LensColorType colorType = ((TilePrism)tile).getColorType();
         if (this.updateAdditionalLoss((colorType == null) ? 0.0f : colorType.getFlowMultiplier())) {
-            final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(tile.func_145831_w());
+            final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(tile.getLevel());
             if (handle != null) {
                 handle.notifyTransmissionNodeChange(this);
             }
         }
-        this.updateIgnoreBlockCollisionState(tile.func_145831_w(), colorType != null && colorType.doesIgnoreBlockCollision());
+        this.updateIgnoreBlockCollisionState(tile.getLevel(), colorType != null && colorType.doesIgnoreBlockCollision());
         return true;
     }
     

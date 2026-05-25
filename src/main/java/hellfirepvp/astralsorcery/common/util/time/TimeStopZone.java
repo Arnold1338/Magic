@@ -29,12 +29,12 @@ public class TimeStopZone
     final EntityTargetController targetController;
     final float range;
     final BlockPos offset;
-    private final World world;
+    private final Level world;
     private int ticksToLive;
     private boolean active;
     private final List<BlockEntity> cachedTiles;
     
-    TimeStopZone(final EntityTargetController ctrl, final float range, final BlockPos offset, final World world, final int tickLivespan) {
+    TimeStopZone(final EntityTargetController ctrl, final float range, final BlockPos offset, final Level world, final int tickLivespan) {
         this.active = true;
         this.cachedTiles = new LinkedList<BlockEntity>();
         this.targetController = ctrl;
@@ -60,7 +60,7 @@ public class TimeStopZone
                     final Map<BlockPos, BlockEntity> map = ch.func_177434_r();
                     for (final Map.Entry<BlockPos, BlockEntity> teEntry : map.entrySet()) {
                         final BlockEntity te = teEntry.getValue();
-                        if (TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(te) && te.func_174877_v().func_218141_a((Vector3i)this.offset, (double)this.range) && this.world.field_175730_i.contains(te)) {
+                        if (TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(te) && te.getBlockState().func_218141_a((Vector3i)this.offset, (double)this.range) && this.world.field_175730_i.contains(te)) {
                             this.world.field_175730_i.remove(te);
                             this.safeCacheTile(te);
                         }
@@ -75,7 +75,7 @@ public class TimeStopZone
             return;
         }
         for (final BlockEntity tile : this.cachedTiles) {
-            if (tile.func_174877_v().equals((Object)te.func_174877_v())) {
+            if (tile.getBlockState().equals((Object)te.getBlockState())) {
                 return;
             }
         }
@@ -88,7 +88,7 @@ public class TimeStopZone
     
     void stopEffect() {
         for (final BlockEntity cached : this.cachedTiles) {
-            final BlockState state = this.world.getBlockState(cached.func_174877_v());
+            final BlockState state = this.world.getBlockState(cached.getBlockState());
             if (state.getBlock().hasTileEntity(state)) {
                 final BlockEntity te = state.getBlock().createTileEntity(state, (IBlockReader)this.world);
                 if (te == null || !te.getClass().isAssignableFrom(cached.getClass())) {
@@ -116,17 +116,17 @@ public class TimeStopZone
         if (e.field_70172_ad > 0) {
             --e.field_70172_ad;
         }
-        e.field_70169_q = e.func_226277_ct_();
-        e.field_70167_r = e.func_226278_cu_();
-        e.field_70166_s = e.func_226281_cx_();
+        e.field_70169_q = e.getX();
+        e.field_70167_r = e.getY();
+        e.field_70166_s = e.getZ();
         e.field_184618_aE = e.field_70721_aZ;
         e.field_70760_ar = e.field_70761_aq;
-        e.field_70127_C = e.field_70125_A;
-        e.field_70126_B = e.field_70177_z;
+        e.field_70127_C = e.xRot;
+        e.field_70126_B = e.yRot;
         e.field_70758_at = e.field_70759_as;
         e.field_70732_aI = e.field_70733_aJ;
         e.field_70141_P = e.field_70140_Q;
-        if (!e.func_130014_f_().func_201670_d()) {
+        if (!e.level().level()) {
             e.func_213352_e(Vec3.field_186680_a);
         }
         if (e instanceof EnderDragonEntity) {
@@ -150,7 +150,7 @@ public class TimeStopZone
         }
         
         boolean shouldFreezeEntity(final LivingEntity e) {
-            return e.isAlive() && e.func_110143_aJ() > 0.0f && (!(e instanceof EnderDragonEntity) || ((EnderDragonEntity)e).func_184670_cT().func_188756_a().func_188652_i() != PhaseType.field_188750_j) && (!this.hasOwner || e.func_145782_y() != this.ownerId) && (this.targetPlayers || !(e instanceof Player));
+            return e.isAlive() && e.getMaxHealth() > 0.0f && (!(e instanceof EnderDragonEntity) || ((EnderDragonEntity)e).func_184670_cT().func_188756_a().func_188652_i() != PhaseType.field_188750_j) && (!this.hasOwner || e.func_145782_y() != this.ownerId) && (this.targetPlayers || !(e instanceof Player));
         }
         
         public static EntityTargetController allExcept(final Entity entity) {

@@ -68,7 +68,7 @@ public class AbstractPerk implements ModifierSource
         this.registryName = name;
         this.busWrapper = CacheEventBus.of(MinecraftForge.EVENT_BUS);
         this.offset = new Point2D.Float(x, y);
-        this.unlocalizedKey = String.format("perk.%s.%s", name.func_110624_b(), name.func_110623_a());
+        this.unlocalizedKey = String.format("perk.%s.%s", name.func_110624_b(), name.addTransientModifier());
     }
     
     protected PerkTreePoint<? extends AbstractPerk> initPerkTreePoint() {
@@ -135,7 +135,7 @@ public class AbstractPerk implements ModifierSource
     }
     
     protected LogicalSide getSide(final Entity entity) {
-        return entity.func_130014_f_().func_201670_d() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+        return entity.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
     }
     
     @Nullable
@@ -196,7 +196,7 @@ public class AbstractPerk implements ModifierSource
     }
     
     public MutableComponent getName() {
-        return new Component(this.unlocalizedKey + ".name").func_240699_a_(this.getCategory().getTextFormatting());
+        return new Component(this.unlocalizedKey + ".name").toString()this.getCategory().getTextFormatting());
     }
     
     @Nonnull
@@ -237,7 +237,7 @@ public class AbstractPerk implements ModifierSource
             this.tooltipCache.addAll(this.getDescription());
         }
         else {
-            this.tooltipCache.add(new Component("perk.info.astralsorcery.missing_progress").func_240699_a_(ChatFormatting.RED));
+            this.tooltipCache.add(new Component("perk.info.astralsorcery.missing_progress").toString()ChatFormatting.RED));
         }
         return this.tooltipCache;
     }

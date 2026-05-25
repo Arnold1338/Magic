@@ -64,7 +64,7 @@ public class MapStream<K, V> implements Stream<Tuple<K, V>>
     }
     
     public static <K, V> void forEach(final Map<K, V> map, final BiConsumer<K, V> forEachFn) {
-        of(map).forEach(tpl -> forEachFn.accept(tpl.func_76341_a(), tpl.func_76340_b()));
+        of(map).forEach(tpl -> forEachFn.accept(tpl.getA(), tpl.getB()));
     }
     
     public Map<K, V> toMap() {
@@ -72,7 +72,7 @@ public class MapStream<K, V> implements Stream<Tuple<K, V>>
     }
     
     public <R> List<R> toList(final BiFunction<K, V, R> flatFunction) {
-        return this.decorated.map(tpl -> flatFunction.apply(tpl.func_76341_a(), tpl.func_76340_b())).collect((Collector<? super Object, ?, List<R>>)Collectors.toList());
+        return this.decorated.map(tpl -> flatFunction.apply(tpl.getA(), tpl.getB())).collect((Collector<? super Object, ?, List<R>>)Collectors.toList());
     }
     
     public List<Tuple<K, V>> toTupleList() {
@@ -80,23 +80,23 @@ public class MapStream<K, V> implements Stream<Tuple<K, V>>
     }
     
     public <R> MapStream<K, R> mapValue(final Function<V, R> valueMapper) {
-        return of(this.decorated.map(tpl -> new Tuple(tpl.func_76341_a(), valueMapper.apply(tpl.func_76340_b()))));
+        return of(this.decorated.map(tpl -> new Tuple(tpl.getA(), valueMapper.apply(tpl.getB()))));
     }
     
     public <R> MapStream<R, V> mapKey(final Function<K, R> keyMapper) {
-        return of(this.decorated.map(tpl -> new Tuple(keyMapper.apply(tpl.func_76341_a()), tpl.func_76340_b())));
+        return of(this.decorated.map(tpl -> new Tuple(keyMapper.apply(tpl.getA()), tpl.getB())));
     }
     
     public <R> Stream<R> flatten(final BiFunction<K, V, R> flatFunction) {
-        return this.decorated.map(tpl -> flatFunction.apply(tpl.func_76341_a(), tpl.func_76340_b()));
+        return this.decorated.map(tpl -> flatFunction.apply(tpl.getA(), tpl.getB()));
     }
     
     public MapStream<K, V> filterKey(final Predicate<K> predicate) {
-        return of(this.decorated.filter(tpl -> predicate.test(tpl.func_76341_a())));
+        return of(this.decorated.filter(tpl -> predicate.test(tpl.getA())));
     }
     
     public MapStream<K, V> filterValue(final Predicate<V> predicate) {
-        return of(this.decorated.filter(tpl -> predicate.test(tpl.func_76340_b())));
+        return of(this.decorated.filter(tpl -> predicate.test(tpl.getB())));
     }
     
     public Stream<V> valueStream() {
@@ -188,7 +188,7 @@ public class MapStream<K, V> implements Stream<Tuple<K, V>>
     }
     
     public void forEach(final BiConsumer<K, V> forEachFn) {
-        this.decorated.forEach(tpl -> forEachFn.accept(tpl.func_76341_a(), tpl.func_76340_b()));
+        this.decorated.forEach(tpl -> forEachFn.accept(tpl.getA(), tpl.getB()));
     }
     
     @Override

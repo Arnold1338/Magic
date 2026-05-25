@@ -18,7 +18,7 @@ public abstract class CustomMatcherRecipe extends BaseHandlerRecipe<IItemHandler
     }
     
     @Override
-    public final boolean matches(final IItemHandler handler, final World world) {
+    public final boolean matches(final IItemHandler handler, final Level world) {
         return false;
     }
     

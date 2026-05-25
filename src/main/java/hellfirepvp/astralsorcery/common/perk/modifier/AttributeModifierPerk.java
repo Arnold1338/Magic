@@ -57,7 +57,7 @@ public class AttributeModifierPerk extends AttributeConverterPerk implements Att
     @OnlyIn(Dist.CLIENT)
     @Override
     public boolean addLocalizedTooltip(final Collection<MutableComponent> tooltip) {
-        final Collection<PerkAttributeModifier> modifiers = this.getModifiers((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT, true);
+        final Collection<PerkAttributeModifier> modifiers = this.getModifiers((Player)Minecraft.getInstance().player, LogicalSide.CLIENT, true);
         boolean addEmptyLine = !modifiers.isEmpty();
         if (this.canSeeClient()) {
             for (final PerkAttributeModifier modifier : modifiers) {

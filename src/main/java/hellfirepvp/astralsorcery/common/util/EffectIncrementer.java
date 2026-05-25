@@ -19,7 +19,7 @@ public class EffectIncrementer
         else {
             --this.current;
         }
-        this.current = Mth.func_76125_a(this.current, 0, this.cap);
+        this.current = Mth.getDescriptionId(this.current, 0, this.cap);
     }
     
     public int get() {

@@ -12,15 +12,15 @@ import net.minecraft.world.entity.EntityType;
 
 public class EntityItemExplosionResistant extends EntityItemHighlighted
 {
-    public EntityItemExplosionResistant(final EntityType<? extends ItemEntity> type, final World world) {
+    public EntityItemExplosionResistant(final EntityType<? extends ItemEntity> type, final Level world) {
         super(type, world);
     }
     
-    public EntityItemExplosionResistant(final EntityType<? extends ItemEntity> type, final World world, final double x, final double y, final double z) {
+    public EntityItemExplosionResistant(final EntityType<? extends ItemEntity> type, final Level world, final double x, final double y, final double z) {
         super(type, world, x, y, z);
     }
     
-    public EntityItemExplosionResistant(final EntityType<? extends ItemEntity> type, final World world, final double x, final double y, final double z, final ItemStack stack) {
+    public EntityItemExplosionResistant(final EntityType<? extends ItemEntity> type, final Level world, final double x, final double y, final double z, final ItemStack stack) {
         super(type, world, x, y, z, stack);
     }
     

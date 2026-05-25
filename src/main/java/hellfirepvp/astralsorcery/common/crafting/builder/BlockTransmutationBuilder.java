@@ -32,7 +32,7 @@ public class BlockTransmutationBuilder extends CustomRecipeBuilder<BlockTransmut
     private final List<BlockMatchInformation> stateCheck;
     
     private BlockTransmutationBuilder(final ResourceLocation id) {
-        this.outputState = Blocks.field_150350_a.defaultBlockState();
+        this.outputState = Blocks.AIR.defaultBlockState();
         this.starlight = 200.0;
         this.constellation = null;
         this.outputDisplay = ItemStack.EMPTY;
@@ -41,7 +41,7 @@ public class BlockTransmutationBuilder extends CustomRecipeBuilder<BlockTransmut
     }
     
     public static BlockTransmutationBuilder builder(final ForgeRegistryEntry<?> nameProvider) {
-        return new BlockTransmutationBuilder(AstralSorcery.key(nameProvider.getRegistryName().func_110623_a()));
+        return new BlockTransmutationBuilder(AstralSorcery.key(nameProvider.getRegistryName().addTransientModifier()));
     }
     
     public static BlockTransmutationBuilder builder(final ResourceLocation id) {

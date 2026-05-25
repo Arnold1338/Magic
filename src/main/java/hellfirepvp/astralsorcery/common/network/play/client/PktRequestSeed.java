@@ -19,14 +19,14 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 
 public class PktRequestSeed extends ASPacket<PktRequestSeed>
 {
-    private RegistryKey<World> dim;
+    private RegistryKey<Level> dim;
     private Integer session;
     private Long seed;
     
     public PktRequestSeed() {
     }
     
-    public PktRequestSeed(final Integer session, final RegistryKey<World> dim) {
+    public PktRequestSeed(final Integer session, final RegistryKey<Level> dim) {
         this.dim = dim;
         this.session = session;
         this.seed = -1L;
@@ -52,7 +52,7 @@ public class PktRequestSeed extends ASPacket<PktRequestSeed>
     public Decoder<PktRequestSeed> decoder() {
         return (Decoder<PktRequestSeed>)(buffer -> {
             final PktRequestSeed pkt = new PktRequestSeed();
-            pkt.dim = (RegistryKey<World>)ByteBufUtils.readOptional(buffer, ByteBufUtils::readVanillaRegistryEntry);
+            pkt.dim = (RegistryKey<Level>)ByteBufUtils.readOptional(buffer, ByteBufUtils::readVanillaRegistryEntry);
             pkt.session = ByteBufUtils.readOptional(buffer, FriendlyByteBuf::readInt);
             pkt.seed = ByteBufUtils.readOptional(buffer, FriendlyByteBuf::readLong);
             return pkt;
@@ -73,7 +73,7 @@ public class PktRequestSeed extends ASPacket<PktRequestSeed>
             public void handle(final PktRequestSeed packet, final NetworkEvent.Context context, final LogicalSide side) {
                 context.enqueueWork(() -> {
                     final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
-                    final ServerLevel w = srv.func_71218_a(packet.dim);
+                    final ServerLevel w = srv.getLevel(packet.dim);
                     if (w != null) {
                         final PktRequestSeed seedResponse = new PktRequestSeed(packet.session, packet.dim);
                         seedResponse.seed(MiscUtils.getRandomWorldSeed((ISeedReader)w));

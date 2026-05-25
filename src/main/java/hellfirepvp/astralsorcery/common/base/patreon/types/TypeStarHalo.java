@@ -61,8 +61,8 @@ public class TypeStarHalo extends PatreonEffect implements ITickHandler
             final int age = 20 + TypeStarHalo.rand.nextInt(10);
             MiscUtils.applyRandomOffset(offset, TypeStarHalo.rand, 0.02f);
             final FXFacingParticle particle = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(headPos.clone().addY(0.4000000059604645).add(offset)).setAlphaMultiplier(0.8f).alpha(((VFXAlphaFunction<?>)((fx, alphaIn, pTicks) -> {
-                if (this.shouldDoEffect(player) && Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a() && player.field_70125_A < -30.0f) {
-                    return Mth.func_76131_a(1.0f - (Math.abs(player.field_70125_A) - 30.0f) / 15.0f, 0.0f, 1.0f) * alphaIn;
+                if (this.shouldDoEffect(player) && Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a() && player.xRot < -30.0f) {
+                    return Mth.canEnchant(1.0f - (Math.abs(player.xRot) - 30.0f) / 15.0f, 0.0f, 1.0f) * alphaIn;
                 }
                 else {
                     return alphaIn;
@@ -74,8 +74,8 @@ public class TypeStarHalo extends PatreonEffect implements ITickHandler
             FXFacingParticle starParticle = null;
             if (TypeStarHalo.rand.nextInt(5) == 0) {
                 starParticle = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(headPos.clone().addY(0.4000000059604645).add(offset)).setAlphaMultiplier(0.8f).color(VFXColorFunction.WHITE).alpha(((VFXAlphaFunction<?>)((fx, alphaIn, pTicks) -> {
-                    if (this.shouldDoEffect(player) && Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a() && player.field_70125_A < -30.0f) {
-                        return Mth.func_76131_a(1.0f - (Math.abs(player.field_70125_A) - 30.0f) / 15.0f, 0.0f, 1.0f) * alphaIn;
+                    if (this.shouldDoEffect(player) && Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a() && player.xRot < -30.0f) {
+                        return Mth.canEnchant(1.0f - (Math.abs(player.xRot) - 30.0f) / 15.0f, 0.0f, 1.0f) * alphaIn;
                     }
                     else {
                         return alphaIn;
@@ -88,7 +88,7 @@ public class TypeStarHalo extends PatreonEffect implements ITickHandler
                     @Override
                     public Vector3 updatePosition(@Nonnull final EntityVisualFX fx, @Nonnull final Vector3 position, @Nonnull final Vector3 motionToBeMoved) {
                         if (TypeStarHalo.this.shouldDoEffect(player)) {
-                            final Vector3 diff = new Vector3(player.field_70169_q - player.func_226277_ct_(), player.field_70167_r - player.func_226278_cu_(), player.field_70166_s - player.func_226281_cx_());
+                            final Vector3 diff = new Vector3(player.field_70169_q - player.getX(), player.field_70167_r - player.getY(), player.field_70166_s - player.getZ());
                             diff.divide(4.0);
                             return Vector3.atEntityCorner((Entity)player).add(diff).addY(player.func_213307_e(player.func_213283_Z())).addY(0.4000000059604645).add(offset);
                         }
@@ -101,7 +101,7 @@ public class TypeStarHalo extends PatreonEffect implements ITickHandler
                         @Override
                         public Vector3 updatePosition(@Nonnull final EntityVisualFX fx, @Nonnull final Vector3 position, @Nonnull final Vector3 motionToBeMoved) {
                             if (TypeStarHalo.this.shouldDoEffect(player)) {
-                                final Vector3 diff = new Vector3(player.field_70169_q - player.func_226277_ct_(), player.field_70167_r - player.func_226278_cu_(), player.field_70166_s - player.func_226281_cx_());
+                                final Vector3 diff = new Vector3(player.field_70169_q - player.getX(), player.field_70167_r - player.getY(), player.field_70166_s - player.getZ());
                                 diff.divide(4.0);
                                 return Vector3.atEntityCorner((Entity)player).add(diff).addY(player.func_213307_e(player.func_213283_Z())).addY(0.4000000059604645).add(offset);
                             }
@@ -114,7 +114,7 @@ public class TypeStarHalo extends PatreonEffect implements ITickHandler
     }
     
     private boolean shouldDoEffect(final Player player) {
-        return player.getUUID().equals(this.playerUUID) && (player.func_213283_Z() == Pose.STANDING || player.func_213283_Z() == Pose.CROUCHING) && !player.func_70644_a(Effects.field_76441_p);
+        return player.getUUID().equals(this.playerUUID) && (player.func_213283_Z() == Pose.STANDING || player.func_213283_Z() == Pose.CROUCHING) && !player.hasEffect(Effects.field_76441_p);
     }
     
     public EnumSet<TickEvent.Type> getHandledTypes() {

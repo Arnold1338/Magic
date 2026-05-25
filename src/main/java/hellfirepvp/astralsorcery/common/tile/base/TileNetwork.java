@@ -24,7 +24,7 @@ public abstract class TileNetwork<T extends IPrismTransmissionNode> extends Tile
     
     @Nullable
     public T getNetworkNode() {
-        if (this.cachedNetworkNode != null && !this.cachedNetworkNode.getLocationPos().equals((Object)this.func_174877_v())) {
+        if (this.cachedNetworkNode != null && !this.cachedNetworkNode.getLocationPos().equals((Object)this.getBlockState())) {
             this.cachedNetworkNode = null;
         }
         if (this.cachedNetworkNode == null) {
@@ -35,7 +35,7 @@ public abstract class TileNetwork<T extends IPrismTransmissionNode> extends Tile
     
     @Nullable
     private T resolveNode() {
-        final IPrismTransmissionNode node = WorldNetworkHandler.getNetworkHandler(this.func_145831_w()).getTransmissionNode(this.func_174877_v());
+        final IPrismTransmissionNode node = WorldNetworkHandler.getNetworkHandler(this.getLevel()).getTransmissionNode(this.getBlockState());
         if (node == null) {
             return null;
         }
@@ -45,7 +45,7 @@ public abstract class TileNetwork<T extends IPrismTransmissionNode> extends Tile
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d()) {
+        if (!this.getLevel().level()) {
             if (!this.isNetworkInformed) {
                 if (!TransmissionNetworkHelper.isTileInNetwork(this)) {
                     TransmissionNetworkHelper.informNetworkTilePlacement(this);
@@ -86,7 +86,7 @@ public abstract class TileNetwork<T extends IPrismTransmissionNode> extends Tile
     
     public void func_145843_s() {
         super.func_145843_s();
-        if (this.func_145831_w() == null || this.func_145831_w().func_201670_d()) {
+        if (this.getLevel() == null || this.getLevel().level()) {
             return;
         }
         TransmissionNetworkHelper.informNetworkTileRemoval(this);

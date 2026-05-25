@@ -136,7 +136,7 @@ public class ActiveSimpleAltarRecipe
             }
         }
         for (final CraftingFocusStack input2 : this.focusStacks) {
-            final TileSpectralRelay tar = MiscUtils.getTileAt((IBlockReader)altar.func_145831_w(), input2.getRealPosition(), TileSpectralRelay.class, true);
+            final TileSpectralRelay tar = MiscUtils.getTileAt((IBlockReader)altar.getLevel(), input2.getRealPosition(), TileSpectralRelay.class, true);
             if (tar != null) {
                 final TileInventory tarInventory = tar.getInventory();
                 if (input2.getInput() != null && input2.getInput().getIngredient() instanceof FluidIngredient) {
@@ -163,7 +163,7 @@ public class ActiveSimpleAltarRecipe
             if (stack.getStackIndex() < 0 || stack.getStackIndex() >= listIngredients.size()) {
                 return false;
             }
-            final TileSpectralRelay relay = MiscUtils.getTileAt((IBlockReader)altar.func_145831_w(), stack.getRealPosition(), TileSpectralRelay.class, true);
+            final TileSpectralRelay relay = MiscUtils.getTileAt((IBlockReader)altar.getLevel(), stack.getRealPosition(), TileSpectralRelay.class, true);
             if (relay == null) {
                 return false;
             }
@@ -211,7 +211,7 @@ public class ActiveSimpleAltarRecipe
                         continue;
                     }
                     final BlockPos at = MiscUtils.getRandomEntry(relays, ActiveSimpleAltarRecipe.rand);
-                    final TileSpectralRelay tar = MiscUtils.getTileAt((IBlockReader)altar.func_145831_w(), at, TileSpectralRelay.class, true);
+                    final TileSpectralRelay tar = MiscUtils.getTileAt((IBlockReader)altar.getLevel(), at, TileSpectralRelay.class, true);
                     if (tar == null) {
                         waitMissingInputs = true;
                         continue;
@@ -219,7 +219,7 @@ public class ActiveSimpleAltarRecipe
                     found = new CraftingFocusStack(index, input, at);
                     this.focusStacks.add(found);
                 }
-                final TileSpectralRelay tar2 = MiscUtils.getTileAt((IBlockReader)altar.func_145831_w(), found.getRealPosition(), TileSpectralRelay.class, true);
+                final TileSpectralRelay tar2 = MiscUtils.getTileAt((IBlockReader)altar.getLevel(), found.getRealPosition(), TileSpectralRelay.class, true);
                 if (tar2 == null) {
                     waitMissingInputs = true;
                 }

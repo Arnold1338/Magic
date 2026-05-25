@@ -65,7 +65,7 @@ public class PktSyncCharge extends ASPacket<PktSyncCharge>
             @OnlyIn(Dist.CLIENT)
             @Override
             public void handleClient(final PktSyncCharge packet, final NetworkEvent.Context context) {
-                context.enqueueWork(() -> AlignmentChargeHandler.INSTANCE.receiveCharge(packet, (Player)Minecraft.getInstance().field_71439_g));
+                context.enqueueWork(() -> AlignmentChargeHandler.INSTANCE.receiveCharge(packet, (Player)Minecraft.getInstance().player));
             }
             
             @Override

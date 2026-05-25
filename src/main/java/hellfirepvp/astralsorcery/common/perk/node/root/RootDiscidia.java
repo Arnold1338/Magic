@@ -48,8 +48,8 @@ public class RootDiscidia extends RootPerk
         if (ds.func_76364_f() != null && ds.func_76364_f() instanceof Player) {
             player = (Player)ds.func_76364_f();
         }
-        if (player == null && ds.func_76346_g() != null && ds.func_76346_g() instanceof Player) {
-            player = (Player)ds.func_76346_g();
+        if (player == null && ds.getEnchantments( != null && ds.getEnchantments( instanceof Player) {
+            player = (Player)ds.getEnchantments(;
         }
         if (player == null) {
             return;

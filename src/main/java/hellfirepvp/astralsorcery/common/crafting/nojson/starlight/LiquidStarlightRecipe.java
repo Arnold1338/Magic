@@ -41,12 +41,12 @@ public abstract class LiquidStarlightRecipe extends CustomRecipe
     
     public abstract boolean doesStartRecipe(final ItemStack p0);
     
-    public abstract boolean matches(final ItemEntity p0, final World p1, final BlockPos p2);
+    public abstract boolean matches(final ItemEntity p0, final Level p1, final BlockPos p2);
     
-    public abstract void doServerCraftTick(final ItemEntity p0, final World p1, final BlockPos p2);
+    public abstract void doServerCraftTick(final ItemEntity p0, final Level p1, final BlockPos p2);
     
     @OnlyIn(Dist.CLIENT)
-    public abstract void doClientEffectTick(final ItemEntity p0, final World p1, final BlockPos p2);
+    public abstract void doClientEffectTick(final ItemEntity p0, final Level p1, final BlockPos p2);
     
     protected final List<Entity> getEntitiesInBlock(final IWorld world, final BlockPos pos) {
         return world.func_217357_a((Class)Entity.class, new AABB(pos));
@@ -65,7 +65,7 @@ public abstract class LiquidStarlightRecipe extends CustomRecipe
         while (iterator.hasNext()) {
             e = iterator.next();
             final ItemEntity ie = (ItemEntity)e;
-            if (ie.isAlive() && !ie.func_92059_d().isEmpty() && ie.func_92059_d().func_190916_E() >= count && match.test(ie.func_92059_d())) {
+            if (ie.isAlive() && !ie.func_92059_d().isEmpty() && ie.func_92059_d().getCount() >= count && match.test(ie.func_92059_d())) {
                 final ItemStack stored = ie.func_92059_d();
                 final ItemStack found = ItemUtils.copyStackWithSize(stored, count);
                 stored.shrink(count);
@@ -83,14 +83,14 @@ public abstract class LiquidStarlightRecipe extends CustomRecipe
     }
     
     protected final void setCraftingTick(final Entity e, final int tick) {
-        final long wTick = e.func_130014_f_().getDayTime();
+        final long wTick = e.level().getDayTime();
         final CompoundTag nbt = NBTHelper.getPersistentData(e);
         nbt.putInt("craftTick", tick);
         nbt.func_74772_a("wCraftTick", wTick);
     }
     
     protected final int getCraftingTick(final Entity e) {
-        final long wTick = e.func_130014_f_().getDayTime();
+        final long wTick = e.level().getDayTime();
         final CompoundTag nbt = NBTHelper.getPersistentData(e);
         if (!nbt.func_150297_b("wCraftTick", 4)) {
             return 0;

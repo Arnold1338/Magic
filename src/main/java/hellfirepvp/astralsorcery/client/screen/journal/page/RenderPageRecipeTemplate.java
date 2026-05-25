@@ -93,7 +93,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
     
     public void renderExpectedIngredientInput(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float scale, final long tickOffset, final List<ItemStack> displayOptions) {
         final int mod = (int)((ClientScheduler.getClientTick() + tickOffset) / 20L % displayOptions.size());
-        final ItemStack expected = displayOptions.get(Mth.func_76125_a(mod, 0, displayOptions.size() - 1));
+        final ItemStack expected = displayOptions.get(Mth.getDescriptionId(mod, 0, displayOptions.size() - 1));
         if (!expected.isEmpty()) {
             BlockAtlasTexture.getInstance().bindTexture();
             this.renderItemStack(renderStack, offsetX, offsetY, zLevel, scale, expected);
@@ -129,20 +129,20 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         RenderSystem.depthMask(true);
         RenderSystem.enableDepthTest();
         RenderHelper.func_227780_a_();
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_((double)offsetX, (double)offsetY, (double)zLevel);
-        renderStack.func_227862_a_(scale, scale, 1.0f);
+        renderStack.translate(scale, scale, 1.0f);
         RenderingUtils.renderItemStackGUI(renderStack, stack, null);
-        renderStack.func_227865_b_();
+        renderStack.scale();
         RenderHelper.func_74518_a();
         RenderSystem.depthMask(false);
     }
     
     public boolean handleRecipeNameCopyClick(final double mouseX, final double mouseZ, final SimpleAltarRecipe recipe) {
-        if (Minecraft.getInstance().field_71474_y.field_74330_P && Screen.func_231172_r_() && ((Rectangle)this.thisFrameOuputStack.func_76341_a()).contains(mouseX, mouseZ)) {
+        if (Minecraft.getInstance().field_71474_y.field_74330_P && Screen.func_231172_r_() && ((Rectangle)this.thisFrameOuputStack.getA()).contains(mouseX, mouseZ)) {
             final String recipeName = recipe.func_199560_c().toString();
             Minecraft.getInstance().field_195559_v.func_197960_a(recipeName);
-            Minecraft.getInstance().field_71439_g.func_145747_a((Component)new Component("astralsorcery.misc.ctrlcopy.copied", new Object[] { recipeName }), Util.NIL_UUID);
+            Minecraft.getInstance().player.func_145747_a((Component)new Component("astralsorcery.misc.ctrlcopy.copied", new Object[] { recipeName }), Util.NIL_UUID);
             return true;
         }
         return false;
@@ -151,19 +151,19 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
     public boolean handleBookLookupClick(final double mouseX, final double mouseZ) {
         for (final Rectangle r : this.thisFrameInputStacks.keySet()) {
             if (r.contains(mouseX, mouseZ)) {
-                final ItemStack stack = (ItemStack)this.thisFrameInputStacks.get(r).func_76341_a();
-                final BookLookupInfo info = BookLookupRegistry.findPage((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT, stack);
-                if (info != null && info.canSee(ResearchHelper.getProgress((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT)) && !info.getResearchNode().equals(this.getResearchNode())) {
+                final ItemStack stack = (ItemStack)this.thisFrameInputStacks.get(r).getA();
+                final BookLookupInfo info = BookLookupRegistry.findPage((Player)Minecraft.getInstance().player, LogicalSide.CLIENT, stack);
+                if (info != null && info.canSee(ResearchHelper.getProgress((Player)Minecraft.getInstance().player, LogicalSide.CLIENT)) && !info.getResearchNode().equals(this.getResearchNode())) {
                     info.openGui();
                     return true;
                 }
                 continue;
             }
         }
-        if (this.thisFrameOuputStack != null && ((Rectangle)this.thisFrameOuputStack.func_76341_a()).contains(mouseX, mouseZ)) {
-            final ItemStack stack2 = (ItemStack)this.thisFrameOuputStack.func_76340_b();
-            final BookLookupInfo info2 = BookLookupRegistry.findPage((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT, stack2);
-            if (info2 != null && info2.canSee(ResearchHelper.getProgress((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT)) && !info2.getResearchNode().equals(this.getResearchNode())) {
+        if (this.thisFrameOuputStack != null && ((Rectangle)this.thisFrameOuputStack.getA()).contains(mouseX, mouseZ)) {
+            final ItemStack stack2 = (ItemStack)this.thisFrameOuputStack.getB();
+            final BookLookupInfo info2 = BookLookupRegistry.findPage((Player)Minecraft.getInstance().player, LogicalSide.CLIENT, stack2);
+            if (info2 != null && info2.canSee(ResearchHelper.getProgress((Player)Minecraft.getInstance().player, LogicalSide.CLIENT)) && !info2.getResearchNode().equals(this.getResearchNode())) {
                 info2.openGui();
                 return true;
             }
@@ -172,10 +172,10 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
     }
     
     public void renderInfoStar(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float pTicks) {
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_((double)(offsetX + 140.0f), (double)(offsetY + 20.0f), (double)zLevel);
         (this.thisFrameInfoStar = RenderingDrawUtils.drawInfoStar(renderStack, IDrawRenderTypeBuffer.defaultBuffer(), 15.0f, pTicks)).translate((int)(offsetX + 140.0f), (int)(offsetY + 20.0f));
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     public void renderRequiredConstellation(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, @Nullable final IConstellation constellation) {
@@ -290,38 +290,38 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         for (final Rectangle rect : this.thisFrameInputStacks.keySet()) {
             if (rect.contains(mouseX, mouseY)) {
                 final Tuple<ItemStack, Ingredient> inputInfo = this.thisFrameInputStacks.get(rect);
-                this.addInputInformation((ItemStack)inputInfo.func_76341_a(), (Ingredient)inputInfo.func_76340_b(), tooltip);
+                this.addInputInformation((ItemStack)inputInfo.getA(), (Ingredient)inputInfo.getB(), tooltip);
                 return;
             }
         }
-        if (((Rectangle)this.thisFrameOuputStack.func_76341_a()).contains(mouseX, mouseY)) {
-            final ItemStack stack = (ItemStack)this.thisFrameOuputStack.func_76340_b();
+        if (((Rectangle)this.thisFrameOuputStack.getA()).contains(mouseX, mouseY)) {
+            final ItemStack stack = (ItemStack)this.thisFrameOuputStack.getB();
             this.addInputInformation(stack, null, tooltip);
             if (Minecraft.getInstance().field_71474_y.field_74330_P) {
                 tooltip.add((ITextProperties)Component.field_240750_d_);
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.recipename", new Object[] { recipeName.toString() }).func_240699_a_(ChatFormatting.LIGHT_PURPLE).func_240699_a_(ChatFormatting.ITALIC));
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.ctrlcopy", new Object[] { recipeName.toString() }).func_240699_a_(ChatFormatting.LIGHT_PURPLE).func_240699_a_(ChatFormatting.ITALIC));
+                tooltip.add((ITextProperties)new Component("astralsorcery.misc.recipename", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
+                tooltip.add((ITextProperties)new Component("astralsorcery.misc.ctrlcopy", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
             }
         }
     }
     
     protected void addInputInformation(final ItemStack stack, @Nullable final Ingredient stackIngredient, final List<ITextProperties> tooltip) {
         try {
-            tooltip.addAll(stack.func_82840_a((Player)Minecraft.getInstance().field_71439_g, (TooltipFlag)(Minecraft.getInstance().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
+            tooltip.addAll(stack.func_82840_a((Player)Minecraft.getInstance().player, (TooltipFlag)(Minecraft.getInstance().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
         }
         catch (final Exception exc) {
-            tooltip.add((ITextProperties)new Component("astralsorcery.misc.tooltipError").func_240699_a_(ChatFormatting.RED));
+            tooltip.add((ITextProperties)new Component("astralsorcery.misc.tooltipError").toString()ChatFormatting.RED));
         }
-        final BookLookupInfo info = BookLookupRegistry.findPage((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT, stack);
-        if (info != null && info.canSee(ResearchHelper.getProgress((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT)) && !info.getResearchNode().equals(this.getResearchNode())) {
+        final BookLookupInfo info = BookLookupRegistry.findPage((Player)Minecraft.getInstance().player, LogicalSide.CLIENT, stack);
+        if (info != null && info.canSee(ResearchHelper.getProgress((Player)Minecraft.getInstance().player, LogicalSide.CLIENT)) && !info.getResearchNode().equals(this.getResearchNode())) {
             tooltip.add((ITextProperties)Component.field_240750_d_);
-            tooltip.add((ITextProperties)new Component("astralsorcery.misc.craftInformation").func_240699_a_(ChatFormatting.GRAY));
+            tooltip.add((ITextProperties)new Component("astralsorcery.misc.craftInformation").toString()ChatFormatting.GRAY));
         }
         if (stackIngredient != null && Minecraft.getInstance().field_71474_y.field_82882_x) {
             final ITag<Item> itemTag = IngredientHelper.guessTag(stackIngredient);
             if (itemTag instanceof ITag.INamedTag) {
                 tooltip.add((ITextProperties)Component.field_240750_d_);
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.input.tag", new Object[] { ((ITag.INamedTag)itemTag).func_230234_a_().toString() }).func_240699_a_(ChatFormatting.GRAY));
+                tooltip.add((ITextProperties)new Component("astralsorcery.misc.input.tag", new Object[] { ((ITag.INamedTag)itemTag).func_230234_a_().toString() }).toString()ChatFormatting.GRAY));
             }
             if (stackIngredient instanceof FluidIngredient) {
                 final List<FluidStack> fluids = ((FluidIngredient)stackIngredient).getFluids();
@@ -332,11 +332,11 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
                             cmp = (ITextProperties)f.getFluid().getAttributes().getDisplayName(f);
                         }
                         else {
-                            cmp = (ITextProperties)new Component("astralsorcery.misc.input.fluid.chain", new Object[] { cmp, f.getFluid().getAttributes().getDisplayName(f) }).func_240699_a_(ChatFormatting.GRAY);
+                            cmp = (ITextProperties)new Component("astralsorcery.misc.input.fluid.chain", new Object[] { cmp, f.getFluid().getAttributes().getDisplayName(f) }).toString()ChatFormatting.GRAY);
                         }
                     }
                     tooltip.add((ITextProperties)Component.field_240750_d_);
-                    tooltip.add((ITextProperties)new Component("astralsorcery.misc.input.fluid", new Object[] { cmp }).func_240699_a_(ChatFormatting.GRAY));
+                    tooltip.add((ITextProperties)new Component("astralsorcery.misc.input.fluid", new Object[] { cmp }).toString()ChatFormatting.GRAY));
                 }
             }
         }

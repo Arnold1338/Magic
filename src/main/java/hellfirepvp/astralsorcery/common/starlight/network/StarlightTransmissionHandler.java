@@ -14,10 +14,10 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 public class StarlightTransmissionHandler implements ITickHandler
 {
     private static final StarlightTransmissionHandler instance;
-    private final Map<RegistryKey<World>, TransmissionWorldHandler> worldHandlers;
+    private final Map<RegistryKey<Level>, TransmissionWorldHandler> worldHandlers;
     
     private StarlightTransmissionHandler() {
-        this.worldHandlers = new HashMap<RegistryKey<World>, TransmissionWorldHandler>();
+        this.worldHandlers = new HashMap<RegistryKey<Level>, TransmissionWorldHandler>();
     }
     
     public static StarlightTransmissionHandler getInstance() {
@@ -25,11 +25,11 @@ public class StarlightTransmissionHandler implements ITickHandler
     }
     
     public void tick(final TickEvent.Type type, final Object... context) {
-        final World world = (World)context[0];
-        if (world.func_201670_d() || !(world instanceof ServerLevel)) {
+        final Level world = (Level)context[0];
+        if (world.level() || !(world instanceof ServerLevel)) {
             return;
         }
-        this.worldHandlers.computeIfAbsent((RegistryKey<World>)world.dimension(), TransmissionWorldHandler::new).tick((ServerLevel)world);
+        this.worldHandlers.computeIfAbsent((RegistryKey<Level>)world.dimension(), TransmissionWorldHandler::new).tick((ServerLevel)world);
     }
     
     public void clearServer() {
@@ -37,8 +37,8 @@ public class StarlightTransmissionHandler implements ITickHandler
         this.worldHandlers.clear();
     }
     
-    public void informWorldUnload(final World world) {
-        final RegistryKey<World> dimKey = (RegistryKey<World>)world.dimension();
+    public void informWorldUnload(final Level world) {
+        final RegistryKey<Level> dimKey = (RegistryKey<Level>)world.dimension();
         final TransmissionWorldHandler handle = this.worldHandlers.get(dimKey);
         if (handle != null) {
             handle.clear();
@@ -47,7 +47,7 @@ public class StarlightTransmissionHandler implements ITickHandler
     }
     
     @Nullable
-    public TransmissionWorldHandler getWorldHandler(final World world) {
+    public TransmissionWorldHandler getWorldHandler(final Level world) {
         if (world == null) {
             return null;
         }

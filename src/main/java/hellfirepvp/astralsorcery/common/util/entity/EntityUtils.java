@@ -81,7 +81,7 @@ public class EntityUtils
     @Nullable
     @OnlyIn(Dist.CLIENT)
     public static Player getPlayerClient(final UUID playerUUID) {
-        final ClientLevel clWorld = Minecraft.getInstance().field_71441_e;
+        final ClientLevel clWorld = Minecraft.getInstance().level;
         if (clWorld == null) {
             return null;
         }
@@ -120,7 +120,7 @@ public class EntityUtils
     public static LivingEntity performWorldSpawningAt(final ServerLevel world, final BlockPos pos, final MobCategory category, final MobSpawnType reason, final boolean ignoreWeighting, final int ignoreSpawnCheckFlags) {
         final Biome b = world.func_226691_t_(pos);
         final StructureManager mgr = world.func_241112_a_();
-        List<MobSpawnInfo.Spawners> spawnList = world.func_72863_F().func_201711_g().func_230353_a_(b, mgr, MobCategory.MONSTER, pos);
+        List<MobSpawnInfo.Spawners> spawnList = world.getChunkSource().func_201711_g().func_230353_a_(b, mgr, MobCategory.MONSTER, pos);
         spawnList = ForgeEventFactory.getPotentialSpawns((IWorld)world, category, pos, (List)spawnList);
         spawnList.removeIf(s -> !s.field_242588_c.func_200720_b());
         MobSpawnInfo.Spawners entry;
@@ -138,7 +138,7 @@ public class EntityUtils
             if (!state.func_215686_e((IBlockReader)world, pos) && canEntitySpawnHere(world, pos, (EntityType<? extends Entity>)entry.field_242588_c, reason, ignoreSpawnCheckFlags, null)) {
                 MobEntity entity;
                 try {
-                    entity = (MobEntity)entry.field_242588_c.func_200721_a((World)world);
+                    entity = (MobEntity)entry.field_242588_c.func_200721_a((Level)world);
                 }
                 catch (final Exception exception) {
                     return null;
@@ -151,7 +151,7 @@ public class EntityUtils
                 if (result == -1) {
                     return null;
                 }
-                if (!ForgeEventFactory.doSpecialSpawn(entity, (World)world, x, y, z, (AbstractSpawner)null, reason)) {
+                if (!ForgeEventFactory.doSpecialSpawn(entity, (Level)world, x, y, z, (AbstractSpawner)null, reason)) {
                     entity.func_213386_a((IServerWorld)world, world.func_175649_E(pos), reason, (SpawnGroupData)null, (CompoundTag)null);
                 }
                 world.func_242417_l((Entity)entity);
@@ -177,7 +177,7 @@ public class EntityUtils
         if (!SpawnConditionFlags.isSet(ignoreCheckFlags, 4) && !world.func_226664_a_(type.func_220328_a(at.getX() + 0.5, (double)at.getY(), at.getZ() + 0.5))) {
             return false;
         }
-        final Entity entity = type.func_200721_a((World)world);
+        final Entity entity = type.func_200721_a((Level)world);
         if (entity == null) {
             return false;
         }
@@ -187,7 +187,7 @@ public class EntityUtils
         }
         if (entity instanceof LivingEntity && entity instanceof MobEntity) {
             final MobEntity mobEntity = (MobEntity)entity;
-            final Event.Result canSpawn = ForgeEventFactory.canEntitySpawn(mobEntity, (IWorld)world, entity.func_226277_ct_(), entity.func_226278_cu_(), entity.func_226281_cx_(), (AbstractSpawner)null, spawnReason);
+            final Event.Result canSpawn = ForgeEventFactory.canEntitySpawn(mobEntity, (IWorld)world, entity.getX(), entity.getY(), entity.getZ(), (AbstractSpawner)null, spawnReason);
             if (canSpawn == Event.Result.DENY) {
                 return false;
             }
@@ -206,13 +206,13 @@ public class EntityUtils
     @Nonnull
     public static List<ItemStack> generateLoot(final LivingEntity entity, final Random rand, final DamageSource srcDeath, @Nullable final LivingEntity lastAttacker) {
         final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
-        final ServerLevel sw = (ServerLevel)entity.func_130014_f_();
+        final ServerLevel sw = (ServerLevel)entity.level();
         if (!sw.func_82736_K().func_223586_b(GameRules.field_223602_e)) {
             return Collections.emptyList();
         }
         final ResourceLocation lootTableKey = entity.func_213346_cF();
         final LootTable table = srv.func_200249_aQ().func_186521_a(lootTableKey);
-        final LootContext.Builder builder = new LootContext.Builder(sw).func_216023_a(rand).func_216015_a(LootContextParams.THIS_ENTITY, (Object)entity).func_216015_a(LootParameters.field_237457_g_, (Object)entity.func_213303_ch()).func_216015_a(LootParameters.field_216283_c, (Object)srcDeath).func_216021_b(LootParameters.field_216284_d, (Object)srcDeath.func_76346_g()).func_216021_b(LootParameters.field_216285_e, (Object)srcDeath.func_76364_f());
+        final LootContext.Builder builder = new LootContext.Builder(sw).func_216023_a(rand).func_216015_a(LootContextParams.THIS_ENTITY, (Object)entity).func_216015_a(LootParameters.field_237457_g_, (Object)entity.func_213303_ch()).func_216015_a(LootParameters.field_216283_c, (Object)srcDeath).func_216021_b(LootParameters.field_216284_d, (Object)srcDeath.getEnchantments().func_216021_b(LootParameters.field_216285_e, (Object)srcDeath.func_76364_f());
         if (lastAttacker != null && lastAttacker instanceof Player) {
             builder.func_216015_a(LootParameters.field_216282_b, (Object)lastAttacker).func_186469_a(((Player)lastAttacker).func_184817_da());
         }

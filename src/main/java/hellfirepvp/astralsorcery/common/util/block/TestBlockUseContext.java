@@ -17,21 +17,21 @@ public class TestBlockUseContext extends BlockItemUseContext
 {
     private final Entity entity;
     
-    private TestBlockUseContext(final World worldIn, @Nullable final Entity usingEntity, final Hand hand, final ItemStack stack, final BlockPos at, final Direction side) {
+    private TestBlockUseContext(final Level worldIn, @Nullable final Entity usingEntity, final Hand hand, final ItemStack stack, final BlockPos at, final Direction side) {
         super(worldIn, (Player)null, hand, stack, new BlockHitResult(Vec3.func_237489_a_((Vector3i)at), side, at, false));
         this.entity = usingEntity;
     }
     
-    public static BlockItemUseContext getHandContext(final World worldIn, @Nullable final Entity usingEntity, final Hand usedHand, final BlockPos at, final Direction side) {
+    public static BlockItemUseContext getHandContext(final Level worldIn, @Nullable final Entity usingEntity, final Hand usedHand, final BlockPos at, final Direction side) {
         return getHandContextWithItem(worldIn, usingEntity, usedHand, ItemStack.EMPTY, at, side);
     }
     
-    public static BlockItemUseContext getHandContextWithItem(final World worldIn, @Nullable final Entity usingEntity, final Hand usedHand, final ItemStack stack, final BlockPos at, final Direction side) {
+    public static BlockItemUseContext getHandContextWithItem(final Level worldIn, @Nullable final Entity usingEntity, final Hand usedHand, final ItemStack stack, final BlockPos at, final Direction side) {
         return new TestBlockUseContext(worldIn, usingEntity, usedHand, stack, at, side);
     }
     
     public Direction func_195992_f() {
-        return (this.entity == null) ? Direction.NORTH : Direction.func_176733_a((double)this.entity.field_70177_z);
+        return (this.entity == null) ? Direction.NORTH : Direction.func_176733_a((double)this.entity.yRot);
     }
     
     public Direction func_196010_d() {

@@ -12,7 +12,7 @@ public interface LargeBlock
     
     default boolean canPlaceAt(final BlockItemUseContext ctx) {
         final BlockPos pos = ctx.func_195995_a();
-        final World world = ctx.func_195991_k();
+        final Level world = ctx.func_195991_k();
         final AABB box = this.getBlockSpace();
         final BlockPos.Mutable mPos = new BlockPos.Mutable();
         for (int xx = (int)box.field_72340_a; xx <= box.field_72336_d; ++xx) {

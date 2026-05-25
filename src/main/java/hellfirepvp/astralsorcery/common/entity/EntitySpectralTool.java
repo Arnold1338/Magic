@@ -48,7 +48,7 @@ public class EntitySpectralTool extends FlyingMob
     private int remainingTime;
     private int idleTime;
     
-    public EntitySpectralTool(final World worldIn) {
+    public EntitySpectralTool(final Level worldIn) {
         super((EntityType)EntityTypesAS.SPECTRAL_TOOL, worldIn);
         this.owningEntity = null;
         this.task = null;
@@ -58,7 +58,7 @@ public class EntitySpectralTool extends FlyingMob
         this.field_70765_h = (MoveControl)new FlyingMoveControl((MobEntity)this, 10, false);
     }
     
-    public EntitySpectralTool(final World worldIn, final BlockPos spawnPos, final LivingEntity owner, final ToolTask task) {
+    public EntitySpectralTool(final Level worldIn, final BlockPos spawnPos, final LivingEntity owner, final ToolTask task) {
         this(worldIn);
         this.setPos(spawnPos.getX() + 0.5, spawnPos.getY() + 0.5, (double)spawnPos.getZ());
         this.setItem(task.displayStack);
@@ -66,7 +66,7 @@ public class EntitySpectralTool extends FlyingMob
         this.owningEntity = owner;
         this.task = task.createGoal(this);
         this.field_70714_bg.func_75776_a(1, (Goal)this.task);
-        this.remainingTime = task.maxAge + this.field_70146_Z.nextInt(task.maxAge);
+        this.remainingTime = task.maxAge + this.random.nextInt(task.maxAge);
     }
     
     public static EntityType.IFactory<EntitySpectralTool> factory() {
@@ -96,7 +96,7 @@ public class EntitySpectralTool extends FlyingMob
     
     public void func_70071_h_() {
         super.tick();
-        if (this.func_130014_f_().func_201670_d()) {
+        if (this.level().level()) {
             this.tickClient();
         }
         else {
@@ -123,11 +123,11 @@ public class EntitySpectralTool extends FlyingMob
     
     @OnlyIn(Dist.CLIENT)
     private void tickClient() {
-        if (this.field_70146_Z.nextFloat() < 0.2f) {
-            final Vector3 at = Vector3.atEntityCorner((Entity)this).add(this.field_70146_Z.nextFloat() * 0.3 * (this.field_70146_Z.nextBoolean() ? 1 : -1), this.field_70146_Z.nextFloat() * 0.3 * (this.field_70146_Z.nextBoolean() ? 1 : -1) + this.func_213302_cg() / 2.0f, this.field_70146_Z.nextFloat() * 0.3 * (this.field_70146_Z.nextBoolean() ? 1 : -1));
-            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.constant(ColorsAS.CONSTELLATION_TYPE_WEAK)).setScaleMultiplier(0.35f + this.field_70146_Z.nextFloat() * 0.25f).setMaxAge(30 + this.field_70146_Z.nextInt(20));
-            if (this.field_70146_Z.nextBoolean()) {
-                EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.WHITE).setScaleMultiplier(0.2f + this.field_70146_Z.nextFloat() * 0.15f).setMaxAge(20 + this.field_70146_Z.nextInt(10));
+        if (this.random.nextFloat() < 0.2f) {
+            final Vector3 at = Vector3.atEntityCorner((Entity)this).add(this.random.nextFloat() * 0.3 * (this.random.nextBoolean() ? 1 : -1), this.random.nextFloat() * 0.3 * (this.random.nextBoolean() ? 1 : -1) + this.func_213302_cg() / 2.0f, this.random.nextFloat() * 0.3 * (this.random.nextBoolean() ? 1 : -1));
+            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.constant(ColorsAS.CONSTELLATION_TYPE_WEAK)).setScaleMultiplier(0.35f + this.random.nextFloat() * 0.25f).setMaxAge(30 + this.random.nextInt(20));
+            if (this.random.nextBoolean()) {
+                EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.WHITE).setScaleMultiplier(0.2f + this.random.nextFloat() * 0.15f).setMaxAge(20 + this.random.nextInt(10));
             }
         }
     }

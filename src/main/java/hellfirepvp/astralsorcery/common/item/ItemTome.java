@@ -36,21 +36,21 @@ import net.minecraft.world.item.Item;
 public class ItemTome extends Item implements PerkExperienceRevealer
 {
     public ItemTome() {
-        super(new Item.Properties().func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final World world, final Player player, final Hand hand) {
-        if (world.func_201670_d() && !player.func_225608_bj_()) {
+    public InteractionResult<ItemStack> func_77659_a(final Level world, final Player player, final Hand hand) {
+        if (world.level() && !player.func_225608_bj_()) {
             AstralSorcery.getProxy().openGui(player, GuiType.TOME, new Object[0]);
         }
-        else if (!world.func_201670_d() && player.func_225608_bj_() && hand == InteractionHand.MAIN_HAND && player instanceof ServerPlayer) {
-            new ContainerTomeProvider(player.func_184586_b(hand), player.getInventory().field_70461_c).openFor((ServerPlayer)player);
+        else if (!world.level() && player.func_225608_bj_() && hand == InteractionHand.MAIN_HAND && player instanceof ServerPlayer) {
+            new ContainerTomeProvider(player.getItemInHand(hand), player.getInventory().field_70461_c).openFor((ServerPlayer)player);
         }
-        return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)player.func_184586_b(hand));
+        return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)player.getItemInHand(hand));
     }
     
     public InteractionResult func_195939_a(final ItemUseContext context) {
-        final World world = context.func_195991_k();
+        final Level world = context.func_195991_k();
         final BlockState blockstate = world.getBlockState(context.func_195995_a());
         if (blockstate.getBlock() instanceof LecternBlock) {
             return LecternBlock.func_220151_a(world, context.func_195995_a(), blockstate, context.func_195996_i()) ? InteractionResult.SUCCESS : InteractionResult.PASS;
@@ -72,7 +72,7 @@ public class ItemTome extends Item implements PerkExperienceRevealer
     
     public static List<IConstellation> getStoredConstellations(final ItemStack stack, final Player player) {
         final LinkedList<IConstellation> out = new LinkedList<IConstellation>();
-        final PlayerProgress prog = ResearchHelper.getProgress(player, player.func_130014_f_().func_201670_d() ? LogicalSide.CLIENT : LogicalSide.SERVER);
+        final PlayerProgress prog = ResearchHelper.getProgress(player, player.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER);
         if (prog.isValid()) {
             prog.getStoredConstellationPapers().stream().map((Function<? super Object, ?>)ConstellationRegistry::getConstellation).filter(Objects::nonNull).forEach(out::add);
         }

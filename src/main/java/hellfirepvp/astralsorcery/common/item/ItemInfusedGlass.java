@@ -28,25 +28,25 @@ import net.minecraft.world.item.Item;
 public class ItemInfusedGlass extends Item
 {
     public ItemInfusedGlass() {
-        super(new Item.Properties().func_200917_a(1).func_200918_c(5).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().func_200917_a(1).func_200918_c(5).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         final EngravedStarMap map = getEngraving(stack);
         if (map != null) {
             for (final ResourceLocation key : map.getConstellationKeys()) {
                 final IConstellation cst = ConstellationRegistry.getConstellation(key);
                 if (cst != null) {
                     final String format = "item.astralsorcery.infused_glass.ttip";
-                    final Component cstName = (Component)cst.getConstellationName().func_240699_a_(ChatFormatting.BLUE);
-                    if (Minecraft.getInstance().field_71439_g != null && Minecraft.getInstance().field_71439_g.func_184812_l_()) {
+                    final Component cstName = (Component)cst.getConstellationName().toString()ChatFormatting.BLUE);
+                    if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.getVehicle()) {
                         final String percent = String.valueOf(Math.round(map.getDistribution(cst) * 100.0f));
-                        final Component creativeHint = (Component)new Component("item.astralsorcery.infused_glass.ttip.creative", new Object[] { percent }).func_240699_a_(ChatFormatting.LIGHT_PURPLE);
-                        tooltip.add((Component)new Component(format, new Object[] { cstName, creativeHint }).func_240699_a_(ChatFormatting.GRAY));
+                        final Component creativeHint = (Component)new Component("item.astralsorcery.infused_glass.ttip.creative", new Object[] { percent }).toString()ChatFormatting.LIGHT_PURPLE);
+                        tooltip.add((Component)new Component(format, new Object[] { cstName, creativeHint }).toString()ChatFormatting.GRAY));
                     }
                     else {
-                        tooltip.add((Component)new Component(format, new Object[] { cstName, "" }).func_240699_a_(ChatFormatting.GRAY));
+                        tooltip.add((Component)new Component(format, new Object[] { cstName, "" }).toString()ChatFormatting.GRAY));
                     }
                 }
             }

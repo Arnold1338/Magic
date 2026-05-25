@@ -55,14 +55,14 @@ public class AttributeTypeThorns extends PerkAttributeType
         if (reflectAmount <= 0.0f) {
             return;
         }
-        reflectAmount = Mth.func_76131_a(reflectAmount, 0.0f, 1.0f);
+        reflectAmount = Mth.canEnchant(reflectAmount, 0.0f, 1.0f);
         final DamageSource source = event.getSource();
         LivingEntity reflectTarget = null;
         if (source.func_76364_f() != null && source.func_76364_f() instanceof LivingEntity && source.func_76364_f().isAlive()) {
             reflectTarget = (LivingEntity)source.func_76364_f();
         }
-        if (reflectTarget == null && AttributeEvent.postProcessModded(player, this, PerkAttributeHelper.getOrCreateMap(player, side).getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_THORNS_RANGED)) > 1.0f && source.func_76346_g() != null && source.func_76346_g() instanceof LivingEntity && source.func_76346_g().isAlive()) {
-            reflectTarget = (LivingEntity)source.func_76346_g();
+        if (reflectTarget == null && AttributeEvent.postProcessModded(player, this, PerkAttributeHelper.getOrCreateMap(player, side).getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_THORNS_RANGED)) > 1.0f && source.getEnchantments( != null && source.getEnchantments( instanceof LivingEntity && source.getEnchantments(.isAlive()) {
+            reflectTarget = (LivingEntity)source.getEnchantments(;
         }
         if (reflectTarget != null) {
             final float dmgReflected = event.getAmount() * reflectAmount;

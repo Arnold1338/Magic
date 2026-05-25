@@ -62,7 +62,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
     
     @Nullable
     @Override
-    public ListEntries.EntitySpawnEntry createElement(final World world, BlockPos pos) {
+    public ListEntries.EntitySpawnEntry createElement(final Level world, BlockPos pos) {
         if (!(world instanceof ServerLevel)) {
             return null;
         }
@@ -72,7 +72,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void playClientEffect(final World world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
+    public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         final ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
         if (CEffectPelotrio.rand.nextFloat() < 0.2f) {
             final Vector3 at = Vector3.random().normalize().multiply(CEffectPelotrio.rand.nextFloat() * prop.getSize()).add((Vector3i)pos).add(0.5, 0.5, 0.5);
@@ -81,7 +81,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
     }
     
     @Override
-    public boolean playEffect(final World world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
+    public boolean playEffect(final Level world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
         if (!(world instanceof ServerLevel)) {
             return false;
         }
@@ -95,7 +95,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
                         continue;
                     }
                     transmuted.func_195064_c(new MobEffectInstance((Effect)EffectsAS.EFFECT_DROP_MODIFIER, Integer.MAX_VALUE, 1));
-                    AstralSorcery.getProxy().scheduleDelayed(() -> world.func_217376_c((Entity)transmuted));
+                    AstralSorcery.getProxy().scheduleDelayed(() -> world.addFreshEntity((Entity)transmuted));
                     update = true;
                 }
             }

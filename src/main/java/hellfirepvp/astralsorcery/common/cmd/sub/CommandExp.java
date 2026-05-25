@@ -32,10 +32,10 @@ public class CommandExp implements Command<CommandSourceStack>
         final Player player = (Player)((EntitySelector)context.getArgument("player", (Class)EntitySelector.class)).func_197340_a((CommandSourceStack)context.getSource());
         final long exp = LongArgumentType.getLong((CommandContext)context, "exp");
         if (ResearchManager.setExp(player, exp)) {
-            ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Success! Player exp has been set to " + exp).func_240699_a_(ChatFormatting.GREEN), true);
+            ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Success! Player exp has been set to " + exp).toString()ChatFormatting.GREEN), true);
         }
         else {
-            ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Failed! Player specified doesn't seem to have a research progress!").func_240699_a_(ChatFormatting.RED), true);
+            ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Failed! Player specified doesn't seem to have a research progress!").toString()ChatFormatting.RED), true);
         }
         return 0;
     }

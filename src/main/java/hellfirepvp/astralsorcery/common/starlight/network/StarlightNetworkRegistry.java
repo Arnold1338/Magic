@@ -18,7 +18,7 @@ public class StarlightNetworkRegistry
     private static final List<IStarlightBlockHandler> blockHandlers;
     
     @Nullable
-    public static IStarlightBlockHandler getStarlightHandler(final World world, final BlockPos pos, final BlockState state, final IWeakConstellation cst) {
+    public static IStarlightBlockHandler getStarlightHandler(final Level world, final BlockPos pos, final BlockState state, final IWeakConstellation cst) {
         final Block b = state.getBlock();
         if (b instanceof BlockStarlightRecipient) {
             return null;
@@ -45,8 +45,8 @@ public class StarlightNetworkRegistry
     
     public interface IStarlightBlockHandler
     {
-        boolean isApplicable(final World p0, final BlockPos p1, final BlockState p2, final IWeakConstellation p3);
+        boolean isApplicable(final Level p0, final BlockPos p1, final BlockState p2, final IWeakConstellation p3);
         
-        void receiveStarlight(final World p0, final Random p1, final BlockPos p2, final BlockState p3, final IWeakConstellation p4, final double p5);
+        void receiveStarlight(final Level p0, final Random p1, final BlockPos p2, final BlockState p3, final IWeakConstellation p4, final double p5);
     }
 }

@@ -43,7 +43,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior
     
     @Nonnull
     private ItemStack fillContainer(final BlockSource source, final ItemStack stack) {
-        final World world = (World)source.func_197524_h();
+        final Level world = (Level)source.func_197524_h();
         final Direction dispenserFacing = (Direction)source.func_189992_e().getValue((Property)DispenserBlock.field_176441_a);
         final BlockPos blockpos = source.func_180699_d().func_177972_a(dispenserFacing);
         final FluidActionResult actionResult = FluidUtil.tryPickUpFluid(stack, (Player)null, world, blockpos, dispenserFacing.func_176734_d());
@@ -51,7 +51,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior
         if (!actionResult.isSuccess() || resultStack.isEmpty()) {
             return super.func_82487_b(source, stack);
         }
-        if (stack.func_190916_E() == 1) {
+        if (stack.getCount() == 1) {
             return resultStack;
         }
         if (((DispenserTileEntity)source.func_150835_j()).func_146019_a(resultStack) < 0) {
@@ -66,7 +66,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior
     private ItemStack dumpContainer(final BlockSource source, @Nonnull final ItemStack stack) {
         final ServerLevel world = source.func_197524_h();
         final ItemStack singleStack = stack.copy();
-        singleStack.func_190920_e(1);
+        singleStack.setCount(1);
         final LazyOptional<IFluidHandlerItem> itemFluidHandler = (LazyOptional<IFluidHandlerItem>)FluidUtil.getFluidHandler(singleStack);
         if (!itemFluidHandler.isPresent()) {
             return super.func_82487_b(source, stack);
@@ -75,12 +75,12 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior
         final Direction dispenserFacing = (Direction)source.func_189992_e().getValue((Property)DispenserBlock.field_176441_a);
         final BlockPos pos = source.func_180699_d().func_177972_a(dispenserFacing);
         final Player player = (Player)AstralSorcery.getProxy().getASFakePlayerServer(world);
-        final FluidActionResult result = FluidUtil.tryPlaceFluid(player, (World)source.func_197524_h(), InteractionHand.MAIN_HAND, pos, stack, drained);
+        final FluidActionResult result = FluidUtil.tryPlaceFluid(player, (Level)source.func_197524_h(), InteractionHand.MAIN_HAND, pos, stack, drained);
         if (!result.isSuccess()) {
             return this.defaultBehavior.dispense(source, stack);
         }
         final ItemStack drainedStack = result.getResult();
-        if (drainedStack.func_190916_E() == 1) {
+        if (drainedStack.getCount() == 1) {
             return drainedStack;
         }
         if (!drainedStack.isEmpty() && ((DispenserTileEntity)source.func_150835_j()).func_146019_a(drainedStack) < 0) {

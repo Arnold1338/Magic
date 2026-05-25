@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 
 public class PktEngraveGlass extends ASPacket<PktEngraveGlass>
 {
-    private RegistryKey<World> dim;
+    private RegistryKey<Level> dim;
     private BlockPos pos;
     private List<DrawnConstellation> constellations;
     
@@ -32,7 +32,7 @@ public class PktEngraveGlass extends ASPacket<PktEngraveGlass>
         this.constellations = new LinkedList<DrawnConstellation>();
     }
     
-    public PktEngraveGlass(final RegistryKey<World> dim, final BlockPos pos, final List<DrawnConstellation> constellations) {
+    public PktEngraveGlass(final RegistryKey<Level> dim, final BlockPos pos, final List<DrawnConstellation> constellations) {
         this.constellations = new LinkedList<DrawnConstellation>();
         this.dim = dim;
         this.pos = pos;
@@ -74,7 +74,7 @@ public class PktEngraveGlass extends ASPacket<PktEngraveGlass>
     public Handler<PktEngraveGlass> handler() {
         return (packet, context, side) -> context.enqueueWork(() -> {
             final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
-            final World world = (World)srv.func_71218_a((RegistryKey)packet.dim);
+            final Level world = (Level)srv.getLevel((RegistryKey)packet.dim);
             final TileRefractionTable tmt = MiscUtils.getTileAt((IBlockReader)world, packet.pos, TileRefractionTable.class, false);
             if (tmt != null && !packet.constellations.isEmpty()) {
                 final List<DrawnConstellation> cstList = packet.constellations.subList(0, Math.min(3, packet.constellations.size()));

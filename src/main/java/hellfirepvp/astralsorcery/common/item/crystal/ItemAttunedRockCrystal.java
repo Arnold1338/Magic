@@ -14,7 +14,7 @@ import net.minecraft.world.item.Item;
 public class ItemAttunedRockCrystal extends ItemAttunedCrystalBase
 {
     public ItemAttunedRockCrystal() {
-        super(new Item.Properties().func_200916_a(CommonProxy.ITEM_GROUP_AS_CRYSTALS));
+        super(new Item.Properties().hasModifier(CommonProxy.ITEM_GROUP_AS_CRYSTALS));
     }
     
     public void func_150895_a(final CreativeModeTab group, final NonNullList<ItemStack> items) {

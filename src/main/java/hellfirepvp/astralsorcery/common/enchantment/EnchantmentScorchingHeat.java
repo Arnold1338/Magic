@@ -13,7 +13,7 @@ public class EnchantmentScorchingHeat extends Enchantment
     }
     
     protected boolean func_77326_a(final Enchantment ench) {
-        return super.func_77326_a(ench) && ench != Enchantments.field_185306_r;
+        return super.func_77326_a(ench) && ench != Enchantments.SILK_TOUCH;
     }
     
     public boolean func_92089_a(final ItemStack stack) {

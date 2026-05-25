@@ -51,7 +51,7 @@ public class AlignmentChargeRenderer implements ITickHandler
         if (event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
             return;
         }
-        if (Minecraft.getInstance().field_71442_b != null && Minecraft.getInstance().field_71442_b.func_178889_l() == GameType.SPECTATOR) {
+        if (Minecraft.getInstance().gameMode != null && Minecraft.getInstance().gameMode.func_178889_l() == GameType.SPECTATOR) {
             return;
         }
         if (this.alphaReveal <= 0.0f) {
@@ -64,7 +64,7 @@ public class AlignmentChargeRenderer implements ITickHandler
         final int barWidth = 194;
         final int offsetLeft = screenWidth / 2 - barWidth / 2;
         final int offsetTop = screenHeight + 3 - 81;
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().player;
         float percFilled = AlignmentChargeHandler.INSTANCE.getFilledPercentage(player, LogicalSide.CLIENT);
         boolean hasEnoughCharge = true;
         float usagePerc = 0.0f;
@@ -89,16 +89,16 @@ public class AlignmentChargeRenderer implements ITickHandler
         RenderSystem.enableBlend();
         RenderSystem.disableAlphaTest();
         SpritesAS.SPR_OVERLAY_CHARGE.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)offsetLeft, (float)offsetTop, 10.0f, width, 54.0f).color(1.0f, 1.0f, 1.0f, this.alphaReveal).tex((float)uvColored.func_76341_a(), (float)uvColored.func_76340_b() + 0.002f, uLengthCharge, SpritesAS.SPR_OVERLAY_CHARGE.getVWidth() - 0.002f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)offsetLeft, (float)offsetTop, 10.0f, width, 54.0f).color(1.0f, 1.0f, 1.0f, this.alphaReveal).tex((float)uvColored.getA(), (float)uvColored.getB() + 0.002f, uLengthCharge, SpritesAS.SPR_OVERLAY_CHARGE.getVWidth() - 0.002f).draw());
         SpritesAS.SPR_OVERLAY_CHARGE_COLORLESS.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offsetLeft + width, (float)offsetTop, 10.0f, usageWidth, 54.0f).color(usageColor.getRed(), usageColor.getGreen(), usageColor.getBlue(), (int)(this.alphaReveal * 255.0f)).tex((float)uvColorless.func_76341_a() + uLengthCharge, (float)uvColorless.func_76340_b() + 0.002f, uLengthUsage, SpritesAS.SPR_OVERLAY_CHARGE_COLORLESS.getVWidth() - 0.002f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offsetLeft + width, (float)offsetTop, 10.0f, usageWidth, 54.0f).color(usageColor.getRed(), usageColor.getGreen(), usageColor.getBlue(), (int)(this.alphaReveal * 255.0f)).tex((float)uvColorless.getA() + uLengthCharge, (float)uvColorless.getB() + 0.002f, uLengthUsage, SpritesAS.SPR_OVERLAY_CHARGE_COLORLESS.getVWidth() - 0.002f).draw());
         RenderSystem.enableAlphaTest();
         RenderSystem.disableBlend();
         BlockAtlasTexture.getInstance().bindTexture();
     }
     
     public void tick(final TickEvent.Type type, final Object... context) {
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().player;
         if (player != null) {
             if (AlignmentChargeHandler.INSTANCE.getFilledPercentage(player, LogicalSide.CLIENT) <= 0.95f) {
                 this.revealCharge(20);

@@ -54,7 +54,7 @@ public class PktOreScan extends ASPacket<PktOreScan>
             @Override
             public void handleClient(final PktOreScan packet, final NetworkEvent.Context context) {
                 context.enqueueWork(() -> {
-                    final Player player = (Player)Minecraft.getInstance().field_71439_g;
+                    final Player player = (Player)Minecraft.getInstance().player;
                     if (player != null) {
                         packet.positions.iterator();
                         final Iterator iterator;
@@ -62,7 +62,7 @@ public class PktOreScan extends ASPacket<PktOreScan>
                             final BlockPos at = iterator.next();
                             final Vector3 atPos = new Vector3((Vector3i)at).add(0.5, 0.5, 0.5);
                             atPos.add(PktOreScan.rand.nextFloat() - PktOreScan.rand.nextFloat(), PktOreScan.rand.nextFloat() - PktOreScan.rand.nextFloat(), PktOreScan.rand.nextFloat() - PktOreScan.rand.nextFloat());
-                            final BlockState state = Minecraft.getInstance().field_71441_e.getBlockState(at);
+                            final BlockState state = Minecraft.getInstance().level.getBlockState(at);
                             MiscPlayEffect.playSingleBlockTumbleDepthEffect(atPos, state);
                         }
                     }

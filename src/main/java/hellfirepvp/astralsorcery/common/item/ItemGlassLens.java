@@ -6,6 +6,6 @@ import net.minecraft.world.item.Item;
 public class ItemGlassLens extends Item
 {
     public ItemGlassLens() {
-        super(new Item.Properties().func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
 }

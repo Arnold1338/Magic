@@ -59,7 +59,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
     @Nonnull
     @Override
     public LiquidContext createContext(final TileFountain fountain) {
-        return new LiquidContext(fountain.func_174877_v());
+        return new LiquidContext(fountain.getBlockState());
     }
     
     @Override
@@ -69,7 +69,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
             return;
         }
         if (currentSegment.isLaterOrEqualTo(OperationSegment.RUNNING)) {
-            final World w = fountain.func_145831_w();
+            final Level w = fountain.getLevel();
             if (fountain.getTicksExisted() % 32 == 0) {
                 this.digCone(w, ctx);
             }
@@ -81,7 +81,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
     }
     
     private void produceLiquid(final TileFountain fountain) {
-        final Chunk ch = fountain.func_145831_w().func_175726_f(fountain.func_174877_v());
+        final Chunk ch = fountain.getLevel().func_175726_f(fountain.getBlockState());
         ch.getCapability((Capability)CapabilitiesAS.CHUNK_FLUID).ifPresent(entry -> {
             final int drain = 200 + FountainEffectLiquid.rand.nextInt(400);
             FluidStack drained;
@@ -99,7 +99,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
         });
     }
     
-    private void digCone(final World world, final LiquidContext ctx) {
+    private void digCone(final Level world, final LiquidContext ctx) {
         if (world instanceof ServerLevel) {
             this.dig((ServerLevel)world, ctx.getDigPositions());
         }
@@ -132,7 +132,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
             }
             ctx.fountainSprite = sprite;
         }
-        final BlockPos fountainPos = fountain.func_174877_v();
+        final BlockPos fountainPos = fountain.getBlockState();
         final float segmentPercent = this.getSegmentPercent(currentSegment, operationTick);
         switch (currentSegment) {
             case STARTUP: {
@@ -198,11 +198,11 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
     public void transition(final TileFountain fountain, final LiquidContext ctx, final LogicalSide side, final OperationSegment prevSegment, final OperationSegment nextSegment) {
         if (side.isServer()) {
             if (nextSegment == OperationSegment.RUNNING) {
-                this.digCone(fountain.func_145831_w(), ctx);
+                this.digCone(fountain.getLevel(), ctx);
             }
         }
         else if (nextSegment == OperationSegment.RUNNING) {
-            this.markDigProcess(fountain.func_174877_v());
+            this.markDigProcess(fountain.getBlockState());
         }
     }
     

@@ -60,7 +60,7 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void playClientEffect(final World world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
+    public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         if (CEffectAevitas.rand.nextBoolean()) {
             final ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3(pos.getX() + CEffectAevitas.rand.nextFloat() * (prop.getSize() / 2.0) * (CEffectAevitas.rand.nextBoolean() ? 1 : -1) + 0.5, pos.getY() + CEffectAevitas.rand.nextFloat() * (prop.getSize() / 4.0) + 0.5, pos.getZ() + CEffectAevitas.rand.nextFloat() * (prop.getSize() / 2.0) * (CEffectAevitas.rand.nextBoolean() ? 1 : -1) + 0.5)).setGravityStrength(-0.005f).setScaleMultiplier(0.45f).color(VFXColorFunction.constant(ColorsAS.RITUAL_CONSTELLATION_AEVITAS)).setMaxAge(35);
@@ -68,7 +68,7 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
     }
     
     @Override
-    public boolean playEffect(final World world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
+    public boolean playEffect(final Level world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
         boolean changed = false;
         final CropHelper.GrowablePlant plant = this.getRandomElementChanced();
         if (plant != null) {
@@ -137,7 +137,7 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
     
     @Nullable
     @Override
-    public CropHelper.GrowablePlant createElement(final World world, final BlockPos pos) {
+    public CropHelper.GrowablePlant createElement(final Level world, final BlockPos pos) {
         return CropHelper.wrapPlant((IWorld)world, pos);
     }
     

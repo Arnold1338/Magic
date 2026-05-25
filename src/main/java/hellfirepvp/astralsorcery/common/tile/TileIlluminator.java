@@ -62,7 +62,7 @@ public class TileIlluminator extends TileEntityTick
         if (!this.isPlayerPlaced()) {
             return;
         }
-        if (!this.field_145850_b.func_201670_d()) {
+        if (!this.level.level()) {
             if (this.layerPositions == null) {
                 this.recalculate();
             }
@@ -84,19 +84,19 @@ public class TileIlluminator extends TileEntityTick
                 }
             }
         }
-        if (this.field_145850_b.func_201670_d()) {
+        if (this.level.level()) {
             this.tickEffects();
         }
     }
     
     private void recalculate() {
-        final int height = Math.max(0, this.func_174877_v().getY() - 7);
+        final int height = Math.max(0, this.getBlockState().getY() - 7);
         final int parts = height / 7;
         this.layerPositions = new ArrayList<List<BlockPos>>(parts);
         for (int i = 0; i < parts; ++i) {
             final int yPart = 3 + i * 7;
             final List<BlockPos> positions = new ArrayList<BlockPos>();
-            this.generatePositions(positions, new BlockPos(this.func_174877_v().getX(), yPart, this.func_174877_v().getZ()));
+            this.generatePositions(positions, new BlockPos(this.getBlockState().getX(), yPart, this.getBlockState().getZ()));
             this.layerPositions.add(positions);
         }
     }
@@ -152,12 +152,12 @@ public class TileIlluminator extends TileEntityTick
                     recalc = true;
                 }
                 at = at.offset(TileIlluminator.rand.nextInt(5) - 2, TileIlluminator.rand.nextInt(13) - 6, TileIlluminator.rand.nextInt(5) - 2);
-                MiscUtils.executeWithChunk((IWorldReader)this.field_145850_b, at, at, pos -> {
-                    if (this.doesSeeSky() && TileIlluminator.ILLUMINATOR_CHECK.test(this.field_145850_b, pos, this.field_145850_b.getBlockState(pos))) {
+                MiscUtils.executeWithChunk((IWorldReader)this.level, at, at, pos -> {
+                    if (this.doesSeeSky() && TileIlluminator.ILLUMINATOR_CHECK.test(this.level, pos, this.level.getBlockState(pos))) {
                         final DyeColor color = this.getColor();
-                        final BlockState toPlace = (BlockState)BlocksAS.FLARE_LIGHT.defaultBlockState().func_206870_a((Property)BlockFlareLight.COLOR, (Comparable)color);
-                        if (this.field_145850_b.func_175656_a(pos, toPlace)) {
-                            EntityFlare.spawnAmbientFlare(this.field_145850_b, this.func_174877_v());
+                        final BlockState toPlace = (BlockState)BlocksAS.FLARE_LIGHT.defaultBlockState().setValue((Property)BlockFlareLight.COLOR, (Comparable)color);
+                        if (this.level.func_175656_a(pos, toPlace)) {
+                            EntityFlare.spawnAmbientFlare(this.level, this.getBlockState());
                         }
                     }
                     return;
@@ -213,7 +213,7 @@ public class TileIlluminator extends TileEntityTick
     public static class LightCheck implements BlockPredicate
     {
         @Override
-        public boolean test(final World world, final BlockPos pos, final BlockState state) {
+        public boolean test(final Level world, final BlockPos pos, final BlockState state) {
             return world.isEmptyBlock(pos) && !MiscUtils.canSeeSky(world, pos, false, false) && world.func_201696_r(pos) < 8 && world.func_226658_a_(LightType.SKY, pos) < 4;
         }
     }

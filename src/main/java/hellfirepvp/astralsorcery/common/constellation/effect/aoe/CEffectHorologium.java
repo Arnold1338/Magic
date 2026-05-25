@@ -63,13 +63,13 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
     
     @Nullable
     @Override
-    public ListEntries.PosEntry createElement(final World world, final BlockPos pos) {
+    public ListEntries.PosEntry createElement(final Level world, final BlockPos pos) {
         return new ListEntries.PosEntry(pos);
     }
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void playClientEffect(final World world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
+    public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         final ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
         for (int i = 0; i < 2; ++i) {
             final Color c = MiscUtils.eitherOf(CEffectHorologium.rand, (Supplier<Color>[])new Supplier[] { () -> Color.WHITE, () -> ColorsAS.CONSTELLATION_HOROLOGIUM });
@@ -84,7 +84,7 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
     }
     
     @Override
-    public boolean playEffect(final World world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
+    public boolean playEffect(final Level world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
         boolean changed = false;
         if (properties.isCorrupted()) {
             TimeStopZone zone = TimeStopController.tryGetZoneAt(world, pos);

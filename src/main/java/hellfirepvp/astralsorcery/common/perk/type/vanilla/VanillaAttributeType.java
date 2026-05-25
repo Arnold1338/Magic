@@ -35,7 +35,7 @@ public abstract class VanillaAttributeType extends PerkAttributeType implements 
     @Override
     public void onModeApply(final Player player, final ModifierType mode, final LogicalSide side) {
         super.onModeApply(player, mode, side);
-        final AttributeInstance attr = player.func_233645_dx_().func_233779_a_(this.getAttribute());
+        final AttributeInstance attr = player.getMainHandItem().func_233779_a_(this.getAttribute());
         if (attr == null) {
             return;
         }
@@ -65,7 +65,7 @@ public abstract class VanillaAttributeType extends PerkAttributeType implements 
     @Override
     public void onModeRemove(final Player player, final ModifierType mode, final LogicalSide side, final boolean removedCompletely) {
         super.onModeRemove(player, mode, side, removedCompletely);
-        final AttributeInstance attr = player.func_233645_dx_().func_233779_a_(this.getAttribute());
+        final AttributeInstance attr = player.getMainHandItem().func_233779_a_(this.getAttribute());
         if (attr == null) {
             return;
         }
@@ -74,7 +74,7 @@ public abstract class VanillaAttributeType extends PerkAttributeType implements 
     
     @Override
     public void refreshAttribute(final Player player) {
-        final AttributeInstance attr = player.func_233645_dx_().func_233779_a_(this.getAttribute());
+        final AttributeInstance attr = player.getMainHandItem().func_233779_a_(this.getAttribute());
         if (attr == null) {
             return;
         }

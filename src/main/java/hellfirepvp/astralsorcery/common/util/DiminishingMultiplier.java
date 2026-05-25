@@ -34,7 +34,7 @@ public class DiminishingMultiplier
         if (times > 0L) {
             this.lastGain = now;
             this.recoveryStack = Math.min(this.recoveryStack + 1, 3);
-            this.multiplier = Mth.func_76131_a(this.multiplier + times * this.gainRate, this.min, 1.0f);
+            this.multiplier = Mth.canEnchant(this.multiplier + times * this.gainRate, this.min, 1.0f);
         }
         else {
             this.multiplier = Math.max(this.multiplier - this.dropRate, this.min);

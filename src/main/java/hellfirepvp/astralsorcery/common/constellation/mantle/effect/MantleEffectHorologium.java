@@ -41,7 +41,7 @@ public class MantleEffectHorologium extends MantleEffect
     @Override
     protected void tickClient(final Player player) {
         super.tickClient(player);
-        if (!player.func_184811_cZ().func_185141_a((Item)ItemsAS.MANTLE)) {
+        if (!player.isSleeping().func_185141_a((Item)ItemsAS.MANTLE)) {
             this.playCapeSparkles(player, 0.4f);
         }
         else {
@@ -50,11 +50,11 @@ public class MantleEffectHorologium extends MantleEffect
     }
     
     private void onHurt(final LivingHurtEvent event) {
-        if (ItemMantle.getEffect(event.getEntityLiving(), ConstellationsAS.horologium) != null && event.getEntityLiving() instanceof Player && !event.getEntityLiving().func_130014_f_().func_201670_d() && !event.getSource().func_76347_k()) {
+        if (ItemMantle.getEffect(event.getEntityLiving(), ConstellationsAS.horologium) != null && event.getEntityLiving() instanceof Player && !event.getEntityLiving().level().level() && !event.getSource().func_76347_k()) {
             final Player player = (Player)event.getEntityLiving();
-            if (!player.func_184811_cZ().func_185141_a((Item)ItemsAS.MANTLE) && AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectHorologium.CONFIG.chargeCostPerFreeze.get())) {
-                TimeStopController.freezeWorldAt(TimeStopZone.EntityTargetController.allExcept((Entity)player), player.func_130014_f_(), player.func_233580_cy_(), ((Double)MantleEffectHorologium.CONFIG.effectRange.get()).floatValue(), (int)MantleEffectHorologium.CONFIG.effectDuration.get());
-                player.func_184811_cZ().func_185145_a((Item)ItemsAS.MANTLE, (int)MantleEffectHorologium.CONFIG.cooldown.get());
+            if (!player.isSleeping().func_185141_a((Item)ItemsAS.MANTLE) && AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectHorologium.CONFIG.chargeCostPerFreeze.get())) {
+                TimeStopController.freezeWorldAt(TimeStopZone.EntityTargetController.allExcept((Entity)player), player.level(), player.func_233580_cy_(), ((Double)MantleEffectHorologium.CONFIG.effectRange.get()).floatValue(), (int)MantleEffectHorologium.CONFIG.effectDuration.get());
+                player.isSleeping().func_185145_a((Item)ItemsAS.MANTLE, (int)MantleEffectHorologium.CONFIG.cooldown.get());
                 AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectHorologium.CONFIG.chargeCostPerFreeze.get(), false);
             }
         }

@@ -97,16 +97,16 @@ public class BlockGemCrystalCluster extends BaseEntityBlock implements CustomIte
     
     public BlockState func_196271_a(final BlockState state, final Direction placedAgainst, final BlockState facingState, final IWorld world, final BlockPos pos, final BlockPos facingPos) {
         if (!this.func_196260_a(state, (IWorldReader)world, pos)) {
-            return Blocks.field_150350_a.defaultBlockState();
+            return Blocks.AIR.defaultBlockState();
         }
         return state;
     }
     
     public boolean func_196260_a(final BlockState state, final IWorldReader world, final BlockPos pos) {
-        return func_220064_c((IBlockReader)world, pos.func_177977_b());
+        return func_220064_c((IBlockReader)world, pos.renderItem());
     }
     
-    public void func_196243_a(final BlockState state, final World world, final BlockPos pos, final BlockState newState, final boolean isMoving) {
+    public void func_196243_a(final BlockState state, final Level world, final BlockPos pos, final BlockState newState, final boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             super.func_196243_a(state, world, pos, newState, isMoving);
             final PktPlayEffect effect = new PktPlayEffect(PktPlayEffect.Type.GEM_CRYSTAL_BREAK).addData(buf -> {
@@ -132,11 +132,11 @@ public class BlockGemCrystalCluster extends BaseEntityBlock implements CustomIte
     }
     
     static {
-        STAGE_0 = Block.func_208617_a(4.0, 0.0, 4.0, 12.0, 6.0, 12.0);
-        STAGE_1 = Block.func_208617_a(4.0, 0.0, 4.0, 12.0, 8.0, 12.0);
-        STAGE_2_SKY = Block.func_208617_a(5.0, 0.0, 5.0, 11.0, 10.0, 11.0);
-        STAGE_2_DAY = Block.func_208617_a(4.0, 0.0, 4.0, 12.0, 10.0, 12.0);
-        STAGE_2_NIGHT = Block.func_208617_a(5.0, 0.0, 5.0, 11.0, 8.0, 11.0);
+        STAGE_0 = Block.of(4.0, 0.0, 4.0, 12.0, 6.0, 12.0);
+        STAGE_1 = Block.of(4.0, 0.0, 4.0, 12.0, 8.0, 12.0);
+        STAGE_2_SKY = Block.of(5.0, 0.0, 5.0, 11.0, 10.0, 11.0);
+        STAGE_2_DAY = Block.of(4.0, 0.0, 4.0, 12.0, 10.0, 12.0);
+        STAGE_2_NIGHT = Block.of(5.0, 0.0, 5.0, 11.0, 8.0, 11.0);
         STAGE = EnumProperty.func_177709_a("stage", (Class)GrowthStageType.class);
     }
     
@@ -164,7 +164,7 @@ public class BlockGemCrystalCluster extends BaseEntityBlock implements CustomIte
             return this.growthStage;
         }
         
-        public GrowthStageType grow(final World world) {
+        public GrowthStageType grow(final Level world) {
             if (this == GrowthStageType.STAGE_0) {
                 return GrowthStageType.STAGE_1;
             }

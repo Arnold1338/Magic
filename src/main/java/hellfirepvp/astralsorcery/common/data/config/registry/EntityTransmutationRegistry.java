@@ -45,7 +45,7 @@ public class EntityTransmutationRegistry extends ConfigDataAdapter<EntityTransmu
             world.func_217467_h((Entity)entity);
             NBTHelper.removeUUID(tag, "UUID");
             try {
-                final Entity e = transmute.func_200721_a((World)world);
+                final Entity e = transmute.func_200721_a((Level)world);
                 if (!(e instanceof LivingEntity)) {
                     return null;
                 }

@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 public class FeatureGenerationConfig extends ConfigEntry
 {
     private List<Biome.Category> categories;
-    private List<RegistryKey<World>> worlds;
+    private List<RegistryKey<Level>> worlds;
     private boolean defaultEveryBiome;
     private boolean defaultEveryWorld;
     private ForgeConfigSpec.BooleanValue enabled;
@@ -28,13 +28,13 @@ public class FeatureGenerationConfig extends ConfigEntry
     private ForgeConfigSpec.ConfigValue<List<String>> worldNames;
     
     public FeatureGenerationConfig(final ResourceLocation featureName) {
-        this(featureName.func_110623_a());
+        this(featureName.addTransientModifier());
     }
     
     public FeatureGenerationConfig(final String featureName) {
         super(featureName);
         this.categories = new ArrayList<Biome.Category>();
-        this.worlds = new ArrayList<RegistryKey<World>>();
+        this.worlds = new ArrayList<RegistryKey<Level>>();
         this.defaultEveryBiome = false;
         this.defaultEveryWorld = false;
     }
@@ -44,7 +44,7 @@ public class FeatureGenerationConfig extends ConfigEntry
         return (T)this;
     }
     
-    public <T extends FeatureGenerationConfig> T generatesInWorlds(final List<RegistryKey<World>> worlds) {
+    public <T extends FeatureGenerationConfig> T generatesInWorlds(final List<RegistryKey<Level>> worlds) {
         this.worlds = worlds;
         return (T)this;
     }

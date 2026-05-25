@@ -98,8 +98,8 @@ public class FXCube extends EntityVisualFX implements EntityDynamicFX
         else {
             final SpriteSheetResource ssr = ctx.getSprite();
             final Tuple<Float, Float> uv = ssr.getUVOffset(this.getAge());
-            u = (float)uv.func_76341_a();
-            v = (float)uv.func_76340_b();
+            u = (float)uv.getA();
+            v = (float)uv.getB();
             uLength = ssr.getULength() * this.textureSubSizePercentage;
             vLength = ssr.getVLength() * this.textureSubSizePercentage;
         }
@@ -108,14 +108,14 @@ public class FXCube extends EntityVisualFX implements EntityDynamicFX
         final Vector3 translateTo = this.getRenderPosition(pTicks).subtract(RenderingVectorUtils.getStandardTranslationRemovalVector(pTicks));
         final Vector3 rotation = this.getInterpolatedRotation(pTicks);
         final float scale = this.getScale(pTicks);
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(translateTo.getX(), translateTo.getY(), translateTo.getZ());
-        renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_((float)rotation.getX()));
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_((float)rotation.getY()));
-        renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_((float)rotation.getZ()));
-        renderStack.func_227862_a_(scale, scale, scale);
+        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()(float)rotation.getX()));
+        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()(float)rotation.getY()));
+        renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()(float)rotation.getZ()));
+        renderStack.translate(scale, scale, scale);
         final VertexConsumer buf = drawBuffer.getBuffer(ctx.getRenderType());
         RenderingDrawUtils.renderTexturedCubeCentralColorLighted(buf, renderStack, u, v, uLength, vLength, c.getRed(), c.getGreen(), c.getBlue(), alpha, LightmapUtil.getPackedFullbrightCoords());
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
 }

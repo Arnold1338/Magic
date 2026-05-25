@@ -53,11 +53,11 @@ public class MantleEffectAevitas extends MantleEffect
         final int healChance = (int)MantleEffectAevitas.CONFIG.healChance.get();
         final int foodChance = (int)MantleEffectAevitas.CONFIG.feedChance.get();
         if (healChance > 0 && MantleEffectAevitas.rand.nextInt(healChance) == 0) {
-            player.func_70691_i(((Double)MantleEffectAevitas.CONFIG.healthPerCycle.get()).floatValue());
+            player.heal(((Double)MantleEffectAevitas.CONFIG.healthPerCycle.get()).floatValue());
         }
         if (foodChance > 0 && MantleEffectAevitas.rand.nextInt(foodChance) == 0) {
             final FoodStats stats = player.func_71024_bL();
-            if ((stats.func_75116_a() < 20 || stats.func_75115_e() < 5.0f) && AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectAevitas.CONFIG.chargeCostPerFood.get())) {
+            if ((stats.setFoodLevel() < 20 || stats.func_75115_e() < 5.0f) && AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectAevitas.CONFIG.chargeCostPerFood.get())) {
                 stats.func_75122_a(((Double)MantleEffectAevitas.CONFIG.foodPerCycle.get()).intValue(), 0.5f);
                 AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectAevitas.CONFIG.chargeCostPerFood.get(), false);
             }
@@ -90,15 +90,15 @@ public class MantleEffectAevitas extends MantleEffect
     }
     
     public static boolean canSupportEffect(final Player player) {
-        final LogicalSide side = player.func_130014_f_().func_201670_d() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+        final LogicalSide side = player.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
         final PlayerProgress progress = ResearchHelper.getProgress(player, side);
         return progress.doPerkAbilities() && progress.hasConstellationDiscovered(ConstellationsAS.aevitas) && AlignmentChargeHandler.INSTANCE.hasCharge(player, side, ((Double)MantleEffectAevitas.CONFIG.chargeCostPerTravelTick.get()).floatValue());
     }
     
     public static boolean isStandingOnAir(final Entity entity) {
         if (entity.func_233570_aj_()) {
-            final World world = entity.func_130014_f_();
-            final BlockPos at = entity.func_233580_cy_().func_177977_b();
+            final Level world = entity.level();
+            final BlockPos at = entity.func_233580_cy_().renderItem();
             return world.getBlockState(at).isAir((IBlockReader)world, at);
         }
         return false;
@@ -178,7 +178,7 @@ public class MantleEffectAevitas extends MantleEffect
             if (entity.func_213283_Z() == Pose.CROUCHING && MantleEffectAevitas.isStandingOnAir(entity)) {
                 yOffset = 2;
             }
-            additionalCollision.add(PlayerWalkableAir.FULL_BOX.func_72317_d(entity.func_226277_ct_(), Math.floor(entity.func_226278_cu_()) - yOffset, entity.func_226281_cx_()));
+            additionalCollision.add(PlayerWalkableAir.FULL_BOX.func_72317_d(entity.getX(), Math.floor(entity.getY()) - yOffset, entity.getZ()));
         }
         
         static {

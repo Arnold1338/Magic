@@ -17,12 +17,12 @@ public class RenderTelescope extends CustomTileEntityRenderer<TileTelescope>
     }
     
     public void render(final TileTelescope tile, final float pTicks, final PoseStack renderStack, final MultiBufferSource renderTypeBuffer, final int combinedLight, final int combinedOverlay) {
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(0.5, 1.5, 0.5);
-        renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(180.0f));
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(180.0f + tile.getRotation().ordinal() * 45.0f));
+        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
+        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f + tile.getRotation().ordinal() * 45.0f));
         RenderTelescope.MODEL_TELESCOPE.render(renderStack, renderTypeBuffer, combinedLight, combinedOverlay);
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     static {

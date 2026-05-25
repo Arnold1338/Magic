@@ -31,7 +31,7 @@ public class FXSourceLiquidFountain extends FXSource<FXCube, BatchRenderContext<
     public void tickSpawnFX(final Function<Vector3, FXCube> effectRegistrar) {
         final Vector3 motion = Vector3.positiveYRandom();
         motion.setY(motion.getY() * 8.0).normalize().multiply(new Vector3(0.01f + FXSourceLiquidFountain.rand.nextFloat() * 0.015f, 0.1f + FXSourceLiquidFountain.rand.nextFloat() * 0.015f, 0.01f + FXSourceLiquidFountain.rand.nextFloat() * 0.015f));
-        effectRegistrar.apply(this.getPosition()).setTextureAtlasSprite(this.sprite).setTextureSubSizePercentage(1.0f).tumble().setAlphaMultiplier(DayTimeHelper.getCurrentDaytimeDistribution((World)Minecraft.getInstance().field_71441_e)).setScaleMultiplier(0.1f + FXSourceLiquidFountain.rand.nextFloat() * 0.05f).setMotion(motion).color((fx, pTicks) -> new Color(this.fluid.getFluid().getAttributes().getColor(this.fluid))).setGravityStrength(0.003f).setMaxAge(40 + FXSourceLiquidFountain.rand.nextInt(40));
+        effectRegistrar.apply(this.getPosition()).setTextureAtlasSprite(this.sprite).setTextureSubSizePercentage(1.0f).tumble().setAlphaMultiplier(DayTimeHelper.getCurrentDaytimeDistribution((Level)Minecraft.getInstance().level)).setScaleMultiplier(0.1f + FXSourceLiquidFountain.rand.nextFloat() * 0.05f).setMotion(motion).color((fx, pTicks) -> new Color(this.fluid.getFluid().getAttributes().getColor(this.fluid))).setGravityStrength(0.003f).setMaxAge(40 + FXSourceLiquidFountain.rand.nextInt(40));
     }
     
     @Override

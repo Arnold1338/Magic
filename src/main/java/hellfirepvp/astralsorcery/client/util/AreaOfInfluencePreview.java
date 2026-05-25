@@ -30,7 +30,7 @@ public class AreaOfInfluencePreview implements ITickHandler
     private static final float alphaTick = 0.025f;
     private static final float sizeCube1 = 1.25f;
     private static final float sizeCube2 = 1.35f;
-    private RegistryKey<World> tileDimension;
+    private RegistryKey<Level> tileDimension;
     private BlockPos tilePosition;
     private FXCube effect1;
     private FXCube effect2;
@@ -68,13 +68,13 @@ public class AreaOfInfluencePreview implements ITickHandler
             this.removeEffects();
             return;
         }
-        final World clientWorld = (World)Minecraft.getInstance().field_71441_e;
+        final Level clientWorld = (Level)Minecraft.getInstance().level;
         if (clientWorld == null) {
             this.clearClient();
             this.removeEffects();
             return;
         }
-        final RegistryKey<World> clientDimType = (RegistryKey<World>)clientWorld.dimension();
+        final RegistryKey<Level> clientDimType = (RegistryKey<Level>)clientWorld.dimension();
         if (!clientDimType.equals(this.tileDimension)) {
             this.clearClient();
             this.removeEffects();
@@ -95,7 +95,7 @@ public class AreaOfInfluencePreview implements ITickHandler
     }
     
     private boolean shouldContinueEffect(final TileAreaOfInfluence aoeTile) {
-        if (Minecraft.getInstance().field_71439_g == null) {
+        if (Minecraft.getInstance().player == null) {
             return false;
         }
         final float effectRadius = aoeTile.getRadius();
@@ -103,7 +103,7 @@ public class AreaOfInfluencePreview implements ITickHandler
             return false;
         }
         final Vector3 offset = aoeTile.getEffectPosition();
-        final double distance = offset.distance((Entity)Minecraft.getInstance().field_71439_g);
+        final double distance = offset.distance((Entity)Minecraft.getInstance().player);
         return distance <= effectRadius * 3.0f && distance <= 48.0;
     }
     
@@ -112,7 +112,7 @@ public class AreaOfInfluencePreview implements ITickHandler
             if (aoeTile != null) {
                 this.updateEffect(cube, sizeMultiplier, aoeTile);
             }
-            cube.setAlphaMultiplier(Mth.func_76131_a(cube.getAlphaMultiplier() - 0.025f, 0.0f, 0.75f));
+            cube.setAlphaMultiplier(Mth.canEnchant(cube.getAlphaMultiplier() - 0.025f, 0.0f, 0.75f));
             if (!this.canRefresh(cube)) {
                 cube = null;
             }
@@ -125,7 +125,7 @@ public class AreaOfInfluencePreview implements ITickHandler
             if (cube.isRemoved()) {
                 EffectHelper.refresh(cube, EffectTemplatesAS.CUBE_AREA_OF_EFFECT);
             }
-            cube.setAlphaMultiplier(Mth.func_76131_a(cube.getAlphaMultiplier() + 0.025f, 0.0f, 0.75f));
+            cube.setAlphaMultiplier(Mth.canEnchant(cube.getAlphaMultiplier() + 0.025f, 0.0f, 0.75f));
             this.updateEffect(cube, sizeMultiplier, aoeTile);
         }
         else {

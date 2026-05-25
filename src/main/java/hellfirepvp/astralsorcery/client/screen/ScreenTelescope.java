@@ -76,7 +76,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
         final PlayerProgress prog = ResearchHelper.getClientProgress();
         List<IWeakConstellation> cst = new ArrayList<IWeakConstellation>();
         for (final IConstellation active : ctx.getActiveCelestialsHandler().getCurrentRenderPositions().keySet()) {
-            if (active instanceof IWeakConstellation && active.canDiscover((Player)Minecraft.getInstance().field_71439_g, prog)) {
+            if (active instanceof IWeakConstellation && active.canDiscover((Player)Minecraft.getInstance().player, prog)) {
                 cst.add((IWeakConstellation)active);
             }
         }
@@ -128,7 +128,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
     }
     
     private void drawConstellationCell(final PoseStack renderStack, final float pTicks) {
-        final boolean canSeeSky = this.canObserverSeeSky(((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().func_174877_v(), 1);
+        final boolean canSeeSky = this.canObserverSeeSky(((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().getBlockState(), 1);
         RenderSystem.disableAlphaTest();
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
@@ -151,7 +151,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
             this.func_230926_e_(-9);
             final float starSize = 5.0f;
             TexturesAS.TEX_STAR_1.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
+            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
                 for (int j = 0; j < 72 + gen.nextInt(108); ++j) {
                     final float innerOffsetX = starSize + gen.nextFloat() * (this.guiWidth - starSize * 2.0f) + this.getGuiLeft();
                     final float innerOffsetY = starSize + gen.nextFloat() * (this.guiHeight - starSize * 2.0f) + this.getGuiTop();
@@ -168,7 +168,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
                     info.getFrameDrawInformation().clear();
                     final Point pos = info.getRenderPosition();
                     final int size = (int)info.getRenderSize();
-                    final float rainBr = 1.0f - Minecraft.getInstance().field_71441_e.func_72867_j(pTicks);
+                    final float rainBr = 1.0f - Minecraft.getInstance().level.func_72867_j(pTicks);
                     final Map<StarLocation, Rectangle2D.Float> cstRenderInfo = RenderingConstellationUtils.renderConstellationIntoGUI(cst, renderStack, (float)(pos.x + this.guiLeft), (float)(pos.y + this.guiTop), (float)this.getGuiZLevel(), (float)size, (float)size, 2.5, () -> RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), pTicks, 5 + gen.nextInt(15)) * rainBr, prog.hasConstellationDiscovered(cst), true);
                     info.getFrameDrawInformation().putAll(cstRenderInfo);
                 }
@@ -184,7 +184,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
     
     private void drawSkyBackground(final PoseStack renderStack, final float pTicks, final boolean canSeeSky) {
         final Tuple<Color, Color> rgbFromTo = SkyScreen.getSkyGradient(canSeeSky, 1.0f, pTicks);
-        RenderingDrawUtils.drawGradientRect(renderStack, (float)this.getGuiZLevel(), (float)(this.guiLeft + 5), (float)(this.guiTop + 5), (float)(this.guiLeft + this.guiWidth - 5), (float)(this.guiTop + this.guiHeight - 5), ((Color)rgbFromTo.func_76341_a()).getRGB(), ((Color)rgbFromTo.func_76340_b()).getRGB());
+        RenderingDrawUtils.drawGradientRect(renderStack, (float)this.getGuiZLevel(), (float)(this.guiLeft + 5), (float)(this.guiTop + 5), (float)(this.guiLeft + this.guiWidth - 5), (float)(this.guiTop + this.guiHeight - 5), ((Color)rgbFromTo.getA()).getRGB(), ((Color)rgbFromTo.getB()).getRGB());
     }
     
     @Override
@@ -194,12 +194,12 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
         }
         final Point p = new Point((int)mouseX, (int)mouseY);
         if (this.rectArrowCW != null && this.rectArrowCW.contains(p)) {
-            final PktRotateTelescope pkt = new PktRotateTelescope(true, (RegistryKey<World>)((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().func_145831_w().dimension(), ((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().func_174877_v());
+            final PktRotateTelescope pkt = new PktRotateTelescope(true, (RegistryKey<Level>)((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().getLevel().dimension(), ((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().getBlockState());
             PacketChannel.CHANNEL.sendToServer(pkt);
             return true;
         }
         if (this.rectArrowCCW != null && this.rectArrowCCW.contains(p)) {
-            final PktRotateTelescope pkt = new PktRotateTelescope(false, (RegistryKey<World>)((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().func_145831_w().dimension(), ((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().func_174877_v());
+            final PktRotateTelescope pkt = new PktRotateTelescope(false, (RegistryKey<Level>)((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().getLevel().dimension(), ((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().getBlockState());
             PacketChannel.CHANNEL.sendToServer(pkt);
             return true;
         }

@@ -62,7 +62,7 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_180655_c(final BlockState stateIn, final World worldIn, final BlockPos pos, final Random rand) {
+    public void func_180655_c(final BlockState stateIn, final Level worldIn, final BlockPos pos, final Random rand) {
         for (int i = 0; i < rand.nextInt(3); ++i) {
             final Vector3 offset = new Vector3(-0.3125, 1.505, -0.1875);
             final int random = rand.nextInt(ColorsAS.REFRACTION_TABLE_COLORS.length);
@@ -75,32 +75,32 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
         }
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
-        final ItemStack held = player.func_184586_b(hand);
-        if (!world.func_201670_d()) {
+    public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
+        final ItemStack held = player.getItemInHand(hand);
+        if (!world.level()) {
             final TileRefractionTable tft = MiscUtils.getTileAt((IBlockReader)world, pos, TileRefractionTable.class, true);
             if (tft != null) {
                 if (player.func_225608_bj_()) {
                     if (!tft.getInputStack().isEmpty()) {
                         final ItemStack remaining = ItemUtils.dropItemToPlayer(player, tft.setInputStack(ItemStack.EMPTY));
                         if (!remaining.isEmpty()) {
-                            ItemUtils.dropItemNaturally(world, player.func_226277_ct_(), player.func_226278_cu_(), player.func_226281_cx_(), remaining);
+                            ItemUtils.dropItemNaturally(world, player.getX(), player.getY(), player.getZ(), remaining);
                         }
                         return InteractionResult.SUCCESS;
                     }
                     if (!tft.getGlassStack().isEmpty()) {
                         final ItemStack remaining = ItemUtils.dropItemToPlayer(player, tft.setGlassStack(ItemStack.EMPTY));
                         if (!remaining.isEmpty()) {
-                            ItemUtils.dropItemNaturally(world, player.func_226277_ct_(), player.func_226278_cu_(), player.func_226281_cx_(), remaining);
+                            ItemUtils.dropItemNaturally(world, player.getX(), player.getY(), player.getZ(), remaining);
                         }
                         return InteractionResult.SUCCESS;
                     }
                 }
                 else if (!held.isEmpty()) {
                     if (held.getItem() instanceof ItemParchment && tft.getParchmentCount() < 64) {
-                        final int leftover = tft.addParchment(held.func_190916_E());
-                        if (leftover < tft.getParchmentCount() && !player.func_184812_l_()) {
-                            held.func_190920_e(leftover);
+                        final int leftover = tft.addParchment(held.getCount());
+                        if (leftover < tft.getParchmentCount() && !player.getVehicle()) {
+                            held.setCount(leftover);
                             if (held.isEmpty()) {
                                 player.func_184611_a(hand, ItemStack.EMPTY);
                             }
@@ -115,7 +115,7 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
                             if (!previous.isEmpty()) {
                                 ItemUtils.dropItemNaturally(world, pos.getX() + 0.5, pos.getY() + 1.8, pos.getZ() + 0.5, previous);
                             }
-                            if (!player.func_184812_l_()) {
+                            if (!player.getVehicle()) {
                                 held.shrink(1);
                                 if (held.isEmpty()) {
                                     player.func_184611_a(hand, ItemStack.EMPTY);
@@ -131,7 +131,7 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
                             if (!previous.isEmpty()) {
                                 ItemUtils.dropItemNaturally(world, pos.getX() + 0.5, pos.getY() + 1.8, pos.getZ() + 0.5, previous);
                             }
-                            if (!player.func_184812_l_()) {
+                            if (!player.getVehicle()) {
                                 held.shrink(1);
                                 if (held.isEmpty()) {
                                     player.func_184611_a(hand, ItemStack.EMPTY);
@@ -154,7 +154,7 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
         return InteractionResult.SUCCESS;
     }
     
-    public void func_196243_a(final BlockState state, final World world, final BlockPos pos, final BlockState newState, final boolean isMoving) {
+    public void func_196243_a(final BlockState state, final Level world, final BlockPos pos, final BlockState newState, final boolean isMoving) {
         final TileRefractionTable te = MiscUtils.getTileAt((IBlockReader)world, pos, TileRefractionTable.class, true);
         if (te != null && !world.isClientSide) {
             te.dropContents();
@@ -172,7 +172,7 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
     }
     
     static {
-        REFRACTION_TABLE = Block.func_208617_a(-6.0, 0.0, -4.0, 22.0, 24.0, 20.0);
+        REFRACTION_TABLE = Block.of(-6.0, 0.0, -4.0, 22.0, 24.0, 20.0);
         PLACEMENT_BOX = new AABB(-1.0, 0.0, -1.0, 1.0, 1.0, 1.0);
     }
 }

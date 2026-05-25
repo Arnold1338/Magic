@@ -39,7 +39,7 @@ public class PerkEffectHelper
     
     public static void onPlayerDisconnectEvent(final ServerPlayer player) {
         modifyAllPerks((Player)player, LogicalSide.SERVER, Action.REMOVE);
-        NBTHelper.getPersistentData((Entity)player).func_74776_a("health", player.func_110143_aJ());
+        NBTHelper.getPersistentData((Entity)player).func_74776_a("health", player.getMaxHealth());
     }
     
     public static void onPlayerCloneEvent(final ServerPlayer original, final ServerPlayer newPlayer) {
@@ -51,7 +51,7 @@ public class PerkEffectHelper
     
     @OnlyIn(Dist.CLIENT)
     public static void clientChangePerkData(final AbstractPerk perk, final CompoundTag oldData, final CompoundTag newData) {
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().player;
         if (player == null) {
             return;
         }
@@ -68,7 +68,7 @@ public class PerkEffectHelper
     
     @OnlyIn(Dist.CLIENT)
     public static void clientClearAllPerks() {
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().player;
         if (player == null) {
             return;
         }
@@ -86,7 +86,7 @@ public class PerkEffectHelper
     
     @OnlyIn(Dist.CLIENT)
     public static void clientRefreshAllPerks() {
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().player;
         if (player == null) {
             return;
         }

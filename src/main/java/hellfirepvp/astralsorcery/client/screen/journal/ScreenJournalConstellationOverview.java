@@ -73,23 +73,23 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
     
     private void drawConstellationBackground(final PoseStack renderStack) {
         TexturesAS.TEX_BLACK.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
-            final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
-            buf.func_227888_a_(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).func_227885_a_(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(0.0f, 1.0f).func_181675_d();
-            buf.func_227888_a_(offset, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).func_227885_a_(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(1.0f, 1.0f).func_181675_d();
-            buf.func_227888_a_(offset, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).func_227885_a_(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(1.0f, 0.0f).func_181675_d();
-            buf.func_227888_a_(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).func_227885_a_(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(0.0f, 0.0f).func_181675_d();
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+            final Matrix4f offset = renderStack.last().translate();
+            buf.func_227888_a_(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(0.0f, 1.0f).blockPosition();
+            buf.func_227888_a_(offset, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(1.0f, 1.0f).blockPosition();
+            buf.func_227888_a_(offset, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(1.0f, 0.0f).blockPosition();
+            buf.func_227888_a_(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(0.0f, 0.0f).blockPosition();
             return;
         });
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         TexturesAS.TEX_GUI_BACKGROUND_CONSTELLATIONS.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
-            final Matrix4f offset2 = renderStack.func_227866_c_().func_227870_a_();
-            buf.func_227888_a_(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).func_227885_a_(0.8f, 0.8f, 1.0f, 0.7f).func_225583_a_(0.1f, 0.9f).func_181675_d();
-            buf.func_227888_a_(offset2, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).func_227885_a_(0.8f, 0.8f, 1.0f, 0.7f).func_225583_a_(0.9f, 0.9f).func_181675_d();
-            buf.func_227888_a_(offset2, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).func_227885_a_(0.8f, 0.8f, 1.0f, 0.7f).func_225583_a_(0.9f, 0.1f).func_181675_d();
-            buf.func_227888_a_(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).func_227885_a_(0.8f, 0.8f, 1.0f, 0.7f).func_225583_a_(0.1f, 0.1f).func_181675_d();
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+            final Matrix4f offset2 = renderStack.last().translate();
+            buf.func_227888_a_(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.7f).setPos(0.1f, 0.9f).blockPosition();
+            buf.func_227888_a_(offset2, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.7f).setPos(0.9f, 0.9f).blockPosition();
+            buf.func_227888_a_(offset2, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.7f).setPos(0.9f, 0.1f).blockPosition();
+            buf.func_227888_a_(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.7f).setPos(0.1f, 0.1f).blockPosition();
             return;
         });
         RenderSystem.disableBlend();
@@ -108,10 +108,10 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
     
     private Rectangle drawConstellation(final PoseStack renderStack, final IConstellation display, final double offsetX, final double offsetY, final float zLevel, final float partial, final int mouseX, final int mouseY) {
         final Rectangle rect = new Rectangle(Mth.func_76128_c(offsetX), Mth.func_76128_c(offsetY), 80, 110);
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(offsetX + 40.0, offsetY + 40.0, (double)zLevel);
         if (rect.contains(mouseX, mouseY)) {
-            renderStack.func_227862_a_(1.1f, 1.1f, 1.0f);
+            renderStack.translate(1.1f, 1.1f, 1.0f);
         }
         renderStack.func_227861_a_(-40.0, -40.0, (double)zLevel);
         RenderSystem.enableBlend();
@@ -120,10 +120,10 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
         RenderingConstellationUtils.renderConstellationIntoGUI(display.getConstellationColor(), display, renderStack, 0.0f, 0.0f, 0.0f, 95.0f, 95.0f, 1.600000023841858, () -> 0.5f + 0.5f * RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), partial, 12 + rand.nextInt(10)), true, false);
         RenderSystem.disableBlend();
         final ITextProperties cstName = (ITextProperties)display.getConstellationName();
-        final float fullLength = 40.0f - this.field_230712_o_.func_238414_a_(cstName) / 2.0f;
+        final float fullLength = 40.0f - this.fogColor.func_238414_a_(cstName) / 2.0f;
         renderStack.func_227861_a_((double)fullLength, 90.0, 10.0);
-        RenderingDrawUtils.renderStringAt(cstName, renderStack, this.field_230712_o_, -1143087651, false);
-        renderStack.func_227865_b_();
+        RenderingDrawUtils.renderStringAt(cstName, renderStack, this.fogColor, -1143087651, false);
+        renderStack.scale();
         return rect;
     }
     

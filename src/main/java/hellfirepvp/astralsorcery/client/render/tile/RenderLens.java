@@ -30,7 +30,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
         final List<BlockPos> linked = tile.getLinkedPositions();
         float degYaw = 0.0f;
         float degPitch = 0.0f;
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         switch (tile.getPlacedAgainst()) {
             case DOWN: {
                 if (!linked.isEmpty() && linked.size() == 1) {
@@ -43,13 +43,13 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     degPitch = (float)Math.toDegrees(degPitch);
                 }
                 renderStack.func_227861_a_(0.5, 1.5, 0.5);
-                renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(180.0f));
-                renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(degYaw % 360.0f));
+                renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
+                renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()degYaw % 360.0f));
                 if (tile.getColorType() != null) {
-                    renderStack.func_227860_a_();
-                    renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(180.0f));
+                    renderStack.popPose();
+                    renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
                     this.renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), -degPitch);
-                    renderStack.func_227865_b_();
+                    renderStack.scale();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, degPitch);
                 break;
@@ -65,12 +65,12 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     degPitch = (float)Math.toDegrees(degPitch);
                 }
                 renderStack.func_227861_a_(0.5, -0.5, 0.5);
-                renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_((-degYaw + 180.0f) % 360.0f));
+                renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()(-degYaw + 180.0f) % 360.0f));
                 if (tile.getColorType() != null) {
-                    renderStack.func_227860_a_();
-                    renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(180.0f));
+                    renderStack.popPose();
+                    renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
                     this.renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), degPitch);
-                    renderStack.func_227865_b_();
+                    renderStack.scale();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, -degPitch);
                 break;
@@ -86,13 +86,13 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     degPitch = (float)Math.toDegrees(degPitch);
                 }
                 renderStack.func_227861_a_(0.5, 0.5, 1.5);
-                renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(270.0f));
-                renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_((-degYaw + 180.0f) % 360.0f));
+                renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()270.0f));
+                renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()(-degYaw + 180.0f) % 360.0f));
                 if (tile.getColorType() != null) {
-                    renderStack.func_227860_a_();
-                    renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(180.0f));
+                    renderStack.popPose();
+                    renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
                     this.renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), -degPitch);
-                    renderStack.func_227865_b_();
+                    renderStack.scale();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, degPitch);
                 break;
@@ -108,13 +108,13 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     degPitch = (float)Math.toDegrees(degPitch);
                 }
                 renderStack.func_227861_a_(0.5, 0.5, -0.5);
-                renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(90.0f));
-                renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(degYaw % 360.0f));
+                renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()90.0f));
+                renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()degYaw % 360.0f));
                 if (tile.getColorType() != null) {
-                    renderStack.func_227860_a_();
-                    renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(180.0f));
+                    renderStack.popPose();
+                    renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
                     this.renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), degPitch);
-                    renderStack.func_227865_b_();
+                    renderStack.scale();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, -degPitch);
                 break;
@@ -130,13 +130,13 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     degPitch = (float)Math.toDegrees(degPitch);
                 }
                 renderStack.func_227861_a_(1.5, 0.5, 0.5);
-                renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(90.0f));
-                renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(degYaw + 270.0f));
+                renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()90.0f));
+                renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()degYaw + 270.0f));
                 if (tile.getColorType() != null) {
-                    renderStack.func_227860_a_();
-                    renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(180.0f));
+                    renderStack.popPose();
+                    renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
                     this.renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), -degPitch);
-                    renderStack.func_227865_b_();
+                    renderStack.scale();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, degPitch);
                 break;
@@ -152,19 +152,19 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     degPitch = (float)Math.toDegrees(degPitch);
                 }
                 renderStack.func_227861_a_(-0.5, 0.5, 0.5);
-                renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(270.0f));
-                renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(-degYaw + 90.0f));
+                renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()270.0f));
+                renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()-degYaw + 90.0f));
                 if (tile.getColorType() != null) {
-                    renderStack.func_227860_a_();
-                    renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(180.0f));
+                    renderStack.popPose();
+                    renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
                     this.renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), degPitch);
-                    renderStack.func_227865_b_();
+                    renderStack.scale();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, -degPitch);
                 break;
             }
         }
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     private void renderLensColored(final PoseStack renderStack, final MultiBufferSource buffer, final int combinedLight, final int combinedOverlay, final Color c, final float pitch) {

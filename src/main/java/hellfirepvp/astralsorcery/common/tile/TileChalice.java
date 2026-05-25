@@ -78,7 +78,7 @@ public class TileChalice extends TileEntityTick
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (this.func_145831_w().func_201670_d()) {
+        if (this.getLevel().level()) {
             if (this.rotationVec == null) {
                 this.rotationVec = Vector3.random().normalize().multiply(1.5f);
             }
@@ -100,17 +100,17 @@ public class TileChalice extends TileEntityTick
     }
     
     private void tickChaliceInteractions() {
-        if (this.func_145831_w().func_175640_z(this.field_174879_c) || this.func_145831_w().getBlockState(this.func_174877_v().func_177977_b()).getBlock() instanceof BlockFountain) {
+        if (this.getLevel().func_175640_z(this.field_174879_c) || this.getLevel().getBlockState(this.getBlockState().renderItem()).getBlock() instanceof BlockFountain) {
             return;
         }
         final FluidStack thisFluid = this.getTank().getFluid();
         if (thisFluid.isEmpty()) {
             return;
         }
-        final List<BlockPos> chalicePositions = ChaliceHelper.findNearbyChalices(this.func_145831_w(), this.func_174877_v(), 16);
+        final List<BlockPos> chalicePositions = ChaliceHelper.findNearbyChalices(this.getLevel(), this.getBlockState(), 16);
         Collections.shuffle(chalicePositions, TileChalice.rand);
         for (final BlockPos otherChalicePos : chalicePositions) {
-            final TileChalice otherChalice = MiscUtils.getTileAt((IBlockReader)this.func_145831_w(), otherChalicePos, TileChalice.class, false);
+            final TileChalice otherChalice = MiscUtils.getTileAt((IBlockReader)this.getLevel(), otherChalicePos, TileChalice.class, false);
             if (otherChalice == null) {
                 continue;
             }
@@ -125,7 +125,7 @@ public class TileChalice extends TileEntityTick
                     final Vector3 thisChaliceV = new Vector3(this).add(0.5, 1.5, 0.5);
                     final Vector3 otherChaliceV = new Vector3((Vector3i)otherChalicePos).add(0.5, 1.5, 0.5);
                     final Vector3 target = thisChaliceV.getMidpoint(otherChaliceV);
-                    recipe.getResult().doResult(this.func_145831_w(), target.clone());
+                    recipe.getResult().doResult(this.getLevel(), target.clone());
                     final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.LIQUID_INTERACTION_LINE).addData(buf -> {
                         ByteBufUtils.writeVector(buf, thisChaliceV);
                         ByteBufUtils.writeVector(buf, target);
@@ -135,7 +135,7 @@ public class TileChalice extends TileEntityTick
                         ByteBufUtils.writeFluidStack(buf, otherFluid);
                         return;
                     });
-                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.func_145831_w(), (Vector3i)target.toBlockPos(), 32.0));
+                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vector3i)target.toBlockPos(), 32.0));
                     return;
                 }
                 recipes.remove(recipe);
@@ -144,19 +144,19 @@ public class TileChalice extends TileEntityTick
     }
     
     private boolean tickFountainDraw() {
-        if (this.func_145831_w().func_175640_z(this.field_174879_c)) {
+        if (this.getLevel().func_175640_z(this.field_174879_c)) {
             return false;
         }
         final Vector3 thisVector = new Vector3(this).add(0.5, 1.5, 0.5);
-        final List<BlockPos> fountains = BlockDiscoverer.searchForBlocksAround(this.field_145850_b, this.field_174879_c, 16, BlockPredicates.isBlock((Block)BlocksAS.FOUNTAIN));
+        final List<BlockPos> fountains = BlockDiscoverer.searchForBlocksAround(this.level, this.field_174879_c, 16, BlockPredicates.isBlock((Block)BlocksAS.FOUNTAIN));
         fountains.removeIf(pos -> {
             final Vector3 fountainVec = new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5);
             final RaytraceAssist assist = new RaytraceAssist(thisVector, fountainVec);
-            return !assist.isClear(this.field_145850_b);
+            return !assist.isClear(this.level);
         });
         Collections.shuffle(fountains, TileChalice.rand);
         for (final BlockPos wellPos : fountains) {
-            final TileFountain fountain = MiscUtils.getTileAt((IBlockReader)this.field_145850_b, wellPos, TileFountain.class, true);
+            final TileFountain fountain = MiscUtils.getTileAt((IBlockReader)this.level, wellPos, TileFountain.class, true);
             if (fountain != null) {
                 final FluidStack drained = fountain.getTank().drain(400, IFluidHandler.FluidAction.SIMULATE);
                 if (drained.getAmount() <= 100) {
@@ -173,7 +173,7 @@ public class TileChalice extends TileEntityTick
                         ByteBufUtils.writeFluidStack(buf, actual);
                         return;
                     });
-                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.func_145831_w(), (Vector3i)wellVec.toBlockPos(), 32.0));
+                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vector3i)wellVec.toBlockPos(), 32.0));
                     return true;
                 }
                 continue;
@@ -183,7 +183,7 @@ public class TileChalice extends TileEntityTick
     }
     
     private boolean tickLightwellDraw() {
-        if (this.func_145831_w().func_175640_z(this.field_174879_c)) {
+        if (this.getLevel().func_175640_z(this.field_174879_c)) {
             return false;
         }
         final FluidStack thisFluid = this.getTank().getFluid();
@@ -191,15 +191,15 @@ public class TileChalice extends TileEntityTick
             return false;
         }
         final Vector3 thisVector = new Vector3(this).add(0.5, 1.5, 0.5);
-        final List<BlockPos> wellPositions = BlockDiscoverer.searchForBlocksAround(this.field_145850_b, this.field_174879_c, 16, BlockPredicates.isBlock((Block)BlocksAS.WELL));
+        final List<BlockPos> wellPositions = BlockDiscoverer.searchForBlocksAround(this.level, this.field_174879_c, 16, BlockPredicates.isBlock((Block)BlocksAS.WELL));
         wellPositions.removeIf(pos -> {
             final Vector3 wellVec2 = new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5);
             final RaytraceAssist assist = new RaytraceAssist(thisVector, wellVec2);
-            return !assist.isClear(this.field_145850_b);
+            return !assist.isClear(this.level);
         });
         Collections.shuffle(wellPositions, TileChalice.rand);
         for (final BlockPos wellPos : wellPositions) {
-            final TileWell well = MiscUtils.getTileAt((IBlockReader)this.field_145850_b, wellPos, TileWell.class, true);
+            final TileWell well = MiscUtils.getTileAt((IBlockReader)this.level, wellPos, TileWell.class, true);
             if (well != null) {
                 final FluidStack drained = well.getTank().drain(400, IFluidHandler.FluidAction.SIMULATE);
                 if (!(drained.getFluid() instanceof FluidLiquidStarlight) || drained.getAmount() <= 100) {
@@ -216,7 +216,7 @@ public class TileChalice extends TileEntityTick
                         ByteBufUtils.writeFluidStack(buf, actual);
                         return;
                     });
-                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.func_145831_w(), (Vector3i)wellVec.toBlockPos(), 32.0));
+                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vector3i)wellVec.toBlockPos(), 32.0));
                     return true;
                 }
                 return false;

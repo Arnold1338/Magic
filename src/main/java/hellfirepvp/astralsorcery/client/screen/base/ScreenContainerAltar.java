@@ -33,7 +33,7 @@ public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends
     @Nullable
     public SimpleAltarRecipe findRecipe(final boolean ignoreStarlightRequirement) {
         final TileAltar ta = this.func_212873_a_().getTileEntity();
-        return RecipeTypesAS.TYPE_ALTAR.findRecipe(new SimpleAltarRecipeContext((Player)Minecraft.getInstance().field_71439_g, LogicalSide.CLIENT, ta).setIgnoreStarlightRequirement(ignoreStarlightRequirement));
+        return RecipeTypesAS.TYPE_ALTAR.findRecipe(new SimpleAltarRecipeContext((Player)Minecraft.getInstance().player, LogicalSide.CLIENT, ta).setIgnoreStarlightRequirement(ignoreStarlightRequirement));
     }
     
     @Override
@@ -47,7 +47,7 @@ public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends
         final TileAltar altar = this.func_212873_a_().getTileEntity();
         RenderSystem.disableAlphaTest();
         TexturesAS.TEX_BLACK.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.field_147003_i + offsetX), (float)(this.field_147009_r + offsetZ), (float)this.func_230927_p_(), (float)width, (float)height).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.field_147003_i + offsetX), (float)(this.field_147009_r + offsetZ), (float)this.func_230927_p_(), (float)width, (float)height).draw());
         float percFilled;
         Color barColor;
         if (altar.hasMultiblock()) {
@@ -63,7 +63,7 @@ public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends
             spriteStarlight.getResource().bindTexture();
             final int tick = altar.getTicksExisted();
             final Tuple<Float, Float> uvOffset = spriteStarlight.getUVOffset(tick);
-            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.field_147003_i + offsetX), (float)(this.field_147009_r + offsetZ), (float)this.func_230927_p_(), (float)(int)(width * percFilled), (float)height).tex((float)uvOffset.func_76341_a(), (float)uvOffset.func_76340_b(), spriteStarlight.getULength() * percFilled, spriteStarlight.getVLength()).color(barColor).draw());
+            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.field_147003_i + offsetX), (float)(this.field_147009_r + offsetZ), (float)this.func_230927_p_(), (float)(int)(width * percFilled), (float)height).tex((float)uvOffset.getA(), (float)uvOffset.getB(), spriteStarlight.getULength() * percFilled, spriteStarlight.getVLength()).color(barColor).draw());
             if (altar.hasMultiblock()) {
                 final SimpleAltarRecipe aar = this.findRecipe(true);
                 if (aar != null) {
@@ -74,7 +74,7 @@ public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends
                         final float percReq = (req - has) / (float)max;
                         final int from = (int)(width * percFilled);
                         final int to = (int)(width * percReq);
-                        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.field_147003_i + offsetX + from), (float)(this.field_147009_r + offsetZ), (float)this.func_230927_p_(), (float)to, (float)height).tex((float)uvOffset.func_76341_a() + spriteStarlight.getULength() * percFilled, (float)uvOffset.func_76340_b(), spriteStarlight.getULength() * percReq, spriteStarlight.getVLength()).color(0.2f, 0.5f, 1.0f, 0.4f).draw());
+                        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.field_147003_i + offsetX + from), (float)(this.field_147009_r + offsetZ), (float)this.func_230927_p_(), (float)to, (float)height).tex((float)uvOffset.getA() + spriteStarlight.getULength() * percFilled, (float)uvOffset.getB(), spriteStarlight.getULength() * percReq, spriteStarlight.getVLength()).color(0.2f, 0.5f, 1.0f, 0.4f).draw());
                     }
                 }
             }

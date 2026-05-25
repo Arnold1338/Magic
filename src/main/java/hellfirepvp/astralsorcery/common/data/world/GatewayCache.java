@@ -67,7 +67,7 @@ public class GatewayCache extends GlobalWorldData
         CelestialGatewayHandler.INSTANCE.syncToAll();
     }
     
-    public boolean offerPosition(final World world, final BlockPos pos) {
+    public boolean offerPosition(final Level world, final BlockPos pos) {
         final TileCelestialGateway te = MiscUtils.getTileAt((IBlockReader)world, pos, TileCelestialGateway.class, false);
         if (te == null) {
             return false;
@@ -82,7 +82,7 @@ public class GatewayCache extends GlobalWorldData
         return true;
     }
     
-    public void removePosition(final World world, final BlockPos pos) {
+    public void removePosition(final Level world, final BlockPos pos) {
         if (this.gatewayPositions.removeIf(node -> node.getPos().equals((Object)pos))) {
             this.markDirty();
             CelestialGatewayHandler.INSTANCE.removePosition(world, pos);
@@ -90,10 +90,10 @@ public class GatewayCache extends GlobalWorldData
         }
     }
     
-    public void updateTick(final World world) {
+    public void updateTick(final Level world) {
     }
     
-    public void onLoad(final World world) {
+    public void onLoad(final Level world) {
         super.onLoad(world);
         LogUtil.info(LogCategory.GATEWAY_CACHE, () -> "Checking GatewayCache integrity for dimension " + world.dimension().func_240901_a_());
         final long msStart = System.currentTimeMillis();
@@ -228,7 +228,7 @@ public class GatewayCache extends GlobalWorldData
                 final CompoundTag compound = (CompoundTag)nbt;
                 return new Tuple((Object)compound.getInt("index"), (Object)PlayerReference.deserialize(compound.func_74775_l("player")));
             }).forEach(tpl -> {
-                final PlayerReference playerReference = node.allowedUsers.put((Integer)tpl.func_76341_a(), (PlayerReference)tpl.func_76340_b());
+                final PlayerReference playerReference = node.allowedUsers.put((Integer)tpl.getA(), (PlayerReference)tpl.getB());
                 return;
             });
             return node;

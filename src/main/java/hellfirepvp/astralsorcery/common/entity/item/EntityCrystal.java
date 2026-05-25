@@ -27,15 +27,15 @@ import hellfirepvp.astralsorcery.common.entity.InteractableEntity;
 
 public class EntityCrystal extends EntityItemExplosionResistant implements InteractableEntity
 {
-    public EntityCrystal(final EntityType<? extends ItemEntity> type, final World world) {
+    public EntityCrystal(final EntityType<? extends ItemEntity> type, final Level world) {
         super(type, world);
     }
     
-    public EntityCrystal(final EntityType<? extends ItemEntity> type, final World world, final double x, final double y, final double z) {
+    public EntityCrystal(final EntityType<? extends ItemEntity> type, final Level world, final double x, final double y, final double z) {
         super(type, world, x, y, z);
     }
     
-    public EntityCrystal(final EntityType<? extends ItemEntity> type, final World world, final double x, final double y, final double z, final ItemStack stack) {
+    public EntityCrystal(final EntityType<? extends ItemEntity> type, final Level world, final double x, final double y, final double z, final ItemStack stack) {
         super(type, world, x, y, z, stack);
     }
     
@@ -52,19 +52,19 @@ public class EntityCrystal extends EntityItemExplosionResistant implements Inter
     }
     
     public boolean func_85031_j(final Entity entity) {
-        if (!this.func_130014_f_().func_201670_d() && entity instanceof ServerPlayer) {
-            final ItemStack held = ((ServerPlayer)entity).func_184586_b(InteractionHand.MAIN_HAND);
+        if (!this.level().level() && entity instanceof ServerPlayer) {
+            final ItemStack held = ((ServerPlayer)entity).getItemInHand(InteractionHand.MAIN_HAND);
             if (!held.isEmpty() && held.getItem() instanceof ItemChisel) {
                 final ItemStack thisStack = this.func_92059_d();
                 if (!thisStack.isEmpty() && thisStack.getItem() instanceof ItemCrystalBase) {
                     final CrystalAttributes thisAttributes = ((ItemCrystalBase)thisStack.getItem()).getAttributes(thisStack);
                     if (thisAttributes != null) {
                         boolean doDamage = false;
-                        if (this.field_70146_Z.nextFloat() < 0.35f) {
-                            final int fortuneLevel = EnchantmentHelper.func_77506_a(Enchantments.field_185308_t, held);
+                        if (this.random.nextFloat() < 0.35f) {
+                            final int fortuneLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, held);
                             doDamage = this.splitCrystal(thisAttributes, fortuneLevel);
                         }
-                        if (doDamage || this.field_70146_Z.nextFloat() < 0.35f) {
+                        if (doDamage || this.random.nextFloat() < 0.35f) {
                             held.func_222118_a(1, (LivingEntity)entity, player -> player.func_213334_d(InteractionHand.MAIN_HAND));
                         }
                     }
@@ -88,16 +88,16 @@ public class EntityCrystal extends EntityItemExplosionResistant implements Inter
             return false;
         }
         int lostModifiers = 0;
-        if (maxSplit > 1 && this.field_70146_Z.nextFloat() < 0.6f / (fortuneLevel + 1)) {
+        if (maxSplit > 1 && this.random.nextFloat() < 0.6f / (fortuneLevel + 1)) {
             ++lostModifiers;
-            if (maxSplit > 2 && this.field_70146_Z.nextFloat() < 0.2f / (fortuneLevel + 1)) {
+            if (maxSplit > 2 && this.random.nextFloat() < 0.2f / (fortuneLevel + 1)) {
                 ++lostModifiers;
             }
         }
         CrystalAttributes resultThisAttributes = thisAttributes;
         final CrystalAttributes.Builder resultSplitAttributes = CrystalAttributes.Builder.newBuilder(false);
         for (int i = 0; i < maxSplit; ++i) {
-            final CrystalProperty prop = MiscUtils.getRandomEntry(resultThisAttributes.getProperties(), this.field_70146_Z);
+            final CrystalProperty prop = MiscUtils.getRandomEntry(resultThisAttributes.getProperties(), this.random);
             if (prop == null) {
                 break;
             }
@@ -111,14 +111,14 @@ public class EntityCrystal extends EntityItemExplosionResistant implements Inter
         }
         ((ItemCrystalBase)this.func_92059_d().getItem()).setAttributes(this.func_92059_d(), resultThisAttributes);
         newBase.setAttributes(created, resultSplitAttributes.build());
-        ItemUtils.dropItemNaturally(this.func_130014_f_(), this.func_226277_ct_(), this.func_226278_cu_() + 0.25, this.func_226281_cx_(), created);
+        ItemUtils.dropItemNaturally(this.level(), this.getX(), this.getY() + 0.25, this.getZ(), created);
         return true;
     }
     
     @Override
     public void func_70071_h_() {
         super.tick();
-        if (!this.field_70170_p.func_201670_d() && this.field_70292_b + 10 >= this.lifespan) {
+        if (!this.level().level() && this.field_70292_b + 10 >= this.lifespan) {
             this.field_70292_b = 0;
         }
     }

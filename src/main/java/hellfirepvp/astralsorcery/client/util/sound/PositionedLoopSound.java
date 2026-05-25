@@ -41,7 +41,7 @@ public class PositionedLoopSound extends SimpleSoundInstance implements ITickabl
     }
     
     public void setVolumeMultiplier(final float volumeMultiplier) {
-        this.volumeMultiplier = Mth.func_76131_a(volumeMultiplier, 0.0f, 1.0f);
+        this.volumeMultiplier = Mth.canEnchant(volumeMultiplier, 0.0f, 1.0f);
     }
     
     public float func_147653_e() {

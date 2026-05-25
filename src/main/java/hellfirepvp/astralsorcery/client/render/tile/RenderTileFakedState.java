@@ -43,6 +43,6 @@ public class RenderTileFakedState extends CustomTileEntityRenderer<TileFakedStat
         });
         final BufferDecoratorBuilder decorator = BufferDecoratorBuilder.withColor((r, g, b, a) -> color);
         final VertexConsumer buf = renderTypeBuffer.getBuffer((RenderType)decorated);
-        RenderingUtils.renderSimpleBlockModel(fakedState, renderStack, decorator.decorate(buf), tile.func_174877_v(), tile, true);
+        RenderingUtils.renderSimpleBlockModel(fakedState, renderStack, decorator.decorate(buf), tile.getBlockState(), tile, true);
     }
 }

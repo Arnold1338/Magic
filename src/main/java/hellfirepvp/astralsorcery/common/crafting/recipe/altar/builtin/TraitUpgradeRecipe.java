@@ -43,6 +43,6 @@ public class TraitUpgradeRecipe extends SimpleAltarRecipe
     public void onRecipeCompletion(final TileAltar altar, final ActiveSimpleAltarRecipe activeRecipe) {
         super.onRecipeCompletion(altar, activeRecipe);
         ResearchManager.informCraftedAltar(altar, activeRecipe, new ItemStack((ItemLike)BlocksAS.ALTAR_RADIANCE));
-        altar.func_145831_w().func_180501_a(altar.func_174877_v(), BlocksAS.ALTAR_RADIANCE.defaultBlockState(), 3);
+        altar.getLevel().func_180501_a(altar.getBlockState(), BlocksAS.ALTAR_RADIANCE.defaultBlockState(), 3);
     }
 }

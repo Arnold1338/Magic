@@ -14,19 +14,19 @@ import net.minecraft.world.level.Level;
 public class TreeDiscoverer
 {
     @Nonnull
-    public static BlockArray findTreeAt(final World world, final BlockPos at, final boolean checkCorners) {
+    public static BlockArray findTreeAt(final Level world, final BlockPos at, final boolean checkCorners) {
         return findTreeAt(world, at, checkCorners, -1);
     }
     
     @Nonnull
-    public static BlockArray findTreeAt(final World world, final BlockPos at, final boolean checkCorners, final int xzLimit) {
+    public static BlockArray findTreeAt(final Level world, final BlockPos at, final boolean checkCorners, final int xzLimit) {
         final int xzLimitSq = (xzLimit == -1) ? -1 : (xzLimit * xzLimit);
         final BlockArray out = new BlockArray();
         findTree(world, at, xzLimitSq, checkCorners, out);
         return out;
     }
     
-    private static void findTree(final World world, final BlockPos at, final int xzLimitSq, final boolean checkCorners, final BlockArray out) {
+    private static void findTree(final Level world, final BlockPos at, final int xzLimitSq, final boolean checkCorners, final BlockArray out) {
         final TreeMatch foundTreeType = new TreeMatch();
         final Stack<BlockPos> discoverPositions = new Stack<BlockPos>();
         discoverPositions.push(at);

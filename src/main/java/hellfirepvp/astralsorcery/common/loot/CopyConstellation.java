@@ -27,7 +27,7 @@ public class CopyConstellation extends LootFunction
     }
     
     protected ItemStack func_215859_a(final ItemStack stack, final LootContext context) {
-        if (context.func_216033_a(LootParameters.field_216288_h)) {
+        if (context.hasParam(LootParameters.field_216288_h)) {
             final BlockEntity tile = (BlockEntity)context.getParamOrNull(LootParameters.field_216288_h);
             if (tile instanceof ConstellationTile && stack.getItem() instanceof ConstellationItem) {
                 final IWeakConstellation main = ((ConstellationTile)tile).getAttunedConstellation();

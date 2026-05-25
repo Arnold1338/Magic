@@ -30,7 +30,7 @@ public class BlockVanishing extends BaseEntityBlock
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_180655_c(final BlockState state, final World world, final BlockPos pos, final Random random) {
+    public void func_180655_c(final BlockState state, final Level world, final BlockPos pos, final Random random) {
     }
     
     public boolean canEntityDestroy(final BlockState state, final IBlockReader world, final BlockPos pos, final Entity entity) {

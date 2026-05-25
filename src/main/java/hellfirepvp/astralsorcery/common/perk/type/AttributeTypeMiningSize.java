@@ -46,7 +46,7 @@ public class AttributeTypeMiningSize extends PerkAttributeType
     private void onBreak(final BlockEvent.BreakEvent event) {
         final IWorld world = event.getWorld();
         final Player player = event.getPlayer();
-        if (!(world instanceof World) || world.func_201670_d()) {
+        if (!(world instanceof Level) || world.level()) {
             return;
         }
         if (player instanceof ServerPlayer) {
@@ -65,10 +65,10 @@ public class AttributeTypeMiningSize extends PerkAttributeType
                         final BlockPredicate miningTest = (worldIn, posIn, stateIn) -> stateIn.getHarvestLevel() <= levelBroken && stateIn.func_185887_b((IBlockReader)worldIn, posIn) <= hardnessBroken;
                         final Direction dir = brtr.func_216354_b();
                         if (dir.func_176740_k() == Direction.Axis.Y) {
-                            this.breakBlocksPlaneHorizontal((ServerPlayer)player, dir, (World)world, event.getPos(), miningTest, Mth.func_76141_d(size2));
+                            this.breakBlocksPlaneHorizontal((ServerPlayer)player, dir, (Level)world, event.getPos(), miningTest, Mth.func_76141_d(size2));
                         }
                         else {
-                            this.breakBlocksPlaneVertical((ServerPlayer)player, dir, (World)world, event.getPos(), miningTest, Mth.func_76141_d(size2));
+                            this.breakBlocksPlaneVertical((ServerPlayer)player, dir, (Level)world, event.getPos(), miningTest, Mth.func_76141_d(size2));
                         }
                     }
                 }
@@ -76,7 +76,7 @@ public class AttributeTypeMiningSize extends PerkAttributeType
         }
     }
     
-    private void breakBlocksPlaneVertical(final ServerPlayer player, final Direction sideBroken, final World world, final BlockPos at, final BlockPredicate miningTest, final int size) {
+    private void breakBlocksPlaneVertical(final ServerPlayer player, final Direction sideBroken, final Level world, final BlockPos at, final BlockPredicate miningTest, final int size) {
         if (size <= 0) {
             return;
         }
@@ -89,9 +89,9 @@ public class AttributeTypeMiningSize extends PerkAttributeType
                                 if (xx != 0 || yy != 0 || zz != 0) {
                                     final BlockPos other = at.offset(xx, yy, zz);
                                     final BlockState otherState = world.getBlockState(other);
-                                    if (otherState.func_185887_b((IBlockReader)world, other) != -1.0f && (player.func_184812_l_() || miningTest.test(world, other, otherState)) && AlignmentChargeHandler.INSTANCE.drainCharge((Player)player, LogicalSide.SERVER, (float)(int)AttributeTypeMiningSize.CONFIG.chargeCostPerBreak.get(), true)) {
+                                    if (otherState.func_185887_b((IBlockReader)world, other) != -1.0f && (player.getVehicle() || miningTest.test(world, other, otherState)) && AlignmentChargeHandler.INSTANCE.drainCharge((Player)player, LogicalSide.SERVER, (float)(int)AttributeTypeMiningSize.CONFIG.chargeCostPerBreak.get(), true)) {
                                         final BlockState state = world.getBlockState(other);
-                                        if (!BlockUtils.isFluidBlock(state) && (player.func_184812_l_() || otherState.canHarvestBlock((IBlockReader)world, other, (Player)player)) && player.field_71134_c.func_180237_b(other) && AttributeTypeMiningSize.rand.nextInt(3) == 0) {
+                                        if (!BlockUtils.isFluidBlock(state) && (player.getVehicle() || otherState.canHarvestBlock((IBlockReader)world, other, (Player)player)) && player.field_71134_c.func_180237_b(other) && AttributeTypeMiningSize.rand.nextInt(3) == 0) {
                                             AlignmentChargeHandler.INSTANCE.drainCharge((Player)player, LogicalSide.SERVER, (float)(int)AttributeTypeMiningSize.CONFIG.chargeCostPerBreak.get(), false);
                                         }
                                     }
@@ -104,7 +104,7 @@ public class AttributeTypeMiningSize extends PerkAttributeType
         }
     }
     
-    private void breakBlocksPlaneHorizontal(final ServerPlayer player, final Direction sideBroken, final World world, final BlockPos at, final BlockPredicate miningTest, final int size) {
+    private void breakBlocksPlaneHorizontal(final ServerPlayer player, final Direction sideBroken, final Level world, final BlockPos at, final BlockPredicate miningTest, final int size) {
         if (size <= 0) {
             return;
         }
@@ -115,9 +115,9 @@ public class AttributeTypeMiningSize extends PerkAttributeType
                         if (xx != 0 || zz != 0) {
                             final BlockPos other = at.offset(xx, 0, zz);
                             final BlockState otherState = world.getBlockState(other);
-                            if (otherState.func_185887_b((IBlockReader)world, other) != -1.0f && (player.func_184812_l_() || miningTest.test(world, other, otherState)) && AlignmentChargeHandler.INSTANCE.drainCharge((Player)player, LogicalSide.SERVER, (float)(int)AttributeTypeMiningSize.CONFIG.chargeCostPerBreak.get(), true)) {
+                            if (otherState.func_185887_b((IBlockReader)world, other) != -1.0f && (player.getVehicle() || miningTest.test(world, other, otherState)) && AlignmentChargeHandler.INSTANCE.drainCharge((Player)player, LogicalSide.SERVER, (float)(int)AttributeTypeMiningSize.CONFIG.chargeCostPerBreak.get(), true)) {
                                 final BlockState state = world.getBlockState(other);
-                                if (!BlockUtils.isFluidBlock(state) && (player.func_184812_l_() || otherState.canHarvestBlock((IBlockReader)world, other, (Player)player)) && player.field_71134_c.func_180237_b(other) && AttributeTypeMiningSize.rand.nextInt(3) == 0) {
+                                if (!BlockUtils.isFluidBlock(state) && (player.getVehicle() || otherState.canHarvestBlock((IBlockReader)world, other, (Player)player)) && player.field_71134_c.func_180237_b(other) && AttributeTypeMiningSize.rand.nextInt(3) == 0) {
                                     AlignmentChargeHandler.INSTANCE.drainCharge((Player)player, LogicalSide.SERVER, (float)(int)AttributeTypeMiningSize.CONFIG.chargeCostPerBreak.get(), false);
                                 }
                             }
@@ -129,7 +129,7 @@ public class AttributeTypeMiningSize extends PerkAttributeType
     }
     
     static {
-        CONFIG = new Config("type." + PerkAttributeTypesAS.KEY_ATTR_TYPE_MINING_SIZE.func_110623_a());
+        CONFIG = new Config("type." + PerkAttributeTypesAS.KEY_ATTR_TYPE_MINING_SIZE.addTransientModifier());
     }
     
     private static class Config extends ConfigEntry

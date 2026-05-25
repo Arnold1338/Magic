@@ -52,13 +52,13 @@ public abstract class TileEntityTick extends TileEntitySynchronized implements I
     }
     
     public boolean doesSeeSky() {
-        if (this.func_145831_w().func_201670_d()) {
+        if (this.getLevel().level()) {
             return this.doesSeeSky;
         }
         if (this.lastUpdateTick == -1 || this.ticksExisted - this.lastUpdateTick >= 20) {
             this.lastUpdateTick = this.ticksExisted;
             final boolean prevSky = this.doesSeeSky;
-            final boolean newSky = MiscUtils.canSeeSky(this.func_145831_w(), this.func_174877_v().above(), true, this.seesSkyInNoSkyWorlds(), this.doesSeeSky);
+            final boolean newSky = MiscUtils.canSeeSky(this.getLevel(), this.getBlockState().above(), true, this.seesSkyInNoSkyWorlds(), this.doesSeeSky);
             if (prevSky != newSky) {
                 this.notifySkyStateUpdate(prevSky, newSky);
                 this.doesSeeSky = newSky;
@@ -69,7 +69,7 @@ public abstract class TileEntityTick extends TileEntitySynchronized implements I
     }
     
     public boolean hasMultiblock() {
-        if (this.func_145831_w().func_201670_d()) {
+        if (this.getLevel().level()) {
             return this.hasMultiblock;
         }
         if (this.getRequiredStructureType() == null) {
@@ -79,12 +79,12 @@ public abstract class TileEntityTick extends TileEntitySynchronized implements I
         }
         this.refreshMatcher();
         if (this.structureMatch == null) {
-            this.structureMatch = this.getRequiredStructureType().observe(this.func_145831_w(), this.func_174877_v());
+            this.structureMatch = this.getRequiredStructureType().observe(this.getLevel(), this.getBlockState());
         }
         final boolean prevFound = this.hasMultiblock;
-        final boolean found = this.structureMatch.isValid(this.func_145831_w());
+        final boolean found = this.structureMatch.isValid(this.getLevel());
         if (prevFound != found) {
-            LogCategory.STRUCTURE_MATCH.info(() -> "Structure match updated: " + this.getClass().getName() + " at " + this.func_174877_v() + " (" + this.hasMultiblock + " -> " + found + ")");
+            LogCategory.STRUCTURE_MATCH.info(() -> "Structure match updated: " + this.getClass().getName() + " at " + this.getBlockState() + " (" + this.hasMultiblock + " -> " + found + ")");
             this.notifyMultiblockStateUpdate(prevFound, found);
             this.hasMultiblock = found;
             this.markForUpdate();
@@ -97,12 +97,12 @@ public abstract class TileEntityTick extends TileEntitySynchronized implements I
         if (this.structureMatch != null) {
             final ResourceLocation key = ((ChangeObserverStructure)this.structureMatch.getObserver()).getProviderRegistryName();
             if (struct == null || !key.equals((Object)struct.getRegistryName())) {
-                ObserverHelper.getHelper().removeObserver(this.func_145831_w(), this.func_174877_v());
+                ObserverHelper.getHelper().removeObserver(this.getLevel(), this.getBlockState());
                 this.structureMatch = null;
             }
         }
-        if (struct == null && ObserverHelper.getHelper().getSubscriber(this.func_145831_w(), this.func_174877_v()) != null) {
-            ObserverHelper.getHelper().removeObserver(this.func_145831_w(), this.func_174877_v());
+        if (struct == null && ObserverHelper.getHelper().getSubscriber(this.getLevel(), this.getBlockState()) != null) {
+            ObserverHelper.getHelper().removeObserver(this.getLevel(), this.getBlockState());
         }
     }
     

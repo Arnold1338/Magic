@@ -44,7 +44,7 @@ public class MantleEffectMineralis extends MantleEffect
     private void onBreak(final BlockEvent.BreakEvent event) {
         final Player player = event.getPlayer();
         if (ItemMantle.getEffect((LivingEntity)player, ConstellationsAS.mineralis) != null) {
-            final LogicalSide side = player.func_130014_f_().func_201670_d() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+            final LogicalSide side = player.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
             if (side.isServer()) {
                 final float charge = Math.min(AlignmentChargeHandler.INSTANCE.getCurrentCharge(player, side), (float)(int)MantleEffectMineralis.CONFIG.chargeCostPerBreak.get());
                 AlignmentChargeHandler.INSTANCE.drainCharge(player, side, charge, false);
@@ -65,18 +65,18 @@ public class MantleEffectMineralis extends MantleEffect
     @OnlyIn(Dist.CLIENT)
     private void playBlockHighlight(final Player player) {
         BlockState state = null;
-        if (!player.func_184586_b(InteractionHand.MAIN_HAND).isEmpty()) {
-            state = ItemUtils.createBlockState(player.func_184586_b(InteractionHand.MAIN_HAND));
+        if (!player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
+            state = ItemUtils.createBlockState(player.getItemInHand(InteractionHand.MAIN_HAND));
         }
-        if (!player.func_184586_b(InteractionHand.OFF_HAND).isEmpty()) {
-            state = ItemUtils.createBlockState(player.func_184586_b(InteractionHand.OFF_HAND));
+        if (!player.getItemInHand(InteractionHand.OFF_HAND).isEmpty()) {
+            state = ItemUtils.createBlockState(player.getItemInHand(InteractionHand.OFF_HAND));
         }
         if (state == null || state.getBlock() instanceof AirBlock) {
             return;
         }
         final BlockState fState = state;
         final BlockPredicate search = (world, pos, foundState) -> foundState == fState;
-        final List<BlockPos> positions = BlockDiscoverer.searchForBlocksAround(player.func_130014_f_(), player.func_233580_cy_(), (int)MantleEffectMineralis.CONFIG.highlightRange.get(), search);
+        final List<BlockPos> positions = BlockDiscoverer.searchForBlocksAround(player.level(), player.func_233580_cy_(), (int)MantleEffectMineralis.CONFIG.highlightRange.get(), search);
         if (positions.isEmpty()) {
             return;
         }
@@ -85,7 +85,7 @@ public class MantleEffectMineralis extends MantleEffect
             return;
         }
         final BlockPos at = positions.get(index);
-        final BlockState displayState = player.func_130014_f_().getBlockState(at);
+        final BlockState displayState = player.level().getBlockState(at);
         MiscPlayEffect.playSingleBlockTumbleDepthEffect(new Vector3((Vector3i)at).add(0.5, 0.5, 0.5), displayState);
     }
     

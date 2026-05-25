@@ -51,7 +51,7 @@ public class FXFacingSprite extends EntityVisualFX implements EntityDynamicFX
         final float scale = this.getScale(pTicks);
         final RenderTypeDecorator decorated = RenderTypeDecorator.wrapSetup(ctx.getRenderType(), ssr::bindTexture, BlockAtlasTexture.getInstance()::bindTexture);
         final VertexConsumer buf = drawBuffer.getBuffer((RenderType)decorated);
-        RenderingDrawUtils.renderFacingQuadVB(buf, renderStack, vec.getX(), vec.getY(), vec.getZ(), scale, 0.0f, (float)uvOffset.func_76341_a(), (float)uvOffset.func_76340_b(), ssr.getULength(), ssr.getVLength(), col.getRed(), col.getGreen(), col.getBlue(), alpha);
+        RenderingDrawUtils.renderFacingQuadVB(buf, renderStack, vec.getX(), vec.getY(), vec.getZ(), scale, 0.0f, (float)uvOffset.getA(), (float)uvOffset.getB(), ssr.getULength(), ssr.getVLength(), col.getRed(), col.getGreen(), col.getBlue(), alpha);
         drawBuffer.draw();
     }
 }

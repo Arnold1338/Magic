@@ -22,12 +22,12 @@ public class TileTreeBeaconComponent extends TileFakedState
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d() && this.getTicksExisted() % 200 == 0) {
+        if (!this.getLevel().level() && this.getTicksExisted() % 200 == 0) {
             if (this.getTreeBeaconPos().equals((Object)BlockPos.field_177992_a)) {
                 this.removeSelf();
             }
             else {
-                final TileTreeBeacon ttb = MiscUtils.getTileAt((IBlockReader)this.func_145831_w(), this.getTreeBeaconPos(), TileTreeBeacon.class, false);
+                final TileTreeBeacon ttb = MiscUtils.getTileAt((IBlockReader)this.getLevel(), this.getTreeBeaconPos(), TileTreeBeacon.class, false);
                 if (ttb == null) {
                     this.removeSelf();
                 }

@@ -65,8 +65,8 @@ public class KeyLightningArc extends KeyPerk
             return;
         }
         final DamageSource source = event.getSource();
-        if (source.func_76346_g() != null && source.func_76346_g() instanceof Player) {
-            final Player player = (Player)source.func_76346_g();
+        if (source.getEnchantments( != null && source.getEnchantments( instanceof Player) {
+            final Player player = (Player)source.getEnchantments(;
             final LogicalSide side = this.getSide((Entity)player);
             final PlayerProgress prog = ResearchHelper.getProgress(player, side);
             if (side.isServer() && prog.getPerkData().hasPerkEffect(this) && prog.doPerkAbilities()) {
@@ -74,7 +74,7 @@ public class KeyLightningArc extends KeyPerk
                 if (KeyLightningArc.rand.nextFloat() < chance && AlignmentChargeHandler.INSTANCE.drainCharge(player, side, (float)(int)KeyLightningArc.CONFIG.chargeCost.get(), false)) {
                     float dmg = event.getAmount();
                     dmg *= (float)(double)KeyLightningArc.CONFIG.arcPercent.get();
-                    new RepetitiveArcEffect(player.field_70170_p, player, (int)KeyLightningArc.CONFIG.arcTicks.get(), event.getEntityLiving().func_145782_y(), dmg, (double)KeyLightningArc.CONFIG.arcDistance.get()).fire();
+                    new RepetitiveArcEffect(player.level(), player, (int)KeyLightningArc.CONFIG.arcTicks.get(), event.getEntityLiving().func_145782_y(), dmg, (double)KeyLightningArc.CONFIG.arcDistance.get()).fire();
                 }
             }
         }
@@ -108,14 +108,14 @@ public class KeyLightningArc extends KeyPerk
     
     static class RepetitiveArcEffect
     {
-        private final World world;
+        private final Level world;
         private final Player player;
         private final int entityStartId;
         private final float damage;
         private final double distance;
         private int count;
         
-        public RepetitiveArcEffect(final World world, final Player player, final int count, final int entityStartId, final float damage, final double distance) {
+        public RepetitiveArcEffect(final Level world, final Player player, final int count, final int entityStartId, final float damage, final double distance) {
             this.world = world;
             this.player = player;
             this.count = count;
@@ -130,7 +130,7 @@ public class KeyLightningArc extends KeyPerk
             }
             int chainTimes = Math.round(PerkAttributeHelper.getOrCreateMap(this.player, LogicalSide.SERVER).modifyValue(this.player, ResearchHelper.getProgress(this.player, LogicalSide.SERVER), PerkAttributeTypesAS.ATTR_TYPE_ARC_CHAINS, 3.0f));
             final List<LivingEntity> visitedEntities = Lists.newArrayList();
-            final Entity start = this.world.func_73045_a(this.entityStartId);
+            final Entity start = this.world.getEntityById(this.entityStartId);
             if (start instanceof LivingEntity && start.isAlive()) {
                 final AABB box = new AABB(-this.distance, -this.distance, -this.distance, this.distance, this.distance, this.distance);
                 LivingEntity last = null;
@@ -155,7 +155,7 @@ public class KeyLightningArc extends KeyPerk
                             return;
                         }), target);
                     }
-                    final List<LivingEntity> entities = entity.func_130014_f_().func_175647_a((Class)LivingEntity.class, box.func_191194_a(entity.func_213303_ch()), (Predicate)EntityUtils.selectEntities(LivingEntity.class));
+                    final List<LivingEntity> entities = entity.level().func_175647_a((Class)LivingEntity.class, box.func_191194_a(entity.func_213303_ch()), (Predicate)EntityUtils.selectEntities(LivingEntity.class));
                     entities.remove(entity);
                     if (last != null) {
                         entities.remove(last);

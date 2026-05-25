@@ -56,7 +56,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
     protected void func_231160_c_() {
         super.func_231160_c_();
         this.statistics.clear();
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().player;
         final PerkAttributeInterpreter interpreter = PerkAttributeInterpreter.defaultInterpreter(player);
         RegistriesAS.REGISTRY_PERK_ATTRIBUTE_TYPES.getValues().stream().filter(t -> t instanceof VanillaPerkAttributeType).forEach(t -> ((VanillaPerkAttributeType)t).refreshAttribute(player));
         for (final PerkAttributeType type : RegistriesAS.REGISTRY_PERK_ATTRIBUTE_TYPES.getValues()) {
@@ -89,21 +89,21 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
     
     private void drawHeader(final PoseStack renderStack) {
         final ITextProperties title = (ITextProperties)new Component("perk.reader.astralsorcery.gui");
-        final List<FormattedCharSequence> lines = this.field_230712_o_.func_238425_b_(title, Mth.func_76141_d(135.7143f));
+        final List<FormattedCharSequence> lines = this.fogColor.func_238425_b_(title, Mth.func_76141_d(135.7143f));
         final int step = 14;
         final float offsetTop = this.guiTop + 15 - lines.size() * step / 2.0f;
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(0.0, (double)offsetTop, 0.0);
         for (int i = 0; i < lines.size(); ++i) {
             final FormattedCharSequence line = lines.get(i);
-            final float offsetLeft = this.field_230708_k_ / 2.0f - this.field_230712_o_.func_243245_a(line) * 1.4f / 2.0f;
-            renderStack.func_227860_a_();
+            final float offsetLeft = this.field_230708_k_ / 2.0f - this.fogColor.func_243245_a(line) * 1.4f / 2.0f;
+            renderStack.popPose();
             renderStack.func_227861_a_((double)offsetLeft, (double)(i * step), 0.0);
-            renderStack.func_227862_a_(1.4f, 1.4f, 1.0f);
-            RenderingDrawUtils.renderStringAt(line, renderStack, this.field_230712_o_, -298634445, false);
-            renderStack.func_227865_b_();
+            renderStack.translate(1.4f, 1.4f, 1.0f);
+            RenderingDrawUtils.renderStringAt(line, renderStack, this.fogColor, -298634445, false);
+            renderStack.scale();
         }
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     private void drawPageText(final PoseStack renderStack, final int mouseX, final int mouseY) {
@@ -116,31 +116,31 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
         int line = 0;
         for (final PerkStatistic stat : this.statistics) {
             final ITextProperties statName = (ITextProperties)new Component(stat.getUnlocPerkTypeName());
-            final List<FormattedCharSequence> statistics = this.field_230712_o_.func_238425_b_(statName, Mth.func_76141_d(126.666664f));
+            final List<FormattedCharSequence> statistics = this.fogColor.func_238425_b_(statName, Mth.func_76141_d(126.666664f));
             for (int i = 0; i < statistics.size(); ++i) {
                 final FormattedCharSequence statistic = statistics.get(i);
                 int drawX = offsetX;
                 if (i > 0) {
                     drawX += 10;
                 }
-                renderStack.func_227860_a_();
+                renderStack.popPose();
                 renderStack.func_227861_a_((double)drawX, (double)(offsetY + (line + i) * 10), (double)this.getGuiZLevel());
-                RenderingDrawUtils.renderStringAt(statistic, renderStack, this.field_230712_o_, -298634445, false);
-                renderStack.func_227865_b_();
+                RenderingDrawUtils.renderStringAt(statistic, renderStack, this.fogColor, -298634445, false);
+                renderStack.scale();
             }
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_((double)(offsetX + this.nameStrWidth), (double)(offsetY + line * 10), (double)this.getGuiZLevel());
-            RenderingDrawUtils.renderStringAt((ITextProperties)new Component(stat.getPerkValue()), renderStack, this.field_230712_o_, -298634445, false);
-            renderStack.func_227865_b_();
-            final int strLength = this.field_230712_o_.func_78256_a(stat.getPerkValue());
+            RenderingDrawUtils.renderStringAt((ITextProperties)new Component(stat.getPerkValue()), renderStack, this.fogColor, -298634445, false);
+            renderStack.scale();
+            final int strLength = this.fogColor.func_78256_a(stat.getPerkValue());
             final Rectangle rctValue = new Rectangle(offsetX + this.nameStrWidth, offsetY + line * 10, strLength, 8);
             valueStrMap.put(rctValue, stat);
             line += statistics.size();
             if (!stat.getSuffix().isEmpty()) {
-                renderStack.func_227860_a_();
+                renderStack.popPose();
                 renderStack.func_227861_a_((double)(offsetX + 25), (double)(offsetY + line * 10), (double)this.getGuiZLevel());
-                RenderingDrawUtils.renderStringAt((ITextProperties)new Component(stat.getSuffix()), renderStack, this.field_230712_o_, -298634445, false);
-                renderStack.func_227865_b_();
+                RenderingDrawUtils.renderStringAt((ITextProperties)new Component(stat.getSuffix()), renderStack, this.fogColor, -298634445, false);
+                renderStack.scale();
                 ++line;
             }
         }
@@ -158,7 +158,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
         if (reader == null) {
             return;
         }
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().player;
         final PerkAttributeMap attrMap = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.CLIENT);
         final List<ITextProperties> information = Lists.newArrayList();
         information.add((ITextProperties)new Component("perk.reader.astralsorcery.description.head", new Object[] { PerkAttributeReader.formatDecimal(reader.getDefaultValue(attrMap, player, LogicalSide.CLIENT)) }));
@@ -174,7 +174,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
         if (!stat.getPostProcessInfo().isEmpty()) {
             information.add((ITextProperties)new Component(stat.getPostProcessInfo()));
         }
-        RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)x, (float)y, (float)this.getGuiZLevel(), information, this.field_230712_o_, false);
+        RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)x, (float)y, (float)this.getGuiZLevel(), information, this.fogColor, false);
     }
     
     private void buildDisplayWidth() {
@@ -183,9 +183,9 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
         this.suffixStrWidth = -1;
         for (final PerkStatistic stat : this.statistics) {
             final ITextProperties typeName = (ITextProperties)new Component(stat.getUnlocPerkTypeName());
-            final int nameWidth = Math.min(this.field_230712_o_.func_238414_a_(typeName), 126);
-            final int valueWidth = this.field_230712_o_.func_78256_a(stat.getPerkValue());
-            final int suffixWidth = this.field_230712_o_.func_78256_a(stat.getSuffix());
+            final int nameWidth = Math.min(this.fogColor.func_238414_a_(typeName), 126);
+            final int valueWidth = this.fogColor.func_78256_a(stat.getPerkValue());
+            final int suffixWidth = this.fogColor.func_78256_a(stat.getSuffix());
             if (nameWidth > this.nameStrWidth) {
                 this.nameStrWidth = nameWidth;
             }

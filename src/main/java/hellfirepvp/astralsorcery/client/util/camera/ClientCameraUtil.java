@@ -30,7 +30,7 @@ public class ClientCameraUtil
         render.field_70142_S = prevX;
         render.field_70137_T = prevY;
         render.field_70136_U = prevZ;
-        render.field_70177_z = iYaw;
+        render.yRot = iYaw;
         render.field_70126_B = iYaw;
         render.field_70759_as = iYaw;
         render.field_70758_at = iYaw;
@@ -38,9 +38,9 @@ public class ClientCameraUtil
         render.field_71107_bF = iYaw;
         render.field_70761_aq = iYaw;
         render.field_70760_ar = iYaw;
-        render.field_70125_A = iPitch;
+        render.xRot = iPitch;
         render.field_70127_C = iPitch;
-        render = (Player)Minecraft.getInstance().field_71439_g;
+        render = (Player)Minecraft.getInstance().player;
         render.func_226288_n_(x, y, z);
         render.field_70169_q = prevX;
         render.field_70167_r = prevY;
@@ -48,7 +48,7 @@ public class ClientCameraUtil
         render.field_70142_S = prevX;
         render.field_70137_T = prevY;
         render.field_70136_U = prevZ;
-        render.field_70177_z = iYaw;
+        render.yRot = iYaw;
         render.field_70126_B = iYaw;
         render.field_70759_as = iYaw;
         render.field_70758_at = iYaw;
@@ -56,16 +56,16 @@ public class ClientCameraUtil
         render.field_71107_bF = iYaw;
         render.field_70761_aq = iYaw;
         render.field_70760_ar = iYaw;
-        render.field_70125_A = iPitch;
+        render.xRot = iPitch;
         render.field_70127_C = iPitch;
     }
     
     public static void resetCamera() {
         final Minecraft mc = Minecraft.getInstance();
-        if (mc.field_71439_g != null) {
-            final Player player = (Player)mc.field_71439_g;
+        if (mc.player != null) {
+            final Player player = (Player)mc.player;
             mc.func_175607_a((Entity)player);
-            if (mc.field_71462_r != null) {
+            if (mc.gui != null) {
                 mc.func_147108_a((Screen)null);
             }
         }

@@ -52,14 +52,14 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
     private static final float COST_PER_FLARE = 300.0f;
     
     public ItemIlluminationWand() {
-        super(new Item.Properties().func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         super.func_77624_a(stack, worldIn, (List)tooltip, flagIn);
         final DyeColor color = getConfiguredColor(stack);
-        tooltip.add((Component)ColorUtils.getTranslation(color).func_240699_a_(ColorUtils.textFormattingForDye(color)));
+        tooltip.add((Component)ColorUtils.getTranslation(color).toString()ColorUtils.textFormattingForDye(color)));
     }
     
     public float getAlignmentChargeCost(final Player player, final ItemStack stack) {
@@ -70,12 +70,12 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
     }
     
     public InteractionResult func_195939_a(final ItemUseContext context) {
-        final World world = context.func_195991_k();
+        final Level world = context.func_195991_k();
         final Direction dir = context.func_196000_l();
         final BlockPos pos = context.func_195995_a();
         final Player player = context.func_195999_j();
         final ItemStack stack = context.func_195996_i();
-        if (world.func_201670_d() || player == null || stack.isEmpty() || !(stack.getItem() instanceof ItemIlluminationWand)) {
+        if (world.level() || player == null || stack.isEmpty() || !(stack.getItem() instanceof ItemIlluminationWand)) {
             return InteractionResult.SUCCESS;
         }
         final BlockState state = world.getBlockState(pos);
@@ -83,13 +83,13 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
             if (state.getBlock() instanceof BlockTranslucentBlock) {
                 final TileTranslucentBlock tb = MiscUtils.getTileAt((IBlockReader)world, pos, TileTranslucentBlock.class, true);
                 if (tb != null && (tb.getPlayerUUID() == null || tb.getPlayerUUID().equals(player.getUUID())) && tb.revert()) {
-                    SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_UNHIGHLIGHT, SoundSource.BLOCKS, world, (Vector3i)pos, 0.6f, 0.9f + ItemIlluminationWand.field_77697_d.nextFloat() * 0.2f);
+                    SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_UNHIGHLIGHT, SoundSource.BLOCKS, world, (Vector3i)pos, 0.6f, 0.9f + ItemIlluminationWand.count.nextFloat() * 0.2f);
                 }
             }
             else {
                 final BlockEntity tile = MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true);
                 if (tile == null && !state.hasTileEntity() && player.func_175151_a(pos, dir, stack) && VoxelShapes.func_197868_b().equals(world.getBlockState(pos).func_196954_c((IBlockReader)world, pos)) && AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, 650.0f, false) && world.func_180501_a(pos, BlocksAS.TRANSLUCENT_BLOCK.defaultBlockState(), 11)) {
-                    SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_HIGHLIGHT, SoundSource.BLOCKS, world, (Vector3i)pos, 0.6f, 0.9f + ItemIlluminationWand.field_77697_d.nextFloat() * 0.2f);
+                    SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_HIGHLIGHT, SoundSource.BLOCKS, world, (Vector3i)pos, 0.6f, 0.9f + ItemIlluminationWand.count.nextFloat() * 0.2f);
                     final TileTranslucentBlock tb2 = MiscUtils.getTileAt((IBlockReader)world, pos, TileTranslucentBlock.class, true);
                     if (tb2 != null) {
                         tb2.setFakedState(state);
@@ -120,7 +120,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
         }
         if (player.func_175151_a(placePos, dir, stack)) {
             if (world.getBlockState(placePos).equals(placeState)) {
-                if (world.func_180501_a(placePos, Blocks.field_150350_a.defaultBlockState(), 11)) {
+                if (world.func_180501_a(placePos, Blocks.AIR.defaultBlockState(), 11)) {
                     SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_LIGHT, SoundSource.BLOCKS, world, (Vector3i)pos, 0.6f, 1.0f);
                 }
             }
@@ -154,6 +154,6 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
     
     @Nonnull
     public static BlockState getPlacingState(final ItemStack wand) {
-        return (BlockState)BlocksAS.FLARE_LIGHT.defaultBlockState().func_206870_a((Property)BlockFlareLight.COLOR, (Comparable)getConfiguredColor(wand));
+        return (BlockState)BlocksAS.FLARE_LIGHT.defaultBlockState().setValue((Property)BlockFlareLight.COLOR, (Comparable)getConfiguredColor(wand));
     }
 }

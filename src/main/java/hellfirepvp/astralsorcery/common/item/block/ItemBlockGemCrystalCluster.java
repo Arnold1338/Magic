@@ -35,7 +35,7 @@ public class ItemBlockGemCrystalCluster extends ItemBlockCustom
     protected BlockState func_195945_b(final BlockItemUseContext context) {
         final BlockState toPlace = super.func_195945_b(context);
         if (toPlace != null) {
-            return (BlockState)toPlace.func_206870_a((Property)BlockGemCrystalCluster.STAGE, (Comparable)this.getGrowthStage(context.func_195996_i()));
+            return (BlockState)toPlace.setValue((Property)BlockGemCrystalCluster.STAGE, (Comparable)this.getGrowthStage(context.func_195996_i()));
         }
         return null;
     }

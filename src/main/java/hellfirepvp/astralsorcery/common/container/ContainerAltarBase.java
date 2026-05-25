@@ -58,13 +58,13 @@ public abstract class ContainerAltarBase extends ContainerTileEntity<TileAltar>
             else if (!this.func_75135_a(slotStack, 0, 36, false)) {
                 return ItemStack.EMPTY;
             }
-            if (slotStack.func_190916_E() == 0) {
+            if (slotStack.getCount() == 0) {
                 slot.func_75215_d(ItemStack.EMPTY);
             }
             else {
                 slot.func_75218_e();
             }
-            if (slotStack.func_190916_E() == itemstack.func_190916_E()) {
+            if (slotStack.getCount() == itemstack.getCount()) {
                 return ItemStack.EMPTY;
             }
             slot.func_190901_a(playerIn, slotStack);
@@ -73,7 +73,7 @@ public abstract class ContainerAltarBase extends ContainerTileEntity<TileAltar>
     }
     
     public boolean func_75145_c(final Player player) {
-        final BlockPos pos = this.getTileEntity().func_174877_v();
-        return MiscUtils.getTileAt((IBlockReader)this.getTileEntity().func_145831_w(), pos, BlockEntity.class, false) == ((ContainerTileEntity<BlockEntity>)this).getTileEntity() && player.func_70092_e(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5) <= 64.0;
+        final BlockPos pos = this.getTileEntity().getBlockState();
+        return MiscUtils.getTileAt((IBlockReader)this.getTileEntity().getLevel(), pos, BlockEntity.class, false) == ((ContainerTileEntity<BlockEntity>)this).getTileEntity() && player.func_70092_e(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5) <= 64.0;
     }
 }

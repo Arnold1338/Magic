@@ -56,8 +56,8 @@ public class LootModifierPerkVoidTrash extends LootModifier
         return generatedLoot.stream().filter(stack -> !stack.isEmpty()).map(result -> {
             if (KeyVoidTrash.CONFIG.isTrash(result)) {
                 result = ItemStack.EMPTY;
-                if (context.func_216032_b().nextFloat() < chance) {
-                    final Item drop = OreItemRarityRegistry.VOID_TRASH_REWARD.getRandomItem(context.func_216032_b());
+                if (context.getRandom().nextFloat() < chance) {
+                    final Item drop = OreItemRarityRegistry.VOID_TRASH_REWARD.getRandomItem(context.getRandom());
                     if (drop != null) {
                         result = new ItemStack((ItemLike)drop);
                     }

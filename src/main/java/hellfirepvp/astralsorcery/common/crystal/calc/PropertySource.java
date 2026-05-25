@@ -20,7 +20,7 @@ public abstract class PropertySource<T, I extends SourceInstance>
     public abstract I createInstance(final T p0);
     
     public Component getName() {
-        return (Component)new Component(String.format("crystal.source.%s.%s.name", this.getRegistryName().func_110624_b(), this.getRegistryName().func_110623_a()));
+        return (Component)new Component(String.format("crystal.source.%s.%s.name", this.getRegistryName().func_110624_b(), this.getRegistryName().addTransientModifier()));
     }
     
     @Override

@@ -62,7 +62,7 @@ public class Vector3
     }
     
     public Vector3(final BlockEntity te) {
-        this(te.func_174877_v().getX(), te.func_174877_v().getY(), te.func_174877_v().getZ());
+        this(te.getBlockState().getX(), te.getBlockState().getY(), te.getBlockState().getZ());
     }
     
     public static Vector3 atEntityCorner(final Entity entity) {
@@ -99,9 +99,9 @@ public class Vector3
     }
     
     public Vector3 add(final Vec3 vec) {
-        this.x += vec.func_82615_a();
-        this.y += vec.func_82617_b();
-        this.z += vec.func_82616_c();
+        this.x += vec.getX();
+        this.y += vec.getY();
+        this.z += vec.getZ();
         return this;
     }
     
@@ -149,9 +149,9 @@ public class Vector3
     }
     
     public Vector3 subtract(final Entity e) {
-        this.x -= e.func_226277_ct_();
-        this.y -= e.func_226278_cu_();
-        this.z -= e.func_226281_cx_();
+        this.x -= e.getX();
+        this.y -= e.getY();
+        this.z -= e.getZ();
         return this;
     }
     
@@ -163,9 +163,9 @@ public class Vector3
     }
     
     public Vector3 subtract(final Vec3 vec) {
-        this.x -= vec.func_82615_a();
-        this.y -= vec.func_82617_b();
-        this.z -= vec.func_82616_c();
+        this.x -= vec.getX();
+        this.y -= vec.getY();
+        this.z -= vec.getZ();
         return this;
     }
     

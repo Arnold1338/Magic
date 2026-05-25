@@ -492,7 +492,7 @@ public class ResearchManager
         final Player crafter = recipe.tryGetCraftingPlayerServer();
         if (!(crafter instanceof ServerPlayer)) {
             AstralSorcery.log.warn("Infusion finished, player that initialized crafting could not be found!");
-            AstralSorcery.log.warn("Affected tile: " + infuser.func_174877_v() + " in dim " + infuser.func_145831_w().dimension().func_240901_a_());
+            AstralSorcery.log.warn("Affected tile: " + infuser.getBlockState() + " in dim " + infuser.getLevel().dimension().func_240901_a_());
             return;
         }
         informCrafted(crafter, crafted);
@@ -502,7 +502,7 @@ public class ResearchManager
         final Player crafter = recipe.tryGetCraftingPlayerServer();
         if (!(crafter instanceof ServerPlayer)) {
             AstralSorcery.log.warn("Crafting finished, player that initialized crafting could not be found!");
-            AstralSorcery.log.warn("Affected tile: " + altar.func_174877_v() + " in dim " + altar.func_145831_w().dimension().func_240901_a_());
+            AstralSorcery.log.warn("Affected tile: " + altar.getBlockState() + " in dim " + altar.getLevel().dimension().func_240901_a_());
             return;
         }
         informCrafted(crafter, crafted);

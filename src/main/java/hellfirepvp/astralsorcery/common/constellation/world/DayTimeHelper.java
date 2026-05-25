@@ -5,7 +5,7 @@ import net.minecraft.world.level.Level;
 
 public class DayTimeHelper
 {
-    public static float getCurrentDaytimeDistribution(final World world) {
+    public static float getCurrentDaytimeDistribution(final Level world) {
         final int dLength = (int)GeneralConfig.CONFIG.dayLength.get();
         final float dayPart = (float)((world.func_72820_D() % dLength + dLength) % dLength);
         if (dayPart < dLength / 2.0f) {
@@ -21,11 +21,11 @@ public class DayTimeHelper
         return 1.0f;
     }
     
-    public static boolean isNight(final World world) {
+    public static boolean isNight(final Level world) {
         return getCurrentDaytimeDistribution(world) >= 0.55;
     }
     
-    public static boolean isDay(final World world) {
+    public static boolean isDay(final Level world) {
         return getCurrentDaytimeDistribution(world) <= 0.05;
     }
 }

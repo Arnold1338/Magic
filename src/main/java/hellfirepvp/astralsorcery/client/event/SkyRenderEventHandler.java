@@ -17,7 +17,7 @@ import net.minecraftforge.client.event.RenderLevelStageEvent;
 public class SkyRenderEventHandler
 {
     public static void onRender(final RenderWorldLastEvent event) {
-        final ClientLevel world = Minecraft.getInstance().field_71441_e;
+        final ClientLevel world = Minecraft.getInstance().level;
         if (world != null && world.func_239132_a_().func_241683_c_() == DimensionRenderInfo.FogType.NORMAL) {
             final ISkyRenderHandler render = world.func_239132_a_().getSkyRenderHandler();
             if (!(render instanceof ChainingSkyRenderer)) {
@@ -30,11 +30,11 @@ public class SkyRenderEventHandler
     }
     
     public static void onFog(final EntityViewRenderEvent.FogColors event) {
-        final ClientLevel world = Minecraft.getInstance().field_71441_e;
+        final ClientLevel world = Minecraft.getInstance().level;
         if (world != null) {
             final String strDimKey = world.dimension().func_240901_a_().toString();
             if (world.func_239132_a_().func_241683_c_() == DimensionRenderInfo.FogType.NORMAL && ((List)RenderingConfig.CONFIG.dimensionsWithSkyRendering.get()).contains(strDimKey) && !((List)RenderingConfig.CONFIG.dimensionsWithOnlyConstellationRendering.get()).contains(strDimKey) && world.func_239132_a_().getSkyRenderHandler() instanceof ChainingSkyRenderer) {
-                final WorldContext ctx = SkyHandler.getContext((World)world, LogicalSide.CLIENT);
+                final WorldContext ctx = SkyHandler.getContext((Level)world, LogicalSide.CLIENT);
                 if (ctx != null && ctx.getCelestialEventHandler().getSolarEclipse().isActiveNow()) {
                     float perc = ctx.getCelestialEventHandler().getSolarEclipsePercent();
                     perc = 0.05f + perc * 0.95f;

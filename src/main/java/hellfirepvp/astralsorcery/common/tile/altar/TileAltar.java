@@ -102,7 +102,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d()) {
+        if (!this.getLevel().level()) {
             this.doesSeeSky();
             this.hasMultiblock();
             this.gatherStarlight();
@@ -163,13 +163,13 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         final ResourceLocation recipeName = ByteBufUtils.readResourceLocation(pkt.getExtraData());
         final BlockPos at = ByteBufUtils.readPos(pkt.getExtraData());
         final boolean isChaining = pkt.getExtraData().readBoolean();
-        final World world = (World)Minecraft.getInstance().field_71441_e;
+        final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
             return;
         }
         final TileAltar thisAltar = MiscUtils.getTileAt((IBlockReader)world, at, TileAltar.class, false);
         if (thisAltar != null) {
-            final Recipe<?> recipe = (Recipe<?>)world.func_199532_z().func_215366_a((RecipeType)RecipeTypesAS.TYPE_ALTAR.getType()).get(recipeName);
+            final Recipe<?> recipe = (Recipe<?>)world.func_199532_z().getRecipeFor((RecipeType)RecipeTypesAS.TYPE_ALTAR.getType()).get(recipeName);
             if (recipe instanceof SimpleAltarRecipe) {
                 ((SimpleAltarRecipe)recipe).getCraftingEffects().forEach(effect -> effect.onCraftingFinish(thisAltar, isChaining));
             }
@@ -204,16 +204,16 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         final boolean isChaining;
         if (!(isChaining = finishedRecipe.matches(this, false, true))) {
             this.abortCrafting();
-            EntityFlare.spawnAmbientFlare(this.func_145831_w(), this.func_174877_v().offset(-3 + TileAltar.rand.nextInt(7), 1 + TileAltar.rand.nextInt(3), -3 + TileAltar.rand.nextInt(7)));
-            EntityFlare.spawnAmbientFlare(this.func_145831_w(), this.func_174877_v().offset(-3 + TileAltar.rand.nextInt(7), 1 + TileAltar.rand.nextInt(3), -3 + TileAltar.rand.nextInt(7)));
+            EntityFlare.spawnAmbientFlare(this.getLevel(), this.getBlockState().offset(-3 + TileAltar.rand.nextInt(7), 1 + TileAltar.rand.nextInt(3), -3 + TileAltar.rand.nextInt(7)));
+            EntityFlare.spawnAmbientFlare(this.getLevel(), this.getBlockState().offset(-3 + TileAltar.rand.nextInt(7), 1 + TileAltar.rand.nextInt(3), -3 + TileAltar.rand.nextInt(7)));
         }
         final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.ALTAR_RECIPE_FINISH).addData(buf -> {
             ByteBufUtils.writeResourceLocation(buf, recipeName);
-            ByteBufUtils.writePos(buf, this.func_174877_v());
+            ByteBufUtils.writePos(buf, this.getBlockState());
             buf.writeBoolean(isChaining);
             return;
         });
-        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.func_145831_w(), (Vector3i)this.func_174877_v(), 32.0));
+        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vector3i)this.getBlockState(), 32.0));
         this.knownRecipes.add(recipeName);
         this.markForUpdate();
     }
@@ -235,13 +235,13 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         divisor = (int)Math.round(Math.pow(2.0, divisor));
         this.activeRecipe = new ActiveSimpleAltarRecipe(recipe, divisor, crafter.getUUID());
         this.markForUpdate();
-        SoundHelper.playSoundAround(SoundsAS.ALTAR_CRAFT_START, SoundSource.BLOCKS, this.field_145850_b, new Vector3(this).add(0.5, 0.5, 0.5), 0.6f, 1.0f);
+        SoundHelper.playSoundAround(SoundsAS.ALTAR_CRAFT_START, SoundSource.BLOCKS, this.level, new Vector3(this).add(0.5, 0.5, 0.5), 0.6f, 1.0f);
         return true;
     }
     
     @Override
-    public boolean onInteract(final World world, final BlockPos pos, final Player player, final Direction side, final boolean sneak) {
-        if (!world.func_201670_d() && this.hasMultiblock()) {
+    public boolean onInteract(final Level world, final BlockPos pos, final Player player, final Direction side, final boolean sneak) {
+        if (!world.level() && this.hasMultiblock()) {
             if (this.getActiveRecipe() != null) {
                 if (this.getActiveRecipe().matches(this, false, false)) {
                     return true;
@@ -259,7 +259,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     
     private void gatherStarlight() {
         this.tickStarlightCollectionMap.clear();
-        final WorldContext ctx = SkyHandler.getContext(this.func_145831_w());
+        final WorldContext ctx = SkyHandler.getContext(this.getLevel());
         if (ctx == null) {
             if (this.starlightNextTick > 0) {
                 this.starlightNextTick = 0;
@@ -270,19 +270,19 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         this.starlightNextTick *= (int)0.9f;
         if (this.doesSeeSky()) {
             final int altarTier = this.getAltarType().ordinal() + 1;
-            float heightAmount = Mth.func_76131_a((float)Math.pow(this.func_174877_v().getY() / 7.0f, 1.5) / 65.0f, 0.0f, 1.0f);
-            heightAmount *= DayTimeHelper.getCurrentDaytimeDistribution(this.func_145831_w());
+            float heightAmount = Mth.canEnchant((float)Math.pow(this.getBlockState().getY() / 7.0f, 1.5) / 65.0f, 0.0f, 1.0f);
+            heightAmount *= DayTimeHelper.getCurrentDaytimeDistribution(this.getLevel());
             this.collectStarlight(heightAmount * altarTier * 60.0f, AltarCollectionCategory.HEIGHT);
             if (this.posDistribution == -1.0f) {
-                if (this.field_145850_b instanceof ISeedReader) {
-                    this.posDistribution = SkyCollectionHelper.getSkyNoiseDistribution((ISeedReader)this.field_145850_b, this.field_174879_c);
+                if (this.level instanceof ISeedReader) {
+                    this.posDistribution = SkyCollectionHelper.getSkyNoiseDistribution((ISeedReader)this.level, this.field_174879_c);
                 }
                 else {
                     this.posDistribution = 0.3f;
                 }
             }
             float fieldAmount = Mth.func_76129_c(this.posDistribution);
-            fieldAmount *= DayTimeHelper.getCurrentDaytimeDistribution(this.func_145831_w());
+            fieldAmount *= DayTimeHelper.getCurrentDaytimeDistribution(this.getLevel());
             this.collectStarlight(fieldAmount * altarTier * 65.0f, AltarCollectionCategory.FOSIC_FIELD);
         }
         this.starlightStorage.setStoredStarlight(this.starlightNextTick);
@@ -290,7 +290,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     
     public void collectStarlight(final float percent, final AltarCollectionCategory category) {
         final int collectable = Mth.func_76141_d(Math.min(percent, this.getRemainingCollectionCapacity(category)));
-        this.starlightNextTick = Mth.func_76125_a(this.starlightNextTick + collectable, 0, this.getAltarType().getStarlightCapacity());
+        this.starlightNextTick = Mth.getDescriptionId(this.starlightNextTick + collectable, 0, this.getAltarType().getStarlightCapacity());
         this.tickStarlightCollectionMap.computeIfPresent(category, (cat, remaining) -> Math.max(remaining - collectable, 0.0f));
         this.markForUpdate();
         this.preventNetworkSync();
@@ -311,9 +311,9 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
             for (int zz = -3; zz <= 3; ++zz) {
                 if (xx != 0 || zz != 0) {
                     final BlockPos offset = new BlockPos(xx, 0, zz);
-                    final TileSpectralRelay tar = MiscUtils.getTileAt((IBlockReader)this.func_145831_w(), this.func_174877_v().func_177971_a((Vector3i)offset), TileSpectralRelay.class, true);
+                    final TileSpectralRelay tar = MiscUtils.getTileAt((IBlockReader)this.getLevel(), this.getBlockState().func_177971_a((Vector3i)offset), TileSpectralRelay.class, true);
                     if (tar != null) {
-                        eligableRelayOffsets.add(this.func_174877_v().func_177971_a((Vector3i)offset));
+                        eligableRelayOffsets.add(this.getBlockState().func_177971_a((Vector3i)offset));
                     }
                 }
             }
@@ -324,8 +324,8 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     @Override
     public void onBreak() {
         super.onBreak();
-        if (!this.func_145831_w().func_201670_d() && !this.getFocusItem().isEmpty()) {
-            ItemUtils.dropItemNaturally(this.func_145831_w(), this.func_174877_v().getX() + 0.5, this.func_174877_v().getY() + 0.5, this.func_174877_v().getZ() + 0.5, this.focusItem);
+        if (!this.getLevel().level() && !this.getFocusItem().isEmpty()) {
+            ItemUtils.dropItemNaturally(this.getLevel(), this.getBlockState().getX() + 0.5, this.getBlockState().getY() + 0.5, this.getBlockState().getZ() + 0.5, this.focusItem);
             this.focusItem = ItemStack.EMPTY;
         }
     }
@@ -337,9 +337,9 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     }
     
     private void updateNearbyRelayLinkStates() {
-        final Set<BlockPos> relayPositions = BlockDiscoverer.searchForTileEntitiesAround(this.func_145831_w(), this.func_174877_v(), 16, tile -> tile instanceof TileSpectralRelay);
+        final Set<BlockPos> relayPositions = BlockDiscoverer.searchForTileEntitiesAround(this.getLevel(), this.getBlockState(), 16, tile -> tile instanceof TileSpectralRelay);
         for (final BlockPos relayPos : relayPositions) {
-            final TileSpectralRelay tsr = MiscUtils.getTileAt((IBlockReader)this.func_145831_w(), relayPos, TileSpectralRelay.class, true);
+            final TileSpectralRelay tsr = MiscUtils.getTileAt((IBlockReader)this.getLevel(), relayPos, TileSpectralRelay.class, true);
             if (tsr != null) {
                 tsr.updateAltarLinkState();
             }

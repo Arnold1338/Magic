@@ -64,12 +64,12 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
         super(((ContainerTileEntity<BlockEntity>)container).getTileEntity(), Minecraft.getInstance().func_228018_at_().func_198087_p() - 32, Minecraft.getInstance().func_228018_at_().func_198107_o() - 32);
         this.usedStars = new ArrayList<Point2D.Float>(220);
         this.container = container;
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().player;
         if (player != null) {
             final TileObservatory observatory = ((TileConstellationDiscoveryScreen<TileObservatory, D>)this).getTile();
-            player.field_70125_A = observatory.observatoryPitch;
+            player.xRot = observatory.observatoryPitch;
             player.field_70127_C = observatory.prevObservatoryPitch;
-            player.field_70177_z = observatory.observatoryYaw;
+            player.yRot = observatory.observatoryYaw;
             player.field_70126_B = observatory.prevObservatoryYaw;
         }
     }
@@ -115,7 +115,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
     
     public void func_231175_as__() {
         super.func_231175_as__();
-        EventFlags.GUI_CLOSING.executeWithFlag(() -> Minecraft.getInstance().field_71439_g.func_71053_j());
+        EventFlags.GUI_CLOSING.executeWithFlag(() -> Minecraft.getInstance().player.giveExperienceLevels();
     }
     
     public void func_230430_a_(final PoseStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
@@ -131,9 +131,9 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
     }
     
     private void drawObservatoryScreen(final PoseStack renderStack, final float pTicks) {
-        final boolean canSeeSky = this.canObserverSeeSky(((TileConstellationDiscoveryScreen<TileObservatory, D>)this).getTile().func_174877_v(), 2);
+        final boolean canSeeSky = this.canObserverSeeSky(((TileConstellationDiscoveryScreen<TileObservatory, D>)this).getTile().getBlockState(), 2);
         final double guiFactor = Minecraft.getInstance().func_228018_at_().func_198100_s();
-        final float pitch = Minecraft.getInstance().field_71439_g.func_195050_f(pTicks);
+        final float pitch = Minecraft.getInstance().player.func_195050_f(pTicks);
         float angleOpacity = 0.0f;
         if (pitch < -30.0f) {
             angleOpacity = 1.0f;
@@ -155,21 +155,21 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
             RenderSystem.enableAlphaTest();
             return;
         }
-        float playerYaw = Minecraft.getInstance().field_71439_g.field_70177_z % 360.0f;
+        float playerYaw = Minecraft.getInstance().player.yRot % 360.0f;
         if (playerYaw < 0.0f) {
             playerYaw += 360.0f;
         }
         if (playerYaw >= 180.0f) {
             playerYaw -= 360.0f;
         }
-        final float playerPitch = Minecraft.getInstance().field_71439_g.field_70125_A;
-        final float rainBr = 1.0f - Minecraft.getInstance().field_71441_e.func_72867_j(pTicks);
-        final WorldContext ctx = SkyHandler.getContext((World)Minecraft.getInstance().field_71441_e, LogicalSide.CLIENT);
+        final float playerPitch = Minecraft.getInstance().player.xRot;
+        final float rainBr = 1.0f - Minecraft.getInstance().level.func_72867_j(pTicks);
+        final WorldContext ctx = SkyHandler.getContext((Level)Minecraft.getInstance().level, LogicalSide.CLIENT);
         if (ctx != null && canSeeSky) {
             final Random gen = ctx.getDayRandom();
             this.func_230926_e_(-9);
             TexturesAS.TEX_STAR_1.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
+            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
                 this.usedStars.iterator();
                 final Iterator iterator3;
                 while (iterator3.hasNext()) {
@@ -217,8 +217,8 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
     private void drawFrame(final PoseStack renderStack) {
         this.func_230926_e_(10);
         TexturesAS.TEX_GUI_OBSERVATORY.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> {
-            final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+            final Matrix4f offset = renderStack.last().translate();
             RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(0.0f, 0.0f).dim(16.0f, 16.0f).tex(0.0f, 0.0f, 0.4f, 0.4f).draw();
             RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at((float)(this.getGuiWidth() + 16), 0.0f).dim(16.0f, 16.0f).tex(0.4f, 0.0f, 0.4f, 0.4f).draw();
             RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at((float)(this.getGuiWidth() + 16), (float)(this.getGuiHeight() + 16)).dim(16.0f, 16.0f).tex(0.4f, 0.4f, 0.4f, 0.4f).draw();
@@ -234,7 +234,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
     
     private void drawSkyBackground(final PoseStack renderStack, final float pTicks, final boolean canSeeSky, final float angleOpacity) {
         final Tuple<Color, Color> rgbFromTo = SkyScreen.getSkyGradient(canSeeSky, angleOpacity, pTicks);
-        RenderingDrawUtils.drawGradientRect(renderStack, (float)this.getGuiZLevel(), (float)this.guiLeft, (float)this.guiTop, (float)(this.guiLeft + this.guiWidth), (float)(this.guiTop + this.guiHeight), ((Color)rgbFromTo.func_76341_a()).getRGB(), ((Color)rgbFromTo.func_76340_b()).getRGB());
+        RenderingDrawUtils.drawGradientRect(renderStack, (float)this.getGuiZLevel(), (float)this.guiLeft, (float)this.guiTop, (float)(this.guiLeft + this.guiWidth), (float)(this.guiTop + this.guiHeight), ((Color)rgbFromTo.getA()).getRGB(), ((Color)rgbFromTo.getB()).getRGB());
     }
     
     public void func_212927_b(final double xPos, final double yPos) {
@@ -248,16 +248,16 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
         final Minecraft mc = Minecraft.getInstance();
         final double xDiff = mc.field_71417_B.func_198024_e() - xPos / (mc.func_228018_at_().func_198107_o() / (double)mc.func_228018_at_().func_198105_m());
         double yDiff = mc.field_71417_B.func_198026_f() - yPos / (mc.func_228018_at_().func_198087_p() / (double)mc.func_228018_at_().func_198083_n());
-        final float pitch = Minecraft.getInstance().field_71439_g.field_70125_A;
+        final float pitch = Minecraft.getInstance().player.xRot;
         if (pitch <= -89.99f && yDiff > 0.0) {
             yDiff = 0.0;
         }
         if (pitch >= -10.0f) {
-            Minecraft.getInstance().field_71439_g.field_70125_A = -10.0f;
+            Minecraft.getInstance().player.xRot = -10.0f;
             yDiff = 0.0;
         }
         if (pitch <= -75.0f) {
-            Minecraft.getInstance().field_71439_g.field_70125_A = -75.0f;
+            Minecraft.getInstance().player.xRot = -75.0f;
             yDiff = 0.0;
         }
         for (final Point2D.Float float1 : this.usedStars) {

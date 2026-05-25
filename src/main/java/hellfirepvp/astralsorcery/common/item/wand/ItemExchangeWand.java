@@ -79,12 +79,12 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     private static final float COST_PER_EXCHANGE = 5.0f;
     
     public ItemExchangeWand() {
-        super(new Item.Properties().func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        tooltip.add((Component)getSizeMode(stack).getDisplay().func_240699_a_(ChatFormatting.GOLD));
+    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+        tooltip.add((Component)getSizeMode(stack).getDisplay().toString()ChatFormatting.GOLD));
     }
     
     public float func_150893_a(final ItemStack stack, final BlockState state) {
@@ -112,18 +112,18 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         if (hitResult == null) {
             return 0.0f;
         }
-        return this.getPlaceStates(player, player.func_130014_f_(), hitResult.func_216350_a(), stack).size() * 5.0f;
+        return this.getPlaceStates(player, player.level(), hitResult.func_216350_a(), stack).size() * 5.0f;
     }
     
     @OnlyIn(Dist.CLIENT)
     public boolean renderInHand(final ItemStack stack, final PoseStack renderStack, final float pTicks) {
-        final BlockHitResult hitResult = MiscUtils.rayTraceLookBlock((Player)Minecraft.getInstance().field_71439_g, ClipContext.BlockMode.OUTLINE, ClipContext.FluidMode.NONE);
+        final BlockHitResult hitResult = MiscUtils.rayTraceLookBlock((Player)Minecraft.getInstance().player, ClipContext.BlockMode.OUTLINE, ClipContext.FluidMode.NONE);
         if (hitResult == null) {
             return true;
         }
-        final World world = (World)Minecraft.getInstance().field_71441_e;
+        final Level world = (Level)Minecraft.getInstance().level;
         final BlockPos at = hitResult.func_216350_a();
-        final Map<BlockPos, BlockState> placeStates = this.getPlaceStates((Player)Minecraft.getInstance().field_71439_g, world, at, stack);
+        final Map<BlockPos, BlockState> placeStates = this.getPlaceStates((Player)Minecraft.getInstance().player, world, at, stack);
         if (placeStates.isEmpty()) {
             return true;
         }
@@ -137,11 +137,11 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         RenderSystem.disableDepthTest();
         RenderSystem.disableAlphaTest();
         RenderingUtils.draw(7, DefaultVertexFormat.field_176600_a, buf -> placeStates.forEach((pos, state) -> {
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_(pos.getX() - offset.getX() + 0.10000000149011612, pos.getY() - offset.getY() + 0.10000000149011612, pos.getZ() - offset.getZ() + 0.10000000149011612);
-            renderStack.func_227862_a_(0.8f, 0.8f, 0.8f);
+            renderStack.translate(0.8f, 0.8f, 0.8f);
             RenderingUtils.renderSimpleBlockModel(state, renderStack, (VertexConsumer)decorator.decorate(buf), pos, null, false);
-            renderStack.func_227865_b_();
+            renderStack.scale();
         }));
         RenderSystem.enableAlphaTest();
         RenderSystem.enableDepthTest();
@@ -152,17 +152,17 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     
     @OnlyIn(Dist.CLIENT)
     public boolean renderOverlay(final PoseStack renderStack, final ItemStack stack, final float pTicks) {
-        final List<Tuple<ItemStack, Integer>> foundStacks = ItemBlockStorage.getInventoryMatchingItemStacks((Player)Minecraft.getInstance().field_71439_g, stack);
+        final List<Tuple<ItemStack, Integer>> foundStacks = ItemBlockStorage.getInventoryMatchingItemStacks((Player)Minecraft.getInstance().player, stack);
         RenderingOverlayUtils.renderDefaultItemDisplay(renderStack, foundStacks);
         return true;
     }
     
     public InteractionResult func_195939_a(final ItemUseContext context) {
-        final World world = context.func_195991_k();
+        final Level world = context.func_195991_k();
         final ItemStack stack = context.func_195996_i();
         final Player player = context.func_195999_j();
         final BlockPos pos = context.func_195995_a();
-        if (world.func_201670_d() || !(player instanceof ServerPlayer) || stack.isEmpty()) {
+        if (world.level() || !(player instanceof ServerPlayer) || stack.isEmpty()) {
             return InteractionResult.SUCCESS;
         }
         if (player.func_225608_bj_()) {
@@ -170,15 +170,15 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
             return InteractionResult.SUCCESS;
         }
         final Map<BlockPos, BlockState> placeStates = this.getPlaceStates(player, world, pos, stack);
-        final Map<BlockState, Tuple<ItemStack, Integer>> availableStacks = MapStream.of(ItemBlockStorage.getInventoryMatching(player, stack)).filter(tpl -> placeStates.containsValue(tpl.func_76341_a())).collect(Collectors.toMap((Function<? super net.minecraft.util.Tuple<BlockState, Tuple<ItemStack, Integer>>, ? extends BlockState>)Tuple::func_76341_a, (Function<? super net.minecraft.util.Tuple<BlockState, Tuple<ItemStack, Integer>>, ? extends Tuple<ItemStack, Integer>>)Tuple::func_76340_b));
+        final Map<BlockState, Tuple<ItemStack, Integer>> availableStacks = MapStream.of(ItemBlockStorage.getInventoryMatching(player, stack)).filter(tpl -> placeStates.containsValue(tpl.getA())).collect(Collectors.toMap((Function<? super net.minecraft.util.Tuple<BlockState, Tuple<ItemStack, Integer>>, ? extends BlockState>)Tuple::func_76341_a, (Function<? super net.minecraft.util.Tuple<BlockState, Tuple<ItemStack, Integer>>, ? extends Tuple<ItemStack, Integer>>)Tuple::func_76340_b));
         for (final BlockPos placePos : placeStates.keySet()) {
             final BlockState stateToPlace = placeStates.get(placePos);
             final Tuple<ItemStack, Integer> availableStack = availableStacks.get(stateToPlace);
             if (availableStack == null) {
                 continue;
             }
-            final ItemStack extractable = ItemUtils.copyStackWithSize((ItemStack)availableStack.func_76341_a(), 1);
-            boolean canExtract = player.func_184812_l_();
+            final ItemStack extractable = ItemUtils.copyStackWithSize((ItemStack)availableStack.getA(), 1);
+            boolean canExtract = player.getVehicle();
             if (!canExtract && ItemUtils.consumeFromPlayerInventory(player, stack, extractable, true)) {
                 canExtract = true;
             }
@@ -186,7 +186,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
                 continue;
             }
             final BlockState prevState = world.getBlockState(placePos);
-            if ((!player.func_184812_l_() && !ItemUtils.consumeFromPlayerInventory(player, stack, extractable, true)) || !AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, 5.0f, false) || !((ServerPlayer)player).field_71134_c.func_180237_b(placePos) || !MiscUtils.canPlayerPlaceBlockPos(player, stateToPlace, placePos, Direction.UP) || (!player.func_184812_l_() && !ItemUtils.consumeFromPlayerInventory(player, stack, extractable, false)) || !world.func_175656_a(placePos, stateToPlace)) {
+            if ((!player.getVehicle() && !ItemUtils.consumeFromPlayerInventory(player, stack, extractable, true)) || !AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, 5.0f, false) || !((ServerPlayer)player).field_71134_c.func_180237_b(placePos) || !MiscUtils.canPlayerPlaceBlockPos(player, stateToPlace, placePos, Direction.UP) || (!player.getVehicle() && !ItemUtils.consumeFromPlayerInventory(player, stack, extractable, false)) || !world.func_175656_a(placePos, stateToPlace)) {
                 continue;
             }
             final PktPlayEffect ev = new PktPlayEffect(PktPlayEffect.Type.BLOCK_EFFECT).addData(buf -> {
@@ -199,8 +199,8 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         return InteractionResult.SUCCESS;
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final World worldIn, final Player playerIn, final Hand handIn) {
-        final ItemStack held = playerIn.func_184586_b(handIn);
+    public InteractionResult<ItemStack> func_77659_a(final Level worldIn, final Player playerIn, final Hand handIn) {
+        final ItemStack held = playerIn.getItemInHand(handIn);
         if (playerIn.func_225608_bj_()) {
             final SizeMode nextMode = getSizeMode(held).next();
             setSizeMode(held, nextMode);
@@ -210,7 +210,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     }
     
     @Nonnull
-    private Map<BlockPos, BlockState> getPlaceStates(final Player placer, final World world, final BlockPos origin, final ItemStack refStack) {
+    private Map<BlockPos, BlockState> getPlaceStates(final Player placer, final Level world, final BlockPos origin, final ItemStack refStack) {
         final Map<BlockState, Tuple<ItemStack, Integer>> tplStates = ItemBlockStorage.getInventoryMatching(placer, refStack);
         final BlockState atState = world.getBlockState(origin);
         final SizeMode mode = getSizeMode(refStack);
@@ -225,12 +225,12 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
             return placeables;
         }
         int totalItems = 0;
-        if (placer.func_184812_l_()) {
+        if (placer.getVehicle()) {
             totalItems = Integer.MAX_VALUE;
         }
         else {
             for (final Tuple<ItemStack, Integer> amountTpl : tplStates.values()) {
-                totalItems += (int)(((int)amountTpl.func_76340_b() == -1) ? 500000 : amountTpl.func_76340_b());
+                totalItems += (int)(((int)amountTpl.getB() == -1) ? 500000 : amountTpl.getB());
             }
         }
         final List<BlockPos> foundPositions = BlockDiscoverer.discoverBlocksWithSameStateAround(world, origin, true, mode.getSearchRadius(), totalItems, false);
@@ -239,7 +239,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         }
         final Map<BlockState, Integer> placeAmounts = Maps.newHashMap();
         for (final BlockState state : tplStates.keySet()) {
-            placeAmounts.put(state, placer.func_184812_l_() ? Integer.valueOf(Integer.MAX_VALUE) : ((Integer)tplStates.get(state).func_76340_b()));
+            placeAmounts.put(state, placer.getVehicle() ? Integer.valueOf(Integer.MAX_VALUE) : ((Integer)tplStates.get(state).getB()));
         }
         final List<BlockState> placeableStates = Lists.newArrayList((Iterable)placeAmounts.keySet());
         final Random rand = ItemBlockStorage.getPreviewRandomFromWorld(world);
@@ -249,7 +249,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
             if (toPlace == null) {
                 continue;
             }
-            if (!placer.func_184812_l_()) {
+            if (!placer.getVehicle()) {
                 int count = placeAmounts.get(toPlace);
                 if (--count <= 0) {
                     placeAmounts.remove(toPlace);

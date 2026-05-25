@@ -39,12 +39,12 @@ public class ItemColoredLensBreak extends ItemColoredLens
         }
         
         @Override
-        public void entityInBeam(final World world, final Vector3 origin, final Vector3 target, final Entity entity, final PartialEffectExecutor executor) {
+        public void entityInBeam(final Level world, final Vector3 origin, final Vector3 target, final Entity entity, final PartialEffectExecutor executor) {
         }
         
         @Override
-        public void blockInBeam(final World world, final BlockPos pos, final BlockState state, final PartialEffectExecutor executor) {
-            if (world.func_201670_d()) {
+        public void blockInBeam(final Level world, final BlockPos pos, final BlockState state, final PartialEffectExecutor executor) {
+            if (world.level()) {
                 return;
             }
             final boolean ranOnce = executor.executeAll(() -> BlockBreakHelper.addProgress(world, pos, 0.4f, () -> {

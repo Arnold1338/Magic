@@ -35,10 +35,10 @@ public class BlockTreeBeacon extends BlockStarlightNetwork implements CustomItem
     }
     
     @Override
-    public void func_180633_a(final World world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
+    public void func_180633_a(final Level world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
         super.func_180633_a(world, pos, state, placer, stack);
         final TileTreeBeacon ttb = MiscUtils.getTileAt((IBlockReader)world, pos, TileTreeBeacon.class, true);
-        if (ttb != null && !world.func_201670_d() && placer instanceof ServerPlayer && !MiscUtils.isPlayerFakeMP((ServerPlayer)placer)) {
+        if (ttb != null && !world.level() && placer instanceof ServerPlayer && !MiscUtils.isPlayerFakeMP((ServerPlayer)placer)) {
             ttb.setPlayerUUID(placer.getUUID());
         }
     }
@@ -49,13 +49,13 @@ public class BlockTreeBeacon extends BlockStarlightNetwork implements CustomItem
     
     public BlockState func_196271_a(final BlockState state, final Direction placedAgainst, final BlockState facingState, final IWorld world, final BlockPos pos, final BlockPos facingPos) {
         if (!this.func_196260_a(state, (IWorldReader)world, pos)) {
-            return Blocks.field_150350_a.defaultBlockState();
+            return Blocks.AIR.defaultBlockState();
         }
         return state;
     }
     
     public boolean func_196260_a(final BlockState state, final IWorldReader world, final BlockPos pos) {
-        return func_220064_c((IBlockReader)world, pos.func_177977_b());
+        return func_220064_c((IBlockReader)world, pos.renderItem());
     }
     
     public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {

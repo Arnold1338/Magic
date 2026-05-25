@@ -20,7 +20,7 @@ public class ItemMeltableRecipe extends WorldMeltableRecipe
     private final BiFunction<WorldBlockPos, BlockState, ItemStack> outputGenerator;
     
     public ItemMeltableRecipe(final ResourceLocation key, final BlockPredicate matcher, final ItemStack output) {
-        this(key, matcher, (worldPos, state) -> ItemUtils.copyStackWithSize(output, output.func_190916_E()));
+        this(key, matcher, (worldPos, state) -> ItemUtils.copyStackWithSize(output, output.getCount()));
     }
     
     public ItemMeltableRecipe(final ResourceLocation key, final BlockPredicate matcher, final BiFunction<WorldBlockPos, BlockState, ItemStack> outputGenerator) {
@@ -29,15 +29,15 @@ public class ItemMeltableRecipe extends WorldMeltableRecipe
     }
     
     public static ItemMeltableRecipe of(final BlockState stateIn, final ItemStack itemOut) {
-        return new ItemMeltableRecipe(AstralSorcery.key(stateIn.getBlock().getRegistryName().func_110623_a()), BlockPredicates.isState(stateIn), itemOut);
+        return new ItemMeltableRecipe(AstralSorcery.key(stateIn.getBlock().getRegistryName().addTransientModifier()), BlockPredicates.isState(stateIn), itemOut);
     }
     
     public static ItemMeltableRecipe of(final ITag.INamedTag<Block> blockTagIn, final ItemStack itemOut) {
-        return new ItemMeltableRecipe(AstralSorcery.key(String.format("tag_%s", blockTagIn.func_230234_a_().func_110623_a())), BlockPredicates.isInTag((ITag<Block>)blockTagIn), itemOut);
+        return new ItemMeltableRecipe(AstralSorcery.key(String.format("tag_%s", blockTagIn.func_230234_a_().addTransientModifier())), BlockPredicates.isInTag((ITag<Block>)blockTagIn), itemOut);
     }
     
     @Override
-    public void doOutput(final World world, final BlockPos pos, final BlockState state, final Consumer<ItemStack> itemOutput) {
+    public void doOutput(final Level world, final BlockPos pos, final BlockState state, final Consumer<ItemStack> itemOutput) {
         if (world.func_217377_a(pos, false)) {
             final ItemStack generated = this.outputGenerator.apply(WorldBlockPos.wrapServer(world, pos), state);
             if (!generated.isEmpty()) {

@@ -27,8 +27,8 @@ public abstract class ItemCrystalBase extends Item implements CrystalAttributeGe
         super(prop.func_200918_c(0));
     }
     
-    public void func_77663_a(final ItemStack stack, final World world, final Entity entity, final int slot, final boolean isSelected) {
-        if (!world.func_201670_d()) {
+    public void func_77663_a(final ItemStack stack, final Level world, final Entity entity, final int slot, final boolean isSelected) {
+        if (!world.level()) {
             CrystalAttributes attributes = this.getAttributes(stack);
             if (attributes == null && stack.getItem() instanceof CrystalAttributeGenItem) {
                 attributes = CrystalGenerator.generateNewAttributes(stack);
@@ -38,7 +38,7 @@ public abstract class ItemCrystalBase extends Item implements CrystalAttributeGe
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World world, final List<Component> toolTip, final TooltipFlag flag) {
+    public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> toolTip, final TooltipFlag flag) {
         this.addCrystalPropertyToolTip(stack, toolTip);
     }
     
@@ -70,8 +70,8 @@ public abstract class ItemCrystalBase extends Item implements CrystalAttributeGe
     }
     
     @Nullable
-    public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
-        final EntityCrystal res = new EntityCrystal(EntityTypesAS.ITEM_CRYSTAL, world, location.func_226277_ct_(), location.func_226278_cu_(), location.func_226281_cx_(), itemstack);
+    public Entity createEntity(final Level world, final Entity location, final ItemStack itemstack) {
+        final EntityCrystal res = new EntityCrystal(EntityTypesAS.ITEM_CRYSTAL, world, location.getX(), location.getY(), location.getZ(), itemstack);
         res.func_70020_e(location.func_189511_e(new CompoundTag()));
         res.applyColor(this.getItemEntityColor(itemstack));
         if (location instanceof ItemEntity) {

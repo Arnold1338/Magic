@@ -39,11 +39,11 @@ public class BlockFlareLight extends Block
     
     public BlockFlareLight() {
         super(PropertiesMisc.defaultAir().func_235838_a_(state -> 15));
-        this.func_180632_j((BlockState)((BlockState)this.func_176194_O().func_177621_b()).func_206870_a((Property)BlockFlareLight.COLOR, (Comparable)DyeColor.YELLOW));
+        this.func_180632_j((BlockState)((BlockState)this.func_176194_O().func_177621_b()).setValue((Property)BlockFlareLight.COLOR, (Comparable)DyeColor.YELLOW));
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_180655_c(final BlockState state, final World world, final BlockPos pos, final Random rand) {
+    public void func_180655_c(final BlockState state, final Level world, final BlockPos pos, final Random rand) {
         final Color c = ColorUtils.flareColorFromDye((DyeColor)state.getValue((Property)BlockFlareLight.COLOR));
         for (int i = 0; i < 2; ++i) {
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)pos).add(0.5, 0.2, 0.5).add(rand.nextFloat() * 0.1 * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * 0.1 * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * 0.1 * (rand.nextBoolean() ? 1 : -1))).setScaleMultiplier(0.4f + rand.nextFloat() * 0.1f).setAlphaMultiplier(0.35f).setMotion(new Vector3(0.0f, rand.nextFloat() * 0.01f, 0.0f)).color(VFXColorFunction.constant(c)).setMaxAge(50 + rand.nextInt(20));
@@ -54,17 +54,17 @@ public class BlockFlareLight extends Block
     }
     
     @OnlyIn(Dist.CLIENT)
-    public boolean addDestroyEffects(final BlockState state, final World world, final BlockPos pos, final ParticleEngine manager) {
+    public boolean addDestroyEffects(final BlockState state, final Level world, final BlockPos pos, final ParticleEngine manager) {
         return true;
     }
     
     @OnlyIn(Dist.CLIENT)
-    public boolean addHitEffects(final BlockState state, final World worldObj, final HitResult target, final ParticleEngine manager) {
+    public boolean addHitEffects(final BlockState state, final Level worldObj, final HitResult target, final ParticleEngine manager) {
         return true;
     }
     
     @OnlyIn(Dist.CLIENT)
-    public boolean addRunningEffects(final BlockState state, final World world, final BlockPos pos, final Entity entity) {
+    public boolean addRunningEffects(final BlockState state, final Level world, final BlockPos pos, final Entity entity) {
         return true;
     }
     

@@ -54,11 +54,11 @@ public class TransmissionChain
         this.sourceNode = sourceNode;
     }
     
-    public static void buildNetworkChain(final World world, final TransmissionWorldHandler handle, final IIndependentStarlightSource source, final WorldNetworkHandler netHandler, final BlockPos sourcePos) {
+    public static void buildNetworkChain(final Level world, final TransmissionWorldHandler handle, final IIndependentStarlightSource source, final WorldNetworkHandler netHandler, final BlockPos sourcePos) {
         final TransmissionChain chain = buildFromSource(netHandler, sourcePos);
         handle.updateNetworkChainData(world, chain, source, netHandler, sourcePos);
-        SyncDataHolder.executeServer(SyncDataHolder.DATA_LIGHT_CONNECTIONS, DataLightConnections.class, data -> data.updateNewConnectionsThreaded((RegistryKey<World>)netHandler.getWorld().dimension(), chain.getFoundConnections()));
-        SyncDataHolder.executeServer(SyncDataHolder.DATA_LIGHT_BLOCK_ENDPOINTS, DataLightBlockEndpoints.class, data -> data.updateNewEndpoints((RegistryKey<World>)netHandler.getWorld().dimension(), chain.getResolvedNormalBlockPositions()));
+        SyncDataHolder.executeServer(SyncDataHolder.DATA_LIGHT_CONNECTIONS, DataLightConnections.class, data -> data.updateNewConnectionsThreaded((RegistryKey<Level>)netHandler.getWorld().dimension(), chain.getFoundConnections()));
+        SyncDataHolder.executeServer(SyncDataHolder.DATA_LIGHT_BLOCK_ENDPOINTS, DataLightBlockEndpoints.class, data -> data.updateNewEndpoints((RegistryKey<Level>)netHandler.getWorld().dimension(), chain.getResolvedNormalBlockPositions()));
     }
     
     private static TransmissionChain buildFromSource(final WorldNetworkHandler netHandler, final BlockPos at) {
@@ -73,7 +73,7 @@ public class TransmissionChain
         return chain;
     }
     
-    private void resolveLoadedEndpoints(final World world) {
+    private void resolveLoadedEndpoints(final Level world) {
         for (final BlockPos pos : this.uncheckedEndpointsBlock) {
             MiscUtils.executeWithChunk((IWorldReader)world, pos, () -> {
                 final BlockState state = world.getBlockState(pos);
@@ -85,10 +85,10 @@ public class TransmissionChain
         }
     }
     
-    protected void updatePosAsResolved(final World world, final BlockPos pos) {
+    protected void updatePosAsResolved(final Level world, final BlockPos pos) {
         if (this.uncheckedEndpointsBlock.contains(pos) && !this.resolvedNormalBlockPositions.contains(pos)) {
             this.resolvedNormalBlockPositions.add(pos);
-            SyncDataHolder.executeServer(SyncDataHolder.DATA_LIGHT_BLOCK_ENDPOINTS, DataLightBlockEndpoints.class, data -> data.updateNewEndpoint((RegistryKey<World>)world.dimension(), pos));
+            SyncDataHolder.executeServer(SyncDataHolder.DATA_LIGHT_BLOCK_ENDPOINTS, DataLightBlockEndpoints.class, data -> data.updateNewEndpoint((RegistryKey<Level>)world.dimension(), pos));
         }
     }
     

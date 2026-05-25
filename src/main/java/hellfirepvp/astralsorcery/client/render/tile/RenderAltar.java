@@ -31,7 +31,7 @@ public class RenderAltar extends CustomTileEntityRenderer<TileAltar>
         if (tile.getAltarType().isThisGEThan(AltarType.RADIANCE) && tile.hasMultiblock()) {
             final IConstellation cst = tile.getFocusedConstellation();
             if (cst != null) {
-                final float dayAlpha = DayTimeHelper.getCurrentDaytimeDistribution(tile.func_145831_w()) * 0.6f;
+                final float dayAlpha = DayTimeHelper.getCurrentDaytimeDistribution(tile.getLevel()) * 0.6f;
                 final int max = 3000;
                 final int t = (int)(ClientScheduler.getClientTick() % max);
                 final float halfAge = max / 2.0f;
@@ -45,9 +45,9 @@ public class RenderAltar extends CustomTileEntityRenderer<TileAltar>
             recipe.getRecipeToCraft().getCraftingEffects().forEach(effect -> effect.onTESR(tile, recipe.getState(), renderStack, renderTypeBuffer, pTicks, combinedLight));
         }
         if (tile.getAltarType().isThisGEThan(AltarType.RADIANCE) && tile.hasMultiblock()) {
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_(0.5, 4.5, 0.5);
-            final long id = tile.func_174877_v().func_218275_a();
+            final long id = tile.getBlockState().func_218275_a();
             if (recipe != null) {
                 final List<WrappedIngredient> traitInputs = recipe.getRecipeToCraft().getRelayInputs();
                 if (!traitInputs.isEmpty()) {
@@ -69,7 +69,7 @@ public class RenderAltar extends CustomTileEntityRenderer<TileAltar>
                 RenderingDrawUtils.renderLightRayFan(renderStack, renderTypeBuffer, Color.WHITE, id * 31L, 15, 1.5f, 35);
                 RenderingDrawUtils.renderLightRayFan(renderStack, renderTypeBuffer, ColorsAS.CELESTIAL_CRYSTAL, id * 16L, 10, 1.0f, 25);
             }
-            renderStack.func_227865_b_();
+            renderStack.scale();
         }
     }
 }

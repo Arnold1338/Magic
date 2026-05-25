@@ -24,13 +24,13 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 
 public class PktRequestTeleport extends ASPacket<PktRequestTeleport>
 {
-    private RegistryKey<World> dim;
+    private RegistryKey<Level> dim;
     private BlockPos pos;
     
     public PktRequestTeleport() {
     }
     
-    public PktRequestTeleport(final RegistryKey<World> dim, final BlockPos pos) {
+    public PktRequestTeleport(final RegistryKey<Level> dim, final BlockPos pos) {
         this.dim = dim;
         this.pos = pos;
     }
@@ -60,16 +60,16 @@ public class PktRequestTeleport extends ASPacket<PktRequestTeleport>
     public Handler<PktRequestTeleport> handler() {
         return (packet, context, side) -> context.enqueueWork(() -> {
             final Player player = (Player)context.getSender();
-            final TileCelestialGateway gate = MiscUtils.getTileAt((IBlockReader)player.field_70170_p, Vector3.atEntityCorner((Entity)player).toBlockPos(), TileCelestialGateway.class, false);
+            final TileCelestialGateway gate = MiscUtils.getTileAt((IBlockReader)player.level(), Vector3.atEntityCorner((Entity)player).toBlockPos(), TileCelestialGateway.class, false);
             if (gate != null && gate.hasMultiblock() && gate.doesSeeSky()) {
                 final MinecraftServer server = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
                 if (server != null) {
-                    final World to = (World)server.func_71218_a((RegistryKey)packet.dim);
+                    final Level to = (Level)server.getLevel((RegistryKey)packet.dim);
                     if (to != null) {
                         final GatewayCache.GatewayNode node = ((GatewayCache)DataAS.DOMAIN_AS.getData(to, (WorldCacheDomain.SaveKey)DataAS.KEY_GATEWAY_CACHE)).getGatewayNode(packet.pos);
                         if (node != null && node.hasAccess(player)) {
                             AstralSorcery.getProxy().scheduleDelayed(() -> {
-                                final Player playerEntity = MiscUtils.transferEntityTo(player, (RegistryKey<World>)to.dimension(), packet.pos);
+                                final Player playerEntity = MiscUtils.transferEntityTo(player, (RegistryKey<Level>)to.dimension(), packet.pos);
                             });
                         }
                     }

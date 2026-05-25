@@ -43,7 +43,7 @@ public class CrystalCountRecipe extends ConstellationBaseAverageStatsRecipe
         if (out.getItem() instanceof CrystalAttributeItem) {
             final CrystalAttributes attr = ((CrystalAttributeItem)out.getItem()).getAttributes(out);
             if (attr != null && !attr.isEmpty()) {
-                out.func_190920_e(CrystalCalculations.getSizeCraftingAmount(attr));
+                out.setCount(CrystalCalculations.getSizeCraftingAmount(attr));
             }
         }
     }

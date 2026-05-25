@@ -55,7 +55,7 @@ public class EventHandlerInteract
             return;
         }
         final IWorld world = event.getWorld();
-        if (world.func_201670_d() || !(event.getEntity() instanceof Player)) {
+        if (world.level() || !(event.getEntity() instanceof Player)) {
             return;
         }
         handleOwnerPlacement(world, event.getPos(), (Player)event.getEntity());
@@ -63,7 +63,7 @@ public class EventHandlerInteract
     
     private static void onMultiPlace(final BlockEvent.EntityMultiPlaceEvent event) {
         final IWorld world = event.getWorld();
-        if (world.func_201670_d() || !(event.getEntity() instanceof Player)) {
+        if (world.level() || !(event.getEntity() instanceof Player)) {
             return;
         }
         final Player placer = (Player)event.getEntity();

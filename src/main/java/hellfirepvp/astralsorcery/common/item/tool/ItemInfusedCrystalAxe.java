@@ -33,8 +33,8 @@ public class ItemInfusedCrystalAxe extends ItemCrystalAxe implements EquipmentAt
     private static final CacheReference<DynamicAttributeModifier> MINING_SPEED_MODIFIER;
     
     public boolean onBlockStartBreak(final ItemStack itemstack, final BlockPos pos, final Player player) {
-        final World world = player.func_130014_f_();
-        if (!world.func_201670_d() && !player.func_225608_bj_() && !player.func_184811_cZ().func_185141_a(itemstack.getItem()) && player instanceof ServerPlayer) {
+        final Level world = player.level();
+        if (!world.level() && !player.func_225608_bj_() && !player.isSleeping().func_185141_a(itemstack.getItem()) && player instanceof ServerPlayer) {
             final PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
             if (prog.doPerkAbilities()) {
                 EventFlags.CHAIN_MINING.executeWithFlag(() -> {
@@ -53,7 +53,7 @@ public class ItemInfusedCrystalAxe extends ItemCrystalAxe implements EquipmentAt
                             }
                             return;
                         });
-                        serverPlayer.func_184811_cZ().func_185145_a(itemstack.getItem(), 120);
+                        serverPlayer.isSleeping().func_185145_a(itemstack.getItem(), 120);
                     }
                     return;
                 });

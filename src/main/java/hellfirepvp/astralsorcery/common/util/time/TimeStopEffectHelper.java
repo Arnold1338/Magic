@@ -66,9 +66,9 @@ public class TimeStopEffectHelper
     @OnlyIn(Dist.CLIENT)
     static void playEntityParticles(final LivingEntity e) {
         final EntityDimensions size = e.func_213305_a(e.func_213283_Z());
-        final double x = e.func_226277_ct_() - size.field_220315_a / 2.0f + TimeStopEffectHelper.rand.nextFloat() * size.field_220315_a;
-        final double y = e.func_226278_cu_() + TimeStopEffectHelper.rand.nextFloat() * size.field_220316_b;
-        final double z = e.func_226281_cx_() - size.field_220315_a / 2.0f + TimeStopEffectHelper.rand.nextFloat() * size.field_220315_a;
+        final double x = e.getX() - size.field_220315_a / 2.0f + TimeStopEffectHelper.rand.nextFloat() * size.field_220315_a;
+        final double y = e.getY() + TimeStopEffectHelper.rand.nextFloat() * size.field_220316_b;
+        final double z = e.getZ() - size.field_220315_a / 2.0f + TimeStopEffectHelper.rand.nextFloat() * size.field_220315_a;
         playParticles(x, y, z);
     }
     
@@ -85,7 +85,7 @@ public class TimeStopEffectHelper
     
     @OnlyIn(Dist.CLIENT)
     public void playClientTickEffect() {
-        final World world = (World)Minecraft.getInstance().field_71441_e;
+        final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
             return;
         }
@@ -106,10 +106,10 @@ public class TimeStopEffectHelper
                     final Map<BlockPos, BlockEntity> map = ch.func_177434_r();
                     for (final Map.Entry<BlockPos, BlockEntity> teEntry : map.entrySet()) {
                         final BlockEntity te = teEntry.getValue();
-                        if (TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(te) && te.func_174877_v().func_218141_a((Vector3i)this.position, (double)this.range)) {
-                            final double x = te.func_174877_v().getX() + TimeStopEffectHelper.rand.nextFloat();
-                            final double y = te.func_174877_v().getY() + TimeStopEffectHelper.rand.nextFloat();
-                            final double z = te.func_174877_v().getZ() + TimeStopEffectHelper.rand.nextFloat();
+                        if (TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(te) && te.getBlockState().func_218141_a((Vector3i)this.position, (double)this.range)) {
+                            final double x = te.getBlockState().getX() + TimeStopEffectHelper.rand.nextFloat();
+                            final double y = te.getBlockState().getY() + TimeStopEffectHelper.rand.nextFloat();
+                            final double z = te.getBlockState().getZ() + TimeStopEffectHelper.rand.nextFloat();
                             playParticles(x, y, z);
                         }
                     }

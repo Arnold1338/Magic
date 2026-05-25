@@ -67,7 +67,7 @@ public class LiquidInfusion extends CustomMatcherRecipe implements GatedRecipe.P
         if (!hasProgress) {
             return false;
         }
-        final boolean hasFluidInputs = MapStream.of(infuser.getLiquids()).mapKey(pos -> pos.func_177971_a((Vector3i)infuser.func_174877_v())).allMatch(tpl -> this.liquidInput.equals(tpl.func_76340_b()));
+        final boolean hasFluidInputs = MapStream.of(infuser.getLiquids()).mapKey(pos -> pos.func_177971_a((Vector3i)infuser.getBlockState())).allMatch(tpl -> this.liquidInput.equals(tpl.getB()));
         return hasFluidInputs && this.itemInput.test(infuser.getItemInput());
     }
     
@@ -97,16 +97,16 @@ public class LiquidInfusion extends CustomMatcherRecipe implements GatedRecipe.P
     @Nonnull
     @OnlyIn(Dist.CLIENT)
     public ItemStack getOutputForRender(final Iterable<ItemStack> inventoryContents) {
-        return ItemUtils.copyStackWithSize(this.output, this.output.func_190916_E());
+        return ItemUtils.copyStackWithSize(this.output, this.output.getCount());
     }
     
     @Nonnull
     public ItemStack getOutput(final ItemStack itemInput) {
-        return ItemUtils.copyStackWithSize(this.output, this.output.func_190916_E());
+        return ItemUtils.copyStackWithSize(this.output, this.output.getCount());
     }
     
     public float getConsumptionChance() {
-        return Mth.func_76131_a(this.consumptionChance, 0.0f, 1.0f);
+        return Mth.canEnchant(this.consumptionChance, 0.0f, 1.0f);
     }
     
     public boolean doesConsumeMultipleFluids() {

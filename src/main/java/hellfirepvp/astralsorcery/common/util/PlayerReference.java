@@ -26,7 +26,7 @@ public class PlayerReference
     }
     
     public static PlayerReference of(final Player player) {
-        final Component txt = player.func_145748_c_();
+        final Component txt = player.getDisplayName();
         if (txt instanceof MutableComponent) {
             return new PlayerReference(player.getUUID(), (MutableComponent)txt);
         }

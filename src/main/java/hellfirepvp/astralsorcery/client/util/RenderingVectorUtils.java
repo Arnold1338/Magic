@@ -13,7 +13,7 @@ public class RenderingVectorUtils
     }
     
     public static Vector3 interpolatePosition(final Entity e, final float partialTicks) {
-        return new Vector3(interpolate(e.field_70169_q, e.func_226277_ct_(), partialTicks), interpolate(e.field_70167_r, e.func_226278_cu_(), partialTicks), interpolate(e.field_70166_s, e.func_226281_cx_(), partialTicks));
+        return new Vector3(interpolate(e.field_70169_q, e.getX(), partialTicks), interpolate(e.field_70167_r, e.getY(), partialTicks), interpolate(e.field_70166_s, e.getZ(), partialTicks));
     }
     
     public static Vector3 interpolate(final Vector3 oldV, final Vector3 newV, final float partialTicks) {

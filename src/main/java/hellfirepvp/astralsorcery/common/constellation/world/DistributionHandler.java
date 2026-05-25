@@ -28,7 +28,7 @@ public class DistributionHandler
         this.ctx = ctx;
     }
     
-    public void tick(final World world) {
+    public void tick(final Level world) {
         final ConstellationHandler cst = this.ctx.getConstellationHandler();
         final int tracked = cst.getLastTrackedDay();
         if (this.dayDistributionMap.isEmpty()) {
@@ -45,15 +45,15 @@ public class DistributionHandler
         return this.activeDistribution.getOrDefault(cst, 0.0f);
     }
     
-    private void updateDistribution(final World world) {
+    private void updateDistribution(final Level world) {
         final MoonPhase current = MoonPhase.fromWorld((IWorld)world);
         final Map<IConstellation, Float> distribution = new HashMap<IConstellation, Float>(this.dayDistributionMap.get(current.ordinal()));
         for (final IConstellationSpecialShowup special : ConstellationRegistry.getSpecialShowupConstellations()) {
             if (special.doesShowUp(world, this.lastRecordedDay)) {
-                distribution.put(special, Mth.func_76131_a(special.getDistribution(world, this.lastRecordedDay, true), 0.0f, 1.0f));
+                distribution.put(special, Mth.canEnchant(special.getDistribution(world, this.lastRecordedDay, true), 0.0f, 1.0f));
             }
             else {
-                distribution.put(special, Mth.func_76131_a(special.getDistribution(world, this.lastRecordedDay, false), 0.0f, 1.0f));
+                distribution.put(special, Mth.canEnchant(special.getDistribution(world, this.lastRecordedDay, false), 0.0f, 1.0f));
             }
         }
         this.activeDistribution = distribution;

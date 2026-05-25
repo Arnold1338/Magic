@@ -199,11 +199,11 @@ public class RegistryItems
     
     private static Item.Properties buildItemBlockProperties(final Block block) {
         final Item.Properties props = new Item.Properties();
-        props.func_200916_a(CommonProxy.ITEM_GROUP_AS);
+        props.hasModifier(CommonProxy.ITEM_GROUP_AS);
         if (block instanceof CustomItemBlockProperties) {
             final CreativeModeTab group = ((CustomItemBlockProperties)block).getItemGroup();
             if (group != null) {
-                props.func_200916_a(group);
+                props.hasModifier(group);
             }
             if (!((CustomItemBlockProperties)block).canItemBeRepaired()) {
                 props.setNoRepair();

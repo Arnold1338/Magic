@@ -7,5 +7,5 @@ import net.minecraft.world.level.Level;
 
 public interface BlockStarlightRecipient
 {
-    void receiveStarlight(final World p0, final Random p1, final BlockPos p2, final IWeakConstellation p3, final double p4);
+    void receiveStarlight(final Level p0, final Random p1, final BlockPos p2, final IWeakConstellation p3, final double p4);
 }

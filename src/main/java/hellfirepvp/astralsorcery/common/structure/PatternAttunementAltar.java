@@ -66,7 +66,7 @@ public class PatternAttunementAltar extends PatternBlockArray
         return (MatchableState)new SimpleMatchableBlock(new Block[] { BlocksAS.MARBLE_PILLAR }) {
             @Nonnull
             public BlockState getDescriptiveState(final long tick) {
-                return (BlockState)BlocksAS.MARBLE_PILLAR.defaultBlockState().func_206870_a((Property)BlockMarblePillar.PILLAR_TYPE, (Comparable)type);
+                return (BlockState)BlocksAS.MARBLE_PILLAR.defaultBlockState().setValue((Property)BlockMarblePillar.PILLAR_TYPE, (Comparable)type);
             }
         };
     }

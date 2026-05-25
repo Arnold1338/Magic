@@ -42,38 +42,38 @@ public class LootModifierScorchingHeat extends LootModifier
             return generatedLoot;
         }
         return generatedLoot.stream().filter(stack -> !stack.isEmpty()).map(stack -> {
-            final Optional<Tuple<ItemStack, Float>> furnaceResult = RecipeHelper.findSmeltingResult((World)context.func_202879_g(), stack);
-            if (context.func_216033_a(LootContextParams.THIS_ENTITY)) {
+            final Optional<Tuple<ItemStack, Float>> furnaceResult = RecipeHelper.findSmeltingResult((Level)context.getLevel(), stack);
+            if (context.hasParam(LootContextParams.THIS_ENTITY)) {
                 final Entity e = (Entity)context.getParamOrNull(LootContextParams.THIS_ENTITY);
                 if (e instanceof Player) {
-                    furnaceResult.ifPresent(result -> BasicEventHooks.firePlayerSmeltedEvent((Player)e, (ItemStack)result.func_76341_a()));
+                    furnaceResult.ifPresent(result -> BasicEventHooks.firePlayerSmeltedEvent((Player)e, (ItemStack)result.getA()));
                 }
             }
             furnaceResult.ifPresent(result -> {
-                final ItemStack resultStack = (ItemStack)result.func_76341_a();
-                final float resultExp = (float)result.func_76340_b();
+                final ItemStack resultStack = (ItemStack)result.getA();
+                final float resultExp = (float)result.getB();
                 final ItemStack tool = (ItemStack)context.getParamOrNull(LootContextParams.TOOL);
                 if (!tool.isEmpty() && !(resultStack.getItem() instanceof BlockItem)) {
-                    final int silkTouch = EnchantmentHelper.func_77506_a(Enchantments.field_185306_r, tool);
+                    final int silkTouch = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, tool);
                     if (silkTouch <= 0) {
                         int addedCount = 0;
-                        final int fortuneLevel = EnchantmentHelper.func_77506_a(Enchantments.field_185308_t, tool);
+                        final int fortuneLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
                         if (fortuneLevel > 0) {
-                            addedCount = Math.max(context.func_216032_b().nextInt(fortuneLevel + 2) - 1, 0);
-                            resultStack.func_190920_e(resultStack.func_190916_E() * (addedCount + 1));
+                            addedCount = Math.max(context.getRandom().nextInt(fortuneLevel + 2) - 1, 0);
+                            resultStack.setCount(resultStack.getCount() * (addedCount + 1));
                         }
                         final float resultExp2 = resultExp * (addedCount + 1);
                         if (resultExp2 > 0.0f) {
                             int iExp = (int)resultExp2;
                             final float partialExp = resultExp2 - iExp;
-                            if (partialExp > 0.0f && partialExp > context.func_216032_b().nextFloat()) {
+                            if (partialExp > 0.0f && partialExp > context.getRandom().nextFloat()) {
                                 ++iExp;
                             }
                             if (iExp >= 1) {
                                 final Vec3 blockPos = (Vec3)context.getParamOrNull(LootParameters.field_237457_g_);
                                 if (blockPos != null) {
-                                    final ServerLevel world = context.func_202879_g();
-                                    world.func_217376_c((Entity)new ExperienceOrbEntity((World)world, blockPos.func_82615_a(), blockPos.func_82617_b(), blockPos.func_82616_c(), iExp));
+                                    final ServerLevel world = context.getLevel();
+                                    world.addFreshEntity((Entity)new ExperienceOrbEntity((Level)world, blockPos.getX(), blockPos.getY(), blockPos.getZ(), iExp));
                                 }
                             }
                         }

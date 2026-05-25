@@ -36,7 +36,7 @@ public class AttunePlayerRecipe extends AttunementRecipe<ActivePlayerAttunementR
     
     @Override
     public boolean canStartCrafting(final TileAttunementAltar altar) {
-        final World world = altar.func_145831_w();
+        final Level world = altar.getLevel();
         return DayTimeHelper.isNight(world) && findEligiblePlayer(altar) != null;
     }
     
@@ -63,9 +63,9 @@ public class AttunePlayerRecipe extends AttunementRecipe<ActivePlayerAttunementR
         if (!(altar.getActiveConstellation() instanceof IMajorConstellation)) {
             return null;
         }
-        final AABB boxAt = AttunePlayerRecipe.BOX.func_186670_a(altar.func_174877_v().above()).func_186662_g(1.0);
+        final AABB boxAt = AttunePlayerRecipe.BOX.func_186670_a(altar.getBlockState().above()).func_186662_g(1.0);
         final Vector3 thisVec = new Vector3(altar).add(0.5, 1.5, 0.5);
-        final List<ServerPlayer> players = altar.func_145831_w().func_217357_a((Class)ServerPlayer.class, boxAt);
+        final List<ServerPlayer> players = altar.getLevel().func_217357_a((Class)ServerPlayer.class, boxAt);
         if (!players.isEmpty()) {
             final ServerPlayer pl = EntityUtils.selectClosest((Collection<ServerPlayer>)players, player -> thisVec.distanceSquared(player.func_213303_ch()));
             if (isEligablePlayer(pl, altar.getActiveConstellation())) {

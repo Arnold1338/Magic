@@ -27,7 +27,7 @@ public abstract class TileEntitySynchronized extends BlockEntity implements ILoc
     }
     
     public BlockPos getLocationPos() {
-        return this.func_174877_v();
+        return this.getBlockState();
     }
     
     public void func_230337_a_(final BlockState state, final CompoundTag nbt) {
@@ -66,7 +66,7 @@ public abstract class TileEntitySynchronized extends BlockEntity implements ILoc
         super.func_189515_b(compound);
         this.writeCustomNBT(compound);
         this.writeNetNBT(compound);
-        return new SUpdateTileEntityPacket(this.func_174877_v(), 255, compound);
+        return new SUpdateTileEntityPacket(this.getBlockState(), 255, compound);
     }
     
     public CompoundTag func_189517_E_() {
@@ -88,19 +88,19 @@ public abstract class TileEntitySynchronized extends BlockEntity implements ILoc
     }
     
     public void markForUpdate() {
-        if (this.func_145831_w() != null) {
+        if (this.getLevel() != null) {
             final BlockState thisState = this.func_195044_w();
-            this.func_145831_w().func_184138_a(this.func_174877_v(), thisState, thisState, 3);
+            this.getLevel().func_184138_a(this.getBlockState(), thisState, thisState, 3);
         }
-        this.func_70296_d();
+        this.setChanged();
     }
     
     public ItemEntity dropItemOnTop(final ItemStack stack) {
-        return ItemUtils.dropItem(this.func_145831_w(), this.func_174877_v().getX() + 0.5, this.func_174877_v().getY() + 1.5, this.func_174877_v().getZ() + 0.5, stack);
+        return ItemUtils.dropItem(this.getLevel(), this.getBlockState().getX() + 0.5, this.getBlockState().getY() + 1.5, this.getBlockState().getZ() + 0.5, stack);
     }
     
     public boolean removeSelf() {
-        return !this.func_145831_w().func_201670_d() && this.func_145831_w().func_175656_a(this.func_174877_v(), Blocks.field_150350_a.defaultBlockState());
+        return !this.getLevel().level() && this.getLevel().func_175656_a(this.getBlockState(), Blocks.AIR.defaultBlockState());
     }
     
     static {

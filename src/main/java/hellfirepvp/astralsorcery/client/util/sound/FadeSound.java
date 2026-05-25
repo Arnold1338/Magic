@@ -61,12 +61,12 @@ public class FadeSound extends SimpleSoundInstance implements ITickableSound, IS
     }
     
     public void setVolumeMultiplier(final float volumeMultiplier) {
-        this.volumeMultiplier = Mth.func_76131_a(volumeMultiplier, 0.0f, 1.0f);
+        this.volumeMultiplier = Mth.canEnchant(volumeMultiplier, 0.0f, 1.0f);
     }
     
     public float func_147653_e() {
-        final float mulFadeIn = Mth.func_76131_a(this.tick / this.fadeInTicks, 0.0f, 1.0f);
-        final float mulFadeOut = Mth.func_76131_a(1.0f - this.stopTick / this.fadeOutTicks, 0.0f, 1.0f);
+        final float mulFadeIn = Mth.canEnchant(this.tick / this.fadeInTicks, 0.0f, 1.0f);
+        final float mulFadeOut = Mth.canEnchant(1.0f - this.stopTick / this.fadeOutTicks, 0.0f, 1.0f);
         return mulFadeIn * mulFadeOut * super.func_147653_e() * this.volumeMultiplier;
     }
     

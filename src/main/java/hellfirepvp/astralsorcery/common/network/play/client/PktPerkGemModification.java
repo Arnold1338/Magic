@@ -106,7 +106,7 @@ public class PktPerkGemModification extends ASPacket<PktPerkGemModification>
         if (!toInsert.isEmpty() && toInsert.getItem() instanceof GemSocketItem) {
             final GemSocketItem socketItem = (GemSocketItem)toInsert.getItem();
             if (socketItem.canBeInserted(toInsert, socketPerk, player, prog, LogicalSide.SERVER) && !socketPerk.hasItem(player, LogicalSide.SERVER) && socketPerk.setContainedItem(player, LogicalSide.SERVER, toInsert)) {
-                player.getInventory().func_70299_a(packet.slotId, ItemUtils.copyStackWithSize(stack, stack.func_190916_E() - 1));
+                player.getInventory().func_70299_a(packet.slotId, ItemUtils.copyStackWithSize(stack, stack.getCount() - 1));
             }
         }
     }

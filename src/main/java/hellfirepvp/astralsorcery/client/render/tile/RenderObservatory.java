@@ -22,9 +22,9 @@ public class RenderObservatory extends CustomTileEntityRenderer<TileObservatory>
     }
     
     public void render(final TileObservatory tile, final float pTicks, final PoseStack renderStack, final MultiBufferSource renderTypeBuffer, final int combinedLight, final int combinedOverlay) {
-        final Player player = (Player)Minecraft.getInstance().field_71439_g;
+        final Player player = (Player)Minecraft.getInstance().player;
         final Entity ridden;
-        if (player != null && (ridden = Minecraft.getInstance().field_71439_g.getVehicle()) != null && ridden instanceof EntityObservatoryHelper && ((EntityObservatoryHelper)ridden).getAssociatedObservatory() != null) {
+        if (player != null && (ridden = Minecraft.getInstance().player.getVehicle()) != null && ridden instanceof EntityObservatoryHelper && ((EntityObservatoryHelper)ridden).getAssociatedObservatory() != null) {
             ((EntityObservatoryHelper)ridden).applyObservatoryRotationsFrom(tile, player, false);
         }
         final float prevYaw = tile.prevObservatoryYaw;
@@ -33,13 +33,13 @@ public class RenderObservatory extends CustomTileEntityRenderer<TileObservatory>
         final float pitch = tile.observatoryPitch;
         final float iYawDegree = RenderingVectorUtils.interpolateRotation(prevYaw + 180.0f, yaw + 180.0f, pTicks);
         final float iPitchDegree = RenderingVectorUtils.interpolateRotation(prevPitch, pitch, pTicks);
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(0.5, 1.5, 0.5);
-        renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(180.0f));
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(180.0f));
+        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
+        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
         RenderObservatory.MODEL_OBSERVATORY.setupRotations(iYawDegree, iPitchDegree);
         RenderObservatory.MODEL_OBSERVATORY.render(renderStack, renderTypeBuffer, combinedLight, combinedOverlay);
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     static {

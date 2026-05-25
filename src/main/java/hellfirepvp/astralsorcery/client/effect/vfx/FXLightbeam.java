@@ -54,18 +54,18 @@ public class FXLightbeam extends EntityVisualFX
         final Vector3 perpFrom = perp.multiply(this.fromSize * scale);
         final SpriteSheetResource ssr = ctx.getSprite();
         final Tuple<Float, Float> uvOffset = ssr.getUVOffset(this.age);
-        final float u = (float)uvOffset.func_76341_a();
-        final float v = (float)uvOffset.func_76340_b();
+        final float u = (float)uvOffset.getA();
+        final float v = (float)uvOffset.getB();
         final float uWidth = ssr.getULength();
         final float vHeight = ssr.getVLength();
-        final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
+        final Matrix4f matr = renderStack.last().translate();
         Vector3 vec = this.to.clone().add(perpTo.clone().multiply(-1)).subtract(renderOffset);
-        vec.drawPos(matr, vb).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vHeight).func_181675_d();
+        vec.drawPos(matr, vb).setPos(r, g, b, a).setPos(u, v + vHeight).blockPosition();
         vec = this.to.clone().add(perpTo).subtract(renderOffset);
-        vec.drawPos(matr, vb).func_225586_a_(r, g, b, a).func_225583_a_(u + uWidth, v + vHeight).func_181675_d();
+        vec.drawPos(matr, vb).setPos(r, g, b, a).setPos(u + uWidth, v + vHeight).blockPosition();
         vec = this.from.clone().add(perpFrom).subtract(renderOffset);
-        vec.drawPos(matr, vb).func_225586_a_(r, g, b, a).func_225583_a_(u + uWidth, v).func_181675_d();
+        vec.drawPos(matr, vb).setPos(r, g, b, a).setPos(u + uWidth, v).blockPosition();
         vec = this.from.clone().add(perpFrom.clone().multiply(-1)).subtract(renderOffset);
-        vec.drawPos(matr, vb).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_181675_d();
+        vec.drawPos(matr, vb).setPos(r, g, b, a).setPos(u, v).blockPosition();
     }
 }

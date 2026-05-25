@@ -59,7 +59,7 @@ public class WorldContext
         return this.activeCelestialsHandler;
     }
     
-    public void tick(final World world) {
+    public void tick(final Level world) {
         this.celestialHandler.tick(world);
         this.constellationHandler.tick(world);
         this.distributionHandler.tick(world);

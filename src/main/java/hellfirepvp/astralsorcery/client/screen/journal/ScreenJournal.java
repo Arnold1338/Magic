@@ -103,11 +103,11 @@ public class ScreenJournal extends WidthHeightScreen
         final int actualWidth = width;
         RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offsetX, offsetY, zLevel, (float)actualWidth, (float)height).draw());
         RenderSystem.disableBlend();
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_((double)(offsetX + 2.0f), (double)(offsetY + 4.0f), (double)(zLevel + 50.0f));
-        renderStack.func_227862_a_(0.7f, 0.7f, 0.7f);
+        renderStack.translate(0.7f, 0.7f, 0.7f);
         RenderingDrawUtils.renderStringAt(null, renderStack, (ITextProperties)title, titleRGBColor);
-        renderStack.func_227865_b_();
+        renderStack.scale();
         return r;
     }
     

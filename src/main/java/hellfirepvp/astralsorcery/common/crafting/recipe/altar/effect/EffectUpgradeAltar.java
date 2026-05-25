@@ -17,7 +17,7 @@ public class EffectUpgradeAltar extends AltarRecipeEffect
     public void onTick(final TileAltar altar, final ActiveSimpleAltarRecipe.CraftingState state) {
         final ParticleEngine mgr = Minecraft.getInstance().field_71452_i;
         if (state == ActiveSimpleAltarRecipe.CraftingState.ACTIVE && EffectUpgradeAltar.rand.nextInt(8) == 0) {
-            mgr.func_180533_a(altar.func_174877_v(), BlocksAS.MARBLE_RUNED.defaultBlockState());
+            mgr.func_180533_a(altar.getBlockState(), BlocksAS.MARBLE_RUNED.defaultBlockState());
         }
     }
     

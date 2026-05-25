@@ -21,11 +21,11 @@ public class WorldFilteredPlacement extends Placement<WorldFilterConfig>
         super((Codec)WorldFilterConfig.CODEC);
     }
     
-    public ConfiguredPlacement<WorldFilterConfig> inWorlds(final boolean ignoreFilter, final List<RegistryKey<World>> worlds) {
+    public ConfiguredPlacement<WorldFilterConfig> inWorlds(final boolean ignoreFilter, final List<RegistryKey<Level>> worlds) {
         return this.inWorlds(() -> ignoreFilter, () -> worlds);
     }
     
-    public ConfiguredPlacement<WorldFilterConfig> inWorlds(final Supplier<Boolean> ignoreFilter, final Supplier<List<RegistryKey<World>>> worlds) {
+    public ConfiguredPlacement<WorldFilterConfig> inWorlds(final Supplier<Boolean> ignoreFilter, final Supplier<List<RegistryKey<Level>>> worlds) {
         return (ConfiguredPlacement<WorldFilterConfig>)this.func_227446_a_((PlacementModifier)new WorldFilterConfig(ignoreFilter, worlds));
     }
     

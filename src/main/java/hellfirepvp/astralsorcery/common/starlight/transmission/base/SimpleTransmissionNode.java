@@ -50,7 +50,7 @@ public class SimpleTransmissionNode implements ITransmissionNode
         return this.thisPos;
     }
     
-    public void updateIgnoreBlockCollisionState(final World world, final boolean ignoreBlockCollision) {
+    public void updateIgnoreBlockCollisionState(final Level world, final boolean ignoreBlockCollision) {
         this.ignoreBlockCollision = ignoreBlockCollision;
         final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(world);
         if (this.assistNext != null && handle != null) {
@@ -67,7 +67,7 @@ public class SimpleTransmissionNode implements ITransmissionNode
     }
     
     @Override
-    public boolean notifyUnlink(final World world, final BlockPos to) {
+    public boolean notifyUnlink(final Level world, final BlockPos to) {
         if (to.equals((Object)this.nextPos)) {
             this.nextPos = null;
             this.assistNext = null;
@@ -79,11 +79,11 @@ public class SimpleTransmissionNode implements ITransmissionNode
     }
     
     @Override
-    public void notifyLink(final World world, final BlockPos pos) {
+    public void notifyLink(final Level world, final BlockPos pos) {
         this.addLink(world, pos, true, false);
     }
     
-    private void addLink(final World world, final BlockPos pos, final boolean doRayTest, final boolean oldRayState) {
+    private void addLink(final Level world, final BlockPos pos, final boolean doRayTest, final boolean oldRayState) {
         this.nextPos = pos;
         this.assistNext = new RaytraceAssist(this.thisPos, this.nextPos);
         if (doRayTest) {
@@ -96,7 +96,7 @@ public class SimpleTransmissionNode implements ITransmissionNode
     }
     
     @Override
-    public boolean notifyBlockChange(final World world, final BlockPos at) {
+    public boolean notifyBlockChange(final Level world, final BlockPos at) {
         if (this.nextPos == null) {
             return false;
         }
@@ -112,12 +112,12 @@ public class SimpleTransmissionNode implements ITransmissionNode
     }
     
     @Override
-    public void notifySourceLink(final World world, final BlockPos source) {
+    public void notifySourceLink(final Level world, final BlockPos source) {
         this.sourcesToThis.add(source);
     }
     
     @Override
-    public void notifySourceUnlink(final World world, final BlockPos source) {
+    public void notifySourceUnlink(final Level world, final BlockPos source) {
         this.sourcesToThis.remove(source);
     }
     

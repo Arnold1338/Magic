@@ -70,9 +70,9 @@ public class RenderPageStructure extends RenderablePage
         this.name = name;
         this.shift = shift;
         this.contentStacks = new ArrayList<Tuple<ItemStack, ITextProperties>>();
-        structure.getAsStacks((IBlockReader)this.structureRenderer.getRenderWorld(), (Player)Minecraft.getInstance().field_71439_g).forEach(stack -> {
+        structure.getAsStacks((IBlockReader)this.structureRenderer.getRenderWorld(), (Player)Minecraft.getInstance().player).forEach(stack -> {
             final ItemStack display = ItemUtils.copyStackWithSize(stack, 1);
-            new Component(stack.func_190916_E() + "x ");
+            new Component(stack.getCount() + "x ");
             final Component stringTextComponent;
             final ITextProperties description = (ITextProperties)stringTextComponent.func_230529_a_(stack.func_200301_q());
             this.contentStacks.add((Tuple<ItemStack, ITextProperties>)new Tuple((Object)display, (Object)description));
@@ -113,29 +113,29 @@ public class RenderPageStructure extends RenderablePage
             }
             if (minSlice <= yLevel - 1) {
                 this.sliceDown = new Rectangle2D.Float(offsetX + 160.0f, offsetY + 28.0f, 11.0f, 16.0f);
-                renderStack.func_227860_a_();
+                renderStack.popPose();
                 renderStack.func_227861_a_((double)(this.sliceDown.x + this.sliceDown.width / 2.0f), (double)(this.sliceDown.y + this.sliceDown.height / 2.0f), (double)zLevel);
                 float v = 0.5f;
                 if (this.sliceDown.contains(mouseX, mouseY)) {
                     v = 0.25f;
-                    renderStack.func_227862_a_(1.1f, 1.1f, 1.0f);
+                    renderStack.translate(1.1f, 1.1f, 1.0f);
                 }
                 renderStack.func_227861_a_((double)(-this.sliceDown.width / 2.0f), (double)(-this.sliceDown.height / 2.0f), 0.0);
                 RenderingGuiUtils.drawTexturedRect(renderStack, this.sliceDown.width, this.sliceDown.height, 0.375f, v, 0.34375f, 0.25f);
-                renderStack.func_227865_b_();
+                renderStack.scale();
             }
             if (maxSlice >= yLevel + 1) {
                 this.sliceUp = new Rectangle2D.Float(offsetX + 148.0f, offsetY + 28.0f, 11.0f, 16.0f);
-                renderStack.func_227860_a_();
+                renderStack.popPose();
                 renderStack.func_227861_a_((double)(this.sliceUp.x + this.sliceUp.width / 2.0f), (double)(this.sliceUp.y + this.sliceUp.height / 2.0f), (double)zLevel);
                 float v = 0.5f;
                 if (this.sliceUp.contains(mouseX, mouseY)) {
                     v = 0.25f;
-                    renderStack.func_227862_a_(1.1f, 1.1f, 1.0f);
+                    renderStack.translate(1.1f, 1.1f, 1.0f);
                 }
                 renderStack.func_227861_a_((double)(-this.sliceUp.width / 2.0f), (double)(-this.sliceUp.height / 2.0f), 0.0);
                 RenderingGuiUtils.drawTexturedRect(renderStack, this.sliceUp.width, this.sliceUp.height, 0.0f, v, 0.34375f, 0.25f);
-                renderStack.func_227865_b_();
+                renderStack.scale();
             }
         }
         this.switchRequiredAir = new Rectangle2D.Float(offsetX + 134.0f, offsetY + 10.0f, 16.0f, 16.0f);
@@ -144,13 +144,13 @@ public class RenderPageStructure extends RenderablePage
             BlockAtlasTexture.getInstance().bindTexture();
             RenderSystem.depthMask(false);
             RenderingUtils.draw(7, DefaultVertexFormat.field_176600_a, buf -> {
-                renderStack.func_227860_a_();
+                renderStack.popPose();
                 renderStack.func_227861_a_((double)(this.switchRequiredAir.x + 13.0f), (double)(this.switchRequiredAir.y + 11.0f), (double)(zLevel + 60.0f));
-                renderStack.func_227862_a_(7.0f, -7.0f, 7.0f);
-                renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(30.0f));
-                renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(225.0f));
+                renderStack.translate(7.0f, -7.0f, 7.0f);
+                renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()30.0f));
+                renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()225.0f));
                 RenderingUtils.renderSimpleBlockModel(Blocks.field_196824_gy.defaultBlockState(), renderStack, (VertexConsumer)buf);
-                renderStack.func_227865_b_();
+                renderStack.scale();
                 return;
             });
             RenderSystem.depthMask(true);
@@ -162,7 +162,7 @@ public class RenderPageStructure extends RenderablePage
         final int minSlice = this.structure.getMinimumOffset().getY();
         if (!this.showAirBlocks) {
             for (int yy = minSlice; yy <= this.structure.getMaximumOffset().getY(); ++yy) {
-                final boolean onlyAir = this.structure.getStructureSlice(yy).stream().allMatch(tpl -> tpl.func_76340_b().equals(MatchableState.REQUIRES_AIR));
+                final boolean onlyAir = this.structure.getStructureSlice(yy).stream().allMatch(tpl -> tpl.getB().equals(MatchableState.REQUIRES_AIR));
                 if (!onlyAir) {
                     return yy;
                 }
@@ -175,7 +175,7 @@ public class RenderPageStructure extends RenderablePage
         final int maxSlice = this.structure.getMaximumOffset().getY();
         if (!this.showAirBlocks) {
             for (int yy = maxSlice; yy >= this.structure.getMinimumOffset().getY(); --yy) {
-                final boolean onlyAir = this.structure.getStructureSlice(yy).stream().allMatch(tpl -> tpl.func_76340_b().equals(MatchableState.REQUIRES_AIR));
+                final boolean onlyAir = this.structure.getStructureSlice(yy).stream().allMatch(tpl -> tpl.getB().equals(MatchableState.REQUIRES_AIR));
                 if (!onlyAir) {
                     return yy;
                 }
@@ -187,11 +187,11 @@ public class RenderPageStructure extends RenderablePage
     private void renderHeadline(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final ITextProperties title) {
         final float scale = 1.3f;
         RenderSystem.disableDepthTest();
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_((double)offsetX, (double)offsetY, (double)zLevel);
-        renderStack.func_227862_a_(scale, scale, scale);
+        renderStack.translate(scale, scale, scale);
         RenderingDrawUtils.renderStringAt(title, renderStack, null, 14540253, true);
-        renderStack.func_227865_b_();
+        renderStack.scale();
         RenderSystem.enableDepthTest();
     }
     
@@ -202,11 +202,11 @@ public class RenderPageStructure extends RenderablePage
         final ITextProperties description = (ITextProperties)new Component(String.format("%s - %s - %s", size.getBlockX(), size.getBlockY(), size.getBlockZ()));
         final float length = fr.func_238414_a_(description) * scale;
         RenderSystem.disableDepthTest();
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_((double)offsetX, (double)offsetY, (double)zLevel);
-        renderStack.func_227862_a_(scale, scale, scale);
+        renderStack.translate(scale, scale, scale);
         RenderingDrawUtils.renderStringAt(description, renderStack, fr, 14540253, true);
-        renderStack.func_227865_b_();
+        renderStack.scale();
         this.drawSlice.ifPresent(yLevel -> {
             final int min = this.getCurrentMinSlice();
             final int max = this.getCurrentMaxSlice();
@@ -215,11 +215,11 @@ public class RenderPageStructure extends RenderablePage
             new Component(String.format("%s / %s", level + 1, height + 1));
             final Component stringTextComponent;
             final ITextProperties slice = (ITextProperties)stringTextComponent;
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_((double)offsetX, (double)(offsetY + 14.0f), (double)zLevel);
-            renderStack.func_227862_a_(scale, scale, scale);
+            renderStack.translate(scale, scale, scale);
             RenderingDrawUtils.renderStringAt(slice, renderStack, fr, 14540253, true);
-            renderStack.func_227865_b_();
+            renderStack.scale();
             return;
         });
         RenderSystem.enableDepthTest();
@@ -239,11 +239,11 @@ public class RenderPageStructure extends RenderablePage
     
     @Override
     public void postRender(final PoseStack renderStack, final float x, final float y, final float z, final float pTicks, final float mouseX, final float mouseY) {
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_((double)(x + 160.0f), (double)(y + 10.0f), (double)z);
         final Rectangle rect = RenderingDrawUtils.drawInfoStar(renderStack, IDrawRenderTypeBuffer.defaultBuffer(), 15.0f, pTicks);
         rect.translate((int)(x + 160.0f), (int)(y + 10.0f));
-        renderStack.func_227865_b_();
+        renderStack.scale();
         if (rect.contains(mouseX, mouseY)) {
             RenderingDrawUtils.renderBlueTooltip(renderStack, x + 160.0f, y + 10.0f, z + 650.0f, this.contentStacks, RenderablePage.getFontRenderer(), false);
         }

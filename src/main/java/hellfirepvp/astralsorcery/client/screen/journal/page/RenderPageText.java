@@ -40,12 +40,12 @@ public class RenderPageText extends RenderablePage
     
     @Override
     public void render(final PoseStack renderStack, final float x, final float y, final float z, final float pTicks, final float mouseX, final float mouseY) {
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_((double)x, (double)y, (double)z);
         for (final FormattedCharSequence text : this.localizedText) {
             RenderingDrawUtils.renderStringAt(text, renderStack, this.fontRenderer, 13421772, false);
             renderStack.func_227861_a_(0.0, 10.0, 0.0);
         }
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
 }

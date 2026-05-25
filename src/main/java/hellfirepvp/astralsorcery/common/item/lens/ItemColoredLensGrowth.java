@@ -39,19 +39,19 @@ public class ItemColoredLensGrowth extends ItemColoredLens
         }
         
         @Override
-        public void entityInBeam(final World world, final Vector3 origin, final Vector3 target, final Entity entity, final PartialEffectExecutor executor) {
+        public void entityInBeam(final Level world, final Vector3 origin, final Vector3 target, final Entity entity, final PartialEffectExecutor executor) {
         }
         
         @Override
-        public void blockInBeam(final World world, final BlockPos pos, final BlockState state, final PartialEffectExecutor executor) {
-            if (world.func_201670_d()) {
+        public void blockInBeam(final Level world, final BlockPos pos, final BlockState state, final PartialEffectExecutor executor) {
+            if (world.level()) {
                 return;
             }
             final CropHelper.GrowablePlant plant = CropHelper.wrapPlant((IWorld)world, pos);
             if (plant != null) {
                 executor.executeAll(() -> {
-                    if (ItemColoredLensGrowth.field_77697_d.nextInt(18) == 0) {
-                        plant.tryGrow((IWorld)world, ItemColoredLensGrowth.field_77697_d);
+                    if (ItemColoredLensGrowth.count.nextInt(18) == 0) {
+                        plant.tryGrow((IWorld)world, ItemColoredLensGrowth.count);
                         final PktPlayEffect packet = new PktPlayEffect(PktPlayEffect.Type.CROP_GROWTH).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vector3i)pos)));
                         PacketChannel.CHANNEL.sendToAllAround(packet, PacketChannel.pointFromPos(world, (Vector3i)pos, 16.0));
                     }

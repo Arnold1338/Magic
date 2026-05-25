@@ -8,15 +8,15 @@ import net.minecraft.world.entity.EntityType;
 
 public class EntityDazzlingGem extends EntityItemExplosionResistant
 {
-    public EntityDazzlingGem(final EntityType<? extends ItemEntity> type, final World world) {
+    public EntityDazzlingGem(final EntityType<? extends ItemEntity> type, final Level world) {
         super(type, world);
     }
     
-    public EntityDazzlingGem(final EntityType<? extends ItemEntity> type, final World world, final double x, final double y, final double z) {
+    public EntityDazzlingGem(final EntityType<? extends ItemEntity> type, final Level world, final double x, final double y, final double z) {
         super(type, world, x, y, z);
     }
     
-    public EntityDazzlingGem(final EntityType<? extends ItemEntity> type, final World world, final double x, final double y, final double z, final ItemStack stack) {
+    public EntityDazzlingGem(final EntityType<? extends ItemEntity> type, final Level world, final double x, final double y, final double z, final ItemStack stack) {
         super(type, world, x, y, z, stack);
     }
     
@@ -27,7 +27,7 @@ public class EntityDazzlingGem extends EntityItemExplosionResistant
     @Override
     public void func_70071_h_() {
         super.tick();
-        if (!this.field_70170_p.func_201670_d() && this.field_70292_b + 10 >= this.lifespan) {
+        if (!this.level().level() && this.field_70292_b + 10 >= this.lifespan) {
             this.field_70292_b = 0;
         }
     }

@@ -28,19 +28,19 @@ public class BlockFreezingRecipe extends WorldFreezingRecipe
     }
     
     public static BlockFreezingRecipe of(final BlockState stateIn, final BlockState stateOut) {
-        return new BlockFreezingRecipe(AstralSorcery.key(stateIn.getBlock().getRegistryName().func_110623_a()), BlockPredicates.isState(stateIn), stateOut);
+        return new BlockFreezingRecipe(AstralSorcery.key(stateIn.getBlock().getRegistryName().addTransientModifier()), BlockPredicates.isState(stateIn), stateOut);
     }
     
     public static BlockFreezingRecipe of(final Block blockIn, final BlockState stateOut) {
-        return new BlockFreezingRecipe(AstralSorcery.key(blockIn.getRegistryName().func_110623_a()), BlockPredicates.isBlock(blockIn), stateOut);
+        return new BlockFreezingRecipe(AstralSorcery.key(blockIn.getRegistryName().addTransientModifier()), BlockPredicates.isBlock(blockIn), stateOut);
     }
     
     public static BlockFreezingRecipe of(final ITag.INamedTag<Block> blockTagIn, final BlockState stateOut) {
-        return new BlockFreezingRecipe(AstralSorcery.key(String.format("tag_%s", blockTagIn.func_230234_a_().func_110623_a())), BlockPredicates.isInTag((ITag<Block>)blockTagIn), stateOut);
+        return new BlockFreezingRecipe(AstralSorcery.key(String.format("tag_%s", blockTagIn.func_230234_a_().addTransientModifier())), BlockPredicates.isInTag((ITag<Block>)blockTagIn), stateOut);
     }
     
     @Override
-    public void doOutput(final World world, final BlockPos pos, final BlockState state, final Consumer<ItemStack> itemOutput) {
+    public void doOutput(final Level world, final BlockPos pos, final BlockState state, final Consumer<ItemStack> itemOutput) {
         final BlockState generated = this.outputGenerator.apply(WorldBlockPos.wrapServer(world, pos), state);
         if (generated != state) {
             world.func_180501_a(pos, generated, 11);

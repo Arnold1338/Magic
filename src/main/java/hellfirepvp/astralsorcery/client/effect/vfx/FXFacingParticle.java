@@ -24,6 +24,6 @@ public class FXFacingParticle extends EntityVisualFX
         final float fScale = this.getScale(pTicks);
         final Color col = this.getColor(pTicks);
         final Tuple<Float, Float> uvOffset = ssr.getUVOffset(this.getAge());
-        RenderingDrawUtils.renderFacingQuadVB(vb, renderStack, vec.getX(), vec.getY(), vec.getZ(), fScale, 0.0f, (float)uvOffset.func_76341_a(), (float)uvOffset.func_76340_b(), ssr.getULength(), ssr.getVLength(), col.getRed(), col.getGreen(), col.getBlue(), alpha);
+        RenderingDrawUtils.renderFacingQuadVB(vb, renderStack, vec.getX(), vec.getY(), vec.getZ(), fScale, 0.0f, (float)uvOffset.getA(), (float)uvOffset.getB(), ssr.getULength(), ssr.getVLength(), col.getRed(), col.getGreen(), col.getBlue(), alpha);
     }
 }

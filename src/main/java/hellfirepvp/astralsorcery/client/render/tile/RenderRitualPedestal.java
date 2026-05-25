@@ -34,20 +34,20 @@ public class RenderRitualPedestal extends CustomTileEntityRenderer<TileRitualPed
         if (display.getItem() instanceof ItemAttunedCelestialCrystal) {
             display = new ItemStack((ItemLike)BlocksAS.CELESTIAL_COLLECTOR_CRYSTAL);
         }
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(0.5, 0.8999999761581421, 0.5);
-        renderStack.func_227862_a_(2.0f, 2.0f, 2.0f);
+        renderStack.translate(2.0f, 2.0f, 2.0f);
         RenderingUtils.renderTranslucentItemStackModelGround(display, renderStack, Color.WHITE, Blending.DEFAULT, 255);
-        renderStack.func_227865_b_();
+        renderStack.scale();
         final IWeakConstellation ritualConstellation = tile.getRitualConstellation();
         if (ritualConstellation != null) {
-            final long seed = RenderingUtils.getPositionSeed(tile.func_174877_v());
+            final long seed = RenderingUtils.getPositionSeed(tile.getBlockState());
             final int scales = tile.isWorking() ? 24 : 12;
             final int count = tile.isWorking() ? 16 : 12;
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_(0.5, 1.2000000476837158, 0.5);
             RenderingDrawUtils.renderLightRayFan(renderStack, renderTypeBuffer, ritualConstellation.getConstellationColor(), seed, scales, (float)scales, count);
-            renderStack.func_227865_b_();
+            renderStack.scale();
         }
     }
 }

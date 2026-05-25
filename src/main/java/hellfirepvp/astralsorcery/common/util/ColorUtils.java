@@ -26,7 +26,7 @@ public class ColorUtils
     }
     
     public static int blendColors(final int color1, final int color2, final float color1Ratio) {
-        final float ratio1 = Mth.func_76131_a(color1Ratio, 0.0f, 1.0f);
+        final float ratio1 = Mth.canEnchant(color1Ratio, 0.0f, 1.0f);
         final float ratio2 = 1.0f - ratio1;
         final int a1 = (color1 & 0xFF000000) >> 24;
         final int r1 = (color1 & 0xFF0000) >> 16;
@@ -36,10 +36,10 @@ public class ColorUtils
         final int r2 = (color2 & 0xFF0000) >> 16;
         final int g2 = (color2 & 0xFF00) >> 8;
         final int b2 = color2 & 0xFF;
-        final int a3 = Mth.func_76125_a(Math.round(a1 * ratio1 + a2 * ratio2), 0, 255);
-        final int r3 = Mth.func_76125_a(Math.round(r1 * ratio1 + r2 * ratio2), 0, 255);
-        final int g3 = Mth.func_76125_a(Math.round(g1 * ratio1 + g2 * ratio2), 0, 255);
-        final int b3 = Mth.func_76125_a(Math.round(b1 * ratio1 + b2 * ratio2), 0, 255);
+        final int a3 = Mth.getDescriptionId(Math.round(a1 * ratio1 + a2 * ratio2), 0, 255);
+        final int r3 = Mth.getDescriptionId(Math.round(r1 * ratio1 + r2 * ratio2), 0, 255);
+        final int g3 = Mth.getDescriptionId(Math.round(g1 * ratio1 + g2 * ratio2), 0, 255);
+        final int b3 = Mth.getDescriptionId(Math.round(b1 * ratio1 + b2 * ratio2), 0, 255);
         return a3 << 24 | r3 << 16 | g3 << 8 | b3;
     }
     

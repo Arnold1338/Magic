@@ -31,7 +31,7 @@ public class PerkTreeLoader extends JsonReloadListener
     }
     
     protected void apply(final Map<ResourceLocation, JsonElement> dataMap, final IResourceManager resourceManager, final IProfiler profiler) {
-        final Collection<JsonObject> loadingPerkObjects = MapStream.of(dataMap).filterKey(key -> !key.func_110623_a().startsWith("_")).filterValue(JsonElement::isJsonObject).mapValue(JsonElement::getAsJsonObject).valueStream().collect((Collector<? super JsonObject, ?, Collection<JsonObject>>)Collectors.toList());
+        final Collection<JsonObject> loadingPerkObjects = MapStream.of(dataMap).filterKey(key -> !key.addTransientModifier().startsWith("_")).filterValue(JsonElement::isJsonObject).mapValue(JsonElement::getAsJsonObject).valueStream().collect((Collector<? super JsonObject, ?, Collection<JsonObject>>)Collectors.toList());
         PerkTree.PERK_TREE.updateOriginPerkTree(loadPerkTree(loadingPerkObjects));
     }
     

@@ -46,7 +46,7 @@ public class MantleEffectOctans extends MantleEffect
             if (player.func_70086_ai() < player.func_205010_bg() - 20) {
                 player.func_70050_g(player.func_205010_bg());
             }
-            player.func_70691_i(((Double)MantleEffectOctans.CONFIG.healPerTick.get()).floatValue());
+            player.heal(((Double)MantleEffectOctans.CONFIG.healPerTick.get()).floatValue());
         }
     }
     
@@ -64,7 +64,7 @@ public class MantleEffectOctans extends MantleEffect
     private void handleUnderwaterBreakSpeed(final PlayerEvent.BreakSpeed event) {
         final Player player = event.getPlayer();
         if (player.func_208600_a((ITag)FluidTags.field_206959_a) && !EnchantmentHelper.func_185287_i((LivingEntity)player)) {
-            final LogicalSide side = player.func_130014_f_().func_201670_d() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+            final LogicalSide side = player.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
             final MantleEffectOctans octans = ItemMantle.getEffect((LivingEntity)player, ConstellationsAS.octans);
             if (octans != null && AlignmentChargeHandler.INSTANCE.hasCharge(player, side, (float)(int)MantleEffectOctans.CONFIG.chargeCostPerBreakSpeed.get())) {
                 final ItemStack existing = player.getItemBySlot(EquipmentSlot.HEAD);

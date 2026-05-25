@@ -41,11 +41,11 @@ public class ScreenContainerAltarRadiance extends ScreenContainerAltar<Container
         final SimpleAltarRecipe recipe = this.findRecipe(false);
         if (recipe != null) {
             final ItemStack out = recipe.getOutputForRender(this.func_212873_a_().getTileEntity().getInventory());
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_(190.0, 35.0, 0.0);
-            renderStack.func_227862_a_(2.5f, 2.5f, 1.0f);
+            renderStack.translate(2.5f, 2.5f, 1.0f);
             RenderingUtils.renderItemStackGUI(renderStack, out, null);
-            renderStack.func_227865_b_();
+            renderStack.scale();
         }
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
@@ -57,13 +57,13 @@ public class ScreenContainerAltarRadiance extends ScreenContainerAltar<Container
             final int x = ScreenContainerAltarRadiance.rand.nextInt(54);
             final int y = ScreenContainerAltarRadiance.rand.nextInt(54);
             final float brightness = 0.3f + RenderingConstellationUtils.stdFlicker(ClientScheduler.getClientTick(), pTicks, 10 + ScreenContainerAltarRadiance.rand.nextInt(20)) * 0.6f;
-            RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(15 + x), (float)(39 + y), (float)this.func_230927_p_(), 5.0f, 5.0f).color(brightness, brightness, brightness, brightness).draw());
+            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(15 + x), (float)(39 + y), (float)this.func_230927_p_(), 5.0f, 5.0f).color(brightness, brightness, brightness, brightness).draw());
         }
         final TileAltar altar = this.func_212873_a_().getTileEntity();
         final IConstellation c = altar.getFocusedConstellation();
         if (c != null && altar.hasMultiblock() && ResearchHelper.getClientProgress().hasConstellationDiscovered(c)) {
             ScreenContainerAltarRadiance.rand.setSeed(7061404134423019785L);
-            RenderingConstellationUtils.renderConstellationIntoGUI(c.getConstellationColor(), c, renderStack, 16.0f, 41.0f, (float)this.func_230927_p_(), 58.0f, 58.0f, 2.0, () -> 0.2f + 0.8f * RenderingConstellationUtils.conCFlicker(Minecraft.getInstance().field_71441_e.func_72820_D(), pTicks, 5 + ScreenContainerAltarRadiance.rand.nextInt(5)), true, false);
+            RenderingConstellationUtils.renderConstellationIntoGUI(c.getConstellationColor(), c, renderStack, 16.0f, 41.0f, (float)this.func_230927_p_(), 58.0f, 58.0f, 2.0, () -> 0.2f + 0.8f * RenderingConstellationUtils.conCFlicker(Minecraft.getInstance().level.func_72820_D(), pTicks, 5 + ScreenContainerAltarRadiance.rand.nextInt(5)), true, false);
         }
         RenderSystem.disableBlend();
         RenderSystem.enableDepthTest();

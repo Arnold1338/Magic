@@ -21,29 +21,29 @@ public class ModelLens extends CustomModel
         super(resKey -> RenderTypesAS.MODEL_LENS_SOLID);
         this.field_78090_t = 64;
         this.field_78089_u = 32;
-        (this.base = new ModelRenderer((Model)this, 0, 13)).func_78793_a(0.0f, 16.0f, 0.0f);
-        this.base.func_228301_a_(-6.0f, 4.0f, -6.0f, 12.0f, 2.0f, 12.0f, 0.0f);
-        (this.frame1 = new ModelRenderer((Model)this, 0, 13)).func_78793_a(0.0f, 16.0f, 0.0f);
-        this.frame1.func_228301_a_(-8.0f, -4.0f, -1.0f, 2.0f, 10.0f, 2.0f, 0.0f);
+        (this.base = new ModelRenderer((Model)this, 0, 13)).drawString(0.0f, 16.0f, 0.0f);
+        this.base.pushPose()-6.0f, 4.0f, -6.0f, 12.0f, 2.0f, 12.0f, 0.0f);
+        (this.frame1 = new ModelRenderer((Model)this, 0, 13)).drawString(0.0f, 16.0f, 0.0f);
+        this.frame1.pushPose()-8.0f, -4.0f, -1.0f, 2.0f, 10.0f, 2.0f, 0.0f);
         this.frame2 = new ModelRenderer((Model)this, 0, 13);
         this.frame2.field_78809_i = true;
-        this.frame2.func_78793_a(0.0f, 16.0f, 0.0f);
-        this.frame2.func_228301_a_(6.0f, -4.0f, -1.0f, 2.0f, 10.0f, 2.0f, 0.0f);
-        (this.lens = new ModelRenderer((Model)this, 0, 0)).func_78793_a(0.0f, 14.0f, 0.0f);
-        this.lens.func_228301_a_(-6.0f, -6.0f, -0.5f, 12.0f, 12.0f, 1.0f, 0.0f);
+        this.frame2.drawString(0.0f, 16.0f, 0.0f);
+        this.frame2.pushPose()6.0f, -4.0f, -1.0f, 2.0f, 10.0f, 2.0f, 0.0f);
+        (this.lens = new ModelRenderer((Model)this, 0, 0)).drawString(0.0f, 14.0f, 0.0f);
+        this.lens.pushPose()-6.0f, -6.0f, -0.5f, 12.0f, 12.0f, 1.0f, 0.0f);
     }
     
     public void renderFrame(final PoseStack matrixStackIn, final MultiBufferSource buffer, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha) {
         final VertexConsumer vb = buffer.getBuffer(RenderTypesAS.MODEL_LENS_SOLID);
-        this.base.func_228309_a_(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
-        this.frame1.func_228309_a_(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
-        this.frame2.func_228309_a_(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+        this.base.mulPose(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+        this.frame1.mulPose(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+        this.frame2.mulPose(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         RenderingUtils.refreshDrawing(vb, RenderTypesAS.MODEL_LENS_SOLID);
     }
     
     public void renderGlass(final PoseStack matrixStackIn, final MultiBufferSource buffer, final int packedLightIn, final int packedOverlayIn, final float red, final float green, final float blue, final float alpha) {
         final VertexConsumer vb = buffer.getBuffer(RenderTypesAS.MODEL_LENS_GLASS);
-        this.lens.func_228309_a_(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+        this.lens.mulPose(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         this.lens.field_78795_f = 0.0f;
         RenderingUtils.refreshDrawing(vb, RenderTypesAS.MODEL_LENS_GLASS);
     }

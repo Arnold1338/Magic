@@ -19,7 +19,7 @@ public abstract class EntityCameraRenderView extends ClientPlayerEntity
     private Vector3 cameraFocus;
     
     public EntityCameraRenderView() {
-        super(Minecraft.getInstance(), Minecraft.getInstance().field_71441_e, Minecraft.getInstance().field_71439_g.field_71174_a, Minecraft.getInstance().field_71439_g.func_146107_m(), Minecraft.getInstance().field_71439_g.func_199507_B(), false, false);
+        super(Minecraft.getInstance(), Minecraft.getInstance().level, Minecraft.getInstance().player.field_71174_a, Minecraft.getInstance().player.func_146107_m(), Minecraft.getInstance().player.func_199507_B(), false, false);
         this.cameraFocus = null;
         this.field_71075_bZ.field_75101_c = true;
         this.field_71075_bZ.field_75100_b = true;
@@ -47,7 +47,7 @@ public abstract class EntityCameraRenderView extends ClientPlayerEntity
         final double yaw = -angles.getZ();
         final double yawPrev = -prevAngles.getZ();
         if (propagate) {
-            ClientCameraUtil.positionCamera((Player)this, pTicks, this.func_226277_ct_(), this.func_226278_cu_(), this.func_226281_cx_(), this.field_70169_q, this.field_70167_r, this.field_70166_s, yaw, yawPrev, pitch, pitchPrev);
+            ClientCameraUtil.positionCamera((Player)this, pTicks, this.getX(), this.getY(), this.getZ(), this.field_70169_q, this.field_70167_r, this.field_70166_s, yaw, yawPrev, pitch, pitchPrev);
         }
     }
     

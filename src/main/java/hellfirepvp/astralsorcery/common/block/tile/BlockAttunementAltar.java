@@ -56,7 +56,7 @@ public class BlockAttunementAltar extends BaseEntityBlock implements CustomItemB
     
     static {
         PLACEMENT_BOX = new AABB(-1.0, 0.0, -1.0, 1.0, 1.0, 1.0);
-        ATTUNEMENT_ALTAR = Block.func_208617_a(-2.0, 0.0, -2.0, 18.0, 6.0, 18.0);
-        ATTUNEMENT_ALTAR_COLLISION = Block.func_208617_a(0.0, 0.0, 0.0, 16.0, 6.0, 16.0);
+        ATTUNEMENT_ALTAR = Block.of(-2.0, 0.0, -2.0, 18.0, 6.0, 18.0);
+        ATTUNEMENT_ALTAR_COLLISION = Block.of(0.0, 0.0, 0.0, 16.0, 6.0, 16.0);
     }
 }

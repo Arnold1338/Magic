@@ -78,12 +78,12 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         else {
             this.drawWHRect(renderStack, TexturesAS.TEX_GUI_REFRACTION_TABLE_EMPTY);
         }
-        if (DayTimeHelper.getCurrentDaytimeDistribution(this.getTile().func_145831_w()) <= 0.05 || !this.getTile().hasParchment()) {
+        if (DayTimeHelper.getCurrentDaytimeDistribution(this.getTile().getLevel()) <= 0.05 || !this.getTile().hasParchment()) {
             this.currentlyDrawnConstellations.clear();
             this.dragging = null;
         }
         final List<ITextProperties> tooltip = new ArrayList<ITextProperties>();
-        FontRenderer tooltipRenderer = Minecraft.getInstance().field_71466_p;
+        FontRenderer tooltipRenderer = Minecraft.getInstance().font;
         tooltipRenderer = this.renderTileItems(renderStack, mouseX, mouseY, tooltip, tooltipRenderer);
         this.renderConstellationOptions(renderStack, mouseX, mouseY, tooltip);
         this.renderRunningHalo(renderStack);
@@ -107,7 +107,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         offset.translate(-whDrawn, -whDrawn);
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
-        RenderingConstellationUtils.renderConstellationIntoGUI(this.dragging, renderStack, (float)offset.x, (float)offset.y, (float)this.getGuiZLevel(), (float)(whDrawn * 2), (float)(whDrawn * 2), 1.399999976158142, () -> DayTimeHelper.getCurrentDaytimeDistribution(this.getTile().func_145831_w()), true, false);
+        RenderingConstellationUtils.renderConstellationIntoGUI(this.dragging, renderStack, (float)offset.x, (float)offset.y, (float)this.getGuiZLevel(), (float)(whDrawn * 2), (float)(whDrawn * 2), 1.399999976158142, () -> DayTimeHelper.getCurrentDaytimeDistribution(this.getTile().getLevel()), true, false);
         RenderSystem.disableBlend();
         this.renderBox(renderStack, (float)offset.x, (float)offset.y, (float)(whDrawn * 2), (float)(whDrawn * 2), this.dragging.getTierRenderColor());
         final Rectangle r = new Rectangle(ScreenRefractionTable.PLACEMENT_GRID);
@@ -125,7 +125,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
             offset.translate(-whDrawn, -whDrawn);
             RenderSystem.enableBlend();
             Blending.DEFAULT.apply();
-            RenderingConstellationUtils.renderConstellationIntoGUI(dragged.getConstellation(), renderStack, (float)offset.x, (float)offset.y, (float)this.getGuiZLevel(), (float)(whDrawn * 2), (float)(whDrawn * 2), 1.399999976158142, () -> DayTimeHelper.getCurrentDaytimeDistribution(this.getTile().func_145831_w()), true, false);
+            RenderingConstellationUtils.renderConstellationIntoGUI(dragged.getConstellation(), renderStack, (float)offset.x, (float)offset.y, (float)this.getGuiZLevel(), (float)(whDrawn * 2), (float)(whDrawn * 2), 1.399999976158142, () -> DayTimeHelper.getCurrentDaytimeDistribution(this.getTile().getLevel()), true, false);
             RenderSystem.disableBlend();
         }
     }
@@ -137,11 +137,11 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         this.func_230926_e_(100);
         final ItemStack input = this.getTile().getInputStack();
         RenderSystem.disableDepthTest();
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(this.guiLeft + 63 + 16.25, this.guiTop + 42 + 16.25, (double)this.getGuiZLevel());
-        renderStack.func_227862_a_(6.0f, 6.0f, 1.0f);
+        renderStack.translate(6.0f, 6.0f, 1.0f);
         RenderingUtils.renderItemStackGUI(renderStack, input, null);
-        renderStack.func_227865_b_();
+        renderStack.scale();
         RenderSystem.enableDepthTest();
         this.func_230926_e_(0);
     }
@@ -156,11 +156,11 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
         RenderSystem.disableAlphaTest();
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_((double)(this.guiWidth / 2.0f), (double)(this.guiHeight / 2.0f), 0.0);
-        renderStack.func_227862_a_(-scale / 2.0f, -scale / 2.0f, 1.0f);
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).dim(scale, scale).color(1.0f, 1.0f, 1.0f, this.getTile().getRunProgress()).tex((float)uvFrame.func_76341_a(), (float)uvFrame.func_76340_b(), SpritesAS.SPR_HALO_INFUSION.getUWidth(), SpritesAS.SPR_HALO_INFUSION.getVWidth()).draw());
-        renderStack.func_227865_b_();
+        renderStack.translate(-scale / 2.0f, -scale / 2.0f, 1.0f);
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).dim(scale, scale).color(1.0f, 1.0f, 1.0f, this.getTile().getRunProgress()).tex((float)uvFrame.getA(), (float)uvFrame.getB(), SpritesAS.SPR_HALO_INFUSION.getUWidth(), SpritesAS.SPR_HALO_INFUSION.getVWidth()).draw());
+        renderStack.scale();
         RenderSystem.enableAlphaTest();
         Blending.DEFAULT.apply();
         RenderSystem.disableBlend();
@@ -171,7 +171,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         if (glass.isEmpty()) {
             return;
         }
-        final World world = this.getTile().func_145831_w();
+        final Level world = this.getTile().getLevel();
         final float nightPerc = DayTimeHelper.getCurrentDaytimeDistribution(world);
         final WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
         if (ctx == null || !this.getTile().doesSeeSky() || nightPerc <= 0.05f) {
@@ -199,14 +199,14 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         if (glass.isEmpty()) {
             return;
         }
-        final World world = this.getTile().func_145831_w();
+        final Level world = this.getTile().getLevel();
         final float nightPerc = DayTimeHelper.getCurrentDaytimeDistribution(world);
         final WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
         if (ctx == null || !this.getTile().doesSeeSky() || nightPerc <= 0.05f) {
             return;
         }
         final List<IConstellation> cstList = ctx.getActiveCelestialsHandler().getActiveConstellations().stream().filter(c -> ResearchHelper.getClientProgress().hasConstellationDiscovered(c)).collect((Collector<? super IConstellation, ?, List<IConstellation>>)Collectors.toList());
-        final Random rand = new Random(WorldSeedCache.getSeedIfPresent((RegistryKey<World>)world.dimension()).orElse(5863439008313086302L));
+        final Random rand = new Random(WorldSeedCache.getSeedIfPresent((RegistryKey<Level>)world.dimension()).orElse(5863439008313086302L));
         for (int i = 0; i < ctx.getConstellationHandler().getLastTrackedDay(); ++i) {
             rand.nextLong();
         }
@@ -232,31 +232,31 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         final ItemStack input = this.getTile().getInputStack();
         if (!input.isEmpty()) {
             final Rectangle itemRct = new Rectangle(this.guiLeft + 111, this.guiTop + 8, 16, 16);
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_((double)itemRct.x, (double)itemRct.y, (double)this.getGuiZLevel());
             RenderingUtils.renderItemStackGUI(renderStack, input, null);
-            renderStack.func_227865_b_();
+            renderStack.scale();
             if (itemRct.contains(mouseX, mouseY)) {
                 final FontRenderer custom = input.getItem().getFontRenderer(input);
                 if (custom != null) {
                     tooltipRenderer = custom;
                 }
-                tooltip.addAll(input.func_82840_a((Player)this.getMinecraft().field_71439_g, (TooltipFlag)(Minecraft.getInstance().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
+                tooltip.addAll(input.func_82840_a((Player)this.getMinecraft().player, (TooltipFlag)(Minecraft.getInstance().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
             }
         }
         final ItemStack glass = this.getTile().getGlassStack();
         if (!glass.isEmpty()) {
             final Rectangle itemRct2 = new Rectangle(this.guiLeft + 129, this.guiTop + 8, 16, 16);
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_((double)itemRct2.x, (double)itemRct2.y, (double)this.getGuiZLevel());
             RenderingUtils.renderItemStackGUI(renderStack, glass, null);
-            renderStack.func_227865_b_();
+            renderStack.scale();
             if (itemRct2.contains(mouseX, mouseY)) {
                 final FontRenderer custom2 = glass.getItem().getFontRenderer(glass);
                 if (custom2 != null) {
                     tooltipRenderer = custom2;
                 }
-                tooltip.addAll(glass.func_82840_a((Player)this.getMinecraft().field_71439_g, (TooltipFlag)(Minecraft.getInstance().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
+                tooltip.addAll(glass.func_82840_a((Player)this.getMinecraft().player, (TooltipFlag)(Minecraft.getInstance().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
             }
         }
         this.func_230926_e_(0);
@@ -276,15 +276,15 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         RenderSystem.disableTexture();
         RenderSystem.disableDepthTest();
         RenderingUtils.draw(1, DefaultVertexFormat.field_181706_f, buf -> {
-            final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).func_227885_a_(r, g, b, (float)alpha.get()).func_181675_d();
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).func_227885_a_(r, g, b, (float)alpha.get()).func_181675_d();
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).func_227885_a_(r, g, b, (float)alpha.get()).func_181675_d();
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).func_227885_a_(r, g, b, (float)alpha.get()).func_181675_d();
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).func_227885_a_(r, g, b, (float)alpha.get()).func_181675_d();
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).func_227885_a_(r, g, b, (float)alpha.get()).func_181675_d();
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).func_227885_a_(r, g, b, (float)alpha.get()).func_181675_d();
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).func_227885_a_(r, g, b, (float)alpha.get()).func_181675_d();
+            final Matrix4f offset = renderStack.last().translate();
+            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
+            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
+            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
+            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
+            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
+            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
+            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
+            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
             return;
         });
         RenderSystem.enableDepthTest();
@@ -299,7 +299,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         super.func_231023_e_();
         if (this.currentlyDrawnConstellations.size() >= 3) {
             final List<DrawnConstellation> copyList = new ArrayList<DrawnConstellation>(this.currentlyDrawnConstellations);
-            final PktEngraveGlass engraveGlass = new PktEngraveGlass((RegistryKey<World>)this.getTile().func_145831_w().dimension(), this.getTile().func_174877_v(), copyList);
+            final PktEngraveGlass engraveGlass = new PktEngraveGlass((RegistryKey<Level>)this.getTile().getLevel().dimension(), this.getTile().getBlockState(), copyList);
             PacketChannel.CHANNEL.sendToServer(engraveGlass);
             this.currentlyDrawnConstellations.clear();
         }

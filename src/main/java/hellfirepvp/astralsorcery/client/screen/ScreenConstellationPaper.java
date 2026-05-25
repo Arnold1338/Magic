@@ -40,7 +40,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen
     }
     
     private void resolvePhases() {
-        final WorldContext ctx = SkyHandler.getContext((World)Minecraft.getInstance().field_71441_e, LogicalSide.CLIENT);
+        final WorldContext ctx = SkyHandler.getContext((Level)Minecraft.getInstance().level, LogicalSide.CLIENT);
         if (ctx != null) {
             this.phases = new ArrayList<MoonPhase>();
             for (final MoonPhase phase : MoonPhase.values()) {
@@ -75,14 +75,14 @@ public class ScreenConstellationPaper extends WidthHeightScreen
     
     private void drawHeader(final PoseStack renderStack) {
         final MutableComponent name = this.constellation.getConstellationName();
-        final float length = this.field_230712_o_.func_238414_a_((ITextProperties)name) * 1.8f;
+        final float length = this.fogColor.func_238414_a_((ITextProperties)name) * 1.8f;
         final double offsetLeft = (this.field_230708_k_ >> 1) - length / 2.0f;
         final int offsetTop = this.guiTop + 45;
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(offsetLeft + 2.0, (double)offsetTop, (double)this.getGuiZLevel());
-        renderStack.func_227862_a_(1.8f, 1.8f, 1.0f);
-        RenderingDrawUtils.renderStringAt((ITextProperties)name, renderStack, this.field_230712_o_, -1437774515, false);
-        renderStack.func_227865_b_();
+        renderStack.translate(1.8f, 1.8f, 1.0f);
+        RenderingDrawUtils.renderStringAt((ITextProperties)name, renderStack, this.fogColor, -1437774515, false);
+        renderStack.scale();
     }
     
     private void drawConstellation(final PoseStack renderStack) {
@@ -99,7 +99,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen
         final List<MoonPhase> phases = (this.phases == null) ? Collections.emptyList() : this.phases;
         if (phases.isEmpty()) {
             final ITextProperties text = (ITextProperties)new Component("astralsorcery.journal.constellation.unknown");
-            RenderingDrawUtils.renderStringCentered(Minecraft.getInstance().field_71466_p, renderStack, text, this.guiLeft + this.guiWidth / 2 + 25, this.guiTop + 239, 1.8f, -1437774515);
+            RenderingDrawUtils.renderStringCentered(Minecraft.getInstance().font, renderStack, text, this.guiLeft + this.guiWidth / 2 + 25, this.guiTop + 239, 1.8f, -1437774515);
         }
         else {
             final int size = 16;

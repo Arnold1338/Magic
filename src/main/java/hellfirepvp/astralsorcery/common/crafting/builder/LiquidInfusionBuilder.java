@@ -41,7 +41,7 @@ public class LiquidInfusionBuilder extends CustomRecipeBuilder<LiquidInfusion>
     }
     
     public static LiquidInfusionBuilder builder(final ForgeRegistryEntry<?> nameProvider) {
-        return new LiquidInfusionBuilder(AstralSorcery.key(nameProvider.getRegistryName().func_110623_a()));
+        return new LiquidInfusionBuilder(AstralSorcery.key(nameProvider.getRegistryName().addTransientModifier()));
     }
     
     public static LiquidInfusionBuilder builder(final ResourceLocation id) {

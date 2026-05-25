@@ -63,7 +63,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
     public CEffectOctans(@Nonnull final ILocatable origin) {
         super(origin, ConstellationsAS.octans, (int)CEffectOctans.CONFIG.maxAmount.get(), (world, pos, state) -> {
             if (!CEffectOctans.corruptedSkipWaterCheck) {
-                pos = world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos).func_177977_b();
+                pos = world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos).renderItem();
             }
             return CEffectOctans.corruptedSkipWaterCheck || (world.isEmptyBlock(pos.above()) && state.getBlock() instanceof FlowingFluidBlock && state.func_185904_a() == Material.field_151586_h && (int)state.getValue((Property)FlowingFluidBlock.field_176367_b) == 0) || state.getBlock() instanceof BubbleColumnBlock;
         });
@@ -78,14 +78,14 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
     
     @Nullable
     @Override
-    public ListEntries.CounterMaxEntry createElement(final World world, BlockPos pos) {
-        pos = world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos).func_177977_b();
+    public ListEntries.CounterMaxEntry createElement(final Level world, BlockPos pos) {
+        pos = world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos).renderItem();
         return new ListEntries.CounterMaxEntry(pos, 1);
     }
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void playClientEffect(final World world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
+    public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         final ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
         final Vector3 at = new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5);
         at.addY(prop.getSize() * 0.75);
@@ -97,7 +97,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
     }
     
     @Override
-    public boolean playEffect(final World world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
+    public boolean playEffect(final Level world, final BlockPos pos, final ConstellationEffectProperties properties, @Nullable final IMinorConstellation trait) {
         if (!(world instanceof ServerLevel)) {
             return false;
         }
@@ -155,7 +155,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
             }
             update = true;
         }
-        if (this.findNewPosition(world, pos, properties).ifRight(attemptedPos -> this.sendConstellationPing(world, new Vector3((Vector3i)world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, attemptedPos).func_177977_b()).add(0.5, 0.5, 0.5))).left().isPresent()) {
+        if (this.findNewPosition(world, pos, properties).ifRight(attemptedPos -> this.sendConstellationPing(world, new Vector3((Vector3i)world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, attemptedPos).renderItem()).add(0.5, 0.5, 0.5))).left().isPresent()) {
             update = true;
         }
         return update;
@@ -176,7 +176,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
         builder.func_216015_a(LootParameters.field_237457_g_, (Object)Vec3.func_237489_a_((Vector3i)pos));
         final LootTable lootTable = world.func_73046_m().func_200249_aQ().func_186521_a(fromTable);
         for (final ItemStack loot : lootTable.func_216113_a(builder.func_216022_a(LootParameterSets.field_216262_c))) {
-            final ItemEntity ei = ItemUtils.dropItemNaturally((World)world, dropLoc.getX(), dropLoc.getY(), dropLoc.getZ(), loot);
+            final ItemEntity ei = ItemUtils.dropItemNaturally((Level)world, dropLoc.getX(), dropLoc.getY(), dropLoc.getZ(), loot);
             final Vector3 motion = new Vector3(ei.func_213322_ci());
             motion.setY(Math.abs(motion.getY()));
             ei.func_213317_d(motion.toVector3d());

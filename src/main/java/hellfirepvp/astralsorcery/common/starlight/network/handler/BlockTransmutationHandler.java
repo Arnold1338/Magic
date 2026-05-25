@@ -37,12 +37,12 @@ public class BlockTransmutationHandler implements StarlightNetworkRegistry.IStar
     private static final Map<WorldBlockPos, ActiveTransmutation> runningTransmutations;
     
     @Override
-    public boolean isApplicable(final World world, final BlockPos pos, final BlockState state, final IWeakConstellation starlightType) {
+    public boolean isApplicable(final Level world, final BlockPos pos, final BlockState state, final IWeakConstellation starlightType) {
         return RecipeTypesAS.TYPE_BLOCK_TRANSMUTATION.findRecipe(new BlockTransmutationContext((IWorld)world, pos, state, starlightType)) != null;
     }
     
     @Override
-    public void receiveStarlight(final World world, final Random rand, final BlockPos pos, final BlockState state, final IWeakConstellation starlightType, final double amount) {
+    public void receiveStarlight(final Level world, final Random rand, final BlockPos pos, final BlockState state, final IWeakConstellation starlightType, final double amount) {
         final BlockTransmutation recipe = RecipeTypesAS.TYPE_BLOCK_TRANSMUTATION.findRecipe(new BlockTransmutationContext((IWorld)world, pos, state, starlightType));
         if (recipe == null) {
             return;

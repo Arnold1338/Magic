@@ -68,7 +68,7 @@ public class SimpleAltarRecipeBuilder<T extends SimpleAltarRecipe> extends Custo
     }
     
     public SimpleAltarRecipeBuilder<T> setStarlightRequirement(final float percentOfAltarBar) {
-        this.recipe.setStarlightRequirement((int)(this.recipe.getAltarType().getStarlightCapacity() * Mth.func_76131_a(percentOfAltarBar, 0.0f, 1.0f)));
+        this.recipe.setStarlightRequirement((int)(this.recipe.getAltarType().getStarlightCapacity() * Mth.canEnchant(percentOfAltarBar, 0.0f, 1.0f)));
         return this;
     }
     
@@ -139,7 +139,7 @@ public class SimpleAltarRecipeBuilder<T extends SimpleAltarRecipe> extends Custo
         }
         
         public SimpleAltarRecipeBuilder<T> createRecipe(final ForgeRegistryEntry<?> nameProvider, final AltarType altarType) {
-            return this.createRecipe(AstralSorcery.key(nameProvider.getRegistryName().func_110623_a()), altarType);
+            return this.createRecipe(AstralSorcery.key(nameProvider.getRegistryName().addTransientModifier()), altarType);
         }
         
         public SimpleAltarRecipeBuilder<T> createRecipe(final ResourceLocation recipeId, final AltarType altarType) {

@@ -37,14 +37,14 @@ public class KeyCullingAttack extends KeyPerk
     
     private void onDamage(final LivingDamageEvent event) {
         final DamageSource source = event.getSource();
-        if (source.func_76346_g() != null && source.func_76346_g() instanceof Player) {
-            final Player player = (Player)source.func_76346_g();
+        if (source.getEnchantments( != null && source.getEnchantments( instanceof Player) {
+            final Player player = (Player)source.getEnchantments(;
             final LogicalSide side = this.getSide((Entity)player);
             final PlayerProgress prog = ResearchHelper.getProgress(player, side);
             if (side.isServer() && prog.getPerkData().hasPerkEffect(this)) {
                 final LivingEntity attacked = event.getEntityLiving();
                 final float actCull = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT, ((Double)KeyCullingAttack.CONFIG.cullHealth.get()).floatValue());
-                final float lifePerc = attacked.func_110143_aJ() / attacked.func_110138_aP();
+                final float lifePerc = attacked.getMaxHealth() / attacked.func_110138_aP();
                 if (lifePerc < actCull && AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)KeyCullingAttack.CONFIG.chargeCost.get(), false)) {
                     attacked.func_70606_j(0.0f);
                     attacked.func_184212_Q().func_187227_b(LivingEntity.field_184632_c, (Object)0.0f);

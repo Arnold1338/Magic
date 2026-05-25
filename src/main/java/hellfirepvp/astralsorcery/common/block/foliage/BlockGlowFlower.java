@@ -27,7 +27,7 @@ public class BlockGlowFlower extends BlockFlowerTemplate implements IPlantable
     }
     
     private VoxelShape createShape() {
-        return Block.func_208617_a(1.5, 0.0, 1.5, 14.5, 13.0, 14.5);
+        return Block.of(1.5, 0.0, 1.5, 14.5, 13.0, 14.5);
     }
     
     public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final CollisionContext ctx) {
@@ -38,7 +38,7 @@ public class BlockGlowFlower extends BlockFlowerTemplate implements IPlantable
     @Nonnull
     @Override
     public Effect func_220094_d() {
-        return Effects.field_188425_z;
+        return MobEffects.LEVITATION;
     }
     
     @Override

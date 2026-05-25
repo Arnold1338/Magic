@@ -31,12 +31,12 @@ public class MantleEffectFornax extends MantleEffect
     }
     
     private void onHurt(final LivingHurtEvent event) {
-        final World world = event.getEntityLiving().func_130014_f_();
-        if (world.func_201670_d()) {
+        final Level world = event.getEntityLiving().level();
+        if (world.level()) {
             return;
         }
         final LivingEntity attacked = event.getEntityLiving();
-        final Entity attacker = event.getSource().func_76346_g();
+        final Entity attacker = event.getSource().getEnchantments(;
         if (attacker instanceof LivingEntity) {
             if (attacked instanceof ServerPlayer && MiscUtils.isPlayerFakeMP((ServerPlayer)attacked)) {
                 return;
@@ -47,7 +47,7 @@ public class MantleEffectFornax extends MantleEffect
         }
         if (event.getSource().func_76347_k() && ItemMantle.getEffect(attacked, ConstellationsAS.fornax) != null) {
             if ((double)MantleEffectFornax.CONFIG.healPercentFromFireDamage.get() > 0.0) {
-                attacked.func_70691_i((float)(event.getAmount() * (double)MantleEffectFornax.CONFIG.healPercentFromFireDamage.get()));
+                attacked.heal((float)(event.getAmount() * (double)MantleEffectFornax.CONFIG.healPercentFromFireDamage.get()));
             }
             event.setAmount((float)(event.getAmount() * (double)MantleEffectFornax.CONFIG.damageReductionInFire.get()));
         }

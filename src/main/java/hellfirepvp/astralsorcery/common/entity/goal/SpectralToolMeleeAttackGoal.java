@@ -24,7 +24,7 @@ public class SpectralToolMeleeAttackGoal extends SpectralToolGoal
     }
     
     private LivingEntity findClosestAttackableEntity() {
-        final List<LivingEntity> entities = this.getEntity().func_130014_f_().func_175647_a((Class)LivingEntity.class, new AABB(0.0, 0.0, 0.0, 0.0, 0.0, 0.0).func_186662_g(8.0).func_186670_a(this.getEntity().func_233580_cy_()), e -> e != null && e.isAlive() && e.level().func_220339_d() == MobCategory.MONSTER);
+        final List<LivingEntity> entities = this.getEntity().level().func_175647_a((Class)LivingEntity.class, new AABB(0.0, 0.0, 0.0, 0.0, 0.0, 0.0).func_186662_g(8.0).func_186670_a(this.getEntity().func_233580_cy_()), e -> e != null && e.isAlive() && e.level().func_220339_d() == MobCategory.MONSTER);
         return EntityUtils.selectClosest((Collection<LivingEntity>)entities, entity -> Double.valueOf(entity.func_70032_d((Entity)this.getEntity())));
     }
     
@@ -42,7 +42,7 @@ public class SpectralToolMeleeAttackGoal extends SpectralToolGoal
         final LivingEntity target = this.findClosestAttackableEntity();
         if (target != null) {
             this.selectedTarget = target;
-            this.getEntity().func_70605_aq().func_75642_a(this.selectedTarget.func_226277_ct_(), this.selectedTarget.func_226278_cu_() + this.selectedTarget.func_213302_cg() / 2.0f, this.selectedTarget.func_226281_cx_(), this.getSpeed());
+            this.getEntity().func_70605_aq().func_75642_a(this.selectedTarget.getX(), this.selectedTarget.getY() + this.selectedTarget.func_213302_cg() / 2.0f, this.selectedTarget.getZ(), this.getSpeed());
         }
     }
     
@@ -66,7 +66,7 @@ public class SpectralToolMeleeAttackGoal extends SpectralToolGoal
             resetTimer = true;
         }
         else {
-            this.getEntity().func_70605_aq().func_75642_a(this.selectedTarget.func_226277_ct_(), this.selectedTarget.func_226278_cu_() + this.selectedTarget.func_213302_cg() / 2.0f, this.selectedTarget.func_226281_cx_(), this.getSpeed());
+            this.getEntity().func_70605_aq().func_75642_a(this.selectedTarget.getX(), this.selectedTarget.getY() + this.selectedTarget.func_213302_cg() / 2.0f, this.selectedTarget.getZ(), this.getSpeed());
             if (Vector3.atEntityCorner((Entity)this.getEntity()).distanceSquared((Entity)this.selectedTarget) <= 16.0) {
                 ++this.actionCooldown;
                 if (this.actionCooldown >= (int)MantleEffectPelotrio.CONFIG.ticksPerSwordAttack.get()) {

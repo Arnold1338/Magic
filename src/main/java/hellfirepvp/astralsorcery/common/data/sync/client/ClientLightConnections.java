@@ -19,19 +19,19 @@ import hellfirepvp.astralsorcery.common.data.sync.base.ClientData;
 
 public class ClientLightConnections extends ClientData<ClientLightConnections>
 {
-    private final Map<RegistryKey<World>, Map<BlockPos, Set<BlockPos>>> clientPosBuffer;
+    private final Map<RegistryKey<Level>, Map<BlockPos, Set<BlockPos>>> clientPosBuffer;
     
     public ClientLightConnections() {
-        this.clientPosBuffer = new HashMap<RegistryKey<World>, Map<BlockPos, Set<BlockPos>>>();
+        this.clientPosBuffer = new HashMap<RegistryKey<Level>, Map<BlockPos, Set<BlockPos>>>();
     }
     
     @Nonnull
-    public Map<BlockPos, Set<BlockPos>> getClientConnections(final RegistryKey<World> dim) {
+    public Map<BlockPos, Set<BlockPos>> getClientConnections(final RegistryKey<Level> dim) {
         return this.clientPosBuffer.getOrDefault(dim, new HashMap<BlockPos, Set<BlockPos>>());
     }
     
     @Override
-    public void clear(final RegistryKey<World> dim) {
+    public void clear(final RegistryKey<Level> dim) {
         this.clientPosBuffer.remove(dim);
     }
     
@@ -46,7 +46,7 @@ public class ClientLightConnections extends ClientData<ClientLightConnections>
         public void readFromIncomingFullSync(final ClientLightConnections cl, final CompoundTag compound) {
             cl.clientPosBuffer.clear();
             for (final String dimKey : compound.func_150296_c()) {
-                final RegistryKey<World> dim = (RegistryKey<World>)RegistryKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(dimKey));
+                final RegistryKey<Level> dim = (RegistryKey<Level>)RegistryKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(dimKey));
                 final Map<BlockPos, Set<BlockPos>> posMap = new HashMap<BlockPos, Set<BlockPos>>();
                 final ListTag list = compound.getList(dimKey, 10);
                 for (final Tag iTag : list) {
@@ -64,7 +64,7 @@ public class ClientLightConnections extends ClientData<ClientLightConnections>
             final Set<String> clearedDimensions = new HashSet<String>();
             for (final Tag dimKeyNBT : compound.getList("clear", 8)) {
                 final String dimKey = dimKeyNBT.func_150285_a_();
-                final RegistryKey<World> dim = (RegistryKey<World>)RegistryKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(dimKey));
+                final RegistryKey<Level> dim = (RegistryKey<Level>)RegistryKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(dimKey));
                 cl.clientPosBuffer.remove(dim);
                 clearedDimensions.add(dimKey);
             }
@@ -72,7 +72,7 @@ public class ClientLightConnections extends ClientData<ClientLightConnections>
                 if (clearedDimensions.contains(dimKey2)) {
                     continue;
                 }
-                final RegistryKey<World> dim2 = (RegistryKey<World>)RegistryKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(dimKey2));
+                final RegistryKey<Level> dim2 = (RegistryKey<Level>)RegistryKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(dimKey2));
                 final Map<BlockPos, Set<BlockPos>> posMap = cl.clientPosBuffer.computeIfAbsent(dim2, d -> new HashMap());
                 final ListTag list = compound.getList(dimKey2, 10);
                 for (final Tag iTag : list) {

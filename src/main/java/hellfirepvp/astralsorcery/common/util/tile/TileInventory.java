@@ -63,7 +63,7 @@ public class TileInventory extends ItemStackHandler implements Iterable<ItemStac
             final TileInventory newInv = this.makeNewInstance();
             for (int i = 0; i < Math.min(this.getSlots(), newInv.getSlots()); ++i) {
                 ItemStack old = this.getStackInSlot(i);
-                old = ItemUtils.copyStackWithSize(old, old.func_190916_E());
+                old = ItemUtils.copyStackWithSize(old, old.getCount());
                 newInv.setStackInSlot(i, old);
             }
             return newInv;
@@ -79,10 +79,10 @@ public class TileInventory extends ItemStackHandler implements Iterable<ItemStac
     @Nonnull
     public ItemStack insertItem(final int slot, @Nonnull final ItemStack stack, final boolean simulate) {
         final int insertable = this.stackSizeLimiter.apply(slot, stack);
-        final int leftOver = stack.func_190916_E() - insertable;
+        final int leftOver = stack.getCount() - insertable;
         final ItemStack toInsert = ItemUtils.copyStackWithSize(stack, insertable);
         final ItemStack notInserted = super.insertItem(slot, toInsert, simulate);
-        return ItemUtils.copyStackWithSize(toInsert, leftOver + notInserted.func_190916_E());
+        return ItemUtils.copyStackWithSize(toInsert, leftOver + notInserted.getCount());
     }
     
     private boolean hasHandlerForSide(@Nullable final Direction facing) {

@@ -37,8 +37,8 @@ public class FXColorEffectSphere extends EntityVisualFX
     public FXColorEffectSphere setupSphere(final Vector3 axis, final float scale, int fractionsSplit, int fractionsCircle) {
         this.setScaleMultiplier(scale);
         final Vector3 actAxis = axis.clone().normalize().multiply(scale);
-        fractionsSplit = Mth.func_76125_a(fractionsSplit, 2, Integer.MAX_VALUE);
-        fractionsCircle = Mth.func_76125_a(fractionsCircle, 3, Integer.MAX_VALUE);
+        fractionsSplit = Mth.getDescriptionId(fractionsSplit, 2, Integer.MAX_VALUE);
+        fractionsCircle = Mth.getDescriptionId(fractionsCircle, 3, Integer.MAX_VALUE);
         this.sphereFaces = SphereBuilder.buildFaces(actAxis, fractionsSplit, fractionsCircle);
         return this;
     }
@@ -49,12 +49,12 @@ public class FXColorEffectSphere extends EntityVisualFX
             this.alpha((fx, alpha, pTicks) -> {
                 Entity rView = Minecraft.getInstance().func_175606_aa();
                 if (rView == null) {
-                    rView = (Entity)Minecraft.getInstance().field_71439_g;
+                    rView = (Entity)Minecraft.getInstance().player;
                 }
                 final Vector3 plVec = Vector3.atEntityCenter(rView);
                 final double dst = plVec.distance(this.getRenderPosition(pTicks)) - 1.2;
                 alpha *= (float)(1.0 - dst / this.alphaFadeMaxDist);
-                alpha = Mth.func_76131_a(alpha, 0.0f, 1.0f);
+                alpha = Mth.canEnchant(alpha, 0.0f, 1.0f);
                 return alpha;
             });
         }
@@ -80,13 +80,13 @@ public class FXColorEffectSphere extends EntityVisualFX
         final int r = c.getRed();
         final int g = c.getGreen();
         final int b = c.getBlue();
-        final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
+        final Matrix4f matr = renderStack.last().translate();
         final Vector3 pos = this.getRenderPosition(pTicks);
         pos.subtract(RenderingVectorUtils.getStandardTranslationRemovalVector(pTicks));
         for (final SphereBuilder.TriangleFace face : this.sphereFaces) {
-            pos.clone().add(face.getV1()).drawPos(matr, vb).func_225586_a_(r, g, b, alpha).func_181675_d();
-            pos.clone().add(face.getV2()).drawPos(matr, vb).func_225586_a_(r, g, b, alpha).func_181675_d();
-            pos.clone().add(face.getV3()).drawPos(matr, vb).func_225586_a_(r, g, b, alpha).func_181675_d();
+            pos.clone().add(face.getV1()).drawPos(matr, vb).setPos(r, g, b, alpha).blockPosition();
+            pos.clone().add(face.getV2()).drawPos(matr, vb).setPos(r, g, b, alpha).blockPosition();
+            pos.clone().add(face.getV3()).drawPos(matr, vb).setPos(r, g, b, alpha).blockPosition();
         }
     }
 }

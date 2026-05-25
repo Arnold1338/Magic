@@ -21,17 +21,17 @@ import hellfirepvp.astralsorcery.common.data.sync.base.AbstractData;
 
 public class DataTimeFreezeEntities extends AbstractData
 {
-    private final Map<RegistryKey<World>, Set<Integer>> serverActiveEntityFreeze;
-    private final Set<RegistryKey<World>> serverSyncTypes;
+    private final Map<RegistryKey<Level>, Set<Integer>> serverActiveEntityFreeze;
+    private final Set<RegistryKey<Level>> serverSyncTypes;
     
     private DataTimeFreezeEntities(final ResourceLocation key) {
         super(key);
-        this.serverActiveEntityFreeze = new HashMap<RegistryKey<World>, Set<Integer>>();
-        this.serverSyncTypes = new HashSet<RegistryKey<World>>();
+        this.serverActiveEntityFreeze = new HashMap<RegistryKey<Level>, Set<Integer>>();
+        this.serverSyncTypes = new HashSet<RegistryKey<Level>>();
     }
     
     public void freezeEntity(final Entity e) {
-        final RegistryKey<World> dim = (RegistryKey<World>)e.func_130014_f_().dimension();
+        final RegistryKey<Level> dim = (RegistryKey<Level>)e.level().dimension();
         if (this.serverActiveEntityFreeze.computeIfAbsent(dim, dimType -> new HashSet()).add(e.func_145782_y())) {
             this.serverSyncTypes.add(dim);
             this.markDirty();
@@ -39,7 +39,7 @@ public class DataTimeFreezeEntities extends AbstractData
     }
     
     public void unfreezeEntity(final Entity e) {
-        final RegistryKey<World> dim = (RegistryKey<World>)e.func_130014_f_().dimension();
+        final RegistryKey<Level> dim = (RegistryKey<Level>)e.level().dimension();
         if (this.serverActiveEntityFreeze.getOrDefault(dim, Collections.emptySet()).remove(e.func_145782_y())) {
             this.serverSyncTypes.add(dim);
             this.markDirty();
@@ -47,12 +47,12 @@ public class DataTimeFreezeEntities extends AbstractData
     }
     
     public boolean isFrozen(final Entity e) {
-        final RegistryKey<World> dim = (RegistryKey<World>)e.func_130014_f_().dimension();
+        final RegistryKey<Level> dim = (RegistryKey<Level>)e.level().dimension();
         return this.serverActiveEntityFreeze.getOrDefault(dim, Collections.emptySet()).contains(e.func_145782_y());
     }
     
     @Override
-    public void clear(final RegistryKey<World> dimType) {
+    public void clear(final RegistryKey<Level> dimType) {
         this.serverActiveEntityFreeze.remove(dimType);
     }
     
@@ -69,13 +69,13 @@ public class DataTimeFreezeEntities extends AbstractData
     
     @Override
     public void writeDiffDataToPacket(final CompoundTag compound) {
-        final Map<RegistryKey<World>, Set<Integer>> entities = new HashMap<RegistryKey<World>, Set<Integer>>();
+        final Map<RegistryKey<Level>, Set<Integer>> entities = new HashMap<RegistryKey<Level>, Set<Integer>>();
         this.serverSyncTypes.forEach(type -> entities.put(type, this.serverActiveEntityFreeze.getOrDefault(type, new HashSet<Integer>())));
         this.writeEntityInformation(compound, entities);
         this.serverSyncTypes.clear();
     }
     
-    private void writeEntityInformation(final CompoundTag out, final Map<RegistryKey<World>, Set<Integer>> entities) {
+    private void writeEntityInformation(final CompoundTag out, final Map<RegistryKey<Level>, Set<Integer>> entities) {
         final CompoundTag dimTag = new CompoundTag();
         entities.forEach((dim, entityIds) -> {
             final ListTag nbtEntities = new ListTag();

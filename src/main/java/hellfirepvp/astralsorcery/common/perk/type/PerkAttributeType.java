@@ -61,7 +61,7 @@ public class PerkAttributeType extends ForgeRegistryEntry<PerkAttributeType> imp
     }
     
     public String getUnlocalizedName() {
-        return String.format("perk.attribute.%s.%s.name", this.getRegistryName().func_110624_b(), this.getRegistryName().func_110623_a());
+        return String.format("perk.attribute.%s.%s.name", this.getRegistryName().func_110624_b(), this.getRegistryName().addTransientModifier());
     }
     
     protected void init() {
@@ -71,7 +71,7 @@ public class PerkAttributeType extends ForgeRegistryEntry<PerkAttributeType> imp
     }
     
     protected LogicalSide getSide(final Entity entity) {
-        return entity.func_130014_f_().func_201670_d() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+        return entity.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
     }
     
     @Nullable

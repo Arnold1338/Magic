@@ -26,18 +26,18 @@ import hellfirepvp.astralsorcery.common.data.world.LightNetworkBuffer;
 public class WorldNetworkHandler
 {
     private final LightNetworkBuffer buffer;
-    private final World world;
+    private final Level world;
     
-    public WorldNetworkHandler(final LightNetworkBuffer lightNetworkBuffer, final World world) {
+    public WorldNetworkHandler(final LightNetworkBuffer lightNetworkBuffer, final Level world) {
         this.buffer = lightNetworkBuffer;
         this.world = world;
     }
     
-    public World getWorld() {
+    public Level getWorld() {
         return this.world;
     }
     
-    public static WorldNetworkHandler getNetworkHandler(final World world) {
+    public static WorldNetworkHandler getNetworkHandler(final Level world) {
         return ((LightNetworkBuffer)DataAS.DOMAIN_AS.getData(world, (WorldCacheDomain.SaveKey)DataAS.KEY_STARLIGHT_NETWORK)).getNetworkHandler(world);
     }
     
@@ -63,20 +63,20 @@ public class WorldNetworkHandler
     public void attemptAutoLinkTo(final BlockPos at) {
         final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(this.world);
         for (final Tuple<BlockPos, IIndependentStarlightSource> source : this.getAllSources()) {
-            if (!((IIndependentStarlightSource)source.func_76340_b()).providesAutoLink()) {
+            if (!((IIndependentStarlightSource)source.getB()).providesAutoLink()) {
                 continue;
             }
-            if (((BlockPos)source.func_76341_a()).func_218138_a((IPosition)Vec3.func_237491_b_((Vector3i)at), false) > 256.0) {
+            if (((BlockPos)source.getA()).func_218138_a((IPosition)Vec3.func_237491_b_((Vector3i)at), false) > 256.0) {
                 continue;
             }
-            final IPrismTransmissionNode node = this.getTransmissionNode((BlockPos)source.func_76341_a());
+            final IPrismTransmissionNode node = this.getTransmissionNode((BlockPos)source.getA());
             if (node == null) {
                 AstralSorcery.log.warn("Didn't find a TransmissionNode at a position that's supposed to be a source!");
-                AstralSorcery.log.warn("Details: Dim=" + this.getWorld().dimension().func_240901_a_() + " at " + source.func_76341_a());
+                AstralSorcery.log.warn("Details: Dim=" + this.getWorld().dimension().func_240901_a_() + " at " + source.getA());
             }
             else if (!(node instanceof ITransmissionSource)) {
                 AstralSorcery.log.warn("Found TransmissionNode that isn't a source at a source position!");
-                AstralSorcery.log.warn("Details: Dim=" + this.getWorld().dimension().func_240901_a_() + " at " + source.func_76341_a());
+                AstralSorcery.log.warn("Details: Dim=" + this.getWorld().dimension().func_240901_a_() + " at " + source.getA());
             }
             else {
                 final ITransmissionSource sourceNode = (ITransmissionSource)node;
@@ -84,7 +84,7 @@ public class WorldNetworkHandler
                     continue;
                 }
                 sourceNode.notifyLink(this.getWorld(), at);
-                this.markDirty((Vector3i)at, (Vector3i)source.func_76341_a());
+                this.markDirty((Vector3i)at, (Vector3i)source.getA());
                 if (handle == null) {
                     continue;
                 }
@@ -96,27 +96,27 @@ public class WorldNetworkHandler
     public void removeAutoLinkTo(final BlockPos at) {
         final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(this.world);
         for (final Tuple<BlockPos, IIndependentStarlightSource> source : this.getAllSources()) {
-            if (!((IIndependentStarlightSource)source.func_76340_b()).providesAutoLink()) {
+            if (!((IIndependentStarlightSource)source.getB()).providesAutoLink()) {
                 continue;
             }
-            if (((BlockPos)source.func_76341_a()).func_218138_a((IPosition)Vec3.func_237491_b_((Vector3i)at), false) > 256.0) {
+            if (((BlockPos)source.getA()).func_218138_a((IPosition)Vec3.func_237491_b_((Vector3i)at), false) > 256.0) {
                 continue;
             }
-            final IPrismTransmissionNode node = this.getTransmissionNode((BlockPos)source.func_76341_a());
+            final IPrismTransmissionNode node = this.getTransmissionNode((BlockPos)source.getA());
             if (node == null) {
                 AstralSorcery.log.warn("Didn't find a TransmissionNode at a position that's supposed to be a source!");
-                AstralSorcery.log.warn("Details: Dim=" + this.getWorld().dimension().func_240901_a_() + " at " + source.func_76341_a());
+                AstralSorcery.log.warn("Details: Dim=" + this.getWorld().dimension().func_240901_a_() + " at " + source.getA());
             }
             else if (!(node instanceof ITransmissionSource)) {
                 AstralSorcery.log.warn("Found TransmissionNode that isn't a source at a source position!");
-                AstralSorcery.log.warn("Details: Dim=" + this.getWorld().dimension().func_240901_a_() + " at " + source.func_76341_a());
+                AstralSorcery.log.warn("Details: Dim=" + this.getWorld().dimension().func_240901_a_() + " at " + source.getA());
             }
             else {
                 final ITransmissionSource sourceNode = (ITransmissionSource)node;
                 if (!sourceNode.notifyUnlink(this.getWorld(), at)) {
                     continue;
                 }
-                this.markDirty((Vector3i)at, (Vector3i)source.func_76341_a());
+                this.markDirty((Vector3i)at, (Vector3i)source.getA());
                 if (handle == null) {
                     continue;
                 }
@@ -250,12 +250,12 @@ public class WorldNetworkHandler
     private List<LightNetworkBuffer.ChunkSectionNetworkData> getAffectedChunkSections(final BlockPos centralPos) {
         final List<LightNetworkBuffer.ChunkSectionNetworkData> dataList = new LinkedList<LightNetworkBuffer.ChunkSectionNetworkData>();
         final ChunkPos central = new ChunkPos(centralPos);
-        final int posYLevel = Mth.func_76125_a(centralPos.getY(), 0, 255);
+        final int posYLevel = Mth.getDescriptionId(centralPos.getY(), 0, 255);
         for (int xx = -1; xx <= 1; ++xx) {
             for (int zz = -1; zz <= 1; ++zz) {
                 for (int yy = -1; yy <= 1; ++yy) {
                     BlockPos pos = central.func_206849_h();
-                    pos = pos.offset(xx * 16, Mth.func_76125_a(posYLevel + yy * 16, 0, 255), zz * 16);
+                    pos = pos.offset(xx * 16, Mth.getDescriptionId(posYLevel + yy * 16, 0, 255), zz * 16);
                     this.queryData(pos, dataList);
                 }
             }

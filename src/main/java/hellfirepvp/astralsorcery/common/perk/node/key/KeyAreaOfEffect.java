@@ -44,8 +44,8 @@ public class KeyAreaOfEffect extends KeyAddEnchantment
             return;
         }
         final DamageSource source = event.getSource();
-        if (source instanceof IndirectEntityDamageSource && source.func_76346_g() != null && source.func_76346_g() instanceof Player) {
-            final Player player = (Player)source.func_76346_g();
+        if (source instanceof IndirectEntityDamageSource && source.getEnchantments( != null && source.getEnchantments( instanceof Player) {
+            final Player player = (Player)source.getEnchantments(;
             final LogicalSide side = this.getSide((Entity)player);
             final PlayerProgress prog = ResearchHelper.getProgress(player, side);
             if (prog.getPerkData().hasPerkEffect(this)) {
@@ -54,7 +54,7 @@ public class KeyAreaOfEffect extends KeyAddEnchantment
                 float sweepingPercentage;
                 if (indirectSource instanceof TridentEntity) {
                     final ItemStack tridentStack = ((TridentEntity)indirectSource).field_203054_h;
-                    final int sweepLevel = EnchantmentHelper.func_77506_a(Enchantments.field_191530_r, tridentStack);
+                    final int sweepLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.field_191530_r, tridentStack);
                     sweepingPercentage = ((sweepLevel > 0) ? SweepingEnchantment.func_191526_e(sweepLevel) : 0.0f);
                 }
                 else {
@@ -65,7 +65,7 @@ public class KeyAreaOfEffect extends KeyAddEnchantment
                     final float toApply = event.getAmount() * sweepingPercentage;
                     final float range = 2.5f * PerkAttributeHelper.getOrCreateMap(player, side).getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT);
                     EventFlags.SWEEP_ATTACK.executeWithFlag(() -> {
-                        attacked.func_130014_f_().func_217357_a((Class)LivingEntity.class, attacked.func_174813_aQ().func_72314_b((double)range, (double)(range / 2.0f), (double)range)).iterator();
+                        attacked.level().func_217357_a((Class)LivingEntity.class, attacked.func_174813_aQ().func_72314_b((double)range, (double)(range / 2.0f), (double)range)).iterator();
                         final Iterator iterator;
                         while (iterator.hasNext()) {
                             final LivingEntity target = iterator.next();

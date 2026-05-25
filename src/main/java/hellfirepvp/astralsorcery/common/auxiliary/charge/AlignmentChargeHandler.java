@@ -48,23 +48,23 @@ public class AlignmentChargeHandler implements ITickHandler
     }
     
     public float getCurrentCharge(final Player player, final LogicalSide side) {
-        if (player.func_184812_l_() || player.func_175149_v()) {
+        if (player.getVehicle() || player.func_175149_v()) {
             return this.getMaximumCharge(player, side);
         }
         return AlignmentChargeHandler.currentCharge.computeIfAbsent(side, s -> new HashMap()).computeIfAbsent(player.getUUID(), uuid -> 1000.0f);
     }
     
     public float getFilledPercentage(final Player player, final LogicalSide side) {
-        if (player.func_184812_l_() || player.func_175149_v()) {
+        if (player.getVehicle() || player.func_175149_v()) {
             return 1.0f;
         }
         final float max = this.getMaximumCharge(player, side);
         final float current = this.getCurrentCharge(player, side);
-        return Mth.func_76131_a(current / max, 0.0f, 1.0f);
+        return Mth.canEnchant(current / max, 0.0f, 1.0f);
     }
     
     public boolean hasCharge(final Player player, final LogicalSide side, final float charge) {
-        if (player.func_184812_l_() || player.func_175149_v()) {
+        if (player.getVehicle() || player.func_175149_v()) {
             return true;
         }
         final float current = this.getCurrentCharge(player, side);
@@ -72,7 +72,7 @@ public class AlignmentChargeHandler implements ITickHandler
     }
     
     public boolean drainCharge(final Player player, final LogicalSide side, final float charge, final boolean simulate) {
-        if (player.func_184812_l_() || player.func_175149_v()) {
+        if (player.getVehicle() || player.func_175149_v()) {
             return true;
         }
         if (!this.hasCharge(player, side, charge)) {
@@ -84,7 +84,7 @@ public class AlignmentChargeHandler implements ITickHandler
             return false;
         }
         if (!simulate) {
-            AlignmentChargeHandler.currentCharge.computeIfAbsent(side, s -> new HashMap()).put(player.getUUID(), Mth.func_76131_a(result, 0.0f, this.getMaximumCharge(player, side)));
+            AlignmentChargeHandler.currentCharge.computeIfAbsent(side, s -> new HashMap()).put(player.getUUID(), Mth.canEnchant(result, 0.0f, this.getMaximumCharge(player, side)));
         }
         return true;
     }
@@ -105,8 +105,8 @@ public class AlignmentChargeHandler implements ITickHandler
         }
         final PlayerProgress progress = ResearchHelper.getProgress(player, side);
         float regenPerTick = max / 120.0f;
-        final boolean underground = player.func_130014_f_().func_205770_a(Heightmap.Type.WORLD_SURFACE, player.func_233580_cy_()).getY() > player.func_233580_cy_().getY() + 1;
-        float dayMultiplier = underground ? 0.85f : (0.3f + 0.7f * DayTimeHelper.getCurrentDaytimeDistribution(player.func_130014_f_()));
+        final boolean underground = player.level().func_205770_a(Heightmap.Type.WORLD_SURFACE, player.func_233580_cy_()).getY() > player.func_233580_cy_().getY() + 1;
+        float dayMultiplier = underground ? 0.85f : (0.3f + 0.7f * DayTimeHelper.getCurrentDaytimeDistribution(player.level()));
         float caveMultiplier = underground ? 0.25f : 1.0f;
         if (progress.getPerkData().hasPerkEffect(p -> p instanceof KeyChargeBalancing)) {
             dayMultiplier = 0.6f + dayMultiplier * 0.4f;

@@ -56,7 +56,7 @@ public abstract class ScreenJournalOverlay extends ScreenJournal
         if (super.func_231042_a_(charCode, keyModifiers)) {
             return true;
         }
-        if (Minecraft.getInstance().field_71462_r != this && Minecraft.getInstance().field_71462_r != this.origin) {
+        if (Minecraft.getInstance().gui != this && Minecraft.getInstance().gui != this.origin) {
             Minecraft.getInstance().func_147108_a((Screen)this.origin);
             return true;
         }

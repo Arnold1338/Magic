@@ -45,7 +45,7 @@ public class PktSyncStepAssist extends ASPacket<PktSyncStepAssist>
             @Override
             public void handleClient(final PktSyncStepAssist packet, final NetworkEvent.Context context) {
                 context.enqueueWork(() -> {
-                    final Player player = (Player)Minecraft.getInstance().field_71439_g;
+                    final Player player = (Player)Minecraft.getInstance().player;
                     if (player != null) {
                         player.field_70138_W = packet.stepHeight;
                     }

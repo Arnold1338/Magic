@@ -33,7 +33,7 @@ public interface ItemBlockStorage
 {
     public static final Random random = new Random();
     
-    default boolean storeBlockState(final ItemStack stack, final World world, final BlockPos pos) {
+    default boolean storeBlockState(final ItemStack stack, final Level world, final BlockPos pos) {
         if (MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true) != null) {
             return false;
         }
@@ -51,7 +51,7 @@ public interface ItemBlockStorage
     default void clearContainerFor(final Player player) {
         final Tuple<Hand, ItemStack> held = MiscUtils.getMainOrOffHand((LivingEntity)player, stack -> stack.getItem() instanceof ItemBlockStorage);
         if (held != null) {
-            NBTHelper.getPersistentData((ItemStack)held.func_76340_b()).func_82580_o("storedStates");
+            NBTHelper.getPersistentData((ItemStack)held.getB()).func_82580_o("storedStates");
         }
     }
     
@@ -59,7 +59,7 @@ public interface ItemBlockStorage
     default List<Tuple<ItemStack, Integer>> getInventoryMatchingItemStacks(final Player player, final ItemStack referenceContainer) {
         final Map<BlockState, Tuple<ItemStack, Integer>> storedStates = getInventoryMatching(player, referenceContainer);
         final List<Tuple<ItemStack, Integer>> foundStacks = new ArrayList<Tuple<ItemStack, Integer>>(storedStates.values());
-        foundStacks.sort(Comparator.comparing(tpl -> ((ItemStack)tpl.func_76341_a()).getItem().getRegistryName()));
+        foundStacks.sort(Comparator.comparing(tpl -> ((ItemStack)tpl.getA()).getItem().getRegistryName()));
         return foundStacks;
     }
     
@@ -72,7 +72,7 @@ public interface ItemBlockStorage
             int countDisplay = 0;
             final Collection<ItemStack> stacks = ItemUtils.findItemsInPlayerInventory(player, stored, true);
             for (final ItemStack found : stacks) {
-                countDisplay += found.func_190916_E();
+                countDisplay += found.getCount();
             }
             foundContents.put(state, (Tuple<ItemStack, Integer>)new Tuple((Object)stored.copy(), (Object)countDisplay));
         }
@@ -108,7 +108,7 @@ public interface ItemBlockStorage
         return states;
     }
     
-    default Random getPreviewRandomFromWorld(final World world) {
+    default Random getPreviewRandomFromWorld(final Level world) {
         long tempSeed = 7508891506429673237L;
         tempSeed *= world.getDayTime() / 40L << 8;
         return new Random(tempSeed);

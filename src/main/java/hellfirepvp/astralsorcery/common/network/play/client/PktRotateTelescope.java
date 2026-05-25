@@ -23,7 +23,7 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 public class PktRotateTelescope extends ASPacket<PktRotateTelescope>
 {
     private boolean isClockwise;
-    private RegistryKey<World> dim;
+    private RegistryKey<Level> dim;
     private BlockPos pos;
     
     public PktRotateTelescope() {
@@ -32,7 +32,7 @@ public class PktRotateTelescope extends ASPacket<PktRotateTelescope>
         this.pos = BlockPos.field_177992_a;
     }
     
-    public PktRotateTelescope(final boolean isClockwise, final RegistryKey<World> dim, final BlockPos pos) {
+    public PktRotateTelescope(final boolean isClockwise, final RegistryKey<Level> dim, final BlockPos pos) {
         this.isClockwise = false;
         this.dim = null;
         this.pos = BlockPos.field_177992_a;
@@ -57,7 +57,7 @@ public class PktRotateTelescope extends ASPacket<PktRotateTelescope>
         return (Decoder<PktRotateTelescope>)(buffer -> {
             final PktRotateTelescope pkt = new PktRotateTelescope();
             pkt.isClockwise = buffer.readBoolean();
-            pkt.dim = (RegistryKey<World>)ByteBufUtils.readOptional(buffer, ByteBufUtils::readVanillaRegistryEntry);
+            pkt.dim = (RegistryKey<Level>)ByteBufUtils.readOptional(buffer, ByteBufUtils::readVanillaRegistryEntry);
             pkt.pos = ByteBufUtils.readPos(buffer);
             return pkt;
         });
@@ -79,8 +79,8 @@ public class PktRotateTelescope extends ASPacket<PktRotateTelescope>
                         }
                         return;
                     });
-                    if (Minecraft.getInstance().field_71462_r instanceof ScreenTelescope) {
-                        ((ScreenTelescope)Minecraft.getInstance().field_71462_r).handleRotationChange(packet.isClockwise);
+                    if (Minecraft.getInstance().gui instanceof ScreenTelescope) {
+                        ((ScreenTelescope)Minecraft.getInstance().gui).handleRotationChange(packet.isClockwise);
                     }
                 });
             }
@@ -89,7 +89,7 @@ public class PktRotateTelescope extends ASPacket<PktRotateTelescope>
             public void handle(final PktRotateTelescope packet, final NetworkEvent.Context context, final LogicalSide side) {
                 context.enqueueWork(() -> {
                     final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
-                    final World world = (World)srv.func_71218_a(packet.dim);
+                    final Level world = (Level)srv.getLevel(packet.dim);
                     final TileTelescope tt = MiscUtils.getTileAt((IBlockReader)world, packet.pos, TileTelescope.class, false);
                     if (tt != null) {
                         tt.setRotation(packet.isClockwise ? tt.getRotation().nextClockWise() : tt.getRotation().nextCounterClockWise());

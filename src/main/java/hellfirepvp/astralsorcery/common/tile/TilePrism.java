@@ -29,19 +29,19 @@ public class TilePrism extends TileLens
     @Override
     public LensColorType setColorType(@Nullable final LensColorType colorType) {
         final LensColorType returned = super.setColorType(colorType);
-        final BlockState thisState = this.func_145831_w().getBlockState(this.func_174877_v());
+        final BlockState thisState = this.getLevel().getBlockState(this.getBlockState());
         if ((boolean)thisState.getValue((Property)BlockPrism.HAS_COLORED_LENS) && colorType == null && returned != null) {
-            this.func_145831_w().func_180501_a(this.func_174877_v(), (BlockState)thisState.func_206870_a((Property)BlockPrism.HAS_COLORED_LENS, (Comparable)false), 11);
+            this.getLevel().func_180501_a(this.getBlockState(), (BlockState)thisState.setValue((Property)BlockPrism.HAS_COLORED_LENS, (Comparable)false), 11);
         }
         else if (!(boolean)thisState.getValue((Property)BlockPrism.HAS_COLORED_LENS) && colorType != null && returned == null) {
-            this.func_145831_w().func_180501_a(this.func_174877_v(), (BlockState)thisState.func_206870_a((Property)BlockPrism.HAS_COLORED_LENS, (Comparable)true), 11);
+            this.getLevel().func_180501_a(this.getBlockState(), (BlockState)thisState.setValue((Property)BlockPrism.HAS_COLORED_LENS, (Comparable)true), 11);
         }
         return returned;
     }
     
     @Override
     public Direction getPlacedAgainst() {
-        final BlockState state = this.field_145850_b.getBlockState(this.func_174877_v());
+        final BlockState state = this.level.getBlockState(this.getBlockState());
         if (!(state.getBlock() instanceof BlockPrism)) {
             return Direction.DOWN;
         }
@@ -52,7 +52,7 @@ public class TilePrism extends TileLens
     @Override
     protected void onDataReceived() {
         super.onDataReceived();
-        this.func_145831_w().func_184138_a(this.func_174877_v(), this.func_195044_w(), this.func_195044_w(), 11);
+        this.getLevel().func_184138_a(this.getBlockState(), this.func_195044_w(), this.func_195044_w(), 11);
     }
     
     @Nonnull

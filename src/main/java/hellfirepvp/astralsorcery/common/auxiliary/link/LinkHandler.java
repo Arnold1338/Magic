@@ -50,7 +50,7 @@ public class LinkHandler implements ITickHandler
     }
     
     @Nonnull
-    public static RightClickResult onInteractBlock(final Player clicked, final World world, final BlockPos pos, final boolean sneak) {
+    public static RightClickResult onInteractBlock(final Player clicked, final Level world, final BlockPos pos, final boolean sneak) {
         final UUID playerUUID = clicked.getUUID();
         if (!LinkHandler.players.containsKey(playerUUID)) {
             final LinkableTileEntity tile = MiscUtils.getTileAt((IBlockReader)world, pos, LinkableTileEntity.class, true);
@@ -81,18 +81,18 @@ public class LinkHandler implements ITickHandler
         }
     }
     
-    public static void processInteraction(final RightClickResult result, final Player playerIn, final World world, final BlockPos pos) {
+    public static void processInteraction(final RightClickResult result, final Player playerIn, final Level world, final BlockPos pos) {
         final LinkSession session = result.getLinkingSession();
         final LinkableTileEntity tile = session.getSelectedTile();
         switch (result.getType()) {
             case SELECT_START: {
                 if (session.getType() == LinkType.ENTITY) {
-                    playerIn.func_145747_a((Component)new Component("astralsorcery.misc.link.start", new Object[] { result.getLinkingSession().getSelectedEntity().func_145748_c_() }).func_240699_a_(ChatFormatting.GREEN), Util.NIL_UUID);
+                    playerIn.func_145747_a((Component)new Component("astralsorcery.misc.link.start", new Object[] { result.getLinkingSession().getSelectedEntity().getDisplayName() }).toString()ChatFormatting.GREEN), Util.NIL_UUID);
                     break;
                 }
                 final String name = tile.getUnLocalizedDisplayName();
                 if (tile.onSelect(playerIn) && name != null) {
-                    playerIn.func_145747_a((Component)new Component("astralsorcery.misc.link.start", new Object[] { new Component(name) }).func_240699_a_(ChatFormatting.GREEN), Util.NIL_UUID);
+                    playerIn.func_145747_a((Component)new Component("astralsorcery.misc.link.start", new Object[] { new Component(name) }).toString()ChatFormatting.GREEN), Util.NIL_UUID);
                 }
                 break;
             }
@@ -120,7 +120,7 @@ public class LinkHandler implements ITickHandler
                     tile.onBlockLinkCreate(playerIn, pos);
                     final String linkedFrom = tile.getUnLocalizedDisplayName();
                     if (linkedFrom != null) {
-                        playerIn.func_145747_a((Component)new Component("astralsorcery.misc.link.link", new Object[] { new Component(linkedFrom), new Component(linkedToName) }).func_240699_a_(ChatFormatting.GREEN), Util.NIL_UUID);
+                        playerIn.func_145747_a((Component)new Component("astralsorcery.misc.link.link", new Object[] { new Component(linkedFrom), new Component(linkedToName) }).toString()ChatFormatting.GREEN), Util.NIL_UUID);
                     }
                     break;
                 }
@@ -138,7 +138,7 @@ public class LinkHandler implements ITickHandler
                     }
                     final String linkedFrom = tile.getUnLocalizedDisplayName();
                     if (linkedFrom != null) {
-                        playerIn.func_145747_a((Component)new Component("astralsorcery.misc.link.unlink", new Object[] { new Component(linkedFrom), new Component(linkedToName) }).func_240699_a_(ChatFormatting.GREEN), Util.NIL_UUID);
+                        playerIn.func_145747_a((Component)new Component("astralsorcery.misc.link.unlink", new Object[] { new Component(linkedFrom), new Component(linkedToName) }).toString()ChatFormatting.GREEN), Util.NIL_UUID);
                     }
                     break;
                 }
@@ -165,14 +165,14 @@ public class LinkHandler implements ITickHandler
                 switch (session.getType()) {
                     case ENTITY: {
                         final LivingEntity entity = session.getSelectedEntity();
-                        if (!entity.isAlive() || !entity.func_130014_f_().dimension().equals(player.func_130014_f_().dimension())) {
+                        if (!entity.isAlive() || !entity.level().dimension().equals(player.level().dimension())) {
                             needsRemoval = true;
                             break;
                         }
                         break;
                     }
                     case BLOCK: {
-                        if (!session.getSelectedTile().getLinkWorld().dimension().equals(player.func_130014_f_().dimension())) {
+                        if (!session.getSelectedTile().getLinkWorld().dimension().equals(player.level().dimension())) {
                             needsRemoval = true;
                             break;
                         }
@@ -183,7 +183,7 @@ public class LinkHandler implements ITickHandler
                     continue;
                 }
                 iterator.remove();
-                player.func_145747_a((Component)new Component("astralsorcery.misc.link.stop").func_240699_a_(ChatFormatting.RED), Util.NIL_UUID);
+                player.func_145747_a((Component)new Component("astralsorcery.misc.link.stop").toString()ChatFormatting.RED), Util.NIL_UUID);
             }
         }
     }

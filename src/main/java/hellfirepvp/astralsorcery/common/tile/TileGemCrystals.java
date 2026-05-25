@@ -30,7 +30,7 @@ public class TileGemCrystals extends TileEntityTick
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d()) {
+        if (!this.getLevel().level()) {
             if (this.getGrowth().getGrowthStage() < 2 && this.doesSeeSky()) {
                 this.tryGrowWithChance(10000);
             }
@@ -45,30 +45,30 @@ public class TileGemCrystals extends TileEntityTick
     
     @OnlyIn(Dist.CLIENT)
     private void playHarvestEffects() {
-        final Vector3 pos = new Vector3(this).add(0.5, 0.5, 0.5).add(this.func_195044_w().func_191059_e((IBlockReader)this.func_145831_w(), this.func_174877_v()));
+        final Vector3 pos = new Vector3(this).add(0.5, 0.5, 0.5).add(this.func_195044_w().func_191059_e((IBlockReader)this.getLevel(), this.getBlockState()));
         MiscUtils.applyRandomOffset(pos, TileGemCrystals.rand, 0.5f);
         EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(pos).color(VFXColorFunction.constant(this.getGrowth().getDisplayColor())).setScaleMultiplier(0.1f + TileGemCrystals.rand.nextFloat() * 0.05f).setMaxAge(15 + TileGemCrystals.rand.nextInt(5));
     }
     
     public void tryGrowWithChance(int growthChance) {
-        final float distribution = DayTimeHelper.getCurrentDaytimeDistribution(this.func_145831_w());
+        final float distribution = DayTimeHelper.getCurrentDaytimeDistribution(this.getLevel());
         growthChance *= (int)(1.0f - 0.2f * distribution);
         this.grow(growthChance);
     }
     
     public void grow(final int chance) {
         if (TileGemCrystals.rand.nextInt(Math.max(chance, 1)) == 0) {
-            this.setGrowth(this.getGrowth().grow(this.func_145831_w()));
+            this.setGrowth(this.getGrowth().grow(this.getLevel()));
         }
     }
     
     public BlockGemCrystalCluster.GrowthStageType getGrowth() {
-        final BlockState current = this.func_145831_w().getBlockState(this.func_174877_v());
+        final BlockState current = this.getLevel().getBlockState(this.getBlockState());
         return (BlockGemCrystalCluster.GrowthStageType)current.getValue((Property)BlockGemCrystalCluster.STAGE);
     }
     
     public void setGrowth(final BlockGemCrystalCluster.GrowthStageType stage) {
-        final BlockState next = (BlockState)BlocksAS.GEM_CRYSTAL_CLUSTER.defaultBlockState().func_206870_a((Property)BlockGemCrystalCluster.STAGE, (Comparable)stage);
-        this.func_145831_w().func_175656_a(this.func_174877_v(), next);
+        final BlockState next = (BlockState)BlocksAS.GEM_CRYSTAL_CLUSTER.defaultBlockState().setValue((Property)BlockGemCrystalCluster.STAGE, (Comparable)stage);
+        this.getLevel().func_175656_a(this.getBlockState(), next);
     }
 }

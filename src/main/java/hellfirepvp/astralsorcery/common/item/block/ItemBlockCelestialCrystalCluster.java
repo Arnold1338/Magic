@@ -31,8 +31,8 @@ public class ItemBlockCelestialCrystalCluster extends ItemBlockCustom implements
         super(block, itemProperties.func_208103_a(CommonProxy.RARITY_CELESTIAL));
     }
     
-    public void func_77663_a(final ItemStack stack, final World world, final Entity entity, final int slot, final boolean isSelected) {
-        if (!world.func_201670_d()) {
+    public void func_77663_a(final ItemStack stack, final Level world, final Entity entity, final int slot, final boolean isSelected) {
+        if (!world.level()) {
             CrystalAttributes attributes = this.getAttributes(stack);
             if (attributes == null && stack.getItem() instanceof CrystalAttributeGenItem) {
                 attributes = CrystalGenerator.generateNewAttributes(stack);
@@ -42,7 +42,7 @@ public class ItemBlockCelestialCrystalCluster extends ItemBlockCustom implements
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         super.func_77624_a(stack, worldIn, (List)tooltip, flagIn);
         final CrystalAttributes attr = this.getAttributes(stack);
         if (attr != null) {
@@ -64,7 +64,7 @@ public class ItemBlockCelestialCrystalCluster extends ItemBlockCustom implements
     protected BlockState func_195945_b(final BlockItemUseContext context) {
         final BlockState toPlace = super.func_195945_b(context);
         if (toPlace != null) {
-            return (BlockState)toPlace.func_206870_a((Property)BlockCelestialCrystalCluster.STAGE, (Comparable)this.getDamage(context.func_195996_i()));
+            return (BlockState)toPlace.setValue((Property)BlockCelestialCrystalCluster.STAGE, (Comparable)this.getDamage(context.func_195996_i()));
         }
         return null;
     }

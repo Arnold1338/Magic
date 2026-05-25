@@ -30,13 +30,13 @@ public interface RefreshFunction<T extends EntityComplexFX>
     
     public static class TileExists<E extends BlockEntity, T extends EntityComplexFX> implements RefreshFunction<T>
     {
-        private final RegistryKey<World> dimType;
+        private final RegistryKey<Level> dimType;
         private final BlockPos pos;
         private final Class<E> clazzExpected;
         
         public TileExists(final E tile) {
-            this.dimType = (RegistryKey<World>)tile.func_145831_w().dimension();
-            this.pos = tile.func_174877_v();
+            this.dimType = (RegistryKey<Level>)tile.getLevel().dimension();
+            this.pos = tile.getBlockState();
             this.clazzExpected = (Class<E>)tile.getClass();
         }
         
@@ -47,7 +47,7 @@ public interface RefreshFunction<T extends EntityComplexFX>
         
         @Nullable
         protected E getTileIfValid() {
-            final World clWorld = (World)Minecraft.getInstance().field_71441_e;
+            final Level clWorld = (Level)Minecraft.getInstance().level;
             final E tile;
             if (clWorld != null && clWorld.dimension().equals(this.dimType) && (tile = MiscUtils.getTileAt((IBlockReader)clWorld, this.pos, this.clazzExpected, true)) != null && !tile.func_145837_r()) {
                 return tile;

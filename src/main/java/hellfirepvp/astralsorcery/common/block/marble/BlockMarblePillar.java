@@ -37,25 +37,25 @@ public class BlockMarblePillar extends BlockMarbleTemplate implements SimpleWate
     private final VoxelShape topShape;
     
     public BlockMarblePillar() {
-        this.func_180632_j((BlockState)((BlockState)((BlockState)this.func_176194_O().func_177621_b()).func_206870_a((Property)BlockMarblePillar.PILLAR_TYPE, (Comparable)PillarType.MIDDLE)).func_206870_a((Property)BlockMarblePillar.WATERLOGGED, (Comparable)false));
+        this.func_180632_j((BlockState)((BlockState)((BlockState)this.func_176194_O().func_177621_b()).setValue((Property)BlockMarblePillar.PILLAR_TYPE, (Comparable)PillarType.MIDDLE)).setValue((Property)BlockMarblePillar.WATERLOGGED, (Comparable)false));
         this.middleShape = this.createPillarShape();
         this.topShape = this.createPillarTopShape();
         this.bottomShape = this.createPillarBottomShape();
     }
     
     protected VoxelShape createPillarShape() {
-        return Block.func_208617_a(2.0, 0.0, 2.0, 14.0, 16.0, 14.0);
+        return Block.of(2.0, 0.0, 2.0, 14.0, 16.0, 14.0);
     }
     
     protected VoxelShape createPillarTopShape() {
-        final VoxelShape column = Block.func_208617_a(2.0, 0.0, 2.0, 14.0, 12.0, 14.0);
-        final VoxelShape top = Block.func_208617_a(0.0, 12.0, 0.0, 16.0, 16.0, 16.0);
+        final VoxelShape column = Block.of(2.0, 0.0, 2.0, 14.0, 12.0, 14.0);
+        final VoxelShape top = Block.of(0.0, 12.0, 0.0, 16.0, 16.0, 16.0);
         return VoxelUtils.combineAll(BooleanOp.field_223244_o_, column, top);
     }
     
     protected VoxelShape createPillarBottomShape() {
-        final VoxelShape column = Block.func_208617_a(2.0, 4.0, 2.0, 14.0, 16.0, 14.0);
-        final VoxelShape bottom = Block.func_208617_a(0.0, 0.0, 0.0, 16.0, 4.0, 16.0);
+        final VoxelShape column = Block.of(2.0, 4.0, 2.0, 14.0, 16.0, 14.0);
+        final VoxelShape bottom = Block.of(0.0, 0.0, 0.0, 16.0, 4.0, 16.0);
         return VoxelUtils.combineAll(BooleanOp.field_223244_o_, column, bottom);
     }
     
@@ -82,31 +82,31 @@ public class BlockMarblePillar extends BlockMarbleTemplate implements SimpleWate
         if (thisState.getValue((Property)BlockMarblePillar.WATERLOGGED)) {
             world.func_205219_F_().func_205360_a(thisPos, (Object)Fluids.field_204546_a, Fluids.field_204546_a.func_205569_a((IWorldReader)world));
         }
-        return (BlockState)this.getThisState((IBlockReader)world, thisPos).func_206870_a((Property)BlockMarblePillar.WATERLOGGED, thisState.getValue((Property)BlockMarblePillar.WATERLOGGED));
+        return (BlockState)this.getThisState((IBlockReader)world, thisPos).setValue((Property)BlockMarblePillar.WATERLOGGED, thisState.getValue((Property)BlockMarblePillar.WATERLOGGED));
     }
     
     @Nullable
     public BlockState func_196258_a(final BlockItemUseContext ctx) {
         final BlockPos blockpos = ctx.func_195995_a();
-        final World world = ctx.func_195991_k();
+        final Level world = ctx.func_195991_k();
         final FluidState ifluidstate = world.func_204610_c(blockpos);
-        return (BlockState)this.getThisState((IBlockReader)world, blockpos).func_206870_a((Property)BlockMarblePillar.WATERLOGGED, (Comparable)(ifluidstate.func_206886_c() == Fluids.field_204546_a));
+        return (BlockState)this.getThisState((IBlockReader)world, blockpos).setValue((Property)BlockMarblePillar.WATERLOGGED, (Comparable)(ifluidstate.func_206886_c() == Fluids.field_204546_a));
     }
     
     private BlockState getThisState(final IBlockReader world, final BlockPos pos) {
         final boolean hasUp = world.getBlockState(pos.above()).getBlock() instanceof BlockMarblePillar;
-        final boolean hasDown = world.getBlockState(pos.func_177977_b()).getBlock() instanceof BlockMarblePillar;
+        final boolean hasDown = world.getBlockState(pos.renderItem()).getBlock() instanceof BlockMarblePillar;
         if (hasUp) {
             if (hasDown) {
-                return (BlockState)this.defaultBlockState().func_206870_a((Property)BlockMarblePillar.PILLAR_TYPE, (Comparable)PillarType.MIDDLE);
+                return (BlockState)this.defaultBlockState().setValue((Property)BlockMarblePillar.PILLAR_TYPE, (Comparable)PillarType.MIDDLE);
             }
-            return (BlockState)this.defaultBlockState().func_206870_a((Property)BlockMarblePillar.PILLAR_TYPE, (Comparable)PillarType.BOTTOM);
+            return (BlockState)this.defaultBlockState().setValue((Property)BlockMarblePillar.PILLAR_TYPE, (Comparable)PillarType.BOTTOM);
         }
         else {
             if (hasDown) {
-                return (BlockState)this.defaultBlockState().func_206870_a((Property)BlockMarblePillar.PILLAR_TYPE, (Comparable)PillarType.TOP);
+                return (BlockState)this.defaultBlockState().setValue((Property)BlockMarblePillar.PILLAR_TYPE, (Comparable)PillarType.TOP);
             }
-            return (BlockState)this.defaultBlockState().func_206870_a((Property)BlockMarblePillar.PILLAR_TYPE, (Comparable)PillarType.MIDDLE);
+            return (BlockState)this.defaultBlockState().setValue((Property)BlockMarblePillar.PILLAR_TYPE, (Comparable)PillarType.MIDDLE);
         }
     }
     

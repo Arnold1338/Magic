@@ -108,11 +108,11 @@ public class CropHelper
     }
     
     private static boolean isReedBase(final IWorld world, final BlockPos pos) {
-        return !world.getBlockState(pos.func_177977_b()).getBlock().equals(Blocks.field_196608_cF);
+        return !world.getBlockState(pos.renderItem()).getBlock().equals(Blocks.field_196608_cF);
     }
     
     private static boolean isCactusBase(final IWorld world, final BlockPos pos) {
-        return !world.getBlockState(pos.func_177977_b()).getBlock().equals(Blocks.field_150434_aF);
+        return !world.getBlockState(pos.renderItem()).getBlock().equals(Blocks.field_150434_aF);
     }
     
     static {
@@ -245,7 +245,7 @@ public class CropHelper
         public boolean tryGrow(final IWorld world, final Random rand) {
             if (rand.nextBoolean()) {
                 final BlockState current = world.getBlockState(this.pos);
-                return world.func_180501_a(this.pos, (BlockState)current.func_206870_a((Property)NetherWartBlock.field_176486_a, (Comparable)Math.min(3, (int)current.getValue((Property)NetherWartBlock.field_176486_a) + 1)), 3);
+                return world.func_180501_a(this.pos, (BlockState)current.setValue((Property)NetherWartBlock.field_176486_a, (Comparable)Math.min(3, (int)current.getValue((Property)NetherWartBlock.field_176486_a) + 1)), 3);
             }
             return false;
         }
@@ -260,7 +260,7 @@ public class CropHelper
         public NonNullList<ItemStack> harvestDropsAndReplant(final ServerLevel world, final Random rand, final int harvestFortune) {
             final NonNullList<ItemStack> stacks = (NonNullList<ItemStack>)NonNullList.func_191196_a();
             stacks.addAll((Collection)BlockUtils.getDrops(world, this.pos, harvestFortune, rand));
-            world.func_180501_a(this.pos, (BlockState)Blocks.field_150388_bm.defaultBlockState().func_206870_a((Property)NetherWartBlock.field_176486_a, (Comparable)0), 3);
+            world.func_180501_a(this.pos, (BlockState)Blocks.field_150388_bm.defaultBlockState().setValue((Property)NetherWartBlock.field_176486_a, (Comparable)0), 3);
             return stacks;
         }
         
@@ -532,7 +532,7 @@ public class CropHelper
             final BlockState at = world.getBlockState(this.pos);
             if (at.getBlock() instanceof BonemealableBlock && world instanceof ServerLevel) {
                 if (((BonemealableBlock)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false)) {
-                    if (!((BonemealableBlock)at.getBlock()).func_180670_a((World)world, rand, this.pos, at) && rand.nextInt(20) != 0) {
+                    if (!((BonemealableBlock)at.getBlock()).func_180670_a((Level)world, rand, this.pos, at) && rand.nextInt(20) != 0) {
                         return true;
                     }
                     ((BonemealableBlock)at.getBlock()).func_225535_a_((ServerLevel)world, rand, this.pos, at);

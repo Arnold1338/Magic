@@ -21,12 +21,12 @@ public abstract class ItemPerkGem extends Item implements GemSocketItem
     private final GemType type;
     
     public ItemPerkGem(final GemType type) {
-        super(new Item.Properties().func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
         this.type = type;
     }
     
-    public void func_77663_a(final ItemStack stack, final World world, final Entity entity, final int itemSlot, final boolean isSelected) {
-        if (world.func_201670_d()) {
+    public void func_77663_a(final ItemStack stack, final Level world, final Entity entity, final int itemSlot, final boolean isSelected) {
+        if (world.level()) {
             return;
         }
         if (DynamicModifierHelper.getStaticModifiers(stack).isEmpty()) {

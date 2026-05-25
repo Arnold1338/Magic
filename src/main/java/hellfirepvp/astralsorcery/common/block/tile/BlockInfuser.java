@@ -38,9 +38,9 @@ public class BlockInfuser extends BlockInventory implements CustomItemBlock
         return BlockInfuser.INFUSER;
     }
     
-    public InteractionResult func_225533_a_(final BlockState state, final World world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
+    public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
         if (!world.isClientSide) {
-            final ItemStack held = player.func_184586_b(hand);
+            final ItemStack held = player.getItemInHand(hand);
             final TileInfuser ti = MiscUtils.getTileAt((IBlockReader)world, pos, TileInfuser.class, true);
             if (ti != null) {
                 final ItemStack stored = ti.getItemInput();
@@ -55,7 +55,7 @@ public class BlockInfuser extends BlockInventory implements CustomItemBlock
                     }
                     ti.setItemInput(ItemUtils.copyStackWithSize(held, 1));
                     world.func_184148_a((Player)null, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), SoundEvents.field_187638_cR, SoundSource.PLAYERS, 0.2f, ((world.field_73012_v.nextFloat() - world.field_73012_v.nextFloat()) * 0.7f + 1.0f) * 2.0f);
-                    if (!player.func_184812_l_()) {
+                    if (!player.getVehicle()) {
                         held.shrink(1);
                     }
                     ti.markForUpdate();
@@ -74,7 +74,7 @@ public class BlockInfuser extends BlockInventory implements CustomItemBlock
         return true;
     }
     
-    public int func_180641_l(final BlockState state, final World world, final BlockPos pos) {
+    public int func_180641_l(final BlockState state, final Level world, final BlockPos pos) {
         final TileInfuser ti = MiscUtils.getTileAt((IBlockReader)world, pos, TileInfuser.class, false);
         if (ti != null) {
             return ti.getItemInput().isEmpty() ? 0 : 15;

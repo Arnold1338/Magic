@@ -44,31 +44,31 @@ public class RenderingDrawUtils
     
     public static void renderStringCentered(@Nullable FontRenderer fr, final PoseStack renderStack, final ITextProperties text, final int x, final int y, final float scale, final int color) {
         if (fr == null) {
-            fr = Minecraft.getInstance().field_71466_p;
+            fr = Minecraft.getInstance().font;
         }
         final float strLength = fr.func_238414_a_(text) * scale;
         final float offsetLeft = x - strLength;
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_((double)offsetLeft, (double)y, 0.0);
-        renderStack.func_227862_a_(scale, scale, scale);
+        renderStack.translate(scale, scale, scale);
         renderStringAt(fr, renderStack, text, color);
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     public static float renderString(final ITextProperties text) {
-        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().field_71466_p, Color.WHITE.getRGB(), false);
+        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().font, Color.WHITE.getRGB(), false);
     }
     
     public static float renderString(final FormattedCharSequence text) {
-        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().field_71466_p, Color.WHITE.getRGB(), false);
+        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().font, Color.WHITE.getRGB(), false);
     }
     
     public static float renderString(final ITextProperties text, final int color) {
-        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().field_71466_p, color, false);
+        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().font, color, false);
     }
     
     public static float renderString(final FormattedCharSequence text, final int color) {
-        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().field_71466_p, color, false);
+        return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().font, color, false);
     }
     
     public static float renderString(@Nullable final FontRenderer fr, final ITextProperties text, final int color) {
@@ -93,10 +93,10 @@ public class RenderingDrawUtils
     
     public static float renderStringAt(final FormattedCharSequence text, final PoseStack renderStack, @Nullable FontRenderer fr, final int color, final boolean dropShadow) {
         if (fr == null) {
-            fr = Minecraft.getInstance().field_71466_p;
+            fr = Minecraft.getInstance().font;
         }
         final MultiBufferSource.Impl buffer = MultiBufferSource.func_228455_a_(Tessellator.func_178181_a().func_178180_c());
-        final int length = fr.func_238416_a_(text, 0.0f, 0.0f, color, dropShadow, renderStack.func_227866_c_().func_227870_a_(), (MultiBufferSource)buffer, false, 0, LightmapUtil.getPackedFullbrightCoords());
+        final int length = fr.func_238416_a_(text, 0.0f, 0.0f, color, dropShadow, renderStack.last().translate(), (MultiBufferSource)buffer, false, 0, LightmapUtil.getPackedFullbrightCoords());
         buffer.func_228461_a_();
         return (float)length;
     }
@@ -119,11 +119,11 @@ public class RenderingDrawUtils
         final Vector3 uv01 = new Vector3(-widthHeight / 2.0, widthHeight / 2.0, 0.0).rotate(deg, Vector3.RotAxis.Z_AXIS);
         final Vector3 uv2 = new Vector3(widthHeight / 2.0, widthHeight / 2.0, 0.0).rotate(deg, Vector3.RotAxis.Z_AXIS);
         final Vector3 uv3 = new Vector3(widthHeight / 2.0, -widthHeight / 2.0, 0.0).rotate(deg, Vector3.RotAxis.Z_AXIS);
-        final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
-        vb.func_227888_a_(matr, (float)uv01.getX(), (float)uv01.getY(), 0.0f).func_225583_a_(0.0f, 1.0f).func_181675_d();
-        vb.func_227888_a_(matr, (float)uv2.getX(), (float)uv2.getY(), 0.0f).func_225583_a_(1.0f, 1.0f).func_181675_d();
-        vb.func_227888_a_(matr, (float)uv3.getX(), (float)uv3.getY(), 0.0f).func_225583_a_(1.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(matr, (float)offset.getX(), (float)offset.getY(), 0.0f).func_225583_a_(0.0f, 0.0f).func_181675_d();
+        final Matrix4f matr = renderStack.last().translate();
+        vb.func_227888_a_(matr, (float)uv01.getX(), (float)uv01.getY(), 0.0f).setPos(0.0f, 1.0f).blockPosition();
+        vb.func_227888_a_(matr, (float)uv2.getX(), (float)uv2.getY(), 0.0f).setPos(1.0f, 1.0f).blockPosition();
+        vb.func_227888_a_(matr, (float)uv3.getX(), (float)uv3.getY(), 0.0f).setPos(1.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(matr, (float)offset.getX(), (float)offset.getY(), 0.0f).setPos(0.0f, 0.0f).blockPosition();
     }
     
     public static void renderBlueTooltipComponents(final PoseStack renderStack, final float x, final float y, final float zLevel, final List<ITextProperties> tooltipData, final FontRenderer fontRenderer, final boolean isFirstLineHeadline) {
@@ -141,12 +141,12 @@ public class RenderingDrawUtils
             boolean anyItemFound = false;
             int maxWidth = 0;
             for (final Tuple<ItemStack, ITextProperties> toolTip : tooltipData) {
-                FontRenderer customFR = ((ItemStack)toolTip.func_76341_a()).getItem().getFontRenderer((ItemStack)toolTip.func_76341_a());
+                FontRenderer customFR = ((ItemStack)toolTip.getA()).getItem().getFontRenderer((ItemStack)toolTip.getA());
                 if (customFR == null) {
                     customFR = fontRenderer;
                 }
-                int width = customFR.func_238414_a_((ITextProperties)toolTip.func_76340_b());
-                if (!((ItemStack)toolTip.func_76341_a()).isEmpty()) {
+                int width = customFR.func_238414_a_((ITextProperties)toolTip.getB());
+                if (!((ItemStack)toolTip.getA()).isEmpty()) {
                     anyItemFound = true;
                 }
                 if (anyItemFound) {
@@ -162,15 +162,15 @@ public class RenderingDrawUtils
             final int formatWidth = anyItemFound ? (maxWidth - stackBoxSize) : maxWidth;
             final List<Tuple<ItemStack, List<FormattedCharSequence>>> lengthLimitedToolTip = new LinkedList<Tuple<ItemStack, List<FormattedCharSequence>>>();
             for (final Tuple<ItemStack, ITextProperties> toolTip2 : tooltipData) {
-                FontRenderer customFR2 = ((ItemStack)toolTip2.func_76341_a()).getItem().getFontRenderer((ItemStack)toolTip2.func_76341_a());
+                FontRenderer customFR2 = ((ItemStack)toolTip2.getA()).getItem().getFontRenderer((ItemStack)toolTip2.getA());
                 if (customFR2 == null) {
                     customFR2 = fontRenderer;
                 }
-                List<FormattedCharSequence> textLines = customFR2.func_238425_b_((ITextProperties)toolTip2.func_76340_b(), formatWidth);
+                List<FormattedCharSequence> textLines = customFR2.func_238425_b_((ITextProperties)toolTip2.getB(), formatWidth);
                 if (textLines.isEmpty()) {
                     textLines = Collections.singletonList(FormattedCharSequence.field_242232_a);
                 }
-                lengthLimitedToolTip.add((Tuple<ItemStack, List<FormattedCharSequence>>)new Tuple(toolTip2.func_76341_a(), (Object)textLines));
+                lengthLimitedToolTip.add((Tuple<ItemStack, List<FormattedCharSequence>>)new Tuple(toolTip2.getA(), (Object)textLines));
             }
             final float pX = x + 12.0f;
             final float pY = y - 12.0f;
@@ -183,13 +183,13 @@ public class RenderingDrawUtils
                 while (iterator.hasNext()) {
                     final Tuple<ItemStack, List<FormattedCharSequence>> toolTip3 = iterator.next();
                     int segmentHeight = 0;
-                    if (!((ItemStack)toolTip3.func_76341_a()).isEmpty()) {
+                    if (!((ItemStack)toolTip3.getA()).isEmpty()) {
                         segmentHeight += 2;
                         segmentHeight += stackBoxSize;
-                        segmentHeight += Math.max(((List)toolTip3.func_76340_b()).size() - 1, 0) * 10;
+                        segmentHeight += Math.max(((List)toolTip3.getB()).size() - 1, 0) * 10;
                     }
                     else {
-                        segmentHeight += ((List)toolTip3.func_76340_b()).size() * 10;
+                        segmentHeight += ((List)toolTip3.getB()).size() * 10;
                     }
                     if (!iterator.hasNext()) {
                         segmentHeight -= 2;
@@ -208,28 +208,28 @@ public class RenderingDrawUtils
             drawGradientRect(renderStack, zLevel, pX - 3.0f, pY - 3.0f, pX + maxWidth + 3.0f, pY - 3.0f + 1.0f, col, col);
             drawGradientRect(renderStack, zLevel, pX - 3.0f, pY + sumLineHeight + 2.0f, pX + maxWidth + 3.0f, pY + sumLineHeight + 3.0f, color, color);
             final int offset = anyItemFound ? stackBoxSize : 0;
-            renderStack.func_227860_a_();
+            renderStack.popPose();
             renderStack.func_227861_a_((double)pX, (double)pY, 0.0);
             boolean first = true;
             for (final Tuple<ItemStack, List<FormattedCharSequence>> toolTip4 : lengthLimitedToolTip) {
                 int minYShift = 10;
-                if (!((ItemStack)toolTip4.func_76341_a()).isEmpty()) {
-                    renderStack.func_227860_a_();
+                if (!((ItemStack)toolTip4.getA()).isEmpty()) {
+                    renderStack.popPose();
                     renderStack.func_227861_a_(0.0, 0.0, (double)zLevel);
-                    RenderingUtils.renderItemStackGUI(renderStack, (ItemStack)toolTip4.func_76341_a(), null);
-                    renderStack.func_227865_b_();
+                    RenderingUtils.renderItemStackGUI(renderStack, (ItemStack)toolTip4.getA(), null);
+                    renderStack.scale();
                     minYShift = stackBoxSize;
                     renderStack.func_227861_a_(0.0, 2.0, 0.0);
                 }
-                for (final FormattedCharSequence text : (List)toolTip4.func_76340_b()) {
-                    FontRenderer customFR3 = ((ItemStack)toolTip4.func_76341_a()).getItem().getFontRenderer((ItemStack)toolTip4.func_76341_a());
+                for (final FormattedCharSequence text : (List)toolTip4.getB()) {
+                    FontRenderer customFR3 = ((ItemStack)toolTip4.getA()).getItem().getFontRenderer((ItemStack)toolTip4.getA());
                     if (customFR3 == null) {
                         customFR3 = fontRenderer;
                     }
-                    renderStack.func_227860_a_();
+                    renderStack.popPose();
                     renderStack.func_227861_a_((double)offset, 0.0, (double)zLevel);
                     renderStringAt(text, renderStack, customFR3, strColor.getRGB(), false);
-                    renderStack.func_227865_b_();
+                    renderStack.scale();
                     renderStack.func_227861_a_(0.0, 10.0, 0.0);
                     minYShift -= 10;
                 }
@@ -241,7 +241,7 @@ public class RenderingDrawUtils
                 }
                 first = false;
             }
-            renderStack.func_227865_b_();
+            renderStack.scale();
         }
     }
     
@@ -277,11 +277,11 @@ public class RenderingDrawUtils
         Blending.DEFAULT.apply();
         RenderSystem.shadeModel(7425);
         RenderingUtils.draw(7, DefaultVertexFormat.field_181706_f, buf -> {
-            final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
-            buf.func_227888_a_(offset, right, top, zLevel).func_227885_a_(startRed, startGreen, startBlue, startAlpha).func_181675_d();
-            buf.func_227888_a_(offset, left, top, zLevel).func_227885_a_(startRed, startGreen, startBlue, startAlpha).func_181675_d();
-            buf.func_227888_a_(offset, left, bottom, zLevel).func_227885_a_(endRed, endGreen, endBlue, endAlpha).func_181675_d();
-            buf.func_227888_a_(offset, right, bottom, zLevel).func_227885_a_(endRed, endGreen, endBlue, endAlpha).func_181675_d();
+            final Matrix4f offset = renderStack.last().translate();
+            buf.func_227888_a_(offset, right, top, zLevel).pushPose()startRed, startGreen, startBlue, startAlpha).blockPosition();
+            buf.func_227888_a_(offset, left, top, zLevel).pushPose()startRed, startGreen, startBlue, startAlpha).blockPosition();
+            buf.func_227888_a_(offset, left, bottom, zLevel).pushPose()endRed, endGreen, endBlue, endAlpha).blockPosition();
+            buf.func_227888_a_(offset, right, bottom, zLevel).pushPose()endRed, endGreen, endBlue, endAlpha).blockPosition();
             return;
         });
         RenderSystem.shadeModel(7424);
@@ -294,35 +294,35 @@ public class RenderingDrawUtils
         final float f2 = 0.0f;
         final int alpha = (int)(255.0f * (1.0f - f2));
         final VertexConsumer vb = buffer.getBuffer(RenderTypesAS.EFFECT_LIGHTRAY_FAN);
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         for (int i = 0; i < count; ++i) {
-            renderStack.func_227860_a_();
-            renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(RenderingDrawUtils.rand.nextFloat() * 360.0f));
-            renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(RenderingDrawUtils.rand.nextFloat() * 360.0f));
-            renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(RenderingDrawUtils.rand.nextFloat() * 360.0f));
-            renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(RenderingDrawUtils.rand.nextFloat() * 360.0f));
-            renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(RenderingDrawUtils.rand.nextFloat() * 360.0f));
-            renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(RenderingDrawUtils.rand.nextFloat() * 360.0f + f1 * 360.0f));
-            final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
+            renderStack.popPose();
+            renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
+            renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
+            renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
+            renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
+            renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
+            renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f + f1 * 360.0f));
+            final Matrix4f matr = renderStack.last().translate();
             float fa = RenderingDrawUtils.rand.nextFloat() * 20.0f + 5.0f + f2 * 10.0f;
             float f3 = RenderingDrawUtils.rand.nextFloat() * 2.0f + 1.0f + f2 * 2.0f;
             fa /= 30.0f / (Math.min((float)minScale, 10.0f * scale) / 10.0f);
             f3 /= 30.0f / (Math.min((float)minScale, 10.0f * scale) / 10.0f);
-            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).func_225586_a_(color.getRed(), color.getGreen(), color.getBlue(), alpha).func_181675_d();
-            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).func_225586_a_(color.getRed(), color.getGreen(), color.getBlue(), alpha).func_181675_d();
-            vb.func_227888_a_(matr, -0.7f * f3, fa, -0.5f * f3).func_225586_a_(color.getRed(), color.getGreen(), color.getBlue(), 0).func_181675_d();
-            vb.func_227888_a_(matr, 0.7f * f3, fa, -0.5f * f3).func_225586_a_(color.getRed(), color.getGreen(), color.getBlue(), 0).func_181675_d();
-            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).func_225586_a_(color.getRed(), color.getGreen(), color.getBlue(), alpha).func_181675_d();
-            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).func_225586_a_(color.getRed(), color.getGreen(), color.getBlue(), alpha).func_181675_d();
-            vb.func_227888_a_(matr, 0.7f * f3, fa, -0.5f * f3).func_225586_a_(color.getRed(), color.getGreen(), color.getBlue(), 0).func_181675_d();
-            vb.func_227888_a_(matr, 0.0f, fa, 1.0f * f3).func_225586_a_(color.getRed(), color.getGreen(), color.getBlue(), 0).func_181675_d();
-            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).func_225586_a_(color.getRed(), color.getGreen(), color.getBlue(), alpha).func_181675_d();
-            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).func_225586_a_(color.getRed(), color.getGreen(), color.getBlue(), alpha).func_181675_d();
-            vb.func_227888_a_(matr, 0.0f, fa, 1.0f * f3).func_225586_a_(color.getRed(), color.getGreen(), color.getBlue(), 0).func_181675_d();
-            vb.func_227888_a_(matr, -0.7f * f3, fa, -0.5f * f3).func_225586_a_(color.getRed(), color.getGreen(), color.getBlue(), 0).func_181675_d();
-            renderStack.func_227865_b_();
+            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
+            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
+            vb.func_227888_a_(matr, -0.7f * f3, fa, -0.5f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
+            vb.func_227888_a_(matr, 0.7f * f3, fa, -0.5f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
+            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
+            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
+            vb.func_227888_a_(matr, 0.7f * f3, fa, -0.5f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
+            vb.func_227888_a_(matr, 0.0f, fa, 1.0f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
+            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
+            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
+            vb.func_227888_a_(matr, 0.0f, fa, 1.0f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
+            vb.func_227888_a_(matr, -0.7f * f3, fa, -0.5f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
+            renderStack.scale();
         }
-        renderStack.func_227865_b_();
+        renderStack.scale();
         RenderingUtils.refreshDrawing(vb, RenderTypesAS.EFFECT_LIGHTRAY_FAN);
     }
     
@@ -332,7 +332,7 @@ public class RenderingDrawUtils
     
     public static void renderFacingSpriteVB(final VertexConsumer vb, final PoseStack renderStack, final double px, final double py, final double pz, final float scale, final float angle, final SpriteSheetResource sprite, final long spriteTick, final int r, final int g, final int b, final int alpha) {
         final Tuple<Float, Float> uv = sprite.getUVOffset(spriteTick);
-        renderFacingQuadVB(vb, renderStack, px, py, pz, scale, angle, (float)uv.func_76341_a(), (float)uv.func_76340_b(), sprite.getULength(), sprite.getVLength(), r, g, b, alpha);
+        renderFacingQuadVB(vb, renderStack, px, py, pz, scale, angle, (float)uv.getA(), (float)uv.getB(), sprite.getULength(), sprite.getVLength(), r, g, b, alpha);
     }
     
     public static void renderFacingQuadVB(final VertexConsumer vb, final PoseStack renderStack, final double px, final double py, final double pz, final float scale, final float angle, final float u, final float v, final float uLength, final float vLength, final int r, final int g, final int b, final int alpha) {
@@ -360,80 +360,80 @@ public class RenderingDrawUtils
             v4 = vAngle.clone().multiply(2.0 * v4.dot(vAngle)).add(v4.clone().multiply(cAngleSq - vAngle.dot(vAngle))).add(vAngle.clone().crossProduct(v4.clone().multiply(2.0f * cAngle)));
             v5 = vAngle.clone().multiply(2.0 * v5.dot(vAngle)).add(v5.clone().multiply(cAngleSq - vAngle.dot(vAngle))).add(vAngle.clone().crossProduct(v5.clone().multiply(2.0f * cAngle)));
         }
-        final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
-        pos.clone().add(v2).subtract(iPos).drawPos(matr, vb).func_225586_a_(r, g, b, alpha).func_225583_a_(u + uLength, v + vLength).func_181675_d();
-        pos.clone().add(v3).subtract(iPos).drawPos(matr, vb).func_225586_a_(r, g, b, alpha).func_225583_a_(u + uLength, v).func_181675_d();
-        pos.clone().add(v4).subtract(iPos).drawPos(matr, vb).func_225586_a_(r, g, b, alpha).func_225583_a_(u, v).func_181675_d();
-        pos.clone().add(v5).subtract(iPos).drawPos(matr, vb).func_225586_a_(r, g, b, alpha).func_225583_a_(u, v + vLength).func_181675_d();
+        final Matrix4f matr = renderStack.last().translate();
+        pos.clone().add(v2).subtract(iPos).drawPos(matr, vb).setPos(r, g, b, alpha).setPos(u + uLength, v + vLength).blockPosition();
+        pos.clone().add(v3).subtract(iPos).drawPos(matr, vb).setPos(r, g, b, alpha).setPos(u + uLength, v).blockPosition();
+        pos.clone().add(v4).subtract(iPos).drawPos(matr, vb).setPos(r, g, b, alpha).setPos(u, v).blockPosition();
+        pos.clone().add(v5).subtract(iPos).drawPos(matr, vb).setPos(r, g, b, alpha).setPos(u, v + vLength).blockPosition();
     }
     
     public static void renderTexturedCubeCentralColorLighted(final VertexConsumer buf, final PoseStack renderStack, final float u, final float v, final float uLength, final float vLength, final int r, final int g, final int b, final int a, final int combinedLight) {
-        final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
-        buf.func_227888_a_(matr, -0.5f, -0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, 0.5f, -0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, 0.5f, -0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v + vLength).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, -0.5f, -0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vLength).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, -0.5f, 0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, 0.5f, 0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, 0.5f, 0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v + vLength).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, -0.5f, 0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vLength).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, -0.5f, -0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, -0.5f, 0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v + vLength).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, -0.5f, 0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vLength).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, -0.5f, -0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, 0.5f, -0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, 0.5f, 0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v + vLength).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, 0.5f, 0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vLength).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, 0.5f, -0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, 0.5f, -0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, -0.5f, -0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, -0.5f, 0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v + vLength).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, 0.5f, 0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vLength).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, -0.5f, -0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, 0.5f, -0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, 0.5f, 0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v + vLength).func_227886_a_(combinedLight).func_181675_d();
-        buf.func_227888_a_(matr, -0.5f, 0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vLength).func_227886_a_(combinedLight).func_181675_d();
+        final Matrix4f matr = renderStack.last().translate();
+        buf.func_227888_a_(matr, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.func_227888_a_(matr, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
     }
     
     public static void renderTexturedCubeCentralColorNormal(final PoseStack renderStack, final VertexConsumer vb, final float u, final float v, final float uLength, final float vLength, final int r, final int g, final int b, final int a, final Matrix3f normalMatr) {
-        final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
-        vb.func_227888_a_(offset, -0.5f, -0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, 0.5f, -0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, 0.5f, -0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, -0.5f, -0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, -0.5f, 0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, 0.5f, 0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, 0.5f, 0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, -0.5f, 0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, -0.5f, -0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, -0.5f, 0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, -0.5f, 0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, -0.5f, -0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, 0.5f, -0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, 0.5f, 0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, 0.5f, 0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, 0.5f, -0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, 0.5f, -0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, -0.5f, -0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, -0.5f, 0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, 0.5f, 0.5f, -0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, -0.5f, -0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, 0.5f, -0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, 0.5f, 0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
-        vb.func_227888_a_(offset, -0.5f, 0.5f, 0.5f).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).func_181675_d();
+        final Matrix4f offset = renderStack.last().translate();
+        vb.func_227888_a_(offset, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.func_227888_a_(offset, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
     }
     
     public static void renderAngleRotatedTexturedRectVB(final VertexConsumer vb, final PoseStack renderStack, final Vector3 renderOffset, final Vector3 axis, final float angleRad, final float scale, final float u, final float v, final float uLength, final float vLength, final int r, final int g, final int b, final int a) {
         final Vector3 renderStart = axis.clone().perpendicular().rotate(angleRad, axis).normalize();
-        final Matrix4f matr = renderStack.func_227866_c_().func_227870_a_();
+        final Matrix4f matr = renderStack.last().translate();
         Vector3 vec = renderStart.clone().rotate(Math.toRadians(90.0), axis).normalize().multiply(scale).add(renderOffset);
-        vec.drawPos(matr, vb).func_225586_a_(r, g, b, a).func_225583_a_(u, v + vLength).func_181675_d();
+        vec.drawPos(matr, vb).setPos(r, g, b, a).setPos(u, v + vLength).blockPosition();
         vec = renderStart.clone().multiply(-1).normalize().multiply(scale).add(renderOffset);
-        vec.drawPos(matr, vb).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v + vLength).func_181675_d();
+        vec.drawPos(matr, vb).setPos(r, g, b, a).setPos(u + uLength, v + vLength).blockPosition();
         vec = renderStart.clone().rotate(Math.toRadians(270.0), axis).normalize().multiply(scale).add(renderOffset);
-        vec.drawPos(matr, vb).func_225586_a_(r, g, b, a).func_225583_a_(u + uLength, v).func_181675_d();
+        vec.drawPos(matr, vb).setPos(r, g, b, a).setPos(u + uLength, v).blockPosition();
         vec = renderStart.clone().normalize().multiply(scale).add(renderOffset);
-        vec.drawPos(matr, vb).func_225586_a_(r, g, b, a).func_225583_a_(u, v).func_181675_d();
+        vec.drawPos(matr, vb).setPos(r, g, b, a).setPos(u, v).blockPosition();
     }
     
     static {

@@ -27,15 +27,15 @@ public class RenderEntitySpectralTool extends EntityRenderer<EntitySpectralTool>
         if (stack.isEmpty() || !entity.isAlive()) {
             return;
         }
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_(0.0, (double)(entity.func_213302_cg() / 2.0f), 0.0);
-        renderStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(-entityYaw - 90.0f));
+        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()-entityYaw - 90.0f));
         if (stack.getItem() instanceof AxeItem) {
-            renderStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(180.0f));
-            renderStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(270.0f));
+            renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
+            renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()270.0f));
         }
         RenderingUtils.renderTranslucentItemStackModelGround(stack, renderStack, ColorsAS.SPECTRAL_TOOL, Blending.CONSTANT_ALPHA, 63);
-        renderStack.func_227865_b_();
+        renderStack.scale();
     }
     
     public ResourceLocation getEntityTexture(final EntitySpectralTool entity) {

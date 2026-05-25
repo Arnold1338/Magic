@@ -57,16 +57,16 @@ public class RenderPageBlockTransmutation extends RenderPageRecipeTemplate
         RenderSystem.depthMask(false);
         RenderSystem.enableBlend();
         Blending.ADDITIVE_ALPHA.apply();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_227851_o_, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, renderX - 15.0f, renderY + 10.0f, z, 50.0f, 120.0f).tex(SpritesAS.SPR_LIGHTBEAM).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, renderX - 15.0f, renderY + 10.0f, z, 50.0f, 120.0f).tex(SpritesAS.SPR_LIGHTBEAM).draw());
         Blending.DEFAULT.apply();
         RenderSystem.disableBlend();
         RenderSystem.depthMask(true);
         RenderSystem.disableDepthTest();
-        renderStack.func_227860_a_();
+        renderStack.popPose();
         renderStack.func_227861_a_((double)(renderX + 11.0f), (double)(renderY + 11.0f), (double)z);
-        renderStack.func_227862_a_(40.0f, 40.0f, 0.0f);
+        renderStack.translate(40.0f, 40.0f, 0.0f);
         RenderingUtils.draw(7, DefaultVertexFormat.field_181706_f, buf -> RenderingDrawUtils.renderLightRayFan(renderStack, renderType -> buf, ColorsAS.ROCK_CRYSTAL, this.getNodePage(), 9, 9.0f, 20));
-        renderStack.func_227865_b_();
+        renderStack.scale();
         this.renderItemStack(renderStack, renderX - 4.0f, renderY - 4.0f, z, 1.75f, new ItemStack((ItemLike)BlocksAS.ROCK_COLLECTOR_CRYSTAL));
         RenderSystem.enableDepthTest();
     }

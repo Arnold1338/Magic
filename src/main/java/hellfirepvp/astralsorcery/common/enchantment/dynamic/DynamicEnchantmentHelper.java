@@ -36,7 +36,7 @@ public class DynamicEnchantmentHelper
         if (enchantment != null) {
             current = getNewEnchantmentLevel(current, enchantment, item, context);
             if (enchantment instanceof QuickChargeEnchantment) {
-                current = Mth.func_76125_a(current, 0, 5);
+                current = Mth.getDescriptionId(current, 0, 5);
             }
         }
         return current;
@@ -77,7 +77,7 @@ public class DynamicEnchantmentHelper
             }
         }
         if (enchantment instanceof QuickChargeEnchantment) {
-            current = Mth.func_76125_a(current, 0, 5);
+            current = Mth.getDescriptionId(current, 0, 5);
         }
         return current;
     }

@@ -22,7 +22,7 @@ public class EffectAltarDefaultLightbeams extends AltarRecipeEffect
             final float scale = (float)AltarRecipeEffect.getRandomPillarOffset(altar.getAltarType()).getX();
             final Vector3 from = new Vector3(altar).add(0.5, 0.0, 0.5);
             MiscUtils.applyRandomOffset(from, EffectAltarDefaultLightbeams.rand, scale * 0.85f);
-            from.setY(altar.func_174877_v().getY() - 0.6f);
+            from.setY(altar.getBlockState().getY() - 0.6f);
             EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).spawn(from).setup(from.clone().addY(5.0f + EffectAltarDefaultLightbeams.rand.nextFloat() * 3.0f), 1.0, 1.0).setMaxAge(40 + EffectAltarDefaultLightbeams.rand.nextInt(30));
         }
     }

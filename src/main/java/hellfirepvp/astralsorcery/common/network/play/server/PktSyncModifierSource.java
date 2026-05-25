@@ -70,7 +70,7 @@ public class PktSyncModifierSource extends ASPacket<PktSyncModifierSource>
             @Override
             public void handleClient(final PktSyncModifierSource packet, final NetworkEvent.Context context) {
                 context.enqueueWork(() -> {
-                    final Player player = (Player)Minecraft.getInstance().field_71439_g;
+                    final Player player = (Player)Minecraft.getInstance().player;
                     if (player != null) {
                         switch (packet.actionType) {
                             case UPDATE: {

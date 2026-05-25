@@ -83,16 +83,16 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (this.field_145850_b.func_201670_d()) {
+        if (this.level.level()) {
             this.playEffects();
         }
         else {
             final boolean complete = this.hasMultiblock() & this.doesSeeSky();
             if (complete) {
                 if (!this.networkRegistered) {
-                    final GatewayCache cache = (GatewayCache)DataAS.DOMAIN_AS.getData(this.field_145850_b, (WorldCacheDomain.SaveKey)DataAS.KEY_GATEWAY_CACHE);
-                    if (cache.offerPosition(this.field_145850_b, this.func_174877_v())) {
-                        cache.updateGatewayNode(this.func_174877_v(), node -> {
+                    final GatewayCache cache = (GatewayCache)DataAS.DOMAIN_AS.getData(this.level, (WorldCacheDomain.SaveKey)DataAS.KEY_GATEWAY_CACHE);
+                    if (cache.offerPosition(this.level, this.getBlockState())) {
+                        cache.updateGatewayNode(this.getBlockState(), node -> {
                             node.setDisplayName(this.displayText);
                             node.setColor(this.color);
                             return;
@@ -104,7 +104,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
                 }
             }
             else if (this.networkRegistered) {
-                ((GatewayCache)DataAS.DOMAIN_AS.getData(this.field_145850_b, (WorldCacheDomain.SaveKey)DataAS.KEY_GATEWAY_CACHE)).removePosition(this.field_145850_b, this.func_174877_v());
+                ((GatewayCache)DataAS.DOMAIN_AS.getData(this.level, (WorldCacheDomain.SaveKey)DataAS.KEY_GATEWAY_CACHE)).removePosition(this.level, this.getBlockState());
                 this.networkRegistered = false;
                 this.markForUpdate();
             }
@@ -127,7 +127,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
             return;
         }
         final Vector3 at = new Vector3(this).add(0.5, 1.7, 0.5);
-        final double distance = Vector3.atEntityCorner((Entity)Minecraft.getInstance().field_71439_g).distance(at);
+        final double distance = Vector3.atEntityCorner((Entity)Minecraft.getInstance().player).distance(at);
         if (this.clientGatewaySphereEffect == null) {
             this.clientGatewaySphereEffect = EffectHelper.of(EffectTemplatesAS.COLOR_SPHERE).spawn(at).setupSphere(Vector3.RotAxis.Y_AXIS, 6.0f).setRemoveIfInvisible(true).setAlphaFadeDistance(4.0).setAlphaMultiplier(1.0f).color(VFXColorFunction.BLACK).refresh(RefreshFunction.tileExistsAnd(this, (te, fx) -> te.doesSeeSky() && te.hasMultiblock()));
         }
@@ -138,7 +138,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
             Minecraft.getInstance().field_71474_y.func_243229_a(PointOfView.FIRST_PERSON);
         }
         if (distance < 2.5) {
-            GatewayUIRenderHandler.getInstance().getOrCreateUI(this.func_145831_w(), this.func_174877_v(), at);
+            GatewayUIRenderHandler.getInstance().getOrCreateUI(this.getLevel(), this.getBlockState(), at);
         }
     }
     
@@ -162,7 +162,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
         for (int i = 0; i < 2; ++i) {
             final Vector3 offset = new Vector3();
             MiscUtils.applyRandomOffset(offset, TileCelestialGateway.rand, 3.0f);
-            offset.add(new Vector3(this)).add(0.5, 0.0, 0.5).setY(this.func_174877_v().getY() + 0.05);
+            offset.add(new Vector3(this)).add(0.5, 0.0, 0.5).setY(this.getBlockState().getY() + 0.05);
             final Color c = MiscUtils.eitherOf(TileCelestialGateway.rand, new Color[] { Color.WHITE, gatewayColor, gatewayColor.brighter() });
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(offset).setGravityStrength(-4.0E-5f).color(VFXColorFunction.constant(c)).setScaleMultiplier(0.15f + TileCelestialGateway.rand.nextFloat() * 0.1f).setMaxAge(15 + TileCelestialGateway.rand.nextInt(10));
         }
@@ -272,7 +272,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     }
     
     private void updateAccessInformation() {
-        ((GatewayCache)DataAS.DOMAIN_AS.getData(this.field_145850_b, (WorldCacheDomain.SaveKey)DataAS.KEY_GATEWAY_CACHE)).updateGatewayNode(this.func_174877_v(), node -> {
+        ((GatewayCache)DataAS.DOMAIN_AS.getData(this.level, (WorldCacheDomain.SaveKey)DataAS.KEY_GATEWAY_CACHE)).updateGatewayNode(this.getBlockState(), node -> {
             node.setLocked(this.isLocked());
             node.setOwner(this.getOwner());
             node.setAllowedUsers(this.allowedUsers);
@@ -286,7 +286,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     }
     
     public static BlockPos getAllowedUserOffset(final int index) {
-        return TileCelestialGateway.OFFSETS_ALLOWED_PREVIEW[Mth.func_76125_a(index, 0, TileCelestialGateway.OFFSETS_ALLOWED_PREVIEW.length - 1)];
+        return TileCelestialGateway.OFFSETS_ALLOWED_PREVIEW[Mth.getDescriptionId(index, 0, TileCelestialGateway.OFFSETS_ALLOWED_PREVIEW.length - 1)];
     }
     
     public void setDisplayText(@Nullable final Component displayText) {
@@ -338,7 +338,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
             final CompoundTag tag = (CompoundTag)nbt;
             return new Tuple((Object)tag.getInt("index"), (Object)PlayerReference.deserialize(tag.func_74775_l("player")));
         }).forEach(tpl -> {
-            final PlayerReference playerReference = this.allowedUsers.put((Integer)tpl.func_76341_a(), (PlayerReference)tpl.func_76340_b());
+            final PlayerReference playerReference = this.allowedUsers.put((Integer)tpl.getA(), (PlayerReference)tpl.getB());
         });
     }
     
@@ -367,7 +367,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     
     public void onEntityLinkCreate(final Player player, final LivingEntity linked) {
         if (linked instanceof Player && this.addAllowedUser((Player)linked)) {
-            final Component accessGrantedMessage = (Component)new Component("astralsorcery.misc.link.gateway.link", new Object[] { linked.func_145748_c_() }).func_240699_a_(ChatFormatting.GREEN);
+            final Component accessGrantedMessage = (Component)new Component("astralsorcery.misc.link.gateway.link", new Object[] { linked.getDisplayName() }).toString()ChatFormatting.GREEN);
             player.func_145747_a(accessGrantedMessage, Util.NIL_UUID);
             linked.func_145747_a(accessGrantedMessage, Util.NIL_UUID);
         }

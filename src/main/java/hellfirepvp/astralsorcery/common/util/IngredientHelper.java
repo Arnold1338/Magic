@@ -32,7 +32,7 @@ public class IngredientHelper
             return ItemStack.EMPTY;
         }
         final int mod = (int)(tick / 20L % applicable.size());
-        return applicable.get(Mth.func_76125_a(mod, 0, applicable.size() - 1));
+        return applicable.get(Mth.getDescriptionId(mod, 0, applicable.size() - 1));
     }
     
     @OnlyIn(Dist.CLIENT)

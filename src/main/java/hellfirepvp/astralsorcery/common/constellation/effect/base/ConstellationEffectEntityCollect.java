@@ -23,7 +23,7 @@ public abstract class ConstellationEffectEntityCollect<T extends Entity> extends
     }
     
     @Nonnull
-    protected List<T> collectEntities(final World world, final BlockPos center, final ConstellationEffectProperties properties) {
+    protected List<T> collectEntities(final Level world, final BlockPos center, final ConstellationEffectProperties properties) {
         return world.func_175647_a((Class)this.entityClazz, ConstellationEffectEntityCollect.BOX.func_186662_g(properties.getSize()).func_186670_a(center), (Predicate)this.filter);
     }
 }

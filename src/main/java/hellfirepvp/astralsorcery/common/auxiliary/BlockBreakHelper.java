@@ -30,10 +30,10 @@ import java.util.Map;
 
 public class BlockBreakHelper
 {
-    private static final Map<RegistryKey<World>, TickTokenMap<BlockPos, BreakEntry>> breakMap;
+    private static final Map<RegistryKey<Level>, TickTokenMap<BlockPos, BreakEntry>> breakMap;
     
-    public static void addProgress(final World world, final BlockPos pos, final float percStrength, final Supplier<Float> expectedHardness) {
-        final TickTokenMap<BlockPos, BreakEntry> map = BlockBreakHelper.breakMap.computeIfAbsent((RegistryKey<World>)world.dimension(), key -> {
+    public static void addProgress(final Level world, final BlockPos pos, final float percStrength, final Supplier<Float> expectedHardness) {
+        final TickTokenMap<BlockPos, BreakEntry> map = BlockBreakHelper.breakMap.computeIfAbsent((RegistryKey<Level>)world.dimension(), key -> {
             final TickTokenMap<BlockPos, BreakEntry> tkMap = new TickTokenMap<BlockPos, BreakEntry>(TickEvent.Type.SERVER, new TickEvent.Type[0]);
             AstralSorcery.getProxy().getTickManager().register((ITickHandler)tkMap);
             return tkMap;
@@ -67,7 +67,7 @@ public class BlockBreakHelper
     }
     
     static {
-        breakMap = new HashMap<RegistryKey<World>, TickTokenMap<BlockPos, BreakEntry>>();
+        breakMap = new HashMap<RegistryKey<Level>, TickTokenMap<BlockPos, BreakEntry>>();
     }
     
     public static class BreakEntry implements TickTokenMap.TickMapToken<Float>, CEffectAbstractList.ListEntry

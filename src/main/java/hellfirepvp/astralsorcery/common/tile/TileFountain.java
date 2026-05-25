@@ -62,7 +62,7 @@ public class TileFountain extends TileEntityTick
     @Override
     public void func_73660_a() {
         super.func_73660_a();
-        if (!this.func_145831_w().func_201670_d()) {
+        if (!this.getLevel().level()) {
             if (this.hasMultiblock()) {
                 this.updateFountainComponents();
                 this.drawLiquidStarlight();
@@ -87,7 +87,7 @@ public class TileFountain extends TileEntityTick
                             ByteBufUtils.writeEnumValue(buf, nextSegment);
                             return;
                         });
-                        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.field_145850_b, (Vector3i)this.field_174879_c, 32.0));
+                        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.level, (Vector3i)this.field_174879_c, 32.0));
                     }
                     effect.tick(this, ctx, this.tickActiveFountainEffect, LogicalSide.SERVER, this.getSegment());
                 }
@@ -106,7 +106,7 @@ public class TileFountain extends TileEntityTick
         final BlockPos at = ByteBufUtils.readPos(pktPlayEffect.getExtraData());
         final FountainEffect.OperationSegment segment = ByteBufUtils.readEnumValue(pktPlayEffect.getExtraData(), FountainEffect.OperationSegment.class);
         final FountainEffect.OperationSegment nextSegment = ByteBufUtils.readEnumValue(pktPlayEffect.getExtraData(), FountainEffect.OperationSegment.class);
-        final World world = (World)Minecraft.getInstance().field_71441_e;
+        final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
             return;
         }
@@ -124,7 +124,7 @@ public class TileFountain extends TileEntityTick
     @OnlyIn(Dist.CLIENT)
     public static void replaceEffect(final PktPlayEffect pktPlayEffect) {
         final BlockPos at = ByteBufUtils.readPos(pktPlayEffect.getExtraData());
-        final World world = (World)Minecraft.getInstance().field_71441_e;
+        final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
             return;
         }
@@ -144,7 +144,7 @@ public class TileFountain extends TileEntityTick
         if (this.tickDrawLiquidStarlight <= 0) {
             this.tickDrawLiquidStarlight = 100;
             if (this.mbLiquidStarlight < 12800.0f && this.currentEffect != null) {
-                final TileChalice chalice = MiscUtils.getTileAt((IBlockReader)this.field_145850_b, this.field_174879_c.above(), TileChalice.class, false);
+                final TileChalice chalice = MiscUtils.getTileAt((IBlockReader)this.level, this.field_174879_c.above(), TileChalice.class, false);
                 if (chalice != null) {
                     final FluidStack fluid = chalice.getTank().drain(400, IFluidHandler.FluidAction.SIMULATE);
                     if (!fluid.isEmpty() && fluid.getFluid() instanceof FluidLiquidStarlight) {
@@ -160,7 +160,7 @@ public class TileFountain extends TileEntityTick
     private void updateFountainComponents() {
         final FountainEffect prevEffect = this.getCurrentEffect();
         final FountainEffect.EffectContext prevContext = this.effectContext;
-        final BlockState primeState = this.field_145850_b.getBlockState(this.field_174879_c.func_177977_b());
+        final BlockState primeState = this.level.getBlockState(this.field_174879_c.renderItem());
         if (primeState.getBlock() instanceof BlockFountainPrime) {
             if (this.setCurrentEffect(((BlockFountainPrime)primeState.getBlock()).provideEffect()) && prevEffect != null) {
                 this.replaceCurrentEffect(prevEffect, prevContext, this.getCurrentEffect());
@@ -174,7 +174,7 @@ public class TileFountain extends TileEntityTick
     private void replaceCurrentEffect(final FountainEffect prevEffect, final FountainEffect.EffectContext prevContext, final FountainEffect newEffect) {
         prevEffect.onReplace(this, prevContext, newEffect, LogicalSide.SERVER);
         final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.FOUNTAIN_REPLACE_EFFECT).addData(buf -> ByteBufUtils.writePos(buf, this.field_174879_c));
-        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.field_145850_b, (Vector3i)this.field_174879_c, 32.0));
+        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.level, (Vector3i)this.field_174879_c, 32.0));
     }
     
     private boolean setCurrentEffect(@Nullable final FountainEffect<?> effect) {

@@ -18,30 +18,30 @@ import net.minecraft.core.BlockPos;
 
 public class WorldBlockPos extends BlockPos
 {
-    private final TransformReference<RegistryKey<World>, World> worldReference;
+    private final TransformReference<RegistryKey<Level>, Level> worldReference;
     
-    private WorldBlockPos(final TransformReference<RegistryKey<World>, World> worldReference, final BlockPos pos) {
+    private WorldBlockPos(final TransformReference<RegistryKey<Level>, Level> worldReference, final BlockPos pos) {
         super((Vector3i)pos);
         this.worldReference = worldReference;
     }
     
-    private WorldBlockPos(final RegistryKey<World> type, final BlockPos pos, final Function<RegistryKey<World>, World> worldProvider) {
+    private WorldBlockPos(final RegistryKey<Level> type, final BlockPos pos, final Function<RegistryKey<Level>, Level> worldProvider) {
         super((Vector3i)pos);
-        this.worldReference = new TransformReference<RegistryKey<World>, World>(type, worldProvider);
+        this.worldReference = new TransformReference<RegistryKey<Level>, Level>(type, worldProvider);
     }
     
-    public static WorldBlockPos wrapServer(final World world, final BlockPos pos) {
-        return new WorldBlockPos((RegistryKey<World>)world.dimension(), pos, type -> {
+    public static WorldBlockPos wrapServer(final Level world, final BlockPos pos) {
+        return new WorldBlockPos((RegistryKey<Level>)world.dimension(), pos, type -> {
             final MinecraftServer server = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
-            return server.func_71218_a(type);
+            return server.getLevel(type);
         });
     }
     
     public static WorldBlockPos wrapTileEntity(final BlockEntity tile) {
-        return new WorldBlockPos((RegistryKey<World>)tile.func_145831_w().dimension(), tile.func_174877_v(), type -> tile.func_145831_w());
+        return new WorldBlockPos((RegistryKey<Level>)tile.getLevel().dimension(), tile.getBlockState(), type -> tile.getLevel());
     }
     
-    public RegistryKey<World> getWorldKey() {
+    public RegistryKey<Level> getWorldKey() {
         return this.worldReference.getReference();
     }
     
@@ -63,7 +63,7 @@ public class WorldBlockPos extends BlockPos
     
     @Nullable
     public <T extends BlockEntity> T getTileAt(final Class<T> tileClass, final boolean forceChunkLoad) {
-        final World world = this.worldReference.getValue();
+        final Level world = this.worldReference.getValue();
         if (world != null) {
             return MiscUtils.getTileAt((IBlockReader)world, this, tileClass, forceChunkLoad);
         }
@@ -71,7 +71,7 @@ public class WorldBlockPos extends BlockPos
     }
     
     @Nullable
-    public World getWorld() {
+    public Level getWorld() {
         return this.worldReference.getValue();
     }
     

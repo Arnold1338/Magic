@@ -67,7 +67,7 @@ public class TileLens extends TileTransmissionBase<IPrismTransmissionNode> imple
     public void func_73660_a() {
         super.func_73660_a();
         if (this.colorType != null) {
-            if (this.field_145850_b.func_201670_d()) {
+            if (this.level.level()) {
                 this.playColorEffects();
             }
             this.doColorEffects();
@@ -90,8 +90,8 @@ public class TileLens extends TileTransmissionBase<IPrismTransmissionNode> imple
     }
     
     private void doColorEffects() {
-        final World world = this.func_145831_w();
-        if (!world.func_201670_d() && !this.occupiedConnections.isEmpty()) {
+        final Level world = this.getLevel();
+        if (!world.level() && !this.occupiedConnections.isEmpty()) {
             this.occupiedConnections.clear();
             this.markForUpdate();
             this.preventNetworkSync();
@@ -115,11 +115,11 @@ public class TileLens extends TileTransmissionBase<IPrismTransmissionNode> imple
                     final BlockPos posHit = rta.positionHit();
                     final BlockState stateHit = world.getBlockState(posHit);
                     this.colorType.blockInBeam(world, posHit, stateHit, exec);
-                    if (!world.func_201670_d()) {
+                    if (!world.level()) {
                         this.occupiedConnections.add(posHit);
                     }
                 }
-                else if (!world.func_201670_d()) {
+                else if (!world.level()) {
                     this.occupiedConnections.add(linkedTo);
                 }
             }
@@ -162,7 +162,7 @@ public class TileLens extends TileTransmissionBase<IPrismTransmissionNode> imple
     }
     
     public Direction getPlacedAgainst() {
-        final BlockState state = this.field_145850_b.getBlockState(this.func_174877_v());
+        final BlockState state = this.level.getBlockState(this.getBlockState());
         if (!(state.getBlock() instanceof BlockLens)) {
             return Direction.DOWN;
         }

@@ -53,7 +53,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
     private static Object modelArmor;
     
     public ItemMantle() {
-        super(CommonProxy.ARMOR_MATERIAL_IMBUED_LEATHER, EquipmentSlot.CHEST, new Item.Properties().func_200917_a(1).func_200916_a(CommonProxy.ITEM_GROUP_AS));
+        super(CommonProxy.ARMOR_MATERIAL_IMBUED_LEATHER, EquipmentSlot.CHEST, new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
     public void func_150895_a(final CreativeModeTab group, final NonNullList<ItemStack> items) {
@@ -79,10 +79,10 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final World worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         final IConstellation cst = this.getConstellation(stack);
         if (cst instanceof IWeakConstellation) {
-            tooltip.add((Component)cst.getConstellationName().func_240699_a_(ChatFormatting.BLUE));
+            tooltip.add((Component)cst.getConstellationName().toString()ChatFormatting.BLUE));
         }
     }
     

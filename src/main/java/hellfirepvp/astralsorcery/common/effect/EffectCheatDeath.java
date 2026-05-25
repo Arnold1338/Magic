@@ -36,16 +36,16 @@ public class EffectCheatDeath extends EffectCustomTexture
     
     private void onDeath(final LivingDeathEvent event) {
         final LivingEntity le = event.getEntityLiving();
-        if (!le.func_130014_f_().func_201670_d() && le.func_70644_a((Effect)EffectsAS.EFFECT_CHEAT_DEATH)) {
+        if (!le.level().level() && le.hasEffect((Effect)EffectsAS.EFFECT_CHEAT_DEATH)) {
             event.setCanceled(true);
             final int level = le.func_184596_c((Effect)EffectsAS.EFFECT_CHEAT_DEATH).func_76458_c();
             le.func_70606_j(Math.min(le.func_110138_aP(), (float)(4 + level * 2)));
             le.func_195064_c(new MobEffectInstance(Effects.field_76428_l, 200, 2, false, false, true));
             le.func_195064_c(new MobEffectInstance(Effects.field_76426_n, 500, 1, false, false, true));
-            final List<LivingEntity> others = le.func_130014_f_().func_175647_a((Class)LivingEntity.class, le.func_174813_aQ().func_186662_g(3.0), e -> e.isAlive() && e != le);
+            final List<LivingEntity> others = le.level().func_175647_a((Class)LivingEntity.class, le.func_174813_aQ().func_186662_g(3.0), e -> e.isAlive() && e != le);
             for (final LivingEntity lb : others) {
-                lb.func_70015_d(10);
-                lb.func_233627_a_(2.0f, lb.func_226277_ct_() - le.func_226277_ct_(), lb.func_226281_cx_() - le.func_226281_cx_());
+                lb.setAge(10);
+                lb.func_233627_a_(2.0f, lb.getX() - le.getX(), lb.getZ() - le.getZ());
             }
         }
     }

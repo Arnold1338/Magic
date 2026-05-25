@@ -63,7 +63,7 @@ public class CelestialStrike
         dmg += SkyCollectionHelper.getSkyNoiseDistribution((ISeedReader)world, at.toBlockPos()) * 10.0f;
         for (final LivingEntity living : livingEntities) {
             if (living instanceof Player) {
-                if (living.func_175149_v() || ((Player)living).func_184812_l_()) {
+                if (living.func_175149_v() || ((Player)living).getVehicle()) {
                     continue;
                 }
                 if (attacker != null && living.func_184191_r((Entity)attacker)) {
@@ -71,7 +71,7 @@ public class CelestialStrike
                 }
             }
             float dstPerc = (float)(Vector3.atEntityCenter((Entity)living).distance(at) / radius);
-            dstPerc = 1.0f - Mth.func_76131_a(dstPerc, 0.0f, 1.0f);
+            dstPerc = 1.0f - Mth.canEnchant(dstPerc, 0.0f, 1.0f);
             final float dmgDealt = dstPerc * dmg;
             if (dmgDealt > 0.5) {
                 DamageUtil.attackEntityFrom((Entity)living, ds, dmgDealt);
@@ -82,11 +82,11 @@ public class CelestialStrike
                 if (fireAspectLevel <= 0 || living.func_70027_ad()) {
                     continue;
                 }
-                living.func_70015_d(fireAspectLevel * 4);
+                living.setAge(fireAspectLevel * 4);
             }
         }
         final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.CELESTIAL_STRIKE).addData(buf -> ByteBufUtils.writeVector(buf, displayPosition));
-        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos((World)world, (Vector3i)at.toBlockPos(), 96.0));
+        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos((Level)world, (Vector3i)at.toBlockPos(), 96.0));
     }
     
     @OnlyIn(Dist.CLIENT)

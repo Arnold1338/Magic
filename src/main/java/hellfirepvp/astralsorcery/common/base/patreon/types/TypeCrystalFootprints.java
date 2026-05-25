@@ -48,13 +48,13 @@ public class TypeCrystalFootprints extends PatreonEffect implements ITickHandler
     }
     
     private boolean shouldDoEffect(final Player player) {
-        return player.getUUID().equals(this.playerUUID) && !player.func_70644_a(Effects.field_76441_p) && player.func_233570_aj_();
+        return player.getUUID().equals(this.playerUUID) && !player.hasEffect(Effects.field_76441_p) && player.func_233570_aj_();
     }
     
     @OnlyIn(Dist.CLIENT)
     private void spawnFootprint(final Player player) {
         final Vector3 pos = Vector3.atEntityCorner((Entity)player).subtract(player.func_213311_cf() / 2.0f, 0.1, player.func_213311_cf() / 2.0f).add(player.func_213311_cf() * TypeCrystalFootprints.rand.nextFloat(), 0.0f, player.func_213311_cf() * TypeCrystalFootprints.rand.nextFloat());
-        if (player.func_130014_f_().isEmptyBlock(pos.toBlockPos())) {
+        if (player.level().isEmptyBlock(pos.toBlockPos())) {
             return;
         }
         EffectHelper.of(EffectTemplatesAS.CRYSTAL).spawn(pos).rotation(TypeCrystalFootprints.rand.nextFloat() * 35.0f * (TypeCrystalFootprints.rand.nextBoolean() ? 1 : -1), TypeCrystalFootprints.rand.nextFloat() * 35.0f * (TypeCrystalFootprints.rand.nextBoolean() ? 1 : -1), TypeCrystalFootprints.rand.nextFloat() * 35.0f * (TypeCrystalFootprints.rand.nextBoolean() ? 1 : -1)).color(VFXColorFunction.constant(this.color)).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.025f + TypeCrystalFootprints.rand.nextFloat() * 0.03f).setMaxAge(60 + TypeCrystalFootprints.rand.nextInt(30));

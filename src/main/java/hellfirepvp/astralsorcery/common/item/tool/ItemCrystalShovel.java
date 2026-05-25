@@ -68,7 +68,7 @@ public class ItemCrystalShovel extends ItemCrystalTierItem implements TypeEnchan
     }
     
     public InteractionResult func_195939_a(final ItemUseContext context) {
-        final World world = context.func_195991_k();
+        final Level world = context.func_195991_k();
         final BlockPos pos = context.func_195995_a();
         final BlockState state = world.getBlockState(pos);
         if (context.func_196000_l() == Direction.DOWN) {
@@ -82,20 +82,20 @@ public class ItemCrystalShovel extends ItemCrystalTierItem implements TypeEnchan
             targetState = modifiedState;
         }
         else if (state.getBlock() instanceof CampfireBlock && (boolean)state.getValue((Property)CampfireBlock.field_220101_b)) {
-            if (!world.func_201670_d()) {
+            if (!world.level()) {
                 world.func_217378_a((Player)null, 1009, pos, 0);
             }
             CampfireBlock.func_235475_c_((IWorld)world, pos, state);
-            targetState = (BlockState)state.func_206870_a((Property)CampfireBlock.field_220101_b, (Comparable)false);
+            targetState = (BlockState)state.setValue((Property)CampfireBlock.field_220101_b, (Comparable)false);
         }
         if (targetState != null) {
-            if (!world.func_201670_d()) {
+            if (!world.level()) {
                 world.func_180501_a(pos, targetState, 11);
                 if (playerentity != null) {
                     context.func_195996_i().func_222118_a(1, (LivingEntity)playerentity, player -> player.func_213334_d(context.func_221531_n()));
                 }
             }
-            return InteractionResult.func_233537_a_(world.func_201670_d());
+            return InteractionResult.func_233537_a_(world.level());
         }
         return InteractionResult.PASS;
     }

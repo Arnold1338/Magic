@@ -17,12 +17,12 @@ public abstract class TileFakedState extends TileEntityTick
     
     protected TileFakedState(final BlockEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
-        this.fakedState = Blocks.field_150350_a.defaultBlockState();
+        this.fakedState = Blocks.AIR.defaultBlockState();
         this.overlayColor = Color.WHITE;
     }
     
     public boolean revert() {
-        return !this.func_145831_w().func_201670_d() && this.func_145831_w().func_180501_a(this.func_174877_v(), this.getFakedState(), 11);
+        return !this.getLevel().level() && this.getLevel().func_180501_a(this.getBlockState(), this.getFakedState(), 11);
     }
     
     @Nonnull
@@ -48,7 +48,7 @@ public abstract class TileFakedState extends TileEntityTick
     @Override
     public void readCustomNBT(final CompoundTag compound) {
         super.readCustomNBT(compound);
-        this.fakedState = NBTHelper.getBlockStateFromTag(compound.func_74775_l("fakedState"), Blocks.field_150350_a.defaultBlockState());
+        this.fakedState = NBTHelper.getBlockStateFromTag(compound.func_74775_l("fakedState"), Blocks.AIR.defaultBlockState());
         this.overlayColor = new Color(compound.getInt("color"), false);
     }
     

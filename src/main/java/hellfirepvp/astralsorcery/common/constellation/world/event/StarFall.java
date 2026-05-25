@@ -7,7 +7,7 @@ import net.minecraft.world.level.Level;
 public class StarFall extends CelestialEvent
 {
     @Override
-    public void tick(final World world, final Random rand, final WorldContext ctx) {
+    public void tick(final Level world, final Random rand, final WorldContext ctx) {
     }
     
     @Override

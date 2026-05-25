@@ -34,7 +34,7 @@ public class KeyMending extends KeyPerk implements PlayerTickPerk
                 if (KeyMending.rand.nextInt(repairChance) != 0) {
                     continue;
                 }
-                if (armor.isEmpty() || !armor.func_77984_f() || !armor.func_77951_h() || !AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)KeyMending.CONFIG.chargeCost.get(), false)) {
+                if (armor.isEmpty() || !armor.setDamageValue( || !armor.func_77951_h() || !AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)KeyMending.CONFIG.chargeCost.get(), false)) {
                     continue;
                 }
                 armor.setDamageValue(armor.getDamageValue() - 1);

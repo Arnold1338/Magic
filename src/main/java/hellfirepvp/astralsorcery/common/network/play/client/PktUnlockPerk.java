@@ -68,7 +68,7 @@ public class PktUnlockPerk extends ASPacket<PktUnlockPerk>
                 context.enqueueWork(() -> {
                     if (packet.serverAccept) {
                         PerkTree.PERK_TREE.getPerk(LogicalSide.CLIENT, packet.perkKey).ifPresent(perk -> {
-                            final Screen current = Minecraft.getInstance().field_71462_r;
+                            final Screen current = Minecraft.getInstance().gui;
                             if (current instanceof ScreenJournalPerkTree) {
                                 Minecraft.getInstance().func_212871_a_(() -> ((ScreenJournalPerkTree)current).playUnlockAnimation(perk));
                             }

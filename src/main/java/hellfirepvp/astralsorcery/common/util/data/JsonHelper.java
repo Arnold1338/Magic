@@ -151,7 +151,7 @@ public class JsonHelper
     public static JsonObject serializeItemStack(final ItemStack stack) {
         final JsonObject object = new JsonObject();
         object.addProperty("item", stack.getItem().getRegistryName().toString());
-        object.addProperty("count", (Number)stack.func_190916_E());
+        object.addProperty("count", (Number)stack.getCount());
         if (stack.hasTag()) {
             object.addProperty("nbt", stack.getTag().toString());
         }

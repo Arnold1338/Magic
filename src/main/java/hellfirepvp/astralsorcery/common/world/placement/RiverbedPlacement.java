@@ -39,7 +39,7 @@ public class RiverbedPlacement extends Placement<NoPlacementConfig>
             final Fluid f;
             if (((f = MiscUtils.tryGetFuild(state)) != null && f.func_207185_a((ITag)FluidTags.field_206959_a)) || block.func_203417_a((ITag)BlockTags.field_205213_E)) {
                 foundWater = true;
-                floor = check.func_177977_b();
+                floor = check.renderItem();
                 break;
             }
         }

@@ -6,5 +6,5 @@ import net.minecraft.world.level.Level;
 
 public interface BlockPredicate
 {
-    boolean test(final World p0, final BlockPos p1, final BlockState p2);
+    boolean test(final Level p0, final BlockPos p1, final BlockState p2);
 }

@@ -37,7 +37,7 @@ public class MarkerManagerAS
                     makeChest(genWorld, pos, LootAS.SHRINE_CHEST, rand, box);
                     break;
                 }
-                genWorld.func_180501_a(pos, Blocks.field_150350_a.defaultBlockState(), 2);
+                genWorld.func_180501_a(pos, Blocks.AIR.defaultBlockState(), 2);
                 break;
             }
             case "random_top_block": {
@@ -45,7 +45,7 @@ public class MarkerManagerAS
                     genWorld.func_180501_a(pos, genWorld.func_226691_t_(pos).func_242440_e().func_242502_e().func_204108_a(), 2);
                     break;
                 }
-                genWorld.func_180501_a(pos, Blocks.field_150350_a.defaultBlockState(), 2);
+                genWorld.func_180501_a(pos, Blocks.AIR.defaultBlockState(), 2);
                 break;
             }
             case "crystal": {

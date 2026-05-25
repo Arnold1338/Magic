@@ -32,9 +32,9 @@ public class CameraPath extends EntityCameraRenderView implements ICameraPersist
         this.startVector = startPoint;
         this.focus = focusPoint;
         this.func_226288_n_(startPoint.getX(), startPoint.getY(), startPoint.getZ());
-        this.field_70169_q = this.func_226277_ct_();
-        this.field_70167_r = this.func_226278_cu_();
-        this.field_70166_s = this.func_226281_cx_();
+        this.field_70169_q = this.getX();
+        this.field_70167_r = this.getY();
+        this.field_70166_s = this.getZ();
         this.delegate = tick;
         this.setCameraFocus(focusPoint);
         this.transformToFocusOnPoint(focusPoint, 0.0f, false);
@@ -65,16 +65,16 @@ public class CameraPath extends EntityCameraRenderView implements ICameraPersist
         }
         else {
             final Vector3 position = this.queryByTicks(ticksExisted);
-            this.field_70169_q = this.func_226277_ct_();
-            this.field_70167_r = this.func_226278_cu_();
-            this.field_70166_s = this.func_226281_cx_();
+            this.field_70169_q = this.getX();
+            this.field_70167_r = this.getY();
+            this.field_70166_s = this.getZ();
             this.func_226288_n_(position.getX(), position.getY(), position.getZ());
         }
     }
     
     @Override
     public void onStopTransforming() {
-        if (this.stopDelegate != null && Minecraft.getInstance().field_71441_e != null) {
+        if (this.stopDelegate != null && Minecraft.getInstance().level != null) {
             this.stopDelegate.onCameraStop();
         }
     }
@@ -92,7 +92,7 @@ public class CameraPath extends EntityCameraRenderView implements ICameraPersist
             if (accumulator >= ticks) {
                 final int interp = current.ticksToGetThere - (accumulator - ticks);
                 final int dstJump = current.ticksToGetThere;
-                return current.dstPoint.clone().subtract(prev).divide(dstJump).multiply(Mth.func_76125_a(interp, 1, dstJump)).add(prev);
+                return current.dstPoint.clone().subtract(prev).divide(dstJump).multiply(Mth.getDescriptionId(interp, 1, dstJump)).add(prev);
             }
             acc = accumulator;
         }

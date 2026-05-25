@@ -19,23 +19,23 @@ import net.minecraft.sounds.SoundEvent;
 
 public class SoundHelper
 {
-    public static void playSoundAround(final SoundEvent sound, final World world, final Vector3i position, final float volume, final float pitch) {
+    public static void playSoundAround(final SoundEvent sound, final Level world, final Vector3i position, final float volume, final float pitch) {
         playSoundAround(sound, SoundSource.MASTER, world, position.getX(), position.getY(), position.getZ(), volume, pitch);
     }
     
-    public static void playSoundAround(final SoundEvent sound, final SoundSource category, final World world, final Vector3i position, final float volume, final float pitch) {
+    public static void playSoundAround(final SoundEvent sound, final SoundSource category, final Level world, final Vector3i position, final float volume, final float pitch) {
         playSoundAround(sound, category, world, position.getX(), position.getY(), position.getZ(), volume, pitch);
     }
     
-    public static void playSoundAround(final SoundEvent sound, final World world, final Vector3 position, final float volume, final float pitch) {
+    public static void playSoundAround(final SoundEvent sound, final Level world, final Vector3 position, final float volume, final float pitch) {
         playSoundAround(sound, SoundSource.MASTER, world, position.getX(), position.getY(), position.getZ(), volume, pitch);
     }
     
-    public static void playSoundAround(final SoundEvent sound, final SoundSource category, final World world, final Vector3 position, final float volume, final float pitch) {
+    public static void playSoundAround(final SoundEvent sound, final SoundSource category, final Level world, final Vector3 position, final float volume, final float pitch) {
         playSoundAround(sound, category, world, position.getX(), position.getY(), position.getZ(), volume, pitch);
     }
     
-    public static void playSoundAround(final SoundEvent sound, SoundSource category, final World world, final double posX, final double posY, final double posZ, final float volume, final float pitch) {
+    public static void playSoundAround(final SoundEvent sound, SoundSource category, final Level world, final double posX, final double posY, final double posZ, final float volume, final float pitch) {
         if (sound instanceof CategorizedSoundEvent) {
             category = ((CategorizedSoundEvent)sound).getCategory();
         }
@@ -85,7 +85,7 @@ public class SoundHelper
     
     @OnlyIn(Dist.CLIENT)
     public static void playSoundClient(final SoundEvent sound, final float volume, final float pitch) {
-        final ClientPlayerEntity player = Minecraft.getInstance().field_71439_g;
+        final ClientPlayerEntity player = Minecraft.getInstance().player;
         if (player != null) {
             player.func_184185_a(sound, volume, pitch);
         }
@@ -98,8 +98,8 @@ public class SoundHelper
     
     @OnlyIn(Dist.CLIENT)
     public static void playSoundClientWorld(final SoundEvent sound, final SoundSource cat, final BlockPos pos, final float volume, final float pitch) {
-        if (Minecraft.getInstance().field_71441_e != null) {
-            Minecraft.getInstance().field_71441_e.func_184148_a((Player)Minecraft.getInstance().field_71439_g, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), sound, cat, volume, pitch);
+        if (Minecraft.getInstance().level != null) {
+            Minecraft.getInstance().level.func_184148_a((Player)Minecraft.getInstance().player, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), sound, cat, volume, pitch);
         }
     }
 }

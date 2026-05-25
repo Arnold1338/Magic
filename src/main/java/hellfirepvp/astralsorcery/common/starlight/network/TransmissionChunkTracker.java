@@ -23,10 +23,10 @@ public class TransmissionChunkTracker
     
     private void onChLoad(final ChunkEvent.Load event) {
         final IWorld iWorld = event.getWorld();
-        if (iWorld.func_201670_d() || !(iWorld instanceof World)) {
+        if (iWorld.level() || !(iWorld instanceof Level)) {
             return;
         }
-        final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler((World)iWorld);
+        final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler((Level)iWorld);
         if (handle != null) {
             handle.informChunkLoad(event.getChunk().func_76632_l());
         }
@@ -34,10 +34,10 @@ public class TransmissionChunkTracker
     
     private void onChUnload(final ChunkEvent.Unload event) {
         final IWorld iWorld = event.getWorld();
-        if (iWorld.func_201670_d() || !(iWorld instanceof World)) {
+        if (iWorld.level() || !(iWorld instanceof Level)) {
             return;
         }
-        final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler((World)iWorld);
+        final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler((Level)iWorld);
         if (handle != null) {
             handle.informChunkUnload(event.getChunk().func_76632_l());
         }
@@ -45,18 +45,18 @@ public class TransmissionChunkTracker
     
     private void onWorldLoad(final WorldEvent.Load event) {
         final IWorld iWorld = event.getWorld();
-        if (iWorld.func_201670_d() || !(iWorld instanceof World)) {
+        if (iWorld.level() || !(iWorld instanceof Level)) {
             return;
         }
-        StarlightUpdateHandler.getInstance().informWorldLoad((World)iWorld);
+        StarlightUpdateHandler.getInstance().informWorldLoad((Level)iWorld);
     }
     
     private void onWorldUnload(final WorldEvent.Unload event) {
         final IWorld iWorld = event.getWorld();
-        if (iWorld.func_201670_d() || !(iWorld instanceof World)) {
+        if (iWorld.level() || !(iWorld instanceof Level)) {
             return;
         }
-        StarlightTransmissionHandler.getInstance().informWorldUnload((World)iWorld);
+        StarlightTransmissionHandler.getInstance().informWorldUnload((Level)iWorld);
     }
     
     static {

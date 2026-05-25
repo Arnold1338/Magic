@@ -14,14 +14,14 @@ public class WorldFreezingRegistry extends CustomRecipeRegistry<WorldFreezingRec
     
     @Override
     public void init() {
-        ((CustomRecipeRegistry<BlockFreezingRecipe>)this).register(BlockFreezingRecipe.of(Blocks.field_150480_ab, Blocks.field_150350_a.defaultBlockState()));
-        ((CustomRecipeRegistry<BlockFreezingRecipe>)this).register(BlockFreezingRecipe.of(Blocks.field_150350_a.defaultBlockState(), Blocks.field_150432_aD.defaultBlockState()));
+        ((CustomRecipeRegistry<BlockFreezingRecipe>)this).register(BlockFreezingRecipe.of(Blocks.field_150480_ab, Blocks.AIR.defaultBlockState()));
+        ((CustomRecipeRegistry<BlockFreezingRecipe>)this).register(BlockFreezingRecipe.of(Blocks.AIR.defaultBlockState(), Blocks.field_150432_aD.defaultBlockState()));
         ((CustomRecipeRegistry<BlockFreezingRecipe>)this).register(BlockFreezingRecipe.of(Blocks.field_201941_jj.defaultBlockState(), Blocks.field_150403_cj.defaultBlockState()));
         ((CustomRecipeRegistry<FluidFreezingRecipe>)this).register(new FluidFreezingRecipe());
     }
     
     @Nullable
-    public WorldFreezingRecipe getRecipeFor(final World world, final BlockPos pos) {
+    public WorldFreezingRecipe getRecipeFor(final Level world, final BlockPos pos) {
         return this.getRecipes().stream().filter(recipe -> recipe.canFreeze(world, pos)).findFirst().orElse(null);
     }
     
