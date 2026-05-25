@@ -66,9 +66,9 @@ public class FXBlock extends EntityVisualFX
         renderStack.translate(translate.getX(), translate.getY(), translate.getZ());
         renderStack.translate(0.5, 0.5, 0.5);
         renderStack.translate(scale, scale, scale);
-        renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()(float)rotation.getX()));
-        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()(float)rotation.getY()));
-        renderStack.mulPose(new org.joml.Vector3f(0, 0, 1).getMultiBufferSource()(float)rotation.getZ()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(float)rotation.getX()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(float)rotation.getY()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateZ((float)Math.toRadians(float)rotation.getZ()));
         renderStack.translate(-0.5, -0.5, -0.5);
         new BufferDecoratorBuilder().setColorDecorator((r, g, b, a) -> colorOverride).decorate(vb, decorated -> RenderingUtils.renderSimpleBlockModel(this.blockState, renderStack, decorated));
         renderStack.popPose();

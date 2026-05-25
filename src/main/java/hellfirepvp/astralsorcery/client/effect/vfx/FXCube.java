@@ -110,9 +110,9 @@ public class FXCube extends EntityVisualFX implements EntityDynamicFX
         final float scale = this.getScale(pTicks);
         renderStack.popPose();
         renderStack.translate(translateTo.getX(), translateTo.getY(), translateTo.getZ());
-        renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()(float)rotation.getX()));
-        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()(float)rotation.getY()));
-        renderStack.mulPose(new org.joml.Vector3f(0, 0, 1).getMultiBufferSource()(float)rotation.getZ()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(float)rotation.getX()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(float)rotation.getY()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateZ((float)Math.toRadians(float)rotation.getZ()));
         renderStack.translate(scale, scale, scale);
         final VertexConsumer buf = drawBuffer.getBuffer(ctx.getRenderType());
         RenderingDrawUtils.renderTexturedCubeCentralColorLighted(buf, renderStack, u, v, uLength, vLength, c.getRed(), c.getGreen(), c.getBlue(), alpha, LightmapUtil.getPackedFullbrightCoords());

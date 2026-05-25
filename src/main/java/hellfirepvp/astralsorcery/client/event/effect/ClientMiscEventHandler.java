@@ -68,14 +68,14 @@ public class ClientMiscEventHandler
         if (swimAngle > 0.0f) {
             final float waterPitch = player.func_70090_H() ? (-90.0f - player.xRot) : -90.0f;
             final float bodySwimAngle = Mth.func_219799_g(swimAngle, 0.0f, waterPitch);
-            renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f - rot));
-            renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()bodySwimAngle));
+            renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(180.0f - rot));
+            renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(bodySwimAngle));
             if (player.func_213314_bj()) {
                 renderStack.translate(0.0, -1.0, 0.30000001192092896);
             }
         }
         else {
-            renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f - rot));
+            renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(180.0f - rot));
         }
         renderStack.translate(0.07f, 0.07f, 0.07f);
         renderStack.translate(0.0, 5.5, 0.7 - r / ma * (f ? 0.5 : 0.2));
@@ -89,7 +89,7 @@ public class ClientMiscEventHandler
         RenderSystem.enableTexture();
         Minecraft.getInstance().func_110434_K().func_110577_a(ClientMiscEventHandler.tex);
         renderStack.popPose();
-        renderStack.mulPose(Vector3f.field_229180_c_.getMultiBufferSource()20.0f + r));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(-(20.0f + r))));
         ClientMiscEventHandler.vboR.func_177359_a();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227892_a_(0L);
         ClientMiscEventHandler.vboR.func_227874_a_(renderStack.last().translate(), 7);
@@ -97,7 +97,7 @@ public class ClientMiscEventHandler
         VertexBuffer.func_177361_b();
         renderStack.popPose();
         renderStack.popPose();
-        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()20.0f + r));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(20.0f + r));
         ClientMiscEventHandler.vboL.func_177359_a();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227892_a_(0L);
         ClientMiscEventHandler.vboL.func_227874_a_(renderStack.last().translate(), 7);

@@ -114,12 +114,12 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler
         final double offset = Math.cos(f * 2.0f * 3.141592653589793) * 0.03;
         renderStack.popPose();
         renderStack.translate(0.0, yOffset + offset, 0.0);
-        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f - rot));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(180.0f - rot));
         renderStack.translate(0.02f, 0.02f, 0.02f);
         RenderTypesAS.MODEL_CELESTIAL_WINGS.func_228547_a_();
         renderStack.translate(-25.0, 0.0, 0.0);
         ObjModelRender.renderCelestialWings(renderStack);
-        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(180.0f));
         renderStack.translate(-50.0, 0.0, 0.0);
         ObjModelRender.renderCelestialWings(renderStack);
         renderStack.popPose();

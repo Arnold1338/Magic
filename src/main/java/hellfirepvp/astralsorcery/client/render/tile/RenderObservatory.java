@@ -35,8 +35,8 @@ public class RenderObservatory extends CustomTileEntityRenderer<TileObservatory>
         final float iPitchDegree = RenderingVectorUtils.interpolateRotation(prevPitch, pitch, pTicks);
         renderStack.popPose();
         renderStack.translate(0.5, 1.5, 0.5);
-        renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()180.0f));
-        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(180.0f));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(180.0f));
         RenderObservatory.MODEL_OBSERVATORY.setupRotations(iYawDegree, iPitchDegree);
         RenderObservatory.MODEL_OBSERVATORY.render(renderStack, renderTypeBuffer, combinedLight, combinedOverlay);
         renderStack.popPose();

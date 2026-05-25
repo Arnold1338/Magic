@@ -55,27 +55,27 @@ public class TypeWraithWings extends PatreonEffect
         if (swimAngle > 0.0f) {
             final float waterPitch = player.func_70090_H() ? (-90.0f - player.xRot) : -90.0f;
             final float bodySwimAngle = Mth.func_219799_g(swimAngle, 0.0f, waterPitch);
-            renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f - rot));
-            renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()bodySwimAngle));
+            renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(180.0f - rot));
+            renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(bodySwimAngle));
             if (player.func_213314_bj()) {
                 renderStack.translate(0.0, -1.0, 0.3);
             }
         }
         else {
-            renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f - rot));
+            renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(180.0f - rot));
         }
         renderStack.translate(0.0, (double)yOffset, 0.0);
         renderStack.translate(0.32f, 0.32f, 0.32f);
         RenderTypesAS.MODEL_WRAITH_WINGS.func_228547_a_();
         renderStack.popPose();
         renderStack.translate(-2.3, 0.0, 0.8);
-        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()10.0f));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(10.0f));
         ObjModelRender.renderWraithWings(renderStack);
         renderStack.popPose();
         renderStack.popPose();
-        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(180.0f));
         renderStack.translate(-2.3, 0.0, -0.8);
-        renderStack.mulPose(Vector3f.field_229180_c_.getMultiBufferSource()10.0f));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(-10.0f)));
         ObjModelRender.renderWraithWings(renderStack);
         renderStack.popPose();
         RenderTypesAS.MODEL_WRAITH_WINGS.func_228549_b_();
