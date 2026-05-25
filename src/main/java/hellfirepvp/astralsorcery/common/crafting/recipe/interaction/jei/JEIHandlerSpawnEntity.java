@@ -43,8 +43,8 @@ public class JEIHandlerSpawnEntity extends JEIInteractionResultHandler
         renderStack.popPose();
         renderStack.translate(55.0, 35.0, 500.0);
         renderStack.translate(15.0f, 15.0f, 15.0f);
-        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(180.0f));
-        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(145.0f));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(180.0f)));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(145.0f)));
         final MultiBufferSource.Impl buffer = MultiBufferSource.func_228455_a_(Tessellator.func_178181_a().func_178180_c());
         Minecraft.getInstance().func_175598_ae().func_229084_a_(le, 0.0, 0.0, 0.0, 0.0f, 0.0f, renderStack, (MultiBufferSource)buffer, LightmapUtil.getPackedFullbrightCoords());
         buffer.func_228461_a_();

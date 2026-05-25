@@ -256,7 +256,7 @@ public class RenderingUtils
                 le = (Entity)Minecraft.getInstance().player;
             }
             final float iYaw = RenderingVectorUtils.interpolate(Mth.func_76142_g(le.field_70126_B), Mth.func_76142_g(le.yRot), pTicks);
-            renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(-iYaw + 180.0f));
+            renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(-iYaw + 180.0f)));
         }
         final Matrix4f matr = renderStack.last().translate();
         final int length = fr.func_238414_a_(text);

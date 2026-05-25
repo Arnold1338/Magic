@@ -29,10 +29,10 @@ public class RenderEntitySpectralTool extends EntityRenderer<EntitySpectralTool>
         }
         renderStack.popPose();
         renderStack.translate(0.0, (double)(entity.func_213302_cg() / 2.0f), 0.0);
-        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(-entityYaw - 90.0f));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(-entityYaw - 90.0f)));
         if (stack.getItem() instanceof AxeItem) {
-            renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(180.0f));
-            renderStack.mulPose(new org.joml.Quaternionf().rotateZ((float)Math.toRadians(270.0f));
+            renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(180.0f)));
+            renderStack.mulPose(new org.joml.Quaternionf().rotateZ((float)Math.toRadians(270.0f)));
         }
         RenderingUtils.renderTranslucentItemStackModelGround(stack, renderStack, ColorsAS.SPECTRAL_TOOL, Blending.CONSTANT_ALPHA, 63);
         renderStack.popPose();

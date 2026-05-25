@@ -22,7 +22,7 @@ public class RenderAttunementAltar extends CustomTileEntityRenderer<TileAttuneme
     public void render(final TileAttunementAltar tile, final float pTicks, final PoseStack renderStack, final MultiBufferSource renderTypeBuffer, final int combinedLight, final int combinedOverlay) {
         renderStack.popPose();
         renderStack.translate(0.5, 0.5, 0.5);
-        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(180.0f));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(180.0f)));
         RenderAttunementAltar.MODEL_ATTUNEMENT_ALTAR.render(renderStack, renderTypeBuffer, combinedLight, combinedOverlay);
         renderStack.popPose();
         final float spinDur = 100.0f;
@@ -58,7 +58,7 @@ public class RenderAttunementAltar extends CustomTileEntityRenderer<TileAttuneme
             final float rotation = RenderingVectorUtils.interpolate(tile.prevActivationTick / spinStart, tile.activationTick / spinStart, pTicks);
             renderStack.popPose();
             renderStack.translate(0.5, (double)framePosY, 0.5);
-            renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(180.0f));
+            renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(180.0f)));
             RenderAttunementAltar.MODEL_ATTUNEMENT_ALTAR.renderHovering(renderStack, renderTypeBuffer.getBuffer(RenderAttunementAltar.MODEL_ATTUNEMENT_ALTAR.getGeneralType()), combinedLight, combinedOverlay, 1.0f, 1.0f, 1.0f, 1.0f, xOffset, zOffset, rotation);
             renderStack.popPose();
         }

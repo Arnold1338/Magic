@@ -34,7 +34,7 @@ public class RenderRefractionTable extends CustomTileEntityRenderer<TileRefracti
         }
         renderStack.popPose();
         renderStack.translate(0.5, 1.5, 0.5);
-        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(180.0f));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(180.0f)));
         RenderType type = RenderRefractionTable.MODEL_REFRACTION_TABLE.getGeneralType();
         VertexConsumer vb = renderTypeBuffer.getBuffer(type);
         RenderRefractionTable.MODEL_REFRACTION_TABLE.renderFrame(renderStack, vb, combinedLight, combinedOverlay, 1.0f, 1.0f, 1.0f, 1.0f, tile.hasParchment());

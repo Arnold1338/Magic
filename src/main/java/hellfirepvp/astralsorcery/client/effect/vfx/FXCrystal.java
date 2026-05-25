@@ -69,9 +69,9 @@ public class FXCrystal extends EntityVisualFX implements EntityDynamicFX
         renderStack.popPose();
         renderStack.translate(vec.getX(), vec.getY() - 0.05000000074505806, vec.getZ());
         renderStack.translate(scale, scale, scale);
-        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(float)this.rotation.getX()));
-        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(float)this.rotation.getY()));
-        renderStack.mulPose(new org.joml.Quaternionf().rotateZ((float)Math.toRadians(float)this.rotation.getZ()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians((float)this.rotation.getX())));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians((float)this.rotation.getY())));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateZ((float)Math.toRadians((float)this.rotation.getZ())));
         BufferDecoratorBuilder.withColor((r, g, b, a) -> new int[] { c.getRed(), c.getGreen(), c.getBlue(), alpha }).decorate(drawBuffer.getBuffer(ctx.getRenderType()), decorated -> ObjModelRender.renderCrystal(renderStack, decorated, drawBuffer::draw));
         renderStack.popPose();
         if (this.alternativeTexture != null) {

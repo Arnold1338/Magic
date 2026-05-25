@@ -43,9 +43,9 @@ public class RenderChalice extends CustomTileEntityRenderer<TileChalice>
         final float vOffset = tas.func_94206_g() + vlength / 2.0f - vPart / 2.0f;
         renderStack.popPose();
         renderStack.translate(0.5, 1.399999976158142, 0.5);
-        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians(float)rotation.getX()));
-        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(float)rotation.getY()));
-        renderStack.mulPose(new org.joml.Quaternionf().rotateZ((float)Math.toRadians(float)rotation.getZ()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians((float)rotation.getX())));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians((float)rotation.getY())));
+        renderStack.mulPose(new org.joml.Quaternionf().rotateZ((float)Math.toRadians((float)rotation.getZ())));
         renderStack.translate(percSize, percSize, percSize);
         final VertexConsumer buf = renderTypeBuffer.getBuffer(RenderTypesAS.TER_CHALICE_LIQUID);
         RenderingDrawUtils.renderTexturedCubeCentralColorNormal(renderStack, buf, uOffset, vOffset, uPart, vPart, color.getRed(), color.getGreen(), color.getBlue(), 255, renderStack.last().func_227872_b_());
