@@ -20,318 +20,318 @@ Executing steps
  > Running 'listLibraries'
  > Running 'rename'
 Stopping at requested step: /home/runner/.gradle/caches/forge_gradle/mcp_repo/de/oceanlabs/mcp/mcp_config/1.20.1-20230612.114412/joined/rename/output.jar
-[03:54:58] [main/INFO]: Writing debug log file accesstransform.log
-[03:54:58] [main/INFO]: Access Transformer processor running version 8.2.14
-[03:54:58] [main/INFO]: Command line arguments [--inJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar, --outJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, --logFile, accesstransform.log, --atFile, /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg, --atFile, /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg]
-[03:54:58] [main/INFO]: Reading from /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar
-[03:54:58] [main/INFO]: Writing to /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
-[03:54:58] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg
-[03:54:58] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg
-[03:54:58] [main/WARN]: Found existing output jar /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, overwriting
-[03:55:02] [main/INFO]: JAR transformation complete /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
+[03:59:28] [main/INFO]: Writing debug log file accesstransform.log
+[03:59:28] [main/INFO]: Access Transformer processor running version 8.2.14
+[03:59:28] [main/INFO]: Command line arguments [--inJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar, --outJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, --logFile, accesstransform.log, --atFile, /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg, --atFile, /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg]
+[03:59:28] [main/INFO]: Reading from /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar
+[03:59:28] [main/INFO]: Writing to /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
+[03:59:28] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg
+[03:59:28] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg
+[03:59:28] [main/WARN]: Found existing output jar /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, overwriting
+[03:59:32] [main/INFO]: JAR transformation complete /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
 Creating SRG -> MCP TSRG
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:280: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:280: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:280: error: not a statement
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:280: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:280: error: not a statement
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:280: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:280: error: not a statement
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:280: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:280: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:281: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                 ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:281: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:281: error: not a statement
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:281: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:281: error: not a statement
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:281: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:281: error: not a statement
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:281: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:281: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:282: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                 ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:282: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:282: error: not a statement
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:282: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:282: error: not a statement
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:282: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:282: error: not a statement
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:282: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:282: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:283: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:283: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:283: error: not a statement
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:283: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:283: error: not a statement
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:283: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:298: error: ';' expected
+            toolTip2.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed.usage").withStyle(ChatFormatting.GRAY)));
+                                                                                                                                     ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:311: error: ';' expected
+                            line.withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.ITALIC));
+                                                               ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:311: error: ';' expected
+                            line.withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.ITALIC));
                                                                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:283: error: not a statement
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:283: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:283: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:284: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:284: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:284: error: not a statement
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:284: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:284: error: not a statement
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:284: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                 ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:284: error: not a statement
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:284: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:284: error: ';' expected
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:285: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:285: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:285: error: not a statement
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:285: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:285: error: not a statement
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:285: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:285: error: not a statement
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:285: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                 ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:285: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:286: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:286: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:286: error: not a statement
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:286: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:286: error: not a statement
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:286: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:286: error: not a statement
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:286: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                 ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:286: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:287: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:287: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:287: error: not a statement
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:287: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:287: error: not a statement
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:287: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:287: error: not a statement
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:287: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:287: error: ';' expected
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-                                                                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:302: error: ')' expected
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.recipename", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
-                                                                                                                                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:302: error: not a statement
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.recipename", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
-                                                                                                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:302: error: ';' expected
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.recipename", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
-                                                                                                                                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:302: error: ';' expected
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.recipename", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
-                                                                                                                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:302: error: not a statement
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.recipename", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
-                                                                                                                                                                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:302: error: ';' expected
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.recipename", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
-                                                                                                                                                                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:303: error: ')' expected
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.ctrlcopy", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:317: error: ';' expected
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed").withStyle(ChatFormatting.RED)));
+                                                                                                                                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:318: error: ';' expected
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed.break").withStyle(ChatFormatting.RED)));
+                                                                                                                                                ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:321: error: ';' expected
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.active").withStyle(ChatFormatting.GREEN)));
                                                                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:303: error: not a statement
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.ctrlcopy", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
-                                                                                                                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:303: error: ';' expected
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.ctrlcopy", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
-                                                                                                                                                                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:303: error: ';' expected
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.ctrlcopy", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
-                                                                                                                                                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:303: error: not a statement
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.ctrlcopy", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
-                                                                                                                                                                                                 ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:303: error: ';' expected
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.ctrlcopy", new Object[] { recipeName.toString() }).toString()ChatFormatting.LIGHT_PURPLE).toString()ChatFormatting.ITALIC));
-                                                                                                                                                                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:313: error: ')' expected
-            tooltip.add((ITextProperties)new Component("astralsorcery.misc.tooltipError").toString()ChatFormatting.RED));
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:324: error: ';' expected
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.available").withStyle(ChatFormatting.BLUE)));
+                                                                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:327: error: ';' expected
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.locked").withStyle(ChatFormatting.GRAY)));
+                                                                                                                                           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:330: error: ';' expected
+                        toolTip3.add((FormattedCharSequence)perk.getCategory().getName().withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.ITALIC)));
+                                                                                                                                                         ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:335: error: ';' expected
+                            toolTip3.add((FormattedCharSequence)cmp.withStyle(ChatFormatting.BLUE)).withStyle(ChatFormatting.ITALIC)));
+                                                                                                                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:340: error: ';' expected
+                        toolTip3.add((FormattedCharSequence)new Component(perk.getRegistryName().toString()).withStyle(ChatFormatting.GRAY)));
+                                                                                                                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:341: error: ';' expected
+                        toolTip3.add((FormattedCharSequence)new Component("astralsorcery.misc.ctrlcopy").withStyle(ChatFormatting.GRAY)));
+                                                                                                                                        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:634: error: ';' expected
+            pos.drawPos(offset, (VertexConsumer)vb).pushPose()1.0f, 1.0f, 1.0f, alpha).setPos((float)frameUV.getA() + uLength * u, (float)frameUV.getB() + vLength * v).blockPosition();
+                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:634: error: not a statement
+            pos.drawPos(offset, (VertexConsumer)vb).pushPose()1.0f, 1.0f, 1.0f, alpha).setPos((float)frameUV.getA() + uLength * u, (float)frameUV.getB() + vLength * v).blockPosition();
+                                                                                ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:634: error: ';' expected
+            pos.drawPos(offset, (VertexConsumer)vb).pushPose()1.0f, 1.0f, 1.0f, alpha).setPos((float)frameUV.getA() + uLength * u, (float)frameUV.getB() + vLength * v).blockPosition();
+                                                                                     ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:655: error: ';' expected
+            pos.drawPos(offset, (VertexConsumer)batch).pushPose()0.8f, 0.1f, 0.1f, 1.0f).setPos((float)frameUV.getA() + uLength * u, (float)frameUV.getB() + vLength * v).blockPosition();
+                                                                 ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:681: error: ';' expected
+            pos.drawPos(offset, (VertexConsumer)vb).pushPose()rR, rG, rB, rA).setPos((float)u, (float)v).blockPosition();
+                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:681: error: ';' expected
+            pos.drawPos(offset, (VertexConsumer)vb).pushPose()rR, rG, rB, rA).setPos((float)u, (float)v).blockPosition();
+                                                                ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:681: error: not a statement
+            pos.drawPos(offset, (VertexConsumer)vb).pushPose()rR, rG, rB, rA).setPos((float)u, (float)v).blockPosition();
+                                                                  ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:681: error: ';' expected
+            pos.drawPos(offset, (VertexConsumer)vb).pushPose()rR, rG, rB, rA).setPos((float)u, (float)v).blockPosition();
+                                                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:681: error: not a statement
+            pos.drawPos(offset, (VertexConsumer)vb).pushPose()rR, rG, rB, rA).setPos((float)u, (float)v).blockPosition();
+                                                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:681: error: ';' expected
+            pos.drawPos(offset, (VertexConsumer)vb).pushPose()rR, rG, rB, rA).setPos((float)u, (float)v).blockPosition();
+                                                                        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:681: error: not a statement
+            pos.drawPos(offset, (VertexConsumer)vb).pushPose()rR, rG, rB, rA).setPos((float)u, (float)v).blockPosition();
+                                                                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalPerkTree.java:681: error: ';' expected
+            pos.drawPos(offset, (VertexConsumer)vb).pushPose()rR, rG, rB, rA).setPos((float)u, (float)v).blockPosition();
+                                                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:407: error: ';' expected
+            buf.vertex(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(0.0f, 1.0f).blockPosition();
+                                                                                                                             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:408: error: ';' expected
+            buf.vertex(offset, (float)(this.guiLeft + 200), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(1.0f, 1.0f).blockPosition();
+                                                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:409: error: ';' expected
+            buf.vertex(offset, (float)(this.guiLeft + 200), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                                             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:410: error: ';' expected
+            buf.vertex(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(0.0f, 0.0f).blockPosition();
+                                                                                                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:418: error: ';' expected
+            buf.vertex(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.5f).setPos(0.3f, 0.9f).blockPosition();
+                                                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:419: error: ';' expected
+            buf.vertex(offset2, (float)(this.guiLeft + 200), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.5f).setPos(0.7f, 0.9f).blockPosition();
+                                                                                                                               ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:420: error: ';' expected
+            buf.vertex(offset2, (float)(this.guiLeft + 200), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.5f).setPos(0.7f, 0.1f).blockPosition();
+                                                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:421: error: ';' expected
+            buf.vertex(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.5f).setPos(0.3f, 0.1f).blockPosition();
+                                                                                                                             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationOverview.java:78: error: ';' expected
+            buf.vertex(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(0.0f, 1.0f).blockPosition();
+                                                                                                                                             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationOverview.java:79: error: ';' expected
+            buf.vertex(offset, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(1.0f, 1.0f).blockPosition();
+                                                                                                                                                             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationOverview.java:80: error: ';' expected
+            buf.vertex(offset, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationOverview.java:81: error: ';' expected
+            buf.vertex(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(0.0f, 0.0f).blockPosition();
+                                                                                                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationOverview.java:89: error: ';' expected
+            buf.vertex(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.7f).setPos(0.1f, 0.9f).blockPosition();
+                                                                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationOverview.java:90: error: ';' expected
+            buf.vertex(offset2, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.7f).setPos(0.9f, 0.9f).blockPosition();
+                                                                                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationOverview.java:91: error: ';' expected
+            buf.vertex(offset2, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.7f).setPos(0.9f, 0.1f).blockPosition();
+                                                                                                                                             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationOverview.java:92: error: ';' expected
+            buf.vertex(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.7f).setPos(0.1f, 0.1f).blockPosition();
+                                                                                                                             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:297: error: ';' expected
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                         ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:297: error: ';' expected
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:297: error: not a statement
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:297: error: ';' expected
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                               ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:297: error: not a statement
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                                 ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:297: error: ';' expected
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                                   ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:297: error: not a statement
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                                     ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:297: error: ';' expected
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                                       ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:298: error: ';' expected
+            buf.vertex(offset, pCluster.x + width, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:298: error: ';' expected
+            buf.vertex(offset, pCluster.x + width, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:298: error: not a statement
+            buf.vertex(offset, pCluster.x + width, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:298: error: ';' expected
+            buf.vertex(offset, pCluster.x + width, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                                ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:298: error: not a statement
+            buf.vertex(offset, pCluster.x + width, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                                  ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:298: error: ';' expected
+            buf.vertex(offset, pCluster.x + width, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
                                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:313: error: not a statement
-            tooltip.add((ITextProperties)new Component("astralsorcery.misc.tooltipError").toString()ChatFormatting.RED));
-                                                                                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:313: error: ';' expected
-            tooltip.add((ITextProperties)new Component("astralsorcery.misc.tooltipError").toString()ChatFormatting.RED));
-                                                                                                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:318: error: ')' expected
-            tooltip.add((ITextProperties)new Component("astralsorcery.misc.craftInformation").toString()ChatFormatting.GRAY));
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:298: error: not a statement
+            buf.vertex(offset, pCluster.x + width, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:298: error: ';' expected
+            buf.vertex(offset, pCluster.x + width, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
                                                                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:318: error: not a statement
-            tooltip.add((ITextProperties)new Component("astralsorcery.misc.craftInformation").toString()ChatFormatting.GRAY));
-                                                                                                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:318: error: ';' expected
-            tooltip.add((ITextProperties)new Component("astralsorcery.misc.craftInformation").toString()ChatFormatting.GRAY));
-                                                                                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:324: error: ')' expected
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.input.tag", new Object[] { ((ITag.INamedTag)itemTag).func_230234_a_().toString() }).toString()ChatFormatting.GRAY));
-                                                                                                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:324: error: not a statement
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.input.tag", new Object[] { ((ITag.INamedTag)itemTag).func_230234_a_().toString() }).toString()ChatFormatting.GRAY));
-                                                                                                                                                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:324: error: ';' expected
-                tooltip.add((ITextProperties)new Component("astralsorcery.misc.input.tag", new Object[] { ((ITag.INamedTag)itemTag).func_230234_a_().toString() }).toString()ChatFormatting.GRAY));
-                                                                                                                                                                                                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:335: error: ';' expected
-                            cmp = (ITextProperties)new Component("astralsorcery.misc.input.fluid.chain", new Object[] { cmp, f.getFluid().getAttributes().getDisplayName(f) }).toString()ChatFormatting.GRAY);
-                                                                                                                                                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:335: error: not a statement
-                            cmp = (ITextProperties)new Component("astralsorcery.misc.input.fluid.chain", new Object[] { cmp, f.getFluid().getAttributes().getDisplayName(f) }).toString()ChatFormatting.GRAY);
-                                                                                                                                                                                                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:335: error: ';' expected
-                            cmp = (ITextProperties)new Component("astralsorcery.misc.input.fluid.chain", new Object[] { cmp, f.getFluid().getAttributes().getDisplayName(f) }).toString()ChatFormatting.GRAY);
-                                                                                                                                                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:339: error: ')' expected
-                    tooltip.add((ITextProperties)new Component("astralsorcery.misc.input.fluid", new Object[] { cmp }).toString()ChatFormatting.GRAY));
-                                                                                                                                 ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:339: error: not a statement
-                    tooltip.add((ITextProperties)new Component("astralsorcery.misc.input.fluid", new Object[] { cmp }).toString()ChatFormatting.GRAY));
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:299: error: ';' expected
+            buf.vertex(offset, pCluster.x + width, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:299: error: ';' expected
+            buf.vertex(offset, pCluster.x + width, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:299: error: not a statement
+            buf.vertex(offset, pCluster.x + width, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:299: error: ';' expected
+            buf.vertex(offset, pCluster.x + width, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:299: error: not a statement
+            buf.vertex(offset, pCluster.x + width, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:299: error: ';' expected
+            buf.vertex(offset, pCluster.x + width, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                  ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:299: error: not a statement
+            buf.vertex(offset, pCluster.x + width, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:299: error: ';' expected
+            buf.vertex(offset, pCluster.x + width, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:300: error: ';' expected
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+                                                                                       ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:300: error: ';' expected
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+                                                                                         ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:300: error: not a statement
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+                                                                                           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:300: error: ';' expected
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+                                                                                             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:300: error: not a statement
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+                                                                                               ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:300: error: ';' expected
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+                                                                                                 ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:300: error: not a statement
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+                                                                                                   ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:300: error: ';' expected
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+                                                                                                     ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:324: error: ';' expected
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                                                                     ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:324: error: ';' expected
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                                                                       ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:324: error: not a statement
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                                                                         ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:324: error: ';' expected
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                                                                           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:324: error: not a statement
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                                                                             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:324: error: ';' expected
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
                                                                                                                                                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageRecipeTemplate.java:339: error: ';' expected
-                    tooltip.add((ITextProperties)new Component("astralsorcery.misc.input.fluid", new Object[] { cmp }).toString()ChatFormatting.GRAY));
-                                                                                                                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/page/RenderPageStructure.java:150: error: ')' expected
-                renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()30.0f));
-                                                                                   ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:324: error: not a statement
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                                                                                 ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:324: error: ';' expected
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+                                                                                                                                                   ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:325: error: ';' expected
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:325: error: ';' expected
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                                                                                                ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:325: error: not a statement
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                                                                                                  ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:325: error: ';' expected
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                                                                                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:325: error: not a statement
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                                                                                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:325: error: ';' expected
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                                                                                                        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:325: error: not a statement
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                                                                                                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:325: error: ';' expected
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+                                                                                                                                                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:326: error: ';' expected
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:326: error: ';' expected
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:326: error: not a statement
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                                                        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:326: error: ';' expected
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                                                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:326: error: not a statement
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:326: error: ';' expected
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:326: error: not a statement
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                                                                ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:326: error: ';' expected
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+                                                                                                                                                  ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:327: error: ';' expected
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+                                                                                                           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:327: error: ';' expected
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+                                                                                                             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:327: error: not a statement
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+                                                                                                               ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalProgressionRenderer.java:327: error: ';' expected
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+                                                                                                                 ^
 100 errors
-only showing the first 100 errors, of 1292 total; use -Xmaxerrs if you would like to see more
+only showing the first 100 errors, of 1006 total; use -Xmaxerrs if you would like to see more
 
 > Task :compileJava FAILED
 
@@ -596,5 +596,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 2m 34s
+BUILD FAILED in 2m 32s
 4 actionable tasks: 4 executed
