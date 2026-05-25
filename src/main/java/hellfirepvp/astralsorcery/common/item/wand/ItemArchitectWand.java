@@ -83,8 +83,9 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        tooltip.add((Component)getPlaceMode(stack).getDisplay().withStyle(ChatFormatting.GOLD)));
+    public void appendHoverText(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+        tooltip.add(getPlaceMode(stack).getDisplay().withStyle(ChatFormatting.GOLD));
+
     }
     
     public float getAlignmentChargeCost(final Player player, final ItemStack stack) {
@@ -137,17 +138,17 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
         if (world.level() || !(player instanceof ServerPlayer) || held.isEmpty()) {
             return InteractionResult.SUCCESS;
         }
-        if (player.func_225608_bj_()) {
+        if (player.isCrouching()) {
             ItemBlockStorage.storeBlockState(held, world, pos);
             return InteractionResult.SUCCESS;
         }
         return this.attemptPlaceBlocks(world, player, held).func_188397_a();
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final Level world, final Player player, final Hand hand) {
+    public InteractionResult<ItemStack> use(final Level world, final Player player, final Hand hand) {
         final ItemStack held = player.getItemInHand(hand);
         final PlaceMode mode = getPlaceMode(held);
-        if (player.func_225608_bj_()) {
+        if (player.isCrouching()) {
             final PlaceMode nextMode = mode.next();
             setPlaceMode(held, nextMode);
             player.func_146105_b((Component)nextMode.getDisplay(), true);

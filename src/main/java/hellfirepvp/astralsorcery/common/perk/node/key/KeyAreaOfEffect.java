@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.IndirectEntityDamageSource;
+import net.minecraft.util.IndirectDamageSource;
 import hellfirepvp.astralsorcery.common.event.EventFlags;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import java.util.function.Consumer;
@@ -44,13 +44,13 @@ public class KeyAreaOfEffect extends KeyAddEnchantment
             return;
         }
         final DamageSource source = event.getSource();
-        if (source instanceof IndirectEntityDamageSource && source.getEnchantments( != null && source.getEnchantments( instanceof Player) {
-            final Player player = (Player)source.getEnchantments(;
+        if (source instanceof IndirectDamageSource && source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+            final Player player = (Player)source.getDirectEntity();
             final LogicalSide side = this.getSide((Entity)player);
             final PlayerProgress prog = ResearchHelper.getProgress(player, side);
             if (prog.getPerkData().hasPerkEffect(this)) {
                 final LivingEntity attacked = event.getEntityLiving();
-                final Entity indirectSource = source.func_76364_f();
+                final Entity indirectSource = source.getDirectEntity();
                 float sweepingPercentage;
                 if (indirectSource instanceof TridentEntity) {
                     final ItemStack tridentStack = ((TridentEntity)indirectSource).field_203054_h;

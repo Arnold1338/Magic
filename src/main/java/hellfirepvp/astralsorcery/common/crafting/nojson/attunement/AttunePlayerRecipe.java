@@ -76,7 +76,7 @@ public class AttunePlayerRecipe extends AttunementRecipe<ActivePlayerAttunementR
     }
     
     public static boolean isEligablePlayer(final ServerPlayer player, final IConstellation attuneTo) {
-        if (player != null && player.isAlive() && !MiscUtils.isPlayerFakeMP(player) && !player.func_225608_bj_()) {
+        if (player != null && player.isAlive() && !MiscUtils.isPlayerFakeMP(player) && !player.isCrouching()) {
             final PlayerProgress prog = ResearchHelper.getProgress((Player)player, LogicalSide.SERVER);
             return prog.isValid() && attuneTo instanceof IMajorConstellation && !prog.isAttuned() && prog.getTierReached().isThisLaterOrEqual(ProgressionTier.ATTUNEMENT) && prog.hasConstellationDiscovered(attuneTo);
         }

@@ -40,25 +40,27 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.func_77624_a(stack, worldIn, (List)tooltip, flagIn);
+    public void appendHoverText(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, (List)tooltip, flagIn);
         final List<AmuletEnchantment> enchantments = getAmuletEnchantments(stack);
         for (final AmuletEnchantment ench : enchantments) {
-            tooltip.add((Component)ench.getDisplay().withStyle(ChatFormatting.BLUE)));
+            tooltip.add(ench.getDisplay().withStyle(ChatFormatting.BLUE));
+
         }
         if (getAmuletColor(stack).map(color -> color == -1).orElse(false)) {
-            tooltip.add((Component)new Component("astralsorcery.amulet.color.colorless").withStyle(ChatFormatting.ITALIC)).withStyle(ChatFormatting.GRAY)));
+            tooltip.add(Component.translatable("astralsorcery.amulet.color.colorless").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+
         }
     }
     
-    public void func_77663_a(final ItemStack stack, final Level worldIn, final Entity entityIn, final int itemSlot, final boolean isSelected) {
-        if (!worldIn.level() && !getAmuletColor(stack).isPresent()) {
+    public void inventoryTick(final ItemStack stack, final Level worldIn, final Entity entityIn, final int itemSlot, final boolean isSelected) {
+        if (!worldIn.level().isClientSide() && !getAmuletColor(stack).isPresent()) {
             freezeAmuletColor(stack);
         }
-        if (!worldIn.level() && getAmuletEnchantments(stack).isEmpty()) {
+        if (!worldIn.level().isClientSide() && getAmuletEnchantments(stack).isEmpty()) {
             AmuletRandomizeHelper.rollAmulet(stack);
         }
-        super.func_77663_a(stack, worldIn, entityIn, itemSlot, isSelected);
+        super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
     
     public int getColor(final ItemStack stack, final int tintIndex) {

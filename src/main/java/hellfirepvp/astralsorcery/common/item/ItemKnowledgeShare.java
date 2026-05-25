@@ -52,13 +52,15 @@ public class ItemKnowledgeShare extends Item
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> tooltip, final TooltipFlag flag) {
+    public void appendHoverText(final ItemStack stack, @Nullable final Level world, final List<Component> tooltip, final TooltipFlag flag) {
         if (isCreative(stack)) {
-            tooltip.add((Component)new Component("astralsorcery.misc.knowledge.inscribed.creative").withStyle(ChatFormatting.LIGHT_PURPLE)));
+            tooltip.add((Component)Component.translatable("astralsorcery.misc.knowledge.inscribed.creative").withStyle(ChatFormatting.LIGHT_PURPLE));
+
             return;
         }
         if (getKnowledge(stack) == null) {
-            tooltip.add((Component)new Component("astralsorcery.misc.knowledge.missing").withStyle(ChatFormatting.GRAY)));
+            tooltip.add((Component)Component.translatable("astralsorcery.misc.knowledge.missing").withStyle(ChatFormatting.GRAY));
+
         }
         else {
             final MutableComponent name = getKnowledgeOwnerName(stack);
@@ -68,12 +70,12 @@ public class ItemKnowledgeShare extends Item
         }
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final Level world, final Player player, final Hand hand) {
+    public InteractionResult<ItemStack> use(final Level world, final Player player, final Hand hand) {
         final ItemStack held = player.getItemInHand(hand);
         if (held.isEmpty() || world.level() || !(held.getItem() instanceof ItemKnowledgeShare)) {
             return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)held);
         }
-        if (!isCreative(held) && (player.func_225608_bj_() || getKnowledge(held) == null)) {
+        if (!isCreative(held) && (player.isCrouching() || getKnowledge(held) == null)) {
             this.tryInscribeKnowledge(held, player);
         }
         else {
@@ -88,7 +90,7 @@ public class ItemKnowledgeShare extends Item
         if (stack.isEmpty() || player == null || context.func_195991_k().level() || !(stack.getItem() instanceof ItemKnowledgeShare)) {
             return InteractionResult.SUCCESS;
         }
-        if (!isCreative(stack) && (player.func_225608_bj_() || getKnowledge(stack) == null)) {
+        if (!isCreative(stack) && (player.isCrouching() || getKnowledge(stack) == null)) {
             this.tryInscribeKnowledge(stack, player);
         }
         else {

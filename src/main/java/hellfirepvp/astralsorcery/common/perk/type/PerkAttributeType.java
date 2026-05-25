@@ -71,7 +71,7 @@ public class PerkAttributeType extends ForgeRegistryEntry<PerkAttributeType> imp
     }
     
     protected LogicalSide getSide(final Entity entity) {
-        return entity.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+        return entity.level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
     }
     
     @Nullable

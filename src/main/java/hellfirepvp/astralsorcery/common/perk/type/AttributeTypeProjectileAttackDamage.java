@@ -28,8 +28,8 @@ public class AttributeTypeProjectileAttackDamage extends PerkAttributeType
     private void onProjectileDamage(final LivingHurtEvent event) {
         if (event.getSource().func_76352_a()) {
             final DamageSource source = event.getSource();
-            if (source.getEnchantments( != null && source.getEnchantments( instanceof Player) {
-                final Player player = (Player)source.getEnchantments(;
+            if (source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+                final Player player = (Player)source.getDirectEntity();
                 final LogicalSide side = this.getSide((Entity)player);
                 if (!this.hasTypeApplied(player, side)) {
                     return;

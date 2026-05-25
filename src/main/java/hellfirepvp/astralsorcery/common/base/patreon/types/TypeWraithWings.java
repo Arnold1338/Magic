@@ -47,7 +47,7 @@ public class TypeWraithWings extends PatreonEffect
         final PoseStack renderStack = event.getMatrixStack();
         final float rot = RenderingVectorUtils.interpolateRotation(player.field_70760_ar, player.field_70761_aq, event.getPartialRenderTick());
         float yOffset = 1.2f;
-        if (player.func_225608_bj_() && !player.field_71075_bZ.field_75100_b) {
+        if (player.isCrouching() && !player.field_71075_bZ.field_75100_b) {
             yOffset = 1.0f;
         }
         renderStack.popPose();

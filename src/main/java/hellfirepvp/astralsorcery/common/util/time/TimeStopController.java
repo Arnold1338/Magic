@@ -67,7 +67,7 @@ public class TimeStopController implements ITickHandler
     }
     
     public static boolean isFrozenDirectly(final Entity e) {
-        if (e.level().level()) {
+        if (e.level()) {
             return SyncDataHolder.computeClient(SyncDataHolder.DATA_TIME_FREEZE_ENTITIES, ClientTimeFreezeEntities.class, data -> data.isFrozen(e)).orElse(false);
         }
         return SyncDataHolder.computeServer(SyncDataHolder.DATA_TIME_FREEZE_ENTITIES, DataTimeFreezeEntities.class, data -> data.isFrozen(e)).orElse(false);
@@ -83,14 +83,14 @@ public class TimeStopController implements ITickHandler
                 shouldFreeze = false;
             }
             if (shouldFreeze) {
-                if (e.level().level()) {
+                if (e.level()) {
                     for (int amt = (int)Mth.func_76129_c(e.func_213311_cf() * e.func_213302_cg()), i = 0; i < amt; ++i) {
                         if (e.level().field_73012_v.nextInt(5) == 0) {
                             TimeStopEffectHelper.playEntityParticles(e);
                         }
                     }
                 }
-                if (!e.level().level()) {
+                if (!e.level()) {
                     TimeStopZone.handleImportantEntityTicks(e);
                     return true;
                 }
@@ -99,7 +99,7 @@ public class TimeStopController implements ITickHandler
         final List<TimeStopZone> freezeAreas = TimeStopController.activeTimeStopZones.get(e.level().dimension());
         if (freezeAreas != null && !freezeAreas.isEmpty()) {
             for (final TimeStopZone stop : freezeAreas) {
-                if (stop.interceptEntityTick(e) && !e.level().level()) {
+                if (stop.interceptEntityTick(e) && !e.level()) {
                     TimeStopZone.handleImportantEntityTicks(e);
                     return true;
                 }

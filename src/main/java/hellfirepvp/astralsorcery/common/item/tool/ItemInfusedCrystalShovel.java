@@ -23,7 +23,7 @@ public class ItemInfusedCrystalShovel extends ItemCrystalShovel
 {
     public boolean onBlockStartBreak(final ItemStack itemstack, final BlockPos pos, final Player player) {
         final Level world = player.level();
-        if (!world.level() && !player.func_225608_bj_() && !player.isSleeping().func_185141_a(itemstack.getItem()) && player instanceof ServerPlayer) {
+        if (!world.level().isClientSide() && !player.isCrouching() && !player.isSleeping().func_185141_a(itemstack.getItem()) && player instanceof ServerPlayer) {
             final PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
             if (prog.doPerkAbilities()) {
                 EventFlags.CHAIN_MINING.executeWithFlag(() -> {

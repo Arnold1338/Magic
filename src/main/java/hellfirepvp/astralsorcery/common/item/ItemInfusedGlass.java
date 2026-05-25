@@ -32,14 +32,14 @@ public class ItemInfusedGlass extends Item
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+    public void appendHoverText(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         final EngravedStarMap map = getEngraving(stack);
         if (map != null) {
             for (final ResourceLocation key : map.getConstellationKeys()) {
                 final IConstellation cst = ConstellationRegistry.getConstellation(key);
                 if (cst != null) {
                     final String format = "item.astralsorcery.infused_glass.ttip";
-                    final Component cstName = (Component)cst.getConstellationName().withStyle(ChatFormatting.BLUE));
+                    final Component cstName = cst.getConstellationName().withStyle(ChatFormatting.BLUE);
                     if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.getVehicle()) {
                         final String percent = String.valueOf(Math.round(map.getDistribution(cst) * 100.0f));
                         final Component creativeHint = (Component)new Component("item.astralsorcery.infused_glass.ttip.creative", new Object[] { percent }).withStyle(ChatFormatting.LIGHT_PURPLE));

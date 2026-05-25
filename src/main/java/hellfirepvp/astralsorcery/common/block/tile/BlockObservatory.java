@@ -46,7 +46,7 @@ public class BlockObservatory extends BaseEntityBlock implements LargeBlock, Cus
     public InteractionResult func_225533_a_(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final Hand handIn, final BlockHitResult hit) {
         if (!worldIn.level()) {
             final TileObservatory observatory = MiscUtils.getTileAt((IBlockReader)worldIn, pos, TileObservatory.class, false);
-            if (observatory != null && observatory.isUsable() && !player.func_225608_bj_()) {
+            if (observatory != null && observatory.isUsable() && !player.isCrouching()) {
                 final Entity entity = observatory.findRideableObservatoryEntity();
                 if (entity != null) {
                     if (player.getVehicle() != entity) {

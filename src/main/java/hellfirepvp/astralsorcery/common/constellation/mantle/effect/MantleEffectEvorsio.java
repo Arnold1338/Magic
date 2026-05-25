@@ -33,7 +33,7 @@ public class MantleEffectEvorsio extends MantleEffect
     private void onBreak(final BlockEvent.BreakEvent event) {
         final Player player = event.getPlayer();
         if (ItemMantle.getEffect((LivingEntity)player, ConstellationsAS.evorsio) != null) {
-            final LogicalSide side = player.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+            final LogicalSide side = player.level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
             if (side.isServer()) {
                 final float charge = Math.min(AlignmentChargeHandler.INSTANCE.getCurrentCharge(player, side), (float)(int)MantleEffectEvorsio.CONFIG.chargeCostPerBreak.get());
                 AlignmentChargeHandler.INSTANCE.drainCharge(player, side, charge, false);

@@ -69,7 +69,7 @@ public class EntityObservatoryHelper extends Entity
         this.field_70145_X = true;
         final TileObservatory observatory;
         if ((observatory = this.getAssociatedObservatory()) == null) {
-            if (!this.level().level()) {
+            if (!this.level()) {
                 this.func_70106_y();
             }
             return;

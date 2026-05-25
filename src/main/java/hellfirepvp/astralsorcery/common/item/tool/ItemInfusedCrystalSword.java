@@ -28,10 +28,10 @@ public class ItemInfusedCrystalSword extends ItemCrystalSword implements Equipme
     private static final CacheReference<DynamicAttributeModifier> BASECRIT_MODIFIER;
     
     public boolean onLeftClickEntity(final ItemStack stack, final Player player, final Entity entity) {
-        if (!player.level().level() && player instanceof ServerPlayer) {
+        if (!player.level().isClientSide() && player instanceof ServerPlayer) {
             final ServerPlayer serverPlayer = (ServerPlayer)player;
             final ItemStack sword = serverPlayer.getItemInHand(InteractionHand.MAIN_HAND);
-            if (!MiscUtils.isPlayerFakeMP(serverPlayer) && !sword.isEmpty() && sword.getItem() instanceof ItemInfusedCrystalSword && !serverPlayer.func_225608_bj_() && !serverPlayer.isSleeping().func_185141_a(sword.getItem())) {
+            if (!MiscUtils.isPlayerFakeMP(serverPlayer) && !sword.isEmpty() && sword.getItem() instanceof ItemInfusedCrystalSword && !serverPlayer.isCrouching() && !serverPlayer.isSleeping().func_185141_a(sword.getItem())) {
                 final PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
                 if (prog.doPerkAbilities()) {
                     CelestialStrike.play((LivingEntity)serverPlayer, serverPlayer.func_71121_q(), Vector3.atEntityCorner(entity), Vector3.atEntityCorner(entity));

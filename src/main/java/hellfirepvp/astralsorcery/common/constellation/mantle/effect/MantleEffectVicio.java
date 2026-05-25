@@ -80,7 +80,7 @@ public class MantleEffectVicio extends MantleEffect
         if (elytraStack.getItem() instanceof ItemMantle) {
             final MantleEffect effect = ItemMantle.getEffect((LivingEntity)wearingEntity, ConstellationsAS.vicio);
             PlayerProgress progress;
-            if (wearingEntity.level().level()) {
+            if (wearingEntity.level()) {
                 progress = ResearchHelper.getClientProgress();
             }
             else {

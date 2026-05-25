@@ -53,12 +53,12 @@ public abstract class ItemCrystalTierItem extends Item implements CrystalAttribu
     abstract double getAttackSpeed();
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> tooltip, final TooltipFlag flag) {
+    public void appendHoverText(final ItemStack stack, @Nullable final Level world, final List<Component> tooltip, final TooltipFlag flag) {
         final CrystalAttributes attr = this.getAttributes(stack);
         if (attr != null) {
             attr.addTooltip(tooltip, CalculationContext.Builder.newBuilder().addUsage(CrystalPropertiesAS.Usages.USE_TOOL_DURABILITY).addUsage(CrystalPropertiesAS.Usages.USE_TOOL_EFFECTIVENESS).build());
         }
-        super.func_77624_a(stack, world, (List)tooltip, flag);
+        super.appendHoverText(stack, world, (List)tooltip, flag);
     }
     
     public int getMaxDamage(final ItemStack stack) {

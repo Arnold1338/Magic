@@ -31,9 +31,9 @@ public abstract class ItemUsableDust extends Item implements DispenseItemBehavio
         return InteractionResult.SUCCESS;
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final Level world, final Player player, final Hand hand) {
+    public InteractionResult<ItemStack> use(final Level world, final Player player, final Hand hand) {
         final ItemStack held = player.getItemInHand(hand);
-        if (!held.isEmpty() && !world.level() && this.rightClickAir(world, player, held) && !player.getVehicle()) {
+        if (!held.isEmpty() && !world.level().isClientSide() && this.rightClickAir(world, player, held) && !player.getVehicle()) {
             held.shrink(1);
         }
         return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)held);

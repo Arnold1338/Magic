@@ -81,13 +81,13 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate
             final Component translationTextComponent2;
             toolTip.add(translationTextComponent2);
             if (this.recipe.doesConsumeMultipleFluids()) {
-                toolTip.add(new Component("astralsorcery.journal.recipe.infusion.multiple"));
+                toolTip.add(Component.translatable("astralsorcery.journal.recipe.infusion.multiple"));
             }
             if (!this.recipe.acceptsChaliceInput() && ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
-                toolTip.add(new Component("astralsorcery.journal.recipe.infusion.no_chalice"));
+                toolTip.add(Component.translatable("astralsorcery.journal.recipe.infusion.no_chalice"));
             }
             if (this.recipe.doesCopyNBTToOutputs()) {
-                toolTip.add(new Component("astralsorcery.journal.recipe.infusion.copy_nbt"));
+                toolTip.add(Component.translatable("astralsorcery.journal.recipe.infusion.copy_nbt"));
             }
         });
     }

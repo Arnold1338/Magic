@@ -146,7 +146,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         if (Minecraft.func_71410_x().options.advancedItemTooltips && Screen.func_231172_r_() && ((Rectangle)this.thisFrameOuputStack.func_76341_a()).contains(mouseX, mouseZ)) {
             final String recipeName = recipe.func_199560_c().toString();
             Minecraft.func_71410_x().field_195559_v.func_197960_a(recipeName);
-            Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TranslationTextComponent("astralsorcery.misc.ctrlcopy.copied", new Object[] { recipeName }), Util.field_240973_b_);
+            Minecraft.func_71410_x().field_71439_g.sendSystemMessage((ITextComponent)new TranslationTextComponent("astralsorcery.misc.ctrlcopy.copied", new Object[] { recipeName }), Util.field_240973_b_);
             return true;
         }
         return false;

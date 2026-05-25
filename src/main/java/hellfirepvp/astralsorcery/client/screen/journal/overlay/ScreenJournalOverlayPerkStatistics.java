@@ -45,7 +45,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
     private int suffixStrWidth;
     
     public ScreenJournalOverlayPerkStatistics(final ScreenJournal origin) {
-        super((Component)new Component("screen.astralsorcery.tome.perks.stats"), origin);
+        super((Component)Component.translatable("screen.astralsorcery.tome.perks.stats"), origin);
         this.statistics = new LinkedList<PerkStatistic>();
         this.nameStrWidth = -1;
         this.valueStrWidth = -1;
@@ -88,7 +88,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
     }
     
     private void drawHeader(final PoseStack renderStack) {
-        final FormattedCharSequence title = (FormattedCharSequence)new Component("perk.reader.astralsorcery.gui");
+        final FormattedCharSequence title = (FormattedCharSequence)Component.translatable("perk.reader.astralsorcery.gui");
         final List<FormattedCharSequence> lines = this.fogColor.func_238425_b_(title, Mth.func_76141_d(135.7143f));
         final int step = 14;
         final float offsetTop = this.guiTop + 15 - lines.size() * step / 2.0f;

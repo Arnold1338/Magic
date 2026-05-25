@@ -39,7 +39,7 @@ public class SkyHandler implements ITickHandler
     public void tick(final TickEvent.Type type, final Object... context) {
         if (type == TickEvent.Type.WORLD) {
             final Level w = (Level)context[0];
-            if (!w.level() && w instanceof ServerLevel) {
+            if (!w.level().isClientSide() && w instanceof ServerLevel) {
                 final RegistryKey<Level> dimKey = (RegistryKey<Level>)w.dimension();
                 this.skyRevertMap.put(dimKey, false);
                 WorldContext ctx = this.worldHandlersServer.get(dimKey);

@@ -21,7 +21,7 @@ public class EventHelperDamageCancelling
     }
     
     public static void markInvulnerableToNextDamage(final Player player, final DamageSource source) {
-        if (player.level().level()) {
+        if (player.level()) {
             return;
         }
         EventHelperDamageCancelling.invulnerableTypes.computeIfAbsent(player.getUUID(), uuid -> new HashSet()).add(source);
@@ -34,7 +34,7 @@ public class EventHelperDamageCancelling
     
     private static void onPlayerTick(final TickEvent.PlayerTickEvent event) {
         final Player player = event.player;
-        if (event.phase == TickEvent.Phase.END && !player.level().level() && player.func_233570_aj_()) {
+        if (event.phase == TickEvent.Phase.END && !player.level().isClientSide() && player.func_233570_aj_()) {
             final Set<DamageSource> sources = EventHelperDamageCancelling.invulnerableTypes.getOrDefault(event.player.getUUID(), Collections.emptySet());
             sources.remove(DamageSource.field_76379_h);
         }

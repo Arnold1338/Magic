@@ -34,7 +34,7 @@ public class KeyCleanseBadPotions extends KeyPerk
     
     private void onHeal(final LivingHealEvent event) {
         final LivingEntity entity = event.getEntityLiving();
-        if (entity instanceof Player && !entity.level().level()) {
+        if (entity instanceof Player && !entity.level()) {
             final Player player = (Player)entity;
             final List<MobEffectInstance> badEffects = player.func_70651_bq().stream().filter(p -> p.func_188419_a().func_220303_e() == EffectType.HARMFUL).collect((Collector<? super Object, ?, List<MobEffectInstance>>)Collectors.toList());
             if (badEffects.isEmpty()) {

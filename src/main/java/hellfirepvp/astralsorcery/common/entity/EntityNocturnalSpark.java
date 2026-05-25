@@ -85,7 +85,7 @@ public class EntityNocturnalSpark extends ThrowableEntity
         if (!this.isAlive()) {
             return;
         }
-        if (!this.level().level()) {
+        if (!this.level()) {
             this.removeLights();
             if (this.isSpawning()) {
                 ++this.ticksSpawning;

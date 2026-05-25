@@ -72,7 +72,7 @@ public class BlockRitualPedestal extends BlockStarlightNetwork implements Custom
         }
         final ItemStack heldItem = player.getItemInHand(hand);
         final ItemStack in = pedestal.getCurrentCrystal();
-        if (player.func_225608_bj_()) {
+        if (player.isCrouching()) {
             pedestal.tryPlaceCrystalInPedestal(ItemStack.EMPTY);
             if (player.getItemInHand(hand).isEmpty()) {
                 player.func_184611_a(hand, in);

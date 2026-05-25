@@ -35,7 +35,7 @@ public class CommandExp implements Command<CommandSourceStack>
             ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Success! Player exp has been set to " + exp).withStyle(ChatFormatting.GREEN)), true);
         }
         else {
-            ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Failed! Player specified doesn't seem to have a research progress!").withStyle(ChatFormatting.RED)), true);
+            ((CommandSourceStack)context.getSource()).func_197030_a((Component)Component.translatable("Failed! Player specified doesn't seem to have a research progress!").withStyle(ChatFormatting.RED), true);
         }
         return 0;
     }

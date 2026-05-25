@@ -68,7 +68,7 @@ public class MergeCrystalsRecipe extends LiquidStarlightRecipe
         final Random r = new Random(Mth.func_180186_a((Vector3i)at));
         final ItemStack crystalFoundOne;
         final ItemStack crystalFoundTwo;
-        if (!world.level() && this.getAndIncrementCraftingTick((Entity)trigger) > 40 + r.nextInt(20) && (crystalFoundOne = this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null && (crystalFoundTwo = this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null && world.func_180501_a(at, Blocks.AIR.defaultBlockState(), 11)) {
+        if (!world.level().isClientSide() && this.getAndIncrementCraftingTick((Entity)trigger) > 40 + r.nextInt(20) && (crystalFoundOne = this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null && (crystalFoundTwo = this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null && world.func_180501_a(at, Blocks.AIR.defaultBlockState(), 11)) {
             final ItemCrystalBase crystalOne = (ItemCrystalBase)crystalFoundOne.getItem();
             CrystalAttributes attrOne = crystalOne.getAttributes(crystalFoundOne);
             attrOne = ((attrOne != null) ? attrOne : CrystalAttributes.Builder.newBuilder(false).build());

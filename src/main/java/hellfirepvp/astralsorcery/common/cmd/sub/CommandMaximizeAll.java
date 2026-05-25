@@ -26,7 +26,7 @@ public class CommandMaximizeAll implements Command<CommandSourceStack>
     public static ArgumentBuilder<CommandSourceStack, ?> register() {
         return (ArgumentBuilder<CommandSourceStack, ?>)((LiteralArgumentBuilder)((LiteralArgumentBuilder)Commands.func_197057_a("maximize").requires(cs -> cs.func_197034_c(2))).then(Commands.func_197056_a("player", (ArgumentType)EntityArgument.func_197096_c()).executes(ctx -> {
             final Player target = (Player)((EntitySelector)ctx.getArgument("player", (Class)EntitySelector.class)).func_197340_a((CommandSourceStack)ctx.getSource());
-            ((CommandSourceStack)ctx.getSource()).func_197030_a((Component)new Component("Success!").withStyle(ChatFormatting.GREEN)), true);
+            ((CommandSourceStack)ctx.getSource()).func_197030_a((Component)Component.translatable("Success!").withStyle(ChatFormatting.GREEN), true);
             maximizeAll(target);
             return 0;
         }))).executes((Command)CommandMaximizeAll.CMD);
@@ -34,7 +34,7 @@ public class CommandMaximizeAll implements Command<CommandSourceStack>
     
     public int run(final CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         maximizeAll((Player)((CommandSourceStack)context.getSource()).func_197035_h());
-        ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Success!").withStyle(ChatFormatting.GREEN)), true);
+        ((CommandSourceStack)context.getSource()).func_197030_a((Component)Component.translatable("Success!").withStyle(ChatFormatting.GREEN), true);
         return 0;
     }
     

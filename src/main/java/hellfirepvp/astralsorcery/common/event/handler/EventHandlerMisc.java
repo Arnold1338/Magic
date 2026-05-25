@@ -41,7 +41,7 @@ public class EventHandlerMisc
     }
     
     private static void onCrystalToss(final ItemTossEvent event) {
-        if (!event.getPlayer().level().level()) {
+        if (!event.getPlayer().level()) {
             final ItemStack thrown = event.getEntityItem().func_92059_d();
             if (thrown.getItem() instanceof ItemCrystalBase) {
                 event.getEntityItem().func_200216_c(event.getPlayer().getUUID());

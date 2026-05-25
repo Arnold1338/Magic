@@ -40,13 +40,13 @@ public class TileVanishing extends TileEntityTick
                 if (ItemMantle.getEffect((LivingEntity)player, ConstellationsAS.aevitas) != null) {
                     final double yDiff = player.getY() - this.getBlockState().getY();
                     if (player.func_233570_aj_() && yDiff >= 0.95 && yDiff <= 1.15) {
-                        if (player.func_225608_bj_()) {
+                        if (player.isCrouching()) {
                             break;
                         }
                         removeBlock = false;
                     }
                     else {
-                        if (!player.func_225608_bj_() || yDiff < 0.95 || yDiff > 2.15) {
+                        if (!player.isCrouching() || yDiff < 0.95 || yDiff > 2.15) {
                             continue;
                         }
                         removeBlock = false;

@@ -45,11 +45,11 @@ public class RootDiscidia extends RootPerk
     private void onDamage(final LivingDamageEvent event) {
         final DamageSource ds = event.getSource();
         Player player = null;
-        if (ds.func_76364_f() != null && ds.func_76364_f() instanceof Player) {
-            player = (Player)ds.func_76364_f();
+        if (ds.getDirectEntity() != null && ds.getDirectEntity() instanceof Player) {
+            player = (Player)ds.getDirectEntity();
         }
-        if (player == null && ds.getEnchantments( != null && ds.getEnchantments( instanceof Player) {
-            player = (Player)ds.getEnchantments(;
+        if (player == null && ds.getEnchantments( != null && ds.getDirectEntity() instanceof Player) {
+            player = (Player)ds.getDirectEntity();
         }
         if (player == null) {
             return;

@@ -31,7 +31,7 @@ public class ItemBlockCelestialCrystalCluster extends ItemBlockCustom implements
         super(block, itemProperties.func_208103_a(CommonProxy.RARITY_CELESTIAL));
     }
     
-    public void func_77663_a(final ItemStack stack, final Level world, final Entity entity, final int slot, final boolean isSelected) {
+    public void inventoryTick(final ItemStack stack, final Level world, final Entity entity, final int slot, final boolean isSelected) {
         if (!world.level()) {
             CrystalAttributes attributes = this.getAttributes(stack);
             if (attributes == null && stack.getItem() instanceof CrystalAttributeGenItem) {
@@ -42,8 +42,8 @@ public class ItemBlockCelestialCrystalCluster extends ItemBlockCustom implements
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.func_77624_a(stack, worldIn, (List)tooltip, flagIn);
+    public void appendHoverText(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, (List)tooltip, flagIn);
         final CrystalAttributes attr = this.getAttributes(stack);
         if (attr != null) {
             attr.addTooltip(tooltip);

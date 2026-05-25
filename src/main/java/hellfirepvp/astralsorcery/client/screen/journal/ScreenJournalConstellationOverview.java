@@ -47,7 +47,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
     private Rectangle rectNext;
     
     private ScreenJournalConstellationOverview(final int pageId, final List<IConstellation> constellations) {
-        super((ITextComponent)new Component("screen.astralsorcery.tome.constellations"), 20);
+        super((ITextComponent)Component.translatable("screen.astralsorcery.tome.constellations"), 20);
         this.rectCRenderMap = new HashMap<Rectangle, IConstellation>();
         this.constellations = constellations;
         this.pageId = pageId;

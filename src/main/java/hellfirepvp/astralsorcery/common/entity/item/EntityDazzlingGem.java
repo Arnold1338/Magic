@@ -27,7 +27,7 @@ public class EntityDazzlingGem extends EntityItemExplosionResistant
     @Override
     public void func_70071_h_() {
         super.tick();
-        if (!this.level().level() && this.field_70292_b + 10 >= this.lifespan) {
+        if (!this.level().isClientSide() && this.field_70292_b + 10 >= this.lifespan) {
             this.field_70292_b = 0;
         }
     }

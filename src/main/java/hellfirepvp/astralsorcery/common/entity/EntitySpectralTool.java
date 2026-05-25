@@ -96,7 +96,7 @@ public class EntitySpectralTool extends FlyingMob
     
     public void func_70071_h_() {
         super.tick();
-        if (this.level().level()) {
+        if (this.level()) {
             this.tickClient();
         }
         else {

@@ -59,7 +59,7 @@ public class EntityStarmetal extends EntityCustomItemReplacement implements Inte
     }
     
     public boolean func_85031_j(final Entity entity) {
-        if (!this.level().level() && entity instanceof ServerPlayer) {
+        if (!this.level().isClientSide() && entity instanceof ServerPlayer) {
             final ItemStack held = ((ServerPlayer)entity).getItemInHand(InteractionHand.MAIN_HAND);
             if (!held.isEmpty() && held.getItem() instanceof ItemChisel) {
                 final ItemStack thisStack = this.func_92059_d();

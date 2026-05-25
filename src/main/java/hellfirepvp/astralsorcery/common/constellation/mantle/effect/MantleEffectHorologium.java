@@ -50,7 +50,7 @@ public class MantleEffectHorologium extends MantleEffect
     }
     
     private void onHurt(final LivingHurtEvent event) {
-        if (ItemMantle.getEffect(event.getEntityLiving(), ConstellationsAS.horologium) != null && event.getEntityLiving() instanceof Player && !event.getEntityLiving().level().level() && !event.getSource().func_76347_k()) {
+        if (ItemMantle.getEffect(event.getEntityLiving(), ConstellationsAS.horologium) != null && event.getEntityLiving() instanceof Player && !event.getEntityLiving().level() && !event.getSource().func_76347_k()) {
             final Player player = (Player)event.getEntityLiving();
             if (!player.isSleeping().func_185141_a((Item)ItemsAS.MANTLE) && AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, (float)(int)MantleEffectHorologium.CONFIG.chargeCostPerFreeze.get())) {
                 TimeStopController.freezeWorldAt(TimeStopZone.EntityTargetController.allExcept((Entity)player), player.level(), player.func_233580_cy_(), ((Double)MantleEffectHorologium.CONFIG.effectRange.get()).floatValue(), (int)MantleEffectHorologium.CONFIG.effectDuration.get());

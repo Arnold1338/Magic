@@ -16,7 +16,7 @@ public class ItemHandTelescope extends Item
         super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final Level world, final Player player, final Hand hand) {
+    public InteractionResult<ItemStack> use(final Level world, final Player player, final Hand hand) {
         final ItemStack held = player.getItemInHand(hand);
         if (held.isEmpty()) {
             return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)held);

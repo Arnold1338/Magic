@@ -36,12 +36,12 @@ public class ItemInfusedCrystalPickaxe extends ItemCrystalPickaxe implements Equ
     private static final UUID MODIFIER_ID;
     private static final CacheReference<DynamicAttributeModifier> MINING_SIZE_MODIFIER;
     
-    public InteractionResult<ItemStack> func_77659_a(final Level world, final Player player, final Hand hand) {
+    public InteractionResult<ItemStack> use(final Level world, final Player player, final Hand hand) {
         final ItemStack held = player.getItemInHand(hand);
         if (this.doOreScan(world, player.func_233580_cy_(), player, held)) {
             return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)held);
         }
-        return (InteractionResult<ItemStack>)super.func_77659_a(world, player, hand);
+        return (InteractionResult<ItemStack>)super.use(world, player, hand);
     }
     
     public InteractionResult func_195939_a(final ItemUseContext ctx) {
@@ -53,7 +53,7 @@ public class ItemInfusedCrystalPickaxe extends ItemCrystalPickaxe implements Equ
     }
     
     private boolean doOreScan(final Level world, final BlockPos origin, final Player player, final ItemStack stack) {
-        if (!world.level() && player instanceof ServerPlayer && !MiscUtils.isPlayerFakeMP((ServerPlayer)player) && stack.getItem() instanceof ItemInfusedCrystalPickaxe && !player.isSleeping().func_185141_a(stack.getItem())) {
+        if (!world.level().isClientSide() && player instanceof ServerPlayer && !MiscUtils.isPlayerFakeMP((ServerPlayer)player) && stack.getItem() instanceof ItemInfusedCrystalPickaxe && !player.isSleeping().func_185141_a(stack.getItem())) {
             final PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
             if (prog.doPerkAbilities()) {
                 final List<BlockPos> orePositions = BlockDiscoverer.searchForBlocksAround(world, origin, 16, BlockPredicates.isInTag((ITag<Block>)TagsAS.Blocks.ORES));

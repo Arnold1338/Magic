@@ -109,7 +109,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     private void buildCapeText() {
         if (this.constellation instanceof IWeakConstellation && ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
             final ITextComponent txtMantle = ((IWeakConstellation)this.constellation).getInfoMantleEffect();
-            final FormattedCharSequence headTxt = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.mantle");
+            final FormattedCharSequence headTxt = (FormattedCharSequence)Component.translatable("astralsorcery.journal.constellation.mantle");
             this.locTextMantle.add(this.localize(headTxt));
             this.locTextMantle.add(IReorderingProcessor.field_242232_a);
             final List<IReorderingProcessor> lines = new LinkedList<IReorderingProcessor>();
@@ -125,7 +125,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     private void buildEnchText() {
         if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.CONSTELLATION_CRAFT)) {
             final ITextComponent txtEnchantments = (ITextComponent)this.constellation.getConstellationEnchantmentDescription();
-            final FormattedCharSequence headTxt = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.enchantments");
+            final FormattedCharSequence headTxt = (FormattedCharSequence)Component.translatable("astralsorcery.journal.constellation.enchantments");
             this.locTextRefraction.add(this.localize(headTxt));
             this.locTextRefraction.add(IReorderingProcessor.field_242232_a);
             final List<IReorderingProcessor> lines = new LinkedList<IReorderingProcessor>();
@@ -142,7 +142,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         if (this.constellation instanceof IMinorConstellation) {
             if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
                 final ITextComponent txtRitual = ((IMinorConstellation)this.constellation).getInfoTraitEffect();
-                final FormattedCharSequence headTxt = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.ritual.trait");
+                final FormattedCharSequence headTxt = (FormattedCharSequence)Component.translatable("astralsorcery.journal.constellation.ritual.trait");
                 this.locTextRitual.add(this.localize(headTxt));
                 this.locTextRitual.add(IReorderingProcessor.field_242232_a);
                 final List<IReorderingProcessor> lines = new LinkedList<IReorderingProcessor>();
@@ -156,7 +156,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         else if (this.constellation instanceof IWeakConstellation) {
             if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.ATTUNEMENT)) {
                 final ITextComponent txtRitual = ((IWeakConstellation)this.constellation).getInfoRitualEffect();
-                final FormattedCharSequence headTxt = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.ritual");
+                final FormattedCharSequence headTxt = (FormattedCharSequence)Component.translatable("astralsorcery.journal.constellation.ritual");
                 this.locTextRitual.add(this.localize(headTxt));
                 this.locTextRitual.add(IReorderingProcessor.field_242232_a);
                 final List<IReorderingProcessor> lines = new LinkedList<IReorderingProcessor>();
@@ -169,7 +169,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
             }
             if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
                 final ITextComponent txtCorruptedRitual = ((IWeakConstellation)this.constellation).getInfoCorruptedRitualEffect();
-                final FormattedCharSequence headTxt = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.corruption");
+                final FormattedCharSequence headTxt = (FormattedCharSequence)Component.translatable("astralsorcery.journal.constellation.corruption");
                 this.locTextRitual.add(this.localize(headTxt));
                 this.locTextRitual.add(IReorderingProcessor.field_242232_a);
                 final List<IReorderingProcessor> lines = new LinkedList<IReorderingProcessor>();
@@ -291,7 +291,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     private void drawPageExtendedInformation(final PoseStack renderStack) {
         FormattedCharSequence info = (FormattedCharSequence)this.getConstellation().getConstellationTag();
         if (!this.detailed) {
-            info = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.unknown");
+            info = (FormattedCharSequence)Component.translatable("astralsorcery.journal.constellation.unknown");
         }
         final int width = this.field_230712_o_.func_238414_a_(info);
         final float chX = 305.0f - width / 2.0f;
@@ -321,7 +321,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         }
         final List<MoonPhase> phases = this.activePhases;
         if (phases.isEmpty()) {
-            final FormattedCharSequence none = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.unknown");
+            final FormattedCharSequence none = (FormattedCharSequence)Component.translatable("astralsorcery.journal.constellation.unknown");
             final float scale = 1.8f;
             final float length = this.field_230712_o_.func_238414_a_(none) * scale;
             final float offsetLeft = this.guiLeft + 296 - length / 2.0f;
@@ -370,7 +370,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         renderStack.scale();
         FormattedCharSequence dstInfo = (FormattedCharSequence)this.constellation.getConstellationTypeDescription();
         if (!this.detailed) {
-            dstInfo = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.unknown");
+            dstInfo = (FormattedCharSequence)Component.translatable("astralsorcery.journal.constellation.unknown");
         }
         width = this.field_230712_o_.func_238414_a_(dstInfo);
         renderStack.popPose();

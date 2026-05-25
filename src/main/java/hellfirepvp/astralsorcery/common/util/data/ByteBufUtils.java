@@ -198,7 +198,7 @@ public class ByteBufUtils
     }
     
     public static void writeJsonObject(final FriendlyByteBuf buf, final JsonObject object) {
-        writeString(buf, object.toString());
+        writeString(buf, object.getString());
     }
     
     public static JsonObject readJsonObject(final FriendlyByteBuf buf) {

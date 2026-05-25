@@ -60,7 +60,7 @@ public class MantleEffectDiscidia extends MantleEffect
         final LivingEntity attacked = event.getEntityLiving();
         final Level world = attacked.level();
         final DamageSource source = event.getSource();
-        final Entity attacker = source.getEnchantments(;
+        final Entity attacker = source.getDirectEntity();
         if (world.level()) {
             return;
         }

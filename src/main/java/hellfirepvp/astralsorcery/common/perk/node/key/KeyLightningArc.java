@@ -65,8 +65,8 @@ public class KeyLightningArc extends KeyPerk
             return;
         }
         final DamageSource source = event.getSource();
-        if (source.getEnchantments( != null && source.getEnchantments( instanceof Player) {
-            final Player player = (Player)source.getEnchantments(;
+        if (source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+            final Player player = (Player)source.getDirectEntity();
             final LogicalSide side = this.getSide((Entity)player);
             final PlayerProgress prog = ResearchHelper.getProgress(player, side);
             if (side.isServer() && prog.getPerkData().hasPerkEffect(this) && prog.doPerkAbilities()) {

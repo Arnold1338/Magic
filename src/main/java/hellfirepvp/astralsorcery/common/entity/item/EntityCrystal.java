@@ -52,7 +52,7 @@ public class EntityCrystal extends EntityItemExplosionResistant implements Inter
     }
     
     public boolean func_85031_j(final Entity entity) {
-        if (!this.level().level() && entity instanceof ServerPlayer) {
+        if (!this.level().isClientSide() && entity instanceof ServerPlayer) {
             final ItemStack held = ((ServerPlayer)entity).getItemInHand(InteractionHand.MAIN_HAND);
             if (!held.isEmpty() && held.getItem() instanceof ItemChisel) {
                 final ItemStack thisStack = this.func_92059_d();
@@ -118,7 +118,7 @@ public class EntityCrystal extends EntityItemExplosionResistant implements Inter
     @Override
     public void func_70071_h_() {
         super.tick();
-        if (!this.level().level() && this.field_70292_b + 10 >= this.lifespan) {
+        if (!this.level().isClientSide() && this.field_70292_b + 10 >= this.lifespan) {
             this.field_70292_b = 0;
         }
     }

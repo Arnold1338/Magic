@@ -27,7 +27,7 @@ public abstract class ItemCrystalBase extends Item implements CrystalAttributeGe
         super(prop.func_200918_c(0));
     }
     
-    public void func_77663_a(final ItemStack stack, final Level world, final Entity entity, final int slot, final boolean isSelected) {
+    public void inventoryTick(final ItemStack stack, final Level world, final Entity entity, final int slot, final boolean isSelected) {
         if (!world.level()) {
             CrystalAttributes attributes = this.getAttributes(stack);
             if (attributes == null && stack.getItem() instanceof CrystalAttributeGenItem) {
@@ -38,7 +38,7 @@ public abstract class ItemCrystalBase extends Item implements CrystalAttributeGe
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> toolTip, final TooltipFlag flag) {
+    public void appendHoverText(final ItemStack stack, @Nullable final Level world, final List<Component> toolTip, final TooltipFlag flag) {
         this.addCrystalPropertyToolTip(stack, toolTip);
     }
     

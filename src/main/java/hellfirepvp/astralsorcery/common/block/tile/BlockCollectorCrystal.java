@@ -78,7 +78,8 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
                     toolTip.add((Component)new Component("crystal.info.astralsorcery.collect.type", new Object[] { c.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
                 }
                 else if (!addedMissing) {
-                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY)));
+                    toolTip.add((Component)Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
+
                 }
             }
             final IMinorConstellation tr = ((ConstellationItem)stack.getItem()).getTraitConstellation(stack);
@@ -87,7 +88,8 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
                     toolTip.add((Component)new Component("crystal.info.astralsorcery.trait", new Object[] { tr.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
                 }
                 else if (!addedMissing) {
-                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY)));
+                    toolTip.add((Component)Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
+
                 }
             }
         }

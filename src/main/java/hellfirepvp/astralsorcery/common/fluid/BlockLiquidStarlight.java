@@ -55,7 +55,7 @@ public class BlockLiquidStarlight extends FlowingFluidBlock
         }
         else if (entity instanceof ItemEntity) {
             LiquidStarlightCraftingRegistry.tryCraft((ItemEntity)entity, pos);
-            if (!world.level() && ((ItemEntity)entity).func_92059_d().isEmpty()) {
+            if (!world.level().isClientSide() && ((ItemEntity)entity).func_92059_d().isEmpty()) {
                 entity.func_70106_y();
             }
         }

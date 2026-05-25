@@ -43,7 +43,7 @@ public class RegistryPerkCustomModifiers
             
             @Override
             public float getValue(final Player player, final PlayerProgress progress) {
-                final LogicalSide side = player.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+                final LogicalSide side = player.level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
                 return 1.0f + 0.05f * progress.getPerkData().getAvailablePerkPoints(player, side);
             }
             

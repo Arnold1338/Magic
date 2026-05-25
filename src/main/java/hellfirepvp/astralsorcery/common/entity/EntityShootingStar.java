@@ -58,7 +58,7 @@ public class EntityShootingStar extends ThrowableEntity
     public void func_70071_h_() {
         this.adjustMotion();
         super.tick();
-        if (this.level().level()) {
+        if (this.level()) {
             this.spawnEffects();
         }
     }

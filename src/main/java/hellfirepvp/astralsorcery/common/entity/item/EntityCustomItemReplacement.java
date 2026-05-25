@@ -29,7 +29,7 @@ public class EntityCustomItemReplacement extends ItemEntity
     
     public void func_70071_h_() {
         super.tick();
-        if (this.level().level()) {
+        if (this.level()) {
             return;
         }
         if (this.replacedEntity != null && this.field_70173_aa < 5 && !this.replacedEntity.isAlive() && this.replacedEntity.field_145804_b == 32767 && this.replacedEntity.field_70292_b == this.func_92059_d().getEntityLifespan(this.level()) - 1) {

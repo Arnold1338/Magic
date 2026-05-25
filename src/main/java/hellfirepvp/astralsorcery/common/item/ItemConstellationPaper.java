@@ -64,17 +64,19 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> toolTip, final TooltipFlag flag) {
+    public void appendHoverText(final ItemStack stack, @Nullable final Level world, final List<Component> toolTip, final TooltipFlag flag) {
         final IConstellation c = this.getConstellation(stack);
         if (c != null && c.canDiscover((Player)Minecraft.getInstance().player, ResearchHelper.getClientProgress())) {
-            toolTip.add((Component)c.getConstellationName().withStyle(ChatFormatting.BLUE)));
+            toolTip.add(c.getConstellationName().withStyle(ChatFormatting.BLUE));
+
         }
         else {
-            toolTip.add((Component)new Component("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY)));
+            toolTip.add((Component)Component.translatable("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY));
+
         }
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final Level world, final Player player, final Hand hand) {
+    public InteractionResult<ItemStack> use(final Level world, final Player player, final Hand hand) {
         final ItemStack held = player.getItemInHand(hand);
         if (held.isEmpty()) {
             return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)held);
@@ -106,7 +108,7 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
         return (Entity)res;
     }
     
-    public void func_77663_a(final ItemStack stack, final Level world, final Entity entity, final int slot, final boolean isSelected) {
+    public void inventoryTick(final ItemStack stack, final Level world, final Entity entity, final int slot, final boolean isSelected) {
         if (world.isClientSide || !(entity instanceof Player)) {
             return;
         }
@@ -151,7 +153,7 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
                 ResearchHelper.sendConstellationMemorizationMessage((CommandSource)entity, progress, cst);
             }
         }
-        super.func_77663_a(stack, world, entity, slot, isSelected);
+        super.inventoryTick(stack, world, entity, slot, isSelected);
     }
     
     @OnlyIn(Dist.CLIENT)

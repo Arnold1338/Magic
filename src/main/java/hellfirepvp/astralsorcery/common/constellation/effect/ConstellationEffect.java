@@ -131,7 +131,7 @@ public abstract class ConstellationEffect
     }
     
     protected void markPlayerAffected(final Player player) {
-        if (player.level().level()) {
+        if (player.level()) {
             return;
         }
         PlayerAffectionFlags.markPlayerAffected(player, this.getPlayerAffectionFlag());

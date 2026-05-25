@@ -145,26 +145,26 @@ public class ResearchHelper
         if (server != null) {
             final ServerPlayer player = server.getPlayerList().getPlayer(pUUID);
             if (player != null) {
-                player.func_145747_a((Component)new Component("AstralSorcery: Your progression could not be loaded and can't be recovered from backup. Please contact an administrator to lookup what went wrong and/or potentially recover your data from a backup.").withStyle(ChatFormatting.RED)), Util.NIL_UUID);
+                player.sendSystemMessage(Component.translatable("AstralSorcery: Your progression could not be loaded and can't be recovered from backup. Please contact an administrator to lookup what went wrong and/or potentially recover your data from a backup.").withStyle(ChatFormatting.RED);
             }
             final String resolvedName = (player != null) ? player.func_146103_bH().getName() : (pUUID.toString() + " (Not online)");
             for (final String opName : server.getPlayerList().func_152606_n()) {
                 final Player pl = (Player)server.getPlayerList().func_152612_a(opName);
                 if (pl != null) {
-                    pl.func_145747_a((Component)new Component("AstralSorcery: The progression of " + resolvedName + " could not be loaded and can't be recovered from backup. Error files might be created from the unloadable progression files, check the console for additional information!").withStyle(ChatFormatting.RED)), Util.NIL_UUID);
+                    pl.sendSystemMessage(new Component("AstralSorcery: The progression of " + resolvedName + " could not be loaded and can't be recovered from backup. Error files might be created from the unloadable progression files, check the console for additional information!").withStyle(ChatFormatting.RED)));
                 }
             }
         }
     }
     
     public static void sendConstellationDiscoveryMessage(final CommandSource src, final IConstellation cst) {
-        src.func_145747_a((Component)new Component("astralsorcery.progress.constellation.discover.chat", new Object[] { cst.getConstellationName().withStyle(ChatFormatting.GRAY)) }).withStyle(ChatFormatting.BLUE)), Util.NIL_UUID);
+        src.sendSystemMessage(new Component("astralsorcery.progress.constellation.discover.chat", new Object[] { cst.getConstellationName().withStyle(ChatFormatting.GRAY)) }).withStyle(ChatFormatting.BLUE)));
     }
     
     public static void sendConstellationMemorizationMessage(final CommandSource src, final PlayerProgress progress, final IConstellation cst) {
-        src.func_145747_a((Component)new Component("astralsorcery.progress.constellation.seen.chat", new Object[] { cst.getConstellationName().withStyle(ChatFormatting.GRAY)) }).withStyle(ChatFormatting.BLUE)), Util.NIL_UUID);
+        src.sendSystemMessage(new Component("astralsorcery.progress.constellation.seen.chat", new Object[] { cst.getConstellationName().withStyle(ChatFormatting.GRAY)) }).withStyle(ChatFormatting.BLUE)));
         if (progress.getSeenConstellations().size() == 1) {
-            src.func_145747_a((Component)new Component("astralsorcery.progress.constellation.seen.track").withStyle(ChatFormatting.BLUE)), Util.NIL_UUID);
+            src.sendSystemMessage(Component.translatable("astralsorcery.progress.constellation.seen.track").withStyle(ChatFormatting.BLUE);
         }
     }
     

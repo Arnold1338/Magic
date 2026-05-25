@@ -309,7 +309,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     }
     
     public Component func_200200_C_() {
-        return (Component)((this.displayText != null) ? this.displayText : new Component("block.astralsorcery.celestial_gateway"));
+        return (Component)((this.displayText != null) ? this.displayText : Component.translatable("block.astralsorcery.celestial_gateway"));
     }
     
     public boolean func_145818_k_() {
@@ -368,8 +368,8 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     public void onEntityLinkCreate(final Player player, final LivingEntity linked) {
         if (linked instanceof Player && this.addAllowedUser((Player)linked)) {
             final Component accessGrantedMessage = (Component)new Component("astralsorcery.misc.link.gateway.link", new Object[] { linked.getDisplayName() }).withStyle(ChatFormatting.GREEN));
-            player.func_145747_a(accessGrantedMessage, Util.NIL_UUID);
-            linked.func_145747_a(accessGrantedMessage, Util.NIL_UUID);
+            player.sendSystemMessage(accessGrantedMessage);
+            linked.sendSystemMessage(accessGrantedMessage);
         }
     }
     

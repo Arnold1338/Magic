@@ -46,7 +46,7 @@ public class MantleEffectPelotrio extends MantleEffect
             return;
         }
         final LivingEntity attacked = event.getEntityLiving();
-        final Entity attacker = event.getSource().getEnchantments(;
+        final Entity attacker = event.getSource().getDirectEntity();
         if (attacker instanceof Player) {
             if (attacked instanceof ServerPlayer && MiscUtils.isPlayerFakeMP((ServerPlayer)attacked)) {
                 return;

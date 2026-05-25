@@ -83,8 +83,9 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        tooltip.add((Component)getSizeMode(stack).getDisplay().withStyle(ChatFormatting.GOLD)));
+    public void appendHoverText(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+        tooltip.add(getSizeMode(stack).getDisplay().withStyle(ChatFormatting.GOLD));
+
     }
     
     public float func_150893_a(final ItemStack stack, final BlockState state) {
@@ -165,7 +166,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         if (world.level() || !(player instanceof ServerPlayer) || stack.isEmpty()) {
             return InteractionResult.SUCCESS;
         }
-        if (player.func_225608_bj_()) {
+        if (player.isCrouching()) {
             ItemBlockStorage.storeBlockState(stack, world, pos);
             return InteractionResult.SUCCESS;
         }
@@ -199,9 +200,9 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         return InteractionResult.SUCCESS;
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final Level worldIn, final Player playerIn, final Hand handIn) {
+    public InteractionResult<ItemStack> use(final Level worldIn, final Player playerIn, final Hand handIn) {
         final ItemStack held = playerIn.getItemInHand(handIn);
-        if (playerIn.func_225608_bj_()) {
+        if (playerIn.isCrouching()) {
             final SizeMode nextMode = getSizeMode(held).next();
             setSizeMode(held, nextMode);
             playerIn.func_146105_b((Component)nextMode.getDisplay(), true);

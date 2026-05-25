@@ -91,7 +91,7 @@ public class TileLens extends TileTransmissionBase<IPrismTransmissionNode> imple
     
     private void doColorEffects() {
         final Level world = this.getLevel();
-        if (!world.level() && !this.occupiedConnections.isEmpty()) {
+        if (!world.level().isClientSide() && !this.occupiedConnections.isEmpty()) {
             this.occupiedConnections.clear();
             this.markForUpdate();
             this.preventNetworkSync();

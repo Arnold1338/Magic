@@ -25,7 +25,7 @@ public abstract class ItemPerkGem extends Item implements GemSocketItem
         this.type = type;
     }
     
-    public void func_77663_a(final ItemStack stack, final Level world, final Entity entity, final int itemSlot, final boolean isSelected) {
+    public void inventoryTick(final ItemStack stack, final Level world, final Entity entity, final int itemSlot, final boolean isSelected) {
         if (world.level()) {
             return;
         }

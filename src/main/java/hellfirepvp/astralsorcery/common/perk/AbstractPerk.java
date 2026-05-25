@@ -135,7 +135,7 @@ public class AbstractPerk implements ModifierSource
     }
     
     protected LogicalSide getSide(final Entity entity) {
-        return entity.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+        return entity.level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
     }
     
     @Nullable
@@ -237,7 +237,8 @@ public class AbstractPerk implements ModifierSource
             this.tooltipCache.addAll(this.getDescription());
         }
         else {
-            this.tooltipCache.add(new Component("perk.info.astralsorcery.missing_progress").withStyle(ChatFormatting.RED)));
+            this.tooltipCache.add(Component.translatable("perk.info.astralsorcery.missing_progress").withStyle(ChatFormatting.RED));
+
         }
         return this.tooltipCache;
     }

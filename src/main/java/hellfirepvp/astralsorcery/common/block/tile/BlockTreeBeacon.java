@@ -38,7 +38,7 @@ public class BlockTreeBeacon extends BlockStarlightNetwork implements CustomItem
     public void func_180633_a(final Level world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
         super.func_180633_a(world, pos, state, placer, stack);
         final TileTreeBeacon ttb = MiscUtils.getTileAt((IBlockReader)world, pos, TileTreeBeacon.class, true);
-        if (ttb != null && !world.level() && placer instanceof ServerPlayer && !MiscUtils.isPlayerFakeMP((ServerPlayer)placer)) {
+        if (ttb != null && !world.level().isClientSide() && placer instanceof ServerPlayer && !MiscUtils.isPlayerFakeMP((ServerPlayer)placer)) {
             ttb.setPlayerUUID(placer.getUUID());
         }
     }

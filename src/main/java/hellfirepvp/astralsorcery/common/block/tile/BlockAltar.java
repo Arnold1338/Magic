@@ -49,7 +49,7 @@ public abstract class BlockAltar extends BlockStarlightNetwork implements Custom
     }
     
     public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
-        if (!world.level() && player instanceof ServerPlayer) {
+        if (!world.level().isClientSide() && player instanceof ServerPlayer) {
             final TileAltar altar = MiscUtils.getTileAt((IBlockReader)world, pos, TileAltar.class, true);
             if (altar != null) {
                 CustomContainerProvider<?> provider = null;

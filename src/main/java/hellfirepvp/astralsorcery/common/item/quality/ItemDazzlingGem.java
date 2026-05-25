@@ -21,7 +21,7 @@ public class ItemDazzlingGem extends Item
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flag) {
+    public void appendHoverText(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flag) {
         getQuality(stack).ifPresent(quality -> tooltip.add(quality.getDisplayName()));
     }
     

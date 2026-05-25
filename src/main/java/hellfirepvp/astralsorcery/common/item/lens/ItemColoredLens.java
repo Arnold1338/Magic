@@ -34,7 +34,7 @@ public abstract class ItemColoredLens extends Item implements ItemDynamicColor
     public InteractionResult func_195939_a(final ItemUseContext ctx) {
         final Player player = ctx.func_195999_j();
         final Level world = ctx.func_195991_k();
-        if (!world.level() && player != null) {
+        if (!world.level().isClientSide() && player != null) {
             final TileLens lens = MiscUtils.getTileAt((IBlockReader)world, ctx.func_195995_a(), TileLens.class, false);
             if (lens != null) {
                 final ItemStack held = ctx.func_195996_i();

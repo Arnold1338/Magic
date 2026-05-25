@@ -39,7 +39,7 @@ public class EffectDropModifier extends EffectCustomTexture
     
     private void onDrops(final LivingDropsEvent event) {
         final LivingEntity le = event.getEntityLiving();
-        if (le.level().level() || !(le instanceof MobEntity) || !(le.level() instanceof ServerLevel) || !le.level().func_82736_K().func_223586_b(GameRules.field_223602_e)) {
+        if (le.level() || !(le instanceof MobEntity) || !(le.level() instanceof ServerLevel) || !le.level().func_82736_K().func_223586_b(GameRules.field_223602_e)) {
             return;
         }
         if (le.hasEffect((Effect)EffectsAS.EFFECT_DROP_MODIFIER)) {

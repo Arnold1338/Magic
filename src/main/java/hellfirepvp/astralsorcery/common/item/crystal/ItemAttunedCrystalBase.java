@@ -30,7 +30,7 @@ public abstract class ItemAttunedCrystalBase extends ItemCrystalBase implements 
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> toolTip, final TooltipFlag flag) {
+    public void appendHoverText(final ItemStack stack, @Nullable final Level world, final List<Component> toolTip, final TooltipFlag flag) {
         final CrystalAttributes.TooltipResult result = this.addCrystalPropertyToolTip(stack, toolTip);
         if (result != null) {
             final ProgressionTier tier = ResearchHelper.getClientProgress().getTierReached();
@@ -41,7 +41,8 @@ public abstract class ItemAttunedCrystalBase extends ItemCrystalBase implements 
                     toolTip.add((Component)new Component("crystal.info.astralsorcery.attuned", new Object[] { c.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
                 }
                 else if (!addedMissing) {
-                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY)));
+                    toolTip.add((Component)Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
+
                     addedMissing = true;
                 }
             }
@@ -51,7 +52,8 @@ public abstract class ItemAttunedCrystalBase extends ItemCrystalBase implements 
                     toolTip.add((Component)new Component("crystal.info.astralsorcery.trait", new Object[] { tr.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
                 }
                 else if (!addedMissing) {
-                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY)));
+                    toolTip.add((Component)Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
+
                 }
             }
         }

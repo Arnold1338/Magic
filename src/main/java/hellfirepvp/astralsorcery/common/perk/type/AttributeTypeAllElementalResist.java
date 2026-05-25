@@ -49,7 +49,7 @@ public class AttributeTypeAllElementalResist extends PerkAttributeType
         if (source.func_76347_k() || source.func_82725_o()) {
             return true;
         }
-        String key = source.func_76355_l();
+        String key = source.getMsgId();
         if (key == null) {
             return false;
         }

@@ -36,7 +36,7 @@ public class MantleEffectFornax extends MantleEffect
             return;
         }
         final LivingEntity attacked = event.getEntityLiving();
-        final Entity attacker = event.getSource().getEnchantments(;
+        final Entity attacker = event.getSource().getDirectEntity();
         if (attacker instanceof LivingEntity) {
             if (attacked instanceof ServerPlayer && MiscUtils.isPlayerFakeMP((ServerPlayer)attacked)) {
                 return;

@@ -36,8 +36,8 @@ public class AttributeTypeLifeLeech extends PerkAttributeType
     
     private void onLeech(final LivingDamageEvent event) {
         final DamageSource source = event.getSource();
-        if (source.getEnchantments( != null && source.getEnchantments( instanceof Player) {
-            final Player player = (Player)source.getEnchantments(;
+        if (source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+            final Player player = (Player)source.getDirectEntity();
             final LogicalSide side = this.getSide((Entity)player);
             if (side.isServer() && this.hasTypeApplied(player, side)) {
                 float leechPerc = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, ResearchHelper.getProgress(player, side), this, 0.0f);

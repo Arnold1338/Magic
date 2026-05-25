@@ -53,9 +53,9 @@ public class ItemWand extends Item implements OverrideInteractItem
         super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
-    public void func_77663_a(final ItemStack stack, final Level world, final Entity entity, final int itemSlot, final boolean isSelected) {
+    public void inventoryTick(final ItemStack stack, final Level world, final Entity entity, final int itemSlot, final boolean isSelected) {
         final boolean active = isSelected || (entity instanceof Player && ((Player)entity).getOffhandItem() == stack);
-        if (!world.level() && active && entity instanceof ServerPlayer) {
+        if (!world.level().isClientSide() && active && entity instanceof ServerPlayer) {
             final RockCrystalBuffer buf = (RockCrystalBuffer)DataAS.DOMAIN_AS.getData(world, (WorldCacheDomain.SaveKey)DataAS.KEY_ROCK_CRYSTAL_BUFFER);
             final ChunkPos pos = new ChunkPos(entity.func_233580_cy_());
             for (final BlockPos rPos : buf.collectPositions(pos, 6)) {
@@ -87,11 +87,11 @@ public class ItemWand extends Item implements OverrideInteractItem
         final Level world = player.level();
         final BlockState state = world.getBlockState(pos);
         final Block b = state.getBlock();
-        if (b instanceof WandInteractable && ((WandInteractable)b).onInteract(world, pos, player, face, player.func_225608_bj_())) {
+        if (b instanceof WandInteractable && ((WandInteractable)b).onInteract(world, pos, player, face, player.isCrouching())) {
             return true;
         }
         final WandInteractable wandTe = MiscUtils.getTileAt((IBlockReader)world, pos, WandInteractable.class, true);
-        if (wandTe != null && wandTe.onInteract(world, pos, player, face, player.func_225608_bj_())) {
+        if (wandTe != null && wandTe.onInteract(world, pos, player, face, player.isCrouching())) {
             return true;
         }
         final TileRequiresMultiblock mbTe = MiscUtils.getTileAt((IBlockReader)world, pos, TileRequiresMultiblock.class, true);

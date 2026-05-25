@@ -232,7 +232,7 @@ public class EngravingEffect extends ForgeRegistryEntry<EngravingEffect>
             }
             PotionUtils.func_185184_a(stack, (Collection)existing);
             stack.getTag().putInt("CustomPotionColor", ColorsAS.DYE_ORANGE.getRGB());
-            stack.func_200302_a((Component)new Component("potion.astralsorcery.crafted.name").withStyle(ChatFormatting.GOLD)));
+            stack.func_200302_a((Component)Component.translatable("potion.astralsorcery.crafted.name").withStyle(ChatFormatting.GOLD);
             return stack;
         }
     }

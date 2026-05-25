@@ -447,7 +447,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
                 catch (final Exception exc) {
                     try {
                         final BlockPos at = node.getKey();
-                        AstralSorcery.log.warn("Couldn't write node data for network node at " + at.toString() + "!");
+                        AstralSorcery.log.warn("Couldn't write node data for network node at " + at.getString() + "!");
                         AstralSorcery.log.warn("This is a major problem. To be perfectly save, consider making a backup, then break or mcedit the tileentity out and place a proper/new one...");
                     }
                     catch (final Exception exc2) {

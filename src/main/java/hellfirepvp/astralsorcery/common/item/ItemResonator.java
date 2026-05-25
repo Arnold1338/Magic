@@ -86,15 +86,16 @@ public class ItemResonator extends Item implements OverrideInteractItem
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> tooltip, final TooltipFlag extended) {
+    public void appendHoverText(final ItemStack stack, @Nullable final Level world, final List<Component> tooltip, final TooltipFlag extended) {
         final ResonatorUpgrade current = getCurrentUpgrade((Player)Minecraft.getInstance().player, stack);
         for (final ResonatorUpgrade upgrade : getUpgrades(stack)) {
             final ChatFormatting color = upgrade.equals(current) ? ChatFormatting.GOLD : ChatFormatting.BLUE;
-            tooltip.add((Component)new Component(upgrade.getUnlocalizedTypeName()).toString()color));
+            tooltip.add((Component)Component.translatable(upgrade.getUnlocalizedTypeName()).withStyle(color));
+
         }
     }
     
-    public void func_77663_a(final ItemStack stack, final Level world, final Entity entity, final int slot, boolean selected) {
+    public void inventoryTick(final ItemStack stack, final Level world, final Entity entity, final int slot, boolean selected) {
         if (!selected) {
             selected = (entity instanceof LivingEntity && ((LivingEntity)entity).getOffhandItem() == stack);
         }
@@ -176,7 +177,7 @@ public class ItemResonator extends Item implements OverrideInteractItem
     
     public boolean doBlockInteract(final LogicalSide side, final Player player, final Hand hand, final BlockPos pos, final Direction face) {
         final ResonatorUpgrade upgrade = getCurrentUpgrade(player, player.getItemInHand(hand));
-        if (upgrade == ResonatorUpgrade.AREA_SIZE && player.level().level()) {
+        if (upgrade == ResonatorUpgrade.AREA_SIZE && player.level()) {
             final TileAreaOfInfluence aoeTile = MiscUtils.getTileAt((IBlockReader)player.level(), pos, TileAreaOfInfluence.class, false);
             if (aoeTile != null) {
                 this.playAreaOfInfluenceEffect(aoeTile);
@@ -190,8 +191,8 @@ public class ItemResonator extends Item implements OverrideInteractItem
         AreaOfInfluencePreview.INSTANCE.showOrRemoveIdentical(aoeTile);
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final Level world, final Player player, final Hand hand) {
-        if (!world.level() && player.func_225608_bj_() && cycleUpgrade(player, player.getItemInHand(hand))) {
+    public InteractionResult<ItemStack> use(final Level world, final Player player, final Hand hand) {
+        if (!world.level().isClientSide() && player.isCrouching() && cycleUpgrade(player, player.getItemInHand(hand))) {
             return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)player.getItemInHand(hand));
         }
         return (InteractionResult<ItemStack>)InteractionResult.func_226250_c_((Object)player.getItemInHand(hand));

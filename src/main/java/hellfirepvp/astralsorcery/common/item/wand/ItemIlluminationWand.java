@@ -56,14 +56,14 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.func_77624_a(stack, worldIn, (List)tooltip, flagIn);
+    public void appendHoverText(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, (List)tooltip, flagIn);
         final DyeColor color = getConfiguredColor(stack);
         tooltip.add((Component)ColorUtils.getTranslation(color).toString()ColorUtils.textFormattingForDye(color)));
     }
     
     public float getAlignmentChargeCost(final Player player, final ItemStack stack) {
-        if (player.func_225608_bj_()) {
+        if (player.isCrouching()) {
             return 650.0f;
         }
         return 300.0f;
@@ -79,7 +79,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
             return InteractionResult.SUCCESS;
         }
         final BlockState state = world.getBlockState(pos);
-        if (player.func_225608_bj_()) {
+        if (player.isCrouching()) {
             if (state.getBlock() instanceof BlockTranslucentBlock) {
                 final TileTranslucentBlock tb = MiscUtils.getTileAt((IBlockReader)world, pos, TileTranslucentBlock.class, true);
                 if (tb != null && (tb.getPlayerUUID() == null || tb.getPlayerUUID().equals(player.getUUID())) && tb.revert()) {

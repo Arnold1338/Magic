@@ -36,7 +36,7 @@ public class EffectCheatDeath extends EffectCustomTexture
     
     private void onDeath(final LivingDeathEvent event) {
         final LivingEntity le = event.getEntityLiving();
-        if (!le.level().level() && le.hasEffect((Effect)EffectsAS.EFFECT_CHEAT_DEATH)) {
+        if (!le.level().isClientSide() && le.hasEffect((Effect)EffectsAS.EFFECT_CHEAT_DEATH)) {
             event.setCanceled(true);
             final int level = le.func_184596_c((Effect)EffectsAS.EFFECT_CHEAT_DEATH).func_76458_c();
             le.func_70606_j(Math.min(le.func_110138_aP(), (float)(4 + level * 2)));

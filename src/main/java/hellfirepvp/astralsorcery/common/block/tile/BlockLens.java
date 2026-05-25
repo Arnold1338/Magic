@@ -59,7 +59,7 @@ public class BlockLens extends BlockStarlightNetwork implements CustomItemBlock
     
     public void func_176208_a(final Level world, final BlockPos pos, final BlockState state, final Player player) {
         final TileLens lens = MiscUtils.getTileAt((IBlockReader)world, pos, TileLens.class, true);
-        if (lens != null && !world.level() && !player.getVehicle() && lens.getColorType() != null) {
+        if (lens != null && !world.level().isClientSide() && !player.getVehicle() && lens.getColorType() != null) {
             final ItemStack drop = lens.getColorType().getStack();
             ItemUtils.dropItemNaturally(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop);
         }
@@ -67,7 +67,7 @@ public class BlockLens extends BlockStarlightNetwork implements CustomItemBlock
     }
     
     public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
-        if (!world.level() && player.func_225608_bj_()) {
+        if (!world.level().isClientSide() && player.isCrouching()) {
             final TileLens lens = MiscUtils.getTileAt((IBlockReader)world, pos, TileLens.class, true);
             if (lens != null && lens.getColorType() != null) {
                 final ItemStack drop = lens.getColorType().getStack();

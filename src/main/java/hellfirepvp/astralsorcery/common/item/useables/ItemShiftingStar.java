@@ -44,25 +44,27 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+    public void appendHoverText(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         final IConstellation cst = this.getBaseConstellation();
         if (cst != null) {
             if (ResearchHelper.getClientProgress().hasConstellationDiscovered(cst)) {
-                tooltip.add((Component)cst.getConstellationName().withStyle(ChatFormatting.BLUE)));
+                tooltip.add(cst.getConstellationName().withStyle(ChatFormatting.BLUE));
+
             }
             else {
-                tooltip.add((Component)new Component("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY)));
+                tooltip.add((Component)Component.translatable("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY));
+
             }
         }
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final Level worldIn, final Player playerIn, final Hand handIn) {
+    public InteractionResult<ItemStack> use(final Level worldIn, final Player playerIn, final Hand handIn) {
         playerIn.func_184598_c(handIn);
-        return (InteractionResult<ItemStack>)super.func_77659_a(worldIn, playerIn, handIn);
+        return (InteractionResult<ItemStack>)super.use(worldIn, playerIn, handIn);
     }
     
     public ItemStack func_77654_b(final ItemStack stack, final Level worldIn, final LivingEntity entityLiving) {
-        if (!worldIn.level() && entityLiving instanceof ServerPlayer) {
+        if (!worldIn.level().isClientSide() && entityLiving instanceof ServerPlayer) {
             final ServerPlayer player = (ServerPlayer)entityLiving;
             final IMajorConstellation cst = this.getBaseConstellation();
             if (cst != null) {
@@ -73,13 +75,13 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
                 final double perkExp = prog.getPerkData().getPerkExp();
                 if (ResearchManager.setAttunedConstellation((Player)player, cst)) {
                     ResearchManager.setExp((Player)player, Mth.func_76124_d(perkExp));
-                    player.func_145747_a((Component)new Component("astralsorcery.progress.switch.attunement").withStyle(ChatFormatting.BLUE)), Util.NIL_UUID);
+                    player.sendSystemMessage(Component.translatable("astralsorcery.progress.switch.attunement").withStyle(ChatFormatting.BLUE);
                     SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vector3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
                     return ItemStack.EMPTY;
                 }
             }
             else if (ResearchManager.setAttunedConstellation((Player)player, null)) {
-                player.func_145747_a((Component)new Component("astralsorcery.progress.remove.attunement").withStyle(ChatFormatting.BLUE)), Util.NIL_UUID);
+                player.sendSystemMessage(Component.translatable("astralsorcery.progress.remove.attunement").withStyle(ChatFormatting.BLUE);
                 SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vector3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
                 return ItemStack.EMPTY;
             }
@@ -88,8 +90,8 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
     }
     
     public void onUsingTick(final ItemStack stack, final LivingEntity player, final int count) {
-        if (player.level().level()) {
-            this.playUseEffects(player, this.func_77626_a(stack) - count, this.func_77626_a(stack));
+        if (player.level()) {
+            this.playUseEffects(player, this.onCraftedBy(stack) - count, this.onCraftedBy(stack));
         }
     }
     
@@ -127,7 +129,7 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
         }
     }
     
-    public int func_77626_a(final ItemStack stack) {
+    public int onCraftedBy(final ItemStack stack) {
         return (this.getBaseConstellation() == null) ? 60 : 100;
     }
     

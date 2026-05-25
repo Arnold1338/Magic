@@ -69,6 +69,6 @@ public class ArgumentTypeConstellation implements ArgumentType<IConstellation>
     }
     
     static {
-        CONSTELLATION_NOT_FOUND = new SimpleCommandExceptionType((Message)new Component("astralsorcery.command.argument.constellation.notfound"));
+        CONSTELLATION_NOT_FOUND = new SimpleCommandExceptionType((Message)Component.translatable("astralsorcery.command.argument.constellation.notfound"));
     }
 }

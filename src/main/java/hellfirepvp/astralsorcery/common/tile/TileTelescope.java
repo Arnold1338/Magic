@@ -40,7 +40,7 @@ public class TileTelescope extends TileEntitySynchronized implements NamedInvent
     
     @Override
     public Component getDisplayName() {
-        return (Component)new Component("screen.astralsorcery.telescope");
+        return (Component)Component.translatable("screen.astralsorcery.telescope");
     }
     
     public enum TelescopeRotation

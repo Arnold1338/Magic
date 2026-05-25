@@ -139,7 +139,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
         if (!this.isPulling() && this.field_70173_aa >= 30) {
             this.setDespawning();
         }
-        if (this.level().level()) {
+        if (this.level()) {
             if (!this.isPulling()) {
                 this.pullFactor += 0.02f;
             }
@@ -149,7 +149,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
         }
         if (this.isDespawning()) {
             this.despawnTick();
-            if (this.level().level() && this.despawning == 3) {
+            if (this.level() && this.despawning == 3) {
                 this.playDespawnSparkles();
             }
         }

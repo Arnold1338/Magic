@@ -93,8 +93,8 @@ public class MantleEffectBootes extends MantleEffect
     private void onAttacked(final LivingAttackEvent event) {
         final LivingEntity attacked = event.getEntityLiving();
         final DamageSource src = event.getSource();
-        if (!attacked.level().level() && src.getEnchantments( instanceof LivingEntity) {
-            final LivingEntity attacker = (LivingEntity)src.getEnchantments(;
+        if (!attacked.level().isClientSide() && src.getDirectEntity() instanceof LivingEntity) {
+            final LivingEntity attacker = (LivingEntity)src.getDirectEntity();
             if (ItemMantle.getEffect(attacker, ConstellationsAS.bootes) != null && attacked.isAlive()) {
                 if (attacked instanceof Player && !MiscUtils.canPlayerAttackServer(attacker, attacked)) {
                     return;
@@ -106,8 +106,8 @@ public class MantleEffectBootes extends MantleEffect
     
     private void onHurt(final LivingHurtEvent event) {
         final LivingEntity hurt = event.getEntityLiving();
-        if (!hurt.level().level() && ItemMantle.getEffect(hurt, ConstellationsAS.bootes) != null) {
-            final Entity source = event.getSource().getEnchantments(;
+        if (!hurt.level().isClientSide() && ItemMantle.getEffect(hurt, ConstellationsAS.bootes) != null) {
+            final Entity source = event.getSource().getDirectEntity();
             if (source instanceof LivingEntity) {
                 this.forEachFlare(hurt, flare -> flare.func_70624_b((LivingEntity)source));
             }

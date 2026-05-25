@@ -126,7 +126,7 @@ public class TimeStopZone
         e.field_70758_at = e.field_70759_as;
         e.field_70732_aI = e.field_70733_aJ;
         e.field_70141_P = e.field_70140_Q;
-        if (!e.level().level()) {
+        if (!e.level()) {
             e.func_213352_e(Vec3.field_186680_a);
         }
         if (e instanceof EnderDragonEntity) {

@@ -49,11 +49,11 @@ public interface LinkableTileEntity
     void onEntityLinkCreate(final Player p0, final LivingEntity p1);
     
     default boolean onSelect(final Player player) {
-        if (player.func_225608_bj_()) {
+        if (player.isCrouching()) {
             for (final BlockPos linkTo : Lists.newArrayList((Iterable)this.getLinkedPositions())) {
                 this.tryUnlink(player, linkTo);
             }
-            player.func_145747_a((Component)new Component("astralsorcery.misc.link.unlink.all").withStyle(ChatFormatting.GREEN)), Util.NIL_UUID);
+            player.sendSystemMessage(Component.translatable("astralsorcery.misc.link.unlink.all").withStyle(ChatFormatting.GREEN);
             return false;
         }
         return true;

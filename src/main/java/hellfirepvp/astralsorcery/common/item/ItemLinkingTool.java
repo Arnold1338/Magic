@@ -32,13 +32,13 @@ public class ItemLinkingTool extends Item implements IItemLinkingTool
         if (!world.level()) {
             final LinkHandler.LinkSession session = LinkHandler.getActiveSession(player);
             if (session != null && session.getType() == LinkHandler.LinkType.ENTITY) {
-                final LinkHandler.RightClickResult result = LinkHandler.onInteractBlock(player, world, pos, player.func_225608_bj_());
+                final LinkHandler.RightClickResult result = LinkHandler.onInteractBlock(player, world, pos, player.isCrouching());
                 if (result.shouldProcess()) {
                     LinkHandler.processInteraction(result, player, world, pos);
                     return true;
                 }
             }
-            final LinkHandler.RightClickResult result = LinkHandler.onInteractBlock(player, world, pos, player.func_225608_bj_());
+            final LinkHandler.RightClickResult result = LinkHandler.onInteractBlock(player, world, pos, player.isCrouching());
             if (result.shouldProcess()) {
                 LinkHandler.processInteraction(result, player, world, pos);
             }

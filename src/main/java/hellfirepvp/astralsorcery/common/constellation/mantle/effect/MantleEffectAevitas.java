@@ -90,7 +90,7 @@ public class MantleEffectAevitas extends MantleEffect
     }
     
     public static boolean canSupportEffect(final Player player) {
-        final LogicalSide side = player.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+        final LogicalSide side = player.level() ? LogicalSide.CLIENT : LogicalSide.SERVER;
         final PlayerProgress progress = ResearchHelper.getProgress(player, side);
         return progress.doPerkAbilities() && progress.hasConstellationDiscovered(ConstellationsAS.aevitas) && AlignmentChargeHandler.INSTANCE.hasCharge(player, side, ((Double)MantleEffectAevitas.CONFIG.chargeCostPerTravelTick.get()).floatValue());
     }

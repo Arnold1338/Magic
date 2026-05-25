@@ -65,7 +65,7 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler
     private void playEffects(final Player player) {
         final float rot = RenderingVectorUtils.interpolateRotation(player.field_70760_ar, player.field_70761_aq, 0.0f);
         float yOffset = 1.3f;
-        if (player.func_225608_bj_()) {
+        if (player.isCrouching()) {
             yOffset = 1.0f;
         }
         final float f = Math.abs(ClientScheduler.getSystemClientTick() % 240L - 120.0f) / 120.0f;
@@ -107,7 +107,7 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler
     private void renderWings(final Player player, final PoseStack renderStack, final float pTicks) {
         final float rot = RenderingVectorUtils.interpolateRotation(player.field_70760_ar, player.field_70761_aq, pTicks);
         float yOffset = 1.3f;
-        if (player.func_225608_bj_() && !player.field_71075_bZ.field_75100_b) {
+        if (player.isCrouching() && !player.field_71075_bZ.field_75100_b) {
             yOffset = 1.0f;
         }
         final float f = Math.abs(ClientScheduler.getSystemClientTick() % 240L - 120.0f) / 120.0f;

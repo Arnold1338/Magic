@@ -15,7 +15,7 @@ public class ASMHookEndpoint
 {
     public static double getOverriddenSeenEntityReachMaximum(final ServerPlayNetHandler handler, final double original) {
         final Player player = (Player)handler.field_147369_b;
-        final PlayerProgress prog = ResearchHelper.getProgress(player, player.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER);
+        final PlayerProgress prog = ResearchHelper.getProgress(player, player.level() ? LogicalSide.CLIENT : LogicalSide.SERVER);
         if (prog.isValid() && prog.getPerkData().hasPerkEffect(perk -> perk instanceof KeyEntityReach)) {
             return 9.99999999E8;
         }

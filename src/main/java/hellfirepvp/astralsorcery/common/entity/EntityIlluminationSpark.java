@@ -53,7 +53,7 @@ public class EntityIlluminationSpark extends ThrowableEntity
     
     public void func_70071_h_() {
         super.tick();
-        if (this.level().level()) {
+        if (this.level()) {
             this.spawnEffects();
         }
     }
@@ -91,7 +91,7 @@ public class EntityIlluminationSpark extends ThrowableEntity
     }
     
     protected void func_70227_a(final HitResult result) {
-        if (this.level().level()) {
+        if (this.level()) {
             return;
         }
         if (!(result instanceof BlockHitResult) || !(this.func_234616_v_() instanceof Player)) {

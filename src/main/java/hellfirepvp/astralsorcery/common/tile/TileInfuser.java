@@ -198,7 +198,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
     
     @Override
     public boolean onInteract(final Level world, final BlockPos pos, final Player player, final Direction side, final boolean sneak) {
-        if (!world.level() && this.hasMultiblock() && !this.getItemInput().isEmpty()) {
+        if (!world.level().isClientSide() && this.hasMultiblock() && !this.getItemInput().isEmpty()) {
             if (this.getActiveRecipe() != null) {
                 if (this.getActiveRecipe().matches(this)) {
                     return true;

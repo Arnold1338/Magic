@@ -27,7 +27,7 @@ public class ItemGrappleWand extends Item implements AlignmentChargeConsumer
         return player.isSleeping().func_185141_a((Item)this) ? 0.0f : 450.0f;
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final Level worldIn, final Player playerIn, final Hand handIn) {
+    public InteractionResult<ItemStack> use(final Level worldIn, final Player playerIn, final Hand handIn) {
         final ItemStack held = playerIn.getItemInHand(handIn);
         if (worldIn.level() || held.isEmpty()) {
             return (InteractionResult<ItemStack>)new InteractionResult(InteractionResult.SUCCESS, (Object)held);

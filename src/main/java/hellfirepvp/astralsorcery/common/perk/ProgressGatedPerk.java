@@ -70,7 +70,8 @@ public class ProgressGatedPerk extends AbstractPerk
     @Override
     public boolean addLocalizedTooltip(final Collection<MutableComponent> tooltip) {
         if (!this.canSeeClient()) {
-            tooltip.add(new Component("perk.info.astralsorcery.missing_progress").withStyle(ChatFormatting.RED)));
+            tooltip.add(Component.translatable("perk.info.astralsorcery.missing_progress").withStyle(ChatFormatting.RED));
+
             return false;
         }
         return super.addLocalizedTooltip(tooltip);

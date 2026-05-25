@@ -25,8 +25,8 @@ public class ItemBlockPrism extends ItemBlockCustom implements CrystalAttributeI
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.func_77624_a(stack, worldIn, (List)tooltip, flagIn);
+    public void appendHoverText(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, (List)tooltip, flagIn);
         final CrystalAttributes attr = this.getAttributes(stack);
         if (attr != null) {
             attr.addTooltip(tooltip, CalculationContext.Builder.newBuilder().addUsage(CrystalPropertiesAS.Usages.USE_LENS_EFFECT).addUsage(CrystalPropertiesAS.Usages.USE_LENS_TRANSFER).build());

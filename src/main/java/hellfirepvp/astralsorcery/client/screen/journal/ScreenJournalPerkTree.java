@@ -119,7 +119,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
     private ItemStack foundSeals;
     
     public ScreenJournalPerkTree() {
-        super((ITextComponent)new Component("screen.astralsorcery.tome.perks"), 30);
+        super((ITextComponent)Component.translatable("screen.astralsorcery.tome.perks"), 30);
         this.unlockPrimed = null;
         this.sealBreakPrimed = null;
         this.tickSealBreak = 0;
@@ -288,14 +288,14 @@ public class ScreenJournalPerkTree extends ScreenJournal
             }
         }
         if (this.rStatStar.contains(mouseX, mouseY)) {
-            RenderingDrawUtils.renderBlueTooltipComponents(renderStack, this.rStatStar.x + this.rStatStar.width / 2.0f, (float)(this.rStatStar.y + this.rStatStar.height), (float)this.getGuiZLevel(), Lists.newArrayList((Object[])new FormattedCharSequence[] { (FormattedCharSequence)new Component("perk.reader.astralsorcery.infostar") }), this.field_230712_o_, false);
+            RenderingDrawUtils.renderBlueTooltipComponents(renderStack, this.rStatStar.x + this.rStatStar.width / 2.0f, (float)(this.rStatStar.y + this.rStatStar.height), (float)this.getGuiZLevel(), Lists.newArrayList((Object[])new FormattedCharSequence[] { (FormattedCharSequence)Component.translatable("perk.reader.astralsorcery.infostar") }), this.field_230712_o_, false);
             return;
         }
         if (!this.foundSeals.func_190926_b() && ScreenJournalPerkTree.rectSealBox.contains(mouseX - this.guiLeft, mouseY - this.guiTop)) {
             final List<FormattedCharSequence> toolTip2 = new ArrayList<FormattedCharSequence>();
             toolTip2.addAll(this.foundSeals.getTooltipLines((Player)Minecraft.getInstance().player, (TooltipFlag)(Minecraft.getInstance().options.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
             toolTip2.add((FormattedCharSequence)Component.empty());
-            toolTip2.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed.usage").func_240699_a_(ChatFormatting.GRAY));
+            toolTip2.add((FormattedCharSequence)Component.translatable("perk.info.astralsorcery.sealed.usage").func_240699_a_(ChatFormatting.GRAY));
             RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)mouseX, (float)mouseY, (float)this.getGuiZLevel(), toolTip2, this.field_230712_o_, false);
         }
         else {
@@ -314,17 +314,17 @@ public class ScreenJournalPerkTree extends ScreenJournal
                         return;
                     });
                     if (perkData.isPerkSealed(perk)) {
-                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed").func_240699_a_(ChatFormatting.RED));
-                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed.break").func_240699_a_(ChatFormatting.RED));
+                        toolTip3.add((FormattedCharSequence)Component.translatable("perk.info.astralsorcery.sealed").func_240699_a_(ChatFormatting.RED));
+                        toolTip3.add((FormattedCharSequence)Component.translatable("perk.info.astralsorcery.sealed.break").func_240699_a_(ChatFormatting.RED));
                     }
                     else if (perkData.hasPerkEffect(perk)) {
-                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.active").func_240699_a_(ChatFormatting.GREEN));
+                        toolTip3.add((FormattedCharSequence)Component.translatable("perk.info.astralsorcery.active").func_240699_a_(ChatFormatting.GREEN));
                     }
                     else if (perk.mayUnlockPerk(prog, player)) {
-                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.available").func_240699_a_(ChatFormatting.BLUE));
+                        toolTip3.add((FormattedCharSequence)Component.translatable("perk.info.astralsorcery.available").func_240699_a_(ChatFormatting.BLUE));
                     }
                     else {
-                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.locked").func_240699_a_(ChatFormatting.GRAY));
+                        toolTip3.add((FormattedCharSequence)Component.translatable("perk.info.astralsorcery.locked").func_240699_a_(ChatFormatting.GRAY));
                     }
                     if (Minecraft.getInstance().options.advancedItemTooltips && perk.getCategory() != AbstractPerk.CATEGORY_BASE) {
                         toolTip3.add((FormattedCharSequence)perk.getCategory().getName().func_240699_a_(ChatFormatting.GRAY).func_240699_a_(ChatFormatting.ITALIC));
@@ -338,7 +338,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                     if (Minecraft.getInstance().options.advancedItemTooltips) {
                         toolTip3.add((FormattedCharSequence)Component.empty());
                         toolTip3.add((FormattedCharSequence)new Component(perk.getRegistryName().toString()).func_240699_a_(ChatFormatting.GRAY));
-                        toolTip3.add((FormattedCharSequence)new Component("astralsorcery.misc.ctrlcopy").func_240699_a_(ChatFormatting.GRAY));
+                        toolTip3.add((FormattedCharSequence)Component.translatable("astralsorcery.misc.ctrlcopy").func_240699_a_(ChatFormatting.GRAY));
                     }
                     RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)mouseX, (float)mouseY, (float)this.getGuiZLevel(), toolTip3, this.field_230712_o_, true);
                     break;
@@ -744,7 +744,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 }
             }
         }
-        final MutableComponent sealedInfo = (MutableComponent)new Component("perk.info.astralsorcery.sealed");
+        final MutableComponent sealedInfo = (MutableComponent)Component.translatable("perk.info.astralsorcery.sealed");
         if (sealedInfo.getString().toLowerCase(Locale.ROOT).contains(matchText)) {
             final PlayerProgress prog = ResearchHelper.getClientProgress();
             for (final AbstractPerk sealed : prog.getPerkData().getSealedPerks()) {
@@ -895,7 +895,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 if (mouseButton == 0 && mc.options.advancedItemTooltips && func_231172_r_()) {
                     final String perkKey = perk.getRegistryName().toString();
                     Minecraft.getInstance().field_195559_v.func_197960_a(perkKey);
-                    mc.player.func_145747_a((ITextComponent)new Component("astralsorcery.misc.ctrlcopy.copied", new Object[] { perkKey }), Util.field_240973_b_);
+                    mc.player.sendSystemMessage((ITextComponent)new Component("astralsorcery.misc.ctrlcopy.copied", new Object[] { perkKey }), Util.field_240973_b_);
                     break;
                 }
                 if (mouseButton == 1) {

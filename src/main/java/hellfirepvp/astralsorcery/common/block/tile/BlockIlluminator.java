@@ -48,7 +48,7 @@ public class BlockIlluminator extends BaseEntityBlock implements CustomItemBlock
     
     public void func_180633_a(final Level world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
         super.func_180633_a(world, pos, state, placer, stack);
-        if (!world.level() && placer instanceof Player) {
+        if (!world.level().isClientSide() && placer instanceof Player) {
             final TileIlluminator illuminator = MiscUtils.getTileAt((IBlockReader)world, pos, TileIlluminator.class, true);
             if (illuminator != null) {
                 illuminator.setPlayerPlaced(true);

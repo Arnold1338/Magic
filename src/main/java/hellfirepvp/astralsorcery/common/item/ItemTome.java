@@ -39,11 +39,11 @@ public class ItemTome extends Item implements PerkExperienceRevealer
         super(new Item.Properties().func_200917_a(1).hasModifier(CommonProxy.ITEM_GROUP_AS));
     }
     
-    public InteractionResult<ItemStack> func_77659_a(final Level world, final Player player, final Hand hand) {
-        if (world.level() && !player.func_225608_bj_()) {
+    public InteractionResult<ItemStack> use(final Level world, final Player player, final Hand hand) {
+        if (world.level() && !player.isCrouching()) {
             AstralSorcery.getProxy().openGui(player, GuiType.TOME, new Object[0]);
         }
-        else if (!world.level() && player.func_225608_bj_() && hand == InteractionHand.MAIN_HAND && player instanceof ServerPlayer) {
+        else if (!world.level().isClientSide() && player.isCrouching() && hand == InteractionHand.MAIN_HAND && player instanceof ServerPlayer) {
             new ContainerTomeProvider(player.getItemInHand(hand), player.getInventory().field_70461_c).openFor((ServerPlayer)player);
         }
         return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)player.getItemInHand(hand));
@@ -72,7 +72,7 @@ public class ItemTome extends Item implements PerkExperienceRevealer
     
     public static List<IConstellation> getStoredConstellations(final ItemStack stack, final Player player) {
         final LinkedList<IConstellation> out = new LinkedList<IConstellation>();
-        final PlayerProgress prog = ResearchHelper.getProgress(player, player.level().level() ? LogicalSide.CLIENT : LogicalSide.SERVER);
+        final PlayerProgress prog = ResearchHelper.getProgress(player, player.level() ? LogicalSide.CLIENT : LogicalSide.SERVER);
         if (prog.isValid()) {
             prog.getStoredConstellationPapers().stream().map((Function<? super Object, ?>)ConstellationRegistry::getConstellation).filter(Objects::nonNull).forEach(out::add);
         }

@@ -80,7 +80,7 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
         if (!world.level()) {
             final TileRefractionTable tft = MiscUtils.getTileAt((IBlockReader)world, pos, TileRefractionTable.class, true);
             if (tft != null) {
-                if (player.func_225608_bj_()) {
+                if (player.isCrouching()) {
                     if (!tft.getInputStack().isEmpty()) {
                         final ItemStack remaining = ItemUtils.dropItemToPlayer(player, tft.setInputStack(ItemStack.EMPTY));
                         if (!remaining.isEmpty()) {
