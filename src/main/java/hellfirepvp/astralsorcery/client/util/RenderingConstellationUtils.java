@@ -48,7 +48,7 @@ public class RenderingConstellationUtils
                     final int u = (i + 1 & 0x2) >> 1;
                     final int v = (i + 2 & 0x2) >> 1;
                     final Vector3 pos = ofStar.clone().add(dirU.clone().multiply(u << 1).multiply(bgScale / 2)).add(dirV.clone().multiply(v << 1).multiply(bgScale / 2));
-                    buf.func_227888_a_(matr, (float)pos.getX(), (float)pos.getY(), (float)pos.getZ()).setPos(r, g, b, Mth.getDescriptionId((int)(brightnessFn.get() * 255.0f * 0.5), 0, 255)).setPos((float)u, (float)v).blockPosition();
+                    buf.vertex(matr, (float)pos.getX(), (float)pos.getY(), (float)pos.getZ()).setPos(r, g, b, Mth.getDescriptionId((int)(brightnessFn.get() * 255.0f * 0.5), 0, 255)).setPos((float)u, (float)v).blockPosition();
                 }
                 return;
             });
@@ -69,7 +69,7 @@ public class RenderingConstellationUtils
                     final Vector3 vecU = vecAD.clone().multiply((j == 0) ? 2 : -2);
                     for (int k = 0; k < 4; ++k) {
                         final Vector3 pos2 = offset00.clone().add(vecU.clone().multiply((k + 1 & 0x2) >> 1)).add(vecCV.clone().multiply((k + 2 & 0x2) >> 1));
-                        buf.func_227888_a_(matr, (float)pos2.getX(), (float)pos2.getY(), (float)pos2.getZ()).setPos(r, g, b, Mth.getDescriptionId((int)(brightnessFn.get() * 255.0f), 0, 255)).setPos((float)((k + 2 & 0x2) >> 1), (float)((k + 3 & 0x2) >> 1)).blockPosition();
+                        buf.vertex(matr, (float)pos2.getX(), (float)pos2.getY(), (float)pos2.getZ()).setPos(r, g, b, Mth.getDescriptionId((int)(brightnessFn.get() * 255.0f), 0, 255)).setPos((float)((k + 2 & 0x2) >> 1), (float)((k + 3 & 0x2) >> 1)).blockPosition();
                     }
                 }
             }
@@ -88,7 +88,7 @@ public class RenderingConstellationUtils
                     final int u2 = (l + 1 & 0x2) >> 1;
                     final int v2 = (l + 2 & 0x2) >> 1;
                     final Vector3 pos3 = ofStar2.clone().add(dirU.clone().multiply(u2 << 1)).add(dirV.clone().multiply(v2 << 1));
-                    buf.func_227888_a_(matr, (float)pos3.getX(), (float)pos3.getY(), (float)pos3.getZ()).setPos(r, g, b, Mth.getDescriptionId((int)(brightnessFn.get() * 255.0f), 0, 255)).setPos((float)u2, (float)v2).blockPosition();
+                    buf.vertex(matr, (float)pos3.getX(), (float)pos3.getY(), (float)pos3.getZ()).setPos(r, g, b, Mth.getDescriptionId((int)(brightnessFn.get() * 255.0f), 0, 255)).setPos((float)u2, (float)v2).blockPosition();
                 }
             }
         });
@@ -196,7 +196,7 @@ public class RenderingConstellationUtils
                         final int u = (i + 1 & 0x2) >> 1;
                         final int v = (i + 2 & 0x2) >> 1;
                         final Vector3 pos = bgVec.clone().addX(width * u).addY(height * v);
-                        buf.func_227888_a_(offset, offsetX + width * u, offsetY + height * v, zLevel).setPos(r, g, b, Mth.getDescriptionId((int)(alpha * 1.2f + 0.2f), 0, 255)).setPos((float)u, (float)v).blockPosition();
+                        buf.vertex(offset, offsetX + width * u, offsetY + height * v, zLevel).setPos(r, g, b, Mth.getDescriptionId((int)(alpha * 1.2f + 0.2f), 0, 255)).setPos((float)u, (float)v).blockPosition();
                     }
                     return;
                 });
@@ -219,7 +219,7 @@ public class RenderingConstellationUtils
                             final int u2 = (k + 1 & 0x2) >> 1;
                             final int v2 = (k + 2 & 0x2) >> 1;
                             final Vector3 pos2 = vec00.clone().add(dir.clone().multiply(u2)).add(vecV.clone().multiply(v2));
-                            buf.func_227888_a_(offset, (float)pos2.getX(), (float)pos2.getY(), (float)pos2.getZ()).setPos(r, g, b, alpha2).setPos((float)u2, (float)v2).blockPosition();
+                            buf.vertex(offset, (float)pos2.getX(), (float)pos2.getY(), (float)pos2.getZ()).setPos(r, g, b, alpha2).setPos((float)u2, (float)v2).blockPosition();
                         }
                     }
                 }
@@ -241,7 +241,7 @@ public class RenderingConstellationUtils
                     final int u3 = (l + 1 & 0x2) >> 1;
                     final int v3 = (l + 2 & 0x2) >> 1;
                     final Vector3 pos3 = starVec.clone().addX(ulength * u3 * 2.0f).addY(vlength * v3 * 2.0f);
-                    buf.func_227888_a_(offset, (float)pos3.getX(), (float)pos3.getY(), (float)pos3.getZ()).setPos(isKnown ? r : alpha3, isKnown ? g : alpha3, isKnown ? b : alpha3, Mth.getDescriptionId((int)(alpha3 * 1.2f + 0.2f), 0, 255)).setPos((float)u3, (float)v3).blockPosition();
+                    buf.vertex(offset, (float)pos3.getX(), (float)pos3.getY(), (float)pos3.getZ()).setPos(isKnown ? r : alpha3, isKnown ? g : alpha3, isKnown ? b : alpha3, Mth.getDescriptionId((int)(alpha3 * 1.2f + 0.2f), 0, 255)).setPos((float)u3, (float)v3).blockPosition();
                 }
                 starRectangles.put(sl, new Rectangle2D.Float((float)starVec.getX(), (float)starVec.getY(), ulength * 2.0f, vlength * 2.0f));
             }

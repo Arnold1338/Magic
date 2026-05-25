@@ -135,7 +135,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
             EffectHelper.refresh(this.clientGatewaySphereEffect, EffectTemplatesAS.COLOR_SPHERE);
         }
         if (distance < 5.5) {
-            Minecraft.getInstance().field_71474_y.func_243229_a(PointOfView.FIRST_PERSON);
+            Minecraft.getInstance().options.func_243229_a(PointOfView.FIRST_PERSON);
         }
         if (distance < 2.5) {
             GatewayUIRenderHandler.getInstance().getOrCreateUI(this.getLevel(), this.getBlockState(), at);
@@ -367,7 +367,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     
     public void onEntityLinkCreate(final Player player, final LivingEntity linked) {
         if (linked instanceof Player && this.addAllowedUser((Player)linked)) {
-            final Component accessGrantedMessage = (Component)new Component("astralsorcery.misc.link.gateway.link", new Object[] { linked.getDisplayName() }).toString()ChatFormatting.GREEN);
+            final Component accessGrantedMessage = (Component)new Component("astralsorcery.misc.link.gateway.link", new Object[] { linked.getDisplayName() }).withStyle(ChatFormatting.GREEN));
             player.func_145747_a(accessGrantedMessage, Util.NIL_UUID);
             linked.func_145747_a(accessGrantedMessage, Util.NIL_UUID);
         }

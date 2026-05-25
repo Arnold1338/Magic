@@ -31,7 +31,7 @@ public class CommandReset implements Command<CommandSourceStack>
         final ServerPlayer player = (ServerPlayer)((EntitySelector)context.getArgument("player", (Class)EntitySelector.class)).func_197340_a((CommandSourceStack)context.getSource());
         ResearchHelper.wipeKnowledge(player);
         final String name = player.func_146103_bH().getName();
-        ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Wiped " + name + "'s data!").toString()ChatFormatting.GREEN), true);
+        ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Wiped " + name + "'s data!").withStyle(ChatFormatting.GREEN)), true);
         return 0;
     }
     

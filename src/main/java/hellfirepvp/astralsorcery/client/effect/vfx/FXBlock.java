@@ -63,14 +63,14 @@ public class FXBlock extends EntityVisualFX
         final Vector3 rotation = this.getInterpolatedRotation(pTicks);
         final float scale = this.getScale(pTicks);
         renderStack.popPose();
-        renderStack.func_227861_a_(translate.getX(), translate.getY(), translate.getZ());
-        renderStack.func_227861_a_(0.5, 0.5, 0.5);
+        renderStack.translate(translate.getX(), translate.getY(), translate.getZ());
+        renderStack.translate(0.5, 0.5, 0.5);
         renderStack.translate(scale, scale, scale);
-        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()(float)rotation.getX()));
-        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()(float)rotation.getY()));
-        renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()(float)rotation.getZ()));
-        renderStack.func_227861_a_(-0.5, -0.5, -0.5);
+        renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()(float)rotation.getX()));
+        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()(float)rotation.getY()));
+        renderStack.mulPose(new org.joml.Vector3f(0, 0, 1).getMultiBufferSource()(float)rotation.getZ()));
+        renderStack.translate(-0.5, -0.5, -0.5);
         new BufferDecoratorBuilder().setColorDecorator((r, g, b, a) -> colorOverride).decorate(vb, decorated -> RenderingUtils.renderSimpleBlockModel(this.blockState, renderStack, decorated));
-        renderStack.scale();
+        renderStack.popPose();
     }
 }

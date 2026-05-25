@@ -54,16 +54,16 @@ public class ItemKnowledgeShare extends Item
     @OnlyIn(Dist.CLIENT)
     public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> tooltip, final TooltipFlag flag) {
         if (isCreative(stack)) {
-            tooltip.add((Component)new Component("astralsorcery.misc.knowledge.inscribed.creative").toString()ChatFormatting.LIGHT_PURPLE));
+            tooltip.add((Component)new Component("astralsorcery.misc.knowledge.inscribed.creative").withStyle(ChatFormatting.LIGHT_PURPLE)));
             return;
         }
         if (getKnowledge(stack) == null) {
-            tooltip.add((Component)new Component("astralsorcery.misc.knowledge.missing").toString()ChatFormatting.GRAY));
+            tooltip.add((Component)new Component("astralsorcery.misc.knowledge.missing").withStyle(ChatFormatting.GRAY)));
         }
         else {
             final MutableComponent name = getKnowledgeOwnerName(stack);
             if (name != null) {
-                tooltip.add((Component)new Component("astralsorcery.misc.knowledge.inscribed", new Object[] { name }).toString()ChatFormatting.BLUE));
+                tooltip.add((Component)new Component("astralsorcery.misc.knowledge.inscribed", new Object[] { name }).withStyle(ChatFormatting.BLUE)));
             }
         }
     }

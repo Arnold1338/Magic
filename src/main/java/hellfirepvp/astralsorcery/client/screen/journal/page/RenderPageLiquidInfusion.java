@@ -44,7 +44,7 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate
         final TextureAtlasSprite tas = RenderingUtils.getParticleTexture(new FluidStack(this.recipe.getLiquidInput(), 1000));
         RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
             renderStack.popPose();
-            renderStack.func_227861_a_((double)x, (double)y, (double)z);
+            renderStack.translate((double)x, (double)y, (double)z);
             this.renderLiquidInput(buf, renderStack, tas, 1, 0);
             this.renderLiquidInput(buf, renderStack, tas, 2, 0);
             this.renderLiquidInput(buf, renderStack, tas, 3, 0);
@@ -57,7 +57,7 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate
             this.renderLiquidInput(buf, renderStack, tas, 4, 1);
             this.renderLiquidInput(buf, renderStack, tas, 4, 2);
             this.renderLiquidInput(buf, renderStack, tas, 4, 3);
-            renderStack.scale();
+            renderStack.popPose();
         });
     }
     

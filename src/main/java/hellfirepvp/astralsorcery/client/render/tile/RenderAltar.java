@@ -46,7 +46,7 @@ public class RenderAltar extends CustomTileEntityRenderer<TileAltar>
         }
         if (tile.getAltarType().isThisGEThan(AltarType.RADIANCE) && tile.hasMultiblock()) {
             renderStack.popPose();
-            renderStack.func_227861_a_(0.5, 4.5, 0.5);
+            renderStack.translate(0.5, 4.5, 0.5);
             final long id = tile.getBlockState().func_218275_a();
             if (recipe != null) {
                 final List<WrappedIngredient> traitInputs = recipe.getRecipeToCraft().getRelayInputs();
@@ -69,7 +69,7 @@ public class RenderAltar extends CustomTileEntityRenderer<TileAltar>
                 RenderingDrawUtils.renderLightRayFan(renderStack, renderTypeBuffer, Color.WHITE, id * 31L, 15, 1.5f, 35);
                 RenderingDrawUtils.renderLightRayFan(renderStack, renderTypeBuffer, ColorsAS.CELESTIAL_CRYSTAL, id * 16L, 10, 1.0f, 25);
             }
-            renderStack.scale();
+            renderStack.popPose();
         }
     }
 }

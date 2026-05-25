@@ -28,14 +28,14 @@ public class RenderEntitySpectralTool extends EntityRenderer<EntitySpectralTool>
             return;
         }
         renderStack.popPose();
-        renderStack.func_227861_a_(0.0, (double)(entity.func_213302_cg() / 2.0f), 0.0);
-        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()-entityYaw - 90.0f));
+        renderStack.translate(0.0, (double)(entity.func_213302_cg() / 2.0f), 0.0);
+        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()-entityYaw - 90.0f));
         if (stack.getItem() instanceof AxeItem) {
-            renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
-            renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()270.0f));
+            renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()180.0f));
+            renderStack.mulPose(new org.joml.Vector3f(0, 0, 1).getMultiBufferSource()270.0f));
         }
         RenderingUtils.renderTranslucentItemStackModelGround(stack, renderStack, ColorsAS.SPECTRAL_TOOL, Blending.CONSTANT_ALPHA, 63);
-        renderStack.scale();
+        renderStack.popPose();
     }
     
     public ResourceLocation getEntityTexture(final EntitySpectralTool entity) {

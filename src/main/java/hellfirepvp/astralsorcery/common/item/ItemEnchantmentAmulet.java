@@ -44,10 +44,10 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor
         super.func_77624_a(stack, worldIn, (List)tooltip, flagIn);
         final List<AmuletEnchantment> enchantments = getAmuletEnchantments(stack);
         for (final AmuletEnchantment ench : enchantments) {
-            tooltip.add((Component)ench.getDisplay().toString()ChatFormatting.BLUE));
+            tooltip.add((Component)ench.getDisplay().withStyle(ChatFormatting.BLUE)));
         }
         if (getAmuletColor(stack).map(color -> color == -1).orElse(false)) {
-            tooltip.add((Component)new Component("astralsorcery.amulet.color.colorless").toString()ChatFormatting.ITALIC).toString()ChatFormatting.GRAY));
+            tooltip.add((Component)new Component("astralsorcery.amulet.color.colorless").withStyle(ChatFormatting.ITALIC)).withStyle(ChatFormatting.GRAY)));
         }
     }
     

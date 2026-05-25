@@ -41,13 +41,13 @@ public class JEIHandlerSpawnEntity extends JEIInteractionResultHandler
             return;
         }
         renderStack.popPose();
-        renderStack.func_227861_a_(55.0, 35.0, 500.0);
+        renderStack.translate(55.0, 35.0, 500.0);
         renderStack.translate(15.0f, 15.0f, 15.0f);
-        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
-        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()145.0f));
+        renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()180.0f));
+        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()145.0f));
         final MultiBufferSource.Impl buffer = MultiBufferSource.func_228455_a_(Tessellator.func_178181_a().func_178180_c());
         Minecraft.getInstance().func_175598_ae().func_229084_a_(le, 0.0, 0.0, 0.0, 0.0f, 0.0f, renderStack, (MultiBufferSource)buffer, LightmapUtil.getPackedFullbrightCoords());
         buffer.func_228461_a_();
-        renderStack.scale();
+        renderStack.popPose();
     }
 }

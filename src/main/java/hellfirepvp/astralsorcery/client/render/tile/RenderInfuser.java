@@ -18,9 +18,9 @@ public class RenderInfuser extends CustomTileEntityRenderer<TileInfuser>
         final ItemStack stack = tile.getItemInput();
         if (!stack.isEmpty()) {
             renderStack.popPose();
-            renderStack.func_227861_a_(0.5, 0.75, 0.5);
+            renderStack.translate(0.5, 0.75, 0.5);
             RenderingUtils.renderItemAsEntity(stack, renderStack, renderTypeBuffer, 0.0, 0.0, 0.0, combinedLight, pTicks, tile.getTicksExisted());
-            renderStack.scale();
+            renderStack.popPose();
         }
     }
 }

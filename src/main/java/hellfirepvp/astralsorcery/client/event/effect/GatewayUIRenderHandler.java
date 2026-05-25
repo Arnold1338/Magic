@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.awt.Color;
 import java.util.UUID;
 import hellfirepvp.astralsorcery.common.data.world.GatewayCache;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
@@ -127,7 +127,7 @@ public class GatewayUIRenderHandler implements ITickHandler
                 RenderingConstellationUtils.renderConstellationIntoWorldFlat(c, cst, renderStack, at, 1.2, 1.0, alpha);
                 final UUID targetUUID = playerRef.getPlayerUUID();
                 if ((node.getOwner().getPlayerUUID().equals(currentUUID) || targetUUID.equals(currentUUID)) && drawPos.equals((Object)blockSelected)) {
-                    RenderingUtils.renderInWorldText((ITextProperties)playerRef.getPlayerName(), c, 0.020833334f, at.clone().addY(0.2), renderStack, pTicks, true);
+                    RenderingUtils.renderInWorldText((FormattedCharSequence)playerRef.getPlayerName(), c, 0.020833334f, at.clone().addY(0.2), renderStack, pTicks, true);
                 }
             }
         });
@@ -145,7 +145,7 @@ public class GatewayUIRenderHandler implements ITickHandler
                 if (nodeColor != null) {
                     c = ColorUtils.flareColorFromDye(nodeColor);
                 }
-                RenderingUtils.renderInWorldText((ITextProperties)display, c, at, renderStack, pTicks, true);
+                RenderingUtils.renderInWorldText((FormattedCharSequence)display, c, at, renderStack, pTicks, true);
             }
         }
     }

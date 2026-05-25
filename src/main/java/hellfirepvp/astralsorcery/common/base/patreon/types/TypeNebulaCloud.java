@@ -57,7 +57,7 @@ public class TypeNebulaCloud extends PatreonEffect implements ITickHandler
             final float oZ = (TypeNebulaCloud.rand.nextFloat() - TypeNebulaCloud.rand.nextFloat()) * 2.0f;
             final Vector3 offset = new Vector3(oX, TypeNebulaCloud.rand.nextFloat() * 0.1f, oZ);
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(playerPos.clone().add(offset)).setAlphaMultiplier(0.8f).alpha(((VFXAlphaFunction<?>)((fx, alphaIn, pTicks) -> {
-                if (this.shouldDoEffect(player) && Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a() && player.xRot > 40.0f) {
+                if (this.shouldDoEffect(player) && Minecraft.getInstance().options.func_243230_g().func_243192_a() && player.xRot > 40.0f) {
                     return Mth.canEnchant(1.0f - (player.xRot - 40.0f) / 20.0f, 0.0f, 1.0f) * alphaIn;
                 }
                 else {
@@ -69,7 +69,7 @@ public class TypeNebulaCloud extends PatreonEffect implements ITickHandler
             final Vector3 from = Vector3.random().setY(0).normalize().multiply(TypeNebulaCloud.rand.nextFloat() * 2.0f).addY(TypeNebulaCloud.rand.nextFloat() * 0.1f);
             final Vector3 to = Vector3.random().setY(0).normalize().multiply(TypeNebulaCloud.rand.nextFloat() * 2.0f).addY(TypeNebulaCloud.rand.nextFloat() * 0.1f);
             EffectHelper.of(EffectTemplatesAS.LIGHTNING).spawn(playerPos.clone().add(from)).makeDefault(playerPos.clone().add(to)).color(VFXColorFunction.WHITE).alpha((fx, alphaIn, pTicks) -> {
-                if (this.shouldDoEffect(player) && Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a() && player.xRot > 40.0f) {
+                if (this.shouldDoEffect(player) && Minecraft.getInstance().options.func_243230_g().func_243192_a() && player.xRot > 40.0f) {
                     return Mth.canEnchant(1.0f - (Math.abs(player.xRot) - 40.0f) / 20.0f, 0.0f, 1.0f) * alphaIn;
                 }
                 else {

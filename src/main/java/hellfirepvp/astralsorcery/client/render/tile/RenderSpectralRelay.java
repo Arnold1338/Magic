@@ -18,9 +18,9 @@ public class RenderSpectralRelay extends CustomTileEntityRenderer<TileSpectralRe
         final ItemStack stack = tile.getInventory().getStackInSlot(0);
         if (!stack.isEmpty()) {
             renderStack.popPose();
-            renderStack.func_227861_a_(0.5, 0.10000000149011612, 0.5);
+            renderStack.translate(0.5, 0.10000000149011612, 0.5);
             RenderingUtils.renderItemAsEntity(stack, renderStack, renderTypeBuffer, 0.0, 0.0, 0.0, combinedLight, pTicks, tile.getTicksExisted());
-            renderStack.scale();
+            renderStack.popPose();
         }
     }
 }

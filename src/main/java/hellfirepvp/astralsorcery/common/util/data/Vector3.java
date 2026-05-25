@@ -485,7 +485,7 @@ public class Vector3
     
     @OnlyIn(Dist.CLIENT)
     public VertexConsumer drawPos(final Matrix4f renderMatrix, final VertexConsumer buf) {
-        buf.func_227888_a_(renderMatrix, (float)this.x, (float)this.y, (float)this.z);
+        buf.vertex(renderMatrix, (float)this.x, (float)this.y, (float)this.z);
         return buf;
     }
     

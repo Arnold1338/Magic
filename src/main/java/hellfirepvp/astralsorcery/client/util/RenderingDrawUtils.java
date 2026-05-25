@@ -31,7 +31,7 @@ import net.minecraft.network.chat.LanguageMap;
 import net.minecraft.util.FormattedCharSequence;
 import java.awt.Color;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import javax.annotation.Nullable;
 import net.minecraft.client.gui.Font;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -42,20 +42,20 @@ public class RenderingDrawUtils
     private static final Random rand;
     private static final PoseStack EMPTY;
     
-    public static void renderStringCentered(@Nullable FontRenderer fr, final PoseStack renderStack, final ITextProperties text, final int x, final int y, final float scale, final int color) {
+    public static void renderStringCentered(@Nullable Font fr, final PoseStack renderStack, final FormattedCharSequence text, final int x, final int y, final float scale, final int color) {
         if (fr == null) {
             fr = Minecraft.getInstance().font;
         }
         final float strLength = fr.func_238414_a_(text) * scale;
         final float offsetLeft = x - strLength;
         renderStack.popPose();
-        renderStack.func_227861_a_((double)offsetLeft, (double)y, 0.0);
+        renderStack.translate((double)offsetLeft, (double)y, 0.0);
         renderStack.translate(scale, scale, scale);
         renderStringAt(fr, renderStack, text, color);
-        renderStack.scale();
+        renderStack.popPose();
     }
     
-    public static float renderString(final ITextProperties text) {
+    public static float renderString(final FormattedCharSequence text) {
         return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().font, Color.WHITE.getRGB(), false);
     }
     
@@ -63,7 +63,7 @@ public class RenderingDrawUtils
         return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().font, Color.WHITE.getRGB(), false);
     }
     
-    public static float renderString(final ITextProperties text, final int color) {
+    public static float renderString(final FormattedCharSequence text, final int color) {
         return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().font, color, false);
     }
     
@@ -71,27 +71,27 @@ public class RenderingDrawUtils
         return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().font, color, false);
     }
     
-    public static float renderString(@Nullable final FontRenderer fr, final ITextProperties text, final int color) {
+    public static float renderString(@Nullable final Font fr, final FormattedCharSequence text, final int color) {
         return renderStringAt(text, RenderingDrawUtils.EMPTY, fr, color, false);
     }
     
-    public static float renderString(@Nullable final FontRenderer fr, final FormattedCharSequence text, final int color) {
+    public static float renderString(@Nullable final Font fr, final FormattedCharSequence text, final int color) {
         return renderStringAt(text, RenderingDrawUtils.EMPTY, fr, color, false);
     }
     
-    public static float renderStringAt(@Nullable final FontRenderer fr, final PoseStack renderStack, final ITextProperties text, final int color) {
+    public static float renderStringAt(@Nullable final Font fr, final PoseStack renderStack, final FormattedCharSequence text, final int color) {
         return renderStringAt(text, renderStack, fr, color, true);
     }
     
-    public static float renderStringAt(@Nullable final FontRenderer fr, final PoseStack renderStack, final FormattedCharSequence text, final int color) {
+    public static float renderStringAt(@Nullable final Font fr, final PoseStack renderStack, final FormattedCharSequence text, final int color) {
         return renderStringAt(text, renderStack, fr, color, true);
     }
     
-    public static float renderStringAt(final ITextProperties text, final PoseStack renderStack, @Nullable final FontRenderer fr, final int color, final boolean dropShadow) {
+    public static float renderStringAt(final FormattedCharSequence text, final PoseStack renderStack, @Nullable final Font fr, final int color, final boolean dropShadow) {
         return renderStringAt(LanguageMap.func_74808_a().func_241870_a(text), renderStack, fr, color, dropShadow);
     }
     
-    public static float renderStringAt(final FormattedCharSequence text, final PoseStack renderStack, @Nullable FontRenderer fr, final int color, final boolean dropShadow) {
+    public static float renderStringAt(final FormattedCharSequence text, final PoseStack renderStack, @Nullable Font fr, final int color, final boolean dropShadow) {
         if (fr == null) {
             fr = Minecraft.getInstance().font;
         }
@@ -120,32 +120,32 @@ public class RenderingDrawUtils
         final Vector3 uv2 = new Vector3(widthHeight / 2.0, widthHeight / 2.0, 0.0).rotate(deg, Vector3.RotAxis.Z_AXIS);
         final Vector3 uv3 = new Vector3(widthHeight / 2.0, -widthHeight / 2.0, 0.0).rotate(deg, Vector3.RotAxis.Z_AXIS);
         final Matrix4f matr = renderStack.last().translate();
-        vb.func_227888_a_(matr, (float)uv01.getX(), (float)uv01.getY(), 0.0f).setPos(0.0f, 1.0f).blockPosition();
-        vb.func_227888_a_(matr, (float)uv2.getX(), (float)uv2.getY(), 0.0f).setPos(1.0f, 1.0f).blockPosition();
-        vb.func_227888_a_(matr, (float)uv3.getX(), (float)uv3.getY(), 0.0f).setPos(1.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(matr, (float)offset.getX(), (float)offset.getY(), 0.0f).setPos(0.0f, 0.0f).blockPosition();
+        vb.vertex(matr, (float)uv01.getX(), (float)uv01.getY(), 0.0f).setPos(0.0f, 1.0f).blockPosition();
+        vb.vertex(matr, (float)uv2.getX(), (float)uv2.getY(), 0.0f).setPos(1.0f, 1.0f).blockPosition();
+        vb.vertex(matr, (float)uv3.getX(), (float)uv3.getY(), 0.0f).setPos(1.0f, 0.0f).blockPosition();
+        vb.vertex(matr, (float)offset.getX(), (float)offset.getY(), 0.0f).setPos(0.0f, 0.0f).blockPosition();
     }
     
-    public static void renderBlueTooltipComponents(final PoseStack renderStack, final float x, final float y, final float zLevel, final List<ITextProperties> tooltipData, final FontRenderer fontRenderer, final boolean isFirstLineHeadline) {
-        final List<Tuple<ItemStack, ITextProperties>> stackTooltip = MapStream.ofValues((Collection<ITextProperties>)tooltipData, t -> ItemStack.EMPTY).toTupleList();
+    public static void renderBlueTooltipComponents(final PoseStack renderStack, final float x, final float y, final float zLevel, final List<FormattedCharSequence> tooltipData, final Font fontRenderer, final boolean isFirstLineHeadline) {
+        final List<Tuple<ItemStack, FormattedCharSequence>> stackTooltip = MapStream.ofValues((Collection<FormattedCharSequence>)tooltipData, t -> ItemStack.EMPTY).toTupleList();
         renderBlueTooltip(renderStack, x, y, zLevel, stackTooltip, fontRenderer, isFirstLineHeadline);
     }
     
-    public static void renderBlueTooltip(final PoseStack renderStack, final float x, final float y, final float zLevel, final List<Tuple<ItemStack, ITextProperties>> tooltipData, final FontRenderer fontRenderer, final boolean isFirstLineHeadline) {
+    public static void renderBlueTooltip(final PoseStack renderStack, final float x, final float y, final float zLevel, final List<Tuple<ItemStack, FormattedCharSequence>> tooltipData, final Font fontRenderer, final boolean isFirstLineHeadline) {
         renderTooltip(renderStack, x, y, zLevel, tooltipData, fontRenderer, isFirstLineHeadline, -16777177, -16777148, Color.WHITE);
     }
     
-    public static void renderTooltip(final PoseStack renderStack, float x, final float y, final float zLevel, final List<Tuple<ItemStack, ITextProperties>> tooltipData, final FontRenderer fontRenderer, final boolean isFirstLineHeadline, final int color, final int colorFade, final Color strColor) {
+    public static void renderTooltip(final PoseStack renderStack, float x, final float y, final float zLevel, final List<Tuple<ItemStack, FormattedCharSequence>> tooltipData, final Font fontRenderer, final boolean isFirstLineHeadline, final int color, final int colorFade, final Color strColor) {
         final int stackBoxSize = 18;
         if (!tooltipData.isEmpty()) {
             boolean anyItemFound = false;
             int maxWidth = 0;
-            for (final Tuple<ItemStack, ITextProperties> toolTip : tooltipData) {
-                FontRenderer customFR = ((ItemStack)toolTip.getA()).getItem().getFontRenderer((ItemStack)toolTip.getA());
+            for (final Tuple<ItemStack, FormattedCharSequence> toolTip : tooltipData) {
+                Font customFR = ((ItemStack)toolTip.getA()).getItem().getFontRenderer((ItemStack)toolTip.getA());
                 if (customFR == null) {
                     customFR = fontRenderer;
                 }
-                int width = customFR.func_238414_a_((ITextProperties)toolTip.getB());
+                int width = customFR.func_238414_a_((FormattedCharSequence)toolTip.getB());
                 if (!((ItemStack)toolTip.getA()).isEmpty()) {
                     anyItemFound = true;
                 }
@@ -161,12 +161,12 @@ public class RenderingDrawUtils
             }
             final int formatWidth = anyItemFound ? (maxWidth - stackBoxSize) : maxWidth;
             final List<Tuple<ItemStack, List<FormattedCharSequence>>> lengthLimitedToolTip = new LinkedList<Tuple<ItemStack, List<FormattedCharSequence>>>();
-            for (final Tuple<ItemStack, ITextProperties> toolTip2 : tooltipData) {
-                FontRenderer customFR2 = ((ItemStack)toolTip2.getA()).getItem().getFontRenderer((ItemStack)toolTip2.getA());
+            for (final Tuple<ItemStack, FormattedCharSequence> toolTip2 : tooltipData) {
+                Font customFR2 = ((ItemStack)toolTip2.getA()).getItem().getFontRenderer((ItemStack)toolTip2.getA());
                 if (customFR2 == null) {
                     customFR2 = fontRenderer;
                 }
-                List<FormattedCharSequence> textLines = customFR2.func_238425_b_((ITextProperties)toolTip2.getB(), formatWidth);
+                List<FormattedCharSequence> textLines = customFR2.func_238425_b_((FormattedCharSequence)toolTip2.getB(), formatWidth);
                 if (textLines.isEmpty()) {
                     textLines = Collections.singletonList(FormattedCharSequence.field_242232_a);
                 }
@@ -209,39 +209,39 @@ public class RenderingDrawUtils
             drawGradientRect(renderStack, zLevel, pX - 3.0f, pY + sumLineHeight + 2.0f, pX + maxWidth + 3.0f, pY + sumLineHeight + 3.0f, color, color);
             final int offset = anyItemFound ? stackBoxSize : 0;
             renderStack.popPose();
-            renderStack.func_227861_a_((double)pX, (double)pY, 0.0);
+            renderStack.translate((double)pX, (double)pY, 0.0);
             boolean first = true;
             for (final Tuple<ItemStack, List<FormattedCharSequence>> toolTip4 : lengthLimitedToolTip) {
                 int minYShift = 10;
                 if (!((ItemStack)toolTip4.getA()).isEmpty()) {
                     renderStack.popPose();
-                    renderStack.func_227861_a_(0.0, 0.0, (double)zLevel);
+                    renderStack.translate(0.0, 0.0, (double)zLevel);
                     RenderingUtils.renderItemStackGUI(renderStack, (ItemStack)toolTip4.getA(), null);
-                    renderStack.scale();
+                    renderStack.popPose();
                     minYShift = stackBoxSize;
-                    renderStack.func_227861_a_(0.0, 2.0, 0.0);
+                    renderStack.translate(0.0, 2.0, 0.0);
                 }
                 for (final FormattedCharSequence text : (List)toolTip4.getB()) {
-                    FontRenderer customFR3 = ((ItemStack)toolTip4.getA()).getItem().getFontRenderer((ItemStack)toolTip4.getA());
+                    Font customFR3 = ((ItemStack)toolTip4.getA()).getItem().getFontRenderer((ItemStack)toolTip4.getA());
                     if (customFR3 == null) {
                         customFR3 = fontRenderer;
                     }
                     renderStack.popPose();
-                    renderStack.func_227861_a_((double)offset, 0.0, (double)zLevel);
+                    renderStack.translate((double)offset, 0.0, (double)zLevel);
                     renderStringAt(text, renderStack, customFR3, strColor.getRGB(), false);
-                    renderStack.scale();
-                    renderStack.func_227861_a_(0.0, 10.0, 0.0);
+                    renderStack.popPose();
+                    renderStack.translate(0.0, 10.0, 0.0);
                     minYShift -= 10;
                 }
                 if (minYShift > 0) {
-                    renderStack.func_227861_a_(0.0, (double)minYShift, 0.0);
+                    renderStack.translate(0.0, (double)minYShift, 0.0);
                 }
                 if (isFirstLineHeadline && first) {
-                    renderStack.func_227861_a_(0.0, 2.0, 0.0);
+                    renderStack.translate(0.0, 2.0, 0.0);
                 }
                 first = false;
             }
-            renderStack.scale();
+            renderStack.popPose();
         }
     }
     
@@ -276,12 +276,12 @@ public class RenderingDrawUtils
         RenderSystem.disableTexture();
         Blending.DEFAULT.apply();
         RenderSystem.shadeModel(7425);
-        RenderingUtils.draw(7, DefaultVertexFormat.field_181706_f, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_COLOR, buf -> {
             final Matrix4f offset = renderStack.last().translate();
-            buf.func_227888_a_(offset, right, top, zLevel).pushPose()startRed, startGreen, startBlue, startAlpha).blockPosition();
-            buf.func_227888_a_(offset, left, top, zLevel).pushPose()startRed, startGreen, startBlue, startAlpha).blockPosition();
-            buf.func_227888_a_(offset, left, bottom, zLevel).pushPose()endRed, endGreen, endBlue, endAlpha).blockPosition();
-            buf.func_227888_a_(offset, right, bottom, zLevel).pushPose()endRed, endGreen, endBlue, endAlpha).blockPosition();
+            buf.vertex(offset, right, top, zLevel).pushPose()startRed, startGreen, startBlue, startAlpha).blockPosition();
+            buf.vertex(offset, left, top, zLevel).pushPose()startRed, startGreen, startBlue, startAlpha).blockPosition();
+            buf.vertex(offset, left, bottom, zLevel).pushPose()endRed, endGreen, endBlue, endAlpha).blockPosition();
+            buf.vertex(offset, right, bottom, zLevel).pushPose()endRed, endGreen, endBlue, endAlpha).blockPosition();
             return;
         });
         RenderSystem.shadeModel(7424);
@@ -297,32 +297,32 @@ public class RenderingDrawUtils
         renderStack.popPose();
         for (int i = 0; i < count; ++i) {
             renderStack.popPose();
-            renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
-            renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
-            renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
-            renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
-            renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
-            renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f + f1 * 360.0f));
+            renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
+            renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
+            renderStack.mulPose(new org.joml.Vector3f(0, 0, 1).getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
+            renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
+            renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f));
+            renderStack.mulPose(new org.joml.Vector3f(0, 0, 1).getMultiBufferSource()RenderingDrawUtils.rand.nextFloat() * 360.0f + f1 * 360.0f));
             final Matrix4f matr = renderStack.last().translate();
             float fa = RenderingDrawUtils.rand.nextFloat() * 20.0f + 5.0f + f2 * 10.0f;
             float f3 = RenderingDrawUtils.rand.nextFloat() * 2.0f + 1.0f + f2 * 2.0f;
             fa /= 30.0f / (Math.min((float)minScale, 10.0f * scale) / 10.0f);
             f3 /= 30.0f / (Math.min((float)minScale, 10.0f * scale) / 10.0f);
-            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
-            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
-            vb.func_227888_a_(matr, -0.7f * f3, fa, -0.5f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
-            vb.func_227888_a_(matr, 0.7f * f3, fa, -0.5f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
-            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
-            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
-            vb.func_227888_a_(matr, 0.7f * f3, fa, -0.5f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
-            vb.func_227888_a_(matr, 0.0f, fa, 1.0f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
-            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
-            vb.func_227888_a_(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
-            vb.func_227888_a_(matr, 0.0f, fa, 1.0f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
-            vb.func_227888_a_(matr, -0.7f * f3, fa, -0.5f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
-            renderStack.scale();
+            vb.vertex(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
+            vb.vertex(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
+            vb.vertex(matr, -0.7f * f3, fa, -0.5f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
+            vb.vertex(matr, 0.7f * f3, fa, -0.5f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
+            vb.vertex(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
+            vb.vertex(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
+            vb.vertex(matr, 0.7f * f3, fa, -0.5f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
+            vb.vertex(matr, 0.0f, fa, 1.0f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
+            vb.vertex(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
+            vb.vertex(matr, 0.0f, 0.0f, 0.0f).setPos(color.getRed(), color.getGreen(), color.getBlue(), alpha).blockPosition();
+            vb.vertex(matr, 0.0f, fa, 1.0f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
+            vb.vertex(matr, -0.7f * f3, fa, -0.5f * f3).setPos(color.getRed(), color.getGreen(), color.getBlue(), 0).blockPosition();
+            renderStack.popPose();
         }
-        renderStack.scale();
+        renderStack.popPose();
         RenderingUtils.refreshDrawing(vb, RenderTypesAS.EFFECT_LIGHTRAY_FAN);
     }
     
@@ -369,58 +369,58 @@ public class RenderingDrawUtils
     
     public static void renderTexturedCubeCentralColorLighted(final VertexConsumer buf, final PoseStack renderStack, final float u, final float v, final float uLength, final float vLength, final int r, final int g, final int b, final int a, final int combinedLight) {
         final Matrix4f matr = renderStack.last().translate();
-        buf.func_227888_a_(matr, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
-        buf.func_227888_a_(matr, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227886_a_(combinedLight).blockPosition();
+        buf.vertex(matr, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227886_a_(combinedLight).blockPosition();
     }
     
     public static void renderTexturedCubeCentralColorNormal(final PoseStack renderStack, final VertexConsumer vb, final float u, final float v, final float uLength, final float vLength, final int r, final int g, final int b, final int a, final Matrix3f normalMatr) {
         final Matrix4f offset = renderStack.last().translate();
-        vb.func_227888_a_(offset, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
-        vb.func_227888_a_(offset, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, 0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, -0.5f, -0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, -0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, 0.5f, 0.5f, -0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, -0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, 0.5f, -0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, 0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u + uLength, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
+        vb.vertex(offset, -0.5f, 0.5f, 0.5f).setPos(r, g, b, a).setPos(u, v + vLength).func_227887_a_(normalMatr, 0.0f, 0.0f, 0.0f).blockPosition();
     }
     
     public static void renderAngleRotatedTexturedRectVB(final VertexConsumer vb, final PoseStack renderStack, final Vector3 renderOffset, final Vector3 axis, final float angleRad, final float scale, final float u, final float v, final float uLength, final float vLength, final int r, final int g, final int b, final int a) {

@@ -41,16 +41,16 @@ public class RegistryRenderTypes
         RenderTypesAS.EFFECT_FX_DYNAMIC_TEXTURE_SPRITE = createType("effect_fx_dynamic_texture_sprite", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).alpha(1.0E-4f).disableCull().disableDepthMask().particleShaderTarget().build());
         RenderTypesAS.EFFECT_FX_TEXTURE_SPRITE = createType("effect_fx_texture_sprite", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).alpha(1.0E-4f).disableCull().disableDepthMask().particleShaderTarget().build());
         RenderTypesAS.EFFECT_FX_CUBE_OPAQUE_ATLAS = createType("effect_fx_cube_opaque_atlas", DefaultVertexFormat.field_227852_q_, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).defaultAlpha().disableCull().enableLighting().particleShaderTarget().build());
-        RenderTypesAS.EFFECT_FX_BLOCK_TRANSLUCENT = createType("effect_fx_block_translucent", DefaultVertexFormat.field_176600_a, RenderStateBuilder.builder().altasTexture().blend(Blending.ADDITIVEDARK).defaultAlpha().disableCull().particleShaderTarget().build());
-        RenderTypesAS.EFFECT_FX_BLOCK_TRANSLUCENT_DEPTH = createType("effect_fx_block_translucent_depth", DefaultVertexFormat.field_176600_a, RenderStateBuilder.builder().altasTexture().blend(Blending.ADDITIVEDARK).defaultAlpha().disableCull().disableDepth().particleShaderTarget().build());
+        RenderTypesAS.EFFECT_FX_BLOCK_TRANSLUCENT = createType("effect_fx_block_translucent", DefaultVertexFormat.POSITION_TEX, RenderStateBuilder.builder().altasTexture().blend(Blending.ADDITIVEDARK).defaultAlpha().disableCull().particleShaderTarget().build());
+        RenderTypesAS.EFFECT_FX_BLOCK_TRANSLUCENT_DEPTH = createType("effect_fx_block_translucent_depth", DefaultVertexFormat.POSITION_TEX, RenderStateBuilder.builder().altasTexture().blend(Blending.ADDITIVEDARK).defaultAlpha().disableCull().disableDepth().particleShaderTarget().build());
         RenderTypesAS.EFFECT_FX_CUBE_TRANSLUCENT_ATLAS = createType("effect_fx_cube_translucent_atlas", DefaultVertexFormat.field_227852_q_, RenderStateBuilder.builder().altasTexture().blend(Blending.ADDITIVEDARK).defaultAlpha().disableCull().disableDepthMask().particleShaderTarget().build());
         RenderTypesAS.EFFECT_FX_CUBE_TRANSLUCENT_ATLAS_DEPTH = createType("effect_fx_cube_translucent_atlas_depth", DefaultVertexFormat.field_227852_q_, RenderStateBuilder.builder().altasTexture().blend(Blending.ADDITIVEDARK).defaultAlpha().disableCull().disableDepthMask().particleShaderTarget().disableDepth().build());
         RenderTypesAS.EFFECT_FX_CUBE_AREA_OF_EFFECT = createType("effect_fx_cube_area_of_effect", DefaultVertexFormat.field_227852_q_, RenderStateBuilder.builder().texture(TexturesAS.TEX_AREA_OF_EFFECT_CUBE).blend(Blending.DEFAULT).defaultAlpha().disableCull().disableDepthMask().particleShaderTarget().build());
-        RenderTypesAS.EFFECT_FX_COLOR_SPHERE = createType("effect_fx_color_sphere", DefaultVertexFormat.field_181706_f, 4, 32768, RenderStateBuilder.builder().blend(Blending.DEFAULT).disableTexture().alpha(1.0E-5f).particleShaderTarget().build());
+        RenderTypesAS.EFFECT_FX_COLOR_SPHERE = createType("effect_fx_color_sphere", DefaultVertexFormat.POSITION_COLOR, 4, 32768, RenderStateBuilder.builder().blend(Blending.DEFAULT).disableTexture().alpha(1.0E-5f).particleShaderTarget().build());
     }
     
     private static void initEffects() {
-        RenderTypesAS.EFFECT_LIGHTRAY_FAN = createType("effect_lightray_fan", DefaultVertexFormat.field_181706_f, 6, 32768, RenderStateBuilder.builder().blend(Blending.ADDITIVE_ALPHA).smoothShade().disableDepthMask().enableDiffuseLighting().build());
+        RenderTypesAS.EFFECT_LIGHTRAY_FAN = createType("effect_lightray_fan", DefaultVertexFormat.POSITION_COLOR, 6, 32768, RenderStateBuilder.builder().blend(Blending.ADDITIVE_ALPHA).smoothShade().disableDepthMask().enableDiffuseLighting().build());
         RenderTypesAS.CONSTELLATION_WORLD_STAR = createType("effect_render_cst_star", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().texture(TexturesAS.TEX_STAR_1).blend(Blending.DEFAULT).disableDepthMask().build());
         RenderTypesAS.CONSTELLATION_WORLD_CONNECTION = createType("effect_render_cst_connection", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().texture(TexturesAS.TEX_STAR_CONNECTION).blend(Blending.DEFAULT).disableDepthMask().build());
     }
@@ -99,7 +99,7 @@ public class RegistryRenderTypes
     }
     
     public static RenderType createDepthProjectionType(final int zoom) {
-        return createType("player_starry_sky_layer", DefaultVertexFormat.field_181706_f, 7, 256, false, true, RenderStateBuilder.builder().blend(Blending.ADDITIVE).texture(AssetLibrary.loadGeneratedResource(AstralSorcery.key("player_starry_sky_layer"), SkyImageGenerator::generateStarBackground, true)).alpha(0.001f).vanillaBuilder().func_228725_a_((RenderState.TexturingState)new IdentityProjectionModelTexturingState(zoom)).func_228728_a_(false));
+        return createType("player_starry_sky_layer", DefaultVertexFormat.POSITION_COLOR, 7, 256, false, true, RenderStateBuilder.builder().blend(Blending.ADDITIVE).texture(AssetLibrary.loadGeneratedResource(AstralSorcery.key("player_starry_sky_layer"), SkyImageGenerator::generateStarBackground, true)).alpha(0.001f).vanillaBuilder().func_228725_a_((RenderState.TexturingState)new IdentityProjectionModelTexturingState(zoom)).func_228728_a_(false));
     }
     
     private static RenderType createType(final String name, final VertexFormat vertexFormat, final RenderType.State state) {

@@ -61,7 +61,7 @@ public class TypeBlockRing extends PatreonEffect
     @OnlyIn(Dist.CLIENT)
     public void onRenderLast(final RenderWorldLastEvent event) {
         final Player pl = (Player)Minecraft.getInstance().player;
-        if (Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a() && pl != null && pl.getUUID().equals(this.playerUUID)) {
+        if (Minecraft.getInstance().options.func_243230_g().func_243192_a() && pl != null && pl.getUUID().equals(this.playerUUID)) {
             final PoseStack renderStack = event.getMatrixStack();
             int alpha = 88;
             if (pl.xRot >= 35.0f) {
@@ -71,10 +71,10 @@ public class TypeBlockRing extends PatreonEffect
                 RenderSystem.clear(256, Minecraft.field_142025_a);
             }
             renderStack.popPose();
-            renderStack.func_227861_a_(0.0, -0.5, 0.0);
+            renderStack.translate(0.0, -0.5, 0.0);
             renderStack.translate(0.5f, 0.5f, 0.5f);
             this.renderRingAt(renderStack, pl, alpha, event.getPartialTicks());
-            renderStack.scale();
+            renderStack.popPose();
         }
     }
     
@@ -113,10 +113,10 @@ public class TypeBlockRing extends PatreonEffect
                 dir.rotate(Math.toRadians(angle), Vector3.RotAxis.Y_AXIS);
                 dir.multiply(new Vector3(0.2f, 0.1f, 0.2f));
                 renderStack.popPose();
-                renderStack.func_227861_a_(dir.getX(), dir.getY(), dir.getZ());
+                renderStack.translate(dir.getX(), dir.getY(), dir.getZ());
                 renderStack.translate(0.09f, 0.09f, 0.09f);
                 RenderingUtils.draw(7, DefaultVertexFormat.field_227852_q_, buf -> RenderingDrawUtils.renderTexturedCubeCentralColorLighted((VertexConsumer)buf, renderStack, tas.func_94209_e(), tas.func_94206_g(), tas.func_94212_f() - tas.func_94209_e(), tas.func_94210_h() - tas.func_94206_g(), 255, 255, 255, alphaMultiplier, LightmapUtil.getPackedLightCoords((IBlockDisplayReader)player.level(), player.func_233580_cy_())));
-                renderStack.scale();
+                renderStack.popPose();
             }
         }
         Blending.DEFAULT.apply();

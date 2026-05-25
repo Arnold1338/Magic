@@ -108,9 +108,9 @@ public class BuiltInEffectTraitRelayHighlight extends AltarRecipeEffect
                     }
                     final ItemStack potential = match.getRandomMatchingStack(this.getClientTick());
                     renderStack.popPose();
-                    renderStack.func_227861_a_(0.5 + offset.getX(), 0.35 + offset.getY(), 0.5 + offset.getZ());
+                    renderStack.translate(0.5 + offset.getX(), 0.35 + offset.getY(), 0.5 + offset.getZ());
                     RenderingUtils.renderTranslucentItemStack(potential, renderStack, pTicks);
-                    renderStack.scale();
+                    renderStack.popPose();
                 }
             }
         }

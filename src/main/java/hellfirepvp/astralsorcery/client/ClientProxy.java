@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.client.screen.journal.bookmark.BookmarkProvider
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalProgression;
 import java.util.Map;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.client.model.BipedModel;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import hellfirepvp.astralsorcery.client.render.entity.layer.StarryLayerRenderer;
@@ -174,9 +174,9 @@ public class ClientProxy extends CommonProxy
         RegistryItems.registerItemProperties();
         final Map<String, PlayerRenderer> playerRenderMap = Minecraft.getInstance().func_175598_ae().getSkinMap();
         PlayerRenderer renderer = playerRenderMap.get("slim");
-        renderer.func_177094_a((LayerRenderer)new StarryLayerRenderer((net.minecraft.client.renderer.entity.IEntityRenderer<LivingEntity, BipedModel>)renderer, true));
+        renderer.func_177094_a((LayerRenderer)new StarryLayerRenderer((net.minecraft.client.renderer.entity.IEntityRenderer<LivingEntity, HumanoidModel>)renderer, true));
         renderer = playerRenderMap.get("default");
-        renderer.func_177094_a((LayerRenderer)new StarryLayerRenderer((net.minecraft.client.renderer.entity.IEntityRenderer<LivingEntity, BipedModel>)renderer, false));
+        renderer.func_177094_a((LayerRenderer)new StarryLayerRenderer((net.minecraft.client.renderer.entity.IEntityRenderer<LivingEntity, HumanoidModel>)renderer, false));
     }
     
     private void addTomeBookmarks() {

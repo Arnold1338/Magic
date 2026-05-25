@@ -22,13 +22,13 @@ public class RenderCollectorCrystal extends CustomTileEntityRenderer<TileCollect
         Color color = tile.getCollectorType().getDisplayColor();
         long seed = RenderingUtils.getPositionSeed(tile.getBlockState());
         renderStack.popPose();
-        renderStack.func_227861_a_(0.5, 0.5, 0.5);
+        renderStack.translate(0.5, 0.5, 0.5);
         RenderingDrawUtils.renderLightRayFan(renderStack, renderTypeBuffer, color, seed, 24, 24.0f, 12);
         seed ^= 0x54FF129A4B11C382L;
         if (tile.isEnhanced() && tile.getAttunedConstellation() != null) {
             color = tile.getAttunedConstellation().getConstellationColor();
         }
         RenderingDrawUtils.renderLightRayFan(renderStack, renderTypeBuffer, color, seed, 24, 24.0f, 12);
-        renderStack.scale();
+        renderStack.popPose();
     }
 }

@@ -8,7 +8,7 @@ import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import net.minecraft.network.chat.MutableComponent;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -75,14 +75,14 @@ public class ScreenConstellationPaper extends WidthHeightScreen
     
     private void drawHeader(final PoseStack renderStack) {
         final MutableComponent name = this.constellation.getConstellationName();
-        final float length = this.fogColor.func_238414_a_((ITextProperties)name) * 1.8f;
+        final float length = this.fogColor.func_238414_a_((FormattedCharSequence)name) * 1.8f;
         final double offsetLeft = (this.field_230708_k_ >> 1) - length / 2.0f;
         final int offsetTop = this.guiTop + 45;
         renderStack.popPose();
-        renderStack.func_227861_a_(offsetLeft + 2.0, (double)offsetTop, (double)this.getGuiZLevel());
+        renderStack.translate(offsetLeft + 2.0, (double)offsetTop, (double)this.getGuiZLevel());
         renderStack.translate(1.8f, 1.8f, 1.0f);
-        RenderingDrawUtils.renderStringAt((ITextProperties)name, renderStack, this.fogColor, -1437774515, false);
-        renderStack.scale();
+        RenderingDrawUtils.renderStringAt((FormattedCharSequence)name, renderStack, this.fogColor, -1437774515, false);
+        renderStack.popPose();
     }
     
     private void drawConstellation(final PoseStack renderStack) {
@@ -98,7 +98,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen
         }
         final List<MoonPhase> phases = (this.phases == null) ? Collections.emptyList() : this.phases;
         if (phases.isEmpty()) {
-            final ITextProperties text = (ITextProperties)new Component("astralsorcery.journal.constellation.unknown");
+            final FormattedCharSequence text = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.unknown");
             RenderingDrawUtils.renderStringCentered(Minecraft.getInstance().font, renderStack, text, this.guiLeft + this.guiWidth / 2 + 25, this.guiTop + 239, 1.8f, -1437774515);
         }
         else {

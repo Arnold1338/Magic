@@ -54,7 +54,7 @@ public class MantleEffectVicio extends MantleEffect
     protected void tickClient(final Player player) {
         super.tickClient(player);
         if (player.func_184613_cA() || (!player.getVehicle() && !player.func_175149_v() && player.field_71075_bZ.field_75100_b)) {
-            if (!Minecraft.getInstance().field_71474_y.func_243230_g().func_243193_b()) {
+            if (!Minecraft.getInstance().options.func_243230_g().func_243193_b()) {
                 this.playCapeSparkles(player, 0.1f);
             }
             else {

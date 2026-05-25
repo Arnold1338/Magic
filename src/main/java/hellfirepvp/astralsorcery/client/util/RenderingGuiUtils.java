@@ -169,10 +169,10 @@ public class RenderingGuiUtils
             final int b = this.color.getBlue();
             final int a = this.color.getAlpha();
             final Matrix4f offset = this.renderStack.last().translate();
-            this.buf.func_227888_a_(offset, this.offsetX, this.offsetY + this.height, this.offsetZ).setPos(r, g, b, a).setPos(this.u, this.v + this.vWidth).blockPosition();
-            this.buf.func_227888_a_(offset, this.offsetX + this.width, this.offsetY + this.height, this.offsetZ).setPos(r, g, b, a).setPos(this.u + this.uWidth, this.v + this.vWidth).blockPosition();
-            this.buf.func_227888_a_(offset, this.offsetX + this.width, this.offsetY, this.offsetZ).setPos(r, g, b, a).setPos(this.u + this.uWidth, this.v).blockPosition();
-            this.buf.func_227888_a_(offset, this.offsetX, this.offsetY, this.offsetZ).setPos(r, g, b, a).setPos(this.u, this.v).blockPosition();
+            this.buf.vertex(offset, this.offsetX, this.offsetY + this.height, this.offsetZ).setPos(r, g, b, a).setPos(this.u, this.v + this.vWidth).blockPosition();
+            this.buf.vertex(offset, this.offsetX + this.width, this.offsetY + this.height, this.offsetZ).setPos(r, g, b, a).setPos(this.u + this.uWidth, this.v + this.vWidth).blockPosition();
+            this.buf.vertex(offset, this.offsetX + this.width, this.offsetY, this.offsetZ).setPos(r, g, b, a).setPos(this.u + this.uWidth, this.v).blockPosition();
+            this.buf.vertex(offset, this.offsetX, this.offsetY, this.offsetZ).setPos(r, g, b, a).setPos(this.u, this.v).blockPosition();
             return this;
         }
     }

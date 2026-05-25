@@ -11,10 +11,10 @@ import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.client.gui.IHasContainer;
-import net.minecraft.client.gui.screens.inventory.ContainerScreen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.world.level.inventory.AbstractContainerMenu;
 
-public abstract class ScreenCustomContainer<T extends Container> extends ContainerScreen<T> implements IHasContainer<T>
+public abstract class ScreenCustomContainer<T extends Container> extends AbstractContainerScreen<T> implements IHasContainer<T>
 {
     private final int sWidth;
     private final int sHeight;

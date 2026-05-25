@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import javax.annotation.Nullable;
 import java.util.Iterator;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import net.minecraft.client.gui.Font;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import net.minecraft.client.Minecraft;
@@ -236,17 +236,17 @@ public class ScreenJournalProgressionRenderer
             else if (scale >= 6.0f) {
                 br = 1.0f - (scale - 6.0f) / 2.0f;
             }
-            final ITextProperties name = (ITextProperties)this.focusedClusterMouse.getName();
+            final FormattedCharSequence name = (FormattedCharSequence)this.focusedClusterMouse.getName();
             final float length = Minecraft.getInstance().font.func_238414_a_(name) * 1.4f;
             int alpha = 204;
             alpha *= (int)br;
             alpha = Math.max(alpha, 5);
             final int color = 0x5A28FF | alpha << 24;
             renderStack.popPose();
-            renderStack.func_227861_a_(offset.x + width / 2.0f - length / 2.0, (double)(offset.y + height / 3.0f), 0.0);
+            renderStack.translate(offset.x + width / 2.0f - length / 2.0, (double)(offset.y + height / 3.0f), 0.0);
             renderStack.translate(1.4f, 1.4f, 1.0f);
             RenderingDrawUtils.renderStringAt(name, renderStack, null, color, true);
-            renderStack.scale();
+            renderStack.popPose();
         }
         this.drawStarParallaxLayers(renderStack, scaleX, scaleY, zLevel);
     }
@@ -294,10 +294,10 @@ public class ScreenJournalProgressionRenderer
         Blending.ADDITIVEDARK.apply();
         RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
             final Matrix4f offset = renderStack.last().translate();
-            buf.func_227888_a_(offset, pCluster.x + 0.0f, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
-            buf.func_227888_a_(offset, pCluster.x + width, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
-            buf.func_227888_a_(offset, pCluster.x + width, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
-            buf.func_227888_a_(offset, pCluster.x + 0.0f, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+            buf.vertex(offset, pCluster.x + width, pCluster.y + height, zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+            buf.vertex(offset, pCluster.x + width, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+            buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + 0.0f, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
             return;
         });
         Blending.DEFAULT.apply();
@@ -321,10 +321,10 @@ public class ScreenJournalProgressionRenderer
         Blending.ADDITIVEDARK.apply();
         RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
             final Matrix4f offset = renderStack.last().translate();
-            buf.func_227888_a_(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
-            buf.func_227888_a_(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
-            buf.func_227888_a_(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
-            buf.func_227888_a_(offset, (float)this.realCoordLowerX, (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(0.0f, 1.0f).blockPosition();
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, br).setPos(1.0f, 1.0f).blockPosition();
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(1.0f, 0.0f).blockPosition();
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, br).setPos(0.0f, 0.0f).blockPosition();
             return;
         });
         RenderSystem.defaultBlendFunc();
@@ -336,10 +336,10 @@ public class ScreenJournalProgressionRenderer
         TexturesAS.TEX_GUI_BACKGROUND_DEFAULT.bindTexture();
         RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
             final Matrix4f offset = renderStack.last().translate();
-            buf.func_227888_a_(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, 1.0f).setPos(0.0f, 1.0f).blockPosition();
-            buf.func_227888_a_(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, 1.0f).setPos(1.0f, 1.0f).blockPosition();
-            buf.func_227888_a_(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, 1.0f).setPos(1.0f, 0.0f).blockPosition();
-            buf.func_227888_a_(offset, (float)this.realCoordLowerX, (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, 1.0f).setPos(0.0f, 0.0f).blockPosition();
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, 1.0f).setPos(0.0f, 1.0f).blockPosition();
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).pushPose()br, br, br, 1.0f).setPos(1.0f, 1.0f).blockPosition();
+            buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, 1.0f).setPos(1.0f, 0.0f).blockPosition();
+            buf.vertex(offset, (float)this.realCoordLowerX, (float)this.realCoordLowerY, zLevel).pushPose()br, br, br, 1.0f).setPos(0.0f, 0.0f).blockPosition();
         });
     }
     
@@ -376,9 +376,9 @@ public class ScreenJournalProgressionRenderer
             return;
         }
         final Matrix4f offset = renderStack.last().translate();
-        buf.func_227888_a_(offset, x, y + height, zLevel).pushPose()0.75f, 0.75f, 0.75f, 0.7f).setPos(u, v + vL).blockPosition();
-        buf.func_227888_a_(offset, x + width, y + height, zLevel).pushPose()0.75f, 0.75f, 0.75f, 0.7f).setPos(u + uL, v + vL).blockPosition();
-        buf.func_227888_a_(offset, x + width, y, zLevel).pushPose()0.75f, 0.75f, 0.75f, 0.7f).setPos(u + uL, v).blockPosition();
-        buf.func_227888_a_(offset, x, y, zLevel).pushPose()0.75f, 0.75f, 0.75f, 0.7f).setPos(u, v).blockPosition();
+        buf.vertex(offset, x, y + height, zLevel).pushPose()0.75f, 0.75f, 0.75f, 0.7f).setPos(u, v + vL).blockPosition();
+        buf.vertex(offset, x + width, y + height, zLevel).pushPose()0.75f, 0.75f, 0.75f, 0.7f).setPos(u + uL, v + vL).blockPosition();
+        buf.vertex(offset, x + width, y, zLevel).pushPose()0.75f, 0.75f, 0.75f, 0.7f).setPos(u + uL, v).blockPosition();
+        buf.vertex(offset, x, y, zLevel).pushPose()0.75f, 0.75f, 0.75f, 0.7f).setPos(u, v).blockPosition();
     }
 }

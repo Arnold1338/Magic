@@ -90,7 +90,7 @@ public class MantleEffectArmara extends MantleEffect
                 final Vector3 anglePlayer = perpEffect.normalize().rotate(Math.toRadians(360.0f * (tick / (float)ticksPerCircle)), axis).normalize();
                 final Vector3 pos = anglePlayer.clone().multiply(sRand.nextFloat() * 0.4f + 0.9f).add(at);
                 float alpha = 0.8f;
-                if (Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a()) {
+                if (Minecraft.getInstance().options.func_243230_g().func_243192_a()) {
                     final float deg = (float)Math.toDegrees(lookVec.angle(anglePlayer));
                     if (deg < 70.0f) {
                         final float tansparentDegree = 40.0f;

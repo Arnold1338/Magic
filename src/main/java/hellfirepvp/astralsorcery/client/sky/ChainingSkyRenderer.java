@@ -61,9 +61,9 @@ public class ChainingSkyRenderer implements ISkyRenderHandler
         final float alphaSubRain = 1.0f - world.func_72867_j(pTicks);
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, alphaSubRain);
         renderStack.popPose();
-        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
+        renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()180.0f));
         AstralSkyRenderer.renderConstellationsSky(world, renderStack, pTicks);
-        renderStack.scale();
+        renderStack.popPose();
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.depthMask(true);
         RenderSystem.disableTexture();

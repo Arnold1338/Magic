@@ -121,7 +121,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
     public void func_230430_a_(final PoseStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
         RenderSystem.enableDepthTest();
         super.func_230430_a_(renderStack, mouseX, mouseY, pTicks);
-        Minecraft.getInstance().field_71474_y.func_243229_a(PointOfView.FIRST_PERSON);
+        Minecraft.getInstance().options.func_243229_a(PointOfView.FIRST_PERSON);
         final double guiFactor = Minecraft.getInstance().func_228018_at_().func_198100_s();
         GL11.glEnable(3089);
         GL11.glScissor(Mth.func_76128_c(14.0 * guiFactor), Mth.func_76128_c(14.0 * guiFactor), Mth.func_76128_c((this.getGuiWidth() + 2) * guiFactor), Mth.func_76128_c((this.getGuiHeight() + 2) * guiFactor));

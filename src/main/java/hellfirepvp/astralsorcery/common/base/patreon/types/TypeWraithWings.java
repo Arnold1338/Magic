@@ -55,30 +55,30 @@ public class TypeWraithWings extends PatreonEffect
         if (swimAngle > 0.0f) {
             final float waterPitch = player.func_70090_H() ? (-90.0f - player.xRot) : -90.0f;
             final float bodySwimAngle = Mth.func_219799_g(swimAngle, 0.0f, waterPitch);
-            renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f - rot));
-            renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()bodySwimAngle));
+            renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f - rot));
+            renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()bodySwimAngle));
             if (player.func_213314_bj()) {
-                renderStack.func_227861_a_(0.0, -1.0, 0.3);
+                renderStack.translate(0.0, -1.0, 0.3);
             }
         }
         else {
-            renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f - rot));
+            renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f - rot));
         }
-        renderStack.func_227861_a_(0.0, (double)yOffset, 0.0);
+        renderStack.translate(0.0, (double)yOffset, 0.0);
         renderStack.translate(0.32f, 0.32f, 0.32f);
         RenderTypesAS.MODEL_WRAITH_WINGS.func_228547_a_();
         renderStack.popPose();
-        renderStack.func_227861_a_(-2.3, 0.0, 0.8);
-        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()10.0f));
+        renderStack.translate(-2.3, 0.0, 0.8);
+        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()10.0f));
         ObjModelRender.renderWraithWings(renderStack);
-        renderStack.scale();
         renderStack.popPose();
-        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
-        renderStack.func_227861_a_(-2.3, 0.0, -0.8);
+        renderStack.popPose();
+        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f));
+        renderStack.translate(-2.3, 0.0, -0.8);
         renderStack.mulPose(Vector3f.field_229180_c_.getMultiBufferSource()10.0f));
         ObjModelRender.renderWraithWings(renderStack);
-        renderStack.scale();
+        renderStack.popPose();
         RenderTypesAS.MODEL_WRAITH_WINGS.func_228549_b_();
-        renderStack.scale();
+        renderStack.popPose();
     }
 }

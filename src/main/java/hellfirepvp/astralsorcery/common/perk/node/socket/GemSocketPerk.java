@@ -134,9 +134,9 @@ public interface GemSocketPerk
         final PlayerPerkData perkData = prog.getPerkData();
         final ItemStack contained = this.getContainedItem((Player)Minecraft.getInstance().player, LogicalSide.CLIENT);
         if (contained.isEmpty()) {
-            tooltip.add(new Component("perk.info.astralsorcery.gem.empty").toString()ChatFormatting.GRAY));
+            tooltip.add(new Component("perk.info.astralsorcery.gem.empty").withStyle(ChatFormatting.GRAY)));
             if (perkData.hasPerkEffect(thisPerk)) {
-                tooltip.add(new Component("perk.info.astralsorcery.gem.content.empty").toString()ChatFormatting.GRAY));
+                tooltip.add(new Component("perk.info.astralsorcery.gem.content.empty").withStyle(ChatFormatting.GRAY)));
                 final boolean has = !ItemUtils.findItemsIndexedInPlayerInventory((Player)Minecraft.getInstance().player, stack -> {
                     if (stack.isEmpty() || !(stack.getItem() instanceof GemSocketItem)) {
                         return false;
@@ -147,7 +147,7 @@ public interface GemSocketPerk
                     }
                 }).isEmpty();
                 if (!has) {
-                    tooltip.add(new Component("perk.info.astralsorcery.gem.content.empty.none").toString()ChatFormatting.RED));
+                    tooltip.add(new Component("perk.info.astralsorcery.gem.content.empty.none").withStyle(ChatFormatting.RED)));
                 }
             }
         }
@@ -161,9 +161,9 @@ public interface GemSocketPerk
                     tooltip.add((MutableComponent)new Component(""));
                 }
             }
-            tooltip.add(new Component("perk.info.astralsorcery.gem.content.item", new Object[] { contained.func_200301_q() }).toString()ChatFormatting.GRAY));
+            tooltip.add(new Component("perk.info.astralsorcery.gem.content.item", new Object[] { contained.func_200301_q() }).withStyle(ChatFormatting.GRAY)));
             if (perkData.hasPerkEffect(thisPerk)) {
-                tooltip.add(new Component("perk.info.astralsorcery.gem.remove").toString()ChatFormatting.GRAY));
+                tooltip.add(new Component("perk.info.astralsorcery.gem.remove").withStyle(ChatFormatting.GRAY)));
             }
         }
     }

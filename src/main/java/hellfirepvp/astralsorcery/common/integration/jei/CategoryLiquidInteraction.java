@@ -11,7 +11,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.client.gui.Font;
 import java.util.Collection;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInteractionContext;
@@ -70,9 +70,9 @@ public class CategoryLiquidInteraction extends JEICategory<LiquidInteraction>
         if (!sameInteractions.isEmpty()) {
             final int totalWeight = sameInteractions.stream().mapToInt(LiquidInteraction::getWeight).sum();
             final float perc = recipe.getWeight() / (float)totalWeight * 100.0f;
-            final FontRenderer fr = Minecraft.getInstance().font;
+            final Font fr = Minecraft.getInstance().font;
             final MutableComponent txt = (MutableComponent)new Component("jei.astralsorcery.tip.chance", new Object[] { CategoryLiquidInteraction.FORMAT_CHANCE.format(perc) });
-            final int width = fr.func_238414_a_((ITextProperties)txt);
+            final int width = fr.func_238414_a_((FormattedCharSequence)txt);
             fr.func_243248_b(renderStack, (Component)txt, (float)(74 - width), 44.0f, 3355443);
         }
     }

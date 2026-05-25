@@ -75,19 +75,19 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
             final IWeakConstellation c = ((ConstellationItem)stack.getItem()).getAttunedConstellation(stack);
             if (c != null) {
                 if (GatedKnowledge.COLLECTOR_TYPE.canSee(tier) && clientProgress.hasConstellationDiscovered(c)) {
-                    toolTip.add((Component)new Component("crystal.info.astralsorcery.collect.type", new Object[] { c.getConstellationName().toString()ChatFormatting.BLUE) }).toString()ChatFormatting.GRAY));
+                    toolTip.add((Component)new Component("crystal.info.astralsorcery.collect.type", new Object[] { c.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
                 }
                 else if (!addedMissing) {
-                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").toString()ChatFormatting.GRAY));
+                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY)));
                 }
             }
             final IMinorConstellation tr = ((ConstellationItem)stack.getItem()).getTraitConstellation(stack);
             if (tr != null) {
                 if (GatedKnowledge.CRYSTAL_TRAIT.canSee(tier) && clientProgress.hasConstellationDiscovered(tr)) {
-                    toolTip.add((Component)new Component("crystal.info.astralsorcery.trait", new Object[] { tr.getConstellationName().toString()ChatFormatting.BLUE) }).toString()ChatFormatting.GRAY));
+                    toolTip.add((Component)new Component("crystal.info.astralsorcery.trait", new Object[] { tr.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
                 }
                 else if (!addedMissing) {
-                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").toString()ChatFormatting.GRAY));
+                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY)));
                 }
             }
         }

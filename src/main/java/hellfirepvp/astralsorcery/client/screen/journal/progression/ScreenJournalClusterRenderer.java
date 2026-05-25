@@ -21,7 +21,7 @@ import java.awt.geom.Point2D;
 import java.util.List;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import com.google.common.collect.Lists;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Iterator;
 import net.minecraft.client.gui.screens.Screen;
@@ -87,12 +87,12 @@ public class ScreenJournalClusterRenderer
         if (frame.contains(mouseX, mouseY)) {
             for (final Rectangle r : this.clickableNodes.keySet()) {
                 if (r.contains(mouseX, mouseY)) {
-                    final ITextProperties name = (ITextProperties)this.clickableNodes.get(r).getName();
+                    final FormattedCharSequence name = (FormattedCharSequence)this.clickableNodes.get(r).getName();
                     renderStack.popPose();
-                    renderStack.func_227861_a_(r.getX(), r.getY(), (double)(zLevel + 200.0f));
+                    renderStack.translate(r.getX(), r.getY(), (double)(zLevel + 200.0f));
                     renderStack.translate(this.progressionSizeHandler.getScalingFactor(), this.progressionSizeHandler.getScalingFactor(), 1.0f);
-                    RenderingDrawUtils.renderBlueTooltipComponents(renderStack, 0.0f, 0.0f, 0.0f, Lists.newArrayList((Object[])new ITextProperties[] { name }), Minecraft.getInstance().font, false);
-                    renderStack.scale();
+                    RenderingDrawUtils.renderBlueTooltipComponents(renderStack, 0.0f, 0.0f, 0.0f, Lists.newArrayList((Object[])new FormattedCharSequence[] { name }), Minecraft.getInstance().font, false);
+                    renderStack.popPose();
                 }
             }
         }
@@ -184,14 +184,14 @@ public class ScreenJournalClusterRenderer
         switch (node.getNodeRenderType()) {
             case ITEMSTACK: {
                 renderStack.popPose();
-                renderStack.func_227861_a_((double)offsetX, (double)offsetY, 0.0);
+                renderStack.translate((double)offsetX, (double)offsetY, 0.0);
                 renderStack.translate(this.progressionSizeHandler.getScalingFactor(), this.progressionSizeHandler.getScalingFactor(), 1.0f);
-                renderStack.func_227861_a_(3.0, 3.0, 100.0);
+                renderStack.translate(3.0, 3.0, 100.0);
                 renderStack.translate(0.75f, 0.75f, 1.0f);
                 RenderHelper.func_227780_a_();
                 RenderingUtils.renderTranslucentItemStackModelGUI(node.getRenderItemStack(ClientScheduler.getClientTick()), renderStack, Color.WHITE, Blending.DEFAULT, Mth.getDescriptionId((int)(this.alpha * 255.0f), 0, 255));
                 RenderHelper.func_74518_a();
-                renderStack.scale();
+                renderStack.popPose();
                 break;
             }
             case TEXTURE_SPRITE: {
@@ -204,20 +204,20 @@ public class ScreenJournalClusterRenderer
                 res.getResource().bindTexture();
                 final Tuple<Float, Float> uvTexture = res.getUVOffset(ClientScheduler.getClientTick());
                 renderStack.popPose();
-                renderStack.func_227861_a_((double)offsetX, (double)offsetY, 0.0);
+                renderStack.translate((double)offsetX, (double)offsetY, 0.0);
                 RenderSystem.enableBlend();
                 RenderSystem.defaultBlendFunc();
                 RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
                     final Matrix4f matr = renderStack.last().translate();
-                    buf.func_227888_a_(matr, pxWH, zoomedWH - pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA(), (float)uvTexture.getB() + res.getVLength()).blockPosition();
-                    buf.func_227888_a_(matr, zoomedWH - pxWH, zoomedWH - pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA() + res.getULength(), (float)uvTexture.getB() + res.getVLength()).blockPosition();
-                    buf.func_227888_a_(matr, zoomedWH - pxWH, pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA() + res.getULength(), (float)uvTexture.getB()).blockPosition();
-                    buf.func_227888_a_(matr, pxWH, pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA(), (float)uvTexture.getB()).blockPosition();
+                    buf.vertex(matr, pxWH, zoomedWH - pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA(), (float)uvTexture.getB() + res.getVLength()).blockPosition();
+                    buf.vertex(matr, zoomedWH - pxWH, zoomedWH - pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA() + res.getULength(), (float)uvTexture.getB() + res.getVLength()).blockPosition();
+                    buf.vertex(matr, zoomedWH - pxWH, pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA() + res.getULength(), (float)uvTexture.getB()).blockPosition();
+                    buf.vertex(matr, pxWH, pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA(), (float)uvTexture.getB()).blockPosition();
                     return;
                 });
                 RenderSystem.defaultBlendFunc();
                 RenderSystem.disableBlend();
-                renderStack.scale();
+                renderStack.popPose();
                 break;
             }
         }
@@ -235,7 +235,7 @@ public class ScreenJournalClusterRenderer
         final int segments = (int)Math.ceil(line.length() / 1.0);
         final int activeSegment = (int)(clientTicks % segments);
         final Vector3 segmentIter = line.divide(segments);
-        RenderingUtils.draw(3, DefaultVertexFormat.field_181706_f, buf -> {
+        RenderingUtils.draw(3, DefaultVertexFormat.POSITION_COLOR, buf -> {
             for (int i = segments; i >= 0; --i) {
                 final double lx = origin.getX();
                 final double ly = origin.getY();
@@ -254,8 +254,8 @@ public class ScreenJournalClusterRenderer
     
     private void drawLinePart(final VertexConsumer buf, final PoseStack renderStack, final double lx, final double ly, final double hx, final double hy, final float zLevel, final float brightness) {
         final Matrix4f offset = renderStack.last().translate();
-        buf.func_227888_a_(offset, (float)lx, (float)ly, zLevel).pushPose()brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).blockPosition();
-        buf.func_227888_a_(offset, (float)hx, (float)hy, zLevel).pushPose()brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).blockPosition();
+        buf.vertex(offset, (float)lx, (float)ly, zLevel).pushPose()brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).blockPosition();
+        buf.vertex(offset, (float)hx, (float)hy, zLevel).pushPose()brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).blockPosition();
     }
     
     private float evaluateBrightness(final int segment, final int activeSegment) {

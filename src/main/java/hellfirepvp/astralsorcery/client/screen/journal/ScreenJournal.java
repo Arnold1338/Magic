@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.network.chat.LanguageMap;
 import net.minecraft.util.FormattedCharSequence;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import com.google.common.collect.Maps;
@@ -57,7 +57,7 @@ public class ScreenJournal extends WidthHeightScreen
         return true;
     }
     
-    protected FormattedCharSequence localize(final ITextProperties txt) {
+    protected FormattedCharSequence localize(final FormattedCharSequence txt) {
         return LanguageMap.func_74808_a().func_241870_a(txt);
     }
     
@@ -104,10 +104,10 @@ public class ScreenJournal extends WidthHeightScreen
         RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offsetX, offsetY, zLevel, (float)actualWidth, (float)height).draw());
         RenderSystem.disableBlend();
         renderStack.popPose();
-        renderStack.func_227861_a_((double)(offsetX + 2.0f), (double)(offsetY + 4.0f), (double)(zLevel + 50.0f));
+        renderStack.translate((double)(offsetX + 2.0f), (double)(offsetY + 4.0f), (double)(zLevel + 50.0f));
         renderStack.translate(0.7f, 0.7f, 0.7f);
-        RenderingDrawUtils.renderStringAt(null, renderStack, (ITextProperties)title, titleRGBColor);
-        renderStack.scale();
+        RenderingDrawUtils.renderStringAt(null, renderStack, (FormattedCharSequence)title, titleRGBColor);
+        renderStack.popPose();
         return r;
     }
     

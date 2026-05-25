@@ -56,7 +56,7 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler
     public void tick(final TickEvent.Type type, final Object... context) {
         final Player player = (Player)context[0];
         final LogicalSide side = (LogicalSide)context[1];
-        if (side.isClient() && this.shouldDoEffect(player) && Minecraft.getInstance().player != null && Minecraft.getInstance().player.getUUID().equals(this.playerUUID) && !Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a()) {
+        if (side.isClient() && this.shouldDoEffect(player) && Minecraft.getInstance().player != null && Minecraft.getInstance().player.getUUID().equals(this.playerUUID) && !Minecraft.getInstance().options.func_243230_g().func_243192_a()) {
             this.playEffects(player);
         }
     }
@@ -113,16 +113,16 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler
         final float f = Math.abs(ClientScheduler.getSystemClientTick() % 240L - 120.0f) / 120.0f;
         final double offset = Math.cos(f * 2.0f * 3.141592653589793) * 0.03;
         renderStack.popPose();
-        renderStack.func_227861_a_(0.0, yOffset + offset, 0.0);
-        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f - rot));
+        renderStack.translate(0.0, yOffset + offset, 0.0);
+        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f - rot));
         renderStack.translate(0.02f, 0.02f, 0.02f);
         RenderTypesAS.MODEL_CELESTIAL_WINGS.func_228547_a_();
-        renderStack.func_227861_a_(-25.0, 0.0, 0.0);
+        renderStack.translate(-25.0, 0.0, 0.0);
         ObjModelRender.renderCelestialWings(renderStack);
-        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
-        renderStack.func_227861_a_(-50.0, 0.0, 0.0);
+        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f));
+        renderStack.translate(-50.0, 0.0, 0.0);
         ObjModelRender.renderCelestialWings(renderStack);
-        renderStack.scale();
+        renderStack.popPose();
         RenderTypesAS.MODEL_CELESTIAL_WINGS.func_228549_b_();
     }
     

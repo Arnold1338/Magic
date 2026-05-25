@@ -21,10 +21,10 @@ public class RenderAttunementAltar extends CustomTileEntityRenderer<TileAttuneme
     
     public void render(final TileAttunementAltar tile, final float pTicks, final PoseStack renderStack, final MultiBufferSource renderTypeBuffer, final int combinedLight, final int combinedOverlay) {
         renderStack.popPose();
-        renderStack.func_227861_a_(0.5, 0.5, 0.5);
-        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
+        renderStack.translate(0.5, 0.5, 0.5);
+        renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()180.0f));
         RenderAttunementAltar.MODEL_ATTUNEMENT_ALTAR.render(renderStack, renderTypeBuffer, combinedLight, combinedOverlay);
-        renderStack.scale();
+        renderStack.popPose();
         final float spinDur = 100.0f;
         final float spinStart = 60.0f;
         final float startY = -1.2f;
@@ -57,10 +57,10 @@ public class RenderAttunementAltar extends CustomTileEntityRenderer<TileAttuneme
             final float zOffset = Mth.func_76126_a(normalized);
             final float rotation = RenderingVectorUtils.interpolate(tile.prevActivationTick / spinStart, tile.activationTick / spinStart, pTicks);
             renderStack.popPose();
-            renderStack.func_227861_a_(0.5, (double)framePosY, 0.5);
-            renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
+            renderStack.translate(0.5, (double)framePosY, 0.5);
+            renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()180.0f));
             RenderAttunementAltar.MODEL_ATTUNEMENT_ALTAR.renderHovering(renderStack, renderTypeBuffer.getBuffer(RenderAttunementAltar.MODEL_ATTUNEMENT_ALTAR.getGeneralType()), combinedLight, combinedOverlay, 1.0f, 1.0f, 1.0f, 1.0f, xOffset, zOffset, rotation);
-            renderStack.scale();
+            renderStack.popPose();
         }
     }
     

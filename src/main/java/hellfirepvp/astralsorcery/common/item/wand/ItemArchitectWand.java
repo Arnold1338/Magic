@@ -84,7 +84,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
     
     @OnlyIn(Dist.CLIENT)
     public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        tooltip.add((Component)getPlaceMode(stack).getDisplay().toString()ChatFormatting.GOLD));
+        tooltip.add((Component)getPlaceMode(stack).getDisplay().withStyle(ChatFormatting.GOLD)));
     }
     
     public float getAlignmentChargeCost(final Player player, final ItemStack stack) {
@@ -108,12 +108,12 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
         Blending.ADDITIVEDARK.apply();
         RenderSystem.disableDepthTest();
         RenderSystem.disableAlphaTest();
-        RenderingUtils.draw(7, DefaultVertexFormat.field_176600_a, buf -> placeStates.forEach((pos, state) -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX, buf -> placeStates.forEach((pos, state) -> {
             renderStack.popPose();
-            renderStack.func_227861_a_(pos.getX() - offset.getX() + 0.10000000149011612, pos.getY() - offset.getY() + 0.10000000149011612, pos.getZ() - offset.getZ() + 0.10000000149011612);
+            renderStack.translate(pos.getX() - offset.getX() + 0.10000000149011612, pos.getY() - offset.getY() + 0.10000000149011612, pos.getZ() - offset.getZ() + 0.10000000149011612);
             renderStack.translate(0.8f, 0.8f, 0.8f);
             RenderingUtils.renderSimpleBlockModel(state, renderStack, (VertexConsumer)decorator.decorate(buf), pos, null, false);
-            renderStack.scale();
+            renderStack.popPose();
         }));
         RenderSystem.enableAlphaTest();
         RenderSystem.enableDepthTest();

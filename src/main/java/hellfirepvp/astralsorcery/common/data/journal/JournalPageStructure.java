@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.data.journal;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import hellfirepvp.observerlib.api.structure.Structure;
 import hellfirepvp.astralsorcery.client.screen.journal.page.RenderPageStructure;
 import hellfirepvp.astralsorcery.client.screen.journal.page.RenderablePage;
@@ -36,6 +36,6 @@ public class JournalPageStructure implements JournalPage
     @OnlyIn(Dist.CLIENT)
     @Override
     public RenderablePage buildRenderPage(final ResearchNode node, final int nodePage) {
-        return new RenderPageStructure(node, nodePage, (Structure)this.structure, (ITextProperties)this.name, this.shift.clone());
+        return new RenderPageStructure(node, nodePage, (Structure)this.structure, (FormattedCharSequence)this.name, this.shift.clone());
     }
 }

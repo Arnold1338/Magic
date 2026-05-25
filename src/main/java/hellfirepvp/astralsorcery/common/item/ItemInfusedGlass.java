@@ -39,14 +39,14 @@ public class ItemInfusedGlass extends Item
                 final IConstellation cst = ConstellationRegistry.getConstellation(key);
                 if (cst != null) {
                     final String format = "item.astralsorcery.infused_glass.ttip";
-                    final Component cstName = (Component)cst.getConstellationName().toString()ChatFormatting.BLUE);
+                    final Component cstName = (Component)cst.getConstellationName().withStyle(ChatFormatting.BLUE));
                     if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.getVehicle()) {
                         final String percent = String.valueOf(Math.round(map.getDistribution(cst) * 100.0f));
-                        final Component creativeHint = (Component)new Component("item.astralsorcery.infused_glass.ttip.creative", new Object[] { percent }).toString()ChatFormatting.LIGHT_PURPLE);
-                        tooltip.add((Component)new Component(format, new Object[] { cstName, creativeHint }).toString()ChatFormatting.GRAY));
+                        final Component creativeHint = (Component)new Component("item.astralsorcery.infused_glass.ttip.creative", new Object[] { percent }).withStyle(ChatFormatting.LIGHT_PURPLE));
+                        tooltip.add((Component)new Component(format, new Object[] { cstName, creativeHint }).withStyle(ChatFormatting.GRAY)));
                     }
                     else {
-                        tooltip.add((Component)new Component(format, new Object[] { cstName, "" }).toString()ChatFormatting.GRAY));
+                        tooltip.add((Component)new Component(format, new Object[] { cstName, "" }).withStyle(ChatFormatting.GRAY)));
                     }
                 }
             }

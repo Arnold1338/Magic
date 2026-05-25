@@ -53,7 +53,7 @@ public interface LinkableTileEntity
             for (final BlockPos linkTo : Lists.newArrayList((Iterable)this.getLinkedPositions())) {
                 this.tryUnlink(player, linkTo);
             }
-            player.func_145747_a((Component)new Component("astralsorcery.misc.link.unlink.all").toString()ChatFormatting.GREEN), Util.NIL_UUID);
+            player.func_145747_a((Component)new Component("astralsorcery.misc.link.unlink.all").withStyle(ChatFormatting.GREEN)), Util.NIL_UUID);
             return false;
         }
         return true;

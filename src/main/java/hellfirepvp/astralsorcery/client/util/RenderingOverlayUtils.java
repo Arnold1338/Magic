@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.util;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import org.joml.Matrix4f;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import java.util.Iterator;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -26,7 +26,7 @@ public class RenderingOverlayUtils
         final int offsetX = 30;
         final int offsetY = 15;
         final ItemRenderer itemRender = Minecraft.getInstance().func_175599_af();
-        final FontRenderer fontRenderer = Minecraft.getInstance().font;
+        final Font fontRenderer = Minecraft.getInstance().font;
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         int tempY = offsetY;
@@ -38,10 +38,10 @@ public class RenderingOverlayUtils
                 TexturesAS.TEX_OVERLAY_ITEM_FRAME.bindTexture();
                 RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
                     final Matrix4f offset = renderStack.last().translate();
-                    buf.func_227888_a_(offset, (float)offsetX, currentY + heightSplit, 10.0f).setPos(0.0f, 0.5f).blockPosition();
-                    buf.func_227888_a_(offset, (float)(offsetX + width), currentY + heightSplit, 10.0f).setPos(1.0f, 0.5f).blockPosition();
-                    buf.func_227888_a_(offset, (float)(offsetX + width), currentY, 10.0f).setPos(1.0f, 0.0f).blockPosition();
-                    buf.func_227888_a_(offset, (float)offsetX, currentY, 10.0f).setPos(0.0f, 0.0f).blockPosition();
+                    buf.vertex(offset, (float)offsetX, currentY + heightSplit, 10.0f).setPos(0.0f, 0.5f).blockPosition();
+                    buf.vertex(offset, (float)(offsetX + width), currentY + heightSplit, 10.0f).setPos(1.0f, 0.5f).blockPosition();
+                    buf.vertex(offset, (float)(offsetX + width), currentY, 10.0f).setPos(1.0f, 0.0f).blockPosition();
+                    buf.vertex(offset, (float)offsetX, currentY, 10.0f).setPos(0.0f, 0.0f).blockPosition();
                     return;
                 });
                 tempY += heightSplit;
@@ -50,10 +50,10 @@ public class RenderingOverlayUtils
                 TexturesAS.TEX_OVERLAY_ITEM_FRAME_EXTENSION.bindTexture();
                 RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
                     final Matrix4f offset2 = renderStack.last().translate();
-                    buf.func_227888_a_(offset2, (float)offsetX, currentY + heightNormal, 10.0f).setPos(0.0f, 1.0f).blockPosition();
-                    buf.func_227888_a_(offset2, (float)(offsetX + width), currentY + heightNormal, 10.0f).setPos(1.0f, 1.0f).blockPosition();
-                    buf.func_227888_a_(offset2, (float)(offsetX + width), currentY, 10.0f).setPos(1.0f, 0.0f).blockPosition();
-                    buf.func_227888_a_(offset2, (float)offsetX, currentY, 10.0f).setPos(0.0f, 0.0f).blockPosition();
+                    buf.vertex(offset2, (float)offsetX, currentY + heightNormal, 10.0f).setPos(0.0f, 1.0f).blockPosition();
+                    buf.vertex(offset2, (float)(offsetX + width), currentY + heightNormal, 10.0f).setPos(1.0f, 1.0f).blockPosition();
+                    buf.vertex(offset2, (float)(offsetX + width), currentY, 10.0f).setPos(1.0f, 0.0f).blockPosition();
+                    buf.vertex(offset2, (float)offsetX, currentY, 10.0f).setPos(0.0f, 0.0f).blockPosition();
                     return;
                 });
                 tempY += heightNormal;
@@ -63,10 +63,10 @@ public class RenderingOverlayUtils
                 TexturesAS.TEX_OVERLAY_ITEM_FRAME.bindTexture();
                 RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
                     final Matrix4f offset3 = renderStack.last().translate();
-                    buf.func_227888_a_(offset3, (float)offsetX, drawY + heightSplit, 10.0f).setPos(0.0f, 1.0f).blockPosition();
-                    buf.func_227888_a_(offset3, (float)(offsetX + width), drawY + heightSplit, 10.0f).setPos(1.0f, 1.0f).blockPosition();
-                    buf.func_227888_a_(offset3, (float)(offsetX + width), drawY, 10.0f).setPos(1.0f, 0.5f).blockPosition();
-                    buf.func_227888_a_(offset3, (float)offsetX, drawY, 10.0f).setPos(0.0f, 0.5f).blockPosition();
+                    buf.vertex(offset3, (float)offsetX, drawY + heightSplit, 10.0f).setPos(0.0f, 1.0f).blockPosition();
+                    buf.vertex(offset3, (float)(offsetX + width), drawY + heightSplit, 10.0f).setPos(1.0f, 1.0f).blockPosition();
+                    buf.vertex(offset3, (float)(offsetX + width), drawY, 10.0f).setPos(1.0f, 0.5f).blockPosition();
+                    buf.vertex(offset3, (float)offsetX, drawY, 10.0f).setPos(0.0f, 0.5f).blockPosition();
                     return;
                 });
                 tempY += heightSplit;
@@ -77,17 +77,17 @@ public class RenderingOverlayUtils
         tempY = offsetY;
         for (final Tuple<ItemStack, Integer> stackTpl : itemStacks) {
             renderStack.popPose();
-            renderStack.func_227861_a_((double)(offsetX + 5), (double)(tempY + 5), 0.0);
+            renderStack.translate((double)(offsetX + 5), (double)(tempY + 5), 0.0);
             RenderingUtils.renderItemStackGUI(renderStack, (ItemStack)stackTpl.getA(), null);
-            renderStack.scale();
+            renderStack.popPose();
             tempY += heightNormal;
         }
         renderStack.popPose();
-        renderStack.func_227861_a_((double)(offsetX + 14), (double)(offsetY + 16), 0.0);
+        renderStack.translate((double)(offsetX + 14), (double)(offsetY + 16), 0.0);
         final int txtColor = 14540253;
         for (final Tuple<ItemStack, Integer> stackTpl2 : itemStacks) {
             final ItemStack stack = (ItemStack)stackTpl2.getA();
-            FontRenderer fr;
+            Font fr;
             if ((fr = stack.getItem().getFontRenderer(stack)) == null) {
                 fr = fontRenderer;
             }
@@ -95,18 +95,18 @@ public class RenderingOverlayUtils
             if ((int)stackTpl2.getB() == -1) {
                 amountStr = "\u221e";
             }
-            final ITextProperties prop = (ITextProperties)new Component(amountStr);
+            final FormattedCharSequence prop = (FormattedCharSequence)new Component(amountStr);
             final int length = fontRenderer.func_238414_a_(prop);
             renderStack.popPose();
-            renderStack.func_227861_a_((double)(-length / 3.0f), 0.0, 500.0);
+            renderStack.translate((double)(-length / 3.0f), 0.0, 500.0);
             renderStack.translate(0.7f, 0.7f, 1.0f);
             if (amountStr.length() > 3) {
                 renderStack.translate(0.9f, 0.9f, 1.0f);
             }
             RenderingDrawUtils.renderStringAt(fr, renderStack, prop, txtColor);
-            renderStack.scale();
-            renderStack.func_227861_a_(0.0, (double)heightNormal, 0.0);
+            renderStack.popPose();
+            renderStack.translate(0.0, (double)heightNormal, 0.0);
         }
-        renderStack.scale();
+        renderStack.popPose();
     }
 }

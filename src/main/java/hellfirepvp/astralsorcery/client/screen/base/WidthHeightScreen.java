@@ -71,7 +71,7 @@ public class WidthHeightScreen extends InputScreen
         if (super.func_231042_a_(charCode, keyModifiers)) {
             return true;
         }
-        if (this.closeWithInventoryKey && Minecraft.getInstance().field_71474_y.field_151445_Q.func_151470_d()) {
+        if (this.closeWithInventoryKey && Minecraft.getInstance().options.field_151445_Q.func_151470_d()) {
             this.func_231175_as__();
             if (Minecraft.getInstance().gui == null) {
                 Minecraft.getInstance().field_71417_B.func_198034_i();

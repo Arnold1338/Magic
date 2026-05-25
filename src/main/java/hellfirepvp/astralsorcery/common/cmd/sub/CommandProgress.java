@@ -40,7 +40,7 @@ public class CommandProgress
         final Component targetName = target.getDisplayName();
         final PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
         if (!progress.isValid() || progress.getTierReached().isThisLaterOrEqual(goal)) {
-            src.func_145747_a((Component)new Component("Failed! ").func_230529_a_(targetName).func_240702_b_("'s progress is higher or equal to ").func_240702_b_(goal.name()).toString()ChatFormatting.RED), Util.NIL_UUID);
+            src.func_145747_a((Component)new Component("Failed! ").func_230529_a_(targetName).func_240702_b_("'s progress is higher or equal to ").func_240702_b_(goal.name()).withStyle(ChatFormatting.RED)), Util.NIL_UUID);
             return 0;
         }
         ResearchProgression research = null;
@@ -71,13 +71,13 @@ public class CommandProgress
             }
         }
         if (research == null) {
-            src.func_145747_a((Component)new Component("Invalid progression tier: " + goal.name()).toString()ChatFormatting.RED), Util.NIL_UUID);
+            src.func_145747_a((Component)new Component("Invalid progression tier: " + goal.name()).withStyle(ChatFormatting.RED)), Util.NIL_UUID);
         }
         if (ResearchManager.grantProgress(target, goal) && ResearchManager.grantResearch(target, research)) {
-            src.func_145747_a((Component)new Component("Success!").toString()ChatFormatting.GREEN), Util.NIL_UUID);
+            src.func_145747_a((Component)new Component("Success!").withStyle(ChatFormatting.GREEN)), Util.NIL_UUID);
             return 1;
         }
-        src.func_145747_a((Component)new Component("Failed!").toString()ChatFormatting.RED), Util.NIL_UUID);
+        src.func_145747_a((Component)new Component("Failed!").withStyle(ChatFormatting.RED)), Util.NIL_UUID);
         return 0;
     }
 }

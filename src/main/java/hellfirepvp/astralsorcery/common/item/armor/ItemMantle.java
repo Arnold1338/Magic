@@ -8,7 +8,7 @@ import hellfirepvp.astralsorcery.common.constellation.mantle.MantleEffect;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.client.model.armor.ModelArmorMantle;
-import net.minecraft.client.model.BipedModel;
+import net.minecraft.client.model.HumanoidModel;
 import java.awt.Color;
 import java.util.Collections;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
@@ -82,7 +82,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
     public void func_77624_a(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         final IConstellation cst = this.getConstellation(stack);
         if (cst instanceof IWeakConstellation) {
-            tooltip.add((Component)cst.getConstellationName().toString()ChatFormatting.BLUE));
+            tooltip.add((Component)cst.getConstellationName().withStyle(ChatFormatting.BLUE)));
         }
     }
     
@@ -107,7 +107,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
     
     @Nullable
     @OnlyIn(Dist.CLIENT)
-    public <A extends BipedModel<?>> A getArmorModel(final LivingEntity entityLiving, final ItemStack itemStack, final EquipmentSlot armorSlot, final A _default) {
+    public <A extends HumanoidModel<?>> A getArmorModel(final LivingEntity entityLiving, final ItemStack itemStack, final EquipmentSlot armorSlot, final A _default) {
         if (ItemMantle.modelArmor == null) {
             ItemMantle.modelArmor = new ModelArmorMantle();
         }

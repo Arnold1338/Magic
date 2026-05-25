@@ -52,15 +52,15 @@ public class CommandConstellation
         final Component targetName = target.getDisplayName();
         final PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
         if (!progress.isValid() || progress.hasSeenConstellation(cst)) {
-            source.func_145747_a((Component)new Component("Failed! ").func_230529_a_(targetName).func_240702_b_(" has already seen ").func_230529_a_((Component)cst.getConstellationName()).toString()ChatFormatting.RED), Util.NIL_UUID);
+            source.func_145747_a((Component)new Component("Failed! ").func_230529_a_(targetName).func_240702_b_(" has already seen ").func_230529_a_((Component)cst.getConstellationName()).withStyle(ChatFormatting.RED)), Util.NIL_UUID);
             return 0;
         }
         if (ResearchManager.memorizeConstellation(cst, target)) {
             ResearchHelper.sendConstellationMemorizationMessage((CommandSource)target, progress, cst);
-            source.func_145747_a((Component)new Component("Success! ").toString()ChatFormatting.GREEN), Util.NIL_UUID);
+            source.func_145747_a((Component)new Component("Success! ").withStyle(ChatFormatting.GREEN)), Util.NIL_UUID);
             return 1;
         }
-        source.func_145747_a((Component)new Component("Failed!").toString()ChatFormatting.RED), Util.NIL_UUID);
+        source.func_145747_a((Component)new Component("Failed!").withStyle(ChatFormatting.RED)), Util.NIL_UUID);
         return 0;
     }
     
@@ -70,15 +70,15 @@ public class CommandConstellation
         final Component targetName = target.getDisplayName();
         final PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
         if (!progress.isValid() || progress.hasConstellationDiscovered(cst)) {
-            source.func_145747_a((Component)new Component("Failed! ").func_230529_a_(targetName).func_240702_b_(" has already discovered ").func_230529_a_((Component)cst.getConstellationName()).toString()ChatFormatting.RED), Util.NIL_UUID);
+            source.func_145747_a((Component)new Component("Failed! ").func_230529_a_(targetName).func_240702_b_(" has already discovered ").func_230529_a_((Component)cst.getConstellationName()).withStyle(ChatFormatting.RED)), Util.NIL_UUID);
             return 0;
         }
         if (ResearchManager.discoverConstellation(cst, target)) {
             ResearchHelper.sendConstellationDiscoveryMessage((CommandSource)target, cst);
-            source.func_145747_a((Component)new Component("Success! ").toString()ChatFormatting.GREEN), Util.NIL_UUID);
+            source.func_145747_a((Component)new Component("Success! ").withStyle(ChatFormatting.GREEN)), Util.NIL_UUID);
             return 1;
         }
-        source.func_145747_a((Component)new Component("Failed!").toString()ChatFormatting.RED), Util.NIL_UUID);
+        source.func_145747_a((Component)new Component("Failed!").withStyle(ChatFormatting.RED)), Util.NIL_UUID);
         return 0;
     }
 }

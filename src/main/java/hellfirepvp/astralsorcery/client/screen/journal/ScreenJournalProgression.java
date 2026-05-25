@@ -19,7 +19,7 @@ import java.util.Iterator;
 import net.minecraft.client.gui.Font;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import net.minecraft.util.FormattedCharSequence;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -170,7 +170,7 @@ public class ScreenJournalProgression extends ScreenJournal
     }
     
     private void drawSearchResults(final PoseStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
-        final FontRenderer fr = Minecraft.getInstance().font;
+        final Font fr = Minecraft.getInstance().font;
         final int lineHeight = 12;
         int offsetX = this.getGuiLeft() + 35;
         int offsetY = this.getGuiTop() + 26;
@@ -181,13 +181,13 @@ public class ScreenJournalProgression extends ScreenJournal
         List<ResearchNode> entries = this.searchResultPageIndex.getOrDefault(this.searchPageOffset, new ArrayList<ResearchNode>());
         for (final ResearchNode node : entries) {
             final int startOffsetY = offsetY;
-            final List<FormattedCharSequence> nodeTitle = fr.func_238425_b_((ITextProperties)node.getName(), 170);
+            final List<FormattedCharSequence> nodeTitle = fr.func_238425_b_((FormattedCharSequence)node.getName(), 170);
             float maxLength = 0.0f;
             for (final FormattedCharSequence line : nodeTitle) {
                 renderStack.popPose();
-                renderStack.func_227861_a_((double)offsetX, (double)offsetY, (double)this.getGuiZLevel());
+                renderStack.translate((double)offsetX, (double)offsetY, (double)this.getGuiZLevel());
                 final float length = RenderingDrawUtils.renderStringAt(line, renderStack, fr, 13684944, false);
-                renderStack.scale();
+                renderStack.popPose();
                 if (length > maxLength) {
                     maxLength = length;
                 }
@@ -207,13 +207,13 @@ public class ScreenJournalProgression extends ScreenJournal
         entries = this.searchResultPageIndex.getOrDefault(this.searchPageOffset + 1, new ArrayList<ResearchNode>());
         for (final ResearchNode node : entries) {
             final int startOffsetY = offsetY;
-            final List<FormattedCharSequence> nodeTitle = fr.func_238425_b_((ITextProperties)node.getName(), 170);
+            final List<FormattedCharSequence> nodeTitle = fr.func_238425_b_((FormattedCharSequence)node.getName(), 170);
             float maxLength = 0.0f;
             for (final FormattedCharSequence line : nodeTitle) {
                 renderStack.popPose();
-                renderStack.func_227861_a_((double)offsetX, (double)offsetY, (double)this.getGuiZLevel());
+                renderStack.translate((double)offsetX, (double)offsetY, (double)this.getGuiZLevel());
                 final float length = RenderingDrawUtils.renderStringAt(line, renderStack, fr, 13684944, false);
-                renderStack.scale();
+                renderStack.popPose();
                 if (length > maxLength) {
                     maxLength = length;
                 }
@@ -254,9 +254,9 @@ public class ScreenJournalProgression extends ScreenJournal
             text += "_";
         }
         renderStack.popPose();
-        renderStack.func_227861_a_((double)(this.guiLeft + 304), (double)(this.guiTop + 20), (double)this.getGuiZLevel());
-        RenderingDrawUtils.renderStringAt(this.fogColor, renderStack, (ITextProperties)new Component(text), 13421772);
-        renderStack.scale();
+        renderStack.translate((double)(this.guiLeft + 304), (double)(this.guiTop + 20), (double)this.getGuiZLevel());
+        RenderingDrawUtils.renderStringAt(this.fogColor, renderStack, (FormattedCharSequence)new Component(text), 13421772);
+        renderStack.popPose();
     }
     
     private void drawSearchPageNavArrows(final PoseStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
@@ -269,7 +269,7 @@ public class ScreenJournalProgression extends ScreenJournal
             height = 15;
             this.searchPrevRct = new Rectangle(this.guiLeft + 25, this.guiTop + 220, width, height);
             renderStack.popPose();
-            renderStack.func_227861_a_(this.searchPrevRct.getX() + width / 2.0f, this.searchPrevRct.getY() + height / 2.0f, (double)this.getGuiZLevel());
+            renderStack.translate(this.searchPrevRct.getX() + width / 2.0f, this.searchPrevRct.getY() + height / 2.0f, (double)this.getGuiZLevel());
             vFrom = 0.5f;
             if (this.searchPrevRct.contains(mouseX, mouseY)) {
                 uFrom = 0.5f;
@@ -281,10 +281,10 @@ public class ScreenJournalProgression extends ScreenJournal
                 final float sin = (float)Math.sin(t / 4.0) / 32.0f + 1.0f;
                 renderStack.translate(sin, sin, 1.0f);
             }
-            renderStack.func_227861_a_((double)(-(width / 2.0f)), (double)(-(height / 2.0f)), 0.0);
+            renderStack.translate((double)(-(width / 2.0f)), (double)(-(height / 2.0f)), 0.0);
             TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
             RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
-            renderStack.scale();
+            renderStack.popPose();
         }
         final int nextDoublePageIndex = this.searchPageOffset * 2 + 2;
         if (this.searchResultPageIndex.size() >= nextDoublePageIndex + 1) {
@@ -292,7 +292,7 @@ public class ScreenJournalProgression extends ScreenJournal
             final int height2 = 15;
             this.searchNextRct = new Rectangle(this.guiLeft + 367, this.guiTop + 220, width2, height2);
             renderStack.popPose();
-            renderStack.func_227861_a_(this.searchNextRct.getX() + width2 / 2.0f, this.searchNextRct.getY() + height2 / 2.0f, (double)this.getGuiZLevel());
+            renderStack.translate(this.searchNextRct.getX() + width2 / 2.0f, this.searchNextRct.getY() + height2 / 2.0f, (double)this.getGuiZLevel());
             final float vFrom2 = 0.0f;
             if (this.searchNextRct.contains(mouseX, mouseY)) {
                 final float uFrom2 = 0.5f;
@@ -304,10 +304,10 @@ public class ScreenJournalProgression extends ScreenJournal
                 final float sin2 = (float)Math.sin(t2 / 4.0) / 32.0f + 1.0f;
                 renderStack.translate(sin2, sin2, 1.0f);
             }
-            renderStack.func_227861_a_((double)(-(width2 / 2.0f)), (double)(-(height2 / 2.0f)), 0.0);
+            renderStack.translate((double)(-(width2 / 2.0f)), (double)(-(height2 / 2.0f)), 0.0);
             TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
             RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
-            renderStack.scale();
+            renderStack.popPose();
         }
     }
     
@@ -333,14 +333,14 @@ public class ScreenJournalProgression extends ScreenJournal
             }
         }
         this.searchResult.sort(Comparator.comparing(node -> node.getName().getString()));
-        final FontRenderer fr = Minecraft.getInstance().font;
+        final Font fr = Minecraft.getInstance().font;
         int addedPages = 0;
         int pageIndex = 0;
         while (addedPages < this.searchResult.size()) {
             final List<ResearchNode> page = this.searchResultPageIndex.computeIfAbsent(Integer.valueOf(pageIndex), index -> new ArrayList());
             final int remainingLines = ((pageIndex % 2 == 0) ? 15 : 14) - page.size();
             final ResearchNode toAddNode = this.searchResult.get(addedPages);
-            final int lines = fr.func_238425_b_((ITextProperties)toAddNode.getName(), 170).size();
+            final int lines = fr.func_238425_b_((FormattedCharSequence)toAddNode.getName(), 170).size();
             if (remainingLines < lines) {
                 ++pageIndex;
             }

@@ -1,36 +1,40 @@
+// 
+// Decompiled by Procyon v0.6.0
+// 
+
 package hellfirepvp.astralsorcery.client.screen;
 
-import com.mojang.blaze3d.vertex.BufferBuilder;
+import net.minecraft.client.renderer.BufferBuilder;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.client.PktEngraveGlass;
-import org.joml.Matrix4f;
+import net.minecraft.util.math.vector.Matrix4f;
 import java.util.function.Supplier;
-import net.minecraft.util.Mth;
+import net.minecraft.util.math.MathHelper;
 import java.util.Collection;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.item.TooltipFlag;
 import java.awt.Color;
 import java.util.Collections;
 import java.util.Random;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.RegistryKey;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.constellation.engraving.EngravedStarMap;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.World;
 import hellfirepvp.astralsorcery.common.item.ItemInfusedGlass;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
-import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.item.ItemStack;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
@@ -39,11 +43,11 @@ import java.awt.Point;
 import net.minecraft.client.gui.Font;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.util.FormattedCharSequence;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import java.util.ArrayList;
 import java.util.HashMap;
 import hellfirepvp.astralsorcery.common.constellation.DrawnConstellation;
@@ -68,7 +72,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         this.dragging = null;
     }
     
-    public void func_230430_a_(final PoseStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
+    public void func_230430_a_(final MatrixStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
         RenderSystem.enableDepthTest();
         super.func_230430_a_(renderStack, mouseX, mouseY, pTicks);
         this.mapRenderedConstellations.clear();
@@ -78,12 +82,12 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         else {
             this.drawWHRect(renderStack, TexturesAS.TEX_GUI_REFRACTION_TABLE_EMPTY);
         }
-        if (DayTimeHelper.getCurrentDaytimeDistribution(this.getTile().getLevel()) <= 0.05 || !this.getTile().hasParchment()) {
+        if (DayTimeHelper.getCurrentDaytimeDistribution(this.getTile().func_145831_w()) <= 0.05 || !this.getTile().hasParchment()) {
             this.currentlyDrawnConstellations.clear();
             this.dragging = null;
         }
-        final List<ITextProperties> tooltip = new ArrayList<ITextProperties>();
-        FontRenderer tooltipRenderer = Minecraft.getInstance().font;
+        final List<FormattedCharSequence> tooltip = new ArrayList<FormattedCharSequence>();
+        Font tooltipRenderer = Minecraft.func_71410_x().field_71466_p;
         tooltipRenderer = this.renderTileItems(renderStack, mouseX, mouseY, tooltip, tooltipRenderer);
         this.renderConstellationOptions(renderStack, mouseX, mouseY, tooltip);
         this.renderRunningHalo(renderStack);
@@ -98,7 +102,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         }
     }
     
-    private void renderDragging(final PoseStack renderStack, final int mouseX, final int mouseY) {
+    private void renderDragging(final MatrixStack renderStack, final int mouseX, final int mouseY) {
         if (this.dragging == null) {
             return;
         }
@@ -107,7 +111,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         offset.translate(-whDrawn, -whDrawn);
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
-        RenderingConstellationUtils.renderConstellationIntoGUI(this.dragging, renderStack, (float)offset.x, (float)offset.y, (float)this.getGuiZLevel(), (float)(whDrawn * 2), (float)(whDrawn * 2), 1.399999976158142, () -> DayTimeHelper.getCurrentDaytimeDistribution(this.getTile().getLevel()), true, false);
+        RenderingConstellationUtils.renderConstellationIntoGUI(this.dragging, renderStack, (float)offset.x, (float)offset.y, (float)this.getGuiZLevel(), (float)(whDrawn * 2), (float)(whDrawn * 2), 1.399999976158142, () -> DayTimeHelper.getCurrentDaytimeDistribution(this.getTile().func_145831_w()), true, false);
         RenderSystem.disableBlend();
         this.renderBox(renderStack, (float)offset.x, (float)offset.y, (float)(whDrawn * 2), (float)(whDrawn * 2), this.dragging.getTierRenderColor());
         final Rectangle r = new Rectangle(ScreenRefractionTable.PLACEMENT_GRID);
@@ -116,7 +120,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         this.renderBox(renderStack, (float)r.x, (float)r.y, (float)r.width, (float)r.height, this.dragging.getTierRenderColor());
     }
     
-    private void renderDraggedConstellations(final PoseStack renderStack) {
+    private void renderDraggedConstellations(final MatrixStack renderStack) {
         final int whDrawn = 30;
         for (final DrawnConstellation dragged : this.currentlyDrawnConstellations) {
             final Point offset = new Point(dragged.getPoint());
@@ -125,28 +129,28 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
             offset.translate(-whDrawn, -whDrawn);
             RenderSystem.enableBlend();
             Blending.DEFAULT.apply();
-            RenderingConstellationUtils.renderConstellationIntoGUI(dragged.getConstellation(), renderStack, (float)offset.x, (float)offset.y, (float)this.getGuiZLevel(), (float)(whDrawn * 2), (float)(whDrawn * 2), 1.399999976158142, () -> DayTimeHelper.getCurrentDaytimeDistribution(this.getTile().getLevel()), true, false);
+            RenderingConstellationUtils.renderConstellationIntoGUI(dragged.getConstellation(), renderStack, (float)offset.x, (float)offset.y, (float)this.getGuiZLevel(), (float)(whDrawn * 2), (float)(whDrawn * 2), 1.399999976158142, () -> DayTimeHelper.getCurrentDaytimeDistribution(this.getTile().func_145831_w()), true, false);
             RenderSystem.disableBlend();
         }
     }
     
-    private void renderInputItem(final PoseStack renderStack) {
-        if (this.getTile().getInputStack().isEmpty() || this.getTile().hasParchment()) {
+    private void renderInputItem(final MatrixStack renderStack) {
+        if (this.getTile().getInputStack().func_190926_b() || this.getTile().hasParchment()) {
             return;
         }
         this.func_230926_e_(100);
         final ItemStack input = this.getTile().getInputStack();
         RenderSystem.disableDepthTest();
-        renderStack.popPose();
-        renderStack.func_227861_a_(this.guiLeft + 63 + 16.25, this.guiTop + 42 + 16.25, (double)this.getGuiZLevel());
-        renderStack.translate(6.0f, 6.0f, 1.0f);
+        renderStack.func_227860_a_();
+        renderStack.translate(this.guiLeft + 63 + 16.25, this.guiTop + 42 + 16.25, (double)this.getGuiZLevel());
+        renderStack.func_227862_a_(6.0f, 6.0f, 1.0f);
         RenderingUtils.renderItemStackGUI(renderStack, input, null);
-        renderStack.scale();
+        renderStack.func_227865_b_();
         RenderSystem.enableDepthTest();
         this.func_230926_e_(0);
     }
     
-    private void renderRunningHalo(final PoseStack renderStack) {
+    private void renderRunningHalo(final MatrixStack renderStack) {
         if (this.getTile().getRunProgress() <= 0.0f) {
             return;
         }
@@ -156,22 +160,22 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
         RenderSystem.disableAlphaTest();
-        renderStack.popPose();
-        renderStack.func_227861_a_((double)(this.guiWidth / 2.0f), (double)(this.guiHeight / 2.0f), 0.0);
-        renderStack.translate(-scale / 2.0f, -scale / 2.0f, 1.0f);
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).dim(scale, scale).color(1.0f, 1.0f, 1.0f, this.getTile().getRunProgress()).tex((float)uvFrame.getA(), (float)uvFrame.getB(), SpritesAS.SPR_HALO_INFUSION.getUWidth(), SpritesAS.SPR_HALO_INFUSION.getVWidth()).draw());
-        renderStack.scale();
+        renderStack.func_227860_a_();
+        renderStack.translate((double)(this.guiWidth / 2.0f), (double)(this.guiHeight / 2.0f), 0.0);
+        renderStack.func_227862_a_(-scale / 2.0f, -scale / 2.0f, 1.0f);
+        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).dim(scale, scale).color(1.0f, 1.0f, 1.0f, this.getTile().getRunProgress()).tex((float)uvFrame.func_76341_a(), (float)uvFrame.func_76340_b(), SpritesAS.SPR_HALO_INFUSION.getUWidth(), SpritesAS.SPR_HALO_INFUSION.getVWidth()).draw());
+        renderStack.func_227865_b_();
         RenderSystem.enableAlphaTest();
         Blending.DEFAULT.apply();
         RenderSystem.disableBlend();
     }
     
-    private void renderDrawnConstellations(final PoseStack renderStack, final int mouseX, final int mouseY, final List<ITextProperties> tooltip) {
+    private void renderDrawnConstellations(final MatrixStack renderStack, final int mouseX, final int mouseY, final List<FormattedCharSequence> tooltip) {
         final ItemStack glass = this.getTile().getGlassStack();
-        if (glass.isEmpty()) {
+        if (glass.func_190926_b()) {
             return;
         }
-        final Level world = this.getTile().getLevel();
+        final World world = this.getTile().func_145831_w();
         final float nightPerc = DayTimeHelper.getCurrentDaytimeDistribution(world);
         final WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
         if (ctx == null || !this.getTile().doesSeeSky() || nightPerc <= 0.05f) {
@@ -194,19 +198,19 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         }
     }
     
-    private void renderConstellationOptions(final PoseStack renderStack, final int mouseX, final int mouseY, final List<ITextProperties> tooltip) {
+    private void renderConstellationOptions(final MatrixStack renderStack, final int mouseX, final int mouseY, final List<FormattedCharSequence> tooltip) {
         final ItemStack glass = this.getTile().getGlassStack();
-        if (glass.isEmpty()) {
+        if (glass.func_190926_b()) {
             return;
         }
-        final Level world = this.getTile().getLevel();
+        final World world = this.getTile().func_145831_w();
         final float nightPerc = DayTimeHelper.getCurrentDaytimeDistribution(world);
         final WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
         if (ctx == null || !this.getTile().doesSeeSky() || nightPerc <= 0.05f) {
             return;
         }
         final List<IConstellation> cstList = ctx.getActiveCelestialsHandler().getActiveConstellations().stream().filter(c -> ResearchHelper.getClientProgress().hasConstellationDiscovered(c)).collect((Collector<? super IConstellation, ?, List<IConstellation>>)Collectors.toList());
-        final Random rand = new Random(WorldSeedCache.getSeedIfPresent((RegistryKey<Level>)world.dimension()).orElse(5863439008313086302L));
+        final Random rand = new Random(WorldSeedCache.getSeedIfPresent((RegistryKey<World>)world.func_234923_W_()).orElse(5863439008313086302L));
         for (int i = 0; i < ctx.getConstellationHandler().getLastTrackedDay(); ++i) {
             rand.nextLong();
         }
@@ -222,69 +226,69 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
             RenderingConstellationUtils.renderConstellationIntoGUI(Color.WHITE, cst, renderStack, (float)offsetX, (float)offsetY, (float)this.getGuiZLevel(), 16.0f, 16.0f, 0.5, () -> DayTimeHelper.getCurrentDaytimeDistribution(world), true, false);
             RenderSystem.disableBlend();
             if (rct.contains(mouseX, mouseY)) {
-                tooltip.add((ITextProperties)cst.getConstellationName());
+                tooltip.add((FormattedCharSequence)cst.getConstellationName());
             }
         }
     }
     
-    private FontRenderer renderTileItems(final PoseStack renderStack, final int mouseX, final int mouseY, final List<ITextProperties> tooltip, FontRenderer tooltipRenderer) {
+    private Font renderTileItems(final MatrixStack renderStack, final int mouseX, final int mouseY, final List<FormattedCharSequence> tooltip, Font tooltipRenderer) {
         this.func_230926_e_(100);
         final ItemStack input = this.getTile().getInputStack();
-        if (!input.isEmpty()) {
+        if (!input.func_190926_b()) {
             final Rectangle itemRct = new Rectangle(this.guiLeft + 111, this.guiTop + 8, 16, 16);
-            renderStack.popPose();
-            renderStack.func_227861_a_((double)itemRct.x, (double)itemRct.y, (double)this.getGuiZLevel());
+            renderStack.func_227860_a_();
+            renderStack.translate((double)itemRct.x, (double)itemRct.y, (double)this.getGuiZLevel());
             RenderingUtils.renderItemStackGUI(renderStack, input, null);
-            renderStack.scale();
+            renderStack.func_227865_b_();
             if (itemRct.contains(mouseX, mouseY)) {
-                final FontRenderer custom = input.getItem().getFontRenderer(input);
+                final Font custom = input.func_77973_b().getFontRenderer(input);
                 if (custom != null) {
                     tooltipRenderer = custom;
                 }
-                tooltip.addAll(input.func_82840_a((Player)this.getMinecraft().player, (TooltipFlag)(Minecraft.getInstance().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
+                tooltip.addAll(input.func_82840_a((PlayerEntity)this.getMinecraft().field_71439_g, (TooltipFlag)(Minecraft.func_71410_x().options.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
             }
         }
         final ItemStack glass = this.getTile().getGlassStack();
-        if (!glass.isEmpty()) {
+        if (!glass.func_190926_b()) {
             final Rectangle itemRct2 = new Rectangle(this.guiLeft + 129, this.guiTop + 8, 16, 16);
-            renderStack.popPose();
-            renderStack.func_227861_a_((double)itemRct2.x, (double)itemRct2.y, (double)this.getGuiZLevel());
+            renderStack.func_227860_a_();
+            renderStack.translate((double)itemRct2.x, (double)itemRct2.y, (double)this.getGuiZLevel());
             RenderingUtils.renderItemStackGUI(renderStack, glass, null);
-            renderStack.scale();
+            renderStack.func_227865_b_();
             if (itemRct2.contains(mouseX, mouseY)) {
-                final FontRenderer custom2 = glass.getItem().getFontRenderer(glass);
+                final Font custom2 = glass.func_77973_b().getFontRenderer(glass);
                 if (custom2 != null) {
                     tooltipRenderer = custom2;
                 }
-                tooltip.addAll(glass.func_82840_a((Player)this.getMinecraft().player, (TooltipFlag)(Minecraft.getInstance().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
+                tooltip.addAll(glass.func_82840_a((PlayerEntity)this.getMinecraft().field_71439_g, (TooltipFlag)(Minecraft.func_71410_x().options.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
             }
         }
         this.func_230926_e_(0);
         return tooltipRenderer;
     }
     
-    private void renderBox(final PoseStack renderStack, final float offsetX, final float offsetY, final float width, final float height, final Color c) {
+    private void renderBox(final MatrixStack renderStack, final float offsetX, final float offsetY, final float width, final float height, final Color c) {
         final Random rand = new Random(18L);
         final float r = c.getRed() / 255.0f;
         final float g = c.getGreen() / 255.0f;
         final float b = c.getBlue() / 255.0f;
-        final Supplier<Float> alpha = () -> 0.1f + 0.4f * ((Mth.func_76126_a(rand.nextInt(200) + ClientScheduler.getClientTick() / 20.0f) + 1.0f) / 2.0f);
+        final Supplier<Float> alpha = () -> 0.1f + 0.4f * ((MathHelper.func_76126_a(rand.nextInt(200) + ClientScheduler.getClientTick() / 20.0f) + 1.0f) / 2.0f);
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
         RenderSystem.disableAlphaTest();
         RenderSystem.lineWidth(2.0f);
         RenderSystem.disableTexture();
         RenderSystem.disableDepthTest();
-        RenderingUtils.draw(1, DefaultVertexFormat.field_181706_f, buf -> {
-            final Matrix4f offset = renderStack.last().translate();
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-            buf.func_227888_a_(offset, offsetX + width, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-            buf.func_227888_a_(offset, offsetX + width, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-            buf.func_227888_a_(offset, offsetX, offsetY + height, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
-            buf.func_227888_a_(offset, offsetX, offsetY, 0.0f).pushPose()r, g, b, (float)alpha.get()).blockPosition();
+        RenderingUtils.draw(1, DefaultVertexFormat.POSITION_COLOR, buf -> {
+            final Matrix4f offset = renderStack.func_227866_c_().func_227870_a_();
+            buf.vertex(offset, offsetX, offsetY, 0.0f).color(r, g, b, (float)alpha.get()).endVertex();
+            buf.vertex(offset, offsetX + width, offsetY, 0.0f).color(r, g, b, (float)alpha.get()).endVertex();
+            buf.vertex(offset, offsetX + width, offsetY, 0.0f).color(r, g, b, (float)alpha.get()).endVertex();
+            buf.vertex(offset, offsetX + width, offsetY + height, 0.0f).color(r, g, b, (float)alpha.get()).endVertex();
+            buf.vertex(offset, offsetX + width, offsetY + height, 0.0f).color(r, g, b, (float)alpha.get()).endVertex();
+            buf.vertex(offset, offsetX, offsetY + height, 0.0f).color(r, g, b, (float)alpha.get()).endVertex();
+            buf.vertex(offset, offsetX, offsetY + height, 0.0f).color(r, g, b, (float)alpha.get()).endVertex();
+            buf.vertex(offset, offsetX, offsetY, 0.0f).color(r, g, b, (float)alpha.get()).endVertex();
             return;
         });
         RenderSystem.enableDepthTest();
@@ -299,7 +303,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         super.func_231023_e_();
         if (this.currentlyDrawnConstellations.size() >= 3) {
             final List<DrawnConstellation> copyList = new ArrayList<DrawnConstellation>(this.currentlyDrawnConstellations);
-            final PktEngraveGlass engraveGlass = new PktEngraveGlass((RegistryKey<Level>)this.getTile().getLevel().dimension(), this.getTile().getBlockState(), copyList);
+            final PktEngraveGlass engraveGlass = new PktEngraveGlass((RegistryKey<World>)this.getTile().func_145831_w().func_234923_W_(), this.getTile().func_174877_v(), copyList);
             PacketChannel.CHANNEL.sendToServer(engraveGlass);
             this.currentlyDrawnConstellations.clear();
         }

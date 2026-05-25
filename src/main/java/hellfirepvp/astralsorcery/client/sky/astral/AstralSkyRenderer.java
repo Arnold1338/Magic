@@ -118,15 +118,15 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         RenderSystem.enableTexture();
         Blending.ADDITIVE_ALPHA.apply();
         renderStack.popPose();
-        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()-90.0f));
-        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()world.func_242415_f(pTicks) * 360.0f));
+        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()-90.0f));
+        renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()world.func_242415_f(pTicks) * 360.0f));
         this.renderCelestials(world, renderStack, pTicks);
         this.renderStars(world, renderStack, pTicks);
-        renderStack.scale();
         renderStack.popPose();
-        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
+        renderStack.popPose();
+        renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()180.0f));
         renderConstellationsSky(world, renderStack, pTicks);
-        renderStack.scale();
+        renderStack.popPose();
         RenderSystem.disableBlend();
         RenderSystem.enableAlphaTest();
         RenderSystem.enableFog();
@@ -135,9 +135,9 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         final double horizonDiff = Minecraft.getInstance().player.func_174824_e(pTicks).field_72448_b - world.func_72912_H().func_239159_f_();
         if (horizonDiff < 0.0) {
             renderStack.popPose();
-            renderStack.func_227861_a_(0.0, 12.0, 0.0);
+            renderStack.translate(0.0, 12.0, 0.0);
             this.skyHorizon.render(renderStack);
-            renderStack.scale();
+            renderStack.popPose();
         }
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.enableTexture();
@@ -225,16 +225,16 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         final float uOffset = u;
         TexturesAS.TEX_SOLAR_ECLIPSE.bindTexture();
         renderStack.popPose();
-        renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()-90.0f));
+        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()-90.0f));
         final Matrix4f matr = renderStack.last().translate();
         RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
-            buf.func_227888_a_(matr, -sunSize, 100.0f, -sunSize).setPos(uOffset / 7.0f, 0.0f).blockPosition();
-            buf.func_227888_a_(matr, sunSize, 100.0f, -sunSize).setPos((uOffset + 1.0f) / 7.0f, 0.0f).blockPosition();
-            buf.func_227888_a_(matr, sunSize, 100.0f, sunSize).setPos((uOffset + 1.0f) / 7.0f, 1.0f).blockPosition();
-            buf.func_227888_a_(matr, -sunSize, 100.0f, sunSize).setPos(uOffset / 7.0f, 1.0f).blockPosition();
+            buf.vertex(matr, -sunSize, 100.0f, -sunSize).setPos(uOffset / 7.0f, 0.0f).blockPosition();
+            buf.vertex(matr, sunSize, 100.0f, -sunSize).setPos((uOffset + 1.0f) / 7.0f, 0.0f).blockPosition();
+            buf.vertex(matr, sunSize, 100.0f, sunSize).setPos((uOffset + 1.0f) / 7.0f, 1.0f).blockPosition();
+            buf.vertex(matr, -sunSize, 100.0f, sunSize).setPos(uOffset / 7.0f, 1.0f).blockPosition();
             return;
         });
-        renderStack.scale();
+        renderStack.popPose();
     }
     
     private void renderSun(final PoseStack renderStack) {
@@ -242,10 +242,10 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         final Matrix4f matr = renderStack.last().translate();
         Minecraft.getInstance().func_110434_K().func_110577_a(AstralSkyRenderer.REF_TEX_SUN);
         RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
-            buf.func_227888_a_(matr, -sunSize, 100.0f, -sunSize).setPos(0.0f, 0.0f).blockPosition();
-            buf.func_227888_a_(matr, sunSize, 100.0f, -sunSize).setPos(1.0f, 0.0f).blockPosition();
-            buf.func_227888_a_(matr, sunSize, 100.0f, sunSize).setPos(1.0f, 1.0f).blockPosition();
-            buf.func_227888_a_(matr, -sunSize, 100.0f, sunSize).setPos(0.0f, 1.0f).blockPosition();
+            buf.vertex(matr, -sunSize, 100.0f, -sunSize).setPos(0.0f, 0.0f).blockPosition();
+            buf.vertex(matr, sunSize, 100.0f, -sunSize).setPos(1.0f, 0.0f).blockPosition();
+            buf.vertex(matr, sunSize, 100.0f, sunSize).setPos(1.0f, 1.0f).blockPosition();
+            buf.vertex(matr, -sunSize, 100.0f, sunSize).setPos(0.0f, 1.0f).blockPosition();
         });
     }
     
@@ -261,24 +261,24 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         final Matrix4f matr = renderStack.last().translate();
         Minecraft.getInstance().func_110434_K().func_110577_a(AstralSkyRenderer.REF_TEX_MOON_PHASES);
         RenderingUtils.draw(7, DefaultVertexFormat.field_181707_g, buf -> {
-            buf.func_227888_a_(matr, -moonSize, -100.0f, moonSize).setPos(maxU, maxV).blockPosition();
-            buf.func_227888_a_(matr, moonSize, -100.0f, moonSize).setPos(minU, maxV).blockPosition();
-            buf.func_227888_a_(matr, moonSize, -100.0f, -moonSize).setPos(minU, minV).blockPosition();
-            buf.func_227888_a_(matr, -moonSize, -100.0f, -moonSize).setPos(maxU, minV).blockPosition();
+            buf.vertex(matr, -moonSize, -100.0f, moonSize).setPos(maxU, maxV).blockPosition();
+            buf.vertex(matr, moonSize, -100.0f, moonSize).setPos(minU, maxV).blockPosition();
+            buf.vertex(matr, moonSize, -100.0f, -moonSize).setPos(minU, minV).blockPosition();
+            buf.vertex(matr, -moonSize, -100.0f, -moonSize).setPos(maxU, minV).blockPosition();
         });
     }
     
     private void renderDuskDawn(final float[] duskDawnColors, final PoseStack renderStack, final ClientLevel world, final float pTicks) {
         final float f3 = (Mth.func_76126_a(world.func_72929_e(pTicks)) < 0.0f) ? 180.0f : 0.0f;
         renderStack.popPose();
-        renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()90.0f));
-        renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()f3));
-        renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()90.0f));
+        renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()90.0f));
+        renderStack.mulPose(new org.joml.Vector3f(0, 0, 1).getMultiBufferSource()f3));
+        renderStack.mulPose(new org.joml.Vector3f(0, 0, 1).getMultiBufferSource()90.0f));
         final float r = duskDawnColors[0];
         final float g = duskDawnColors[1];
         final float b = duskDawnColors[2];
         final float a = duskDawnColors[3];
-        RenderingUtils.draw(6, DefaultVertexFormat.field_181706_f, buf -> {
+        RenderingUtils.draw(6, DefaultVertexFormat.POSITION_COLOR, buf -> {
             buf.func_225582_a_(0.0, 100.0, 0.0).pushPose()r, g, b, a).blockPosition();
             for (int i = 0; i <= 16; ++i) {
                 final float f4 = i * 6.2831855f / 16.0f;
@@ -288,7 +288,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
             }
             return;
         });
-        renderStack.scale();
+        renderStack.popPose();
     }
     
     static {

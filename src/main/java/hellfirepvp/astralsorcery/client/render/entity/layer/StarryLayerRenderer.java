@@ -18,15 +18,15 @@ import net.minecraft.client.renderer.RenderType;
 import hellfirepvp.astralsorcery.common.util.object.CacheReference;
 import java.util.List;
 import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
-import net.minecraft.client.model.BipedModel;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.LivingEntity;
 
-public class StarryLayerRenderer<E extends LivingEntity, M extends BipedModel<E>> extends BipedArmorLayer<E, M, BipedModel<E>>
+public class StarryLayerRenderer<E extends LivingEntity, M extends HumanoidModel<E>> extends BipedArmorLayer<E, M, HumanoidModel<E>>
 {
     private static final List<CacheReference<RenderType>> RENDER_TYPES;
-    private static final BipedModel MODEL_HEAD;
-    private static final BipedModel MODEL_ARMOR;
-    private static final BipedModel MODEL_ARMOR_SMALL;
+    private static final HumanoidModel MODEL_HEAD;
+    private static final HumanoidModel MODEL_ARMOR;
+    private static final HumanoidModel MODEL_ARMOR_SMALL;
     private static BiPredicate<Player, EquipmentSlot> renderTest;
     private final boolean slimRender;
     
@@ -45,15 +45,15 @@ public class StarryLayerRenderer<E extends LivingEntity, M extends BipedModel<E>
         }
         for (final EquipmentSlot slotType : EquipmentSlot.values()) {
             if (slotType.func_188453_a() == EquipmentSlot.Group.ARMOR && StarryLayerRenderer.renderTest.test((Player)entity, slotType)) {
-                final BipedModel<E> model = (BipedModel<E>)((slotType == EquipmentSlot.HEAD) ? StarryLayerRenderer.MODEL_HEAD : (this.slimRender ? StarryLayerRenderer.MODEL_ARMOR_SMALL : StarryLayerRenderer.MODEL_ARMOR));
+                final HumanoidModel<E> model = (HumanoidModel<E>)((slotType == EquipmentSlot.HEAD) ? StarryLayerRenderer.MODEL_HEAD : (this.slimRender ? StarryLayerRenderer.MODEL_ARMOR_SMALL : StarryLayerRenderer.MODEL_ARMOR));
                 this.renderArmorPart(renderStack, buffer, slotType, light, model);
             }
         }
     }
     
-    private void renderArmorPart(final PoseStack renderStack, final MultiBufferSource buffer, final EquipmentSlot slotType, final int light, final BipedModel<E> model) {
-        ((BipedModel)this.func_215332_c()).func_217148_a((BipedModel)model);
-        this.func_188359_a((BipedModel)model, slotType);
+    private void renderArmorPart(final PoseStack renderStack, final MultiBufferSource buffer, final EquipmentSlot slotType, final int light, final HumanoidModel<E> model) {
+        ((HumanoidModel)this.func_215332_c()).func_217148_a((HumanoidModel)model);
+        this.func_188359_a((HumanoidModel)model, slotType);
         for (final CacheReference<RenderType> renderType : StarryLayerRenderer.RENDER_TYPES) {
             model.func_225598_a_(renderStack, buffer.getBuffer((RenderType)renderType.get()), light, OverlayTexture.field_229196_a_, 0.4f, 0.4f, 1.0f, 0.1f);
         }
@@ -61,9 +61,9 @@ public class StarryLayerRenderer<E extends LivingEntity, M extends BipedModel<E>
     
     static {
         RENDER_TYPES = IntStream.range(0, 2).mapToObj(i -> new CacheReference(() -> RegistryRenderTypes.createDepthProjectionType(i))).collect((Collector<? super Object, ?, List<CacheReference<RenderType>>>)Collectors.toList());
-        MODEL_HEAD = (BipedModel)new PlayerModel(-0.5f, false);
-        MODEL_ARMOR = (BipedModel)new PlayerModel(0.0f, false);
-        MODEL_ARMOR_SMALL = (BipedModel)new PlayerModel(0.0f, true);
+        MODEL_HEAD = (HumanoidModel)new PlayerModel(-0.5f, false);
+        MODEL_ARMOR = (HumanoidModel)new PlayerModel(0.0f, false);
+        MODEL_ARMOR_SMALL = (HumanoidModel)new PlayerModel(0.0f, true);
         StarryLayerRenderer.renderTest = ((p, type) -> false);
     }
 }

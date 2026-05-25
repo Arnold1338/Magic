@@ -17,7 +17,7 @@ public interface NavigationArrowScreen
         final float height = 15.0f;
         final Rectangle rectArrow = new Rectangle(offsetLeft, offsetTop, (int)width, (int)height);
         renderStack.popPose();
-        renderStack.func_227861_a_(rectArrow.getX() + width / 2.0f, rectArrow.getY() + height / 2.0f, 0.0);
+        renderStack.translate(rectArrow.getX() + width / 2.0f, rectArrow.getY() + height / 2.0f, 0.0);
         final float vFrom = (direction == Type.LEFT) ? 0.5f : 0.0f;
         float uFrom;
         if (rectArrow.contains(mouseX, mouseY)) {
@@ -30,10 +30,10 @@ public interface NavigationArrowScreen
             final float sin = (float)Math.sin(t / 4.0) / 32.0f + 1.0f;
             renderStack.translate(sin, sin, sin);
         }
-        renderStack.func_227861_a_((double)(-(width / 2.0f)), (double)(-(height / 2.0f)), 0.0);
+        renderStack.translate((double)(-(width / 2.0f)), (double)(-(height / 2.0f)), 0.0);
         TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
         RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, (float)guiZLevel, width, height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
-        renderStack.scale();
+        renderStack.popPose();
         return rectArrow;
     }
     

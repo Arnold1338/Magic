@@ -6,7 +6,7 @@ import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -104,13 +104,13 @@ public class ScreenJournalPages extends ScreenJournal implements NavigationArrow
         this.func_230926_e_(100);
         int pageYOffset = 20;
         if (this.currentPageOffset == 0) {
-            final int width = this.fogColor.func_238414_a_((ITextProperties)this.func_231171_q_());
+            final int width = this.fogColor.func_238414_a_((FormattedCharSequence)this.func_231171_q_());
             renderStack.popPose();
-            renderStack.func_227861_a_((double)(this.guiLeft + 117), (double)(this.guiTop + 22), (double)this.getGuiZLevel());
+            renderStack.translate((double)(this.guiLeft + 117), (double)(this.guiTop + 22), (double)this.getGuiZLevel());
             renderStack.translate(1.3f, 1.3f, 1.0f);
-            renderStack.func_227861_a_((double)(-width / 2.0f), 0.0, 0.0);
-            RenderingDrawUtils.renderStringAt(this.fogColor, renderStack, (ITextProperties)this.func_231171_q_(), 14540253);
-            renderStack.scale();
+            renderStack.translate((double)(-width / 2.0f), 0.0, 0.0);
+            RenderingDrawUtils.renderStringAt(this.fogColor, renderStack, (FormattedCharSequence)this.func_231171_q_(), 14540253);
+            renderStack.popPose();
             RenderSystem.enableBlend();
             Blending.DEFAULT.apply();
             TexturesAS.TEX_GUI_BOOK_UNDERLINE.bindTexture();

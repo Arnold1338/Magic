@@ -146,15 +146,15 @@ public final class CrystalAttributes
                     missing = true;
                 }
                 else {
-                    final MutableComponent enchantmentLevel = new Component(String.format("enchantment.level.%s", attr.getTier())).toString()ChatFormatting.GOLD);
-                    final MutableComponent propertyName = prop.getName(attr.getTier()).toString()ChatFormatting.GRAY);
+                    final MutableComponent enchantmentLevel = new Component(String.format("enchantment.level.%s", attr.getTier())).withStyle(ChatFormatting.GOLD));
+                    final MutableComponent propertyName = prop.getName(attr.getTier()).withStyle(ChatFormatting.GRAY));
                     tooltip.add((Component)propertyName.func_230529_a_((Component)new Component(" ")).func_230529_a_((Component)enchantmentLevel));
                     addedAtLeastOne = true;
                 }
             }
         }
         if (missing) {
-            tooltip.add((Component)new Component("astralsorcery.progress.missing.knowledge").toString()ChatFormatting.GRAY));
+            tooltip.add((Component)new Component("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY)));
         }
         return (missing && !addedAtLeastOne) ? TooltipResult.ALL_MISSING : (missing ? TooltipResult.ADDED_ALL_WITH_MISSING : TooltipResult.ADDED_ALL);
     }

@@ -61,7 +61,7 @@ public class TypeStarHalo extends PatreonEffect implements ITickHandler
             final int age = 20 + TypeStarHalo.rand.nextInt(10);
             MiscUtils.applyRandomOffset(offset, TypeStarHalo.rand, 0.02f);
             final FXFacingParticle particle = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(headPos.clone().addY(0.4000000059604645).add(offset)).setAlphaMultiplier(0.8f).alpha(((VFXAlphaFunction<?>)((fx, alphaIn, pTicks) -> {
-                if (this.shouldDoEffect(player) && Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a() && player.xRot < -30.0f) {
+                if (this.shouldDoEffect(player) && Minecraft.getInstance().options.func_243230_g().func_243192_a() && player.xRot < -30.0f) {
                     return Mth.canEnchant(1.0f - (Math.abs(player.xRot) - 30.0f) / 15.0f, 0.0f, 1.0f) * alphaIn;
                 }
                 else {
@@ -74,7 +74,7 @@ public class TypeStarHalo extends PatreonEffect implements ITickHandler
             FXFacingParticle starParticle = null;
             if (TypeStarHalo.rand.nextInt(5) == 0) {
                 starParticle = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(headPos.clone().addY(0.4000000059604645).add(offset)).setAlphaMultiplier(0.8f).color(VFXColorFunction.WHITE).alpha(((VFXAlphaFunction<?>)((fx, alphaIn, pTicks) -> {
-                    if (this.shouldDoEffect(player) && Minecraft.getInstance().field_71474_y.func_243230_g().func_243192_a() && player.xRot < -30.0f) {
+                    if (this.shouldDoEffect(player) && Minecraft.getInstance().options.func_243230_g().func_243192_a() && player.xRot < -30.0f) {
                         return Mth.canEnchant(1.0f - (Math.abs(player.xRot) - 30.0f) / 15.0f, 0.0f, 1.0f) * alphaIn;
                     }
                     else {

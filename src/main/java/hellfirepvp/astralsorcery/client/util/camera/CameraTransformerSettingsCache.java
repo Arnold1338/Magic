@@ -27,9 +27,9 @@ public abstract class CameraTransformerSettingsCache implements ICameraTransform
     @Override
     public void onStartTransforming(final float pTicks) {
         final Minecraft mc = Minecraft.getInstance();
-        this.viewBobbing = mc.field_71474_y.field_74336_f;
-        this.hideGui = mc.field_71474_y.field_74319_N;
-        this.thirdPersonView = mc.field_71474_y.func_243230_g();
+        this.viewBobbing = mc.options.field_74336_f;
+        this.hideGui = mc.options.field_74319_N;
+        this.thirdPersonView = mc.options.func_243230_g();
         final Player player = (Player)mc.player;
         this.flying = player.field_71075_bZ.field_75100_b;
         this.startPosition = new Vector3(player.getX(), player.getY(), player.getZ());
@@ -42,7 +42,7 @@ public abstract class CameraTransformerSettingsCache implements ICameraTransform
     @Override
     public void onStopTransforming(final float pTicks) {
         if (this.active) {
-            final GameSettings settings = Minecraft.getInstance().field_71474_y;
+            final GameSettings settings = Minecraft.getInstance().options;
             settings.field_74336_f = this.viewBobbing;
             settings.field_74319_N = this.hideGui;
             settings.func_243229_a(this.thirdPersonView);
@@ -59,7 +59,7 @@ public abstract class CameraTransformerSettingsCache implements ICameraTransform
         if (!this.active) {
             return;
         }
-        final GameSettings settings = Minecraft.getInstance().field_71474_y;
+        final GameSettings settings = Minecraft.getInstance().options;
         settings.field_74319_N = true;
         settings.field_74336_f = false;
         settings.func_243229_a(PointOfView.THIRD_PERSON_BACK);

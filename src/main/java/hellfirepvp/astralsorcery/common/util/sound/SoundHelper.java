@@ -80,7 +80,7 @@ public class SoundHelper
     
     @OnlyIn(Dist.CLIENT)
     public static float getSoundVolume(final SoundSource cat) {
-        return Minecraft.getInstance().field_71474_y.func_186711_a(cat);
+        return Minecraft.getInstance().options.func_186711_a(cat);
     }
     
     @OnlyIn(Dist.CLIENT)

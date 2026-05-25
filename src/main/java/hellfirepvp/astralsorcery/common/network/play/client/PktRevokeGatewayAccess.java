@@ -83,7 +83,7 @@ public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess>
                                 PacketChannel.CHANNEL.sendToPlayer(sender, pkt);
                                 new Component("astralsorcery.misc.link.gateway.unlink", new Object[] { removedPlayer.getPlayerName() });
                                 final Component translationTextComponent;
-                                final Component accessGrantedMessage = (Component)translationTextComponent.toString()ChatFormatting.GREEN);
+                                final Component accessGrantedMessage = (Component)translationTextComponent.withStyle(ChatFormatting.GREEN));
                                 sender.func_145747_a(accessGrantedMessage, Util.NIL_UUID);
                             }
                         }

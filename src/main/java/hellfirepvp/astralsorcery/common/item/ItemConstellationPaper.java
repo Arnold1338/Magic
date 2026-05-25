@@ -67,10 +67,10 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
     public void func_77624_a(final ItemStack stack, @Nullable final Level world, final List<Component> toolTip, final TooltipFlag flag) {
         final IConstellation c = this.getConstellation(stack);
         if (c != null && c.canDiscover((Player)Minecraft.getInstance().player, ResearchHelper.getClientProgress())) {
-            toolTip.add((Component)c.getConstellationName().toString()ChatFormatting.BLUE));
+            toolTip.add((Component)c.getConstellationName().withStyle(ChatFormatting.BLUE)));
         }
         else {
-            toolTip.add((Component)new Component("astralsorcery.misc.noinformation").toString()ChatFormatting.GRAY));
+            toolTip.add((Component)new Component("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY)));
         }
     }
     

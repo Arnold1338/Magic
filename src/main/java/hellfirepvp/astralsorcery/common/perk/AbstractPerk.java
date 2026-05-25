@@ -237,7 +237,7 @@ public class AbstractPerk implements ModifierSource
             this.tooltipCache.addAll(this.getDescription());
         }
         else {
-            this.tooltipCache.add(new Component("perk.info.astralsorcery.missing_progress").toString()ChatFormatting.RED));
+            this.tooltipCache.add(new Component("perk.info.astralsorcery.missing_progress").withStyle(ChatFormatting.RED)));
         }
         return this.tooltipCache;
     }

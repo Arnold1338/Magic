@@ -28,10 +28,10 @@ public class ScreenContainerAltarConstellation extends ScreenContainerAltar<Cont
         if (recipe != null) {
             final ItemStack out = recipe.getOutputForRender(this.func_212873_a_().getTileEntity().getInventory());
             renderStack.popPose();
-            renderStack.func_227861_a_(190.0, 35.0, 0.0);
+            renderStack.translate(190.0, 35.0, 0.0);
             renderStack.translate(2.5f, 2.5f, 1.0f);
             RenderingUtils.renderItemStackGUI(renderStack, out, null);
-            renderStack.scale();
+            renderStack.popPose();
         }
     }
     

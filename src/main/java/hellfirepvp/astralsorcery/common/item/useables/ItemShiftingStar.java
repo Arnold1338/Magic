@@ -48,10 +48,10 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
         final IConstellation cst = this.getBaseConstellation();
         if (cst != null) {
             if (ResearchHelper.getClientProgress().hasConstellationDiscovered(cst)) {
-                tooltip.add((Component)cst.getConstellationName().toString()ChatFormatting.BLUE));
+                tooltip.add((Component)cst.getConstellationName().withStyle(ChatFormatting.BLUE)));
             }
             else {
-                tooltip.add((Component)new Component("astralsorcery.misc.noinformation").toString()ChatFormatting.GRAY));
+                tooltip.add((Component)new Component("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY)));
             }
         }
     }
@@ -73,13 +73,13 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
                 final double perkExp = prog.getPerkData().getPerkExp();
                 if (ResearchManager.setAttunedConstellation((Player)player, cst)) {
                     ResearchManager.setExp((Player)player, Mth.func_76124_d(perkExp));
-                    player.func_145747_a((Component)new Component("astralsorcery.progress.switch.attunement").toString()ChatFormatting.BLUE), Util.NIL_UUID);
+                    player.func_145747_a((Component)new Component("astralsorcery.progress.switch.attunement").withStyle(ChatFormatting.BLUE)), Util.NIL_UUID);
                     SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vector3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
                     return ItemStack.EMPTY;
                 }
             }
             else if (ResearchManager.setAttunedConstellation((Player)player, null)) {
-                player.func_145747_a((Component)new Component("astralsorcery.progress.remove.attunement").toString()ChatFormatting.BLUE), Util.NIL_UUID);
+                player.func_145747_a((Component)new Component("astralsorcery.progress.remove.attunement").withStyle(ChatFormatting.BLUE)), Util.NIL_UUID);
                 SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vector3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
                 return ItemStack.EMPTY;
             }

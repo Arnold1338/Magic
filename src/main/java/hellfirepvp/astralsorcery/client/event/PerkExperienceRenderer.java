@@ -12,7 +12,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import net.minecraft.client.gui.Font;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
@@ -76,16 +76,16 @@ public class PerkExperienceRenderer implements ITickHandler
         RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, expOffsetX, expOffsetY, 10.0f, expWidth, expHeight).color(1.0f, 0.9f, 0.0f, this.visibilityReveal * 0.9f).tex(0.0f, 0.0f, 1.0f, 1.0f - perc).draw());
         final String strLevel = String.valueOf(perkData.getPerkLevel(player, LogicalSide.CLIENT));
         final Component txtLevel = new Component(strLevel);
-        final int strLength = Minecraft.getInstance().font.func_238414_a_((ITextProperties)txtLevel);
+        final int strLength = Minecraft.getInstance().font.func_238414_a_((FormattedCharSequence)txtLevel);
         renderStack.popPose();
-        renderStack.func_227861_a_((double)(15.0f - strLength / 2.0f), 94.0, 20.0);
+        renderStack.translate((double)(15.0f - strLength / 2.0f), 94.0, 20.0);
         renderStack.translate(1.2f, 1.2f, 1.0f);
         int c = 14540253;
         c |= (int)(255.0f * this.visibilityReveal) << 24;
         if (this.visibilityReveal > 1.0E-5) {
-            RenderingDrawUtils.renderStringAt((ITextProperties)txtLevel, renderStack, null, c, true);
+            RenderingDrawUtils.renderStringAt((FormattedCharSequence)txtLevel, renderStack, null, c, true);
         }
-        renderStack.scale();
+        renderStack.popPose();
         BlockAtlasTexture.getInstance().bindTexture();
     }
     

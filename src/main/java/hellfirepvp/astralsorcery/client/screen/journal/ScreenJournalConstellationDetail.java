@@ -32,7 +32,7 @@ import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import java.util.Collection;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import net.minecraft.network.chat.Component;
 import java.util.LinkedList;
 import net.minecraft.network.chat.Component;
@@ -109,12 +109,12 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     private void buildCapeText() {
         if (this.constellation instanceof IWeakConstellation && ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
             final Component txtMantle = ((IWeakConstellation)this.constellation).getInfoMantleEffect();
-            final ITextProperties headTxt = (ITextProperties)new Component("astralsorcery.journal.constellation.mantle");
+            final FormattedCharSequence headTxt = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.mantle");
             this.locTextMantle.add(this.localize(headTxt));
             this.locTextMantle.add(FormattedCharSequence.field_242232_a);
             final List<FormattedCharSequence> lines = new LinkedList<FormattedCharSequence>();
             for (final String segment : txtMantle.getString().split("<NL>")) {
-                lines.addAll(this.fogColor.func_238425_b_((ITextProperties)new Component(segment), 175));
+                lines.addAll(this.fogColor.func_238425_b_((FormattedCharSequence)new Component(segment), 175));
                 lines.add(FormattedCharSequence.field_242232_a);
             }
             this.locTextMantle.addAll(lines);
@@ -125,12 +125,12 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     private void buildEnchText() {
         if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.CONSTELLATION_CRAFT)) {
             final Component txtEnchantments = (Component)this.constellation.getConstellationEnchantmentDescription();
-            final ITextProperties headTxt = (ITextProperties)new Component("astralsorcery.journal.constellation.enchantments");
+            final FormattedCharSequence headTxt = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.enchantments");
             this.locTextRefraction.add(this.localize(headTxt));
             this.locTextRefraction.add(FormattedCharSequence.field_242232_a);
             final List<FormattedCharSequence> lines = new LinkedList<FormattedCharSequence>();
             for (final String segment : txtEnchantments.getString().split("<NL>")) {
-                lines.addAll(this.fogColor.func_238425_b_((ITextProperties)new Component(segment), 175));
+                lines.addAll(this.fogColor.func_238425_b_((FormattedCharSequence)new Component(segment), 175));
                 lines.add(FormattedCharSequence.field_242232_a);
             }
             this.locTextRefraction.addAll(lines);
@@ -142,12 +142,12 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         if (this.constellation instanceof IMinorConstellation) {
             if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
                 final Component txtRitual = ((IMinorConstellation)this.constellation).getInfoTraitEffect();
-                final ITextProperties headTxt = (ITextProperties)new Component("astralsorcery.journal.constellation.ritual.trait");
+                final FormattedCharSequence headTxt = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.ritual.trait");
                 this.locTextRitual.add(this.localize(headTxt));
                 this.locTextRitual.add(FormattedCharSequence.field_242232_a);
                 final List<FormattedCharSequence> lines = new LinkedList<FormattedCharSequence>();
                 for (final String segment : txtRitual.getString().split("<NL>")) {
-                    lines.addAll(this.fogColor.func_238425_b_((ITextProperties)new Component(segment), 175));
+                    lines.addAll(this.fogColor.func_238425_b_((FormattedCharSequence)new Component(segment), 175));
                     lines.add(FormattedCharSequence.field_242232_a);
                 }
                 this.locTextRitual.addAll(lines);
@@ -156,12 +156,12 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         else if (this.constellation instanceof IWeakConstellation) {
             if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.ATTUNEMENT)) {
                 final Component txtRitual = ((IWeakConstellation)this.constellation).getInfoRitualEffect();
-                final ITextProperties headTxt = (ITextProperties)new Component("astralsorcery.journal.constellation.ritual");
+                final FormattedCharSequence headTxt = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.ritual");
                 this.locTextRitual.add(this.localize(headTxt));
                 this.locTextRitual.add(FormattedCharSequence.field_242232_a);
                 final List<FormattedCharSequence> lines = new LinkedList<FormattedCharSequence>();
                 for (final String segment : txtRitual.getString().split("<NL>")) {
-                    lines.addAll(this.fogColor.func_238425_b_((ITextProperties)new Component(segment), 175));
+                    lines.addAll(this.fogColor.func_238425_b_((FormattedCharSequence)new Component(segment), 175));
                     lines.add(FormattedCharSequence.field_242232_a);
                 }
                 this.locTextRitual.addAll(lines);
@@ -169,12 +169,12 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
             }
             if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
                 final Component txtCorruptedRitual = ((IWeakConstellation)this.constellation).getInfoCorruptedRitualEffect();
-                final ITextProperties headTxt = (ITextProperties)new Component("astralsorcery.journal.constellation.corruption");
+                final FormattedCharSequence headTxt = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.corruption");
                 this.locTextRitual.add(this.localize(headTxt));
                 this.locTextRitual.add(FormattedCharSequence.field_242232_a);
                 final List<FormattedCharSequence> lines = new LinkedList<FormattedCharSequence>();
                 for (final String segment : txtCorruptedRitual.getString().split("<NL>")) {
-                    lines.addAll(this.fogColor.func_238425_b_((ITextProperties)new Component(segment), 175));
+                    lines.addAll(this.fogColor.func_238425_b_((FormattedCharSequence)new Component(segment), 175));
                     lines.add(FormattedCharSequence.field_242232_a);
                 }
                 this.locTextRitual.addAll(lines);
@@ -187,7 +187,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         final Component txtDescription = (Component)this.constellation.getConstellationDescription();
         final List<FormattedCharSequence> lines = new LinkedList<FormattedCharSequence>();
         for (final String segment : txtDescription.getString().split("<NL>")) {
-            lines.addAll(this.fogColor.func_238425_b_((ITextProperties)new Component(segment), 175));
+            lines.addAll(this.fogColor.func_238425_b_((FormattedCharSequence)new Component(segment), 175));
             lines.add(FormattedCharSequence.field_242232_a);
         }
         this.locTextMain.addAll(lines);
@@ -248,16 +248,16 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         for (int i = 0; i < this.locTextRitual.size(); ++i) {
             final FormattedCharSequence line = this.locTextRitual.get(i);
             renderStack.popPose();
-            renderStack.func_227861_a_((double)(this.guiLeft + 30), (double)(this.guiTop + 30 + i * 10), (double)this.getGuiZLevel());
+            renderStack.translate((double)(this.guiLeft + 30), (double)(this.guiTop + 30 + i * 10), (double)this.getGuiZLevel());
             RenderingDrawUtils.renderStringAt(line, renderStack, this.fogColor, -3355444, true);
-            renderStack.scale();
+            renderStack.popPose();
         }
         for (int i = 0; i < this.locTextRefraction.size(); ++i) {
             final FormattedCharSequence line = this.locTextRefraction.get(i);
             renderStack.popPose();
-            renderStack.func_227861_a_((double)(this.guiLeft + 220), (double)(this.guiTop + 30 + i * 10), (double)this.getGuiZLevel());
+            renderStack.translate((double)(this.guiLeft + 220), (double)(this.guiTop + 30 + i * 10), (double)this.getGuiZLevel());
             RenderingDrawUtils.renderStringAt(line, renderStack, this.fogColor, -3355444, true);
-            renderStack.scale();
+            renderStack.popPose();
         }
     }
     
@@ -265,9 +265,9 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         for (int i = 0; i < this.locTextMantle.size(); ++i) {
             final FormattedCharSequence line = this.locTextMantle.get(i);
             renderStack.popPose();
-            renderStack.func_227861_a_((double)(this.guiLeft + 30), (double)(this.guiTop + 30 + i * 10), (double)this.getGuiZLevel());
+            renderStack.translate((double)(this.guiLeft + 30), (double)(this.guiTop + 30 + i * 10), (double)this.getGuiZLevel());
             RenderingDrawUtils.renderStringAt(line, renderStack, this.fogColor, -3355444, true);
-            renderStack.scale();
+            renderStack.popPose();
         }
         if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
             final SimpleAltarRecipe recipe = RecipeHelper.findAltarRecipeResult(stack -> stack.getItem() instanceof ItemMantle && this.constellation.equals(ItemsAS.MANTLE.getConstellation(stack)));
@@ -289,26 +289,26 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     }
     
     private void drawPageExtendedInformation(final PoseStack renderStack) {
-        ITextProperties info = (ITextProperties)this.getConstellation().getConstellationTag();
+        FormattedCharSequence info = (FormattedCharSequence)this.getConstellation().getConstellationTag();
         if (!this.detailed) {
-            info = (ITextProperties)new Component("astralsorcery.journal.constellation.unknown");
+            info = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.unknown");
         }
         final int width = this.fogColor.func_238414_a_(info);
         final float chX = 305.0f - width / 2.0f;
         renderStack.popPose();
-        renderStack.func_227861_a_((double)(this.guiLeft + chX), (double)(this.guiTop + 44), (double)this.getGuiZLevel());
+        renderStack.translate((double)(this.guiLeft + chX), (double)(this.guiTop + 44), (double)this.getGuiZLevel());
         RenderingDrawUtils.renderStringAt(this.fogColor, renderStack, info, -3355444);
-        renderStack.scale();
+        renderStack.popPose();
         if (this.detailed && !this.locTextMain.isEmpty()) {
             final int offsetX = 220;
             final int offsetY = 77;
             renderStack.popPose();
-            renderStack.func_227861_a_((double)(this.guiLeft + offsetX), (double)(this.guiTop + offsetY), (double)this.getGuiZLevel());
+            renderStack.translate((double)(this.guiLeft + offsetX), (double)(this.guiTop + offsetY), (double)this.getGuiZLevel());
             for (final FormattedCharSequence line : this.locTextMain) {
                 RenderingDrawUtils.renderStringAt(this.fogColor, renderStack, line, -3355444);
-                renderStack.func_227861_a_(0.0, 13.0, 0.0);
+                renderStack.translate(0.0, 13.0, 0.0);
             }
-            renderStack.scale();
+            renderStack.popPose();
         }
     }
     
@@ -321,16 +321,16 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         }
         final List<MoonPhase> phases = this.activePhases;
         if (phases.isEmpty()) {
-            final ITextProperties none = (ITextProperties)new Component("astralsorcery.journal.constellation.unknown");
+            final FormattedCharSequence none = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.unknown");
             final float scale = 1.8f;
             final float length = this.fogColor.func_238414_a_(none) * scale;
             final float offsetLeft = this.guiLeft + 296 - length / 2.0f;
             final int offsetTop = this.guiTop + 199;
             renderStack.popPose();
-            renderStack.func_227861_a_((double)(offsetLeft + 10.0f), (double)offsetTop, (double)this.getGuiZLevel());
+            renderStack.translate((double)(offsetLeft + 10.0f), (double)offsetTop, (double)this.getGuiZLevel());
             renderStack.translate(scale, scale, scale);
             RenderingDrawUtils.renderStringAt(none, renderStack, this.fogColor, -857874979, true);
-            renderStack.scale();
+            renderStack.popPose();
         }
         else {
             final boolean known = ResearchHelper.getClientProgress().hasConstellationDiscovered(this.constellation);
@@ -361,22 +361,22 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     }
     
     private void drawPageConstellation(final PoseStack renderStack, final float partial) {
-        final ITextProperties cstName = (ITextProperties)this.constellation.getConstellationName();
+        final FormattedCharSequence cstName = (FormattedCharSequence)this.constellation.getConstellationName();
         int width = this.fogColor.func_238414_a_(cstName);
         renderStack.popPose();
-        renderStack.func_227861_a_((double)(this.guiLeft + (305.0f - width * 1.8f / 2.0f)), (double)(this.guiTop + 26), (double)this.getGuiZLevel());
+        renderStack.translate((double)(this.guiLeft + (305.0f - width * 1.8f / 2.0f)), (double)(this.guiTop + 26), (double)this.getGuiZLevel());
         renderStack.translate(1.8f, 1.8f, 1.0f);
         RenderingDrawUtils.renderStringAt(cstName, renderStack, this.fogColor, -3947581, true);
-        renderStack.scale();
-        ITextProperties dstInfo = (ITextProperties)this.constellation.getConstellationTypeDescription();
+        renderStack.popPose();
+        FormattedCharSequence dstInfo = (FormattedCharSequence)this.constellation.getConstellationTypeDescription();
         if (!this.detailed) {
-            dstInfo = (ITextProperties)new Component("astralsorcery.journal.constellation.unknown");
+            dstInfo = (FormattedCharSequence)new Component("astralsorcery.journal.constellation.unknown");
         }
         width = this.fogColor.func_238414_a_(dstInfo);
         renderStack.popPose();
-        renderStack.func_227861_a_((double)(this.guiLeft + (305.0f - width / 2.0f)), (double)(this.guiTop + 219), (double)this.getGuiZLevel());
+        renderStack.translate((double)(this.guiLeft + (305.0f - width / 2.0f)), (double)(this.guiTop + 219), (double)this.getGuiZLevel());
         RenderingDrawUtils.renderStringAt(dstInfo, renderStack, this.fogColor, -2236963, true);
-        renderStack.scale();
+        renderStack.popPose();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         final Random rand = new Random(4726142277924544921L);
@@ -404,10 +404,10 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         TexturesAS.TEX_BLACK.bindTexture();
         RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
             final Matrix4f offset = renderStack.last().translate();
-            buf.func_227888_a_(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(0.0f, 1.0f).blockPosition();
-            buf.func_227888_a_(offset, (float)(this.guiLeft + 200), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(1.0f, 1.0f).blockPosition();
-            buf.func_227888_a_(offset, (float)(this.guiLeft + 200), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(1.0f, 0.0f).blockPosition();
-            buf.func_227888_a_(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(0.0f, 0.0f).blockPosition();
+            buf.vertex(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(0.0f, 1.0f).blockPosition();
+            buf.vertex(offset, (float)(this.guiLeft + 200), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(1.0f, 1.0f).blockPosition();
+            buf.vertex(offset, (float)(this.guiLeft + 200), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(1.0f, 0.0f).blockPosition();
+            buf.vertex(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()1.0f, 1.0f, 1.0f, 1.0f).setPos(0.0f, 0.0f).blockPosition();
             return;
         });
         RenderSystem.enableBlend();
@@ -415,10 +415,10 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         TexturesAS.TEX_GUI_BACKGROUND_CONSTELLATIONS.bindTexture();
         RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
             final Matrix4f offset2 = renderStack.last().translate();
-            buf.func_227888_a_(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.5f).setPos(0.3f, 0.9f).blockPosition();
-            buf.func_227888_a_(offset2, (float)(this.guiLeft + 200), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.5f).setPos(0.7f, 0.9f).blockPosition();
-            buf.func_227888_a_(offset2, (float)(this.guiLeft + 200), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.5f).setPos(0.7f, 0.1f).blockPosition();
-            buf.func_227888_a_(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.5f).setPos(0.3f, 0.1f).blockPosition();
+            buf.vertex(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.5f).setPos(0.3f, 0.9f).blockPosition();
+            buf.vertex(offset2, (float)(this.guiLeft + 200), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.5f).setPos(0.7f, 0.9f).blockPosition();
+            buf.vertex(offset2, (float)(this.guiLeft + 200), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.5f).setPos(0.7f, 0.1f).blockPosition();
+            buf.vertex(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).pushPose()0.8f, 0.8f, 1.0f, 0.5f).setPos(0.3f, 0.1f).blockPosition();
             return;
         });
         RenderSystem.disableBlend();

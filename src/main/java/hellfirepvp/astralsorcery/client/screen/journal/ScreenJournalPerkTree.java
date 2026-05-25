@@ -43,7 +43,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.TooltipFlag;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
@@ -226,9 +226,9 @@ public class ScreenJournalPerkTree extends ScreenJournal
         this.func_230926_e_(0);
         if (!this.mouseSealStack.isEmpty()) {
             renderStack.popPose();
-            renderStack.func_227861_a_((double)(mouseX - 8), (double)(mouseY - 8), (double)this.getGuiZLevel());
+            renderStack.translate((double)(mouseX - 8), (double)(mouseY - 8), (double)this.getGuiZLevel());
             RenderingUtils.renderItemStackGUI(renderStack, this.mouseSealStack, null);
-            renderStack.scale();
+            renderStack.popPose();
         }
     }
     
@@ -262,25 +262,25 @@ public class ScreenJournalPerkTree extends ScreenJournal
         RenderSystem.disableBlend();
         if (!this.foundSeals.isEmpty()) {
             renderStack.popPose();
-            renderStack.func_227861_a_((double)(this.guiLeft + ScreenJournalPerkTree.rectSealBox.x), (double)(this.guiTop + ScreenJournalPerkTree.rectSealBox.y), (double)this.getGuiZLevel());
+            renderStack.translate((double)(this.guiLeft + ScreenJournalPerkTree.rectSealBox.x), (double)(this.guiTop + ScreenJournalPerkTree.rectSealBox.y), (double)this.getGuiZLevel());
             RenderingUtils.renderItemStackGUI(renderStack, this.foundSeals, null);
-            renderStack.scale();
+            renderStack.popPose();
         }
     }
     
     private void drawHoverTooltips(final PoseStack renderStack, final int mouseX, final int mouseY) {
         final Player player = (Player)Minecraft.getInstance().player;
-        List<ITextProperties> toolTip = null;
+        List<FormattedCharSequence> toolTip = null;
         for (final Rectangle2D.Float r : this.slotsSocketMenu.keySet()) {
             if (r.contains(mouseX, mouseY)) {
                 final Integer slot = this.slotsSocketMenu.get(r);
                 final ItemStack in = player.getInventory().func_70301_a((int)slot);
                 if (!in.isEmpty()) {
-                    FontRenderer fr = in.getItem().getFontRenderer(in);
+                    Font fr = in.getItem().getFontRenderer(in);
                     if (fr == null) {
                         fr = Minecraft.getInstance().font;
                     }
-                    toolTip = new ArrayList<ITextProperties>();
+                    toolTip = new ArrayList<FormattedCharSequence>();
                     toolTip.addAll(this.func_231151_a_(in));
                     RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)mouseX, (float)mouseY, (float)this.getGuiZLevel(), toolTip, fr, true);
                 }
@@ -288,57 +288,57 @@ public class ScreenJournalPerkTree extends ScreenJournal
             }
         }
         if (this.rStatStar.contains(mouseX, mouseY)) {
-            RenderingDrawUtils.renderBlueTooltipComponents(renderStack, this.rStatStar.x + this.rStatStar.width / 2.0f, (float)(this.rStatStar.y + this.rStatStar.height), (float)this.getGuiZLevel(), Lists.newArrayList((Object[])new ITextProperties[] { (ITextProperties)new Component("perk.reader.astralsorcery.infostar") }), this.fogColor, false);
+            RenderingDrawUtils.renderBlueTooltipComponents(renderStack, this.rStatStar.x + this.rStatStar.width / 2.0f, (float)(this.rStatStar.y + this.rStatStar.height), (float)this.getGuiZLevel(), Lists.newArrayList((Object[])new FormattedCharSequence[] { (FormattedCharSequence)new Component("perk.reader.astralsorcery.infostar") }), this.fogColor, false);
             return;
         }
         if (!this.foundSeals.isEmpty() && ScreenJournalPerkTree.rectSealBox.contains(mouseX - this.guiLeft, mouseY - this.guiTop)) {
-            final List<ITextProperties> toolTip2 = new ArrayList<ITextProperties>();
-            toolTip2.addAll(this.foundSeals.func_82840_a((Player)Minecraft.getInstance().player, (TooltipFlag)(Minecraft.getInstance().field_71474_y.field_82882_x ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
-            toolTip2.add((ITextProperties)Component.field_240750_d_);
-            toolTip2.add((ITextProperties)new Component("perk.info.astralsorcery.sealed.usage").toString()ChatFormatting.GRAY));
+            final List<FormattedCharSequence> toolTip2 = new ArrayList<FormattedCharSequence>();
+            toolTip2.addAll(this.foundSeals.func_82840_a((Player)Minecraft.getInstance().player, (TooltipFlag)(Minecraft.getInstance().options.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
+            toolTip2.add((FormattedCharSequence)Component.empty());
+            toolTip2.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed.usage").withStyle(ChatFormatting.GRAY)));
             RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)mouseX, (float)mouseY, (float)this.getGuiZLevel(), toolTip2, this.fogColor, false);
         }
         else {
             for (final Map.Entry<AbstractPerk, Rectangle2D.Float> rctPerk : this.thisFramePerks.entrySet()) {
                 if (rctPerk.getValue().contains(mouseX, mouseY) && this.guiBox.isInBox(mouseX - this.guiLeft, mouseY - this.guiTop)) {
-                    final List<ITextProperties> toolTip3 = new LinkedList<ITextProperties>();
+                    final List<FormattedCharSequence> toolTip3 = new LinkedList<FormattedCharSequence>();
                     final AbstractPerk perk = rctPerk.getKey();
                     final PlayerProgress prog = ResearchHelper.getClientProgress();
                     final PlayerPerkData perkData = prog.getPerkData();
                     perk.getLocalizedTooltip().forEach(line -> {
                         final Style style = line.func_150256_b();
                         if (style.func_240711_a_() == null) {
-                            line.toString()ChatFormatting.GRAY).toString()ChatFormatting.ITALIC);
+                            line.withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.ITALIC));
                         }
                         toolTip.add(line);
                         return;
                     });
                     if (perkData.isPerkSealed(perk)) {
-                        toolTip3.add((ITextProperties)new Component("perk.info.astralsorcery.sealed").toString()ChatFormatting.RED));
-                        toolTip3.add((ITextProperties)new Component("perk.info.astralsorcery.sealed.break").toString()ChatFormatting.RED));
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed").withStyle(ChatFormatting.RED)));
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed.break").withStyle(ChatFormatting.RED)));
                     }
                     else if (perkData.hasPerkEffect(perk)) {
-                        toolTip3.add((ITextProperties)new Component("perk.info.astralsorcery.active").toString()ChatFormatting.GREEN));
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.active").withStyle(ChatFormatting.GREEN)));
                     }
                     else if (perk.mayUnlockPerk(prog, player)) {
-                        toolTip3.add((ITextProperties)new Component("perk.info.astralsorcery.available").toString()ChatFormatting.BLUE));
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.available").withStyle(ChatFormatting.BLUE)));
                     }
                     else {
-                        toolTip3.add((ITextProperties)new Component("perk.info.astralsorcery.locked").toString()ChatFormatting.GRAY));
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.locked").withStyle(ChatFormatting.GRAY)));
                     }
-                    if (Minecraft.getInstance().field_71474_y.field_82882_x && perk.getCategory() != AbstractPerk.CATEGORY_BASE) {
-                        toolTip3.add((ITextProperties)perk.getCategory().getName().toString()ChatFormatting.GRAY).toString()ChatFormatting.ITALIC));
+                    if (Minecraft.getInstance().options.advancedItemTooltips && perk.getCategory() != AbstractPerk.CATEGORY_BASE) {
+                        toolTip3.add((FormattedCharSequence)perk.getCategory().getName().withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.ITALIC)));
                     }
                     final Collection<MutableComponent> modInfo = perk.getSource();
                     if (modInfo != null) {
                         for (final MutableComponent cmp : modInfo) {
-                            toolTip3.add((ITextProperties)cmp.toString()ChatFormatting.BLUE).toString()ChatFormatting.ITALIC));
+                            toolTip3.add((FormattedCharSequence)cmp.withStyle(ChatFormatting.BLUE)).withStyle(ChatFormatting.ITALIC)));
                         }
                     }
-                    if (Minecraft.getInstance().field_71474_y.field_74330_P) {
-                        toolTip3.add((ITextProperties)Component.field_240750_d_);
-                        toolTip3.add((ITextProperties)new Component(perk.getRegistryName().toString()).toString()ChatFormatting.GRAY));
-                        toolTip3.add((ITextProperties)new Component("astralsorcery.misc.ctrlcopy").toString()ChatFormatting.GRAY));
+                    if (Minecraft.getInstance().options.advancedItemTooltips) {
+                        toolTip3.add((FormattedCharSequence)Component.empty());
+                        toolTip3.add((FormattedCharSequence)new Component(perk.getRegistryName().toString()).withStyle(ChatFormatting.GRAY)));
+                        toolTip3.add((FormattedCharSequence)new Component("astralsorcery.misc.ctrlcopy").withStyle(ChatFormatting.GRAY)));
                     }
                     RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)mouseX, (float)mouseY, (float)this.getGuiZLevel(), toolTip3, this.fogColor, true);
                     break;
@@ -381,10 +381,10 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 return;
             }
             renderStack.popPose();
-            renderStack.func_227861_a_((double)offsetX, (double)offsetY, (double)this.getGuiZLevel());
+            renderStack.translate((double)offsetX, (double)offsetY, (double)this.getGuiZLevel());
             renderStack.translate(scale, scale, 1.0f);
             RenderingDrawUtils.renderBlueTooltipBox(renderStack, 0, 0, realWidth * 18, realHeight * 18);
-            renderStack.scale();
+            renderStack.popPose();
             final float inventoryOffsetX = offsetX + 12.0f * scale;
             final float inventoryOffsetY = offsetY - 12.0f * scale;
             RenderSystem.enableBlend();
@@ -408,10 +408,10 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 final float addedY = index / 5 * scaledSlotSize;
                 final Rectangle2D.Float r = new Rectangle2D.Float(offsetX + addedX, offsetY + addedY, scaledSlotSize, scaledSlotSize);
                 renderStack.popPose();
-                renderStack.func_227861_a_((double)(offsetX + addedX + 1.0f), (double)(offsetY + addedY + 1.0f), (double)this.getGuiZLevel());
+                renderStack.translate((double)(offsetX + addedX + 1.0f), (double)(offsetY + addedY + 1.0f), (double)this.getGuiZLevel());
                 renderStack.translate(scale, scale, 1.0f);
                 RenderingUtils.renderItemStackGUI(renderStack, stack, null);
-                renderStack.scale();
+                renderStack.popPose();
                 this.slotsSocketMenu.put(r, slotId);
                 ++index;
             }
@@ -424,15 +424,15 @@ public class ScreenJournalPerkTree extends ScreenJournal
         final int availablePerks;
         if (prog.isAttuned() && (availablePerks = prog.getPerkData().getAvailablePerkPoints(player, LogicalSide.CLIENT)) > 0) {
             renderStack.popPose();
-            renderStack.func_227861_a_((double)(this.guiLeft + 50), (double)(this.guiTop + 18), (double)this.getGuiZLevel());
-            final ITextProperties points = (ITextProperties)new Component("perk.info.astralsorcery.points", new Object[] { availablePerks });
+            renderStack.translate((double)(this.guiLeft + 50), (double)(this.guiTop + 18), (double)this.getGuiZLevel());
+            final FormattedCharSequence points = (FormattedCharSequence)new Component("perk.info.astralsorcery.points", new Object[] { availablePerks });
             RenderingDrawUtils.renderStringAt(points, renderStack, this.fogColor, 13421772, true);
-            renderStack.scale();
+            renderStack.popPose();
         }
         renderStack.popPose();
-        renderStack.func_227861_a_((double)(this.guiLeft + 288), (double)(this.guiTop + 20), (double)this.getGuiZLevel());
+        renderStack.translate((double)(this.guiLeft + 288), (double)(this.guiTop + 20), (double)this.getGuiZLevel());
         (this.rStatStar = RenderingDrawUtils.drawInfoStar(renderStack, IDrawRenderTypeBuffer.defaultBuffer(), 16.0f, pTicks)).translate(this.guiLeft + 288, this.guiTop + 20);
-        renderStack.scale();
+        renderStack.popPose();
     }
     
     private void drawSearchBox(final PoseStack renderStack) {
@@ -455,9 +455,9 @@ public class ScreenJournalPerkTree extends ScreenJournal
             text += "_";
         }
         renderStack.popPose();
-        renderStack.func_227861_a_((double)(this.guiLeft + 304), (double)(this.guiTop + 20), (double)this.getGuiZLevel());
-        RenderingDrawUtils.renderStringAt(this.fogColor, renderStack, (ITextProperties)new Component(text), 13421772);
-        renderStack.scale();
+        renderStack.translate((double)(this.guiLeft + 304), (double)(this.guiTop + 20), (double)this.getGuiZLevel());
+        RenderingDrawUtils.renderStringAt(this.fogColor, renderStack, (FormattedCharSequence)new Component(text), 13421772);
+        renderStack.popPose();
     }
     
     private void drawPerkTree(final PoseStack renderStack, final float partialTicks) {
@@ -892,7 +892,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         for (final Map.Entry<AbstractPerk, Rectangle2D.Float> rctPerk : this.thisFramePerks.entrySet()) {
             if (rctPerk.getValue().contains(mouseX, mouseY) && this.guiBox.isInBox(mouseX - this.guiLeft, mouseY - this.guiTop)) {
                 final AbstractPerk perk = rctPerk.getKey();
-                if (mouseButton == 0 && mc.field_71474_y.field_74330_P && func_231172_r_()) {
+                if (mouseButton == 0 && mc.options.advancedItemTooltips && func_231172_r_()) {
                     final String perkKey = perk.getRegistryName().toString();
                     Minecraft.getInstance().field_195559_v.func_197960_a(perkKey);
                     mc.player.func_145747_a((Component)new Component("astralsorcery.misc.ctrlcopy.copied", new Object[] { perkKey }), Util.NIL_UUID);

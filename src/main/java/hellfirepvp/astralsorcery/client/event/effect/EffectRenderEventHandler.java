@@ -31,7 +31,7 @@ public class EffectRenderEventHandler
     }
     
     private void onDebugText(final RenderGameOverlayEvent.Text event) {
-        if (Minecraft.getInstance().field_71474_y.field_74330_P) {
+        if (Minecraft.getInstance().options.advancedItemTooltips) {
             event.getLeft().add("");
             event.getLeft().add(ChatFormatting.BLUE + "[AstralSorcery]" + ChatFormatting.RESET + " EffectHandler:");
             event.getLeft().add(ChatFormatting.BLUE + "[AstralSorcery]" + ChatFormatting.RESET + " > Complex effects: " + EffectHandler.getInstance().getEffectCount());

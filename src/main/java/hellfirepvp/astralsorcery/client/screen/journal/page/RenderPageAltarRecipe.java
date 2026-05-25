@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.screen.journal.page;
 
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
 import net.minecraft.world.item.ItemStack;

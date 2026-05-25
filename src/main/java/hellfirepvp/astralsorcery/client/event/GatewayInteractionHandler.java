@@ -104,7 +104,7 @@ public class GatewayInteractionHandler
             GatewayInteractionHandler.focusTicks = 0;
             return;
         }
-        if (!Minecraft.getInstance().field_71474_y.field_74313_G.func_151470_d() && !Minecraft.getInstance().field_71474_y.field_228046_af_.func_151470_d()) {
+        if (!Minecraft.getInstance().options.field_74313_G.func_151470_d() && !Minecraft.getInstance().options.field_228046_af_.func_151470_d()) {
             GatewayInteractionHandler.focusingEntry = null;
             GatewayInteractionHandler.focusTicks = 0;
             return;
@@ -176,7 +176,7 @@ public class GatewayInteractionHandler
             return;
         }
         if (event.phase == TickEvent.Phase.START) {
-            GatewayInteractionHandler.fovPre = Minecraft.getInstance().field_71474_y.field_74334_X;
+            GatewayInteractionHandler.fovPre = Minecraft.getInstance().options.field_74334_X;
             if (GatewayInteractionHandler.focusTicks < 80) {
                 return;
             }
@@ -184,10 +184,10 @@ public class GatewayInteractionHandler
             percDone = (float)Math.pow(percDone, 2.4000000953674316);
             final float targetFov = 10.0f;
             final double diff = GatewayInteractionHandler.fovPre - targetFov;
-            Minecraft.getInstance().field_71474_y.field_74334_X = Math.max(targetFov, targetFov + diff * percDone);
+            Minecraft.getInstance().options.field_74334_X = Math.max(targetFov, targetFov + diff * percDone);
         }
         else {
-            Minecraft.getInstance().field_71474_y.field_74334_X = GatewayInteractionHandler.fovPre;
+            Minecraft.getInstance().options.field_74334_X = GatewayInteractionHandler.fovPre;
         }
     }
     

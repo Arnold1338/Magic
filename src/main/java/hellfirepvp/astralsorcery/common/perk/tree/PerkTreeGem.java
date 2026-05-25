@@ -48,10 +48,10 @@ public class PerkTreeGem<T extends AbstractPerk & GemSocketPerk> extends PerkTre
             final float posX = x - 8.0f * scale;
             final float posY = y - 8.0f * scale;
             renderStack.popPose();
-            renderStack.func_227861_a_((double)posX, (double)posY, (double)(zLevel - 50.0f));
+            renderStack.translate((double)posX, (double)posY, (double)(zLevel - 50.0f));
             renderStack.translate(scale, scale, 1.0f);
             RenderingUtils.renderItemStackGUI(renderStack, stack, null);
-            renderStack.scale();
+            renderStack.popPose();
         }
     }
     

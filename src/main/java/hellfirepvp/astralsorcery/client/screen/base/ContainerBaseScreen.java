@@ -6,11 +6,11 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.level.inventory.AbstractContainerMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.client.gui.screens.inventory.ContainerScreen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import hellfirepvp.astralsorcery.common.container.ContainerTileEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-public abstract class ContainerBaseScreen<T extends BlockEntity, C extends ContainerTileEntity<T>> extends ContainerScreen<C>
+public abstract class ContainerBaseScreen<T extends BlockEntity, C extends ContainerTileEntity<T>> extends AbstractContainerScreen<C>
 {
     public ContainerBaseScreen(final C screenContainer, final Inventory inv, final Component titleIn) {
         super((Container)screenContainer, inv, titleIn);

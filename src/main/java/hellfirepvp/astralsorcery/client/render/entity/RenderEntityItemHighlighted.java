@@ -21,9 +21,9 @@ public class RenderEntityItemHighlighted extends ItemRenderer
     public void func_225623_a_(final ItemEntity entity, final float entityYaw, final float partialTicks, final PoseStack renderStack, final MultiBufferSource buffer, final int packedLight) {
         if (entity instanceof EntityItemHighlighted && ((EntityItemHighlighted)entity).hasColor()) {
             renderStack.popPose();
-            renderStack.func_227861_a_(0.0, 0.3499999940395355, 0.0);
+            renderStack.translate(0.0, 0.3499999940395355, 0.0);
             RenderingDrawUtils.renderLightRayFan(renderStack, buffer, ((EntityItemHighlighted)entity).getHighlightColor(), 160420L + entity.func_145782_y(), 16, 12.0f, 15);
-            renderStack.scale();
+            renderStack.popPose();
         }
         super.func_225623_a_(entity, entityYaw, partialTicks, renderStack, buffer, packedLight);
     }

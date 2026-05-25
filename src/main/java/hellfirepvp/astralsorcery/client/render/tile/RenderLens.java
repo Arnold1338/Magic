@@ -42,14 +42,14 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     degYaw = 180.0f + (float)Math.toDegrees(-degYaw);
                     degPitch = (float)Math.toDegrees(degPitch);
                 }
-                renderStack.func_227861_a_(0.5, 1.5, 0.5);
-                renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()180.0f));
-                renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()degYaw % 360.0f));
+                renderStack.translate(0.5, 1.5, 0.5);
+                renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()180.0f));
+                renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()degYaw % 360.0f));
                 if (tile.getColorType() != null) {
                     renderStack.popPose();
-                    renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
+                    renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f));
                     this.renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), -degPitch);
-                    renderStack.scale();
+                    renderStack.popPose();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, degPitch);
                 break;
@@ -64,13 +64,13 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     degYaw = 180.0f + (float)Math.toDegrees(-degYaw);
                     degPitch = (float)Math.toDegrees(degPitch);
                 }
-                renderStack.func_227861_a_(0.5, -0.5, 0.5);
-                renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()(-degYaw + 180.0f) % 360.0f));
+                renderStack.translate(0.5, -0.5, 0.5);
+                renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()(-degYaw + 180.0f) % 360.0f));
                 if (tile.getColorType() != null) {
                     renderStack.popPose();
-                    renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
+                    renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f));
                     this.renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), degPitch);
-                    renderStack.scale();
+                    renderStack.popPose();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, -degPitch);
                 break;
@@ -85,14 +85,14 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     degYaw = 180.0f + (float)Math.toDegrees(-degYaw);
                     degPitch = (float)Math.toDegrees(degPitch);
                 }
-                renderStack.func_227861_a_(0.5, 0.5, 1.5);
-                renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()270.0f));
-                renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()(-degYaw + 180.0f) % 360.0f));
+                renderStack.translate(0.5, 0.5, 1.5);
+                renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()270.0f));
+                renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()(-degYaw + 180.0f) % 360.0f));
                 if (tile.getColorType() != null) {
                     renderStack.popPose();
-                    renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
+                    renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f));
                     this.renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), -degPitch);
-                    renderStack.scale();
+                    renderStack.popPose();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, degPitch);
                 break;
@@ -107,14 +107,14 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     degYaw = 180.0f + (float)Math.toDegrees(-degYaw);
                     degPitch = (float)Math.toDegrees(degPitch);
                 }
-                renderStack.func_227861_a_(0.5, 0.5, -0.5);
-                renderStack.mulPose(Vector3f.field_229179_b_.getMultiBufferSource()90.0f));
-                renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()degYaw % 360.0f));
+                renderStack.translate(0.5, 0.5, -0.5);
+                renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).getMultiBufferSource()90.0f));
+                renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()degYaw % 360.0f));
                 if (tile.getColorType() != null) {
                     renderStack.popPose();
-                    renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
+                    renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f));
                     this.renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), degPitch);
-                    renderStack.scale();
+                    renderStack.popPose();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, -degPitch);
                 break;
@@ -129,14 +129,14 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     degYaw = 180.0f + (float)Math.toDegrees(-degYaw);
                     degPitch = (float)Math.toDegrees(degPitch);
                 }
-                renderStack.func_227861_a_(1.5, 0.5, 0.5);
-                renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()90.0f));
-                renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()degYaw + 270.0f));
+                renderStack.translate(1.5, 0.5, 0.5);
+                renderStack.mulPose(new org.joml.Vector3f(0, 0, 1).getMultiBufferSource()90.0f));
+                renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()degYaw + 270.0f));
                 if (tile.getColorType() != null) {
                     renderStack.popPose();
-                    renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
+                    renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f));
                     this.renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), -degPitch);
-                    renderStack.scale();
+                    renderStack.popPose();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, degPitch);
                 break;
@@ -151,20 +151,20 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     degYaw = 180.0f + (float)Math.toDegrees(-degYaw);
                     degPitch = (float)Math.toDegrees(degPitch);
                 }
-                renderStack.func_227861_a_(-0.5, 0.5, 0.5);
-                renderStack.mulPose(Vector3f.field_229183_f_.getMultiBufferSource()270.0f));
-                renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()-degYaw + 90.0f));
+                renderStack.translate(-0.5, 0.5, 0.5);
+                renderStack.mulPose(new org.joml.Vector3f(0, 0, 1).getMultiBufferSource()270.0f));
+                renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()-degYaw + 90.0f));
                 if (tile.getColorType() != null) {
                     renderStack.popPose();
-                    renderStack.mulPose(Vector3f.field_229181_d_.getMultiBufferSource()180.0f));
+                    renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).getMultiBufferSource()180.0f));
                     this.renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), degPitch);
-                    renderStack.scale();
+                    renderStack.popPose();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, -degPitch);
                 break;
             }
         }
-        renderStack.scale();
+        renderStack.popPose();
     }
     
     private void renderLensColored(final PoseStack renderStack, final MultiBufferSource buffer, final int combinedLight, final int combinedOverlay, final Color c, final float pitch) {

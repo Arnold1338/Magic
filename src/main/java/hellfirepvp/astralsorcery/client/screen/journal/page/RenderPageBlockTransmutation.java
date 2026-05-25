@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.screen.journal.page;
 
 import net.minecraft.client.renderer.RenderType;
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import net.minecraft.network.chat.ITextProperties;
+import net.minecraft.network.chat.FormattedCharSequence;
 import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
@@ -63,10 +63,10 @@ public class RenderPageBlockTransmutation extends RenderPageRecipeTemplate
         RenderSystem.depthMask(true);
         RenderSystem.disableDepthTest();
         renderStack.popPose();
-        renderStack.func_227861_a_((double)(renderX + 11.0f), (double)(renderY + 11.0f), (double)z);
+        renderStack.translate((double)(renderX + 11.0f), (double)(renderY + 11.0f), (double)z);
         renderStack.translate(40.0f, 40.0f, 0.0f);
-        RenderingUtils.draw(7, DefaultVertexFormat.field_181706_f, buf -> RenderingDrawUtils.renderLightRayFan(renderStack, renderType -> buf, ColorsAS.ROCK_CRYSTAL, this.getNodePage(), 9, 9.0f, 20));
-        renderStack.scale();
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_COLOR, buf -> RenderingDrawUtils.renderLightRayFan(renderStack, renderType -> buf, ColorsAS.ROCK_CRYSTAL, this.getNodePage(), 9, 9.0f, 20));
+        renderStack.popPose();
         this.renderItemStack(renderStack, renderX - 4.0f, renderY - 4.0f, z, 1.75f, new ItemStack((ItemLike)BlocksAS.ROCK_COLLECTOR_CRYSTAL));
         RenderSystem.enableDepthTest();
     }
