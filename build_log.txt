@@ -20,15 +20,15 @@ Executing steps
  > Running 'listLibraries'
  > Running 'rename'
 Stopping at requested step: /home/runner/.gradle/caches/forge_gradle/mcp_repo/de/oceanlabs/mcp/mcp_config/1.20.1-20230612.114412/joined/rename/output.jar
-[23:09:23] [main/INFO]: Writing debug log file accesstransform.log
-[23:09:23] [main/INFO]: Access Transformer processor running version 8.2.14
-[23:09:23] [main/INFO]: Command line arguments [--inJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar, --outJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, --logFile, accesstransform.log, --atFile, /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg, --atFile, /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg]
-[23:09:23] [main/INFO]: Reading from /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar
-[23:09:23] [main/INFO]: Writing to /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
-[23:09:23] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg
-[23:09:23] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg
-[23:09:23] [main/WARN]: Found existing output jar /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, overwriting
-[23:09:26] [main/INFO]: JAR transformation complete /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
+[23:15:38] [main/INFO]: Writing debug log file accesstransform.log
+[23:15:38] [main/INFO]: Access Transformer processor running version 8.2.14
+[23:15:38] [main/INFO]: Command line arguments [--inJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar, --outJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, --logFile, accesstransform.log, --atFile, /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg, --atFile, /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg]
+[23:15:38] [main/INFO]: Reading from /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar
+[23:15:38] [main/INFO]: Writing to /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
+[23:15:38] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg
+[23:15:38] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg
+[23:15:38] [main/WARN]: Found existing output jar /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, overwriting
+[23:15:41] [main/INFO]: JAR transformation complete /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
 Creating SRG -> MCP TSRG
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenObservatory.java:118: error: ')' expected
         EventFlags.GUI_CLOSING.executeWithFlag(() -> Minecraft.getInstance().player.giveExperienceLevels();
@@ -150,66 +150,24 @@ Creating SRG -> MCP TSRG
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/effect/vfx/FXLightning.java:151: error: ';' expected
         vec.drawPos(matr, buf).pushPose()r, g, b, a).setPos(0.0f, 1.0f).blockPosition();
                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/engraving/EngravingEffect.java:235: error: ';' expected
-            stack.func_200302_a((Component)new Component("potion.astralsorcery.crafted.name").withStyle(ChatFormatting.GOLD)));
-                                                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/mantle/effect/MantleEffectBootes.java:96: error: illegal start of expression
-        if (!attacked.level().level() && src.getEnchantments( instanceof LivingEntity) {
-                                                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/mantle/effect/MantleEffectBootes.java:96: error: ')' expected
-        if (!attacked.level().level() && src.getEnchantments( instanceof LivingEntity) {
-                                                                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/mantle/effect/MantleEffectBootes.java:97: error: illegal start of expression
-            final LivingEntity attacker = (LivingEntity)src.getEnchantments(;
-                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/mantle/effect/MantleEffectBootes.java:110: error: illegal start of expression
-            final Entity source = event.getSource().getEnchantments(;
-                                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/mantle/effect/MantleEffectDiscidia.java:63: error: illegal start of expression
-        final Entity attacker = source.getEnchantments(;
-                                                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/mantle/effect/MantleEffectFornax.java:39: error: illegal start of expression
-        final Entity attacker = event.getSource().getEnchantments(;
-                                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/mantle/effect/MantleEffectPelotrio.java:49: error: illegal start of expression
-        final Entity attacker = event.getSource().getEnchantments(;
-                                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/DamageSourceUtil.java:77: error: ')' expected
-            dst = (DamageSource)new IndirectEntityDamageSource(src.func_76355_l(), (directSource != null) ? directSource : src.func_76364_f(), (trueSource != null) ? trueSource : ((directSource != null) ? directSource : src.getEnchantments());
-                                                                                                                                                                                                                                                  ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/engraving/EngravingEffect.java:235: error: ')' expected
+            stack.func_200302_a((Component)Component.translatable("potion.astralsorcery.crafted.name").withStyle(ChatFormatting.GOLD);
+                                                                                                                                     ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/entity/EntityUtils.java:215: error: ')' expected
-        final LootContext.Builder builder = new LootContext.Builder(sw).func_216023_a(rand).func_216015_a(LootContextParams.THIS_ENTITY, (Object)entity).func_216015_a(LootParameters.field_237457_g_, (Object)entity.func_213303_ch()).func_216015_a(LootParameters.field_216283_c, (Object)srcDeath).func_216021_b(LootParameters.field_216284_d, (Object)srcDeath.getEnchantments().func_216021_b(LootParameters.field_216285_e, (Object)srcDeath.func_76364_f());
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^
+        final LootContext.Builder builder = new LootContext.Builder(sw).func_216023_a(rand).func_216015_a(LootContextParams.THIS_ENTITY, (Object)entity).func_216015_a(LootParameters.field_237457_g_, (Object)entity.func_213303_ch()).func_216015_a(LootParameters.field_216283_c, (Object)srcDeath).func_216021_b(LootParameters.field_216284_d, (Object)srcDeath.getEnchantments().func_216021_b(LootParameters.field_216285_e, (Object)srcDeath.getDirectEntity());
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/TileCelestialGateway.java:370: error: ';' expected
             final Component accessGrantedMessage = (Component)new Component("astralsorcery.misc.link.gateway.link", new Object[] { linked.getDisplayName() }).withStyle(ChatFormatting.GREEN));
                                                                                                                                                                                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/base/network/TileTransmissionBase.java:42: error: ';' expected
-            player.func_145747_a((Component)new Component("astralsorcery.misc.link.unlink.all").withStyle(ChatFormatting.GREEN)), Util.NIL_UUID);
-                                                                                                                                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/base/network/TileTransmissionBase.java:42: error: not a statement
-            player.func_145747_a((Component)new Component("astralsorcery.misc.link.unlink.all").withStyle(ChatFormatting.GREEN)), Util.NIL_UUID);
-                                                                                                                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/base/network/TileTransmissionBase.java:42: error: ';' expected
-            player.func_145747_a((Component)new Component("astralsorcery.misc.link.unlink.all").withStyle(ChatFormatting.GREEN)), Util.NIL_UUID);
-                                                                                                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/armor/ItemMantle.java:85: error: ';' expected
-            tooltip.add((Component)cst.getConstellationName().withStyle(ChatFormatting.BLUE)));
-                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/wand/ItemArchitectWand.java:87: error: ';' expected
-        tooltip.add((Component)getPlaceMode(stack).getDisplay().withStyle(ChatFormatting.GOLD)));
-                                                                                               ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/base/network/TileTransmissionBase.java:42: error: ')' expected
+            player.sendSystemMessage(Component.translatable("astralsorcery.misc.link.unlink.all").withStyle(ChatFormatting.GREEN);
+                                                                                                                                 ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/wand/ItemIlluminationWand.java:62: error: ')' expected
         tooltip.add((Component)ColorUtils.getTranslation(color).toString()ColorUtils.textFormattingForDye(color)));
                                                                           ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/wand/ItemIlluminationWand.java:62: error: ';' expected
         tooltip.add((Component)ColorUtils.getTranslation(color).toString()ColorUtils.textFormattingForDye(color)));
                                                                                                                 ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/wand/ItemExchangeWand.java:87: error: ';' expected
-        tooltip.add((Component)getSizeMode(stack).getDisplay().withStyle(ChatFormatting.GOLD)));
-                                                                                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemInfusedGlass.java:42: error: ';' expected
-                    final Component cstName = (Component)cst.getConstellationName().withStyle(ChatFormatting.BLUE));
-                                                                                                                  ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemInfusedGlass.java:45: error: ';' expected
                         final Component creativeHint = (Component)new Component("item.astralsorcery.infused_glass.ttip.creative", new Object[] { percent }).withStyle(ChatFormatting.LIGHT_PURPLE));
                                                                                                                                                                                                   ^
@@ -219,27 +177,9 @@ Creating SRG -> MCP TSRG
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemInfusedGlass.java:49: error: ';' expected
                         tooltip.add((Component)new Component(format, new Object[] { cstName, "" }).withStyle(ChatFormatting.GRAY)));
                                                                                                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemResonator.java:93: error: ')' expected
-            tooltip.add((Component)new Component(upgrade.getUnlocalizedTypeName()).toString()color));
-                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemResonator.java:93: error: ';' expected
-            tooltip.add((Component)new Component(upgrade.getUnlocalizedTypeName()).toString()color));
-                                                                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemKnowledgeShare.java:57: error: ';' expected
-            tooltip.add((Component)new Component("astralsorcery.misc.knowledge.inscribed.creative").withStyle(ChatFormatting.LIGHT_PURPLE)));
-                                                                                                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemKnowledgeShare.java:61: error: ';' expected
-            tooltip.add((Component)new Component("astralsorcery.misc.knowledge.missing").withStyle(ChatFormatting.GRAY)));
-                                                                                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemKnowledgeShare.java:66: error: ';' expected
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemKnowledgeShare.java:68: error: ';' expected
                 tooltip.add((Component)new Component("astralsorcery.misc.knowledge.inscribed", new Object[] { name }).withStyle(ChatFormatting.BLUE)));
                                                                                                                                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemEnchantmentAmulet.java:47: error: ';' expected
-            tooltip.add((Component)ench.getDisplay().withStyle(ChatFormatting.BLUE)));
-                                                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemEnchantmentAmulet.java:50: error: ';' expected
-            tooltip.add((Component)new Component("astralsorcery.amulet.color.colorless").withStyle(ChatFormatting.ITALIC)).withStyle(ChatFormatting.GRAY)));
-                                                                                                                                                         ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/quality/GemQuality.java:31: error: ';' expected
         return new Component("item.astralsorcery.gem_quality.%s", new Object[] { this.name().toLowerCase(Locale.ROOT) }).toString()this.color);
                                                                                                                                    ^
@@ -249,36 +189,12 @@ Creating SRG -> MCP TSRG
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/quality/GemQuality.java:31: error: ';' expected
         return new Component("item.astralsorcery.gem_quality.%s", new Object[] { this.name().toLowerCase(Locale.ROOT) }).toString()this.color);
                                                                                                                                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemConstellationPaper.java:70: error: ';' expected
-            toolTip.add((Component)c.getConstellationName().withStyle(ChatFormatting.BLUE)));
-                                                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemConstellationPaper.java:73: error: ';' expected
-            toolTip.add((Component)new Component("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY)));
-                                                                                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/useables/ItemShiftingStar.java:51: error: ';' expected
-                tooltip.add((Component)cst.getConstellationName().withStyle(ChatFormatting.BLUE)));
-                                                                                                 ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/useables/ItemShiftingStar.java:54: error: ';' expected
-                tooltip.add((Component)new Component("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY)));
-                                                                                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/useables/ItemShiftingStar.java:76: error: ';' expected
-                    player.func_145747_a((Component)new Component("astralsorcery.progress.switch.attunement").withStyle(ChatFormatting.BLUE)), Util.NIL_UUID);
-                                                                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/useables/ItemShiftingStar.java:76: error: not a statement
-                    player.func_145747_a((Component)new Component("astralsorcery.progress.switch.attunement").withStyle(ChatFormatting.BLUE)), Util.NIL_UUID);
-                                                                                                                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/useables/ItemShiftingStar.java:76: error: ';' expected
-                    player.func_145747_a((Component)new Component("astralsorcery.progress.switch.attunement").withStyle(ChatFormatting.BLUE)), Util.NIL_UUID);
-                                                                                                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/useables/ItemShiftingStar.java:82: error: ';' expected
-                player.func_145747_a((Component)new Component("astralsorcery.progress.remove.attunement").withStyle(ChatFormatting.BLUE)), Util.NIL_UUID);
-                                                                                                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/useables/ItemShiftingStar.java:82: error: not a statement
-                player.func_145747_a((Component)new Component("astralsorcery.progress.remove.attunement").withStyle(ChatFormatting.BLUE)), Util.NIL_UUID);
-                                                                                                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/useables/ItemShiftingStar.java:82: error: ';' expected
-                player.func_145747_a((Component)new Component("astralsorcery.progress.remove.attunement").withStyle(ChatFormatting.BLUE)), Util.NIL_UUID);
-                                                                                                                                                        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/useables/ItemShiftingStar.java:78: error: ')' expected
+                    player.sendSystemMessage(Component.translatable("astralsorcery.progress.switch.attunement").withStyle(ChatFormatting.BLUE);
+                                                                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/useables/ItemShiftingStar.java:84: error: ')' expected
+                player.sendSystemMessage(Component.translatable("astralsorcery.progress.remove.attunement").withStyle(ChatFormatting.BLUE);
+                                                                                                                                          ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:41: error: '}' expected
                     toolTip.add((Component)new Component("crystal.info.astralsorcery.attuned", new Object[] { c.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
                                                                                                                                                                      ^
@@ -291,47 +207,131 @@ Creating SRG -> MCP TSRG
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:41: error: ';' expected
                     toolTip.add((Component)new Component("crystal.info.astralsorcery.attuned", new Object[] { c.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
                                                                                                                                                                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:44: error: ';' expected
-                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY)));
-                                                                                                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:51: error: '}' expected
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:52: error: '}' expected
                     toolTip.add((Component)new Component("crystal.info.astralsorcery.trait", new Object[] { tr.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
                                                                                                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:51: error: ')' expected
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:52: error: ')' expected
                     toolTip.add((Component)new Component("crystal.info.astralsorcery.trait", new Object[] { tr.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
                                                                                                                                                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:51: error: illegal start of expression
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:52: error: illegal start of expression
                     toolTip.add((Component)new Component("crystal.info.astralsorcery.trait", new Object[] { tr.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
                                                                                                                                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:51: error: ';' expected
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:52: error: ';' expected
                     toolTip.add((Component)new Component("crystal.info.astralsorcery.trait", new Object[] { tr.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
                                                                                                                                                                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:54: error: ';' expected
-                    toolTip.add((Component)new Component("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY)));
-                                                                                                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:58: error: class, interface, enum, or record expected
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:60: error: class, interface, enum, or record expected
     }
     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:60: error: class, interface, enum, or record expected
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:62: error: class, interface, enum, or record expected
     public Component func_200295_i(final ItemStack stack) {
            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:60: error: class, interface, enum, or record expected
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:62: error: class, interface, enum, or record expected
     public Component func_200295_i(final ItemStack stack) {
                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:61: error: class, interface, enum, or record expected
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:63: error: class, interface, enum, or record expected
         final IWeakConstellation cst = this.getAttunedConstellation(stack);
               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:62: error: class, interface, enum, or record expected
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:64: error: class, interface, enum, or record expected
         if (cst != null) {
         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:64: error: class, interface, enum, or record expected
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:66: error: class, interface, enum, or record expected
         }
         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:66: error: class, interface, enum, or record expected
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:68: error: class, interface, enum, or record expected
     }
     ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:72: error: class, interface, enum, or record expected
+    public IConstellation getFocusConstellation(final ItemStack stack) {
+           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:72: error: class, interface, enum, or record expected
+    public IConstellation getFocusConstellation(final ItemStack stack) {
+                                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:74: error: class, interface, enum, or record expected
+    }
+    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:78: error: class, interface, enum, or record expected
+    public IWeakConstellation getAttunedConstellation(final ItemStack stack) {
+           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:78: error: class, interface, enum, or record expected
+    public IWeakConstellation getAttunedConstellation(final ItemStack stack) {
+                                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:80: error: class, interface, enum, or record expected
+    }
+    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:83: error: class, interface, enum, or record expected
+    public boolean setAttunedConstellation(final ItemStack stack, @Nullable final IWeakConstellation cst) {
+           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:83: error: class, interface, enum, or record expected
+    public boolean setAttunedConstellation(final ItemStack stack, @Nullable final IWeakConstellation cst) {
+                                                 ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:83: error: class, interface, enum, or record expected
+    public boolean setAttunedConstellation(final ItemStack stack, @Nullable final IWeakConstellation cst) {
+                                                                                  ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:86: error: class, interface, enum, or record expected
+        }
+        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:89: error: class, interface, enum, or record expected
+        }
+        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:91: error: class, interface, enum, or record expected
+    }
+    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:95: error: class, interface, enum, or record expected
+    public IMinorConstellation getTraitConstellation(final ItemStack stack) {
+           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:95: error: class, interface, enum, or record expected
+    public IMinorConstellation getTraitConstellation(final ItemStack stack) {
+                                                           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:97: error: class, interface, enum, or record expected
+    }
+    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:100: error: class, interface, enum, or record expected
+    public boolean setTraitConstellation(final ItemStack stack, @Nullable final IMinorConstellation cst) {
+           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:100: error: class, interface, enum, or record expected
+    public boolean setTraitConstellation(final ItemStack stack, @Nullable final IMinorConstellation cst) {
+                                               ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:100: error: class, interface, enum, or record expected
+    public boolean setTraitConstellation(final ItemStack stack, @Nullable final IMinorConstellation cst) {
+                                                                                ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:103: error: class, interface, enum, or record expected
+        }
+        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:106: error: class, interface, enum, or record expected
+        }
+        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/crystal/ItemAttunedCrystalBase.java:108: error: class, interface, enum, or record expected
+    }
+    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/AbstractPerk.java:199: error: ';' expected
+        return new Component(this.unlocalizedKey + ".name").toString()this.getCategory().getTextFormatting());
+                                                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/AbstractPerk.java:199: error: ';' expected
+        return new Component(this.unlocalizedKey + ".name").toString()this.getCategory().getTextFormatting());
+                                                                                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyProjectileDistance.java:39: error: illegal start of expression
+            if (source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+                                        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyProjectileDistance.java:39: error: ')' expected
+            if (source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyBleed.java:41: error: illegal start of expression
+        if (source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyBleed.java:41: error: ')' expected
+        if (source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+                                                                                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyProjectileProximity.java:39: error: illegal start of expression
+            if (source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+                                        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyProjectileProximity.java:39: error: ')' expected
+            if (source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyRampage.java:40: error: illegal start of expression
+        if (source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+                                    ^
 100 errors
-only showing the first 100 errors, of 409 total; use -Xmaxerrs if you would like to see more
+only showing the first 100 errors, of 288 total; use -Xmaxerrs if you would like to see more
 
 > Task :compileJava FAILED
 
@@ -596,5 +596,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 2m 25s
+BUILD FAILED in 2m 48s
 4 actionable tasks: 4 executed
