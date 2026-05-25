@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.screen.journal.progression;
 
-import com.mojang.blaze3d.vertex.BufferBuilder;
+import net.minecraft.client.renderer.BufferBuilder;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import org.lwjgl.opengl.GL11;
@@ -15,13 +15,13 @@ import java.awt.Color;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import net.minecraft.client.renderer.RenderHelper;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.util.Mth;
+import net.minecraft.util.math.MathHelper;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
 import java.awt.geom.Point2D;
 import java.util.List;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import com.google.common.collect.Lists;
-import net.minecraft.network.chat.FormattedCharSequence;
+import net.minecraft.util.FormattedCharSequence;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Iterator;
 import net.minecraft.client.gui.screens.Screen;
@@ -89,10 +89,10 @@ public class ScreenJournalClusterRenderer
                 if (r.contains(mouseX, mouseY)) {
                     final FormattedCharSequence name = (FormattedCharSequence)this.clickableNodes.get(r).getName();
                     renderStack.popPose();
-                    renderStack.translate(r.getX(), r.getY(), (double)(zLevel + 200.0f));
+                    renderStack.func_227861_a_(r.getX(), r.getY(), (double)(zLevel + 200.0f));
                     renderStack.translate(this.progressionSizeHandler.getScalingFactor(), this.progressionSizeHandler.getScalingFactor(), 1.0f);
-                    RenderingDrawUtils.renderBlueTooltipComponents(renderStack, 0.0f, 0.0f, 0.0f, Lists.newArrayList((Object[])new FormattedCharSequence[] { name }), Minecraft.getInstance().font, false);
-                    renderStack.popPose();
+                    RenderingDrawUtils.renderBlueTooltipComponents(renderStack, 0.0f, 0.0f, 0.0f, Lists.newArrayList((Object[])new FormattedCharSequence[] { name }), Minecraft.getInstance().field_71466_p, false);
+                    renderStack.scale();
                 }
             }
         }
@@ -152,7 +152,7 @@ public class ScreenJournalClusterRenderer
         this.alpha = this.progressionSizeHandler.getScalingFactor();
         this.alpha -= 0.25f;
         this.alpha /= 0.75f;
-        this.alpha = Mth.canEnchant(this.alpha, 0.0f, 1.0f);
+        this.alpha = MathHelper.func_76131_a(this.alpha, 0.0f, 1.0f);
         final Map<ResearchNode, Point2D.Float> displayPositions = new HashMap<ResearchNode, Point2D.Float>();
         final Iterator<ResearchNode> iterator = this.progression.getResearchNodes().iterator();
         ResearchNode node = null;
@@ -177,21 +177,21 @@ public class ScreenJournalClusterRenderer
         final float offsetY = offset.y - zoomedWH / 2.0f;
         node.getBackgroundTexture().resolve().bindTexture();
         if (this.progressionSizeHandler.getScalingFactor() >= 0.7) {
-            this.clickableNodes.put(new Rectangle(Mth.func_76141_d(offsetX), Mth.func_76141_d(offsetY), Mth.func_76141_d(zoomedWH), Mth.func_76141_d(zoomedWH)), node);
+            this.clickableNodes.put(new Rectangle(MathHelper.func_76141_d(offsetX), MathHelper.func_76141_d(offsetY), MathHelper.func_76141_d(zoomedWH), MathHelper.func_76141_d(zoomedWH)), node);
         }
         this.drawResearchItemBackground(zoomedWH, offsetX, offsetY, zLevel);
         final float pxWH = this.progressionSizeHandler.getZoomedWHNode() / 16.0f;
         switch (node.getNodeRenderType()) {
             case ITEMSTACK: {
                 renderStack.popPose();
-                renderStack.translate((double)offsetX, (double)offsetY, 0.0);
+                renderStack.func_227861_a_((double)offsetX, (double)offsetY, 0.0);
                 renderStack.translate(this.progressionSizeHandler.getScalingFactor(), this.progressionSizeHandler.getScalingFactor(), 1.0f);
-                renderStack.translate(3.0, 3.0, 100.0);
+                renderStack.func_227861_a_(3.0, 3.0, 100.0);
                 renderStack.translate(0.75f, 0.75f, 1.0f);
                 RenderHelper.func_227780_a_();
-                RenderingUtils.renderTranslucentItemStackModelGUI(node.getRenderItemStack(ClientScheduler.getClientTick()), renderStack, Color.WHITE, Blending.DEFAULT, Mth.getDescriptionId((int)(this.alpha * 255.0f), 0, 255));
+                RenderingUtils.renderTranslucentItemStackModelGUI(node.getRenderItemStack(ClientScheduler.getClientTick()), renderStack, Color.WHITE, Blending.DEFAULT, MathHelper.func_76125_a((int)(this.alpha * 255.0f), 0, 255));
                 RenderHelper.func_74518_a();
-                renderStack.popPose();
+                renderStack.scale();
                 break;
             }
             case TEXTURE_SPRITE: {
@@ -204,20 +204,20 @@ public class ScreenJournalClusterRenderer
                 res.getResource().bindTexture();
                 final Tuple<Float, Float> uvTexture = res.getUVOffset(ClientScheduler.getClientTick());
                 renderStack.popPose();
-                renderStack.translate((double)offsetX, (double)offsetY, 0.0);
+                renderStack.func_227861_a_((double)offsetX, (double)offsetY, 0.0);
                 RenderSystem.enableBlend();
                 RenderSystem.defaultBlendFunc();
-                RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
-                    final Matrix4f matr = renderStack.last().translate();
-                    buf.vertex(matr, pxWH, zoomedWH - pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA(), (float)uvTexture.getB() + res.getVLength()).blockPosition();
-                    buf.vertex(matr, zoomedWH - pxWH, zoomedWH - pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA() + res.getULength(), (float)uvTexture.getB() + res.getVLength()).blockPosition();
-                    buf.vertex(matr, zoomedWH - pxWH, pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA() + res.getULength(), (float)uvTexture.getB()).blockPosition();
-                    buf.vertex(matr, pxWH, pxWH, zLevel).pushPose()r, g, b, a).setPos((float)uvTexture.getA(), (float)uvTexture.getB()).blockPosition();
+                RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> {
+                    final Matrix4f matr = renderStack.last().func_227870_a_();
+                    buf.vertex(matr, pxWH, zoomedWH - pxWH, zLevel).color(r, g, b, a).func_225583_a_((float)uvTexture.func_76341_a(), (float)uvTexture.func_76340_b() + res.getVLength()).endVertex();
+                    buf.vertex(matr, zoomedWH - pxWH, zoomedWH - pxWH, zLevel).color(r, g, b, a).func_225583_a_((float)uvTexture.func_76341_a() + res.getULength(), (float)uvTexture.func_76340_b() + res.getVLength()).endVertex();
+                    buf.vertex(matr, zoomedWH - pxWH, pxWH, zLevel).color(r, g, b, a).func_225583_a_((float)uvTexture.func_76341_a() + res.getULength(), (float)uvTexture.func_76340_b()).endVertex();
+                    buf.vertex(matr, pxWH, pxWH, zLevel).color(r, g, b, a).func_225583_a_((float)uvTexture.func_76341_a(), (float)uvTexture.func_76340_b()).endVertex();
                     return;
                 });
                 RenderSystem.defaultBlendFunc();
                 RenderSystem.disableBlend();
-                renderStack.popPose();
+                renderStack.scale();
                 break;
             }
         }
@@ -253,9 +253,9 @@ public class ScreenJournalClusterRenderer
     }
     
     private void drawLinePart(final VertexConsumer buf, final PoseStack renderStack, final double lx, final double ly, final double hx, final double hy, final float zLevel, final float brightness) {
-        final Matrix4f offset = renderStack.last().translate();
-        buf.vertex(offset, (float)lx, (float)ly, zLevel).pushPose()brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).blockPosition();
-        buf.vertex(offset, (float)hx, (float)hy, zLevel).pushPose()brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).blockPosition();
+        final Matrix4f offset = renderStack.last().func_227870_a_();
+        buf.vertex(offset, (float)lx, (float)ly, zLevel).color(brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).endVertex();
+        buf.vertex(offset, (float)hx, (float)hy, zLevel).color(brightness * this.alpha, brightness * this.alpha, brightness * this.alpha, 0.4f * this.alpha).endVertex();
     }
     
     private float evaluateBrightness(final int segment, final int activeSegment) {
@@ -268,11 +268,11 @@ public class ScreenJournalClusterRenderer
     
     private void drawResearchItemBackground(final double zoomedWH, final double xAdd, final double yAdd, final float zLevel) {
         RenderSystem.enableBlend();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
-            buf.func_225582_a_(xAdd, yAdd + zoomedWH, (double)zLevel).pushPose()this.alpha, this.alpha, this.alpha, this.alpha).setPos(0.0f, 1.0f).blockPosition();
-            buf.func_225582_a_(xAdd + zoomedWH, yAdd + zoomedWH, (double)zLevel).pushPose()this.alpha, this.alpha, this.alpha, this.alpha).setPos(1.0f, 1.0f).blockPosition();
-            buf.func_225582_a_(xAdd + zoomedWH, yAdd, (double)zLevel).pushPose()this.alpha, this.alpha, this.alpha, this.alpha).setPos(1.0f, 0.0f).blockPosition();
-            buf.func_225582_a_(xAdd, yAdd, (double)zLevel).pushPose()this.alpha, this.alpha, this.alpha, this.alpha).setPos(0.0f, 0.0f).blockPosition();
+        RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> {
+            buf.func_225582_a_(xAdd, yAdd + zoomedWH, (double)zLevel).color(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(0.0f, 1.0f).endVertex();
+            buf.func_225582_a_(xAdd + zoomedWH, yAdd + zoomedWH, (double)zLevel).color(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(1.0f, 1.0f).endVertex();
+            buf.func_225582_a_(xAdd + zoomedWH, yAdd, (double)zLevel).color(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(1.0f, 0.0f).endVertex();
+            buf.func_225582_a_(xAdd, yAdd, (double)zLevel).color(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(0.0f, 0.0f).endVertex();
             return;
         });
         RenderSystem.disableBlend();

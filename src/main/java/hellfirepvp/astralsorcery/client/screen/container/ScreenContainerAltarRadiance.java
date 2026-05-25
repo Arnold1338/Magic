@@ -57,7 +57,7 @@ public class ScreenContainerAltarRadiance extends ScreenContainerAltar<Container
             final int x = ScreenContainerAltarRadiance.rand.nextInt(54);
             final int y = ScreenContainerAltarRadiance.rand.nextInt(54);
             final float brightness = 0.3f + RenderingConstellationUtils.stdFlicker(ClientScheduler.getClientTick(), pTicks, 10 + ScreenContainerAltarRadiance.rand.nextInt(20)) * 0.6f;
-            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(15 + x), (float)(39 + y), (float)this.func_230927_p_(), 5.0f, 5.0f).color(brightness, brightness, brightness, brightness).draw());
+            RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(15 + x), (float)(39 + y), (float)this.func_230927_p_(), 5.0f, 5.0f).color(brightness, brightness, brightness, brightness).draw());
         }
         final TileAltar altar = this.func_212873_a_().getTileEntity();
         final IConstellation c = altar.getFocusedConstellation();

@@ -1,12 +1,12 @@
 package hellfirepvp.astralsorcery.client.screen.journal;
 
-import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.SoundEvent;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
-import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.SoundEvents;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.network.play.client.PktPerkGemModification;
-import net.minecraft.Util;
+import net.minecraft.util.Util;
 import net.minecraft.client.gui.screens.Screen;
 import hellfirepvp.astralsorcery.client.screen.journal.overlay.ScreenJournalOverlayPerkStatistics;
 import hellfirepvp.astralsorcery.common.network.play.client.PktUnlockPerk;
@@ -18,7 +18,7 @@ import java.awt.Color;
 import org.joml.Matrix4f;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.util.draw.BufferContext;
-import com.mojang.blaze3d.vertex.BufferBuilder;
+import net.minecraft.client.renderer.BufferBuilder;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.perk.PerkConverter;
 import hellfirepvp.astralsorcery.common.perk.source.AttributeConverterProvider;
@@ -34,7 +34,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.perk.node.socket.GemSocketItem;
-import net.minecraft.network.chat.Style;
+import net.minecraft.util.text.Style;
 import hellfirepvp.astralsorcery.common.data.research.PlayerPerkData;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.MutableComponent;
@@ -43,9 +43,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.TooltipFlag;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
-import net.minecraft.network.chat.FormattedCharSequence;
+import net.minecraft.util.FormattedCharSequence;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.util.IItemProvider;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.item.useables.ItemPerkSeal;
@@ -58,7 +58,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import java.awt.geom.Point2D;
 import hellfirepvp.astralsorcery.common.constellation.IMajorConstellation;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.util.Mth;
+import net.minecraft.util.math.MathHelper;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import java.util.Iterator;
@@ -73,7 +73,7 @@ import hellfirepvp.astralsorcery.common.perk.PerkTree;
 import hellfirepvp.astralsorcery.client.screen.journal.perk.PerkTreeSizeHandler;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import net.minecraft.network.chat.Component;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.perk.node.socket.GemSocketPerk;
@@ -119,7 +119,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
     private ItemStack foundSeals;
     
     public ScreenJournalPerkTree() {
-        super((Component)new Component("screen.astralsorcery.tome.perks"), 30);
+        super((ITextComponent)new Component("screen.astralsorcery.tome.perks"), 30);
         this.unlockPrimed = null;
         this.sealBreakPrimed = null;
         this.tickSealBreak = 0;
@@ -133,8 +133,8 @@ public class ScreenJournalPerkTree extends ScreenJournal
         this.rSocketMenu = null;
         this.slotsSocketMenu = Maps.newHashMap();
         this.rStatStar = null;
-        this.mouseSealStack = ItemStack.EMPTY;
-        this.foundSeals = ItemStack.EMPTY;
+        this.mouseSealStack = ItemStack.field_190927_a;
+        this.foundSeals = ItemStack.field_190927_a;
         this.closeWithInventoryKey = false;
         this.searchTextEntry.setChangeCallback(this::updateSearchHighlight);
         this.buildTree();
@@ -193,12 +193,12 @@ public class ScreenJournalPerkTree extends ScreenJournal
             final AbstractPerk root = PerkTree.PERK_TREE.getRootPerk(LogicalSide.CLIENT, attunement);
             if (root != null) {
                 final Point2D.Float shift = this.sizeHandler.evRelativePos(root.getOffset());
-                this.moveMouse((float)Mth.func_76141_d(shift.x), (float)Mth.func_76141_d(shift.y));
+                this.moveMouse((float)MathHelper.func_76141_d(shift.x), (float)MathHelper.func_76141_d(shift.y));
                 shifted = true;
             }
         }
         if (!shifted) {
-            this.moveMouse((float)Mth.func_76141_d(this.sizeHandler.getTotalWidth() / 2.0f), (float)Mth.func_76141_d(this.sizeHandler.getTotalHeight() / 2.0f));
+            this.moveMouse((float)MathHelper.func_76141_d(this.sizeHandler.getTotalWidth() / 2.0f), (float)MathHelper.func_76141_d(this.sizeHandler.getTotalHeight() / 2.0f));
         }
         this.applyMovedMouseOffset();
     }
@@ -208,7 +208,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         this.thisFramePerks.clear();
         final double guiFactor = Minecraft.getInstance().func_228018_at_().func_198100_s();
         GL11.glEnable(3089);
-        GL11.glScissor(Mth.func_76128_c((this.guiLeft + 39) * guiFactor), Mth.func_76128_c((this.guiTop + 44) * guiFactor), Mth.func_76128_c((this.guiWidth - 76) * guiFactor), Mth.func_76128_c((this.guiHeight - 71) * guiFactor));
+        GL11.glScissor(MathHelper.func_76128_c((this.guiLeft + 39) * guiFactor), MathHelper.func_76128_c((this.guiTop + 44) * guiFactor), MathHelper.func_76128_c((this.guiWidth - 76) * guiFactor), MathHelper.func_76128_c((this.guiHeight - 71) * guiFactor));
         this.func_230926_e_(-50);
         this.drawBackground(renderStack);
         this.func_230926_e_(0);
@@ -224,11 +224,11 @@ public class ScreenJournalPerkTree extends ScreenJournal
         this.func_230926_e_(510);
         this.drawHoverTooltips(renderStack, mouseX, mouseY);
         this.func_230926_e_(0);
-        if (!this.mouseSealStack.isEmpty()) {
+        if (!this.mouseSealStack.func_190926_b()) {
             renderStack.popPose();
-            renderStack.translate((double)(mouseX - 8), (double)(mouseY - 8), (double)this.getGuiZLevel());
+            renderStack.func_227861_a_((double)(mouseX - 8), (double)(mouseY - 8), (double)this.getGuiZLevel());
             RenderingUtils.renderItemStackGUI(renderStack, this.mouseSealStack, null);
-            renderStack.popPose();
+            renderStack.scale();
         }
     }
     
@@ -238,14 +238,14 @@ public class ScreenJournalPerkTree extends ScreenJournal
         if (Minecraft.getInstance().player != null) {
             final int count = ItemPerkSeal.getPlayerSealCount((Player)Minecraft.getInstance().player);
             if (count > 0) {
-                this.foundSeals = new ItemStack((ItemLike)ItemsAS.PERK_SEAL, count);
+                this.foundSeals = new ItemStack((IItemProvider)ItemsAS.PERK_SEAL, count);
             }
             else {
-                this.foundSeals = ItemStack.EMPTY;
+                this.foundSeals = ItemStack.field_190927_a;
             }
         }
         else {
-            this.foundSeals = ItemStack.EMPTY;
+            this.foundSeals = ItemStack.field_190927_a;
         }
         --this.tickSealBreak;
         if (this.tickSealBreak <= 0) {
@@ -260,11 +260,11 @@ public class ScreenJournalPerkTree extends ScreenJournal
         TexturesAS.TEX_GUI_MENU_SLOT.bindTexture();
         RenderingGuiUtils.drawTexturedRect(renderStack, (float)(this.guiLeft + ScreenJournalPerkTree.rectSealBox.x - 1), (float)(this.guiTop + ScreenJournalPerkTree.rectSealBox.y - 1), (float)this.getGuiZLevel(), (float)(ScreenJournalPerkTree.rectSealBox.width + 2), (float)(ScreenJournalPerkTree.rectSealBox.height + 2), TexturesAS.TEX_GUI_MENU_SLOT);
         RenderSystem.disableBlend();
-        if (!this.foundSeals.isEmpty()) {
+        if (!this.foundSeals.func_190926_b()) {
             renderStack.popPose();
-            renderStack.translate((double)(this.guiLeft + ScreenJournalPerkTree.rectSealBox.x), (double)(this.guiTop + ScreenJournalPerkTree.rectSealBox.y), (double)this.getGuiZLevel());
+            renderStack.func_227861_a_((double)(this.guiLeft + ScreenJournalPerkTree.rectSealBox.x), (double)(this.guiTop + ScreenJournalPerkTree.rectSealBox.y), (double)this.getGuiZLevel());
             RenderingUtils.renderItemStackGUI(renderStack, this.foundSeals, null);
-            renderStack.popPose();
+            renderStack.scale();
         }
     }
     
@@ -274,11 +274,11 @@ public class ScreenJournalPerkTree extends ScreenJournal
         for (final Rectangle2D.Float r : this.slotsSocketMenu.keySet()) {
             if (r.contains(mouseX, mouseY)) {
                 final Integer slot = this.slotsSocketMenu.get(r);
-                final ItemStack in = player.getInventory().func_70301_a((int)slot);
-                if (!in.isEmpty()) {
-                    Font fr = in.getItem().getFontRenderer(in);
+                final ItemStack in = player.field_71071_by.func_70301_a((int)slot);
+                if (!in.func_190926_b()) {
+                    Font fr = in.func_77973_b().getFontRenderer(in);
                     if (fr == null) {
-                        fr = Minecraft.getInstance().font;
+                        fr = Minecraft.getInstance().field_71466_p;
                     }
                     toolTip = new ArrayList<FormattedCharSequence>();
                     toolTip.addAll(this.func_231151_a_(in));
@@ -288,15 +288,15 @@ public class ScreenJournalPerkTree extends ScreenJournal
             }
         }
         if (this.rStatStar.contains(mouseX, mouseY)) {
-            RenderingDrawUtils.renderBlueTooltipComponents(renderStack, this.rStatStar.x + this.rStatStar.width / 2.0f, (float)(this.rStatStar.y + this.rStatStar.height), (float)this.getGuiZLevel(), Lists.newArrayList((Object[])new FormattedCharSequence[] { (FormattedCharSequence)new Component("perk.reader.astralsorcery.infostar") }), this.fogColor, false);
+            RenderingDrawUtils.renderBlueTooltipComponents(renderStack, this.rStatStar.x + this.rStatStar.width / 2.0f, (float)(this.rStatStar.y + this.rStatStar.height), (float)this.getGuiZLevel(), Lists.newArrayList((Object[])new FormattedCharSequence[] { (FormattedCharSequence)new Component("perk.reader.astralsorcery.infostar") }), this.field_230712_o_, false);
             return;
         }
-        if (!this.foundSeals.isEmpty() && ScreenJournalPerkTree.rectSealBox.contains(mouseX - this.guiLeft, mouseY - this.guiTop)) {
+        if (!this.foundSeals.func_190926_b() && ScreenJournalPerkTree.rectSealBox.contains(mouseX - this.guiLeft, mouseY - this.guiTop)) {
             final List<FormattedCharSequence> toolTip2 = new ArrayList<FormattedCharSequence>();
-            toolTip2.addAll(this.foundSeals.func_82840_a((Player)Minecraft.getInstance().player, (TooltipFlag)(Minecraft.getInstance().options.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
+            toolTip2.addAll(this.foundSeals.getTooltipLines((Player)Minecraft.getInstance().player, (TooltipFlag)(Minecraft.getInstance().options.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
             toolTip2.add((FormattedCharSequence)Component.empty());
-            toolTip2.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed.usage").withStyle(ChatFormatting.GRAY)));
-            RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)mouseX, (float)mouseY, (float)this.getGuiZLevel(), toolTip2, this.fogColor, false);
+            toolTip2.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed.usage").func_240699_a_(ChatFormatting.GRAY));
+            RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)mouseX, (float)mouseY, (float)this.getGuiZLevel(), toolTip2, this.field_230712_o_, false);
         }
         else {
             for (final Map.Entry<AbstractPerk, Rectangle2D.Float> rctPerk : this.thisFramePerks.entrySet()) {
@@ -308,39 +308,39 @@ public class ScreenJournalPerkTree extends ScreenJournal
                     perk.getLocalizedTooltip().forEach(line -> {
                         final Style style = line.func_150256_b();
                         if (style.func_240711_a_() == null) {
-                            line.withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.ITALIC));
+                            line.func_240699_a_(ChatFormatting.GRAY).func_240699_a_(ChatFormatting.ITALIC);
                         }
                         toolTip.add(line);
                         return;
                     });
                     if (perkData.isPerkSealed(perk)) {
-                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed").withStyle(ChatFormatting.RED)));
-                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed.break").withStyle(ChatFormatting.RED)));
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed").func_240699_a_(ChatFormatting.RED));
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.sealed.break").func_240699_a_(ChatFormatting.RED));
                     }
                     else if (perkData.hasPerkEffect(perk)) {
-                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.active").withStyle(ChatFormatting.GREEN)));
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.active").func_240699_a_(ChatFormatting.GREEN));
                     }
                     else if (perk.mayUnlockPerk(prog, player)) {
-                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.available").withStyle(ChatFormatting.BLUE)));
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.available").func_240699_a_(ChatFormatting.BLUE));
                     }
                     else {
-                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.locked").withStyle(ChatFormatting.GRAY)));
+                        toolTip3.add((FormattedCharSequence)new Component("perk.info.astralsorcery.locked").func_240699_a_(ChatFormatting.GRAY));
                     }
                     if (Minecraft.getInstance().options.advancedItemTooltips && perk.getCategory() != AbstractPerk.CATEGORY_BASE) {
-                        toolTip3.add((FormattedCharSequence)perk.getCategory().getName().withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.ITALIC)));
+                        toolTip3.add((FormattedCharSequence)perk.getCategory().getName().func_240699_a_(ChatFormatting.GRAY).func_240699_a_(ChatFormatting.ITALIC));
                     }
                     final Collection<MutableComponent> modInfo = perk.getSource();
                     if (modInfo != null) {
                         for (final MutableComponent cmp : modInfo) {
-                            toolTip3.add((FormattedCharSequence)cmp.withStyle(ChatFormatting.BLUE)).withStyle(ChatFormatting.ITALIC)));
+                            toolTip3.add((FormattedCharSequence)cmp.func_240699_a_(ChatFormatting.BLUE).func_240699_a_(ChatFormatting.ITALIC));
                         }
                     }
                     if (Minecraft.getInstance().options.advancedItemTooltips) {
                         toolTip3.add((FormattedCharSequence)Component.empty());
-                        toolTip3.add((FormattedCharSequence)new Component(perk.getRegistryName().toString()).withStyle(ChatFormatting.GRAY)));
-                        toolTip3.add((FormattedCharSequence)new Component("astralsorcery.misc.ctrlcopy").withStyle(ChatFormatting.GRAY)));
+                        toolTip3.add((FormattedCharSequence)new Component(perk.getRegistryName().toString()).func_240699_a_(ChatFormatting.GRAY));
+                        toolTip3.add((FormattedCharSequence)new Component("astralsorcery.misc.ctrlcopy").func_240699_a_(ChatFormatting.GRAY));
                     }
-                    RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)mouseX, (float)mouseY, (float)this.getGuiZLevel(), toolTip3, this.fogColor, true);
+                    RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)mouseX, (float)mouseY, (float)this.getGuiZLevel(), toolTip3, this.field_230712_o_, true);
                     break;
                 }
             }
@@ -354,11 +354,11 @@ public class ScreenJournalPerkTree extends ScreenJournal
             final T sMenuPerk = (T)this.socketMenu;
             ItemStack stack = null;
             final Map<Integer, ItemStack> found = ItemUtils.findItemsIndexedInPlayerInventory((Player)Minecraft.getInstance().player, stack -> {
-                if (stack.isEmpty() || !(stack.getItem() instanceof GemSocketItem)) {
+                if (stack.func_190926_b() || !(stack.func_77973_b() instanceof GemSocketItem)) {
                     return false;
                 }
                 else {
-                    final GemSocketItem item = (GemSocketItem)stack.getItem();
+                    final GemSocketItem item = (GemSocketItem)stack.func_77973_b();
                     return item.canBeInserted(stack, sMenuPerk, (Player)Minecraft.getInstance().player, ResearchHelper.getClientProgress(), LogicalSide.CLIENT);
                 }
             });
@@ -367,8 +367,8 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 return;
             }
             final Point2D.Float offset = this.sizeHandler.scalePointToGui(this, this.mousePosition, sMenuPerk.getPoint().getOffset());
-            float offsetX = (float)Mth.func_76141_d(offset.x);
-            float offsetY = (float)Mth.func_76141_d(offset.y);
+            float offsetX = (float)MathHelper.func_76141_d(offset.x);
+            float offsetY = (float)MathHelper.func_76141_d(offset.y);
             final float scale = this.sizeHandler.getScalingFactor();
             final float scaledSlotSize = 18.0f * scale;
             final int realWidth = Math.min(5, found.size());
@@ -381,16 +381,16 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 return;
             }
             renderStack.popPose();
-            renderStack.translate((double)offsetX, (double)offsetY, (double)this.getGuiZLevel());
+            renderStack.func_227861_a_((double)offsetX, (double)offsetY, (double)this.getGuiZLevel());
             renderStack.translate(scale, scale, 1.0f);
             RenderingDrawUtils.renderBlueTooltipBox(renderStack, 0, 0, realWidth * 18, realHeight * 18);
-            renderStack.popPose();
+            renderStack.scale();
             final float inventoryOffsetX = offsetX + 12.0f * scale;
             final float inventoryOffsetY = offsetY - 12.0f * scale;
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
             TexturesAS.TEX_GUI_MENU_SLOT_GEM_CONTEXT.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+            RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> {
                 for (int index2 = 0; index2 < found.size(); ++index2) {
                     final float addedX2 = index2 % 5 * scaledSlotSize;
                     final float addedY2 = index2 / 5 * scaledSlotSize;
@@ -408,10 +408,10 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 final float addedY = index / 5 * scaledSlotSize;
                 final Rectangle2D.Float r = new Rectangle2D.Float(offsetX + addedX, offsetY + addedY, scaledSlotSize, scaledSlotSize);
                 renderStack.popPose();
-                renderStack.translate((double)(offsetX + addedX + 1.0f), (double)(offsetY + addedY + 1.0f), (double)this.getGuiZLevel());
+                renderStack.func_227861_a_((double)(offsetX + addedX + 1.0f), (double)(offsetY + addedY + 1.0f), (double)this.getGuiZLevel());
                 renderStack.translate(scale, scale, 1.0f);
                 RenderingUtils.renderItemStackGUI(renderStack, stack, null);
-                renderStack.popPose();
+                renderStack.scale();
                 this.slotsSocketMenu.put(r, slotId);
                 ++index;
             }
@@ -424,29 +424,29 @@ public class ScreenJournalPerkTree extends ScreenJournal
         final int availablePerks;
         if (prog.isAttuned() && (availablePerks = prog.getPerkData().getAvailablePerkPoints(player, LogicalSide.CLIENT)) > 0) {
             renderStack.popPose();
-            renderStack.translate((double)(this.guiLeft + 50), (double)(this.guiTop + 18), (double)this.getGuiZLevel());
+            renderStack.func_227861_a_((double)(this.guiLeft + 50), (double)(this.guiTop + 18), (double)this.getGuiZLevel());
             final FormattedCharSequence points = (FormattedCharSequence)new Component("perk.info.astralsorcery.points", new Object[] { availablePerks });
-            RenderingDrawUtils.renderStringAt(points, renderStack, this.fogColor, 13421772, true);
-            renderStack.popPose();
+            RenderingDrawUtils.renderStringAt(points, renderStack, this.field_230712_o_, 13421772, true);
+            renderStack.scale();
         }
         renderStack.popPose();
-        renderStack.translate((double)(this.guiLeft + 288), (double)(this.guiTop + 20), (double)this.getGuiZLevel());
+        renderStack.func_227861_a_((double)(this.guiLeft + 288), (double)(this.guiTop + 20), (double)this.getGuiZLevel());
         (this.rStatStar = RenderingDrawUtils.drawInfoStar(renderStack, IDrawRenderTypeBuffer.defaultBuffer(), 16.0f, pTicks)).translate(this.guiLeft + 288, this.guiTop + 20);
-        renderStack.popPose();
+        renderStack.scale();
     }
     
     private void drawSearchBox(final PoseStack renderStack) {
         TexturesAS.TEX_GUI_TEXT_FIELD.bindTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.guiLeft + 300), (float)(this.guiTop + 16), (float)this.getGuiZLevel(), 88.5f, 15.0f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.guiLeft + 300), (float)(this.guiTop + 16), (float)this.getGuiZLevel(), 88.5f, 15.0f).draw());
         RenderSystem.disableBlend();
         String text = this.searchTextEntry.getText();
-        int length = this.fogColor.func_78256_a(text);
+        int length = this.field_230712_o_.func_78256_a(text);
         final boolean addDots = length > 75;
         while (length > 75) {
             text = text.substring(1);
-            length = this.fogColor.func_78256_a("..." + text);
+            length = this.field_230712_o_.func_78256_a("..." + text);
         }
         if (addDots) {
             text = "..." + text;
@@ -455,9 +455,9 @@ public class ScreenJournalPerkTree extends ScreenJournal
             text += "_";
         }
         renderStack.popPose();
-        renderStack.translate((double)(this.guiLeft + 304), (double)(this.guiTop + 20), (double)this.getGuiZLevel());
-        RenderingDrawUtils.renderStringAt(this.fogColor, renderStack, (FormattedCharSequence)new Component(text), 13421772);
-        renderStack.popPose();
+        renderStack.func_227861_a_((double)(this.guiLeft + 304), (double)(this.guiTop + 20), (double)this.getGuiZLevel());
+        RenderingDrawUtils.renderStringAt(this.field_230712_o_, renderStack, (FormattedCharSequence)new Component(text), 13421772);
+        renderStack.scale();
     }
     
     private void drawPerkTree(final PoseStack renderStack, final float partialTicks) {
@@ -467,21 +467,21 @@ public class ScreenJournalPerkTree extends ScreenJournal
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         TexturesAS.TEX_GUI_LINE_CONNECTION.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> {
             PerkTree.PERK_TREE.getConnections().iterator();
             final Iterator iterator2;
             while (iterator2.hasNext()) {
                 final Tuple<AbstractPerk, AbstractPerk> perkConnection = (Tuple<AbstractPerk, AbstractPerk>)iterator2.next();
-                if (((AbstractPerk)perkConnection.getA()).isVisible(progress, player)) {
-                    if (!((AbstractPerk)perkConnection.getB()).isVisible(progress, player)) {
+                if (((AbstractPerk)perkConnection.func_76341_a()).isVisible(progress, player)) {
+                    if (!((AbstractPerk)perkConnection.func_76340_b()).isVisible(progress, player)) {
                         continue;
                     }
                     else {
                         int alloc = 0;
-                        if (perkData.hasPerkAllocation((AbstractPerk)perkConnection.getA(), PerkAllocationType.UNLOCKED)) {
+                        if (perkData.hasPerkAllocation((AbstractPerk)perkConnection.func_76341_a(), PerkAllocationType.UNLOCKED)) {
                             ++alloc;
                         }
-                        if (perkData.hasPerkAllocation((AbstractPerk)perkConnection.getB(), PerkAllocationType.UNLOCKED)) {
+                        if (perkData.hasPerkAllocation((AbstractPerk)perkConnection.func_76340_b(), PerkAllocationType.UNLOCKED)) {
                             ++alloc;
                         }
                         AllocationStatus status;
@@ -494,8 +494,8 @@ public class ScreenJournalPerkTree extends ScreenJournal
                         else {
                             status = AllocationStatus.UNALLOCATED;
                         }
-                        final Point2D.Float offsetOne = ((AbstractPerk)perkConnection.getA()).getPoint().getOffset();
-                        final Point2D.Float offsetTwo = ((AbstractPerk)perkConnection.getB()).getPoint().getOffset();
+                        final Point2D.Float offsetOne = ((AbstractPerk)perkConnection.func_76341_a()).getPoint().getOffset();
+                        final Point2D.Float offsetTwo = ((AbstractPerk)perkConnection.func_76340_b()).getPoint().getOffset();
                         this.drawConnection(buf, renderStack, status, offsetOne, offsetTwo, ClientScheduler.getClientTick() + (int)offsetOne.x + (int)offsetOne.y + (int)offsetTwo.x + (int)offsetTwo.y);
                     }
                 }
@@ -544,7 +544,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         SpritesAS.SPR_PERK_SEAL.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> {
             final Point2D.Float pOffset = perk.getPoint().getOffset();
             this.drawSeal(buf, renderStack, sealWidth, offset.x, offset.y, ClientScheduler.getClientTick() + (int)pOffset.x + (int)pOffset.y, sealFade * 0.75f);
             return;
@@ -553,7 +553,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         final float vLength = sealBreakSprite.getVWidth();
         final Tuple<Float, Float> uv = sealBreakSprite.getUVOffset(count);
         sealBreakSprite.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offset.x - sealWidth, offset.y - sealWidth, (float)this.getGuiZLevel(), sealWidth * 2.0f, sealWidth * 2.0f).color(1.0f, 1.0f, 1.0f, 0.85f).tex((float)uv.getA(), (float)uv.getB(), uLength, vLength).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offset.x - sealWidth, offset.y - sealWidth, (float)this.getGuiZLevel(), sealWidth * 2.0f, sealWidth * 2.0f).color(1.0f, 1.0f, 1.0f, 0.85f).tex((float)uv.func_76341_a(), (float)uv.func_76340_b(), uLength, vLength).draw());
         RenderSystem.disableBlend();
         return true;
     }
@@ -577,7 +577,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         spritePerkUnlock.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offset.x - unlockWidth, offset.y - unlockWidth, (float)this.getGuiZLevel(), unlockWidth * 2.0f, unlockWidth * 2.0f).tex((float)uv.getA(), (float)uv.getB(), uLength, vLength).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offset.x - unlockWidth, offset.y - unlockWidth, (float)this.getGuiZLevel(), unlockWidth * 2.0f, unlockWidth * 2.0f).tex((float)uv.func_76341_a(), (float)uv.func_76340_b(), uLength, vLength).draw());
         RenderSystem.disableBlend();
         return true;
     }
@@ -626,12 +626,12 @@ public class ScreenJournalPerkTree extends ScreenJournal
         final float vLength = tex.getVLength();
         final Tuple<Float, Float> frameUV = tex.getUVOffset(spriteOffsetTick);
         final Vector3 starVec = new Vector3(x - size, y - size, 0.0);
-        final Matrix4f offset = renderStack.last().translate();
+        final Matrix4f offset = renderStack.last().func_227870_a_();
         for (int i = 0; i < 4; ++i) {
             final int u = (i + 1 & 0x2) >> 1;
             final int v = (i + 2 & 0x2) >> 1;
             final Vector3 pos = starVec.clone().addX(size * u * 2.0).addY(size * v * 2.0);
-            pos.drawPos(offset, (VertexConsumer)vb).pushPose()1.0f, 1.0f, 1.0f, alpha).setPos((float)frameUV.getA() + uLength * u, (float)frameUV.getB() + vLength * v).blockPosition();
+            pos.drawPos(offset, (VertexConsumer)vb).color(1.0f, 1.0f, 1.0f, alpha).func_225583_a_((float)frameUV.func_76341_a() + uLength * u, (float)frameUV.func_76340_b() + vLength * v).endVertex();
         }
     }
     
@@ -647,12 +647,12 @@ public class ScreenJournalPerkTree extends ScreenJournal
         final float uLength = searchMark.getUWidth();
         final float vLength = searchMark.getVWidth();
         final Tuple<Float, Float> frameUV = searchMark.getUVOffset();
-        final Matrix4f offset = renderStack.last().translate();
+        final Matrix4f offset = renderStack.last().func_227870_a_();
         for (int i = 0; i < 4; ++i) {
             final int u = (i + 1 & 0x2) >> 1;
             final int v = (i + 2 & 0x2) >> 1;
             final Vector3 pos = starVec.clone().addX(size * u * 2.0f).addY(size * v * 2.0f);
-            pos.drawPos(offset, (VertexConsumer)batch).pushPose()0.8f, 0.1f, 0.1f, 1.0f).setPos((float)frameUV.getA() + uLength * u, (float)frameUV.getB() + vLength * v).blockPosition();
+            pos.drawPos(offset, (VertexConsumer)batch).color(0.8f, 0.1f, 0.1f, 1.0f).func_225583_a_((float)frameUV.func_76341_a() + uLength * u, (float)frameUV.func_76340_b() + vLength * v).endVertex();
         }
     }
     
@@ -673,19 +673,19 @@ public class ScreenJournalPerkTree extends ScreenJournal
         final Vector3 degLot = dir.clone().crossProduct(new Vector3(0, 0, 1)).normalize().multiply(width);
         final Vector3 vec00 = fromStar.clone().add(degLot);
         final Vector3 vecV = degLot.clone().multiply(-2);
-        final Matrix4f offset = renderStack.last().translate();
+        final Matrix4f offset = renderStack.last().func_227870_a_();
         for (int i = 0; i < 4; ++i) {
             final int u = (i + 1 & 0x2) >> 1;
             final int v = (i + 2 & 0x2) >> 1;
             final Vector3 pos = vec00.clone().add(dir.clone().multiply(u)).add(vecV.clone().multiply(v));
-            pos.drawPos(offset, (VertexConsumer)vb).pushPose()rR, rG, rB, rA).setPos((float)u, (float)v).blockPosition();
+            pos.drawPos(offset, (VertexConsumer)vb).color(rR, rG, rB, rA).func_225583_a_((float)u, (float)v).endVertex();
         }
     }
     
     @Override
     protected void mouseDragTick(final double mouseX, final double mouseY, final double mouseDiffX, final double mouseDiffY, final double mouseOffsetX, final double mouseOffsetY) {
         super.mouseDragTick(mouseX, mouseY, mouseDiffX, mouseDiffY, mouseOffsetX, mouseOffsetY);
-        if (this.mouseSealStack.isEmpty()) {
+        if (this.mouseSealStack.func_190926_b()) {
             this.moveMouse((float)mouseDiffX, (float)mouseDiffY);
         }
     }
@@ -693,7 +693,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
     @Override
     protected void mouseDragStop(final double mouseX, final double mouseY, final double mouseDiffX, final double mouseDiffY) {
         super.mouseDragStop(mouseX, mouseY, mouseDiffX, mouseDiffY);
-        if (this.mouseSealStack.isEmpty()) {
+        if (this.mouseSealStack.func_190926_b()) {
             this.applyMovedMouseOffset();
         }
     }
@@ -717,7 +717,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         RenderSystem.enableAlphaTest();
         RenderSystem.defaultAlphaFunc();
         TexturesAS.TEX_GUI_BACKGROUND_PERKS.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.guiLeft - 10), (float)(this.guiTop - 10), (float)this.getGuiZLevel(), (float)(this.guiWidth + 20), (float)(this.guiHeight + 20)).color(0.5f, 0.5f, 0.5f, 1.0f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.guiLeft - 10), (float)(this.guiTop - 10), (float)this.getGuiZLevel(), (float)(this.guiWidth + 20), (float)(this.guiHeight + 20)).color(0.5f, 0.5f, 0.5f, 1.0f).draw());
         RenderSystem.disableAlphaTest();
     }
     
@@ -767,8 +767,8 @@ public class ScreenJournalPerkTree extends ScreenJournal
             return true;
         }
         final Player player = (Player)Minecraft.getInstance().player;
-        if (!this.mouseSealStack.isEmpty()) {
-            this.mouseSealStack = ItemStack.EMPTY;
+        if (!this.mouseSealStack.func_190926_b()) {
+            this.mouseSealStack = ItemStack.field_190927_a;
             if (Minecraft.getInstance().player == null) {
                 return false;
             }
@@ -876,8 +876,8 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 return true;
             }
             if (ScreenJournalPerkTree.rectSealBox.contains(mouseX - this.guiLeft, mouseY - this.guiTop)) {
-                if (!this.foundSeals.isEmpty()) {
-                    this.mouseSealStack = new ItemStack((ItemLike)ItemsAS.PERK_SEAL);
+                if (!this.foundSeals.func_190926_b()) {
+                    this.mouseSealStack = new ItemStack((IItemProvider)ItemsAS.PERK_SEAL);
                 }
                 return true;
             }
@@ -895,7 +895,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 if (mouseButton == 0 && mc.options.advancedItemTooltips && func_231172_r_()) {
                     final String perkKey = perk.getRegistryName().toString();
                     Minecraft.getInstance().field_195559_v.func_197960_a(perkKey);
-                    mc.player.func_145747_a((Component)new Component("astralsorcery.misc.ctrlcopy.copied", new Object[] { perkKey }), Util.NIL_UUID);
+                    mc.player.func_145747_a((ITextComponent)new Component("astralsorcery.misc.ctrlcopy.copied", new Object[] { perkKey }), Util.field_240973_b_);
                     break;
                 }
                 if (mouseButton == 1) {
@@ -904,7 +904,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                             final PktPerkGemModification pkt = PktPerkGemModification.dropItem(perk);
                             PacketChannel.CHANNEL.sendToServer(pkt);
                             AstralSorcery.getProxy().scheduleClientside(() -> {
-                                if (mc.gui == this) {
+                                if (mc.field_71462_r == this) {
                                     this.updateSearchHighlight();
                                 }
                                 return;
@@ -948,9 +948,9 @@ public class ScreenJournalPerkTree extends ScreenJournal
             return false;
         }
         final T socketPerk = (T)perk;
-        final ItemStack potentialStack = this.field_230706_i_.player.getInventory().func_70301_a(slotId);
-        if (!potentialStack.isEmpty() && potentialStack.getItem() instanceof GemSocketItem) {
-            final GemSocketItem gemItem = (GemSocketItem)potentialStack.getItem();
+        final ItemStack potentialStack = this.field_230706_i_.player.field_71071_by.func_70301_a(slotId);
+        if (!potentialStack.func_190926_b() && potentialStack.func_77973_b() instanceof GemSocketItem) {
+            final GemSocketItem gemItem = (GemSocketItem)potentialStack.func_77973_b();
             if (gemItem.canBeInserted(potentialStack, socketPerk, (Player)this.field_230706_i_.player, ResearchHelper.getClientProgress(), LogicalSide.CLIENT)) {
                 final PktPerkGemModification pkt = PktPerkGemModification.insertItem(socketPerk, slotId);
                 PacketChannel.CHANNEL.sendToServer(pkt);

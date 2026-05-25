@@ -163,7 +163,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         renderStack.func_227860_a_();
         renderStack.translate((double)(this.guiWidth / 2.0f), (double)(this.guiHeight / 2.0f), 0.0);
         renderStack.func_227862_a_(-scale / 2.0f, -scale / 2.0f, 1.0f);
-        RenderingUtils.draw(7, DefaultVertexFormats.field_227851_o_, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).dim(scale, scale).color(1.0f, 1.0f, 1.0f, this.getTile().getRunProgress()).tex((float)uvFrame.func_76341_a(), (float)uvFrame.func_76340_b(), SpritesAS.SPR_HALO_INFUSION.getUWidth(), SpritesAS.SPR_HALO_INFUSION.getVWidth()).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> RenderingGuiUtils.rect((IVertexBuilder)buf, renderStack, this).dim(scale, scale).color(1.0f, 1.0f, 1.0f, this.getTile().getRunProgress()).tex((float)uvFrame.func_76341_a(), (float)uvFrame.func_76340_b(), SpritesAS.SPR_HALO_INFUSION.getUWidth(), SpritesAS.SPR_HALO_INFUSION.getVWidth()).draw());
         renderStack.func_227865_b_();
         RenderSystem.enableAlphaTest();
         Blending.DEFAULT.apply();

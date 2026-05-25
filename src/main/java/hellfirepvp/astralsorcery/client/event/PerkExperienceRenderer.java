@@ -65,7 +65,7 @@ public class PerkExperienceRenderer implements ITickHandler
         RenderSystem.enableBlend();
         RenderSystem.disableAlphaTest();
         TexturesAS.TEX_OVERLAY_EXP_FRAME.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, frameOffsetX, frameOffsetY, 10.0f, frameWidth, frameHeight).color(1.0f, 1.0f, 1.0f, this.visibilityReveal * 0.9f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, frameOffsetX, frameOffsetY, 10.0f, frameWidth, frameHeight).color(1.0f, 1.0f, 1.0f, this.visibilityReveal * 0.9f).draw());
         final PlayerPerkData perkData = ResearchHelper.getClientProgress().getPerkData();
         final float perc = perkData.getPercentToNextLevel(player, LogicalSide.CLIENT);
         final float expHeight = 78.0f * perc;
@@ -73,7 +73,7 @@ public class PerkExperienceRenderer implements ITickHandler
         final float expOffsetX = 0.0f;
         final float expOffsetY = 27.5f + (1.0f - perc) * 78.0f;
         TexturesAS.TEX_OVERLAY_EXP_BAR.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, expOffsetX, expOffsetY, 10.0f, expWidth, expHeight).color(1.0f, 0.9f, 0.0f, this.visibilityReveal * 0.9f).tex(0.0f, 0.0f, 1.0f, 1.0f - perc).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, expOffsetX, expOffsetY, 10.0f, expWidth, expHeight).color(1.0f, 0.9f, 0.0f, this.visibilityReveal * 0.9f).tex(0.0f, 0.0f, 1.0f, 1.0f - perc).draw());
         final String strLevel = String.valueOf(perkData.getPerkLevel(player, LogicalSide.CLIENT));
         final Component txtLevel = new Component(strLevel);
         final int strLength = Minecraft.getInstance().font.func_238414_a_((FormattedCharSequence)txtLevel);

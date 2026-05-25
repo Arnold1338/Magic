@@ -89,9 +89,9 @@ public class AlignmentChargeRenderer implements ITickHandler
         RenderSystem.enableBlend();
         RenderSystem.disableAlphaTest();
         SpritesAS.SPR_OVERLAY_CHARGE.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)offsetLeft, (float)offsetTop, 10.0f, width, 54.0f).color(1.0f, 1.0f, 1.0f, this.alphaReveal).tex((float)uvColored.getA(), (float)uvColored.getB() + 0.002f, uLengthCharge, SpritesAS.SPR_OVERLAY_CHARGE.getVWidth() - 0.002f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)offsetLeft, (float)offsetTop, 10.0f, width, 54.0f).color(1.0f, 1.0f, 1.0f, this.alphaReveal).tex((float)uvColored.getA(), (float)uvColored.getB() + 0.002f, uLengthCharge, SpritesAS.SPR_OVERLAY_CHARGE.getVWidth() - 0.002f).draw());
         SpritesAS.SPR_OVERLAY_CHARGE_COLORLESS.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offsetLeft + width, (float)offsetTop, 10.0f, usageWidth, 54.0f).color(usageColor.getRed(), usageColor.getGreen(), usageColor.getBlue(), (int)(this.alphaReveal * 255.0f)).tex((float)uvColorless.getA() + uLengthCharge, (float)uvColorless.getB() + 0.002f, uLengthUsage, SpritesAS.SPR_OVERLAY_CHARGE_COLORLESS.getVWidth() - 0.002f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offsetLeft + width, (float)offsetTop, 10.0f, usageWidth, 54.0f).color(usageColor.getRed(), usageColor.getGreen(), usageColor.getBlue(), (int)(this.alphaReveal * 255.0f)).tex((float)uvColorless.getA() + uLengthCharge, (float)uvColorless.getB() + 0.002f, uLengthUsage, SpritesAS.SPR_OVERLAY_CHARGE_COLORLESS.getVWidth() - 0.002f).draw());
         RenderSystem.enableAlphaTest();
         RenderSystem.disableBlend();
         BlockAtlasTexture.getInstance().bindTexture();

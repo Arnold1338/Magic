@@ -140,7 +140,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
         final float lineBreadth = 2.0f;
         final Supplier<Float> brightnessFn = () -> RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), pTicks, 5 + rand.nextInt(10));
         TexturesAS.TEX_STAR_CONNECTION.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> {
             this.drawnLines.iterator();
             final Iterator iterator;
             while (iterator.hasNext()) {

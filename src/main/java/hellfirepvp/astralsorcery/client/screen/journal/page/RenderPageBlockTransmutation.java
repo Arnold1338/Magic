@@ -57,7 +57,7 @@ public class RenderPageBlockTransmutation extends RenderPageRecipeTemplate
         RenderSystem.depthMask(false);
         RenderSystem.enableBlend();
         Blending.ADDITIVE_ALPHA.apply();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, renderX - 15.0f, renderY + 10.0f, z, 50.0f, 120.0f).tex(SpritesAS.SPR_LIGHTBEAM).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, renderX - 15.0f, renderY + 10.0f, z, 50.0f, 120.0f).tex(SpritesAS.SPR_LIGHTBEAM).draw());
         Blending.DEFAULT.apply();
         RenderSystem.disableBlend();
         RenderSystem.depthMask(true);

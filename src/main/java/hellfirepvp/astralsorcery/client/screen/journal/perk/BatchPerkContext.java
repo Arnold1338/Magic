@@ -53,7 +53,7 @@ public class BatchPerkContext
     
     public void beginDrawingPerks() {
         for (final TextureObjectGroup group : this.bufferGroups.keySet()) {
-            this.bufferGroups.get(group).func_181668_a(7, DefaultVertexFormat.fogColor);
+            this.bufferGroups.get(group).func_181668_a(7, DefaultVertexFormat.POSITION_TEX_COLOR);
         }
     }
     

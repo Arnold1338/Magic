@@ -47,7 +47,7 @@ public abstract class EffectCustomTexture extends Effect
         final SpriteSheetResource ssr = this.getSpriteQuery().resolveSprite();
         ssr.bindTexture();
         final Tuple<Float, Float> uvTpl = ssr.getUVOffset(ClientScheduler.getClientTick());
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offsetX, offsetY, z, wh, wh).color(red, green, blue, 1.0f).tex((float)uvTpl.getA(), (float)uvTpl.getB(), ssr.getUWidth(), ssr.getVWidth()).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offsetX, offsetY, z, wh, wh).color(red, green, blue, 1.0f).tex((float)uvTpl.getA(), (float)uvTpl.getB(), ssr.getUWidth(), ssr.getVWidth()).draw());
     }
     
     @OnlyIn(Dist.CLIENT)
@@ -61,7 +61,7 @@ public abstract class EffectCustomTexture extends Effect
         final SpriteSheetResource ssr = this.getSpriteQuery().resolveSprite();
         ssr.bindTexture();
         final Tuple<Float, Float> uvTpl = ssr.getUVOffset(ClientScheduler.getClientTick());
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offsetX, offsetY, z, wh, wh).color(red, green, blue, 1.0f).tex((float)uvTpl.getA(), (float)uvTpl.getB(), ssr.getUWidth(), ssr.getVWidth()).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, offsetX, offsetY, z, wh, wh).color(red, green, blue, 1.0f).tex((float)uvTpl.getA(), (float)uvTpl.getB(), ssr.getUWidth(), ssr.getVWidth()).draw());
     }
     
     static {

@@ -32,7 +32,7 @@ public interface NavigationArrowScreen
         }
         renderStack.translate((double)(-(width / 2.0f)), (double)(-(height / 2.0f)), 0.0);
         TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, (float)guiZLevel, width, height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, (float)guiZLevel, width, height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
         renderStack.popPose();
         return rectArrow;
     }

@@ -49,10 +49,10 @@ public class RenderEntityGrapplingHook extends EntityRenderer<EntityGrapplingHoo
         Blending.DEFAULT.apply();
         RenderSystem.disableCull();
         SpritesAS.SPR_GRAPPLING_HOOK.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingDrawUtils.renderFacingSpriteVB((VertexConsumer)buf, matrixStack, entityPos.getX(), entityPos.getY(), entityPos.getZ(), 1.3f, 0.0f, SpritesAS.SPR_GRAPPLING_HOOK, ClientScheduler.getClientTick() + entity.field_70173_aa, 255, 255, 255, alphaMultiplier));
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingDrawUtils.renderFacingSpriteVB((VertexConsumer)buf, matrixStack, entityPos.getX(), entityPos.getY(), entityPos.getZ(), 1.3f, 0.0f, SpritesAS.SPR_GRAPPLING_HOOK, ClientScheduler.getClientTick() + entity.field_70173_aa, 255, 255, 255, alphaMultiplier));
         TexturesAS.TEX_PARTICLE_LARGE.bindTexture();
         Blending.ADDITIVE_ALPHA.apply();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> {
             line.iterator();
             final Iterator iterator;
             while (iterator.hasNext()) {

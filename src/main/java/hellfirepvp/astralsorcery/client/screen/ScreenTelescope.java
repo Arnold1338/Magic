@@ -151,7 +151,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
             this.func_230926_e_(-9);
             final float starSize = 5.0f;
             TexturesAS.TEX_STAR_1.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+            RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> {
                 for (int j = 0; j < 72 + gen.nextInt(108); ++j) {
                     final float innerOffsetX = starSize + gen.nextFloat() * (this.guiWidth - starSize * 2.0f) + this.getGuiLeft();
                     final float innerOffsetY = starSize + gen.nextFloat() * (this.guiHeight - starSize * 2.0f) + this.getGuiTop();

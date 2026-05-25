@@ -135,7 +135,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
             this.func_230926_e_(-9);
             final float starSize = 5.0f;
             TexturesAS.TEX_STAR_1.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+            RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> {
                 this.usedStars.iterator();
                 final Iterator iterator3;
                 while (iterator3.hasNext()) {

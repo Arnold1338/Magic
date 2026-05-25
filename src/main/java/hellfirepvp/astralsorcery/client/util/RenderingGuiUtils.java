@@ -4,7 +4,7 @@ import org.joml.Matrix4f;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import java.awt.Color;
-import com.mojang.blaze3d.vertex.BufferBuilder;
+import net.minecraft.client.renderer.BufferBuilder;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
@@ -18,7 +18,7 @@ public class RenderingGuiUtils
     
     @Deprecated
     public static void drawTexturedRectAtCurrentPos(final float width, final float height, final float zLevel, final float uFrom, final float vFrom, final float uWidth, final float vWidth) {
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> rect((VertexConsumer)buf, 0.0f, 0.0f, zLevel, width, height).tex(uFrom, vFrom, uWidth, vWidth).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> rect((VertexConsumer)buf, 0.0f, 0.0f, zLevel, width, height).tex(uFrom, vFrom, uWidth, vWidth).draw());
     }
     
     @Deprecated
@@ -32,12 +32,12 @@ public class RenderingGuiUtils
     }
     
     public static void drawRect(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float width, final float height) {
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> rect((VertexConsumer)buf, renderStack, offsetX, offsetY, zLevel, width, height).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> rect((VertexConsumer)buf, renderStack, offsetX, offsetY, zLevel, width, height).draw());
     }
     
     public static void drawTexturedRect(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float width, final float height, final AbstractRenderableTexture tex) {
         final Tuple<Float, Float> uv = tex.getUVOffset();
-        drawTexturedRect(renderStack, offsetX, offsetY, zLevel, width, height, (float)uv.getA(), (float)uv.getB(), tex.getUWidth(), tex.getVWidth());
+        drawTexturedRect(renderStack, offsetX, offsetY, zLevel, width, height, (float)uv.func_76341_a(), (float)uv.func_76340_b(), tex.getUWidth(), tex.getVWidth());
     }
     
     @Deprecated
@@ -50,7 +50,7 @@ public class RenderingGuiUtils
     }
     
     public static void drawTexturedRect(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float width, final float height, final float uFrom, final float vFrom, final float uWidth, final float vWidth) {
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> rect((VertexConsumer)buf, renderStack, offsetX, offsetY, zLevel, width, height).tex(uFrom, vFrom, uWidth, vWidth).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> rect((VertexConsumer)buf, renderStack, offsetX, offsetY, zLevel, width, height).tex(uFrom, vFrom, uWidth, vWidth).draw());
     }
     
     @Deprecated
@@ -130,12 +130,12 @@ public class RenderingGuiUtils
         
         public DrawBuilder tex(final AbstractRenderableTexture texture) {
             final Tuple<Float, Float> uv = texture.getUVOffset();
-            return this.tex((float)uv.getA(), (float)uv.getB(), texture.getUWidth(), texture.getVWidth());
+            return this.tex((float)uv.func_76341_a(), (float)uv.func_76340_b(), texture.getUWidth(), texture.getVWidth());
         }
         
         public DrawBuilder tex(final SpriteSheetResource sprite, final long tick) {
             final Tuple<Float, Float> uv = sprite.getUVOffset(tick);
-            return this.tex((float)uv.getA(), (float)uv.getB(), sprite.getUWidth(), sprite.getVWidth());
+            return this.tex((float)uv.func_76341_a(), (float)uv.func_76340_b(), sprite.getUWidth(), sprite.getVWidth());
         }
         
         public DrawBuilder tex(final float u, final float v, final float uWidth, final float vWidth) {
@@ -168,11 +168,11 @@ public class RenderingGuiUtils
             final int g = this.color.getGreen();
             final int b = this.color.getBlue();
             final int a = this.color.getAlpha();
-            final Matrix4f offset = this.renderStack.last().translate();
-            this.buf.vertex(offset, this.offsetX, this.offsetY + this.height, this.offsetZ).setPos(r, g, b, a).setPos(this.u, this.v + this.vWidth).blockPosition();
-            this.buf.vertex(offset, this.offsetX + this.width, this.offsetY + this.height, this.offsetZ).setPos(r, g, b, a).setPos(this.u + this.uWidth, this.v + this.vWidth).blockPosition();
-            this.buf.vertex(offset, this.offsetX + this.width, this.offsetY, this.offsetZ).setPos(r, g, b, a).setPos(this.u + this.uWidth, this.v).blockPosition();
-            this.buf.vertex(offset, this.offsetX, this.offsetY, this.offsetZ).setPos(r, g, b, a).setPos(this.u, this.v).blockPosition();
+            final Matrix4f offset = this.renderStack.last().func_227870_a_();
+            this.buf.vertex(offset, this.offsetX, this.offsetY + this.height, this.offsetZ).func_225586_a_(r, g, b, a).func_225583_a_(this.u, this.v + this.vWidth).endVertex();
+            this.buf.vertex(offset, this.offsetX + this.width, this.offsetY + this.height, this.offsetZ).func_225586_a_(r, g, b, a).func_225583_a_(this.u + this.uWidth, this.v + this.vWidth).endVertex();
+            this.buf.vertex(offset, this.offsetX + this.width, this.offsetY, this.offsetZ).func_225586_a_(r, g, b, a).func_225583_a_(this.u + this.uWidth, this.v).endVertex();
+            this.buf.vertex(offset, this.offsetX, this.offsetY, this.offsetZ).func_225586_a_(r, g, b, a).func_225583_a_(this.u, this.v).endVertex();
             return this;
         }
     }

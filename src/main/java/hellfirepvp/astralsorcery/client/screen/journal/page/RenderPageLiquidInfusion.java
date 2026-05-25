@@ -42,7 +42,7 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate
         this.renderExpectedIngredientInput(renderStack, renderX, renderY, z, 1.2f, 0L, this.recipe.getItemInput());
         BlockAtlasTexture.getInstance().bindTexture();
         final TextureAtlasSprite tas = RenderingUtils.getParticleTexture(new FluidStack(this.recipe.getLiquidInput(), 1000));
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> {
             renderStack.popPose();
             renderStack.translate((double)x, (double)y, (double)z);
             this.renderLiquidInput(buf, renderStack, tas, 1, 0);

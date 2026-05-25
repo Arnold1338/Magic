@@ -167,7 +167,7 @@ public class GatewayUIRenderHandler implements ITickHandler
         RenderSystem.enableDepthTest();
         RenderSystem.depthMask(false);
         TexturesAS.TEX_STAR_1.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> {
             for (int i = 0; i < 300; ++i) {
                 final Vector3 at = Vector3.random(rand).normalize().multiply(this.currentUI.getSphereRadius() * 0.9).add(renderOffset);
                 if (at.getY() >= this.currentUI.getPos().getY()) {

@@ -169,7 +169,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
             final Random gen = ctx.getDayRandom();
             this.func_230926_e_(-9);
             TexturesAS.TEX_STAR_1.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+            RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> {
                 this.usedStars.iterator();
                 final Iterator iterator3;
                 while (iterator3.hasNext()) {
@@ -217,7 +217,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
     private void drawFrame(final PoseStack renderStack) {
         this.func_230926_e_(10);
         TexturesAS.TEX_GUI_OBSERVATORY.bindTexture();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> {
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> {
             final Matrix4f offset = renderStack.last().translate();
             RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(0.0f, 0.0f).dim(16.0f, 16.0f).tex(0.0f, 0.0f, 0.4f, 0.4f).draw();
             RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at((float)(this.getGuiWidth() + 16), 0.0f).dim(16.0f, 16.0f).tex(0.4f, 0.0f, 0.4f, 0.4f).draw();

@@ -31,15 +31,15 @@ public class RegistryRenderTypes
     }
     
     private static void initEffectTypes() {
-        RenderTypesAS.EFFECT_FX_GENERIC_PARTICLE = createType("effect_fx_generic_particle", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().texture(TexturesAS.TEX_PARTICLE_SMALL).blend(Blending.DEFAULT).disableCull().disableDepthMask().particleShaderTarget().build());
-        RenderTypesAS.EFFECT_FX_GENERIC_PARTICLE_DEPTH = createType("effect_fx_generic_particle_depth", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().texture(TexturesAS.TEX_PARTICLE_SMALL).blend(Blending.DEFAULT).disableCull().disableDepthMask().disableDepth().particleShaderTarget().build());
-        RenderTypesAS.EFFECT_FX_GENERIC_PARTICLE_ATLAS = createType("effect_fx_generic_particle_atlas", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).disableCull().disableDepthMask().particleShaderTarget().build());
-        RenderTypesAS.EFFECT_FX_LIGHTNING = createType("effect_fx_lightning", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().texture(TexturesAS.TEX_LIGHTNING_PART).blend(Blending.DEFAULT).disableCull().disableDepthMask().particleShaderTarget().build());
-        RenderTypesAS.EFFECT_FX_LIGHTBEAM = createType("effect_fx_lightbeam", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().texture(TexturesAS.TEX_LIGHTBEAM).blend(Blending.ADDITIVE_ALPHA).disableCull().disableDepthMask().particleShaderTarget().build());
+        RenderTypesAS.EFFECT_FX_GENERIC_PARTICLE = createType("effect_fx_generic_particle", DefaultVertexFormat.POSITION_TEX_COLOR, RenderStateBuilder.builder().texture(TexturesAS.TEX_PARTICLE_SMALL).blend(Blending.DEFAULT).disableCull().disableDepthMask().particleShaderTarget().build());
+        RenderTypesAS.EFFECT_FX_GENERIC_PARTICLE_DEPTH = createType("effect_fx_generic_particle_depth", DefaultVertexFormat.POSITION_TEX_COLOR, RenderStateBuilder.builder().texture(TexturesAS.TEX_PARTICLE_SMALL).blend(Blending.DEFAULT).disableCull().disableDepthMask().disableDepth().particleShaderTarget().build());
+        RenderTypesAS.EFFECT_FX_GENERIC_PARTICLE_ATLAS = createType("effect_fx_generic_particle_atlas", DefaultVertexFormat.POSITION_TEX_COLOR, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).disableCull().disableDepthMask().particleShaderTarget().build());
+        RenderTypesAS.EFFECT_FX_LIGHTNING = createType("effect_fx_lightning", DefaultVertexFormat.POSITION_TEX_COLOR, RenderStateBuilder.builder().texture(TexturesAS.TEX_LIGHTNING_PART).blend(Blending.DEFAULT).disableCull().disableDepthMask().particleShaderTarget().build());
+        RenderTypesAS.EFFECT_FX_LIGHTBEAM = createType("effect_fx_lightbeam", DefaultVertexFormat.POSITION_TEX_COLOR, RenderStateBuilder.builder().texture(TexturesAS.TEX_LIGHTBEAM).blend(Blending.ADDITIVE_ALPHA).disableCull().disableDepthMask().particleShaderTarget().build());
         RenderTypesAS.EFFECT_FX_CRYSTAL = createType("effect_fx_crystal", RenderTypesAS.POSITION_COLOR_TEX_NORMAL, 4, 32768, RenderStateBuilder.builder().texture(TexturesAS.TEX_MODEL_CRYSTAL_WHITE).blend(Blending.DEFAULT).defaultAlpha().disableCull().disableDepthMask().particleShaderTarget().build());
-        RenderTypesAS.EFFECT_FX_BURST = createType("effect_fx_burst", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).disableCull().disableDepthMask().particleShaderTarget().build());
-        RenderTypesAS.EFFECT_FX_DYNAMIC_TEXTURE_SPRITE = createType("effect_fx_dynamic_texture_sprite", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).alpha(1.0E-4f).disableCull().disableDepthMask().particleShaderTarget().build());
-        RenderTypesAS.EFFECT_FX_TEXTURE_SPRITE = createType("effect_fx_texture_sprite", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).alpha(1.0E-4f).disableCull().disableDepthMask().particleShaderTarget().build());
+        RenderTypesAS.EFFECT_FX_BURST = createType("effect_fx_burst", DefaultVertexFormat.POSITION_TEX_COLOR, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).disableCull().disableDepthMask().particleShaderTarget().build());
+        RenderTypesAS.EFFECT_FX_DYNAMIC_TEXTURE_SPRITE = createType("effect_fx_dynamic_texture_sprite", DefaultVertexFormat.POSITION_TEX_COLOR, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).alpha(1.0E-4f).disableCull().disableDepthMask().particleShaderTarget().build());
+        RenderTypesAS.EFFECT_FX_TEXTURE_SPRITE = createType("effect_fx_texture_sprite", DefaultVertexFormat.POSITION_TEX_COLOR, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).alpha(1.0E-4f).disableCull().disableDepthMask().particleShaderTarget().build());
         RenderTypesAS.EFFECT_FX_CUBE_OPAQUE_ATLAS = createType("effect_fx_cube_opaque_atlas", DefaultVertexFormat.field_227852_q_, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).defaultAlpha().disableCull().enableLighting().particleShaderTarget().build());
         RenderTypesAS.EFFECT_FX_BLOCK_TRANSLUCENT = createType("effect_fx_block_translucent", DefaultVertexFormat.POSITION_TEX, RenderStateBuilder.builder().altasTexture().blend(Blending.ADDITIVEDARK).defaultAlpha().disableCull().particleShaderTarget().build());
         RenderTypesAS.EFFECT_FX_BLOCK_TRANSLUCENT_DEPTH = createType("effect_fx_block_translucent_depth", DefaultVertexFormat.POSITION_TEX, RenderStateBuilder.builder().altasTexture().blend(Blending.ADDITIVEDARK).defaultAlpha().disableCull().disableDepth().particleShaderTarget().build());
@@ -51,8 +51,8 @@ public class RegistryRenderTypes
     
     private static void initEffects() {
         RenderTypesAS.EFFECT_LIGHTRAY_FAN = createType("effect_lightray_fan", DefaultVertexFormat.POSITION_COLOR, 6, 32768, RenderStateBuilder.builder().blend(Blending.ADDITIVE_ALPHA).smoothShade().disableDepthMask().enableDiffuseLighting().build());
-        RenderTypesAS.CONSTELLATION_WORLD_STAR = createType("effect_render_cst_star", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().texture(TexturesAS.TEX_STAR_1).blend(Blending.DEFAULT).disableDepthMask().build());
-        RenderTypesAS.CONSTELLATION_WORLD_CONNECTION = createType("effect_render_cst_connection", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().texture(TexturesAS.TEX_STAR_CONNECTION).blend(Blending.DEFAULT).disableDepthMask().build());
+        RenderTypesAS.CONSTELLATION_WORLD_STAR = createType("effect_render_cst_star", DefaultVertexFormat.POSITION_TEX_COLOR, RenderStateBuilder.builder().texture(TexturesAS.TEX_STAR_1).blend(Blending.DEFAULT).disableDepthMask().build());
+        RenderTypesAS.CONSTELLATION_WORLD_CONNECTION = createType("effect_render_cst_connection", DefaultVertexFormat.POSITION_TEX_COLOR, RenderStateBuilder.builder().texture(TexturesAS.TEX_STAR_CONNECTION).blend(Blending.DEFAULT).disableDepthMask().build());
     }
     
     private static void initConstellationTypes() {
@@ -79,7 +79,7 @@ public class RegistryRenderTypes
     }
     
     private static void initTERTypes() {
-        RenderTypesAS.TER_WELL_LIQUID = createType("ter_well_liquid", DefaultVertexFormat.fogColor, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).alpha(1.0E-5f).disableDepthMask().build());
+        RenderTypesAS.TER_WELL_LIQUID = createType("ter_well_liquid", DefaultVertexFormat.POSITION_TEX_COLOR, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).alpha(1.0E-5f).disableDepthMask().build());
         RenderTypesAS.TER_CHALICE_LIQUID = createType("ter_chalice_liquid", RenderTypesAS.POSITION_COLOR_TEX_NORMAL, RenderStateBuilder.builder().altasTexture().blend(Blending.DEFAULT).alpha(1.0E-5f).disableDepthMask().build());
     }
     
@@ -115,7 +115,7 @@ public class RegistryRenderTypes
     }
     
     private static RenderType createConstellationBackgroundType(final IConstellation cst, final AbstractRenderableTexture tex) {
-        final RenderType rType = createType("constellation_background_" + cst.getSimpleName(), DefaultVertexFormat.fogColor, RenderStateBuilder.builder().texture(tex).blend(Blending.DEFAULT).disableDepthMask().build());
+        final RenderType rType = createType("constellation_background_" + cst.getSimpleName(), DefaultVertexFormat.POSITION_TEX_COLOR, RenderStateBuilder.builder().texture(tex).blend(Blending.DEFAULT).disableDepthMask().build());
         ConstellationRenderInfos.registerBackground(cst, rType, tex);
         return rType;
     }

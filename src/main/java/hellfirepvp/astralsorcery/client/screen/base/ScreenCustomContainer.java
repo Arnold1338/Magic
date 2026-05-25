@@ -47,6 +47,6 @@ public abstract class ScreenCustomContainer<T extends Container> extends Abstrac
         this.getBackgroundTexture().bindTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)this.field_147003_i, (float)this.field_147009_r, (float)this.func_230927_p_(), (float)this.sWidth, (float)this.sHeight).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)this.field_147003_i, (float)this.field_147009_r, (float)this.func_230927_p_(), (float)this.sWidth, (float)this.sHeight).draw());
     }
 }

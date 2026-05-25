@@ -380,7 +380,7 @@ public class RenderingUtils
             final float health = (float)stack.getItem().getDurabilityForDisplay(stack);
             final float durabilityPercent = 13.0f - health * 13.0f;
             final int color = stack.getItem().getRGBDurabilityForDisplay(stack);
-            draw(7, DefaultVertexFormat.fogColor, buf -> {
+            draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> {
                 RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 2.0f, 13.0f, 0.0f, 13.0f, 2.0f).color(0, 0, 0, 255).draw();
                 RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 2.0f, 13.0f, 0.0f, durabilityPercent, 1.0f).color(color >> 16 & 0xFF, color >> 8 & 0xFF, color & 0xFF, 255).draw();
                 return;
@@ -397,7 +397,7 @@ public class RenderingUtils
             RenderSystem.disableTexture();
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
-            draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 16.0f * (1.0f - cooldownPercent), 0.0f, 16.0f, 16.0f * cooldownPercent).color(255, 255, 255, 127).draw());
+            draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 16.0f * (1.0f - cooldownPercent), 0.0f, 16.0f, 16.0f * cooldownPercent).color(255, 255, 255, 127).draw());
             RenderSystem.enableTexture();
             RenderSystem.enableDepthTest();
         }

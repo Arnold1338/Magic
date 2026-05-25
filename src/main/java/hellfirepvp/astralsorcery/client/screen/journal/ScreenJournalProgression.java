@@ -238,7 +238,7 @@ public class ScreenJournalProgression extends ScreenJournal
         TexturesAS.TEX_GUI_TEXT_FIELD.bindTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.guiLeft + 300), (float)(this.guiTop + 16), (float)this.getGuiZLevel(), 88.5f, 15.0f).draw());
+        RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, (float)(this.guiLeft + 300), (float)(this.guiTop + 16), (float)this.getGuiZLevel(), 88.5f, 15.0f).draw());
         RenderSystem.disableBlend();
         String text = this.searchTextEntry.getText();
         int length = this.fogColor.func_78256_a(text);
@@ -283,7 +283,7 @@ public class ScreenJournalProgression extends ScreenJournal
             }
             renderStack.translate((double)(-(width / 2.0f)), (double)(-(height / 2.0f)), 0.0);
             TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
+            RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
             renderStack.popPose();
         }
         final int nextDoublePageIndex = this.searchPageOffset * 2 + 2;
@@ -306,7 +306,7 @@ public class ScreenJournalProgression extends ScreenJournal
             }
             renderStack.translate((double)(-(width2 / 2.0f)), (double)(-(height2 / 2.0f)), 0.0);
             TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
-            RenderingUtils.draw(7, DefaultVertexFormat.fogColor, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
+            RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 0.0f, 0.0f, 0.0f, (float)width, (float)height).tex(uFrom, vFrom, 0.5f, 0.5f).color(1.0f, 1.0f, 1.0f, 0.8f).draw());
             renderStack.popPose();
         }
     }
