@@ -84,7 +84,7 @@ public class IntegrationJEI implements IModPlugin
     public void registerRecipes(final IRecipeRegistration registry) {
         IntegrationJEI.CATEGORIES.forEach(category -> {
             final List<? extends Recipe<?>> recipes = category.getRecipes();
-            recipes.sort(Comparator.comparing(recipe -> recipe.func_199560_c().withStyle());
+            recipes.sort(Comparator.comparing(recipe -> recipe.getId().toString());
             registry.addRecipes((Collection)recipes, category.getUid());
         });
     }

@@ -40,7 +40,7 @@ public class CommandProgress
         final Component targetName = target.getDisplayName();
         final PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
         if (!progress.isValid() || progress.getTierReached().isThisLaterOrEqual(goal)) {
-            src.sendSystemMessage(Component.translatable("Failed! ").func_230529_a_(targetName).func_240702_b_("'s progress is higher or equal to ").func_240702_b_(goal.name()).withStyle(ChatFormatting.RED)));
+            src.sendSystemMessage(Component.translatable("Failed! ").append(targetName).append("'s progress is higher or equal to ").append(goal.name()).withStyle(ChatFormatting.RED)));
             return 0;
         }
         ResearchProgression research = null;

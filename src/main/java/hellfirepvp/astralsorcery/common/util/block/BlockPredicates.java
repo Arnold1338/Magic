@@ -37,7 +37,7 @@ public class BlockPredicates
     
     public static <T extends BlockEntity> BlockPredicate doesTileExist(final T tile, final boolean loadTileWorldAndChunk) {
         final RegistryKey<Level> dim = (RegistryKey<Level>)tile.getLevel().dimension();
-        final BlockEntityType<?> tileType = (BlockEntityType<?>)tile.func_200662_C();
+        final BlockEntityType<?> tileType = (BlockEntityType<?>)tile.getType();
         final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
         return (world, pos, state) -> {
             if (loadTileWorldAndChunk || srv.forgeGetWorldMap().containsKey(dim)) {
@@ -52,7 +52,7 @@ public class BlockPredicates
                         }
                     }
                     final BlockEntity te = MiscUtils.getTileAt((IBlockReader)foundWorld, pos, BlockEntity.class, true);
-                    return te != null && te.func_200662_C().equals(tileType);
+                    return te != null && te.getType().equals(tileType);
                 }
             }
             else {

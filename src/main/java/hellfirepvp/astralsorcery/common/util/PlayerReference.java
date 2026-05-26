@@ -30,7 +30,7 @@ public class PlayerReference
         if (txt instanceof MutableComponent) {
             return new PlayerReference(player.getUUID(), (MutableComponent)txt);
         }
-        return new PlayerReference(player.getUUID(), new Component("").func_230529_a_(txt));
+        return new PlayerReference(player.getUUID(), new Component("").append(txt));
     }
     
     public boolean isPlayer(final Player player) {

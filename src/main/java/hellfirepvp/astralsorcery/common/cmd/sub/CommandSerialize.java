@@ -38,7 +38,7 @@ public class CommandSerialize
         final MutableComponent msg = (MutableComponent)new Component(serialized);
         final Style s = Style.field_240709_b_.func_240712_a_(ChatFormatting.GREEN).func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, (Object)Component.translatable("Copy"))).func_240715_a_(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, serialized));
         msg.func_230530_a_(s);
-        ((CommandSourceStack)context.getSource()).func_197030_a((Component)msg, true);
+        ((CommandSourceStack)context.getSource()).sendSuccess((Component)msg, true);
         return 1;
     }
     
@@ -50,7 +50,7 @@ public class CommandSerialize
         final MutableComponent msg = (MutableComponent)new Component(serialized);
         final Style s = Style.field_240709_b_.func_240712_a_(ChatFormatting.GREEN).func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, (Object)Component.translatable("Copy"))).func_240715_a_(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, serialized));
         msg.func_230530_a_(s);
-        ((CommandSourceStack)context.getSource()).func_197030_a((Component)msg, true);
+        ((CommandSourceStack)context.getSource()).sendSuccess((Component)msg, true);
         return 1;
     }
 }

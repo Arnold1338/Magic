@@ -78,7 +78,7 @@ public class RenderPageStructure extends RenderablePage
             final ItemStack display = ItemUtils.copyStackWithSize(stack, 1);
             new StringTextComponent(stack.func_190916_E() + "x ");
             final StringTextComponent stringTextComponent;
-            final FormattedCharSequence description = (FormattedCharSequence)stringTextComponent.func_230529_a_(stack.func_200301_q());
+            final FormattedCharSequence description = (FormattedCharSequence)stringTextComponent.append(stack.func_200301_q());
             this.contentStacks.add((Tuple<ItemStack, FormattedCharSequence>)new Tuple((Object)display, (Object)description));
         });
     }

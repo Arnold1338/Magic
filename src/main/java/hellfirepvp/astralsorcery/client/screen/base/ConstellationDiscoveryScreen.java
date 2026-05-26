@@ -173,7 +173,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
             final int u = (i + 1 & 0x2) >> 1;
             final int v = (i + 2 & 0x2) >> 1;
             final Vector3 pos = vec00.clone().add(dir.clone().multiply(u)).add(vecV.clone().multiply(v));
-            pos.drawPos(offset, (VertexConsumer)buf).pushPose()starBr, starBr, starBr, Math.max(0.0f, starBr)).setPos((float)u, (float)v).blockPosition();
+            pos.drawPos(offset, (VertexConsumer)buf).color(starBr, starBr, starBr, Math.max(0.0f, starBr)).uv((float)u, (float)v).endVertex();
         }
     }
     

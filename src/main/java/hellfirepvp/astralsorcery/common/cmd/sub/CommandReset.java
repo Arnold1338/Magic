@@ -28,10 +28,10 @@ public class CommandReset implements Command<CommandSourceStack>
     }
     
     public int run(final CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        final ServerPlayer player = (ServerPlayer)((EntitySelector)context.getArgument("player", (Class)EntitySelector.class)).func_197340_a((CommandSourceStack)context.getSource());
+        final ServerPlayer player = (ServerPlayer)((EntitySelector)context.getArgument("player", (Class)EntitySelector.class)).func_197340_a(context.getSource());
         ResearchHelper.wipeKnowledge(player);
-        final String name = player.func_146103_bH().getName();
-        ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Wiped " + name + "'s data!").withStyle(ChatFormatting.GREEN)), true);
+        final String name = player.getGameProfile().getName();
+        (context.getSource()).sendSystemMessage((Component)new Component("Wiped " + name + "'s data!").withStyle(ChatFormatting.GREEN)), true);
         return 0;
     }
     

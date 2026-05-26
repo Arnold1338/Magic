@@ -87,12 +87,12 @@ public class LinkHandler implements ITickHandler
         switch (result.getType()) {
             case SELECT_START: {
                 if (session.getType() == LinkType.ENTITY) {
-                    playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.start").withStyle(ChatFormatting.GREEN)));
+                    playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.start").withStyle(ChatFormatting.GREEN));
                     break;
                 }
                 final String name = tile.getUnLocalizedDisplayName();
                 if (tile.onSelect(playerIn) && name != null) {
-                    playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.start").withStyle(ChatFormatting.GREEN)));
+                    playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.start").withStyle(ChatFormatting.GREEN));
                 }
                 break;
             }
@@ -120,7 +120,7 @@ public class LinkHandler implements ITickHandler
                     tile.onBlockLinkCreate(playerIn, pos);
                     final String linkedFrom = tile.getUnLocalizedDisplayName();
                     if (linkedFrom != null) {
-                        playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.link").withStyle(ChatFormatting.GREEN)));
+                        playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.link").withStyle(ChatFormatting.GREEN));
                     }
                     break;
                 }
@@ -138,7 +138,7 @@ public class LinkHandler implements ITickHandler
                     }
                     final String linkedFrom = tile.getUnLocalizedDisplayName();
                     if (linkedFrom != null) {
-                        playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.unlink").withStyle(ChatFormatting.GREEN)));
+                        playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.unlink").withStyle(ChatFormatting.GREEN));
                     }
                     break;
                 }

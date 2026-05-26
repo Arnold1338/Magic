@@ -32,7 +32,7 @@ public class IntegrationCraftTweaker
                 return;
             });
             final Component message = new Component(ChatFormatting.GREEN + "Constellations written to the log" + ChatFormatting.RESET);
-            ((CommandSourceStack)commandContext.getSource()).func_197030_a((Component)message, true);
+            ((CommandSourceStack)commandContext.getSource()).sendSuccess((Component)message, true);
             return 0;
         });
         event.registerDump("astralAltarTypes", "Lists the different Astral Sorcery Altar Types", commandContext -> {
@@ -41,7 +41,7 @@ public class IntegrationCraftTweaker
                 CraftTweakerAPI.logDump(value.name(), new Object[0]);
             }
             final Component message = new Component(ChatFormatting.GREEN + "Altar Types written to the log" + ChatFormatting.RESET);
-            ((CommandSourceStack)commandContext.getSource()).func_197030_a((Component)message, true);
+            ((CommandSourceStack)commandContext.getSource()).sendSuccess((Component)message, true);
             return 0;
         });
     }

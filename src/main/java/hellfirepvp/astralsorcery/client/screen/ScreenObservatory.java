@@ -115,7 +115,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
     
     public void init() {
         super.init();
-        EventFlags.GUI_CLOSING.executeWithFlag(() -> Minecraft.getInstance().player.giveExperienceLevels();
+        EventFlags.GUI_CLOSING.executeWithFlag(() -> Minecraft.getInstance().player.giveExperienceLevels(0));
     }
     
     public void func_230430_a_(final PoseStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
