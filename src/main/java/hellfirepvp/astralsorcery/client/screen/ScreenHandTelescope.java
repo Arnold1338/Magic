@@ -52,7 +52,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
     private final List<Point2D.Float> usedStars;
     
     public ScreenHandTelescope() {
-        super((Component)Component.translatable("screen.astralsorcery.hand_telescope"), 216, 216);
+        super(Component.translatable("screen.astralsorcery.hand_telescope"), 216, 216);
         this.usedStars = new ArrayList<Point2D.Float>(40);
     }
     

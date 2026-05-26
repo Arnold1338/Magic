@@ -258,7 +258,7 @@ public class RenderingUtils
             final float iYaw = RenderingVectorUtils.interpolate(Mth.func_76142_g(le.field_70126_B), Mth.func_76142_g(le.yRot), pTicks);
             renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(-iYaw + 180.0f)));
         }
-        final Matrix4f matr = renderStack.last().translate();
+        final Matrix4f matr = renderStack.last().pose();
         final int length = fr.func_238414_a_(text);
         final MultiBufferSource.Impl buffers = MultiBufferSource.func_228455_a_(Tessellator.func_178181_a().func_178180_c());
         final FormattedCharSequence processedText = LanguageMap.func_74808_a().func_241870_a(text);

@@ -75,7 +75,7 @@ public class CEffectBootes extends ConstellationEffectEntityCollect<LivingEntity
             }
             if (properties.isCorrupted()) {
                 entity.field_70172_ad = 0;
-                entity.func_195064_c(new MobEffectInstance((Effect)EffectsAS.EFFECT_DROP_MODIFIER, 1000, 5));
+                entity.func_195064_c(new MobEffectInstance((MobEffect)EffectsAS.EFFECT_DROP_MODIFIER, 1000, 5));
                 if (!DamageUtil.attackEntityFrom((Entity)entity, CommonProxy.DAMAGE_SOURCE_STELLAR, 5000.0f)) {
                     continue;
                 }

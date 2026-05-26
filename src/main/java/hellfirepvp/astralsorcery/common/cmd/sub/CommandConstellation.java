@@ -57,10 +57,10 @@ public class CommandConstellation
         }
         if (ResearchManager.memorizeConstellation(cst, target)) {
             ResearchHelper.sendConstellationMemorizationMessage((CommandSource)target, progress, cst);
-            source.sendSystemMessage(Component.translatable("Success! ").withStyle(ChatFormatting.GREEN);
+            source.sendSystemMessage(Component.translatable("Success! ").withStyle(ChatFormatting.GREEN));
             return 1;
         }
-        source.sendSystemMessage(Component.translatable("Failed!").withStyle(ChatFormatting.RED);
+        source.sendSystemMessage(Component.translatable("Failed!").withStyle(ChatFormatting.RED));
         return 0;
     }
     
@@ -75,10 +75,10 @@ public class CommandConstellation
         }
         if (ResearchManager.discoverConstellation(cst, target)) {
             ResearchHelper.sendConstellationDiscoveryMessage((CommandSource)target, cst);
-            source.sendSystemMessage(Component.translatable("Success! ").withStyle(ChatFormatting.GREEN);
+            source.sendSystemMessage(Component.translatable("Success! ").withStyle(ChatFormatting.GREEN));
             return 1;
         }
-        source.sendSystemMessage(Component.translatable("Failed!").withStyle(ChatFormatting.RED);
+        source.sendSystemMessage(Component.translatable("Failed!").withStyle(ChatFormatting.RED));
         return 0;
     }
 }

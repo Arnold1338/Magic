@@ -255,7 +255,7 @@ public class PlayerPerkData
         tag.func_74780_a("perkExp", this.perkExp);
         final ListTag tokens = new ListTag();
         for (final ResourceLocation key : this.freePointTokens) {
-            tokens.add((Object)StringTag.func_229705_a_(key.toString()));
+            tokens.add((Object)StringTag.func_229705_a_(key.withStyle()));
         }
         tag.put("tokens", (Tag)tokens);
         final ListTag perks = new ListTag();

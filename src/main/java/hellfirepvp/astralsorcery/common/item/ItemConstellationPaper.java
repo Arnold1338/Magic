@@ -71,7 +71,7 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
 
         }
         else {
-            toolTip.add((Component)Component.translatable("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY));
+            toolTip.add(Component.translatable("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY));
 
         }
     }

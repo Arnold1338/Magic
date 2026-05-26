@@ -94,7 +94,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
                     if (transmuted == null) {
                         continue;
                     }
-                    transmuted.func_195064_c(new MobEffectInstance((Effect)EffectsAS.EFFECT_DROP_MODIFIER, Integer.MAX_VALUE, 1));
+                    transmuted.func_195064_c(new MobEffectInstance((MobEffect)EffectsAS.EFFECT_DROP_MODIFIER, Integer.MAX_VALUE, 1));
                     AstralSorcery.getProxy().scheduleDelayed(() -> world.addFreshEntity((Entity)transmuted));
                     update = true;
                 }

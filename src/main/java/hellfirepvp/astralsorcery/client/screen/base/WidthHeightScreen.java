@@ -72,7 +72,7 @@ public class WidthHeightScreen extends InputScreen
             return true;
         }
         if (this.closeWithInventoryKey && Minecraft.getInstance().options.field_151445_Q.func_151470_d()) {
-            this.func_231175_as__();
+            this.init();
             if (Minecraft.getInstance().gui == null) {
                 Minecraft.getInstance().field_71417_B.func_198034_i();
             }
@@ -86,7 +86,7 @@ public class WidthHeightScreen extends InputScreen
             return true;
         }
         if (button == 1 && this.shouldRightClickCloseScreen(mouseX, mouseY)) {
-            this.func_231175_as__();
+            this.init();
             if (Minecraft.getInstance().gui == null) {
                 Minecraft.getInstance().field_71417_B.func_198034_i();
             }

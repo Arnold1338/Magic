@@ -48,7 +48,7 @@ public class RootDiscidia extends RootPerk
         if (ds.getDirectEntity() != null && ds.getDirectEntity() instanceof Player) {
             player = (Player)ds.getDirectEntity();
         }
-        if (player == null && ds.getEnchantments( != null && ds.getDirectEntity() instanceof Player) {
+        if (player == null && ds.getDirectEntity() != null && ds.getDirectEntity() instanceof Player) {
             player = (Player)ds.getDirectEntity();
         }
         if (player == null) {

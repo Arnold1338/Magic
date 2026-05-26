@@ -32,7 +32,7 @@ public class TileAccelerationBlacklistEntry implements ConfigDataSet, Predicate<
             return this.filteredSuperClass.isAssignableFrom(tile.getClass());
         }
         final ResourceLocation key = tile.func_200662_C().getRegistryName();
-        if (key != null && key.toString().toLowerCase(Locale.ROOT).startsWith(testStr)) {
+        if (key != null && key.withStyle(.toLowerCase(Locale.ROOT).startsWith(testStr) {
             return true;
         }
         final String className = tile.getClass().getName().toLowerCase(Locale.ROOT);

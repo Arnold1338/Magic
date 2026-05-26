@@ -196,7 +196,7 @@ public class AbstractPerk implements ModifierSource
     }
     
     public MutableComponent getName() {
-        return new Component(this.unlocalizedKey + ".name").toString()this.getCategory().getTextFormatting());
+        return Component.translatable(this.unlocalizedKey + ".name").withStyle(this.getCategory().getTextFormatting());
     }
     
     @Nonnull

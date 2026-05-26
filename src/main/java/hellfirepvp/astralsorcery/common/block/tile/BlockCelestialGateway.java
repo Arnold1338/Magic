@@ -62,7 +62,7 @@ public class BlockCelestialGateway extends BaseEntityBlock implements CustomItem
         super.func_190948_a(stack, worldIn, (List)tooltip, flagIn);
         final DyeColor color = getColor(stack);
         if (color != null) {
-            tooltip.add((Component)ColorUtils.getTranslation(color).toString()ColorUtils.textFormattingForDye(color)));
+            tooltip.add((Component)ColorUtils.getTranslation(color).withStyle(ColorUtils.textFormattingForDye(color)));
         }
     }
     
@@ -71,7 +71,7 @@ public class BlockCelestialGateway extends BaseEntityBlock implements CustomItem
         final TileCelestialGateway gateway = MiscUtils.getTileAt(world, pos, TileCelestialGateway.class, true);
         if (gateway != null) {
             if (gateway.getSaveId()) {
-                stack.func_200302_a(gateway.getDisplayName());
+                stack.setHoverName(gateway.getDisplayName());
             }
             gateway.getColor().ifPresent(color -> setColor(stack, color));
         }

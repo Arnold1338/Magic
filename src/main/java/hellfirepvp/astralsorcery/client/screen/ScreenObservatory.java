@@ -113,8 +113,8 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
         return new Point2D.Float(rPitch, rYaw);
     }
     
-    public void func_231175_as__() {
-        super.func_231175_as__();
+    public void init() {
+        super.init();
         EventFlags.GUI_CLOSING.executeWithFlag(() -> Minecraft.getInstance().player.giveExperienceLevels();
     }
     
@@ -218,7 +218,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
         this.func_230926_e_(10);
         TexturesAS.TEX_GUI_OBSERVATORY.bindTexture();
         RenderingUtils.draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> {
-            final Matrix4f offset = renderStack.last().translate();
+            final Matrix4f offset = renderStack.last().pose();
             RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(0.0f, 0.0f).dim(16.0f, 16.0f).tex(0.0f, 0.0f, 0.4f, 0.4f).draw();
             RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at((float)(this.getGuiWidth() + 16), 0.0f).dim(16.0f, 16.0f).tex(0.4f, 0.0f, 0.4f, 0.4f).draw();
             RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at((float)(this.getGuiWidth() + 16), (float)(this.getGuiHeight() + 16)).dim(16.0f, 16.0f).tex(0.4f, 0.4f, 0.4f, 0.4f).draw();

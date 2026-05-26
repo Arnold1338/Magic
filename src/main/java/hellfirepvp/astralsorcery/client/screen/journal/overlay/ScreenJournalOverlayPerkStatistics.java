@@ -45,7 +45,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
     private int suffixStrWidth;
     
     public ScreenJournalOverlayPerkStatistics(final ScreenJournal origin) {
-        super((Component)Component.translatable("screen.astralsorcery.tome.perks.stats"), origin);
+        super(Component.translatable("screen.astralsorcery.tome.perks.stats"), origin);
         this.statistics = new LinkedList<PerkStatistic>();
         this.nameStrWidth = -1;
         this.valueStrWidth = -1;
@@ -161,10 +161,10 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
         final Player player = (Player)Minecraft.getInstance().player;
         final PerkAttributeMap attrMap = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.CLIENT);
         final List<FormattedCharSequence> information = Lists.newArrayList();
-        information.add((FormattedCharSequence)new Component("perk.reader.astralsorcery.description.head", new Object[] { PerkAttributeReader.formatDecimal(reader.getDefaultValue(attrMap, player, LogicalSide.CLIENT)) }));
-        information.add((FormattedCharSequence)new Component("perk.reader.astralsorcery.description.addition", new Object[] { PerkAttributeReader.formatDecimal(reader.getModifierValueForMode(attrMap, player, LogicalSide.CLIENT, ModifierType.ADDITION) - 1.0) }));
-        information.add((FormattedCharSequence)new Component("perk.reader.astralsorcery.description.increase", new Object[] { PerkAttributeReader.formatDecimal(reader.getModifierValueForMode(attrMap, player, LogicalSide.CLIENT, ModifierType.ADDED_MULTIPLY)) }));
-        information.add((FormattedCharSequence)new Component("perk.reader.astralsorcery.description.moreless", new Object[] { PerkAttributeReader.formatDecimal(reader.getModifierValueForMode(attrMap, player, LogicalSide.CLIENT, ModifierType.STACKING_MULTIPLY)) }));
+        information.add((FormattedCharSequence)Component.translatable("perk.reader.astralsorcery.description.head"));
+        information.add((FormattedCharSequence)Component.translatable("perk.reader.astralsorcery.description.addition"));
+        information.add((FormattedCharSequence)Component.translatable("perk.reader.astralsorcery.description.increase"));
+        information.add((FormattedCharSequence)Component.translatable("perk.reader.astralsorcery.description.moreless"));
         if (!stat.getSuffix().isEmpty() || !stat.getPostProcessInfo().isEmpty()) {
             information.add((FormattedCharSequence)Component.empty());
         }

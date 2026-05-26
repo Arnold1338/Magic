@@ -168,7 +168,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
         final Vector3 degLot = dir.clone().crossProduct(Vector3.RotAxis.Z_AXIS).normalize().multiply(lineBreadth);
         final Vector3 vec00 = fromStar.clone().add(degLot);
         final Vector3 vecV = degLot.clone().multiply(-2);
-        final Matrix4f offset = renderStack.last().translate();
+        final Matrix4f offset = renderStack.last().pose();
         for (int i = 0; i < 4; ++i) {
             final int u = (i + 1 & 0x2) >> 1;
             final int v = (i + 2 & 0x2) >> 1;

@@ -48,7 +48,7 @@ public class KeyVoidTrash extends KeyPerk
         
         @Override
         public void createEntries(final ForgeConfigSpec.Builder cfgBuilder) {
-            this.trashItems = (ForgeConfigSpec.ConfigValue<List<String>>)cfgBuilder.comment("List items that should count as trash and should be voided.").translation(this.translationKey("trashItems")).define("trashItems", KeyVoidTrash.defaultTrashItems.stream().map(item -> item.getRegistryName().toString()).collect(Collectors.toList()));
+            this.trashItems = (ForgeConfigSpec.ConfigValue<List<String>>)cfgBuilder.comment("List items that should count as trash and should be voided.").translation(this.translationKey("trashItems")).define("trashItems", KeyVoidTrash.defaultTrashItems.stream().map(item -> item.getRegistryName().withStyle().collect(Collectors.toList());
             this.oreChance = cfgBuilder.comment("Chance that a voided drop will instead yield a random ore out of the configured ore table.").translation(this.translationKey("oreChance")).defineInRange("oreChance", 0.019999999552965164, 0.0, 1.0);
         }
         

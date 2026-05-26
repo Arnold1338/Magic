@@ -52,7 +52,7 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
 
             }
             else {
-                tooltip.add((Component)Component.translatable("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.translatable("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY));
 
             }
         }
@@ -75,13 +75,13 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
                 final double perkExp = prog.getPerkData().getPerkExp();
                 if (ResearchManager.setAttunedConstellation((Player)player, cst)) {
                     ResearchManager.setExp((Player)player, Mth.func_76124_d(perkExp));
-                    player.sendSystemMessage(Component.translatable("astralsorcery.progress.switch.attunement").withStyle(ChatFormatting.BLUE);
+                    player.sendSystemMessage(Component.translatable("astralsorcery.progress.switch.attunement").withStyle(ChatFormatting.BLUE));
                     SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vector3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
                     return ItemStack.EMPTY;
                 }
             }
             else if (ResearchManager.setAttunedConstellation((Player)player, null)) {
-                player.sendSystemMessage(Component.translatable("astralsorcery.progress.remove.attunement").withStyle(ChatFormatting.BLUE);
+                player.sendSystemMessage(Component.translatable("astralsorcery.progress.remove.attunement").withStyle(ChatFormatting.BLUE));
                 SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vector3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
                 return ItemStack.EMPTY;
             }

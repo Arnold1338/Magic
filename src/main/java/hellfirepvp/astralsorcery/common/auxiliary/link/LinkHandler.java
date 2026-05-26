@@ -87,12 +87,12 @@ public class LinkHandler implements ITickHandler
         switch (result.getType()) {
             case SELECT_START: {
                 if (session.getType() == LinkType.ENTITY) {
-                    playerIn.sendSystemMessage(new Component("astralsorcery.misc.link.start", new Object[] { result.getLinkingSession().getSelectedEntity().getDisplayName() }).withStyle(ChatFormatting.GREEN)));
+                    playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.start").withStyle(ChatFormatting.GREEN)));
                     break;
                 }
                 final String name = tile.getUnLocalizedDisplayName();
                 if (tile.onSelect(playerIn) && name != null) {
-                    playerIn.sendSystemMessage(new Component("astralsorcery.misc.link.start", new Object[] { new Component(name) }).withStyle(ChatFormatting.GREEN)));
+                    playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.start").withStyle(ChatFormatting.GREEN)));
                 }
                 break;
             }
@@ -120,7 +120,7 @@ public class LinkHandler implements ITickHandler
                     tile.onBlockLinkCreate(playerIn, pos);
                     final String linkedFrom = tile.getUnLocalizedDisplayName();
                     if (linkedFrom != null) {
-                        playerIn.sendSystemMessage(new Component("astralsorcery.misc.link.link", new Object[] { new Component(linkedFrom), new Component(linkedToName) }).withStyle(ChatFormatting.GREEN)));
+                        playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.link").withStyle(ChatFormatting.GREEN)));
                     }
                     break;
                 }
@@ -138,7 +138,7 @@ public class LinkHandler implements ITickHandler
                     }
                     final String linkedFrom = tile.getUnLocalizedDisplayName();
                     if (linkedFrom != null) {
-                        playerIn.sendSystemMessage(new Component("astralsorcery.misc.link.unlink", new Object[] { new Component(linkedFrom), new Component(linkedToName) }).withStyle(ChatFormatting.GREEN)));
+                        playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.unlink").withStyle(ChatFormatting.GREEN)));
                     }
                     break;
                 }
@@ -183,7 +183,7 @@ public class LinkHandler implements ITickHandler
                     continue;
                 }
                 iterator.remove();
-                player.sendSystemMessage(Component.translatable("astralsorcery.misc.link.stop").withStyle(ChatFormatting.RED);
+                player.sendSystemMessage(Component.translatable("astralsorcery.misc.link.stop").withStyle(ChatFormatting.RED));
             }
         }
     }

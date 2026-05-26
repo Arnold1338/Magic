@@ -164,7 +164,7 @@ public interface GemSocketPerk
                     tooltip.add((MutableComponent)new Component(""));
                 }
             }
-            tooltip.add(new Component("perk.info.astralsorcery.gem.content.item", new Object[] { contained.func_200301_q() }).withStyle(ChatFormatting.GRAY)));
+            tooltip.add(Component.translatable("perk.info.astralsorcery.gem.content.item").withStyle(ChatFormatting.GRAY)));
             if (perkData.hasPerkEffect(thisPerk)) {
                 tooltip.add(Component.translatable("perk.info.astralsorcery.gem.remove").withStyle(ChatFormatting.GRAY));
 

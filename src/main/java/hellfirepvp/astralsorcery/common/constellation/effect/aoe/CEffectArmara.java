@@ -148,7 +148,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
                     EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance(Effects.field_76420_g, 100, potionAmplifier + 4));
                     EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance(Effects.field_76427_o, 100, potionAmplifier + 4));
                     EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance(Effects.field_76422_e, 100, potionAmplifier + 4));
-                    EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance((Effect)EffectsAS.EFFECT_DROP_MODIFIER, 100, 5));
+                    EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance((MobEffect)EffectsAS.EFFECT_DROP_MODIFIER, 100, 5));
                 }
                 else {
                     EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance(Effects.field_76429_m, 30, Math.min(potionAmplifier, 3), true, true));

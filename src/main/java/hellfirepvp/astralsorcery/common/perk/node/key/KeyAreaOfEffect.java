@@ -44,7 +44,7 @@ public class KeyAreaOfEffect extends KeyAddEnchantment
             return;
         }
         final DamageSource source = event.getSource();
-        if (source instanceof IndirectDamageSource && source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+        if (source instanceof IndirectDamageSource && source.getDirectEntity() != null && source.getDirectEntity() instanceof Player) {
             final Player player = (Player)source.getDirectEntity();
             final LogicalSide side = this.getSide((Entity)player);
             final PlayerProgress prog = ResearchHelper.getProgress(player, side);

@@ -54,18 +54,18 @@ public class ItemKnowledgeShare extends Item
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(final ItemStack stack, @Nullable final Level world, final List<Component> tooltip, final TooltipFlag flag) {
         if (isCreative(stack)) {
-            tooltip.add((Component)Component.translatable("astralsorcery.misc.knowledge.inscribed.creative").withStyle(ChatFormatting.LIGHT_PURPLE));
+            tooltip.add(Component.translatable("astralsorcery.misc.knowledge.inscribed.creative").withStyle(ChatFormatting.LIGHT_PURPLE));
 
             return;
         }
         if (getKnowledge(stack) == null) {
-            tooltip.add((Component)Component.translatable("astralsorcery.misc.knowledge.missing").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("astralsorcery.misc.knowledge.missing").withStyle(ChatFormatting.GRAY));
 
         }
         else {
             final MutableComponent name = getKnowledgeOwnerName(stack);
             if (name != null) {
-                tooltip.add((Component)new Component("astralsorcery.misc.knowledge.inscribed", new Object[] { name }).withStyle(ChatFormatting.BLUE)));
+                tooltip.add(Component.translatable("astralsorcery.misc.knowledge.inscribed").withStyle(ChatFormatting.BLUE));
             }
         }
     }

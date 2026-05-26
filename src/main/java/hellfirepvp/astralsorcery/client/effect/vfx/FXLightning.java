@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.LinkedList;
 import com.google.common.collect.Lists;
 import java.util.Random;
-import net.minecraft.util.Mth;
+import net.minecraft.util.math.MathHelper;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 
@@ -54,7 +54,7 @@ public class FXLightning extends EntityVisualFX
         final double dstLength = to.clone().subtract(this.getPosition()).length();
         float perc = 1.0f;
         if (dstLength > 7.0) {
-            perc = Mth.func_76133_a(dstLength / 7.0);
+            perc = MathHelper.func_76133_a(dstLength / 7.0);
         }
         else if (dstLength < 7.0) {
             perc = (float)Math.pow(dstLength / 7.0, 2.0);
@@ -73,7 +73,7 @@ public class FXLightning extends EntityVisualFX
         this.root.next.add(new LightningVertex(destination));
         rootVertices.add(this.root);
         final double l = directionVector.length();
-        for (int iterations = Math.min(Mth.func_76141_d((float)Math.round(Math.sqrt(l))), 200), i = 0; i < iterations; ++i) {
+        for (int iterations = Math.min(MathHelper.func_76141_d((float)Math.round(Math.sqrt(l))), 200), i = 0; i < iterations; ++i) {
             final LinkedList<LightningVertex> newRootVertices = new LinkedList<LightningVertex>();
             for (final LightningVertex sourceVertex : rootVertices) {
                 final LinkedList<LightningVertex> newNext = new LinkedList<LightningVertex>();
@@ -140,15 +140,15 @@ public class FXLightning extends EntityVisualFX
         final Vector3 perp = aimPerp.clone().rotate(angle, aim).normalize();
         final Vector3 perpFrom = perp.clone().multiply(size);
         final Vector3 perpTo = perp.multiply(size);
-        final Matrix4f matr = renderStack.last().translate();
+        final Matrix4f matr = renderStack.last().func_227870_a_();
         Vector3 vec = from.clone().add(perpFrom.clone().multiply(-1));
-        vec.drawPos(matr, buf).pushPose()r, g, b, a).setPos(1.0f, 1.0f).blockPosition();
+        vec.drawPos(matr, buf).color(r, g, b, a).func_225583_a_(1.0f, 1.0f).endVertex();
         vec = from.clone().add(perpFrom);
-        vec.drawPos(matr, buf).pushPose()r, g, b, a).setPos(1.0f, 0.0f).blockPosition();
+        vec.drawPos(matr, buf).color(r, g, b, a).func_225583_a_(1.0f, 0.0f).endVertex();
         vec = to.clone().add(perpTo);
-        vec.drawPos(matr, buf).pushPose()r, g, b, a).setPos(0.0f, 0.0f).blockPosition();
+        vec.drawPos(matr, buf).color(r, g, b, a).func_225583_a_(0.0f, 0.0f).endVertex();
         vec = to.clone().add(perpTo.clone().multiply(-1));
-        vec.drawPos(matr, buf).pushPose()r, g, b, a).setPos(0.0f, 1.0f).blockPosition();
+        vec.drawPos(matr, buf).color(r, g, b, a).func_225583_a_(0.0f, 1.0f).endVertex();
     }
     
     @Override

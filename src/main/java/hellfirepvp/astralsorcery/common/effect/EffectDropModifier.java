@@ -42,9 +42,9 @@ public class EffectDropModifier extends EffectCustomTexture
         if (le.level() || !(le instanceof MobEntity) || !(le.level() instanceof ServerLevel) || !le.level().func_82736_K().func_223586_b(GameRules.field_223602_e)) {
             return;
         }
-        if (le.hasEffect((Effect)EffectsAS.EFFECT_DROP_MODIFIER)) {
+        if (le.hasEffect((MobEffect)EffectsAS.EFFECT_DROP_MODIFIER)) {
             final DamageSource src = event.getSource();
-            final int amplifier = le.func_184596_c((Effect)EffectsAS.EFFECT_DROP_MODIFIER).func_76458_c();
+            final int amplifier = le.func_184596_c((MobEffect)EffectsAS.EFFECT_DROP_MODIFIER).func_76458_c();
             if (amplifier == 0) {
                 event.getDrops().clear();
             }

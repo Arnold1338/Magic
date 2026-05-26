@@ -81,7 +81,7 @@ public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess>
                             if (removedPlayer != null) {
                                 final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.GATEWAY_REVOKE_EFFECT).addData(buffer -> ByteBufUtils.writePos(buffer, gateway.getBlockState()));
                                 PacketChannel.CHANNEL.sendToPlayer(sender, pkt);
-                                new Component("astralsorcery.misc.link.gateway.unlink", new Object[] { removedPlayer.getPlayerName() });
+                                Component.translatable("astralsorcery.misc.link.gateway.unlink");
                                 final Component translationTextComponent;
                                 final Component accessGrantedMessage = translationTextComponent.withStyle(ChatFormatting.GREEN);
                                 sender.sendSystemMessage(accessGrantedMessage);

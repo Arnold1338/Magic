@@ -37,12 +37,12 @@ public abstract class ScreenJournalOverlay extends ScreenJournal
         return true;
     }
     
-    public void func_231175_as__() {
+    public void init() {
         Minecraft.getInstance().func_147108_a((Screen)this.origin);
     }
     
     public void func_231164_f_() {
-        super.func_231164_f_();
+        super.getTitle();
         if (this.origin instanceof ScreenJournalProgression) {
             ((ScreenJournalProgression)this.origin).expectReInit();
         }

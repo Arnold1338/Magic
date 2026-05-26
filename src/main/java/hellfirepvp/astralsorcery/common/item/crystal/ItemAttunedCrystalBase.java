@@ -38,10 +38,10 @@ public abstract class ItemAttunedCrystalBase extends ItemCrystalBase implements 
             final IWeakConstellation c = this.getAttunedConstellation(stack);
             if (c != null) {
                 if (GatedKnowledge.CRYSTAL_TUNE.canSee(tier) && ResearchHelper.getClientProgress().hasConstellationDiscovered(c)) {
-                    toolTip.add((Component)new Component("crystal.info.astralsorcery.attuned", new Object[] { c.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
+                    toolTip.add(Component.translatable("crystal.info.astralsorcery.attuned").withStyle(ChatFormatting.GRAY));
                 }
                 else if (!addedMissing) {
-                    toolTip.add((Component)Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
+                    toolTip.add(Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
 
                     addedMissing = true;
                 }
@@ -49,10 +49,10 @@ public abstract class ItemAttunedCrystalBase extends ItemCrystalBase implements 
             final IMinorConstellation tr = this.getTraitConstellation(stack);
             if (tr != null) {
                 if (GatedKnowledge.CRYSTAL_TUNE.canSee(tier) && ResearchHelper.getClientProgress().hasConstellationDiscovered(tr)) {
-                    toolTip.add((Component)new Component("crystal.info.astralsorcery.trait", new Object[] { tr.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
+                    toolTip.add(Component.translatable("crystal.info.astralsorcery.trait").withStyle(ChatFormatting.GRAY));
                 }
                 else if (!addedMissing) {
-                    toolTip.add((Component)Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
+                    toolTip.add(Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
 
                 }
             }

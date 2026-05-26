@@ -210,11 +210,11 @@ public class EntityUtils
         if (!sw.func_82736_K().func_223586_b(GameRules.field_223602_e)) {
             return Collections.emptyList();
         }
-        final ResourceLocation lootTableKey = entity.func_213346_cF();
-        final LootTable table = srv.func_200249_aQ().func_186521_a(lootTableKey);
-        final LootContext.Builder builder = new LootContext.Builder(sw).func_216023_a(rand).func_216015_a(LootContextParams.THIS_ENTITY, (Object)entity).func_216015_a(LootParameters.field_237457_g_, (Object)entity.func_213303_ch()).func_216015_a(LootParameters.field_216283_c, (Object)srcDeath).func_216021_b(LootParameters.field_216284_d, (Object)srcDeath.getEnchantments().func_216021_b(LootParameters.field_216285_e, (Object)srcDeath.getDirectEntity());
+        final ResourceLocation lootTableKey = entity.getType().getDefaultLootTable();
+        final LootTable table = srv.getLootTables().get(lootTableKey);
+        final LootContext.Builder builder = new LootContext.Builder(sw).withRandom(rand).withParameter(LootContextParams.THIS_ENTITY, (Object)entity).withParameter(LootContextParams.LAST_DAMAGE_PLAYER, (Object)entity.position()).withParameter(LootContextParams.THIS_ENTITY, (Object)srcDeath).withOptionalParameter(LootContextParams.DAMAGE_SOURCE, (Object)srcDeath.getDirectEntity()?.withOptionalParameter(LootContextParams.KILLER_ENTITY, (Object)srcDeath.getDirectEntity());
         if (lastAttacker != null && lastAttacker instanceof Player) {
-            builder.func_216015_a(LootParameters.field_216282_b, (Object)lastAttacker).func_186469_a(((Player)lastAttacker).func_184817_da());
+            builder.withParameter(LootContextParams.KILLER_ENTITY, (Object)lastAttacker).withLuck(((Player)lastAttacker).getLuck());
         }
         return table.func_216113_a(builder.func_216022_a(LootParameterSets.field_216263_d));
     }

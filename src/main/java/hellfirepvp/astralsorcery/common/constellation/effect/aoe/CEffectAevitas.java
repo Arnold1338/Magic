@@ -112,7 +112,7 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
         for (final LivingEntity entity : entities) {
             if (entity.isAlive()) {
                 if (properties.isCorrupted()) {
-                    EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance((Effect)EffectsAS.EFFECT_BLEED, 120, amplifier * 2));
+                    EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance((MobEffect)EffectsAS.EFFECT_BLEED, 120, amplifier * 2));
                     EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance(Effects.field_76437_t, 120, amplifier * 3));
                     EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance(Effects.field_76438_s, 120, amplifier * 4));
                     EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance(Effects.field_76419_f, 120, amplifier * 2));

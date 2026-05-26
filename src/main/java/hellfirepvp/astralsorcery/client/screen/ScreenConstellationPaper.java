@@ -52,7 +52,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen
     }
     
     public void func_231164_f_() {
-        super.func_231164_f_();
+        super.getTitle();
         SoundHelper.playSoundClient(SoundsAS.GUI_JOURNAL_CLOSE, 1.0f, 1.0f);
     }
     

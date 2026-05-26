@@ -26,7 +26,7 @@ public abstract class ContainerBaseScreen<T extends BlockEntity, C extends Conta
         super.func_231023_e_();
         final BlockEntity te = ((ContainerTileEntity)this.field_147002_h).getTileEntity();
         if (te.func_145837_r() || !((ContainerTileEntity)this.field_147002_h).func_75145_c((Player)Minecraft.getInstance().player)) {
-            this.func_231175_as__();
+            this.init();
         }
     }
 }

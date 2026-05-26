@@ -173,7 +173,7 @@ public class ScreenJournalPages extends ScreenJournal implements NavigationArrow
         return true;
     }
     
-    public void func_231175_as__() {
+    public void init() {
         if (this.origin != null) {
             if (ScreenJournalPages.saveSite) {
                 ScreenJournalPages.openGuiInstance = this;
@@ -188,7 +188,7 @@ public class ScreenJournalPages extends ScreenJournal implements NavigationArrow
         }
         else {
             if (this.previous != null && this.informPreviousClose) {
-                this.previous.func_231175_as__();
+                this.previous.init();
             }
             Minecraft.getInstance().func_147108_a(this.previous);
         }
@@ -231,11 +231,11 @@ public class ScreenJournalPages extends ScreenJournal implements NavigationArrow
             if (this.origin != null) {
                 this.origin.expectReInit();
                 ScreenJournalPages.saveSite = false;
-                this.func_231175_as__();
+                this.init();
                 return true;
             }
             this.informPreviousClose = false;
-            this.func_231175_as__();
+            this.init();
             return true;
         }
         else {

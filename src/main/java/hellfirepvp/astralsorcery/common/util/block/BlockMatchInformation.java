@@ -112,7 +112,7 @@ public class BlockMatchInformation implements Predicate<BlockState>
             out.add("display", (JsonElement)JsonHelper.serializeItemStack(this.getDisplayStack()));
         }
         else if (this.matchTag != null) {
-            out.add("tag", (JsonElement)new JsonPrimitive(this.matchTagKey.toString()));
+            out.add("tag", (JsonElement)new JsonPrimitive(this.matchTagKey.withStyle()));
         }
         return out;
     }

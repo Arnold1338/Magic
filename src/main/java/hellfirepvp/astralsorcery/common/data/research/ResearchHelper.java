@@ -145,7 +145,7 @@ public class ResearchHelper
         if (server != null) {
             final ServerPlayer player = server.getPlayerList().getPlayer(pUUID);
             if (player != null) {
-                player.sendSystemMessage(Component.translatable("AstralSorcery: Your progression could not be loaded and can't be recovered from backup. Please contact an administrator to lookup what went wrong and/or potentially recover your data from a backup.").withStyle(ChatFormatting.RED);
+                player.sendSystemMessage(Component.translatable("AstralSorcery: Your progression could not be loaded and can't be recovered from backup. Please contact an administrator to lookup what went wrong and/or potentially recover your data from a backup.").withStyle(ChatFormatting.RED));
             }
             final String resolvedName = (player != null) ? player.func_146103_bH().getName() : (pUUID.toString() + " (Not online)");
             for (final String opName : server.getPlayerList().func_152606_n()) {
@@ -158,13 +158,13 @@ public class ResearchHelper
     }
     
     public static void sendConstellationDiscoveryMessage(final CommandSource src, final IConstellation cst) {
-        src.sendSystemMessage(new Component("astralsorcery.progress.constellation.discover.chat", new Object[] { cst.getConstellationName().withStyle(ChatFormatting.GRAY)) }).withStyle(ChatFormatting.BLUE)));
+        src.sendSystemMessage(Component.translatable("astralsorcery.progress.constellation.discover.chat").withStyle(ChatFormatting.BLUE)));
     }
     
     public static void sendConstellationMemorizationMessage(final CommandSource src, final PlayerProgress progress, final IConstellation cst) {
-        src.sendSystemMessage(new Component("astralsorcery.progress.constellation.seen.chat", new Object[] { cst.getConstellationName().withStyle(ChatFormatting.GRAY)) }).withStyle(ChatFormatting.BLUE)));
+        src.sendSystemMessage(Component.translatable("astralsorcery.progress.constellation.seen.chat").withStyle(ChatFormatting.BLUE)));
         if (progress.getSeenConstellations().size() == 1) {
-            src.sendSystemMessage(Component.translatable("astralsorcery.progress.constellation.seen.track").withStyle(ChatFormatting.BLUE);
+            src.sendSystemMessage(Component.translatable("astralsorcery.progress.constellation.seen.track").withStyle(ChatFormatting.BLUE));
         }
     }
     

@@ -304,7 +304,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         }
         
         public MutableComponent getDisplay() {
-            return (MutableComponent)new Component("astralsorcery.misc.exchange.size", new Object[] { this.getName() });
+            return (MutableComponent)Component.translatable("astralsorcery.misc.exchange.size");
         }
         
         @Nonnull

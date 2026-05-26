@@ -66,7 +66,7 @@ public class Vector3
     }
     
     public static Vector3 atEntityCorner(final Entity entity) {
-        return new Vector3(entity.func_213303_ch());
+        return new Vector3(entity.position());
     }
     
     @Deprecated

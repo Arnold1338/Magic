@@ -24,7 +24,7 @@ public abstract class CustomContainerProvider<C extends Container> implements IN
     
     public Component func_145748_c_() {
         final ResourceLocation key = this.type.getRegistryName();
-        return (Component)new Component("screen.%s.%s", new Object[] { key.func_110624_b(), key.addTransientModifier() });
+        return Component.translatable("screen.%s.%s");
     }
     
     @Nonnull

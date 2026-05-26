@@ -65,7 +65,7 @@ public class KeyLightningArc extends KeyPerk
             return;
         }
         final DamageSource source = event.getSource();
-        if (source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+        if (source.getDirectEntity() != null && source.getDirectEntity() instanceof Player) {
             final Player player = (Player)source.getDirectEntity();
             final LogicalSide side = this.getSide((Entity)player);
             final PlayerProgress prog = ResearchHelper.getProgress(player, side);
@@ -155,7 +155,7 @@ public class KeyLightningArc extends KeyPerk
                             return;
                         }), target);
                     }
-                    final List<LivingEntity> entities = entity.level().func_175647_a((Class)LivingEntity.class, box.func_191194_a(entity.func_213303_ch()), (Predicate)EntityUtils.selectEntities(LivingEntity.class));
+                    final List<LivingEntity> entities = entity.level().func_175647_a((Class)LivingEntity.class, box.func_191194_a(entity.position()), (Predicate)EntityUtils.selectEntities(LivingEntity.class));
                     entities.remove(entity);
                     if (last != null) {
                         entities.remove(last);

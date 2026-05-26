@@ -61,19 +61,19 @@ public class FXCrystal extends EntityVisualFX implements EntityDynamicFX
         if (this.lightRayColor != null) {
             final long seed = 5863439008313086302L;
             renderStack.popPose();
-            renderStack.translate(vec.getX(), vec.getY(), vec.getZ());
+            renderStack.func_227861_a_(vec.getX(), vec.getY(), vec.getZ());
             RenderingDrawUtils.renderLightRayFan(renderStack, (MultiBufferSource)drawBuffer, this.lightRayColor, seed, 5, 1.0f, 50);
-            renderStack.popPose();
+            renderStack.scale();
             drawBuffer.draw();
         }
         renderStack.popPose();
-        renderStack.translate(vec.getX(), vec.getY() - 0.05000000074505806, vec.getZ());
+        renderStack.func_227861_a_(vec.getX(), vec.getY() - 0.05000000074505806, vec.getZ());
         renderStack.translate(scale, scale, scale);
-        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians((float)this.rotation.getX())));
-        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians((float)this.rotation.getY())));
-        renderStack.mulPose(new org.joml.Quaternionf().rotateZ((float)Math.toRadians((float)this.rotation.getZ())));
+        renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).func_229187_a_((float)this.rotation.getX()));
+        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).func_229187_a_((float)this.rotation.getY()));
+        renderStack.mulPose(new org.joml.Vector3f(0, 0, 1).func_229187_a_((float)this.rotation.getZ()));
         BufferDecoratorBuilder.withColor((r, g, b, a) -> new int[] { c.getRed(), c.getGreen(), c.getBlue(), alpha }).decorate(drawBuffer.getBuffer(ctx.getRenderType()), decorated -> ObjModelRender.renderCrystal(renderStack, decorated, drawBuffer::draw));
-        renderStack.popPose();
+        renderStack.scale();
         if (this.alternativeTexture != null) {
             ctx.getSprite().bindTexture();
         }

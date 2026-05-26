@@ -122,15 +122,15 @@ public class PlayerProgress
     public void store(final CompoundTag cmp) {
         final ListTag known = new ListTag();
         for (final ResourceLocation s : this.knownConstellations) {
-            known.add((Object)StringTag.func_229705_a_(s.toString()));
+            known.add((Object)StringTag.func_229705_a_(s.withStyle()));
         }
         final ListTag seen = new ListTag();
         for (final ResourceLocation s2 : this.seenConstellations) {
-            seen.add((Object)StringTag.func_229705_a_(s2.toString()));
+            seen.add((Object)StringTag.func_229705_a_(s2.withStyle()));
         }
         final ListTag storedPapers = new ListTag();
         for (final ResourceLocation s3 : this.storedConstellationPapers) {
-            storedPapers.add((Object)StringTag.func_229705_a_(s3.toString()));
+            storedPapers.add((Object)StringTag.func_229705_a_(s3.withStyle()));
         }
         cmp.put("constellations", (Tag)known);
         cmp.put("seenConstellations", (Tag)seen);
@@ -151,11 +151,11 @@ public class PlayerProgress
     public void storeKnowledge(final CompoundTag cmp) {
         final ListTag list = new ListTag();
         for (final ResourceLocation s : this.knownConstellations) {
-            list.add((Object)StringTag.func_229705_a_(s.toString()));
+            list.add((Object)StringTag.func_229705_a_(s.withStyle()));
         }
         final ListTag l = new ListTag();
         for (final ResourceLocation s2 : this.seenConstellations) {
-            l.add((Object)StringTag.func_229705_a_(s2.toString()));
+            l.add((Object)StringTag.func_229705_a_(s2.withStyle()));
         }
         cmp.put("constellations", (Tag)list);
         cmp.put("seenConstellations", (Tag)l);

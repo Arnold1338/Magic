@@ -38,7 +38,7 @@ public class KeyBleed extends KeyPerk
     
     private void onAttack(final LivingHurtEvent event) {
         final DamageSource source = event.getSource();
-        if (source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+        if (source.getDirectEntity() != null && source.getDirectEntity() instanceof Player) {
             final Player player = (Player)source.getDirectEntity();
             final LogicalSide side = this.getSide((Entity)player);
             final PlayerProgress prog = ResearchHelper.getProgress(player, side);
@@ -52,13 +52,13 @@ public class KeyBleed extends KeyPerk
                     int duration = (int)KeyBleed.CONFIG.bleedDuration.get();
                     duration = Math.round(PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, prog, PerkAttributeTypesAS.ATTR_TYPE_BLEED_DURATION, (float)duration));
                     int setAmplifier = 0;
-                    if (target.hasEffect((Effect)EffectsAS.EFFECT_BLEED)) {
-                        final MobEffectInstance pe = target.func_70660_b((Effect)EffectsAS.EFFECT_BLEED);
+                    if (target.hasEffect((MobEffect)EffectsAS.EFFECT_BLEED)) {
+                        final MobEffectInstance pe = target.func_70660_b((MobEffect)EffectsAS.EFFECT_BLEED);
                         if (pe != null) {
                             setAmplifier = Math.min(pe.func_76458_c() + 1, stackCap - 1);
                         }
                     }
-                    target.func_195064_c(new MobEffectInstance((Effect)EffectsAS.EFFECT_BLEED, duration, setAmplifier, false, true));
+                    target.func_195064_c(new MobEffectInstance((MobEffect)EffectsAS.EFFECT_BLEED, duration, setAmplifier, false, true));
                 }
             }
         }

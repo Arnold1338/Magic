@@ -58,7 +58,7 @@ public class BlockUtils
     
     @Nonnull
     public static List<ItemStack> getDrops(final ServerLevel world, final BlockPos pos, final BlockState state, final int harvestFortune, final Random rand, final ItemStack tool) {
-        final LootContext.Builder builder = new LootContext.Builder(world).func_216015_a(LootParameters.field_237457_g_, (Object)Vec3.func_237489_a_((Vector3i)pos)).func_216015_a(LootParameters.field_216287_g, (Object)state).func_216015_a(LootContextParams.TOOL, (Object)tool).func_216021_b(LootParameters.field_216288_h, (Object)MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true)).func_216023_a(rand).func_186469_a((float)harvestFortune);
+        final LootContext.Builder builder = new LootContext.Builder(world).withParameter(LootContextParams.LAST_DAMAGE_PLAYER, (Object)Vec3.func_237489_a_((Vector3i)pos)).withParameter(LootParameters.field_216287_g, (Object)state).withParameter(LootContextParams.TOOL, (Object)tool).withOptionalParameter(LootParameters.field_216288_h, (Object)MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true)).withRandom(rand).withLuck((float)harvestFortune);
         return state.func_215693_a(builder);
     }
     

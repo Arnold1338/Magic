@@ -148,13 +148,13 @@ public final class CrystalAttributes
                 else {
                     final MutableComponent enchantmentLevel = new Component(String.format("enchantment.level.%s", attr.getTier())).withStyle(ChatFormatting.GOLD));
                     final MutableComponent propertyName = prop.getName(attr.getTier()).withStyle(ChatFormatting.GRAY));
-                    tooltip.add((Component)propertyName.func_230529_a_((Component)Component.translatable(" ")).func_230529_a_((Component)enchantmentLevel));
+                    tooltip.add((Component)propertyName.func_230529_a_(Component.translatable(" ").func_230529_a_((Component)enchantmentLevel)));
                     addedAtLeastOne = true;
                 }
             }
         }
         if (missing) {
-            tooltip.add((Component)Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
 
         }
         return (missing && !addedAtLeastOne) ? TooltipResult.ALL_MISSING : (missing ? TooltipResult.ADDED_ALL_WITH_MISSING : TooltipResult.ADDED_ALL);

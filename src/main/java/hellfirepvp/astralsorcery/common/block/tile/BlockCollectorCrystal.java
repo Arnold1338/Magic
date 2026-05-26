@@ -75,20 +75,20 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
             final IWeakConstellation c = ((ConstellationItem)stack.getItem()).getAttunedConstellation(stack);
             if (c != null) {
                 if (GatedKnowledge.COLLECTOR_TYPE.canSee(tier) && clientProgress.hasConstellationDiscovered(c)) {
-                    toolTip.add((Component)new Component("crystal.info.astralsorcery.collect.type", new Object[] { c.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
+                    toolTip.add(Component.translatable("crystal.info.astralsorcery.collect.type").withStyle(ChatFormatting.GRAY));
                 }
                 else if (!addedMissing) {
-                    toolTip.add((Component)Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
+                    toolTip.add(Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
 
                 }
             }
             final IMinorConstellation tr = ((ConstellationItem)stack.getItem()).getTraitConstellation(stack);
             if (tr != null) {
                 if (GatedKnowledge.CRYSTAL_TRAIT.canSee(tier) && clientProgress.hasConstellationDiscovered(tr)) {
-                    toolTip.add((Component)new Component("crystal.info.astralsorcery.trait", new Object[] { tr.getConstellationName().withStyle(ChatFormatting.BLUE)) }).withStyle(ChatFormatting.GRAY)));
+                    toolTip.add(Component.translatable("crystal.info.astralsorcery.trait").withStyle(ChatFormatting.GRAY));
                 }
                 else if (!addedMissing) {
-                    toolTip.add((Component)Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
+                    toolTip.add(Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
 
                 }
             }

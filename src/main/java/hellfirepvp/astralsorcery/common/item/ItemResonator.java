@@ -90,7 +90,7 @@ public class ItemResonator extends Item implements OverrideInteractItem
         final ResonatorUpgrade current = getCurrentUpgrade((Player)Minecraft.getInstance().player, stack);
         for (final ResonatorUpgrade upgrade : getUpgrades(stack)) {
             final ChatFormatting color = upgrade.equals(current) ? ChatFormatting.GOLD : ChatFormatting.BLUE;
-            tooltip.add((Component)Component.translatable(upgrade.getUnlocalizedTypeName()).withStyle(color));
+            tooltip.add(Component.translatable(upgrade.getUnlocalizedTypeName().withStyle(color)));
 
         }
     }

@@ -70,7 +70,7 @@ public class LootModifierScorchingHeat extends LootModifier
                                 ++iExp;
                             }
                             if (iExp >= 1) {
-                                final Vec3 blockPos = (Vec3)context.getParamOrNull(LootParameters.field_237457_g_);
+                                final Vec3 blockPos = (Vec3)context.getParamOrNull(LootContextParams.LAST_DAMAGE_PLAYER);
                                 if (blockPos != null) {
                                     final ServerLevel world = context.getLevel();
                                     world.addFreshEntity((Entity)new ExperienceOrbEntity((Level)world, blockPos.getX(), blockPos.getY(), blockPos.getZ(), iExp));

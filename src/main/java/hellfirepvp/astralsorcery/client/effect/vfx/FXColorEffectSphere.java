@@ -80,7 +80,7 @@ public class FXColorEffectSphere extends EntityVisualFX
         final int r = c.getRed();
         final int g = c.getGreen();
         final int b = c.getBlue();
-        final Matrix4f matr = renderStack.last().translate();
+        final Matrix4f matr = renderStack.last().pose();
         final Vector3 pos = this.getRenderPosition(pTicks);
         pos.subtract(RenderingVectorUtils.getStandardTranslationRemovalVector(pTicks));
         for (final SphereBuilder.TriangleFace face : this.sphereFaces) {

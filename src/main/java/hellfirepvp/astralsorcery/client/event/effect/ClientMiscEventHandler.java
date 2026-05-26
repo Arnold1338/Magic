@@ -92,7 +92,7 @@ public class ClientMiscEventHandler
         renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(-(20.0f + r))));
         ClientMiscEventHandler.vboR.func_177359_a();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227892_a_(0L);
-        ClientMiscEventHandler.vboR.func_227874_a_(renderStack.last().translate(), 7);
+        ClientMiscEventHandler.vboR.func_227874_a_(renderStack.last().pose(), 7);
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227895_d_();
         VertexBuffer.func_177361_b();
         renderStack.popPose();
@@ -100,7 +100,7 @@ public class ClientMiscEventHandler
         renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians(20.0f + r)));
         ClientMiscEventHandler.vboL.func_177359_a();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227892_a_(0L);
-        ClientMiscEventHandler.vboL.func_227874_a_(renderStack.last().translate(), 7);
+        ClientMiscEventHandler.vboL.func_227874_a_(renderStack.last().pose(), 7);
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227895_d_();
         VertexBuffer.func_177361_b();
         renderStack.popPose();

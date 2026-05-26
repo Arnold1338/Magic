@@ -76,7 +76,7 @@ public class CelestialGatewayFilter
         try {
             final ListTag list = new ListTag();
             for (final RegistryKey<Level> dimType : this.cache) {
-                list.add((Object)StringTag.func_229705_a_(dimType.func_240901_a_().toString()));
+                list.add((Object)StringTag.func_229705_a_(dimType.func_240901_a_().withStyle()));
             }
             final CompoundTag cmp = new CompoundTag();
             cmp.put("list", (Tag)list);

@@ -170,11 +170,11 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
             fromTable = LootTables.field_186389_an;
         }
         final LootContext.Builder builder = new LootContext.Builder(world);
-        builder.func_186469_a(CEffectOctans.rand.nextInt(2) * CEffectOctans.rand.nextFloat());
-        builder.func_216023_a(CEffectOctans.rand);
-        builder.func_216015_a(LootContextParams.TOOL, (Object)tool);
-        builder.func_216015_a(LootParameters.field_237457_g_, (Object)Vec3.func_237489_a_((Vector3i)pos));
-        final LootTable lootTable = world.func_73046_m().func_200249_aQ().func_186521_a(fromTable);
+        builder.withLuck(CEffectOctans.rand.nextInt(2) * CEffectOctans.rand.nextFloat());
+        builder.withRandom(CEffectOctans.rand);
+        builder.withParameter(LootContextParams.TOOL, (Object)tool);
+        builder.withParameter(LootContextParams.LAST_DAMAGE_PLAYER, (Object)Vec3.func_237489_a_((Vector3i)pos));
+        final LootTable lootTable = world.func_73046_m().getLootData().getLootTable(fromTable);
         for (final ItemStack loot : lootTable.func_216113_a(builder.func_216022_a(LootParameterSets.field_216262_c))) {
             final ItemEntity ei = ItemUtils.dropItemNaturally((Level)world, dropLoc.getX(), dropLoc.getY(), dropLoc.getZ(), loot);
             final Vector3 motion = new Vector3(ei.func_213322_ci());

@@ -337,7 +337,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                     }
                     if (Minecraft.getInstance().options.advancedItemTooltips) {
                         toolTip3.add((FormattedCharSequence)Component.empty());
-                        toolTip3.add((FormattedCharSequence)new Component(perk.getRegistryName().toString()).func_240699_a_(ChatFormatting.GRAY));
+                        toolTip3.add((FormattedCharSequence)Component.translatable(perk.getRegistryName().withStyle().func_240699_a_(ChatFormatting.GRAY)));
                         toolTip3.add((FormattedCharSequence)Component.translatable("astralsorcery.misc.ctrlcopy").func_240699_a_(ChatFormatting.GRAY));
                     }
                     RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)mouseX, (float)mouseY, (float)this.getGuiZLevel(), toolTip3, this.field_230712_o_, true);
@@ -425,7 +425,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         if (prog.isAttuned() && (availablePerks = prog.getPerkData().getAvailablePerkPoints(player, LogicalSide.CLIENT)) > 0) {
             renderStack.popPose();
             renderStack.func_227861_a_((double)(this.guiLeft + 50), (double)(this.guiTop + 18), (double)this.getGuiZLevel());
-            final FormattedCharSequence points = (FormattedCharSequence)new Component("perk.info.astralsorcery.points", new Object[] { availablePerks });
+            final FormattedCharSequence points = (FormattedCharSequence)Component.translatable("perk.info.astralsorcery.points");
             RenderingDrawUtils.renderStringAt(points, renderStack, this.field_230712_o_, 13421772, true);
             renderStack.scale();
         }
@@ -895,7 +895,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 if (mouseButton == 0 && mc.options.advancedItemTooltips && func_231172_r_()) {
                     final String perkKey = perk.getRegistryName().toString();
                     Minecraft.getInstance().field_195559_v.func_197960_a(perkKey);
-                    mc.player.sendSystemMessage((ITextComponent)new Component("astralsorcery.misc.ctrlcopy.copied", new Object[] { perkKey }), Util.field_240973_b_);
+                    mc.player.sendSystemMessage((ITextComponent)Component.translatable("astralsorcery.misc.ctrlcopy.copied"), Util.field_240973_b_);
                     break;
                 }
                 if (mouseButton == 1) {

@@ -450,7 +450,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         compound.putInt("altarType", this.altarType.ordinal());
         compound.put("inventory", (Tag)this.inventory.serialize());
         NBTHelper.setStack(compound, "focusItem", this.focusItem);
-        NBTHelper.writeList(compound, "knownRecipes", (Collection<ResourceLocation>)this.knownRecipes, key -> StringTag.func_229705_a_(key.toString()));
+        NBTHelper.writeList(compound, "knownRecipes", (Collection<ResourceLocation>)this.knownRecipes, key -> StringTag.func_229705_a_(key.withStyle());
         if (this.activeRecipe != null) {
             compound.put("activeRecipe", (Tag)this.activeRecipe.serialize());
         }

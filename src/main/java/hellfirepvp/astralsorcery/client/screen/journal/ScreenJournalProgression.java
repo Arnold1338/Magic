@@ -57,7 +57,7 @@ public class ScreenJournalProgression extends ScreenJournal
     private static ScreenJournalProgressionRenderer progressionRenderer;
     
     private ScreenJournalProgression() {
-        super((Component)Component.translatable("screen.astralsorcery.tome.progression"), 10);
+        super(Component.translatable("screen.astralsorcery.tome.progression"), 10);
         this.expectReinit = false;
         this.rescaleAndRefresh = true;
         this.searchTextEntry = new ScreenTextEntry();
@@ -97,7 +97,7 @@ public class ScreenJournalProgression extends ScreenJournal
     }
     
     public void func_231164_f_() {
-        super.func_231164_f_();
+        super.getTitle();
         this.rescaleAndRefresh = false;
     }
     

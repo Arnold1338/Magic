@@ -59,7 +59,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
     public void appendHoverText(final ItemStack stack, @Nullable final Level worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, (List)tooltip, flagIn);
         final DyeColor color = getConfiguredColor(stack);
-        tooltip.add((Component)ColorUtils.getTranslation(color).toString()ColorUtils.textFormattingForDye(color)));
+        tooltip.add(ColorUtils.getTranslation(color).withStyle(ColorUtils.textFormattingForDye(color)));
     }
     
     public float getAlignmentChargeCost(final Player player, final ItemStack stack) {

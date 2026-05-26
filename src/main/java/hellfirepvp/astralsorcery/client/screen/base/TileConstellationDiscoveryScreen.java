@@ -23,7 +23,7 @@ public abstract class TileConstellationDiscoveryScreen<T extends BlockEntity & N
         super.func_231023_e_();
         final Level clWorld = (Level)Minecraft.getInstance().level;
         if (this.tile.func_145837_r() || clWorld == null || !clWorld.dimension().equals(this.tile.getLevel().dimension())) {
-            this.func_231175_as__();
+            this.init();
         }
     }
 }

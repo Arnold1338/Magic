@@ -26,7 +26,7 @@ public class ObjModelRender
         }
         RenderSystem.pushMatrix();
         RenderSystem.loadIdentity();
-        RenderSystem.multMatrix(renderStack.last().translate());
+        RenderSystem.multMatrix(renderStack.last().pose());
         ObjModelRender.crystalModel.render(buf);
         drawFn.run();
         RenderSystem.popMatrix();
@@ -42,7 +42,7 @@ public class ObjModelRender
         }
         ObjModelRender.vboCelestialWings.func_177359_a();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227892_a_(0L);
-        ObjModelRender.vboCelestialWings.func_227874_a_(renderStack.last().translate(), ObjModelRender.celestialWingsModel.getGLDrawingMode());
+        ObjModelRender.vboCelestialWings.func_227874_a_(renderStack.last().pose(), ObjModelRender.celestialWingsModel.getGLDrawingMode());
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227895_d_();
         VertexBuffer.func_177361_b();
     }
@@ -61,12 +61,12 @@ public class ObjModelRender
         }
         ObjModelRender.wraithWingsBones.func_177359_a();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227892_a_(0L);
-        ObjModelRender.wraithWingsBones.func_227874_a_(renderStack.last().translate(), ObjModelRender.wraithWingsModel.getGLDrawingMode());
+        ObjModelRender.wraithWingsBones.func_227874_a_(renderStack.last().pose(), ObjModelRender.wraithWingsModel.getGLDrawingMode());
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227895_d_();
         VertexBuffer.func_177361_b();
         ObjModelRender.wraithWingsWing.func_177359_a();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227892_a_(0L);
-        ObjModelRender.wraithWingsWing.func_227874_a_(renderStack.last().translate(), ObjModelRender.wraithWingsModel.getGLDrawingMode());
+        ObjModelRender.wraithWingsWing.func_227874_a_(renderStack.last().pose(), ObjModelRender.wraithWingsModel.getGLDrawingMode());
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.func_227895_d_();
         VertexBuffer.func_177361_b();
     }

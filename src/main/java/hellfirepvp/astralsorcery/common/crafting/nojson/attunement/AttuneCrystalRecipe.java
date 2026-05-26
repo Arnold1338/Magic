@@ -59,7 +59,7 @@ public class AttuneCrystalRecipe extends AttunementRecipe<ActiveCrystalAttunemen
         final Vector3 thisVec = new Vector3(altar).add(0.5, 1.5, 0.5);
         final List<ItemEntity> items = altar.getLevel().func_217357_a((Class)ItemEntity.class, boxAt);
         if (!items.isEmpty()) {
-            final ItemEntity item = EntityUtils.selectClosest((Collection<ItemEntity>)items, iEntity -> thisVec.distanceSquared(iEntity.func_213303_ch()));
+            final ItemEntity item = EntityUtils.selectClosest((Collection<ItemEntity>)items, iEntity -> thisVec.distanceSquared(iEntity.position()));
             if (isApplicableCrystal(item, cst)) {
                 return item;
             }

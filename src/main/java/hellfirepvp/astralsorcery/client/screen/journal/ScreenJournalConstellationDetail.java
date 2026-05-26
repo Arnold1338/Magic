@@ -429,7 +429,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         return true;
     }
     
-    public void func_231175_as__() {
+    public void init() {
         Minecraft.getInstance().func_147108_a((Screen)this.origin);
     }
     

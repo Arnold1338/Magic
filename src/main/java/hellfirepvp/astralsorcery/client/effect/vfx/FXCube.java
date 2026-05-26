@@ -98,8 +98,8 @@ public class FXCube extends EntityVisualFX implements EntityDynamicFX
         else {
             final SpriteSheetResource ssr = ctx.getSprite();
             final Tuple<Float, Float> uv = ssr.getUVOffset(this.getAge());
-            u = (float)uv.getA();
-            v = (float)uv.getB();
+            u = (float)uv.func_76341_a();
+            v = (float)uv.func_76340_b();
             uLength = ssr.getULength() * this.textureSubSizePercentage;
             vLength = ssr.getVLength() * this.textureSubSizePercentage;
         }
@@ -109,13 +109,13 @@ public class FXCube extends EntityVisualFX implements EntityDynamicFX
         final Vector3 rotation = this.getInterpolatedRotation(pTicks);
         final float scale = this.getScale(pTicks);
         renderStack.popPose();
-        renderStack.translate(translateTo.getX(), translateTo.getY(), translateTo.getZ());
-        renderStack.mulPose(new org.joml.Quaternionf().rotateX((float)Math.toRadians((float)rotation.getX())));
-        renderStack.mulPose(new org.joml.Quaternionf().rotateY((float)Math.toRadians((float)rotation.getY())));
-        renderStack.mulPose(new org.joml.Quaternionf().rotateZ((float)Math.toRadians((float)rotation.getZ())));
+        renderStack.func_227861_a_(translateTo.getX(), translateTo.getY(), translateTo.getZ());
+        renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).func_229187_a_((float)rotation.getX()));
+        renderStack.mulPose(new org.joml.Vector3f(0, 1, 0).func_229187_a_((float)rotation.getY()));
+        renderStack.mulPose(new org.joml.Vector3f(0, 0, 1).func_229187_a_((float)rotation.getZ()));
         renderStack.translate(scale, scale, scale);
         final VertexConsumer buf = drawBuffer.getBuffer(ctx.getRenderType());
         RenderingDrawUtils.renderTexturedCubeCentralColorLighted(buf, renderStack, u, v, uLength, vLength, c.getRed(), c.getGreen(), c.getBlue(), alpha, LightmapUtil.getPackedFullbrightCoords());
-        renderStack.popPose();
+        renderStack.scale();
     }
 }

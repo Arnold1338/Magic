@@ -367,7 +367,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     
     public void onEntityLinkCreate(final Player player, final LivingEntity linked) {
         if (linked instanceof Player && this.addAllowedUser((Player)linked)) {
-            final Component accessGrantedMessage = (Component)new Component("astralsorcery.misc.link.gateway.link", new Object[] { linked.getDisplayName() }).withStyle(ChatFormatting.GREEN));
+            final Component accessGrantedMessage = Component.translatable("astralsorcery.misc.link.gateway.link").withStyle(ChatFormatting.GREEN);
             player.sendSystemMessage(accessGrantedMessage);
             linked.sendSystemMessage(accessGrantedMessage);
         }

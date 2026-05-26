@@ -58,7 +58,7 @@ public class FXLightbeam extends EntityVisualFX
         final float v = (float)uvOffset.getB();
         final float uWidth = ssr.getULength();
         final float vHeight = ssr.getVLength();
-        final Matrix4f matr = renderStack.last().translate();
+        final Matrix4f matr = renderStack.last().pose();
         Vector3 vec = this.to.clone().add(perpTo.clone().multiply(-1)).subtract(renderOffset);
         vec.drawPos(matr, vb).setPos(r, g, b, a).setPos(u, v + vHeight).blockPosition();
         vec = this.to.clone().add(perpTo).subtract(renderOffset);

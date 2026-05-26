@@ -39,7 +39,7 @@ public abstract class TileTransmissionBase<T extends IPrismTransmissionNode> ext
             for (final BlockPos linkTo : Lists.newArrayList((Iterable)this.getLinkedPositions())) {
                 this.tryUnlink(player, linkTo);
             }
-            player.sendSystemMessage(Component.translatable("astralsorcery.misc.link.unlink.all").withStyle(ChatFormatting.GREEN);
+            player.sendSystemMessage(Component.translatable("astralsorcery.misc.link.unlink.all").withStyle(ChatFormatting.GREEN));
             return false;
         }
         return true;

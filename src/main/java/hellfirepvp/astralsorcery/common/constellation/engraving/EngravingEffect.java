@@ -224,15 +224,15 @@ public class EngravingEffect extends ForgeRegistryEntry<EngravingEffect>
             if (!MiscUtils.contains(existing, effectInstance -> effectInstance.func_188419_a().equals(this.effect.get()))) {
                 final int amp = this.min + Math.round(percent * Math.max(0, this.max - this.min));
                 final int dur = 3600 + Math.round(rand.nextFloat() * 4.0f * 60.0f * 20.0f);
-                effectInstance = new MobEffectInstance((Effect)this.effect.get(), dur, amp, true, false, true);
+                effectInstance = new MobEffectInstance((MobEffect)this.effect.get(), dur, amp, true, false, true);
                 existing.add(effectInstance);
             }
             if (!MiscUtils.contains(existing, effInstance -> effInstance.func_188419_a().equals(EffectsAS.EFFECT_CHEAT_DEATH)) && rand.nextInt(30) == 0) {
-                existing.add(new MobEffectInstance((Effect)EffectsAS.EFFECT_CHEAT_DEATH, 3600 + Math.round(rand.nextFloat() * 4.0f * 60.0f * 20.0f), 0, true, false, true));
+                existing.add(new MobEffectInstance((MobEffect)EffectsAS.EFFECT_CHEAT_DEATH, 3600 + Math.round(rand.nextFloat() * 4.0f * 60.0f * 20.0f), 0, true, false, true));
             }
-            PotionUtils.func_185184_a(stack, (Collection)existing);
+            PotionUtils.setCustomEffects(stack, (java.util.List)existing);
             stack.getTag().putInt("CustomPotionColor", ColorsAS.DYE_ORANGE.getRGB());
-            stack.func_200302_a((Component)Component.translatable("potion.astralsorcery.crafted.name").withStyle(ChatFormatting.GOLD);
+            stack.setHoverName(Component.translatable("potion.astralsorcery.crafted.name").withStyle(ChatFormatting.GOLD));
             return stack;
         }
     }

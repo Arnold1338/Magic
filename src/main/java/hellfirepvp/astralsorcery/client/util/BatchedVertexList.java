@@ -37,7 +37,7 @@ public class BatchedVertexList
         }
         this.vbo.func_177359_a();
         this.vFormat.func_227892_a_(0L);
-        this.vbo.func_227874_a_(renderStack.last().translate(), 7);
+        this.vbo.func_227874_a_(renderStack.last().pose(), 7);
         this.vFormat.func_227895_d_();
         VertexBuffer.func_177361_b();
     }

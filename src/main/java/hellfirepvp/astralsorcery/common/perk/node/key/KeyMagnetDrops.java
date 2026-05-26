@@ -34,7 +34,7 @@ public class KeyMagnetDrops extends KeyPerk
     
     private void onEntityLoot(final LivingDropsEvent event) {
         final DamageSource source = event.getSource();
-        if (source.getEnchantments( != null && source.getDirectEntity() instanceof Player) {
+        if (source.getDirectEntity() != null && source.getDirectEntity() instanceof Player) {
             final Player player = (Player)source.getDirectEntity();
             final LogicalSide side = this.getSide((Entity)player);
             final PlayerProgress prog = ResearchHelper.getProgress(player, side);

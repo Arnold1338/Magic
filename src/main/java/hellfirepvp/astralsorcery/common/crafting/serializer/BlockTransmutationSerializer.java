@@ -58,10 +58,10 @@ public class BlockTransmutationSerializer extends CustomRecipeSerializer<BlockTr
             final ResourceLocation cstKey = new ResourceLocation(JSONUtils.func_151200_h(json, "constellation"));
             final IConstellation cst = (IConstellation)RegistriesAS.REGISTRY_CONSTELLATIONS.getValue(cstKey);
             if (cst == null) {
-                throw new JsonSyntaxException(String.format("Unknown constellation %s!", cstKey.toString()));
+                throw new JsonSyntaxException(String.format("Unknown constellation %s!", cstKey.withStyle());
             }
             if (!(cst instanceof IWeakConstellation)) {
-                throw new JsonSyntaxException(String.format("Constellation %s has to be either a major or dim constellation!", cstKey.toString()));
+                throw new JsonSyntaxException(String.format("Constellation %s has to be either a major or dim constellation!", cstKey.withStyle());
             }
             matchConstellation = (IWeakConstellation)cst;
         }

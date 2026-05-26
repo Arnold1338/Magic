@@ -119,7 +119,7 @@ public class AstralBlockStateMappingProvider extends BlockStateProvider
         final Property<T> property = (Property<T>)Iterables.getFirst((Iterable)properties, (Object)null);
         final VariantBlockStateBuilder builder = this.getVariantBuilder(b);
         for (final T value : property.func_177700_c()) {
-            builder.partialState().with((Property)property, (Comparable)value).addModels(new ConfiguredModel[] { new ConfiguredModel(this.model(NameUtil.suffixPath(key, "_" + value.toString()))) });
+            builder.partialState().with((Property)property, (Comparable)value).addModels(new ConfiguredModel[] { new ConfiguredModel(this.model(NameUtil.suffixPath(key, "_" + value.withStyle()) });
         }
     }
     
@@ -132,7 +132,7 @@ public class AstralBlockStateMappingProvider extends BlockStateProvider
         final Property<T> property = (Property<T>)Iterables.getFirst((Iterable)properties, (Object)null);
         final VariantBlockStateBuilder builder = this.getVariantBuilder(b);
         for (final T value : property.func_177700_c()) {
-            builder.partialState().with((Property)property, (Comparable)value).addModels(new ConfiguredModel[] { new ConfiguredModel(this.multiLayerModel(NameUtil.suffixPath(key, "_" + value.toString()))) });
+            builder.partialState().with((Property)property, (Comparable)value).addModels(new ConfiguredModel[] { new ConfiguredModel(this.multiLayerModel(NameUtil.suffixPath(key, "_" + value.withStyle()) });
         }
     }
     

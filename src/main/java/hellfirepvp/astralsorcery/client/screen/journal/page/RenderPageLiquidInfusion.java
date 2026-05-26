@@ -74,10 +74,10 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate
     public void postRender(final PoseStack renderStack, final float x, final float y, final float z, final float pTicks, final float mouseX, final float mouseY) {
         this.renderHoverTooltips(renderStack, mouseX, mouseY, z, this.recipe.func_199560_c());
         this.renderInfoStarTooltips(renderStack, x, y, z, mouseX, mouseY, toolTip -> {
-            new Component("astralsorcery.journal.recipe.infusion.liquid", new Object[] { this.recipe.getLiquidInput().getAttributes().getDisplayName(new FluidStack(this.recipe.getLiquidInput(), 1000)) });
+            Component.translatable("astralsorcery.journal.recipe.infusion.liquid");
             final Component translationTextComponent;
             toolTip.add(translationTextComponent);
-            new Component("astralsorcery.journal.recipe.infusion.chance.format", new Object[] { this.getInfuserChanceDescription(this.recipe.getConsumptionChance()) });
+            Component.translatable("astralsorcery.journal.recipe.infusion.chance.format");
             final Component translationTextComponent2;
             toolTip.add(translationTextComponent2);
             if (this.recipe.doesConsumeMultipleFluids()) {
