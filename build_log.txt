@@ -41,136 +41,79 @@ Executing steps
  > Running 'listLibraries'
  > Running 'rename'
 Stopping at requested step: /home/runner/.gradle/caches/forge_gradle/mcp_repo/de/oceanlabs/mcp/mcp_config/1.20.1-20230612.114412/joined/rename/output.jar
-[21:22:20] [main/INFO]: Writing debug log file accesstransform.log
-[21:22:20] [main/INFO]: Access Transformer processor running version 8.2.14
-[21:22:20] [main/INFO]: Command line arguments [--inJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar, --outJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, --logFile, accesstransform.log, --atFile, /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg, --atFile, /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg]
-[21:22:20] [main/INFO]: Reading from /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar
-[21:22:20] [main/INFO]: Writing to /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
-[21:22:20] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg
-[21:22:20] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg
-[21:22:20] [main/WARN]: Found existing output jar /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, overwriting
-[21:22:24] [main/INFO]: JAR transformation complete /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
+[21:27:15] [main/INFO]: Writing debug log file accesstransform.log
+[21:27:15] [main/INFO]: Access Transformer processor running version 8.2.14
+[21:27:15] [main/INFO]: Command line arguments [--inJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar, --outJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, --logFile, accesstransform.log, --atFile, /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg, --atFile, /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg]
+[21:27:15] [main/INFO]: Reading from /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar
+[21:27:15] [main/INFO]: Writing to /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
+[21:27:15] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg
+[21:27:15] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg
+[21:27:15] [main/WARN]: Found existing output jar /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, overwriting
+[21:27:19] [main/INFO]: JAR transformation complete /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
 Creating SRG -> MCP TSRG
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/base/ConstellationDiscoveryScreen.java:176: error: ';' expected
-            pos.drawPos(offset, (VertexConsumer)buf).pushPose()starBr, starBr, starBr, Math.max(0.0f, starBr)).setPos((float)u, (float)v).blockPosition();
-                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/base/ConstellationDiscoveryScreen.java:176: error: ';' expected
-            pos.drawPos(offset, (VertexConsumer)buf).pushPose()starBr, starBr, starBr, Math.max(0.0f, starBr)).setPos((float)u, (float)v).blockPosition();
-                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/base/ConstellationDiscoveryScreen.java:176: error: not a statement
-            pos.drawPos(offset, (VertexConsumer)buf).pushPose()starBr, starBr, starBr, Math.max(0.0f, starBr)).setPos((float)u, (float)v).blockPosition();
-                                                                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/base/ConstellationDiscoveryScreen.java:176: error: ';' expected
-            pos.drawPos(offset, (VertexConsumer)buf).pushPose()starBr, starBr, starBr, Math.max(0.0f, starBr)).setPos((float)u, (float)v).blockPosition();
-                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/base/ConstellationDiscoveryScreen.java:176: error: not a statement
-            pos.drawPos(offset, (VertexConsumer)buf).pushPose()starBr, starBr, starBr, Math.max(0.0f, starBr)).setPos((float)u, (float)v).blockPosition();
-                                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/base/ConstellationDiscoveryScreen.java:176: error: ';' expected
-            pos.drawPos(offset, (VertexConsumer)buf).pushPose()starBr, starBr, starBr, Math.max(0.0f, starBr)).setPos((float)u, (float)v).blockPosition();
-                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/base/ConstellationDiscoveryScreen.java:176: error: ';' expected
-            pos.drawPos(offset, (VertexConsumer)buf).pushPose()starBr, starBr, starBr, Math.max(0.0f, starBr)).setPos((float)u, (float)v).blockPosition();
-                                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenObservatory.java:118: error: ')' expected
-        EventFlags.GUI_CLOSING.executeWithFlag(() -> Minecraft.getInstance().player.giveExperienceLevels();
-                                                                                                          ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/datagen/assets/AstralBlockStateMappingProvider.java:122: error: ')' expected
             builder.partialState().with((Property)property, (Comparable)value).addModels(new ConfiguredModel[] { new ConfiguredModel(this.model(NameUtil.suffixPath(key, "_" + value.withStyle()) });
                                                                                                                                                                                                  ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/datagen/assets/AstralBlockStateMappingProvider.java:135: error: ')' expected
             builder.partialState().with((Property)property, (Comparable)value).addModels(new ConfiguredModel[] { new ConfiguredModel(this.multiLayerModel(NameUtil.suffixPath(key, "_" + value.withStyle()) });
                                                                                                                                                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/auxiliary/link/LinkHandler.java:90: error: ';' expected
-                    playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.start").withStyle(ChatFormatting.GREEN)));
-                                                                                                                                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/auxiliary/link/LinkHandler.java:95: error: ';' expected
-                    playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.start").withStyle(ChatFormatting.GREEN)));
-                                                                                                                                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/auxiliary/link/LinkHandler.java:123: error: ';' expected
-                        playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.link").withStyle(ChatFormatting.GREEN)));
-                                                                                                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/auxiliary/link/LinkHandler.java:141: error: ';' expected
-                        playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.unlink").withStyle(ChatFormatting.GREEN)));
-                                                                                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/integration/IntegrationJEI.java:87: error: ')' expected
-            recipes.sort(Comparator.comparing(recipe -> recipe.func_199560_c().withStyle());
-                                                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/cmd/sub/CommandReset.java:34: error: ';' expected
-        ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Wiped " + name + "'s data!").withStyle(ChatFormatting.GREEN)), true);
-                                                                                                                                                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/cmd/sub/CommandConstellation.java:55: error: ')' expected
-            source.sendSystemMessage(Component.translatable("Failed! ").func_230529_a_(targetName).func_240702_b_(" has already seen ").func_230529_a_(cst.getConstellationName()).withStyle(ChatFormatting.RED);
-                                                                                                                                                                                                                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/cmd/sub/CommandConstellation.java:73: error: ')' expected
-            source.sendSystemMessage(Component.translatable("Failed! ").func_230529_a_(targetName).func_240702_b_(" has already discovered ").func_230529_a_(cst.getConstellationName()).withStyle(ChatFormatting.RED);
-                                                                                                                                                                                                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/cmd/sub/CommandProgress.java:43: error: ';' expected
-            src.sendSystemMessage(Component.translatable("Failed! ").func_230529_a_(targetName).func_240702_b_("'s progress is higher or equal to ").func_240702_b_(goal.name()).withStyle(ChatFormatting.RED)));
-                                                                                                                                                                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/cmd/sub/CommandProgress.java:74: error: ';' expected
-            src.sendSystemMessage(new Component("Invalid progression tier: " + goal.name()).withStyle(ChatFormatting.RED)));
-                                                                                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/cmd/sub/CommandExp.java:35: error: ';' expected
-            ((CommandSourceStack)context.getSource()).func_197030_a((Component)new Component("Success! Player exp has been set to " + exp).withStyle(ChatFormatting.GREEN)), true);
-                                                                                                                                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/altar/TileAltar.java:453: error: ')' expected
-        NBTHelper.writeList(compound, "knownRecipes", (Collection<ResourceLocation>)this.knownRecipes, key -> StringTag.func_229705_a_(key.withStyle());
-                                                                                                                                                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/TileInfuser.java:288: error: ')' expected
-        NBTHelper.writeList(compound, "knownRecipes", (Collection<ResourceLocation>)this.knownRecipes, key -> StringTag.func_229705_a_(key.withStyle());
-                                                                                                                                                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/type/AttributeTypeThorns.java:64: error: illegal start of expression
-        if (reflectTarget == null && AttributeEvent.postProcessModded(player, this, PerkAttributeHelper.getOrCreateMap(player, side).getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_THORNS_RANGED)) > 1.0f && source.getDirectEntity() != null && source.getDirectEntity() instanceof LivingEntity && source.getEnchantments(.isAlive()) {
-                                                                                                                                                                                                                                                                                                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/DynamicModifierHelper.java:81: error: ';' expected
-                tooltip.add((Component)new Component(mod.getLocalizedDisplayString()).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.ITALIC)));
-                                                                                                                                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:167: error: ';' expected
-            tooltip.add(Component.translatable("perk.info.astralsorcery.gem.content.item").withStyle(ChatFormatting.GRAY)));
-                                                                                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyVoidTrash.java:51: error: ')' expected
-            this.trashItems = (ForgeConfigSpec.ConfigValue<List<String>>)cfgBuilder.comment("List items that should count as trash and should be voided.").translation(this.translationKey("trashItems")).define("trashItems", KeyVoidTrash.defaultTrashItems.stream().map(item -> item.getRegistryName().withStyle().collect(Collectors.toList());
-                                                                                                                                                                                                                                                                                                                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyMending.java:37: error: illegal start of expression
-                if (armor.isEmpty() || !armor.setDamageValue( || !armor.func_77951_h() || !AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)KeyMending.CONFIG.chargeCost.get(), false)) {
-                                                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyMending.java:37: error: ')' expected
-                if (armor.isEmpty() || !armor.setDamageValue( || !armor.func_77951_h() || !AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)KeyMending.CONFIG.chargeCost.get(), false)) {
-                                                                                                                                                                                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/network/play/client/PktToggleClientOption.java:70: error: ';' expected
-                            player.sendSystemMessage(Component.translatable("astralsorcery.progress.perk_abilities").withStyle(ChatFormatting.GRAY)));
-                                                                                                                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/network/play/server/PktProgressionUpdate.java:83: error: ')' expected
-                        field_71439_g.sendSystemMessage(translationTextComponent.withStyle(ChatFormatting.AQUA);
-                                                                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/entity/EntityUtils.java:215: error: illegal start of expression
-        final LootContext.Builder builder = new LootContext.Builder(sw).withRandom(rand).withParameter(LootContextParams.THIS_ENTITY, (Object)entity).withParameter(LootContextParams.LAST_DAMAGE_PLAYER, (Object)entity.position()).withParameter(LootContextParams.THIS_ENTITY, (Object)srcDeath).withOptionalParameter(LootContextParams.DAMAGE_SOURCE, (Object)srcDeath.getDirectEntity()?.withOptionalParameter(LootContextParams.KILLER_ENTITY, (Object)srcDeath.getDirectEntity());
-                                                                                                                                                                                                                                                                                                                                                                                              ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/serializer/BlockTransmutationSerializer.java:61: error: ')' expected
                 throw new JsonSyntaxException(String.format("Unknown constellation %s!", cstKey.withStyle());
                                                                                                             ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/serializer/BlockTransmutationSerializer.java:64: error: ')' expected
                 throw new JsonSyntaxException(String.format("Constellation %s has to be either a major or dim constellation!", cstKey.withStyle());
                                                                                                                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemInfusedGlass.java:46: error: ';' expected
-                        tooltip.add((Component)new Component(format, new Object[] { cstName, creativeHint }).withStyle(ChatFormatting.GRAY)));
-                                                                                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemInfusedGlass.java:49: error: ';' expected
-                        tooltip.add((Component)new Component(format, new Object[] { cstName, "" }).withStyle(ChatFormatting.GRAY)));
-                                                                                                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crystal/CrystalAttributes.java:149: error: ';' expected
-                    final MutableComponent enchantmentLevel = new Component(String.format("enchantment.level.%s", attr.getTier())).withStyle(ChatFormatting.GOLD));
-                                                                                                                                                                 ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crystal/CrystalAttributes.java:150: error: ';' expected
-                    final MutableComponent propertyName = prop.getName(attr.getTier()).withStyle(ChatFormatting.GRAY));
-                                                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/config/registry/sets/TileAccelerationBlacklistEntry.java:35: error: illegal start of expression
-        if (key != null && key.withStyle(.toLowerCase(Locale.ROOT).startsWith(testStr) {
-                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/config/registry/sets/TileAccelerationBlacklistEntry.java:35: error: ')' expected
-        if (key != null && key.withStyle(.toLowerCase(Locale.ROOT).startsWith(testStr) {
-                                                                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/entity/EntityUtils.java:215: error: ')' expected
+        final LootContext.Builder builder = new LootContext.Builder(sw).withRandom(rand).withParameter(LootContextParams.THIS_ENTITY, (Object)entity).withParameter(LootContextParams.LAST_DAMAGE_PLAYER, (Object)entity.position()).withParameter(LootContextParams.THIS_ENTITY, (Object)srcDeath).withOptionalParameter(LootContextParams.DAMAGE_SOURCE, (Object)).withOptionalParameter(LootContextParams.KILLER_ENTITY, srcDeath.getDirectEntity();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/altar/TileAltar.java:453: error: ')' expected
+        NBTHelper.writeList(compound, "knownRecipes", (Collection<ResourceLocation>)this.knownRecipes, key -> StringTag.func_229705_a_(key.withStyle());
+                                                                                                                                                       ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/TileInfuser.java:288: error: ')' expected
+        NBTHelper.writeList(compound, "knownRecipes", (Collection<ResourceLocation>)this.knownRecipes, key -> StringTag.func_229705_a_(key.withStyle());
+                                                                                                                                                       ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemInfusedGlass.java:46: error: ')' expected
+                        tooltip.add(Component.translatable(format, cstName, creativeHint ).withStyle(ChatFormatting.GRAY);
+                                                                                                                         ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemInfusedGlass.java:49: error: ')' expected
+                        tooltip.add(Component.translatable(format, cstName, "" ).withStyle(ChatFormatting.GRAY);
+                                                                                                               ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyVoidTrash.java:51: error: ')' expected
+            this.trashItems = (ForgeConfigSpec.ConfigValue<List<String>>)cfgBuilder.comment("List items that should count as trash and should be voided.").translation(this.translationKey("trashItems")).define("trashItems", KeyVoidTrash.defaultTrashItems.stream().map(item -> item.getRegistryName().withStyle().collect(Collectors.toList());
+                                                                                                                                                                                                                                                                                                                                                  ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/socket/GemSocketPerk.java:167: error: ';' expected
+            tooltip.add(Component.translatable("perk.info.astralsorcery.gem.content.item").withStyle(ChatFormatting.GRAY)));
+                                                                                                                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/DynamicModifierHelper.java:81: error: ';' expected
+                tooltip.add((Component)new Component(mod.getLocalizedDisplayString()).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.ITALIC)));
+                                                                                                                                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/type/AttributeTypeThorns.java:64: error: ')' expected
+        if (reflectTarget == null && AttributeEvent.postProcessModded(player, this, PerkAttributeHelper.getOrCreateMap(player, side).getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_THORNS_RANGED)) > 1.0f && source.getDirectEntity() != null && source.getDirectEntity() instanceof LivingEntity && reflectTarget.isAlive() {
+                                                                                                                                                                                                                                                                                                                                           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/integration/IntegrationJEI.java:87: error: ')' expected
+            recipes.sort(Comparator.comparing(recipe -> recipe.getId().toString());
+                                                                                  ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/cmd/sub/CommandReset.java:34: error: ';' expected
+        (context.getSource()).sendSystemMessage((Component)new Component("Wiped " + name + "'s data!").withStyle(ChatFormatting.GREEN)), true);
+                                                                                                                                       ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/cmd/sub/CommandExp.java:35: error: ';' expected
+            ((CommandSourceStack)context.getSource()).sendSuccess((Component)new Component("Success! Player exp has been set to " + exp).withStyle(ChatFormatting.GREEN)), true);
+                                                                                                                                                                         ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/cmd/sub/CommandProgress.java:43: error: ';' expected
+            src.sendSystemMessage(Component.translatable("Failed! ").append(targetName).append("'s progress is higher or equal to ").append(goal.name()).withStyle(ChatFormatting.RED)));
+                                                                                                                                                                                       ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/cmd/sub/CommandProgress.java:74: error: ';' expected
+            src.sendSystemMessage(new Component("Invalid progression tier: " + goal.name()).withStyle(ChatFormatting.RED)));
+                                                                                                                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/cmd/sub/CommandConstellation.java:73: error: ')' expected
+            source.sendSuccess(() -> Component.translatable("Failed! ").append(targetName).append(" has already discovered ").append(cst.getConstellationName()).withStyle(ChatFormatting.RED);
+                                                                                                                                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/network/play/client/PktToggleClientOption.java:70: error: ';' expected
+                            player.sendSystemMessage(Component.translatable("astralsorcery.progress.perk_abilities").withStyle(ChatFormatting.GRAY)));
+                                                                                                                                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/network/play/server/PktProgressionUpdate.java:83: error: ')' expected
+                        field_71439_g.sendSystemMessage(translationTextComponent.withStyle(ChatFormatting.AQUA);
+                                                                                                               ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/research/ResearchHelper.java:154: error: ';' expected
                     pl.sendSystemMessage(new Component("AstralSorcery: The progression of " + resolvedName + " could not be loaded and can't be recovered from backup. Error files might be created from the unloadable progression files, check the console for additional information!").withStyle(ChatFormatting.RED)));
                                                                                                                                                                                                                                                                                                                          ^
@@ -180,7 +123,16 @@ Creating SRG -> MCP TSRG
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/research/ResearchHelper.java:165: error: ';' expected
         src.sendSystemMessage(Component.translatable("astralsorcery.progress.constellation.seen.chat").withStyle(ChatFormatting.BLUE)));
                                                                                                                                       ^
-43 errors
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/config/registry/sets/TileAccelerationBlacklistEntry.java:35: error: ')' expected
+        if (key != null && key.getPath().toLowerCase(Locale.ROOT).startsWith(testStr) {
+                                                                                     ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crystal/CrystalAttributes.java:149: error: ';' expected
+                    final MutableComponent enchantmentLevel = new Component(String.format("enchantment.level.%s", attr.getTier())).withStyle(ChatFormatting.GOLD));
+                                                                                                                                                                 ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crystal/CrystalAttributes.java:150: error: ';' expected
+                    final MutableComponent propertyName = prop.getName(attr.getTier()).withStyle(ChatFormatting.GRAY));
+                                                                                                                     ^
+27 errors
 
 > Task :compileJava FAILED
 
@@ -225,35 +177,6 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':compile
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:463)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:380)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:116)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:138)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:123)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:51)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:177)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:44)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:177)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:264)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:80)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Compilation failed; see the compiler error output for details.
@@ -406,35 +329,6 @@ Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Com
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:463)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:380)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:116)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:138)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:123)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:51)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:177)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:44)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:177)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:264)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:80)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 
@@ -445,5 +339,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 2m 15s
+BUILD FAILED in 2m 18s
 4 actionable tasks: 4 executed
