@@ -1,11 +1,11 @@
 package hellfirepvp.astralsorcery.client.util;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.renderer.RenderState;
+import net.minecraft.client.renderer.RenderStateShard;
 
 public class RenderStateUtil
 {
-    public static class CullState extends RenderState.CullState
+    public static class CullState extends RenderStateShard.CullState
     {
         private final boolean enabled;
         
@@ -26,7 +26,7 @@ public class RenderStateUtil
         }
     }
     
-    public static class WriteMaskState extends RenderState.WriteMaskState
+    public static class WriteMaskState extends RenderStateShard.WriteMaskState
     {
         private final boolean colorMask;
         private final boolean depthMask;

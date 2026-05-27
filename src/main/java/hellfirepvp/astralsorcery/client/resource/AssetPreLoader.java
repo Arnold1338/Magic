@@ -9,7 +9,7 @@ import hellfirepvp.astralsorcery.client.registry.RegistryTextures;
 import net.minecraftforge.resource.VanillaResourceType;
 import net.minecraftforge.resource.IResourceType;
 import java.util.function.Predicate;
-import net.minecraft.resources.IResourceManager;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 
 public class AssetPreLoader implements ISelectiveResourceReloadListener
@@ -21,7 +21,7 @@ public class AssetPreLoader implements ISelectiveResourceReloadListener
         this.initialized = false;
     }
     
-    public void onResourceManagerReload(final IResourceManager resourceManager, final Predicate<IResourceType> resourcePredicate) {
+    public void onResourceManagerReload(final ResourceManager resourceManager, final Predicate<IResourceType> resourcePredicate) {
         if (resourcePredicate.test((IResourceType)VanillaResourceType.TEXTURES)) {
             if (this.initialized) {
                 return;

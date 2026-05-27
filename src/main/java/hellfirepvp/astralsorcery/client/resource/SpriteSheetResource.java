@@ -4,7 +4,7 @@ import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import net.minecraft.util.Tuple;
-import net.minecraft.client.renderer.RenderState;
+import net.minecraft.client.renderer.RenderStateShard;
 import hellfirepvp.astralsorcery.common.util.NameUtil;
 
 public class SpriteSheetResource extends AbstractRenderableTexture
@@ -39,7 +39,7 @@ public class SpriteSheetResource extends AbstractRenderableTexture
     }
     
     @Override
-    public RenderState.TextureState asState() {
+    public RenderStateShard.TextureStateShard asState() {
         return this.resource.asState();
     }
     

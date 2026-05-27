@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.util;
 
 import hellfirepvp.astralsorcery.AstralSorcery;
 import java.util.Locale;
-import net.minecraft.client.renderer.RenderState;
+import net.minecraft.client.renderer.RenderStateShard;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.platform.GlStateManager;
 
@@ -39,8 +39,8 @@ public enum Blending
         RenderSystem.blendFuncSeparate(this.colorSrcFactor, this.colorDstFactor, this.alphaSrcFactor, this.alphaDstFactor);
     }
     
-    public RenderState.TransparencyState asState() {
-        return new RenderState.TransparencyState(AstralSorcery.key("blending_" + this.name().toLowerCase(Locale.ROOT)).toString(), () -> {
+    public RenderStateShard.TransparencyState asState() {
+        return new RenderStateShard.TransparencyState(AstralSorcery.key("blending_" + this.name().toLowerCase(Locale.ROOT)).toString(), () -> {
             RenderSystem.enableBlend();
             this.apply();
         }, () -> {

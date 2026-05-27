@@ -7,13 +7,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
-import net.minecraft.client.renderer.vertex.VertexBuffer;
+import com.mojang.blaze3d.vertex.VertexBuffer;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import java.io.Reader;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.InputStream;
-import net.minecraft.resources.IResource;
+import net.minecraft.server.packs.resources.Resource;
 import java.io.IOException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -54,7 +54,7 @@ public class WavefrontObject
         this.groupObjects = new ArrayList<GroupObject>();
         this.fileName = resource.toString();
         try {
-            final IResource res = Minecraft.getInstance().func_195551_G().func_199002_a(resource);
+            final Resource res = Minecraft.getInstance().func_195551_G().func_199002_a(resource);
             this.loadObjModel(res.func_199027_b());
         }
         catch (final IOException e) {

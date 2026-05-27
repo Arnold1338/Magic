@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.Util;
 import hellfirepvp.astralsorcery.client.constellation.ConstellationRenderInfos;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import net.minecraft.client.renderer.RenderState;
+import net.minecraft.client.renderer.RenderStateShard;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import hellfirepvp.astralsorcery.client.util.image.SkyImageGenerator;
 import hellfirepvp.astralsorcery.AstralSorcery;
@@ -99,7 +99,7 @@ public class RegistryRenderTypes
     }
     
     public static RenderType createDepthProjectionType(final int zoom) {
-        return createType("player_starry_sky_layer", DefaultVertexFormat.POSITION_COLOR, 7, 256, false, true, RenderStateBuilder.builder().blend(Blending.ADDITIVE).texture(AssetLibrary.loadGeneratedResource(AstralSorcery.key("player_starry_sky_layer"), SkyImageGenerator::generateStarBackground, true)).alpha(0.001f).vanillaBuilder().func_228725_a_((RenderState.TexturingState)new IdentityProjectionModelTexturingState(zoom)).func_228728_a_(false));
+        return createType("player_starry_sky_layer", DefaultVertexFormat.POSITION_COLOR, 7, 256, false, true, RenderStateBuilder.builder().blend(Blending.ADDITIVE).texture(AssetLibrary.loadGeneratedResource(AstralSorcery.key("player_starry_sky_layer"), SkyImageGenerator::generateStarBackground, true)).alpha(0.001f).vanillaBuilder().func_228725_a_((RenderStateShard.TexturingState)new IdentityProjectionModelTexturingState(zoom)).func_228728_a_(false));
     }
     
     private static RenderType createType(final String name, final VertexFormat vertexFormat, final RenderType.State state) {
@@ -120,7 +120,7 @@ public class RegistryRenderTypes
         return rType;
     }
     
-    private static class IdentityProjectionModelTexturingState extends RenderState.TexturingState
+    private static class IdentityProjectionModelTexturingState extends RenderStateShard.TexturingState
     {
         private final int zoom;
         

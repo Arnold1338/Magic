@@ -1,20 +1,21 @@
 package hellfirepvp.astralsorcery.client.resource;
 
-import net.minecraft.client.renderer.RenderState;
+import net.minecraft.client.renderer.RenderStateShard;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.client.renderer.texture.Texture;
+import net.minecraft.client.renderer.texture.AbstractTexture;
+import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class BindableResource extends Full implements ReloadableResource
+public class BindableResource extends AbstractRenderableTexture.Full implements ReloadableResource
 {
-    private Texture resource;
+    private AbstractTexture resource;
     private String path;
     
     protected BindableResource(final ResourceLocation key) {
@@ -43,16 +44,16 @@ public class BindableResource extends Full implements ReloadableResource
         this.resource = null;
     }
     
-    protected Texture allocateGlId() {
+    protected AbstractTexture allocateGlId() {
         if (AssetLibrary.isReloading()) {
             return null;
         }
         final TextureManager mgr = Minecraft.getInstance().func_110434_K();
-        final Texture resource = mgr.func_229267_b_(this.getKey());
+        final AbstractTexture resource = mgr.func_229267_b_(this.getKey());
         if (resource != null) {
             return resource;
         }
-        mgr.func_229263_a_(this.getKey(), (Texture)new SimpleTexture(new ResourceLocation(this.getPath())));
+        mgr.func_229263_a_(this.getKey(), (AbstractTexture)new SimpleTexture(new ResourceLocation(this.getPath())));
         return mgr.func_229267_b_(this.getKey());
     }
     
@@ -71,8 +72,8 @@ public class BindableResource extends Full implements ReloadableResource
     }
     
     @Override
-    public RenderState.TextureState asState() {
-        return new RenderState.TextureState(this.getKey(), false, false) {
+    public RenderStateShard.TextureStateShard asState() {
+        return new RenderStateShard.TextureStateShard(this.getKey(), false, false) {
             public void func_228547_a_() {
                 RenderSystem.enableTexture();
                 BindableResource.this.bindTexture();

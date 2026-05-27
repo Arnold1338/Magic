@@ -4,7 +4,7 @@ import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.util.RenderStateUtil;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.util.Blending;
-import net.minecraft.client.renderer.RenderState;
+import net.minecraft.client.renderer.RenderStateShard;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import net.minecraft.client.renderer.RenderType;
@@ -32,7 +32,7 @@ public class RenderStateBuilder
     }
     
     public RenderStateBuilder disableTexture() {
-        this.builder.func_228724_a_(new RenderState.TextureState());
+        this.builder.func_228724_a_(new RenderStateShard.TextureStateShard());
         return this;
     }
     
@@ -42,17 +42,17 @@ public class RenderStateBuilder
     }
     
     public RenderStateBuilder smoothShade() {
-        this.builder.func_228723_a_(new RenderState.ShadeModelState(true));
+        this.builder.func_228723_a_(new RenderStateShard.ShadeModelState(true));
         return this;
     }
     
     public RenderStateBuilder enableItemRendering() {
-        this.builder.func_228716_a_(new RenderState.DiffuseLightingState(true));
+        this.builder.func_228716_a_(new RenderStateShard.DiffuseLightingState(true));
         return this;
     }
     
     public RenderStateBuilder disableDepth() {
-        this.builder.func_228715_a_((RenderState.DepthTestState)new RenderState.DepthTestState("always", 519) {
+        this.builder.func_228715_a_((RenderStateShard.DepthTestState)new RenderStateShard.DepthTestState("always", 519) {
             public void func_228547_a_() {
                 RenderSystem.disableDepthTest();
                 super.func_228547_a_();
@@ -62,32 +62,32 @@ public class RenderStateBuilder
     }
     
     public RenderStateBuilder disableDepthMask() {
-        this.builder.func_228727_a_((RenderState.WriteMaskState)new RenderStateUtil.WriteMaskState(true, false));
+        this.builder.func_228727_a_((RenderStateShard.WriteMaskState)new RenderStateUtil.WriteMaskState(true, false));
         return this;
     }
     
     public RenderStateBuilder enableLighting() {
-        this.builder.func_228719_a_(new RenderState.LightmapState(true));
+        this.builder.func_228719_a_(new RenderStateShard.LightmapState(true));
         return this;
     }
     
     public RenderStateBuilder enableDiffuseLighting() {
-        this.builder.func_228716_a_(new RenderState.DiffuseLightingState(true));
+        this.builder.func_228716_a_(new RenderStateShard.DiffuseLightingState(true));
         return this;
     }
     
     public RenderStateBuilder enableOverlay() {
-        this.builder.func_228722_a_(new RenderState.OverlayState(true));
+        this.builder.func_228722_a_(new RenderStateShard.OverlayState(true));
         return this;
     }
     
     public RenderStateBuilder disableCull() {
-        this.builder.func_228714_a_((RenderState.CullState)new RenderStateUtil.CullState(false));
+        this.builder.func_228714_a_((RenderStateShard.CullState)new RenderStateUtil.CullState(false));
         return this;
     }
     
     public RenderStateBuilder alpha(final float alphaThreshold) {
-        this.builder.func_228713_a_(new RenderState.AlphaState(alphaThreshold));
+        this.builder.func_228713_a_(new RenderStateShard.AlphaState(alphaThreshold));
         return this;
     }
     
@@ -96,7 +96,7 @@ public class RenderStateBuilder
     }
     
     public RenderStateBuilder particleShaderTarget() {
-        this.builder.func_228721_a_((RenderState.TargetState)ParticleTarget.INSTANCE);
+        this.builder.func_228721_a_((RenderStateShard.TargetState)ParticleTarget.INSTANCE);
         return this;
     }
     
@@ -112,7 +112,7 @@ public class RenderStateBuilder
         return this.builder.func_228728_a_(false);
     }
     
-    private static class ParticleTarget extends RenderState.TargetState
+    private static class ParticleTarget extends RenderStateShard.TargetState
     {
         private static final ParticleTarget INSTANCE;
         

@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.client.resource.query;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.util.Tuple;
-import net.minecraft.client.renderer.RenderState;
+import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import hellfirepvp.astralsorcery.client.resource.AssetLoader;
@@ -34,7 +34,7 @@ public class TextureSubQuery extends TextureQuery
             }
             
             @Override
-            public RenderState.TextureState asState() {
+            public RenderStateShard.TextureStateShard asState() {
                 return res.asState();
             }
             

@@ -6,7 +6,7 @@ import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraftforge.resource.VanillaResourceType;
 import net.minecraftforge.resource.IResourceType;
 import java.util.function.Predicate;
-import net.minecraft.resources.IResourceManager;
+import net.minecraft.server.packs.resources.ResourceManager;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import hellfirepvp.astralsorcery.common.util.object.CacheReference;
@@ -59,7 +59,7 @@ public class AssetLibrary implements ISelectiveResourceReloadListener
         return AssetLibrary.reloading;
     }
     
-    public void onResourceManagerReload(final IResourceManager resourceManager, final Predicate<IResourceType> resourcePredicate) {
+    public void onResourceManagerReload(final ResourceManager resourceManager, final Predicate<IResourceType> resourcePredicate) {
         if (AssetLibrary.reloading || !resourcePredicate.test((IResourceType)VanillaResourceType.TEXTURES)) {
             return;
         }

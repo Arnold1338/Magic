@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.resource;
 
-import net.minecraft.client.renderer.RenderState;
+import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.Minecraft;
@@ -25,8 +25,8 @@ public class BlockAtlasTexture extends Full
     }
     
     @Override
-    public RenderState.TextureState asState() {
-        return new RenderState.TextureState(AtlasTexture.field_110575_b, false, false);
+    public RenderStateShard.TextureStateShard asState() {
+        return new RenderStateShard.TextureStateShard(AtlasTexture.field_110575_b, false, false);
     }
     
     static {

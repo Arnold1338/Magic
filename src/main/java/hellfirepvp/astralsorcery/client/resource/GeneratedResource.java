@@ -10,10 +10,10 @@ import net.minecraft.client.renderer.texture.TextureUtil;
 import java.io.IOException;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.renderer.texture.NativeImage;
-import net.minecraft.resources.IResourceManager;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.Texture;
+import net.minecraft.client.renderer.texture.AbstractTexture;
 import hellfirepvp.astralsorcery.common.util.NameUtil;
 import net.minecraft.resources.ResourceLocation;
 import java.awt.image.BufferedImage;
@@ -33,12 +33,12 @@ public class GeneratedResource extends BindableResource implements ReloadableRes
     }
     
     @Override
-    protected Texture allocateGlId() {
+    protected AbstractTexture allocateGlId() {
         if (AssetLibrary.isReloading()) {
             return null;
         }
         final TextureManager mgr = Minecraft.getInstance().func_110434_K();
-        final Texture resource = mgr.func_229267_b_(this.getKey());
+        final AbstractTexture resource = mgr.func_229267_b_(this.getKey());
         if (resource != null) {
             return resource;
         }
@@ -59,7 +59,7 @@ public class GeneratedResource extends BindableResource implements ReloadableRes
             this.clamp = clamp;
         }
         
-        public void func_195413_a(final IResourceManager manager) throws IOException {
+        public void func_195413_a(final ResourceManager manager) throws IOException {
             final NativeImage image = NativeImage.func_211679_a(NativeImage.PixelFormat.RGBA, this.createMemInput());
             if (!RenderSystem.isOnRenderThreadOrInit()) {
                 RenderSystem.recordRenderCall(() -> this.loadImage(image, this.blur, this.clamp));

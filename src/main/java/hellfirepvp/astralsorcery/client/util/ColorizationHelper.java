@@ -7,7 +7,7 @@ import net.minecraft.util.Unit;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import net.minecraft.util.profiling.IProfiler;
-import net.minecraft.resources.IResourceManager;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.resources.IFutureReloadListener;
 import javax.annotation.Nullable;
 import java.awt.image.BufferedImage;

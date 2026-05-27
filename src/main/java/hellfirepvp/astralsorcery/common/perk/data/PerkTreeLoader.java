@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.util.MapStream;
 import com.google.gson.JsonObject;
 import java.util.Collection;
 import net.minecraft.util.profiling.IProfiler;
-import net.minecraft.resources.IResourceManager;
+import net.minecraft.server.packs.resources.ResourceManager;
 import com.google.gson.JsonElement;
 import net.minecraft.resources.ResourceLocation;
 import java.util.Map;
@@ -30,7 +30,7 @@ public class PerkTreeLoader extends JsonReloadListener
         super(PerkTreeLoader.GSON, "perks");
     }
     
-    protected void apply(final Map<ResourceLocation, JsonElement> dataMap, final IResourceManager resourceManager, final IProfiler profiler) {
+    protected void apply(final Map<ResourceLocation, JsonElement> dataMap, final ResourceManager resourceManager, final IProfiler profiler) {
         final Collection<JsonObject> loadingPerkObjects = MapStream.of(dataMap).filterKey(key -> !key.addTransientModifier().startsWith("_")).filterValue(JsonElement::isJsonObject).mapValue(JsonElement::getAsJsonObject).valueStream().collect((Collector<? super JsonObject, ?, Collection<JsonObject>>)Collectors.toList());
         PerkTree.PERK_TREE.updateOriginPerkTree(loadPerkTree(loadingPerkObjects));
     }
