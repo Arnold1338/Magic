@@ -67,7 +67,7 @@ public class PktToggleClientOption extends ASPacket<PktToggleClientOption>
                             else {
                                 status = Component.translatable("astralsorcery.progress.perk_abilities.disable").withStyle(ChatFormatting.RED);
                             }
-                            player.sendSystemMessage(Component.translatable("astralsorcery.progress.perk_abilities").withStyle(ChatFormatting.GRAY)));
+                            player.sendSystemMessage(Component.translatable("astralsorcery.progress.perk_abilities").withStyle(ChatFormatting.GRAY));
                             break;
                         }
                         break;

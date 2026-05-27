@@ -151,7 +151,7 @@ public class ResearchHelper
             for (final String opName : server.getPlayerList().func_152606_n()) {
                 final Player pl = (Player)server.getPlayerList().func_152612_a(opName);
                 if (pl != null) {
-                    pl.sendSystemMessage(new Component("AstralSorcery: The progression of " + resolvedName + " could not be loaded and can't be recovered from backup. Error files might be created from the unloadable progression files, check the console for additional information!").withStyle(ChatFormatting.RED)));
+                    pl.sendSystemMessage(Component.literal("AstralSorcery: The progression of " + resolvedName + " could not be loaded and can't be recovered from backup. Error files might be created from the unloadable progression files, check the console for additional information!").withStyle(ChatFormatting.RED));
                 }
             }
         }

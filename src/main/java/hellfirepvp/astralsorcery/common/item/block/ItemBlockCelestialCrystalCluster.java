@@ -52,7 +52,7 @@ public class ItemBlockCelestialCrystalCluster extends ItemBlockCustom implements
     
     public void func_150895_a(final CreativeModeTab group, final NonNullList<ItemStack> items) {
         if (this.func_194125_a(group)) {
-            for (final int stage : BlockCelestialCrystalCluster.STAGE.func_177700_c()) {
+            for (final int stage : BlockCelestialCrystalCluster.STAGE.getPossibleValues()) {
                 final ItemStack cluster = new ItemStack((ItemLike)this);
                 this.setDamage(cluster, stage);
                 items.add((Object)cluster);

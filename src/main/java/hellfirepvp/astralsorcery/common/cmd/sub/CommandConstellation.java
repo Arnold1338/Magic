@@ -70,7 +70,7 @@ public class CommandConstellation
         final Component targetName = target.getDisplayName();
         final PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
         if (!progress.isValid() || progress.hasConstellationDiscovered(cst)) {
-            source.sendSuccess(() -> Component.translatable("Failed! ").append(targetName).append(" has already discovered ").append(cst.getConstellationName()).withStyle(ChatFormatting.RED);
+            source.sendSuccess(() -> Component.translatable("Failed! ").append(targetName).append(" has already discovered ").append(cst.getConstellationName()).withStyle(ChatFormatting.RED), false);
             return 0;
         }
         if (ResearchManager.discoverConstellation(cst, target)) {

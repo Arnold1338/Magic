@@ -126,7 +126,7 @@ public class DataLightConnections extends AbstractData
     public void writeDiffDataToPacket(final CompoundTag compound) {
         final ListTag clearList = new ListTag();
         for (final RegistryKey<Level> dim : this.dimensionClearBuffer) {
-            clearList.add((Object)StringTag.func_229705_a_(dim.func_240901_a_().withStyle()));
+            clearList.add((Object)StringTag.valueOf(dim.func_240901_a_().withStyle()));
         }
         compound.put("clear", (Tag)clearList);
         for (final RegistryKey<Level> dim : this.serverChangeBuffer.keySet()) {

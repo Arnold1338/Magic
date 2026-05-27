@@ -471,7 +471,7 @@ public class CropHelper
             if (state.getBlock() instanceof CropsBlock) {
                 final CropsBlock block = (CropsBlock)state.getBlock();
                 drops.addAll((Collection)BlockUtils.getDrops(world, this.pos, harvestFortune, rand));
-                final int startingAge = MiscUtils.getMinEntry((Collection<Integer>)block.func_185524_e().func_177700_c());
+                final int startingAge = MiscUtils.getMinEntry((Collection<Integer>)block.func_185524_e().getPossibleValues());
                 world.func_175656_a(this.pos, block.func_185528_e(startingAge));
             }
             return drops;

@@ -141,7 +141,7 @@ public class ItemUtils
     @Nonnull
     public static ItemStack changeItem(@Nonnull final ItemStack stack, @Nonnull final Item item) {
         final CompoundTag nbt = stack.func_77955_b(new CompoundTag());
-        nbt.putString("id", item.getRegistryName().toString());
+        nbt.putString("id", net.minecraftforge.registries.ForgeRegistries.ITEMS.getKey(item).toString());
         return ItemStack.func_199557_a(nbt);
     }
     

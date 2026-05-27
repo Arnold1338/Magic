@@ -57,7 +57,7 @@ public class KeyTreeConnector extends MajorPerk
                     if (!ResearchManager.grantFreePerkPoint(player, token)) {
                         continue;
                     }
-                    listTokens.add((Object)StringTag.func_229705_a_(token.withStyle()));
+                    listTokens.add((Object)StringTag.valueOf(token.withStyle()));
                 }
             }
             dataStorage.put("pointtokens", (Tag)listTokens);

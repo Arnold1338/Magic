@@ -23,7 +23,7 @@ public class ItemBlockGemCrystalCluster extends ItemBlockCustom
     
     public void func_150895_a(final CreativeModeTab group, final NonNullList<ItemStack> items) {
         if (this.func_194125_a(group)) {
-            for (final BlockGemCrystalCluster.GrowthStageType stage : BlockGemCrystalCluster.STAGE.func_177700_c()) {
+            for (final BlockGemCrystalCluster.GrowthStageType stage : BlockGemCrystalCluster.STAGE.getPossibleValues()) {
                 final ItemStack cluster = new ItemStack((ItemLike)this);
                 this.setDamage(cluster, stage.ordinal());
                 items.add((Object)cluster);

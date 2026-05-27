@@ -385,7 +385,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
         }
         
         public MutableComponent getName() {
-            return (MutableComponent)new Component("astralsorcery.misc.architect.mode." + this.name);
+            return (MutableComponent)Component.literal("astralsorcery.misc.architect.mode." + this.name);
         }
         
         public MutableComponent getDisplay() {

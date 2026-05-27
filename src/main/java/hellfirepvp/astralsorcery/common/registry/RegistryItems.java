@@ -177,8 +177,8 @@ public class RegistryItems
             final ItemResonator.ResonatorUpgrade current = ItemResonator.getCurrentUpgrade((Player)entity, stack);
             return current.ordinal() / (float)ItemResonator.ResonatorUpgrade.values().length;
         });
-        ItemModelsProperties.func_239418_a_(Item.func_150898_a((Block)BlocksAS.CELESTIAL_CRYSTAL_CLUSTER), new ResourceLocation("stage"), (stack, world, entity) -> stack.getDamageValue() / (float)BlockCelestialCrystalCluster.STAGE.func_177700_c().size());
-        ItemModelsProperties.func_239418_a_(Item.func_150898_a((Block)BlocksAS.GEM_CRYSTAL_CLUSTER), new ResourceLocation("stage"), (stack, world, entity) -> stack.getDamageValue() / (float)BlockGemCrystalCluster.STAGE.func_177700_c().size());
+        ItemModelsProperties.func_239418_a_(Item.func_150898_a((Block)BlocksAS.CELESTIAL_CRYSTAL_CLUSTER), new ResourceLocation("stage"), (stack, world, entity) -> stack.getDamageValue() / (float)BlockCelestialCrystalCluster.STAGE.getPossibleValues().size());
+        ItemModelsProperties.func_239418_a_(Item.func_150898_a((Block)BlocksAS.GEM_CRYSTAL_CLUSTER), new ResourceLocation("stage"), (stack, world, entity) -> stack.getDamageValue() / (float)BlockGemCrystalCluster.STAGE.getPossibleValues().size());
     }
     
     private static void registerItemBlock(final CustomItemBlock block) {

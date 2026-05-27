@@ -32,7 +32,7 @@ public class TileAccelerationBlacklistEntry implements ConfigDataSet, Predicate<
             return this.filteredSuperClass.isAssignableFrom(tile.getClass());
         }
         final ResourceLocation key = net.minecraftforge.registries.ForgeRegistries.BLOCK_ENTITY_TYPES.getKey(tile.getType());
-        if (key != null && key.getPath().toLowerCase(Locale.ROOT).startsWith(testStr) {
+        if (key != null && key.getPath().toLowerCase(Locale.ROOT).startsWith(testStr)) {
             return true;
         }
         final String className = tile.getClass().getName().toLowerCase(Locale.ROOT);

@@ -346,7 +346,7 @@ public class AbstractPerk implements ModifierSource
         private final ChatFormatting color;
         
         public PerkCategory(@Nonnull final String unlocName, @Nonnull final ChatFormatting color) {
-            this.name = (MutableComponent)new Component("perk.category.astralsorcery." + unlocName + ".name");
+            this.name = (MutableComponent)Component.literal("perk.category.astralsorcery." + unlocName + ".name");
             this.color = color;
         }
         

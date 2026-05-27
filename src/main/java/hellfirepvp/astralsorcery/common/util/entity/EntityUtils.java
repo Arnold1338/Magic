@@ -212,7 +212,7 @@ public class EntityUtils
         }
         final ResourceLocation lootTableKey = entity.getType().getDefaultLootTable();
         final LootTable table = srv.getLootTables().get(lootTableKey);
-        final LootContext.Builder builder = new LootContext.Builder(sw).withRandom(rand).withParameter(LootContextParams.THIS_ENTITY, (Object)entity).withParameter(LootContextParams.LAST_DAMAGE_PLAYER, (Object)entity.position()).withParameter(LootContextParams.THIS_ENTITY, (Object)srcDeath).withOptionalParameter(LootContextParams.DAMAGE_SOURCE, (Object)).withOptionalParameter(LootContextParams.KILLER_ENTITY, srcDeath.getDirectEntity();
+        final LootContext.Builder builder = new LootContext.Builder(sw).withRandom(rand).withParameter(LootContextParams.THIS_ENTITY, (Object)entity).withParameter(LootContextParams.LAST_DAMAGE_PLAYER, (Object)entity.position()).withParameter(LootContextParams.THIS_ENTITY, (Object)srcDeath).withOptionalParameter(LootContextParams.DAMAGE_SOURCE, srcDeath.getDirectEntity()).withOptionalParameter(LootContextParams.KILLER_ENTITY, srcDeath.getDirectEntity());
         if (lastAttacker != null && lastAttacker instanceof Player) {
             builder.withParameter(LootContextParams.KILLER_ENTITY, (Object)lastAttacker).withLuck(((Player)lastAttacker).getLuck());
         }
