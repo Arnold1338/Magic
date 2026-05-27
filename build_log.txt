@@ -41,62 +41,26 @@ Executing steps
  > Running 'listLibraries'
  > Running 'rename'
 Stopping at requested step: /home/runner/.gradle/caches/forge_gradle/mcp_repo/de/oceanlabs/mcp/mcp_config/1.20.1-20230612.114412/joined/rename/output.jar
-[03:51:40] [main/INFO]: Writing debug log file accesstransform.log
-[03:51:40] [main/INFO]: Access Transformer processor running version 8.2.14
-[03:51:40] [main/INFO]: Command line arguments [--inJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar, --outJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, --logFile, accesstransform.log, --atFile, /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg, --atFile, /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg]
-[03:51:40] [main/INFO]: Reading from /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar
-[03:51:40] [main/INFO]: Writing to /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
-[03:51:40] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg
-[03:51:40] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg
-[03:51:40] [main/WARN]: Found existing output jar /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, overwriting
-[03:51:43] [main/INFO]: JAR transformation complete /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
+[10:56:36] [main/INFO]: Writing debug log file accesstransform.log
+[10:56:36] [main/INFO]: Access Transformer processor running version 8.2.14
+[10:56:36] [main/INFO]: Command line arguments [--inJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar, --outJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, --logFile, accesstransform.log, --atFile, /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg, --atFile, /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg]
+[10:56:36] [main/INFO]: Reading from /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar
+[10:56:36] [main/INFO]: Writing to /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
+[10:56:36] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg
+[10:56:36] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg
+[10:56:36] [main/WARN]: Found existing output jar /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, overwriting
+[10:56:39] [main/INFO]: JAR transformation complete /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
 Creating SRG -> MCP TSRG
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/datagen/assets/AstralBlockStateMappingProvider.java:122: error: ')' expected
-            builder.partialState().with((Property)property, (Comparable)value).addModels(new ConfiguredModel[] { new ConfiguredModel(this.model(NameUtil.suffixPath(key, "_" + value.getSerializedName()) });
-                                                                                                                                                                                                         ^
+            builder.partialState().with((Property)property, (Comparable)value).addModels(new ConfiguredModel[] { new ConfiguredModel(this.model(NameUtil.suffixPath(key, "_" + value.getSerializedName())) });
+                                                                                                                                                                                                          ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/datagen/assets/AstralBlockStateMappingProvider.java:135: error: ')' expected
-            builder.partialState().with((Property)property, (Comparable)value).addModels(new ConfiguredModel[] { new ConfiguredModel(this.multiLayerModel(NameUtil.suffixPath(key, "_" + value.getSerializedName()) });
-                                                                                                                                                                                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/serializer/BlockTransmutationSerializer.java:61: error: ')' expected
-                throw new JsonSyntaxException(String.format("Unknown constellation %s!", cstKey);
-                                                                                                ^
+            builder.partialState().with((Property)property, (Comparable)value).addModels(new ConfiguredModel[] { new ConfiguredModel(this.multiLayerModel(NameUtil.suffixPath(key, "_" + value.getSerializedName())) });
+                                                                                                                                                                                                                    ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/serializer/BlockTransmutationSerializer.java:64: error: ')' expected
                 throw new JsonSyntaxException(String.format("Constellation %s has to be either a major or dim constellation!", cstKey);
                                                                                                                                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/altar/TileAltar.java:453: error: ')' expected
-        NBTHelper.writeList(compound, "knownRecipes", (Collection<ResourceLocation>)this.knownRecipes, key -> StringTag.valueOf(key.toString());
-                                                                                                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/TileInfuser.java:288: error: ')' expected
-        NBTHelper.writeList(compound, "knownRecipes", (Collection<ResourceLocation>)this.knownRecipes, key -> StringTag.valueOf(key.toString());
-                                                                                                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/ItemInfusedGlass.java:49: error: ')' expected
-                        tooltip.add(Component.translatable(format, cstName, "" ).withStyle(ChatFormatting.GRAY);
-                                                                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyVoidTrash.java:51: error: ')' expected
-            this.trashItems = (ForgeConfigSpec.ConfigValue<List<String>>)cfgBuilder.comment("List items that should count as trash and should be voided.").translation(this.translationKey("trashItems")).define("trashItems", KeyVoidTrash.defaultTrashItems.stream().map(item -> net.minecraftforge.registries.ForgeRegistries.ITEMS.getKey(item).toString().collect(Collectors.toList()));
-                                                                                                                                                                                                                                                                                                                                                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/DynamicModifierHelper.java:81: error: ')' expected
-                tooltip.add(Component.translatable(mod.getLocalizedDisplayString()).withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC);
-                                                                                                                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/type/AttributeTypeThorns.java:64: error: ')' expected
-        if (reflectTarget == null && AttributeEvent.postProcessModded(player, this, PerkAttributeHelper.getOrCreateMap(player, side).getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_THORNS_RANGED)) > 1.0f && source.getDirectEntity() != null && source.getDirectEntity() instanceof LivingEntity victim && victim.isAlive() {
-                                                                                                                                                                                                                                                                                                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/cmd/sub/CommandProgress.java:74: error: ';' expected
-            src.sendSystemMessage(Component.literal("Invalid progression tier: " + goal.name()).withStyle(ChatFormatting.RED)));
-                                                                                                                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/network/play/server/PktProgressionUpdate.java:80: error: ';' expected
-                        final ClientPlayerEntity Minecraft.getInstance().player = Minecraft.getInstance().player;
-                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/research/ResearchHelper.java:161: error: ';' expected
-        src.sendSystemMessage(Component.translatable("astralsorcery.progress.constellation.discover.chat").withStyle(ChatFormatting.BLUE)));
-                                                                                                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/research/ResearchHelper.java:165: error: ';' expected
-        src.sendSystemMessage(Component.translatable("astralsorcery.progress.constellation.seen.chat").withStyle(ChatFormatting.BLUE)));
-                                                                                                                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crystal/CrystalAttributes.java:149: error: ';' expected
-                    final MutableComponent enchantmentLevel = new Component(String.format("enchantment.level.%s", attr.getTier())).withStyle(ChatFormatting.GOLD));
-                                                                                                                                                                 ^
-15 errors
+3 errors
 
 > Task :compileJava FAILED
 
@@ -361,5 +325,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 2m 21s
+BUILD FAILED in 2m 23s
 4 actionable tasks: 4 executed
