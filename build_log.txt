@@ -1,102 +1,102 @@
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/world/LightNetworkBuffer.java:46: error: cannot find symbol
-public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
-                                                         ^
-  symbol: class ChunkNetworkData
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/starlight/WorldNetworkHandler.java:140: error: cannot find symbol
-    public void markDirty(final Vector3i... positions) {
-                                ^
-  symbol:   class Vector3i
-  location: class WorldNetworkHandler
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/starlight/transmission/IPrismTransmissionNode.java:71: error: cannot find symbol
-    default void postLoad(final IWorld world) {
-                                ^
-  symbol:   class IWorld
-  location: interface IPrismTransmissionNode
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/base/TileEntitySynchronized.java:23: error: cannot find symbol
-    protected static final AABB BOX;
-                           ^
-  symbol:   class AABB
-  location: class TileEntitySynchronized
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/base/TileEntitySynchronized.java:64: error: cannot find symbol
-    public final SUpdateTileEntityPacket func_189518_D_() {
-                 ^
-  symbol:   class SUpdateTileEntityPacket
-  location: class TileEntitySynchronized
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/base/TileEntitySynchronized.java:79: error: cannot find symbol
-    public final void onDataPacket(final NetworkManager manager, final SUpdateTileEntityPacket packet) {
-                                         ^
-  symbol:   class NetworkManager
-  location: class TileEntitySynchronized
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/base/TileEntitySynchronized.java:79: error: cannot find symbol
-    public final void onDataPacket(final NetworkManager manager, final SUpdateTileEntityPacket packet) {
-                                                                       ^
-  symbol:   class SUpdateTileEntityPacket
-  location: class TileEntitySynchronized
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/base/TileAreaOfInfluence.java:28: error: cannot find symbol
-    RegistryKey<Level> getDimension();
-    ^
-  symbol:   class RegistryKey
-  location: interface TileAreaOfInfluence
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenConstellationPaper.java:11: error: cannot find symbol
-import net.minecraft.network.chat.FormattedCharSequence;
-                                 ^
-  symbol:   class FormattedCharSequence
-  location: package net.minecraft.network.chat
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:7: error: cannot find symbol
-import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.world.item.crafting.IRecipeSerializer;
+                                        ^
+  symbol:   class IRecipeSerializer
+  location: package net.minecraft.world.item.crafting
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/recipe/LiquidInfusion.java:13: error: cannot find symbol
+import net.minecraftforge.registries.IForgeRegistryEntry;
                                     ^
-  symbol:   class BufferBuilder
-  location: package net.minecraft.client.renderer
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:10: error: package net.minecraft.util.math.vector does not exist
-import net.minecraft.util.math.vector.Matrix4f;
+  symbol:   class IForgeRegistryEntry
+  location: package net.minecraftforge.registries
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/overlay/ScreenJournalOverlayPerkStatistics.java:24: error: cannot find symbol
+import net.minecraft.client.resources.I18n;
                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:12: error: package net.minecraft.util.math does not exist
-import net.minecraft.util.math.MathHelper;
-                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:14: error: package net.minecraft.entity.player does not exist
-import net.minecraft.entity.player.PlayerEntity;
-                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:19: error: cannot find symbol
-import net.minecraft.util.RegistryKey;
-                         ^
-  symbol:   class RegistryKey
-  location: package net.minecraft.util
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:26: error: cannot find symbol
-import net.minecraft.world.World;
-                          ^
-  symbol:   class World
-  location: package net.minecraft.world
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:32: error: cannot find symbol
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-                                ^
-  symbol:   class IVertexBuilder
-  location: package com.mojang.blaze3d.vertex
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:37: error: package net.minecraft.item does not exist
-import net.minecraft.item.ItemStack;
-                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:50: error: package com.mojang.blaze3d.matrix does not exist
-import com.mojang.blaze3d.matrix.MatrixStack;
-                                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:75: error: cannot find symbol
-    public void func_230430_a_(final MatrixStack renderStack, final int mouseX, final int mouseY, final float pTicks) {
-                                     ^
-  symbol:   class MatrixStack
-  location: class ScreenRefractionTable
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:105: error: cannot find symbol
-    private void renderDragging(final MatrixStack renderStack, final int mouseX, final int mouseY) {
-                                      ^
-  symbol:   class MatrixStack
-  location: class ScreenRefractionTable
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:123: error: cannot find symbol
-    private void renderDraggedConstellations(final MatrixStack renderStack) {
-                                                   ^
-  symbol:   class MatrixStack
-  location: class ScreenRefractionTable
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenRefractionTable.java:137: error: cannot find symbol
-    private void renderInputItem(final MatrixStack renderStack) {
+  symbol:   class I18n
+  location: package net.minecraft.client.resources
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/type/PerkAttributeType.java:29: error: cannot find symbol
+import net.minecraftforge.registries.ForgeRegistryEntry;
+                                    ^
+  symbol:   class ForgeRegistryEntry
+  location: package net.minecraftforge.registries
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/type/PerkAttributeType.java:31: error: cannot find symbol
+public class PerkAttributeType extends ForgeRegistryEntry<PerkAttributeType> implements ReadWriteLockable
                                        ^
-  symbol:   class MatrixStack
-  location: class ScreenRefractionTable
+  symbol: class ForgeRegistryEntry
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/reader/PerkAttributeReader.java:11: error: cannot find symbol
+import net.minecraftforge.registries.ForgeRegistryEntry;
+                                    ^
+  symbol:   class ForgeRegistryEntry
+  location: package net.minecraftforge.registries
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/reader/PerkAttributeReader.java:13: error: cannot find symbol
+public abstract class PerkAttributeReader extends ForgeRegistryEntry<PerkAttributeReader>
+                                                  ^
+  symbol: class ForgeRegistryEntry
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/modifier/PerkAttributeModifier.java:6: error: cannot find symbol
+import net.minecraft.client.resources.I18n;
+                                     ^
+  symbol:   class I18n
+  location: package net.minecraft.client.resources
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/modifier/PerkAttributeModifier.java:23: error: cannot find symbol
+import net.minecraftforge.registries.ForgeRegistryEntry;
+                                    ^
+  symbol:   class ForgeRegistryEntry
+  location: package net.minecraftforge.registries
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/modifier/PerkAttributeModifier.java:25: error: cannot find symbol
+public class PerkAttributeModifier extends ForgeRegistryEntry<PerkAttributeModifier>
+                                           ^
+  symbol: class ForgeRegistryEntry
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/PerkConverter.java:16: error: cannot find symbol
+import net.minecraftforge.registries.ForgeRegistryEntry;
+                                    ^
+  symbol:   class ForgeRegistryEntry
+  location: package net.minecraftforge.registries
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/PerkConverter.java:18: error: cannot find symbol
+public abstract class PerkConverter extends ForgeRegistryEntry<PerkConverter>
+                                            ^
+  symbol: class ForgeRegistryEntry
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/progression/ScreenJournalClusterRenderer.java:16: error: cannot find symbol
+import net.minecraft.client.renderer.RenderHelper;
+                                    ^
+  symbol:   class RenderHelper
+  location: package net.minecraft.client.renderer
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:46: error: package net.minecraft.util.text does not exist
+import net.minecraft.util.text.ITextComponent;
+                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:47: error: cannot find symbol
+import net.minecraft.util.IReorderingProcessor;
+                         ^
+  symbol:   class IReorderingProcessor
+  location: package net.minecraft.util
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:67: error: cannot find symbol
+    private final List<IReorderingProcessor> locTextMain;
+                       ^
+  symbol:   class IReorderingProcessor
+  location: class ScreenJournalConstellationDetail
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:68: error: cannot find symbol
+    private final List<IReorderingProcessor> locTextRitual;
+                       ^
+  symbol:   class IReorderingProcessor
+  location: class ScreenJournalConstellationDetail
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:69: error: cannot find symbol
+    private final List<IReorderingProcessor> locTextRefraction;
+                       ^
+  symbol:   class IReorderingProcessor
+  location: class ScreenJournalConstellationDetail
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationDetail.java:70: error: cannot find symbol
+    private final List<IReorderingProcessor> locTextMantle;
+                       ^
+  symbol:   class IReorderingProcessor
+  location: class ScreenJournalConstellationDetail
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/journal/ScreenJournalConstellationOverview.java:28: error: package net.minecraft.util.text does not exist
+import net.minecraft.util.text.ITextComponent;
+                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/ScreenHandTelescope.java:49: error: cannot find symbol
+public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
+                                                                      ^
+  symbol: class DrawArea
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/screen/base/ConstellationDiscoveryScreen.java:51: error: cannot find symbol
+public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends WidthHeightScreen
+                                                             ^
+  symbol: class DrawArea
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/IConstellation.java:128: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
         return ConstellationRegistry.getConstellation(new ResourceLocation(compound.getString(key)));
                                                       ^
@@ -389,7 +389,7 @@ Note: Recompile with -Xlint:unchecked for details.
 Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
 100 errors
 95 warnings
-only showing the first 100 errors, of 9795 total; use -Xmaxerrs if you would like to see more
+only showing the first 100 errors, of 8762 total; use -Xmaxerrs if you would like to see more
 
 > Task :compileJava FAILED
 
@@ -596,5 +596,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 2m 34s
+BUILD FAILED in 2m 32s
 4 actionable tasks: 4 executed
