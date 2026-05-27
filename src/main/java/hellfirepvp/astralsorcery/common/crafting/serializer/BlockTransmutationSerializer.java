@@ -61,7 +61,7 @@ public class BlockTransmutationSerializer extends CustomRecipeSerializer<BlockTr
                 throw new JsonSyntaxException(String.format("Unknown constellation %s!", cstKey));
             }
             if (!(cst instanceof IWeakConstellation)) {
-                throw new JsonSyntaxException(String.format("Constellation %s has to be either a major or dim constellation!", cstKey);
+                throw new JsonSyntaxException(String.format("Constellation %s has to be either a major or dim constellation!", cstKey));
             }
             matchConstellation = (IWeakConstellation)cst;
         }
