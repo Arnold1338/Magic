@@ -146,7 +146,7 @@ public final class CrystalAttributes
                     missing = true;
                 }
                 else {
-                    final MutableComponent enchantmentLevel = new Component(String.format("enchantment.level.%s", attr.getTier())).withStyle(ChatFormatting.GOLD));
+                    final MutableComponent enchantmentLevel = Component.translatable(String.format("enchantment.level.%s", attr.getTier())).withStyle(ChatFormatting.GOLD);
                     final MutableComponent propertyName = prop.getName(attr.getTier()).withStyle(ChatFormatting.GRAY);
                     tooltip.add((Component)propertyName.append(Component.translatable(" ").append((Component)enchantmentLevel)));
                     addedAtLeastOne = true;

@@ -61,7 +61,7 @@ public class AttributeTypeThorns extends PerkAttributeType
         if (source.getDirectEntity() != null && source.getDirectEntity() instanceof LivingEntity && source.getDirectEntity().isAlive()) {
             reflectTarget = (LivingEntity)source.getDirectEntity();
         }
-        if (reflectTarget == null && AttributeEvent.postProcessModded(player, this, PerkAttributeHelper.getOrCreateMap(player, side).getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_THORNS_RANGED)) > 1.0f && source.getDirectEntity() != null && source.getDirectEntity() instanceof LivingEntity victim && victim.isAlive() {
+        if (reflectTarget == null && AttributeEvent.postProcessModded(player, this, PerkAttributeHelper.getOrCreateMap(player, side).getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_THORNS_RANGED)) > 1.0f && source.getDirectEntity() != null && source.getDirectEntity() instanceof LivingEntity victim && victim.isAlive()) {
             reflectTarget = (LivingEntity)source.getDirectEntity();
         }
         if (reflectTarget != null) {

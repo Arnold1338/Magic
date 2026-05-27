@@ -77,7 +77,7 @@ public class PktProgressionUpdate extends ASPacket<PktProgressionUpdate>
                         Minecraft.getInstance().player.sendSystemMessage(Component.translatable("astralsorcery.progress.gain.progress.chat").withStyle(ChatFormatting.BLUE));
                     }
                     if (packet.prog != null) {
-                        final ClientPlayerEntity Minecraft.getInstance().player = Minecraft.getInstance().player;
+                        final net.minecraft.world.entity.player.Player player = Minecraft.getInstance().player;
                         Component.translatable("astralsorcery.progress.gain.research.chat");
                         final Component translationTextComponent;
                         Minecraft.getInstance().player.sendSystemMessage(translationTextComponent.withStyle(ChatFormatting.AQUA));

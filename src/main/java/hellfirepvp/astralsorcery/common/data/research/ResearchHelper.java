@@ -158,11 +158,11 @@ public class ResearchHelper
     }
     
     public static void sendConstellationDiscoveryMessage(final CommandSource src, final IConstellation cst) {
-        src.sendSystemMessage(Component.translatable("astralsorcery.progress.constellation.discover.chat").withStyle(ChatFormatting.BLUE)));
+        src.sendSystemMessage(Component.translatable("astralsorcery.progress.constellation.discover.chat").withStyle(ChatFormatting.BLUE));
     }
     
     public static void sendConstellationMemorizationMessage(final CommandSource src, final PlayerProgress progress, final IConstellation cst) {
-        src.sendSystemMessage(Component.translatable("astralsorcery.progress.constellation.seen.chat").withStyle(ChatFormatting.BLUE)));
+        src.sendSystemMessage(Component.translatable("astralsorcery.progress.constellation.seen.chat").withStyle(ChatFormatting.BLUE));
         if (progress.getSeenConstellations().size() == 1) {
             src.sendSystemMessage(Component.translatable("astralsorcery.progress.constellation.seen.track").withStyle(ChatFormatting.BLUE));
         }

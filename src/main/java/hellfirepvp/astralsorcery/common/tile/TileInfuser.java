@@ -285,7 +285,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
     public void writeCustomNBT(final CompoundTag compound) {
         super.writeCustomNBT(compound);
         compound.put("inventory", (Tag)this.inventory.serialize());
-        NBTHelper.writeList(compound, "knownRecipes", (Collection<ResourceLocation>)this.knownRecipes, key -> StringTag.valueOf(key.toString());
+        NBTHelper.writeList(compound, "knownRecipes", (Collection<ResourceLocation>)this.knownRecipes, key -> StringTag.valueOf(key.toString()));
         if (this.activeRecipe != null) {
             compound.put("activeRecipe", (Tag)this.activeRecipe.serialize());
         }

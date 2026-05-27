@@ -71,7 +71,7 @@ public class CommandProgress
             }
         }
         if (research == null) {
-            src.sendSystemMessage(Component.literal("Invalid progression tier: " + goal.name()).withStyle(ChatFormatting.RED)));
+            src.sendSystemMessage(Component.literal("Invalid progression tier: " + goal.name()).withStyle(ChatFormatting.RED));
         }
         if (ResearchManager.grantProgress(target, goal) && ResearchManager.grantResearch(target, research)) {
             src.sendSystemMessage(Component.translatable("Success!").withStyle(ChatFormatting.GREEN));

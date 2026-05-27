@@ -46,7 +46,7 @@ public class ItemInfusedGlass extends Item
                         tooltip.add(Component.translatable(format, cstName, creativeHint).withStyle(ChatFormatting.GRAY));
                     }
                     else {
-                        tooltip.add(Component.translatable(format, cstName, "" ).withStyle(ChatFormatting.GRAY);
+                        tooltip.add(Component.translatable(format, cstName, "").withStyle(ChatFormatting.GRAY));
                     }
                 }
             }
