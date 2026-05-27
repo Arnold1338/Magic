@@ -6,13 +6,13 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.protocol.game.SUpdateTileEntityPacket;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import java.util.Random;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -61,12 +61,12 @@ public abstract class TileEntitySynchronized extends BlockEntity implements ILoc
     public void writeSaveNBT(final CompoundTag compound) {
     }
     
-    public final SUpdateTileEntityPacket func_189518_D_() {
+    public final ClientboundBlockEntityDataPacket getUpdatePacket() {
         final CompoundTag compound = new CompoundTag();
         super.func_189515_b(compound);
         this.writeCustomNBT(compound);
         this.writeNetNBT(compound);
-        return new SUpdateTileEntityPacket(this.getBlockState(), 255, compound);
+        return ClientboundBlockEntityDataPacket.create(this);
     }
     
     public CompoundTag func_189517_E_() {
@@ -76,8 +76,8 @@ public abstract class TileEntitySynchronized extends BlockEntity implements ILoc
         return compound;
     }
     
-    public final void onDataPacket(final NetworkManager manager, final SUpdateTileEntityPacket packet) {
-        super.onDataPacket(manager, packet);
+    public final void onDataPacket(final net.minecraft.network.Connection manager, final ClientboundBlockEntityDataPacket packet) {
+        this.handleTag(packet.getTag());
         this.readCustomNBT(packet.func_148857_g());
         this.readNetNBT(packet.func_148857_g());
         this.onDataReceived();

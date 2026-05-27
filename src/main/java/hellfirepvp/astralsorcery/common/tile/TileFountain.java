@@ -87,7 +87,7 @@ public class TileFountain extends TileEntityTick
                             ByteBufUtils.writeEnumValue(buf, nextSegment);
                             return;
                         });
-                        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.level, (Vector3i)this.field_174879_c, 32.0));
+                        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.level, (Vec3i)this.field_174879_c, 32.0));
                     }
                     effect.tick(this, ctx, this.tickActiveFountainEffect, LogicalSide.SERVER, this.getSegment());
                 }
@@ -174,7 +174,7 @@ public class TileFountain extends TileEntityTick
     private void replaceCurrentEffect(final FountainEffect prevEffect, final FountainEffect.EffectContext prevContext, final FountainEffect newEffect) {
         prevEffect.onReplace(this, prevContext, newEffect, LogicalSide.SERVER);
         final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.FOUNTAIN_REPLACE_EFFECT).addData(buf -> ByteBufUtils.writePos(buf, this.field_174879_c));
-        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.level, (Vector3i)this.field_174879_c, 32.0));
+        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.level, (Vec3i)this.field_174879_c, 32.0));
     }
     
     private boolean setCurrentEffect(@Nullable final FountainEffect<?> effect) {

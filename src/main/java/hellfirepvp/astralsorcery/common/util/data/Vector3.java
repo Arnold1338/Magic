@@ -9,10 +9,10 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.core.BlockPos;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.core.Vec3i;
 import java.util.Random;
 
@@ -53,7 +53,7 @@ public class Vector3
         this.z = z;
     }
     
-    public Vector3(final Vector3i pos) {
+    public Vector3(final Vec3i pos) {
         this(pos.getX(), pos.getY(), pos.getZ());
     }
     
@@ -91,7 +91,7 @@ public class Vector3
         return new Vector3(x, y, z);
     }
     
-    public Vector3 add(final Vector3i vec) {
+    public Vector3 add(final Vec3i vec) {
         this.x += vec.getX();
         this.y += vec.getY();
         this.z += vec.getZ();
@@ -155,7 +155,7 @@ public class Vector3
         return this;
     }
     
-    public Vector3 subtract(final Vector3i vec) {
+    public Vector3 subtract(final Vec3i vec) {
         this.x -= vec.getX();
         this.y -= vec.getY();
         this.z -= vec.getZ();
@@ -235,11 +235,11 @@ public class Vector3
         return difX * difX + difY * difY + difZ * difZ;
     }
     
-    public double distance(final Vector3i o) {
+    public double distance(final Vec3i o) {
         return Math.sqrt(this.distanceSquared(o));
     }
     
-    public double distanceSquared(final Vector3i o) {
+    public double distanceSquared(final Vec3i o) {
         final double difX = this.x - o.getX();
         final double difY = this.y - o.getY();
         final double difZ = this.z - o.getZ();

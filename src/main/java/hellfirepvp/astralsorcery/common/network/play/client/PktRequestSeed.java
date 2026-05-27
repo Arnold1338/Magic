@@ -19,14 +19,14 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 
 public class PktRequestSeed extends ASPacket<PktRequestSeed>
 {
-    private RegistryKey<Level> dim;
+    private ResourceKey<Level> dim;
     private Integer session;
     private Long seed;
     
     public PktRequestSeed() {
     }
     
-    public PktRequestSeed(final Integer session, final RegistryKey<Level> dim) {
+    public PktRequestSeed(final Integer session, final ResourceKey<Level> dim) {
         this.dim = dim;
         this.session = session;
         this.seed = -1L;
@@ -52,7 +52,7 @@ public class PktRequestSeed extends ASPacket<PktRequestSeed>
     public Decoder<PktRequestSeed> decoder() {
         return (Decoder<PktRequestSeed>)(buffer -> {
             final PktRequestSeed pkt = new PktRequestSeed();
-            pkt.dim = (RegistryKey<Level>)ByteBufUtils.readOptional(buffer, ByteBufUtils::readVanillaRegistryEntry);
+            pkt.dim = (ResourceKey<Level>)ByteBufUtils.readOptional(buffer, ByteBufUtils::readVanillaRegistryEntry);
             pkt.session = ByteBufUtils.readOptional(buffer, FriendlyByteBuf::readInt);
             pkt.seed = ByteBufUtils.readOptional(buffer, FriendlyByteBuf::readLong);
             return pkt;

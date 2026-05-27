@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.screen.journal.progression;
 
-import net.minecraft.client.renderer.BufferBuilder;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
@@ -9,7 +9,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import javax.annotation.Nullable;
@@ -276,7 +276,7 @@ public class ScreenJournalProgressionRenderer
         final Point2D.Float pCluster = this.sizeHandler.scalePointToGui(this.parentGui, this.mousePointScaled, new Point2D.Float((float)cluster.x, (float)cluster.y));
         final float width = this.sizeHandler.scaledDistanceX((float)cluster.x, (float)cluster.maxX);
         final float height = this.sizeHandler.scaledDistanceY((float)cluster.y, (float)cluster.maxY);
-        final Rectangle r = new Rectangle(MathHelper.func_76141_d(pCluster.x), MathHelper.func_76141_d(pCluster.y), MathHelper.func_76141_d(width), MathHelper.func_76141_d(height));
+        final Rectangle r = new Rectangle(Mth.func_76141_d(pCluster.x), Mth.func_76141_d(pCluster.y), Mth.func_76141_d(width), Mth.func_76141_d(height));
         this.clusterRectMap.put(r, p);
         cluster.cloudTexture.bindTexture();
         final float scale = this.sizeHandler.getScalingFactor();

@@ -67,7 +67,7 @@ public class InfusedWoodRecipe extends LiquidStarlightRecipe
     @Override
     public void doClientEffectTick(final ItemEntity trigger, final Level world, final BlockPos at) {
         for (int i = 0; i < 4; ++i) {
-            final Vector3 pos = new Vector3((Vector3i)at).add(0.5, 0.5, 0.5);
+            final Vector3 pos = new Vector3((Vec3i)at).add(0.5, 0.5, 0.5);
             MiscUtils.applyRandomOffset(pos, InfusedWoodRecipe.rand, 0.5f);
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(pos).color(VFXColorFunction.constant(ColorsAS.DYE_BROWN)).alpha(VFXAlphaFunction.PYRAMID).setScaleMultiplier(0.1f + InfusedWoodRecipe.rand.nextFloat() * 0.1f).setMaxAge(30 + InfusedWoodRecipe.rand.nextInt(20));
         }

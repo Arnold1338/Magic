@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.function.Function;
 import net.minecraft.world.item.Item;
 import com.google.common.base.Predicate;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import javax.annotation.Nonnull;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.resources.ResourceLocation;

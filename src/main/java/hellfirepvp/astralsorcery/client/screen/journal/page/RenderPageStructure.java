@@ -4,32 +4,32 @@
 
 package hellfirepvp.astralsorcery.client.screen.journal.page;
 
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.util.SoundEvent;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import net.minecraft.sounds.SoundEvent;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import java.awt.Rectangle;
 import com.google.common.collect.Lists;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.network.chat.Component;
 import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
 import java.awt.geom.Point2D;
 import net.minecraft.client.gui.Font;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.observerlib.api.block.MatchableState;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.world.level.block.Blocks;
+import org.joml.Vector3f;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.util.text.StringTextComponent;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.network.chat.Component;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.client.Minecraft;
 import java.util.ArrayList;
 import javax.annotation.Nonnull;
@@ -38,7 +38,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
 import java.awt.geom.Rectangle2D;
 import java.util.Optional;
 import net.minecraft.util.FormattedCharSequence;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -74,7 +74,7 @@ public class RenderPageStructure extends RenderablePage
         this.name = name;
         this.shift = shift;
         this.contentStacks = new ArrayList<Tuple<ItemStack, FormattedCharSequence>>();
-        structure.getAsStacks((IBlockReader)this.structureRenderer.getRenderWorld(), (PlayerEntity)Minecraft.func_71410_x().field_71439_g).forEach(stack -> {
+        structure.getAsStacks((IBlockReader)this.structureRenderer.getRenderWorld(), (Player)Minecraft.func_71410_x().field_71439_g).forEach(stack -> {
             final ItemStack display = ItemUtils.copyStackWithSize(stack, 1);
             new StringTextComponent(stack.func_190916_E() + "x ");
             final StringTextComponent stringTextComponent;
@@ -84,7 +84,7 @@ public class RenderPageStructure extends RenderablePage
     }
     
     @Override
-    public void render(final MatrixStack renderStack, final float x, final float y, final float z, final float pTicks, final float mouseX, final float mouseY) {
+    public void render(final PoseStack renderStack, final float x, final float y, final float z, final float pTicks, final float mouseX, final float mouseY) {
         ++this.totalRenderFrame;
         this.renderStructure(renderStack, x, y, pTicks);
         final float shift = this.renderSizeDescription(renderStack, x, y + 5.0f, z);
@@ -94,7 +94,7 @@ public class RenderPageStructure extends RenderablePage
         this.renderSliceButtons(renderStack, x, y + 10.0f, z, mouseX, mouseY);
     }
     
-    private void renderSliceButtons(final MatrixStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float mouseX, final float mouseY) {
+    private void renderSliceButtons(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float mouseX, final float mouseY) {
         TexturesAS.TEX_GUI_BOOK_STRUCTURE_ICONS.bindTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -153,7 +153,7 @@ public class RenderPageStructure extends RenderablePage
                 renderStack.func_227862_a_(7.0f, -7.0f, 7.0f);
                 renderStack.func_227863_a_(new org.joml.Vector3f(1, 0, 0).func_229187_a_(30.0f));
                 renderStack.func_227863_a_(new org.joml.Vector3f(0, 1, 0).func_229187_a_(225.0f));
-                RenderingUtils.renderSimpleBlockModel(Blocks.GLASS.func_176223_P(), renderStack, (IVertexBuilder)buf);
+                RenderingUtils.renderSimpleBlockModel(Blocks.GLASS.func_176223_P(), renderStack, (VertexConsumer)buf);
                 renderStack.func_227865_b_();
                 return;
             });
@@ -188,7 +188,7 @@ public class RenderPageStructure extends RenderablePage
         return maxSlice;
     }
     
-    private void renderHeadline(final MatrixStack renderStack, final float offsetX, final float offsetY, final float zLevel, final FormattedCharSequence title) {
+    private void renderHeadline(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final FormattedCharSequence title) {
         final float scale = 1.3f;
         RenderSystem.disableDepthTest();
         renderStack.func_227860_a_();
@@ -199,7 +199,7 @@ public class RenderPageStructure extends RenderablePage
         RenderSystem.enableDepthTest();
     }
     
-    private float renderSizeDescription(final MatrixStack renderStack, final float offsetX, final float offsetY, final float zLevel) {
+    private float renderSizeDescription(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel) {
         final Vector3 size = new Vector3(this.structure.getMaximumOffset()).subtract(this.structure.getMinimumOffset()).add(1.0f, 1.0f, 1.0f);
         final Font fr = RenderablePage.getFontRenderer();
         final float scale = 1.3f;
@@ -230,7 +230,7 @@ public class RenderPageStructure extends RenderablePage
         return length + 8.0f;
     }
     
-    private void renderStructure(final MatrixStack renderStack, final float offsetX, final float offsetY, final float pTicks) {
+    private void renderStructure(final PoseStack renderStack, final float offsetX, final float offsetY, final float pTicks) {
         final Point2D.Double renderOffset = this.renderOffset(offsetX + 8.0f, offsetY);
         this.structureRenderer.setRenderWithRequiredAir(this.showAirBlocks);
         this.structureRenderer.render3DSliceGUI(renderStack, renderOffset.x + this.shift.getX(), renderOffset.y + this.shift.getY(), pTicks, (Optional)this.drawSlice);
@@ -242,7 +242,7 @@ public class RenderPageStructure extends RenderablePage
     }
     
     @Override
-    public void postRender(final MatrixStack renderStack, final float x, final float y, final float z, final float pTicks, final float mouseX, final float mouseY) {
+    public void postRender(final PoseStack renderStack, final float x, final float y, final float z, final float pTicks, final float mouseX, final float mouseY) {
         renderStack.func_227860_a_();
         renderStack.translate((double)(x + 160.0f), (double)(y + 10.0f), (double)z);
         final Rectangle rect = RenderingDrawUtils.drawInfoStar(renderStack, IDrawRenderTypeBuffer.defaultBuffer(), 15.0f, pTicks);

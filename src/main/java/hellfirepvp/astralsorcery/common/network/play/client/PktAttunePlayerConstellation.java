@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 public class PktAttunePlayerConstellation extends ASPacket<PktAttunePlayerConstellation>
 {
     private IMajorConstellation attunement;
-    private RegistryKey<Level> world;
+    private ResourceKey<Level> world;
     private BlockPos at;
     
     public PktAttunePlayerConstellation() {
@@ -31,7 +31,7 @@ public class PktAttunePlayerConstellation extends ASPacket<PktAttunePlayerConste
         this.at = BlockPos.field_177992_a;
     }
     
-    public PktAttunePlayerConstellation(final IMajorConstellation attunement, final RegistryKey<Level> world, final BlockPos at) {
+    public PktAttunePlayerConstellation(final IMajorConstellation attunement, final ResourceKey<Level> world, final BlockPos at) {
         this.attunement = null;
         this.world = null;
         this.at = BlockPos.field_177992_a;
@@ -70,7 +70,7 @@ public class PktAttunePlayerConstellation extends ASPacket<PktAttunePlayerConste
             if (cst != null) {
                 final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
                 if (srv.forgeGetWorldMap().containsKey(packet.world)) {
-                    final Level world = (Level)srv.getLevel((RegistryKey)packet.world);
+                    final Level world = (Level)srv.getLevel((ResourceKey)packet.world);
                     final TileAttunementAltar ta = MiscUtils.getTileAt((IBlockReader)world, packet.at, TileAttunementAltar.class, false);
                     if (ta != null && ta.getActiveRecipe() instanceof ActivePlayerAttunementRecipe && context.getSender().getUUID().equals(((ActivePlayerAttunementRecipe)ta.getActiveRecipe()).getPlayerUUID()) && AttunePlayerRecipe.isEligablePlayer(context.getSender(), ta.getActiveConstellation())) {
                         ta.finishActiveRecipe();

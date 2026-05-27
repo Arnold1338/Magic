@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.item.wand;
 
 import hellfirepvp.astralsorcery.common.util.block.BlockGeometry;
-import net.minecraft.world.level.phys.HitResult;
+import net.minecraft.world.phys.HitResult;
 import hellfirepvp.astralsorcery.common.util.RaytraceAssist;
 import java.util.ArrayList;
 import net.minecraft.network.chat.Component;
@@ -18,7 +18,7 @@ import java.util.Collections;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import javax.annotation.Nonnull;
-import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import java.util.HashMap;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.ClipContext;
@@ -188,7 +188,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
                 ByteBufUtils.writeBlockState(buf, stateToPlace);
                 return;
             });
-            PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vector3i)placePos, 32.0));
+            PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vec3i)placePos, 32.0));
         }
         return (InteractionResult<ItemStack>)InteractionResult.func_226248_a_((Object)held);
     }
@@ -348,25 +348,25 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
         H_PLANE("plane", true) {
             @Override
             public List<BlockPos> generatePlacementPositions(final Level world, final Player player, final Direction placedAgainst, final BlockPos center) {
-                return MiscUtils.transformList(BlockGeometry.getPlane(Direction.UP, 5), at -> at.func_177971_a((Vector3i)center));
+                return MiscUtils.transformList(BlockGeometry.getPlane(Direction.UP, 5), at -> at.func_177971_a((Vec3i)center));
             }
         }, 
         V_PLANE("wall", true) {
             @Override
             public List<BlockPos> generatePlacementPositions(final Level world, final Player player, final Direction placedAgainst, final BlockPos center) {
-                return MiscUtils.transformList(BlockGeometry.getPlane(player.func_174811_aO(), 5), at -> at.func_177971_a((Vector3i)center));
+                return MiscUtils.transformList(BlockGeometry.getPlane(player.func_174811_aO(), 5), at -> at.func_177971_a((Vec3i)center));
             }
         }, 
         SPHERE("sphere", true, 0.2f) {
             @Override
             public List<BlockPos> generatePlacementPositions(final Level world, final Player player, final Direction placedAgainst, final BlockPos center) {
-                return MiscUtils.transformList(BlockGeometry.getSphere(5.0), at -> at.func_177971_a((Vector3i)center));
+                return MiscUtils.transformList(BlockGeometry.getSphere(5.0), at -> at.func_177971_a((Vec3i)center));
             }
         }, 
         SPHERE_HOLLOW("sphere_hollow", true, 0.5f) {
             @Override
             public List<BlockPos> generatePlacementPositions(final Level world, final Player player, final Direction placedAgainst, final BlockPos center) {
-                return MiscUtils.transformList(BlockGeometry.getHollowSphere(5.0, 4.0), at -> at.func_177971_a((Vector3i)center));
+                return MiscUtils.transformList(BlockGeometry.getHollowSphere(5.0, 4.0), at -> at.func_177971_a((Vec3i)center));
             }
         };
         

@@ -77,7 +77,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
                     if (glassStack.func_96631_a(1, TileRefractionTable.rand, (ServerPlayer)null)) {
                         glassStack.shrink(1);
                         this.setGlassStack(glassStack);
-                        SoundHelper.playSoundAround(SoundEvents.field_187561_bM, SoundSource.BLOCKS, this.getLevel(), (Vector3i)this.getBlockState(), TileRefractionTable.rand.nextFloat() * 0.5f + 1.0f, TileRefractionTable.rand.nextFloat() * 0.2f + 0.8f);
+                        SoundHelper.playSoundAround(SoundEvents.field_187561_bM, SoundSource.BLOCKS, this.getLevel(), (Vec3i)this.getBlockState(), TileRefractionTable.rand.nextFloat() * 0.5f + 1.0f, TileRefractionTable.rand.nextFloat() * 0.2f + 0.8f);
                     }
                     this.resetWorkTick();
                 }
@@ -109,7 +109,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
             offset.addX(1.5);
         }
         offset.addZ(random % (ColorsAS.REFRACTION_TABLE_COLORS.length / 2) * 0.25);
-        offset.add(TileRefractionTable.rand.nextFloat() * 0.1, 0.0, TileRefractionTable.rand.nextFloat() * 0.1).add((Vector3i)this.field_174879_c);
+        offset.add(TileRefractionTable.rand.nextFloat() * 0.1, 0.0, TileRefractionTable.rand.nextFloat() * 0.1).add((Vec3i)this.field_174879_c);
         final Color color = ColorsAS.REFRACTION_TABLE_COLORS[random];
         EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(offset).setGravityStrength(-0.002f).setScaleMultiplier(0.15f + TileRefractionTable.rand.nextFloat() * 0.1f).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.constant(color)).setMaxAge(30 + TileRefractionTable.rand.nextInt(30));
         if (TileRefractionTable.rand.nextFloat() < this.getRunProgress() * 2.0f) {

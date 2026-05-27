@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import java.util.function.Function;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.entity.ExperienceOrb;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.BlockItem;

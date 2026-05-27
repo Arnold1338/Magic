@@ -76,13 +76,13 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer
                 if (ResearchManager.setAttunedConstellation((Player)player, cst)) {
                     ResearchManager.setExp((Player)player, Mth.func_76124_d(perkExp));
                     player.sendSystemMessage(Component.translatable("astralsorcery.progress.switch.attunement").withStyle(ChatFormatting.BLUE));
-                    SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vector3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
+                    SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vec3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
                     return ItemStack.EMPTY;
                 }
             }
             else if (ResearchManager.setAttunedConstellation((Player)player, null)) {
                 player.sendSystemMessage(Component.translatable("astralsorcery.progress.remove.attunement").withStyle(ChatFormatting.BLUE));
-                SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vector3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
+                SoundHelper.playSoundAround(SoundEvents.field_187561_bM, worldIn, (Vec3i)entityLiving.func_233580_cy_(), 1.0f, 1.0f);
                 return ItemStack.EMPTY;
             }
         }

@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.util;
 
-import net.minecraft.client.renderer.BufferBuilder;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import org.joml.Matrix4f;
 import net.minecraft.util.FormattedCharSequence;
 import java.util.Iterator;

@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
@@ -15,7 +15,7 @@ import net.minecraft.sounds.SoundEvent;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import net.minecraft.world.level.InteractionResult;
-import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
@@ -33,7 +33,7 @@ import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesGlass;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.EnumProperty;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.astralsorcery.common.block.base.BlockStarlightNetwork;
 
@@ -77,7 +77,7 @@ public class BlockLens extends BlockStarlightNetwork implements CustomItemBlock
                 else if (!player.getInventory().func_70441_a(drop)) {
                     ItemUtils.dropItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop);
                 }
-                SoundHelper.playSoundAround(SoundsAS.BLOCK_COLOREDLENS_ATTACH, world, (Vector3i)pos, 0.8f, 1.5f);
+                SoundHelper.playSoundAround(SoundsAS.BLOCK_COLOREDLENS_ATTACH, world, (Vec3i)pos, 0.8f, 1.5f);
                 lens.setColorType(null);
                 return InteractionResult.SUCCESS;
             }

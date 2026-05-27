@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.EntityType;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import net.minecraft.world.level.Level;

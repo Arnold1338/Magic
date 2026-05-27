@@ -4,7 +4,7 @@ import net.minecraft.world.entity.Pose;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import hellfirepvp.astralsorcery.common.util.collision.CustomCollisionHandler;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraft.core.BlockPos;

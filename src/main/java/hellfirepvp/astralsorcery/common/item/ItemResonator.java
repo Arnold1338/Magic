@@ -110,8 +110,8 @@ public class ItemResonator extends Item implements OverrideInteractItem
                     if (ItemResonator.count.nextFloat() < distribution && ItemResonator.count.nextInt(12) == 0) {
                         final int offsetX = ItemResonator.count.nextInt(30) * (ItemResonator.count.nextBoolean() ? 1 : -1);
                         final int offsetZ = ItemResonator.count.nextInt(30) * (ItemResonator.count.nextBoolean() ? 1 : -1);
-                        final BlockPos pos = world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, new BlockPos((Vector3i)entity.func_233580_cy_()).offset(offsetX, 0, offsetZ));
-                        if (pos.func_177951_i((Vector3i)entity.func_233580_cy_()) > 5625.0) {
+                        final BlockPos pos = world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, new BlockPos((Vec3i)entity.func_233580_cy_()).offset(offsetX, 0, offsetZ));
+                        if (pos.func_177951_i((Vec3i)entity.func_233580_cy_()) > 5625.0) {
                             return;
                         }
                         final IChunk ch = world.func_217349_x(pos);
@@ -121,10 +121,10 @@ public class ItemResonator extends Item implements OverrideInteractItem
                                 if (!display.isEmpty()) {
                                     final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.LIQUID_FOUNTAIN).addData(buf -> {
                                         ByteBufUtils.writeFluidStack(buf, display);
-                                        ByteBufUtils.writeVector(buf, new Vector3((Vector3i)pos));
+                                        ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos));
                                         return;
                                     });
-                                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vector3i)pos, 32.0));
+                                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vec3i)pos, 32.0));
                                 }
                             });
                         }
@@ -143,7 +143,7 @@ public class ItemResonator extends Item implements OverrideInteractItem
             return;
         }
         final Player player = (Player)entity;
-        if (selected && getCurrentUpgrade(player, stack) == ResonatorUpgrade.STARLIGHT && WorldSeedCache.getSeedIfPresent((RegistryKey<Level>)world.dimension()).isPresent()) {
+        if (selected && getCurrentUpgrade(player, stack) == ResonatorUpgrade.STARLIGHT && WorldSeedCache.getSeedIfPresent((ResourceKey<Level>)world.dimension()).isPresent()) {
             final float distribution = DayTimeHelper.getCurrentDaytimeDistribution(world);
             if (distribution <= 1.0E-4) {
                 return;
@@ -155,14 +155,14 @@ public class ItemResonator extends Item implements OverrideInteractItem
             final int minY = (int)RenderingConfig.CONFIG.minYFosicDisplay.get();
             for (int xx = -48; xx <= 48; ++xx) {
                 for (int zz = -48; zz <= 48; ++zz) {
-                    mPos.func_189533_g((Vector3i)world.func_205770_a(Heightmap.Type.WORLD_SURFACE, (BlockPos)mPos.func_181079_c(offsetX + xx, 0, offsetZ + zz)));
+                    mPos.func_189533_g((Vec3i)world.func_205770_a(Heightmap.Type.WORLD_SURFACE, (BlockPos)mPos.func_181079_c(offsetX + xx, 0, offsetZ + zz)));
                     mPos.func_185336_p(Math.max(mPos.getY(), minY));
-                    final float perc = SkyCollectionHelper.getSkyNoiseDistributionClient((RegistryKey<Level>)world.dimension(), (BlockPos)mPos).get();
+                    final float perc = SkyCollectionHelper.getSkyNoiseDistributionClient((ResourceKey<Level>)world.dimension(), (BlockPos)mPos).get();
                     final float fPerc = (float)Math.pow((perc - 0.4f) * 1.65f, 2.0);
                     if (perc >= 0.4f && ItemResonator.count.nextFloat() <= fPerc && ItemResonator.count.nextFloat() <= fPerc && ItemResonator.count.nextInt(6) == 0) {
-                        EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)mPos).add(ItemResonator.count.nextFloat(), 0.15, ItemResonator.count.nextFloat())).color(VFXColorFunction.constant(ColorsAS.RESONATOR_STARFIELD)).setScaleMultiplier(4.0f).setAlphaMultiplier(distribution * fPerc);
+                        EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vec3i)mPos).add(ItemResonator.count.nextFloat(), 0.15, ItemResonator.count.nextFloat())).color(VFXColorFunction.constant(ColorsAS.RESONATOR_STARFIELD)).setScaleMultiplier(4.0f).setAlphaMultiplier(distribution * fPerc);
                         if (perc >= 0.8f && ItemResonator.count.nextInt(3) == 0) {
-                            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)mPos).add(ItemResonator.count.nextFloat(), 0.15, ItemResonator.count.nextFloat())).setScaleMultiplier(0.3f).color(VFXColorFunction.WHITE).setGravityStrength(-0.001f).setAlphaMultiplier(distribution);
+                            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vec3i)mPos).add(ItemResonator.count.nextFloat(), 0.15, ItemResonator.count.nextFloat())).setScaleMultiplier(0.3f).color(VFXColorFunction.WHITE).setGravityStrength(-0.001f).setAlphaMultiplier(distribution);
                         }
                     }
                 }

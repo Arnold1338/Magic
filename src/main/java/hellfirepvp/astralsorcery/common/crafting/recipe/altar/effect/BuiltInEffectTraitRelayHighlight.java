@@ -101,7 +101,7 @@ public class BuiltInEffectTraitRelayHighlight extends AltarRecipeEffect
                         continue;
                     }
                     final WrappedIngredient match = additionalIngredients.get(stack.getStackIndex());
-                    final BlockPos offset = stack.getRealPosition().func_177973_b((Vector3i)altar.getBlockState());
+                    final BlockPos offset = stack.getRealPosition().func_177973_b((Vec3i)altar.getBlockState());
                     final TileSpectralRelay relay = MiscUtils.getTileAt((IBlockReader)altar.getLevel(), stack.getRealPosition(), TileSpectralRelay.class, false);
                     if (relay != null && match.getIngredient().test(relay.getInventory().getStackInSlot(0))) {
                         continue;

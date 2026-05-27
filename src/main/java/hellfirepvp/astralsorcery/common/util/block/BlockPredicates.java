@@ -36,7 +36,7 @@ public class BlockPredicates
     }
     
     public static <T extends BlockEntity> BlockPredicate doesTileExist(final T tile, final boolean loadTileWorldAndChunk) {
-        final RegistryKey<Level> dim = (RegistryKey<Level>)tile.getLevel().dimension();
+        final ResourceKey<Level> dim = (ResourceKey<Level>)tile.getLevel().dimension();
         final BlockEntityType<?> tileType = (BlockEntityType<?>)tile.getType();
         final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
         return (world, pos, state) -> {

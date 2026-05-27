@@ -8,7 +8,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootTables;
@@ -87,7 +87,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
     @Override
     public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         final ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
-        final Vector3 at = new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5);
+        final Vector3 at = new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5);
         at.addY(prop.getSize() * 0.75);
         for (int i = 0; i < Math.max(1.0, prop.getSize() / 6.0); ++i) {
             final Vector3 vec = at.clone().add(Vector3.random().setY(0).multiply(CEffectOctans.rand.nextFloat() * prop.getSize()));
@@ -109,7 +109,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
             final ListEntries.CounterMaxEntry entry;
             return newEntry.mapLeft(entry -> {
                 final BlockState state = world.getBlockState(entry.getPos());
-                final BlockPos offset = entry.getPos().func_177973_b((Vector3i)pos);
+                final BlockPos offset = entry.getPos().func_177973_b((Vec3i)pos);
                 if (world.isEmptyBlock(entry.getPos()) && (this.isLinkedRitual || Math.abs(offset.getX()) > 5 || Math.abs(offset.getZ()) > 5 || offset.getY() < 0)) {
                     if (!world.dimensionType().func_236040_e_() && world.func_175656_a(entry.getPos(), Blocks.field_150355_j.defaultBlockState())) {
                         for (int i = 0; i < 3; ++i) {
@@ -140,7 +140,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
                 this.removeElement(entry);
             }
             else {
-                this.sendConstellationPing(world, new Vector3((Vector3i)entry.getPos()).add(0.5, 1.0, 0.5));
+                this.sendConstellationPing(world, new Vector3((Vec3i)entry.getPos()).add(0.5, 1.0, 0.5));
                 int count = entry.getCounter();
                 ++count;
                 entry.setCounter(count);
@@ -155,14 +155,14 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
             }
             update = true;
         }
-        if (this.findNewPosition(world, pos, properties).ifRight(attemptedPos -> this.sendConstellationPing(world, new Vector3((Vector3i)world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, attemptedPos).renderItem()).add(0.5, 0.5, 0.5))).left().isPresent()) {
+        if (this.findNewPosition(world, pos, properties).ifRight(attemptedPos -> this.sendConstellationPing(world, new Vector3((Vec3i)world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, attemptedPos).renderItem()).add(0.5, 0.5, 0.5))).left().isPresent()) {
             update = true;
         }
         return update;
     }
     
     private void spawnFishingDropsAt(final ServerLevel world, final BlockPos pos) {
-        final Vector3 dropLoc = new Vector3((Vector3i)pos).add(0.5, 0.85, 0.5);
+        final Vector3 dropLoc = new Vector3((Vec3i)pos).add(0.5, 0.85, 0.5);
         final ItemStack tool = new ItemStack((ItemLike)Items.field_151112_aM);
         tool.func_77966_a(Enchantments.field_151370_z, 2);
         ResourceLocation fromTable = LootTables.field_186390_ao;
@@ -173,7 +173,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
         builder.withLuck(CEffectOctans.rand.nextInt(2) * CEffectOctans.rand.nextFloat());
         builder.withRandom(CEffectOctans.rand);
         builder.withParameter(LootContextParams.TOOL, (Object)tool);
-        builder.withParameter(LootContextParams.LAST_DAMAGE_PLAYER, (Object)Vec3.func_237489_a_((Vector3i)pos));
+        builder.withParameter(LootContextParams.LAST_DAMAGE_PLAYER, (Object)Vec3.func_237489_a_((Vec3i)pos));
         final LootTable lootTable = world.func_73046_m().getLootData().getLootTable(fromTable);
         for (final ItemStack loot : lootTable.func_216113_a(builder.func_216022_a(LootParameterSets.field_216262_c))) {
             final ItemEntity ei = ItemUtils.dropItemNaturally((Level)world, dropLoc.getX(), dropLoc.getY(), dropLoc.getZ(), loot);

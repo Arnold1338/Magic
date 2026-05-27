@@ -31,7 +31,7 @@ public class BlockDiscoverer
 {
     public static Set<BlockPos> discoverBlocksWithSameStateAroundChain(final Level world, final BlockPos origin, final BlockState match, int length, @Nullable final Direction originalBreakDirection, final BlockPredicate addCheck) {
         final Set<BlockPos> out = new HashSet<BlockPos>();
-        BlockPos offset = new BlockPos((Vector3i)origin);
+        BlockPos offset = new BlockPos((Vec3i)origin);
     Label_0019:
         while (length > 0) {
             final List<Direction> faces = new ArrayList<Direction>();
@@ -69,7 +69,7 @@ public class BlockDiscoverer
             for (int chZ = minChZ; chZ <= maxChZ; ++chZ) {
                 final Chunk ch = world.func_212866_a_(chX, chZ);
                 if (ch != null) {
-                    out.addAll(ch.func_177434_r().values().stream().filter(tile -> tile.getBlockState().func_218141_a((Vector3i)origin, (double)distance)).filter((Predicate<? super Object>)match).map((Function<? super Object, ?>)BlockEntity::func_174877_v).collect((Collector<? super Object, ?, Collection<? extends BlockPos>>)Collectors.toList()));
+                    out.addAll(ch.func_177434_r().values().stream().filter(tile -> tile.getBlockState().func_218141_a((Vec3i)origin, (double)distance)).filter((Predicate<? super Object>)match).map((Function<? super Object, ?>)BlockEntity::func_174877_v).collect((Collector<? super Object, ?, Collection<? extends BlockPos>>)Collectors.toList()));
                 }
             }
         }
@@ -86,7 +86,7 @@ public class BlockDiscoverer
                     MiscUtils.executeWithChunk((IWorldReader)world, (BlockPos)offset, () -> {
                         final BlockState atState = world.getBlockState((BlockPos)offset);
                         if (match.test(world, (BlockPos)offset, atState)) {
-                            out.add(new BlockPos((Vector3i)offset));
+                            out.add(new BlockPos((Vec3i)offset));
                         }
                         return;
                     });
@@ -115,16 +115,16 @@ public class BlockDiscoverer
                 }
             }
             if (!posList.isEmpty()) {
-                Vector3 offset = new Vector3((Vector3i)center).add(0.5, 0.5, 0.5);
+                Vector3 offset = new Vector3((Vec3i)center).add(0.5, 0.5, 0.5);
                 if (offsetFrom != null) {
                     offset = offsetFrom;
                 }
                 BlockPos closest = null;
                 double prevDst = 0.0;
                 for (final BlockPos pos2 : posList) {
-                    if (closest == null || offset.distance((Vector3i)pos2) < prevDst) {
+                    if (closest == null || offset.distance((Vec3i)pos2) < prevDst) {
                         closest = pos2;
-                        prevDst = offset.distance((Vector3i)pos2);
+                        prevDst = offset.distance((Vec3i)pos2);
                     }
                 }
                 return closest;

@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.NodeConnection;
 import hellfirepvp.astralsorcery.common.starlight.WorldNetworkHandler;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import hellfirepvp.astralsorcery.common.starlight.network.TransmissionWorldHandler;
 import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissionNode;
 import hellfirepvp.astralsorcery.common.starlight.network.StarlightTransmissionHandler;
@@ -92,7 +92,7 @@ public class SimpleTransmissionNode implements ITransmissionNode
         else {
             this.nextReachable = oldRayState;
         }
-        this.dstToNextSq = pos.func_218138_a((IPosition)Vec3.func_237491_b_((Vector3i)this.thisPos), false);
+        this.dstToNextSq = pos.func_218138_a((IPosition)Vec3.func_237491_b_((Vec3i)this.thisPos), false);
     }
     
     @Override
@@ -100,7 +100,7 @@ public class SimpleTransmissionNode implements ITransmissionNode
         if (this.nextPos == null) {
             return false;
         }
-        final Vec3 bPosAt = Vec3.func_237491_b_((Vector3i)at);
+        final Vec3 bPosAt = Vec3.func_237491_b_((Vec3i)at);
         final double dstStart = this.thisPos.func_218138_a((IPosition)bPosAt, false);
         final double dstEnd = this.nextPos.func_218138_a((IPosition)bPosAt, false);
         if (dstStart > this.dstToNextSq || dstEnd > this.dstToNextSq) {

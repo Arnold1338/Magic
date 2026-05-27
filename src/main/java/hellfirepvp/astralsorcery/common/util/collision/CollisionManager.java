@@ -8,7 +8,7 @@ import java.util.Iterator;
 import javax.annotation.Nullable;
 import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.constellation.mantle.effect.MantleEffectAevitas;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import java.util.Map;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.LinkedList;

@@ -24,13 +24,13 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 
 public class PktRequestTeleport extends ASPacket<PktRequestTeleport>
 {
-    private RegistryKey<Level> dim;
+    private ResourceKey<Level> dim;
     private BlockPos pos;
     
     public PktRequestTeleport() {
     }
     
-    public PktRequestTeleport(final RegistryKey<Level> dim, final BlockPos pos) {
+    public PktRequestTeleport(final ResourceKey<Level> dim, final BlockPos pos) {
         this.dim = dim;
         this.pos = pos;
     }
@@ -64,12 +64,12 @@ public class PktRequestTeleport extends ASPacket<PktRequestTeleport>
             if (gate != null && gate.hasMultiblock() && gate.doesSeeSky()) {
                 final MinecraftServer server = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
                 if (server != null) {
-                    final Level to = (Level)server.getLevel((RegistryKey)packet.dim);
+                    final Level to = (Level)server.getLevel((ResourceKey)packet.dim);
                     if (to != null) {
                         final GatewayCache.GatewayNode node = ((GatewayCache)DataAS.DOMAIN_AS.getData(to, (WorldCacheDomain.SaveKey)DataAS.KEY_GATEWAY_CACHE)).getGatewayNode(packet.pos);
                         if (node != null && node.hasAccess(player)) {
                             AstralSorcery.getProxy().scheduleDelayed(() -> {
-                                final Player playerEntity = MiscUtils.transferEntityTo(player, (RegistryKey<Level>)to.dimension(), packet.pos);
+                                final Player playerEntity = MiscUtils.transferEntityTo(player, (ResourceKey<Level>)to.dimension(), packet.pos);
                             });
                         }
                     }

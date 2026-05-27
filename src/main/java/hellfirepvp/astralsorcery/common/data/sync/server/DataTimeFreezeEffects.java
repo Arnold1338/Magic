@@ -23,32 +23,32 @@ import hellfirepvp.astralsorcery.common.data.sync.base.AbstractData;
 
 public class DataTimeFreezeEffects extends AbstractData
 {
-    private final Map<RegistryKey<Level>, List<TimeStopEffectHelper>> serverActiveFreezeZones;
+    private final Map<ResourceKey<Level>, List<TimeStopEffectHelper>> serverActiveFreezeZones;
     private final List<ServerSyncAction> scheduledServerSyncChanges;
     
     private DataTimeFreezeEffects(final ResourceLocation key) {
         super(key);
-        this.serverActiveFreezeZones = new HashMap<RegistryKey<Level>, List<TimeStopEffectHelper>>();
+        this.serverActiveFreezeZones = new HashMap<ResourceKey<Level>, List<TimeStopEffectHelper>>();
         this.scheduledServerSyncChanges = new LinkedList<ServerSyncAction>();
     }
     
-    public void addNewEffect(final RegistryKey<Level> dim, final TimeStopEffectHelper effectHelper) {
+    public void addNewEffect(final ResourceKey<Level> dim, final TimeStopEffectHelper effectHelper) {
         final List<TimeStopEffectHelper> zones = this.serverActiveFreezeZones.computeIfAbsent(dim, id -> new LinkedList());
         zones.add(effectHelper);
-        this.scheduledServerSyncChanges.add(new ServerSyncAction(ServerSyncAction.ActionType.ADD, (RegistryKey)dim, effectHelper));
+        this.scheduledServerSyncChanges.add(new ServerSyncAction(ServerSyncAction.ActionType.ADD, (ResourceKey)dim, effectHelper));
         this.markDirty();
     }
     
-    public void removeEffect(final RegistryKey<Level> dim, final TimeStopEffectHelper effectHelper) {
+    public void removeEffect(final ResourceKey<Level> dim, final TimeStopEffectHelper effectHelper) {
         if (this.serverActiveFreezeZones.containsKey(dim)) {
             this.serverActiveFreezeZones.get(dim).remove(effectHelper);
         }
-        this.scheduledServerSyncChanges.add(new ServerSyncAction(ServerSyncAction.ActionType.REMOVE, (RegistryKey)dim, effectHelper));
+        this.scheduledServerSyncChanges.add(new ServerSyncAction(ServerSyncAction.ActionType.REMOVE, (ResourceKey)dim, effectHelper));
         this.markDirty();
     }
     
     @Override
-    public void clear(final RegistryKey<Level> dim) {
+    public void clear(final ResourceKey<Level> dim) {
         this.serverActiveFreezeZones.remove(dim);
     }
     
@@ -61,7 +61,7 @@ public class DataTimeFreezeEffects extends AbstractData
     @Override
     public void writeAllDataToPacket(final CompoundTag compound) {
         final CompoundTag dimTag = new CompoundTag();
-        for (final RegistryKey<Level> dim : this.serverActiveFreezeZones.keySet()) {
+        for (final ResourceKey<Level> dim : this.serverActiveFreezeZones.keySet()) {
             final ListTag tagList = new ListTag();
             for (final TimeStopEffectHelper effect : this.serverActiveFreezeZones.get(dim)) {
                 tagList.add((Object)effect.serializeNBT());
@@ -84,10 +84,10 @@ public class DataTimeFreezeEffects extends AbstractData
     public static class ServerSyncAction
     {
         private final ActionType type;
-        private final RegistryKey<Level> dim;
+        private final ResourceKey<Level> dim;
         private final TimeStopEffectHelper involvedEffect;
         
-        private ServerSyncAction(final ActionType type, final RegistryKey<Level> dim, final TimeStopEffectHelper involvedEffect) {
+        private ServerSyncAction(final ActionType type, final ResourceKey<Level> dim, final TimeStopEffectHelper involvedEffect) {
             this.type = type;
             this.dim = dim;
             this.involvedEffect = involvedEffect;
@@ -110,7 +110,7 @@ public class DataTimeFreezeEffects extends AbstractData
         public static ServerSyncAction deserializeNBT(final CompoundTag cmp) {
             final ActionType type = MiscUtils.getEnumEntry(ActionType.class, cmp.getInt("type"));
             final String dimKey = cmp.getString("dimType");
-            final RegistryKey<Level> dim = (RegistryKey<Level>)RegistryKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(dimKey));
+            final ResourceKey<Level> dim = (ResourceKey<Level>)ResourceKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(dimKey));
             TimeStopEffectHelper helper = null;
             switch (type) {
                 case ADD:
@@ -127,7 +127,7 @@ public class DataTimeFreezeEffects extends AbstractData
             return this.involvedEffect;
         }
         
-        public RegistryKey<Level> getDimKey() {
+        public ResourceKey<Level> getDimKey() {
             return this.dim;
         }
         

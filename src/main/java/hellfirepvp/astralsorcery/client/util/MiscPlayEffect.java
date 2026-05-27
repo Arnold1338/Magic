@@ -47,7 +47,7 @@ public class MiscPlayEffect
     public static void playTumbleBlockEffects(final PktPlayEffect event) {
         final BlockPos pos = ByteBufUtils.readPos(event.getExtraData());
         final BlockState state = ByteBufUtils.readBlockState(event.getExtraData());
-        final Vector3 vec = new Vector3((Vector3i)pos).add(0.5f, 0.5f, 0.5f);
+        final Vector3 vec = new Vector3((Vec3i)pos).add(0.5f, 0.5f, 0.5f);
         playBlockParticles(state, pos);
         EffectHelper.of(EffectTemplatesAS.BLOCK_TRANSLUCENT).spawn(vec).tumble().setBlockState(state).setMotion(new Vector3(0.0, 0.035, 0.0)).scale(VFXScaleFunction.SHRINK_EXP).setMaxAge(20 + MiscPlayEffect.rand.nextInt(15));
     }
@@ -62,7 +62,7 @@ public class MiscPlayEffect
     @OnlyIn(Dist.CLIENT)
     private static void playBlockParticles(final BlockState state, final BlockPos pos) {
         RenderingUtils.playBlockBreakParticles(pos, null, state);
-        final Vector3 vec = new Vector3((Vector3i)pos).add(0.5f, 0.5f, 0.5f);
+        final Vector3 vec = new Vector3((Vec3i)pos).add(0.5f, 0.5f, 0.5f);
         for (int i = 0; i < 6; ++i) {
             final Vector3 at = vec.add(MiscPlayEffect.rand.nextFloat() * 0.1 * (MiscPlayEffect.rand.nextBoolean() ? 1 : -1), MiscPlayEffect.rand.nextFloat() * 0.1 * (MiscPlayEffect.rand.nextBoolean() ? 1 : -1), MiscPlayEffect.rand.nextFloat() * 0.1 * (MiscPlayEffect.rand.nextBoolean() ? 1 : -1));
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).setMotion(Vector3.random().multiply(0.045f)).setScaleMultiplier(0.25f + MiscPlayEffect.rand.nextFloat() * 0.1f).color(VFXColorFunction.WHITE);

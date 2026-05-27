@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.constellation.mantle.effect;
 import net.minecraftforge.common.ForgeConfigSpec;
 import java.util.List;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import java.util.Iterator;
 import java.util.Set;
 import hellfirepvp.astralsorcery.client.effect.function.VFXAlphaFunction;
@@ -60,7 +60,7 @@ public class MantleEffectLucerna extends MantleEffect
             if (MantleEffectLucerna.rand.nextFloat() > chance) {
                 continue;
             }
-            final Vector3 at = new Vector3((Vector3i)pos).add(MantleEffectLucerna.rand.nextFloat(), MantleEffectLucerna.rand.nextFloat(), MantleEffectLucerna.rand.nextFloat());
+            final Vector3 at = new Vector3((Vec3i)pos).add(MantleEffectLucerna.rand.nextFloat(), MantleEffectLucerna.rand.nextFloat(), MantleEffectLucerna.rand.nextFloat());
             if (at.distance((Entity)player) < 4.0) {
                 continue;
             }

@@ -5,11 +5,11 @@ import java.util.Iterator;
 import java.util.List;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.phys.Vec3;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.BooleanOp;
-import net.minecraft.world.level.phys.shapes.Shapes;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.function.Consumer;
 import net.minecraft.world.phys.shapes.VoxelShape;
 

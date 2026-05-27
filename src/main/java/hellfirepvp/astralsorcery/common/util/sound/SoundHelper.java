@@ -19,11 +19,11 @@ import net.minecraft.sounds.SoundEvent;
 
 public class SoundHelper
 {
-    public static void playSoundAround(final SoundEvent sound, final Level world, final Vector3i position, final float volume, final float pitch) {
+    public static void playSoundAround(final SoundEvent sound, final Level world, final Vec3i position, final float volume, final float pitch) {
         playSoundAround(sound, SoundSource.MASTER, world, position.getX(), position.getY(), position.getZ(), volume, pitch);
     }
     
-    public static void playSoundAround(final SoundEvent sound, final SoundSource category, final Level world, final Vector3i position, final float volume, final float pitch) {
+    public static void playSoundAround(final SoundEvent sound, final SoundSource category, final Level world, final Vec3i position, final float volume, final float pitch) {
         playSoundAround(sound, category, world, position.getX(), position.getY(), position.getZ(), volume, pitch);
     }
     

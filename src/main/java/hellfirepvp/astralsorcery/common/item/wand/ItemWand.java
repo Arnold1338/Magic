@@ -66,11 +66,11 @@ public class ItemWand extends Item implements OverrideInteractItem
                     }
                     else {
                         if (!DayTimeHelper.isDay(world) && ItemWand.count.nextInt(600) == 0) {
-                            final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.ROCK_CRYSTAL_COLUMN).addData(b -> ByteBufUtils.writeVector(b, new Vector3((Vector3i)rPos.above())));
+                            final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.ROCK_CRYSTAL_COLUMN).addData(b -> ByteBufUtils.writeVector(b, new Vector3((Vec3i)rPos.above())));
                             PacketChannel.CHANNEL.sendToPlayer((Player)entity, pkt);
                         }
                         if (ItemWand.count.nextInt(800) == 0) {
-                            final PktPlayEffect pkt2 = new PktPlayEffect(PktPlayEffect.Type.ROCK_CRYSTAL_SPARKS).addData(b -> ByteBufUtils.writeVector(b, new Vector3((Vector3i)rPos.above())));
+                            final PktPlayEffect pkt2 = new PktPlayEffect(PktPlayEffect.Type.ROCK_CRYSTAL_SPARKS).addData(b -> ByteBufUtils.writeVector(b, new Vector3((Vec3i)rPos.above())));
                             PacketChannel.CHANNEL.sendToPlayer((Player)entity, pkt2);
                         }
                     }
@@ -101,7 +101,7 @@ public class ItemWand extends Item implements OverrideInteractItem
             }
             else if (player.func_213453_ef() && player.getVehicle()) {
                 final BlockArray structure = mbTe.getRequiredStructureType().getStructure();
-                structure.getContents().forEach((offset, rState) -> world.func_175656_a(pos.func_177971_a((Vector3i)offset), rState.getDescriptiveState(0L)));
+                structure.getContents().forEach((offset, rState) -> world.func_175656_a(pos.func_177971_a((Vec3i)offset), rState.getDescriptiveState(0L)));
             }
             return true;
         }
@@ -148,7 +148,7 @@ public class ItemWand extends Item implements OverrideInteractItem
         }
         final BlockPos at = pos.toBlockPos();
         final BlockPos top = world.func_205770_a(Heightmap.Type.WORLD_SURFACE, at);
-        final Vector3 columnDisplay = new Vector3((Vector3i)top);
+        final Vector3 columnDisplay = new Vector3((Vec3i)top);
         MiscUtils.applyRandomOffset(columnDisplay, ItemWand.count, 2.0f);
         final double mX = ItemWand.count.nextFloat() * 0.01f * (ItemWand.count.nextBoolean() ? 1 : -1);
         final double mY = ItemWand.count.nextFloat() * 0.5f;

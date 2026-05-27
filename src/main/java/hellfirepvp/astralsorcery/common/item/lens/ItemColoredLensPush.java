@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.item.lens;
 
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
 import net.minecraft.world.entity.player.Player;

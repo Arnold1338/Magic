@@ -126,7 +126,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
             final Recipe<?> recipe = (Recipe<?>)world.func_199532_z().getRecipeFor((RecipeType)RecipeTypesAS.TYPE_INFUSION.getType()).get(recipeName);
             if (recipe instanceof LiquidInfusion) {
                 final FluidStack stack = new FluidStack(((LiquidInfusion)recipe).getLiquidInput(), 1000);
-                final Vector3 pos = new Vector3((Vector3i)at).add(0.5, 1.0, 0.5);
+                final Vector3 pos = new Vector3((Vec3i)at).add(0.5, 1.0, 0.5);
                 for (int i = 0; i < 30; ++i) {
                     playLiquidFinish(pos, stack);
                 }
@@ -165,13 +165,13 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
         this.activeRecipe.consumeFluidsInput(this);
         ForgeHooks.setCraftingPlayer((Player)null);
         this.abortCrafting();
-        SoundHelper.playSoundAround(SoundsAS.INFUSER_CRAFT_FINISH, this.getLevel(), (Vector3i)this.getBlockState(), 1.0f, 1.0f);
+        SoundHelper.playSoundAround(SoundsAS.INFUSER_CRAFT_FINISH, this.getLevel(), (Vec3i)this.getBlockState(), 1.0f, 1.0f);
         final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.INFUSER_RECIPE_FINISH).addData(buf -> {
             ByteBufUtils.writeResourceLocation(buf, recipeName);
             ByteBufUtils.writePos(buf, this.getBlockState());
             return;
         });
-        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vector3i)this.getBlockState(), 32.0));
+        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vec3i)this.getBlockState(), 32.0));
         EntityFlare.spawnAmbientFlare(this.getLevel(), this.getBlockState().offset(-3 + TileInfuser.rand.nextInt(7), 1 + TileInfuser.rand.nextInt(3), -3 + TileInfuser.rand.nextInt(7)));
         this.knownRecipes.add(recipeName);
     }
@@ -238,7 +238,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
     
     @Nonnull
     public Map<BlockPos, Fluid> getLiquids() {
-        return MapStream.ofKeys((Collection<BlockPos>)getLiquidOffsets(), pos -> this.getLevel().func_204610_c(this.getBlockState().func_177971_a((Vector3i)pos)).func_206886_c()).toMap();
+        return MapStream.ofKeys((Collection<BlockPos>)getLiquidOffsets(), pos -> this.getLevel().func_204610_c(this.getBlockState().func_177971_a((Vec3i)pos)).func_206886_c()).toMap();
     }
     
     @Nonnull

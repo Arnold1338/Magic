@@ -9,7 +9,7 @@ import java.util.Map;
 import java.awt.Rectangle;
 import net.minecraft.network.chat.Component;
 import com.google.common.collect.Maps;
-import net.minecraft.network.chat.FormattedCharSequence;
+import net.minecraft.util.FormattedCharSequence;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;

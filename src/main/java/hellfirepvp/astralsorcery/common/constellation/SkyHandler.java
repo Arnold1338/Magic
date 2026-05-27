@@ -22,9 +22,9 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 public class SkyHandler implements ITickHandler
 {
     private static final SkyHandler instance;
-    private final Map<RegistryKey<Level>, WorldContext> worldHandlersServer;
-    private final Map<RegistryKey<Level>, WorldContext> worldHandlersClient;
-    private final Map<RegistryKey<Level>, Boolean> skyRevertMap;
+    private final Map<ResourceKey<Level>, WorldContext> worldHandlersServer;
+    private final Map<ResourceKey<Level>, WorldContext> worldHandlersClient;
+    private final Map<ResourceKey<Level>, Boolean> skyRevertMap;
     
     private SkyHandler() {
         this.worldHandlersServer = Maps.newHashMap();
@@ -40,7 +40,7 @@ public class SkyHandler implements ITickHandler
         if (type == TickEvent.Type.WORLD) {
             final Level w = (Level)context[0];
             if (!w.level().isClientSide() && w instanceof ServerLevel) {
-                final RegistryKey<Level> dimKey = (RegistryKey<Level>)w.dimension();
+                final ResourceKey<Level> dimKey = (ResourceKey<Level>)w.dimension();
                 this.skyRevertMap.put(dimKey, false);
                 WorldContext ctx = this.worldHandlersServer.get(dimKey);
                 if (ctx == null) {
@@ -59,7 +59,7 @@ public class SkyHandler implements ITickHandler
     private void handleClientTick() {
         final Level w = (Level)Minecraft.getInstance().level;
         if (w != null) {
-            final RegistryKey<Level> dimKey = (RegistryKey<Level>)w.dimension();
+            final ResourceKey<Level> dimKey = (ResourceKey<Level>)w.dimension();
             WorldContext ctx = this.worldHandlersClient.get(dimKey);
             if (ctx == null) {
                 final Optional<Long> seedOpt = WorldSeedCache.getSeedIfPresent(dimKey);
@@ -87,7 +87,7 @@ public class SkyHandler implements ITickHandler
         if (world == null) {
             return null;
         }
-        final RegistryKey<Level> dimKey = (RegistryKey<Level>)world.dimension();
+        final ResourceKey<Level> dimKey = (ResourceKey<Level>)world.dimension();
         if (dist.isClient()) {
             return getInstance().worldHandlersClient.getOrDefault(dimKey, null);
         }
@@ -95,7 +95,7 @@ public class SkyHandler implements ITickHandler
     }
     
     public void revertWorldTimeTick(final ServerLevel world) {
-        final RegistryKey<Level> dimKey = (RegistryKey<Level>)world.dimension();
+        final ResourceKey<Level> dimKey = (ResourceKey<Level>)world.dimension();
         final Boolean state = this.skyRevertMap.get(dimKey);
         if (!world.isClientSide && state != null && !state) {
             this.skyRevertMap.put(dimKey, true);

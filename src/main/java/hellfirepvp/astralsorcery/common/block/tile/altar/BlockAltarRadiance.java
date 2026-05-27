@@ -9,8 +9,8 @@ import net.minecraft.world.level.block.Block;
 import javax.annotation.Nullable;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.BlockItemUseContext;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.AABB;
 import hellfirepvp.astralsorcery.common.block.base.LargeBlock;
 import hellfirepvp.astralsorcery.common.block.tile.BlockAltar;
 

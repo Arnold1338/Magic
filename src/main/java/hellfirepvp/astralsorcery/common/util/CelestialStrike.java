@@ -37,7 +37,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.server.level.ServerLevel;
 import javax.annotation.Nullable;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 
 public class CelestialStrike
 {
@@ -86,7 +86,7 @@ public class CelestialStrike
             }
         }
         final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.CELESTIAL_STRIKE).addData(buf -> ByteBufUtils.writeVector(buf, displayPosition));
-        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos((Level)world, (Vector3i)at.toBlockPos(), 96.0));
+        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos((Level)world, (Vec3i)at.toBlockPos(), 96.0));
     }
     
     @OnlyIn(Dist.CLIENT)

@@ -5,7 +5,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraft.network.IPacket;
-import net.minecraft.world.level.phys.HitResult;
+import net.minecraft.world.phys.HitResult;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import net.minecraft.world.entity.MobSpawnType;
@@ -31,14 +31,14 @@ import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EntityType;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import net.minecraft.world.level.Level;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.entity.projectile.ThrowableEntity;
 
 public class EntityNocturnalSpark extends ThrowableEntity
@@ -169,7 +169,7 @@ public class EntityNocturnalSpark extends ThrowableEntity
             BlockPos pos = this.func_233580_cy_();
             pos.offset(this.random.nextInt(2) - this.random.nextInt(2), 1, this.random.nextInt(2) - this.random.nextInt(2));
             pos = BlockUtils.firstSolidDown((IBlockReader)this.level(), pos).above();
-            if (pos.func_177951_i((Vector3i)this.func_233580_cy_()) >= 16.0) {
+            if (pos.func_177951_i((Vec3i)this.func_233580_cy_()) >= 16.0) {
                 return;
             }
             EntityUtils.performWorldSpawningAt((ServerLevel)this.level(), pos, MobCategory.MONSTER, MobSpawnType.SPAWNER, true, 11);

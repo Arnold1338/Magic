@@ -26,7 +26,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 
 public class TimeStopController implements ITickHandler
 {
-    private static final Map<RegistryKey<Level>, List<TimeStopZone>> activeTimeStopZones;
+    private static final Map<ResourceKey<Level>, List<TimeStopZone>> activeTimeStopZones;
     public static final TimeStopController INSTANCE;
     
     private TimeStopController() {
@@ -49,9 +49,9 @@ public class TimeStopController implements ITickHandler
     @Nonnull
     public static TimeStopZone freezeWorldAt(@Nonnull final TimeStopZone.EntityTargetController controller, @Nonnull final Level world, @Nonnull final BlockPos offset, final float range, final int maxAge) {
         final TimeStopZone stopZone = new TimeStopZone(controller, range, offset, world, maxAge);
-        final List<TimeStopZone> zones = TimeStopController.activeTimeStopZones.computeIfAbsent((RegistryKey<Level>)world.dimension(), id -> new LinkedList());
+        final List<TimeStopZone> zones = TimeStopController.activeTimeStopZones.computeIfAbsent((ResourceKey<Level>)world.dimension(), id -> new LinkedList());
         zones.add(stopZone);
-        SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, DataTimeFreezeEffects.class, data -> data.addNewEffect((RegistryKey<Level>)world.dimension(), TimeStopEffectHelper.fromZone(stopZone)));
+        SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, DataTimeFreezeEffects.class, data -> data.addNewEffect((ResourceKey<Level>)world.dimension(), TimeStopEffectHelper.fromZone(stopZone)));
         return stopZone;
     }
     
@@ -59,7 +59,7 @@ public class TimeStopController implements ITickHandler
         if (world.level()) {
             return;
         }
-        final RegistryKey<Level> dimKey = (RegistryKey<Level>)world.dimension();
+        final ResourceKey<Level> dimKey = (ResourceKey<Level>)world.dimension();
         for (final TimeStopZone stop : TimeStopController.activeTimeStopZones.getOrDefault(dimKey, Collections.emptyList())) {
             stop.stopEffect();
         }
@@ -109,13 +109,13 @@ public class TimeStopController implements ITickHandler
     }
     
     public void tick(final TickEvent.Type type, final Object... context) {
-        for (final Map.Entry<RegistryKey<Level>, List<TimeStopZone>> zoneMap : TimeStopController.activeTimeStopZones.entrySet()) {
+        for (final Map.Entry<ResourceKey<Level>, List<TimeStopZone>> zoneMap : TimeStopController.activeTimeStopZones.entrySet()) {
             final Iterator<TimeStopZone> iterator = zoneMap.getValue().iterator();
             while (iterator.hasNext()) {
                 final TimeStopZone zone = iterator.next();
                 if (zone.shouldDespawn()) {
                     zone.stopEffect();
-                    SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, DataTimeFreezeEffects.class, data -> data.removeEffect((RegistryKey<Level>)zoneMap.getKey(), TimeStopEffectHelper.fromZone(zone)));
+                    SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, DataTimeFreezeEffects.class, data -> data.removeEffect((ResourceKey<Level>)zoneMap.getKey(), TimeStopEffectHelper.fromZone(zone)));
                     iterator.remove();
                 }
                 else {
@@ -124,7 +124,7 @@ public class TimeStopController implements ITickHandler
                         continue;
                     }
                     zone.stopEffect();
-                    SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, DataTimeFreezeEffects.class, data -> data.removeEffect((RegistryKey<Level>)zoneMap.getKey(), TimeStopEffectHelper.fromZone(zone)));
+                    SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, DataTimeFreezeEffects.class, data -> data.removeEffect((ResourceKey<Level>)zoneMap.getKey(), TimeStopEffectHelper.fromZone(zone)));
                     iterator.remove();
                 }
             }
@@ -144,7 +144,7 @@ public class TimeStopController implements ITickHandler
     }
     
     static {
-        activeTimeStopZones = new HashMap<RegistryKey<Level>, List<TimeStopZone>>();
+        activeTimeStopZones = new HashMap<ResourceKey<Level>, List<TimeStopZone>>();
         INSTANCE = new TimeStopController();
     }
 }

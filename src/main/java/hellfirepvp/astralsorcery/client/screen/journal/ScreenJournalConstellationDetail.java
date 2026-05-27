@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.client.screen.journal;
 
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.util.SoundEvent;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import net.minecraft.sounds.SoundEvent;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import net.minecraft.client.gui.screens.Screen;

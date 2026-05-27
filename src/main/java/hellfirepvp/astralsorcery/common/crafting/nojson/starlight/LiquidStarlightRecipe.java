@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import java.util.function.Predicate;
 import javax.annotation.Nullable;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.core.BlockPos;

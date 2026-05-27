@@ -31,7 +31,7 @@ import net.minecraft.server.level.ServerLevel;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import hellfirepvp.astralsorcery.common.event.PlayerAffectionFlags;
 import hellfirepvp.astralsorcery.common.constellation.effect.base.ListEntries;
 import hellfirepvp.astralsorcery.common.constellation.effect.base.CEffectAbstractList;
@@ -75,7 +75,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
     public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         final ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
         if (CEffectPelotrio.rand.nextFloat() < 0.2f) {
-            final Vector3 at = Vector3.random().normalize().multiply(CEffectPelotrio.rand.nextFloat() * prop.getSize()).add((Vector3i)pos).add(0.5, 0.5, 0.5);
+            final Vector3 at = Vector3.random().normalize().multiply(CEffectPelotrio.rand.nextFloat() * prop.getSize()).add((Vec3i)pos).add(0.5, 0.5, 0.5);
             EffectHelper.spawnSource(new FXOrbitalPelotrio(at).setOrbitAxis(Vector3.random()).setOrbitRadius(0.8 + CEffectPelotrio.rand.nextFloat() * 0.7).setTicksPerRotation(20 + CEffectPelotrio.rand.nextInt(20)));
         }
     }
@@ -106,7 +106,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
             int count = entry.getCounter();
             ++count;
             entry.setCounter(count);
-            this.sendConstellationPing(world, new Vector3((Vector3i)entry.getPos()).add(0.5, 0.5, 0.5));
+            this.sendConstellationPing(world, new Vector3((Vec3i)entry.getPos()).add(0.5, 0.5, 0.5));
             if (count >= 10) {
                 entry.spawn((ServerLevel)world, MobSpawnType.SPAWNER);
                 this.removeElement(entry);

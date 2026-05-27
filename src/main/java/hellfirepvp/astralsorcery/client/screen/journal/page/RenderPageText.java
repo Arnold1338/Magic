@@ -4,7 +4,7 @@ import java.util.Iterator;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Collection;
-import net.minecraft.network.chat.FormattedCharSequence;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.network.chat.Component;
 import java.util.LinkedList;
 import net.minecraft.network.chat.LanguageMap;

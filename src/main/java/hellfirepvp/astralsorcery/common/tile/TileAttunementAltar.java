@@ -8,7 +8,7 @@ import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import hellfirepvp.astralsorcery.common.constellation.star.StarConnection;
 import hellfirepvp.astralsorcery.common.constellation.star.StarLocation;
 import java.util.HashSet;
@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.LivingEntity;
 import hellfirepvp.astralsorcery.common.item.ItemConstellationPaper;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
 import net.minecraft.world.level.LevelAccessor;
@@ -209,7 +209,7 @@ public class TileAttunementAltar extends TileEntityTick
             final float night = DayTimeHelper.getCurrentDaytimeDistribution(this.getLevel());
             for (final BlockPos key2 : positions) {
                 if (!this.activeStarSprites.containsKey(key2)) {
-                    final FXFacingSprite sprite2 = EffectHelper.of(EffectTemplatesAS.FACING_SPRITE).spawn(new Vector3((Vector3i)key2).add(0.5, 0.5, 0.5)).setSprite(SpritesAS.SPR_RELAY_FLARE).setScaleMultiplier(1.4f).refresh(fx -> this.canPlayConstellationActiveEffects());
+                    final FXFacingSprite sprite2 = EffectHelper.of(EffectTemplatesAS.FACING_SPRITE).spawn(new Vector3((Vec3i)key2).add(0.5, 0.5, 0.5)).setSprite(SpritesAS.SPR_RELAY_FLARE).setScaleMultiplier(1.4f).refresh(fx -> this.canPlayConstellationActiveEffects());
                     this.activeStarSprites.put(key2, sprite2);
                 }
                 else {
@@ -251,8 +251,8 @@ public class TileAttunementAltar extends TileEntityTick
         final VFXColorFunction<?> beamColor = VFXColorFunction.constant(ColorsAS.DEFAULT_GENERIC_PARTICLE);
         final float beamSize = 0.8f;
         for (final Tuple<BlockPos, BlockPos> conn : this.getConstellationConnectionPositions(this.activeConstellation)) {
-            final Vector3 from = new Vector3((Vector3i)conn.getA()).add(0.5, 0.5, 0.5);
-            final Vector3 to = new Vector3((Vector3i)conn.getB()).add(0.5, 0.5, 0.5);
+            final Vector3 from = new Vector3((Vec3i)conn.getA()).add(0.5, 0.5, 0.5);
+            final Vector3 to = new Vector3((Vec3i)conn.getB()).add(0.5, 0.5, 0.5);
             if (this.getTicksExisted() % 50 == 0) {
                 EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).spawn(from).setup(to, beamSize, beamSize).color(beamColor);
                 EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).spawn(to).setup(from, beamSize, beamSize).color(beamColor);
@@ -306,7 +306,7 @@ public class TileAttunementAltar extends TileEntityTick
             return;
         }
         final Player player = (Player)Minecraft.getInstance().player;
-        if (player == null || player.func_195048_a(Vec3.func_237489_a_((Vector3i)this.getBlockState())) >= 256.0) {
+        if (player == null || player.func_195048_a(Vec3.func_237489_a_((Vec3i)this.getBlockState())) >= 256.0) {
             return;
         }
         final Tuple<Hand, ItemStack> heldTpl = MiscUtils.getMainOrOffHand((LivingEntity)player, stack -> stack.getItem() instanceof ItemConstellationPaper);
@@ -326,7 +326,7 @@ public class TileAttunementAltar extends TileEntityTick
     
     @OnlyIn(Dist.CLIENT)
     private void playConstellationHighlightParticles(final IConstellation cst, final BlockPos pos, final float nightPercent) {
-        final Vector3 at = new Vector3((Vector3i)pos).add(0.5, 0.0, 0.5);
+        final Vector3 at = new Vector3((Vec3i)pos).add(0.5, 0.0, 0.5);
         final Vector3 offset = Vector3.random().multiply(0.5f).setY(0);
         if (TileAttunementAltar.rand.nextInt(3) == 0) {
             offset.multiply(0.5);
@@ -339,7 +339,7 @@ public class TileAttunementAltar extends TileEntityTick
     
     @OnlyIn(Dist.CLIENT)
     private void playAltarConstellationHighlightParticles(final IConstellation cst, final float nightPercent) {
-        final Vector3 at = new Vector3((Vector3i)this.getBlockState()).add(0.5, 0.0, 0.5).add(Vector3.random().setY(0).multiply(0.65f));
+        final Vector3 at = new Vector3((Vec3i)this.getBlockState()).add(0.5, 0.0, 0.5).add(Vector3.random().setY(0).multiply(0.65f));
         EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).color(VFXColorFunction.constant(cst.getConstellationColor().brighter())).setGravityStrength(-0.0015f).setMotion(Vector3.random().addY(3.0).normalize().multiply(0.03 + TileAttunementAltar.rand.nextFloat() * 0.015)).setAlphaMultiplier(0.85f * nightPercent).setScaleMultiplier(0.2f + TileAttunementAltar.rand.nextFloat() * 0.1f).alpha(VFXAlphaFunction.FADE_OUT);
     }
     
@@ -416,7 +416,7 @@ public class TileAttunementAltar extends TileEntityTick
         for (final StarLocation sl : cst.getStars()) {
             final int x = sl.x / 2;
             final int z = sl.y / 2;
-            offsetPositions.add(new BlockPos(x - 7, 0, z - 7).func_177971_a((Vector3i)this.getBlockState()));
+            offsetPositions.add(new BlockPos(x - 7, 0, z - 7).func_177971_a((Vec3i)this.getBlockState()));
         }
         return offsetPositions;
     }
@@ -430,7 +430,7 @@ public class TileAttunementAltar extends TileEntityTick
             final int fZ = from.y / 2;
             final int tX = to.x / 2;
             final int tZ = to.y / 2;
-            offsetPositions.add((Tuple<BlockPos, BlockPos>)new Tuple((Object)new BlockPos(fX - 7, 0, fZ - 7).func_177971_a((Vector3i)this.getBlockState()), (Object)new BlockPos(tX - 7, 0, tZ - 7).func_177971_a((Vector3i)this.getBlockState())));
+            offsetPositions.add((Tuple<BlockPos, BlockPos>)new Tuple((Object)new BlockPos(fX - 7, 0, fZ - 7).func_177971_a((Vec3i)this.getBlockState()), (Object)new BlockPos(tX - 7, 0, tZ - 7).func_177971_a((Vec3i)this.getBlockState())));
         }
         return offsetPositions;
     }

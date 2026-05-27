@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.Block;
 import java.util.ArrayList;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesGlass;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import net.minecraft.world.level.block.BaseEntityBlock;
 

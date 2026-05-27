@@ -4,7 +4,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItemUseContext;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 
 public interface LargeBlock
 {

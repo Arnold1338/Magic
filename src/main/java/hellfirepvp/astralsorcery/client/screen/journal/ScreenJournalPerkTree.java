@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.screen.journal;
 
-import net.minecraft.util.SoundEvent;
+import net.minecraft.sounds.SoundEvent;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.util.SoundEvents;
@@ -18,7 +18,7 @@ import java.awt.Color;
 import org.joml.Matrix4f;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.util.draw.BufferContext;
-import net.minecraft.client.renderer.BufferBuilder;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.perk.PerkConverter;
 import hellfirepvp.astralsorcery.common.perk.source.AttributeConverterProvider;
@@ -58,7 +58,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import java.awt.geom.Point2D;
 import hellfirepvp.astralsorcery.common.constellation.IMajorConstellation;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import java.util.Iterator;
@@ -193,12 +193,12 @@ public class ScreenJournalPerkTree extends ScreenJournal
             final AbstractPerk root = PerkTree.PERK_TREE.getRootPerk(LogicalSide.CLIENT, attunement);
             if (root != null) {
                 final Point2D.Float shift = this.sizeHandler.evRelativePos(root.getOffset());
-                this.moveMouse((float)MathHelper.func_76141_d(shift.x), (float)MathHelper.func_76141_d(shift.y));
+                this.moveMouse((float)Mth.func_76141_d(shift.x), (float)Mth.func_76141_d(shift.y));
                 shifted = true;
             }
         }
         if (!shifted) {
-            this.moveMouse((float)MathHelper.func_76141_d(this.sizeHandler.getTotalWidth() / 2.0f), (float)MathHelper.func_76141_d(this.sizeHandler.getTotalHeight() / 2.0f));
+            this.moveMouse((float)Mth.func_76141_d(this.sizeHandler.getTotalWidth() / 2.0f), (float)Mth.func_76141_d(this.sizeHandler.getTotalHeight() / 2.0f));
         }
         this.applyMovedMouseOffset();
     }
@@ -208,7 +208,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         this.thisFramePerks.clear();
         final double guiFactor = Minecraft.getInstance().func_228018_at_().func_198100_s();
         GL11.glEnable(3089);
-        GL11.glScissor(MathHelper.func_76128_c((this.guiLeft + 39) * guiFactor), MathHelper.func_76128_c((this.guiTop + 44) * guiFactor), MathHelper.func_76128_c((this.guiWidth - 76) * guiFactor), MathHelper.func_76128_c((this.guiHeight - 71) * guiFactor));
+        GL11.glScissor(Mth.func_76128_c((this.guiLeft + 39) * guiFactor), Mth.func_76128_c((this.guiTop + 44) * guiFactor), Mth.func_76128_c((this.guiWidth - 76) * guiFactor), Mth.func_76128_c((this.guiHeight - 71) * guiFactor));
         this.func_230926_e_(-50);
         this.drawBackground(renderStack);
         this.func_230926_e_(0);
@@ -367,8 +367,8 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 return;
             }
             final Point2D.Float offset = this.sizeHandler.scalePointToGui(this, this.mousePosition, sMenuPerk.getPoint().getOffset());
-            float offsetX = (float)MathHelper.func_76141_d(offset.x);
-            float offsetY = (float)MathHelper.func_76141_d(offset.y);
+            float offsetX = (float)Mth.func_76141_d(offset.x);
+            float offsetY = (float)Mth.func_76141_d(offset.y);
             final float scale = this.sizeHandler.getScalingFactor();
             final float scaledSlotSize = 18.0f * scale;
             final int realWidth = Math.min(5, found.size());

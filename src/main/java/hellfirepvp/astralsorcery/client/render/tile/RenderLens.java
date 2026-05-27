@@ -36,7 +36,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                 if (!linked.isEmpty() && linked.size() == 1) {
                     final BlockPos to = linked.get(0);
                     final BlockPos from = tile.getTrPos();
-                    final Vector3 dir = new Vector3((Vector3i)to).subtract(new Vector3((Vector3i)from));
+                    final Vector3 dir = new Vector3((Vec3i)to).subtract(new Vector3((Vec3i)from));
                     degPitch = (float)Math.atan2(dir.getY(), Math.sqrt(dir.getX() * dir.getX() + dir.getZ() * dir.getZ()));
                     degYaw = (float)Math.atan2(dir.getX(), dir.getZ());
                     degYaw = 180.0f + (float)Math.toDegrees(-degYaw);
@@ -58,7 +58,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                 if (!linked.isEmpty() && linked.size() == 1) {
                     final BlockPos to = linked.get(0);
                     final BlockPos from = tile.getTrPos();
-                    final Vector3 dir = new Vector3((Vector3i)to).subtract(new Vector3((Vector3i)from));
+                    final Vector3 dir = new Vector3((Vec3i)to).subtract(new Vector3((Vec3i)from));
                     degPitch = (float)Math.atan2(dir.getY(), Math.sqrt(dir.getX() * dir.getX() + dir.getZ() * dir.getZ()));
                     degYaw = (float)Math.atan2(dir.getX(), dir.getZ());
                     degYaw = 180.0f + (float)Math.toDegrees(-degYaw);
@@ -79,7 +79,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                 if (!linked.isEmpty() && linked.size() == 1) {
                     final BlockPos to = linked.get(0);
                     final BlockPos from = tile.getTrPos();
-                    final Vector3 dir = new Vector3((Vector3i)to).subtract(new Vector3((Vector3i)from));
+                    final Vector3 dir = new Vector3((Vec3i)to).subtract(new Vector3((Vec3i)from));
                     degPitch = (float)Math.atan2(dir.getZ(), Math.sqrt(dir.getX() * dir.getX() + dir.getY() * dir.getY()));
                     degYaw = (float)Math.atan2(dir.getX(), dir.getY());
                     degYaw = 180.0f + (float)Math.toDegrees(-degYaw);
@@ -101,7 +101,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                 if (!linked.isEmpty() && linked.size() == 1) {
                     final BlockPos to = linked.get(0);
                     final BlockPos from = tile.getTrPos();
-                    final Vector3 dir = new Vector3((Vector3i)to).subtract(new Vector3((Vector3i)from));
+                    final Vector3 dir = new Vector3((Vec3i)to).subtract(new Vector3((Vec3i)from));
                     degPitch = (float)Math.atan2(dir.getZ(), Math.sqrt(dir.getX() * dir.getX() + dir.getY() * dir.getY()));
                     degYaw = (float)Math.atan2(dir.getX(), dir.getY());
                     degYaw = 180.0f + (float)Math.toDegrees(-degYaw);
@@ -123,7 +123,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                 if (!linked.isEmpty() && linked.size() == 1) {
                     final BlockPos to = linked.get(0);
                     final BlockPos from = tile.getTrPos();
-                    final Vector3 dir = new Vector3((Vector3i)to).subtract(new Vector3((Vector3i)from));
+                    final Vector3 dir = new Vector3((Vec3i)to).subtract(new Vector3((Vec3i)from));
                     degPitch = (float)Math.atan2(dir.getX(), Math.sqrt(dir.getZ() * dir.getZ() + dir.getY() * dir.getY()));
                     degYaw = (float)Math.atan2(dir.getZ(), dir.getY());
                     degYaw = 180.0f + (float)Math.toDegrees(-degYaw);
@@ -145,7 +145,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                 if (!linked.isEmpty() && linked.size() == 1) {
                     final BlockPos to = linked.get(0);
                     final BlockPos from = tile.getTrPos();
-                    final Vector3 dir = new Vector3((Vector3i)to).subtract(new Vector3((Vector3i)from));
+                    final Vector3 dir = new Vector3((Vec3i)to).subtract(new Vector3((Vec3i)from));
                     degPitch = (float)Math.atan2(dir.getX(), Math.sqrt(dir.getZ() * dir.getZ() + dir.getY() * dir.getY()));
                     degYaw = (float)Math.atan2(dir.getZ(), dir.getY());
                     degYaw = 180.0f + (float)Math.toDegrees(-degYaw);

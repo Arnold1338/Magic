@@ -194,12 +194,12 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
         }
         final Point p = new Point((int)mouseX, (int)mouseY);
         if (this.rectArrowCW != null && this.rectArrowCW.contains(p)) {
-            final PktRotateTelescope pkt = new PktRotateTelescope(true, (RegistryKey<Level>)((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().getLevel().dimension(), ((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().getBlockState());
+            final PktRotateTelescope pkt = new PktRotateTelescope(true, (ResourceKey<Level>)((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().getLevel().dimension(), ((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().getBlockState());
             PacketChannel.CHANNEL.sendToServer(pkt);
             return true;
         }
         if (this.rectArrowCCW != null && this.rectArrowCCW.contains(p)) {
-            final PktRotateTelescope pkt = new PktRotateTelescope(false, (RegistryKey<Level>)((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().getLevel().dimension(), ((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().getBlockState());
+            final PktRotateTelescope pkt = new PktRotateTelescope(false, (ResourceKey<Level>)((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().getLevel().dimension(), ((TileConstellationDiscoveryScreen<TileTelescope, D>)this).getTile().getBlockState());
             PacketChannel.CHANNEL.sendToServer(pkt);
             return true;
         }

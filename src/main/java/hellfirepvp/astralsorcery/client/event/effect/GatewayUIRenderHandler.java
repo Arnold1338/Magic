@@ -20,15 +20,15 @@ import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.awt.Color;
 import java.util.UUID;
 import hellfirepvp.astralsorcery.common.data.world.GatewayCache;
-import net.minecraft.network.chat.FormattedCharSequence;
+import net.minecraft.util.FormattedCharSequence;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import net.minecraft.core.Vec3i;
 import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
-import net.minecraft.world.level.phys.BlockHitResult;
-import net.minecraft.world.level.phys.HitResult;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.entity.player.Player;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -120,8 +120,8 @@ public class GatewayUIRenderHandler implements ITickHandler
         final Color c = ColorsAS.CONSTELLATION_TYPE_MAJOR;
         final float alpha = Mth.canEnchant(1.0f - (float)(distance / 2.0), 0.0f, 1.0f);
         node.getAllowedUsers().forEach((index, playerRef) -> {
-            final BlockPos drawPos = TileCelestialGateway.getAllowedUserOffset(index).func_177971_a((Vector3i)node.getPos());
-            final Vector3 at = new Vector3((Vector3i)drawPos).add(0.5, 0.001, 0.5).subtract(RenderingVectorUtils.getStandardTranslationRemovalVector(pTicks));
+            final BlockPos drawPos = TileCelestialGateway.getAllowedUserOffset(index).func_177971_a((Vec3i)node.getPos());
+            final Vector3 at = new Vector3((Vec3i)drawPos).add(0.5, 0.001, 0.5).subtract(RenderingVectorUtils.getStandardTranslationRemovalVector(pTicks));
             final IConstellation cst = this.getCurrentUI().getGeneratedConstellation(playerRef.getPlayerUUID());
             if (cst != null) {
                 RenderingConstellationUtils.renderConstellationIntoWorldFlat(c, cst, renderStack, at, 1.2, 1.0, alpha);

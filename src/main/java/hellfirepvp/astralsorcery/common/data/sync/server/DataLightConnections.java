@@ -25,18 +25,18 @@ import hellfirepvp.astralsorcery.common.data.sync.base.AbstractData;
 
 public class DataLightConnections extends AbstractData
 {
-    private final Map<RegistryKey<Level>, Map<BlockPos, Set<BlockPos>>> serverPosBuffer;
-    private final Map<RegistryKey<Level>, LinkedList<Tuple<TransmissionChain.LightConnection, Boolean>>> serverChangeBuffer;
-    private final Set<RegistryKey<Level>> dimensionClearBuffer;
+    private final Map<ResourceKey<Level>, Map<BlockPos, Set<BlockPos>>> serverPosBuffer;
+    private final Map<ResourceKey<Level>, LinkedList<Tuple<TransmissionChain.LightConnection, Boolean>>> serverChangeBuffer;
+    private final Set<ResourceKey<Level>> dimensionClearBuffer;
     
     private DataLightConnections(final ResourceLocation key) {
         super(key);
-        this.serverPosBuffer = new HashMap<RegistryKey<Level>, Map<BlockPos, Set<BlockPos>>>();
-        this.serverChangeBuffer = new HashMap<RegistryKey<Level>, LinkedList<Tuple<TransmissionChain.LightConnection, Boolean>>>();
-        this.dimensionClearBuffer = new HashSet<RegistryKey<Level>>();
+        this.serverPosBuffer = new HashMap<ResourceKey<Level>, Map<BlockPos, Set<BlockPos>>>();
+        this.serverChangeBuffer = new HashMap<ResourceKey<Level>, LinkedList<Tuple<TransmissionChain.LightConnection, Boolean>>>();
+        this.dimensionClearBuffer = new HashSet<ResourceKey<Level>>();
     }
     
-    public void updateNewConnectionsThreaded(final RegistryKey<Level> dim, final List<TransmissionChain.LightConnection> newlyAddedConnections) {
+    public void updateNewConnectionsThreaded(final ResourceKey<Level> dim, final List<TransmissionChain.LightConnection> newlyAddedConnections) {
         final Map<BlockPos, Set<BlockPos>> posBufferDim = this.serverPosBuffer.computeIfAbsent(dim, k -> new HashMap());
         for (final TransmissionChain.LightConnection c : newlyAddedConnections) {
             final BlockPos start = c.getStart();
@@ -49,7 +49,7 @@ public class DataLightConnections extends AbstractData
         }
     }
     
-    public void removeOldConnectionsThreaded(final RegistryKey<Level> dim, final List<TransmissionChain.LightConnection> invalidConnections) {
+    public void removeOldConnectionsThreaded(final ResourceKey<Level> dim, final List<TransmissionChain.LightConnection> invalidConnections) {
         final Map<BlockPos, Set<BlockPos>> posBufferDim = this.serverPosBuffer.get(dim);
         if (posBufferDim != null) {
             for (final TransmissionChain.LightConnection c : invalidConnections) {
@@ -72,7 +72,7 @@ public class DataLightConnections extends AbstractData
     }
     
     @Override
-    public void clear(final RegistryKey<Level> dim) {
+    public void clear(final ResourceKey<Level> dim) {
         if (this.serverPosBuffer.remove(dim) != null) {
             this.dimensionClearBuffer.add(dim);
             this.markDirty();
@@ -86,7 +86,7 @@ public class DataLightConnections extends AbstractData
         this.serverPosBuffer.clear();
     }
     
-    private void notifyConnectionAdd(final RegistryKey<Level> dim, final List<TransmissionChain.LightConnection> added) {
+    private void notifyConnectionAdd(final ResourceKey<Level> dim, final List<TransmissionChain.LightConnection> added) {
         final LinkedList<Tuple<TransmissionChain.LightConnection, Boolean>> ch = this.serverChangeBuffer.computeIfAbsent(dim, k -> new LinkedList());
         for (final TransmissionChain.LightConnection l : added) {
             ch.add((Tuple<TransmissionChain.LightConnection, Boolean>)new Tuple((Object)l, (Object)true));
@@ -94,7 +94,7 @@ public class DataLightConnections extends AbstractData
         this.dimensionClearBuffer.remove(dim);
     }
     
-    private void notifyConnectionRemoval(final RegistryKey<Level> dim, final List<TransmissionChain.LightConnection> removal) {
+    private void notifyConnectionRemoval(final ResourceKey<Level> dim, final List<TransmissionChain.LightConnection> removal) {
         final LinkedList<Tuple<TransmissionChain.LightConnection, Boolean>> ch = this.serverChangeBuffer.computeIfAbsent(dim, k -> new LinkedList());
         for (final TransmissionChain.LightConnection l : removal) {
             ch.add((Tuple<TransmissionChain.LightConnection, Boolean>)new Tuple((Object)l, (Object)false));
@@ -103,7 +103,7 @@ public class DataLightConnections extends AbstractData
     
     @Override
     public void writeAllDataToPacket(final CompoundTag compound) {
-        for (final RegistryKey<Level> dim : this.serverPosBuffer.keySet()) {
+        for (final ResourceKey<Level> dim : this.serverPosBuffer.keySet()) {
             final Map<BlockPos, Set<BlockPos>> dat = this.serverPosBuffer.get(dim);
             final ListTag dataList = new ListTag();
             for (final BlockPos start : dat.keySet()) {
@@ -125,11 +125,11 @@ public class DataLightConnections extends AbstractData
     @Override
     public void writeDiffDataToPacket(final CompoundTag compound) {
         final ListTag clearList = new ListTag();
-        for (final RegistryKey<Level> dim : this.dimensionClearBuffer) {
+        for (final ResourceKey<Level> dim : this.dimensionClearBuffer) {
             clearList.add((Object)StringTag.valueOf(dim.func_240901_a_().withStyle()));
         }
         compound.put("clear", (Tag)clearList);
-        for (final RegistryKey<Level> dim : this.serverChangeBuffer.keySet()) {
+        for (final ResourceKey<Level> dim : this.serverChangeBuffer.keySet()) {
             if (this.dimensionClearBuffer.contains(dim)) {
                 continue;
             }

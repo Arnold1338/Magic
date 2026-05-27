@@ -8,7 +8,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.resource.AssetLoader;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.vertex.VertexBuffer;
+import com.mojang.blaze3d.vertex.VertexBuffer;
 import hellfirepvp.astralsorcery.client.util.obj.WavefrontObject;
 
 public class ObjModelRender

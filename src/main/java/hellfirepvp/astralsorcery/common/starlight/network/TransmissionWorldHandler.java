@@ -40,9 +40,9 @@ public class TransmissionWorldHandler
     private final Map<IIndependentStarlightSource, TransmissionChain> cachedSourceChain;
     private final Map<BlockPos, List<IIndependentStarlightSource>> posToSourceMap;
     private final Set<BlockPos> sourcePosBuilding;
-    private final RegistryKey<Level> dim;
+    private final ResourceKey<Level> dim;
     
-    public TransmissionWorldHandler(final RegistryKey<Level> dimKey) {
+    public TransmissionWorldHandler(final ResourceKey<Level> dimKey) {
         this.involvedSourceMap = new HashMap<ChunkPos, List<IIndependentStarlightSource>>();
         this.activeChunkMap = new HashMap<IIndependentStarlightSource, List<ChunkPos>>();
         this.cachedSourceChain = new HashMap<IIndependentStarlightSource, TransmissionChain>();

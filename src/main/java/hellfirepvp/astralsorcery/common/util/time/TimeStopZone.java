@@ -6,7 +6,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.boss.dragon.phase.IPhase;
 import net.minecraft.world.entity.boss.dragon.phase.PhaseType;
 import net.minecraft.world.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.LivingEntity;
@@ -60,7 +60,7 @@ public class TimeStopZone
                     final Map<BlockPos, BlockEntity> map = ch.func_177434_r();
                     for (final Map.Entry<BlockPos, BlockEntity> teEntry : map.entrySet()) {
                         final BlockEntity te = teEntry.getValue();
-                        if (TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(te) && te.getBlockState().func_218141_a((Vector3i)this.offset, (double)this.range) && this.world.field_175730_i.contains(te)) {
+                        if (TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(te) && te.getBlockState().func_218141_a((Vec3i)this.offset, (double)this.range) && this.world.field_175730_i.contains(te)) {
                             this.world.field_175730_i.remove(te);
                             this.safeCacheTile(te);
                         }
@@ -106,7 +106,7 @@ public class TimeStopZone
     }
     
     boolean interceptEntityTick(final LivingEntity e) {
-        return this.active && e != null && this.targetController.shouldFreezeEntity(e) && Vector3.atEntityCorner((Entity)e).distance((Vector3i)this.offset) <= this.range;
+        return this.active && e != null && this.targetController.shouldFreezeEntity(e) && Vector3.atEntityCorner((Entity)e).distance((Vec3i)this.offset) <= this.range;
     }
     
     static void handleImportantEntityTicks(final LivingEntity e) {

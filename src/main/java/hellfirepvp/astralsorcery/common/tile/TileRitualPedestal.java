@@ -124,7 +124,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     private void updateBlockConfigurations() {
         if (this.ticksExisted % 20 == 0) {
             for (final BlockPos offset : TileRitualPedestal.RITUAL_CIRCLE_OFFSETS) {
-                final BlockPos pos = this.getBlockState().func_177971_a((Vector3i)offset);
+                final BlockPos pos = this.getBlockState().func_177971_a((Vec3i)offset);
                 MiscUtils.executeWithChunk((IWorldReader)this.getLevel(), pos, pos, at -> {
                     final BlockState savedState = this.offsetConfigurations.get(offset);
                     if (this.getLevel().isEmptyBlock(at)) {
@@ -147,7 +147,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     
     private void updateLinkTile() {
         final boolean hasLink = this.ritualLinkTo != null;
-        final BlockPos link = this.getBlockState().func_177971_a((Vector3i)TileRitualPedestal.RITUAL_ANCHOR_OFFEST);
+        final BlockPos link = this.getBlockState().func_177971_a((Vec3i)TileRitualPedestal.RITUAL_ANCHOR_OFFEST);
         final TileRitualLink linkTile = MiscUtils.getTileAt((IBlockReader)this.level, link, TileRitualLink.class, true);
         boolean hasLinkNow;
         if (linkTile != null) {
@@ -226,13 +226,13 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     @Nonnull
     @Override
     public Vector3 getEffectPosition() {
-        return new Vector3((Vector3i)this.getEffectOriginPosition()).add(0.5f, 0.5f, 0.5f);
+        return new Vector3((Vec3i)this.getEffectOriginPosition()).add(0.5f, 0.5f, 0.5f);
     }
     
     @Nonnull
     @Override
-    public RegistryKey<Level> getDimension() {
-        return (RegistryKey<Level>)this.getLevel().dimension();
+    public ResourceKey<Level> getDimension() {
+        return (ResourceKey<Level>)this.getLevel().dimension();
     }
     
     @Override
@@ -254,7 +254,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
         if (this.ritualLinkTo != null && TileRitualPedestal.rand.nextBoolean()) {
             final Vector3 at = new Vector3(this).add(0.0, 0.1, 0.0);
             at.add(TileRitualPedestal.rand.nextFloat() * 0.5 + 0.25, 0.0, TileRitualPedestal.rand.nextFloat() * 0.5 + 0.25);
-            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).setOwner(this.ownerUUID).spawn(at).setAlphaMultiplier(0.7f).color(VFXColorFunction.WHITE).setMotion(Vector3.positiveYRandom(TileRitualPedestal.rand).addY(2.0).normalize().multiply(0.4f)).setScaleMultiplier(0.2f + TileRitualPedestal.rand.nextFloat() * 0.15f).motion(VFXMotionController.target(() -> new Vector3(this).add((Vector3i)TileRitualPedestal.RITUAL_ANCHOR_OFFEST).add(0.5, 0.5, 0.5), 0.1f)).setMaxAge(30 + TileRitualPedestal.rand.nextInt(50));
+            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).setOwner(this.ownerUUID).spawn(at).setAlphaMultiplier(0.7f).color(VFXColorFunction.WHITE).setMotion(Vector3.positiveYRandom(TileRitualPedestal.rand).addY(2.0).normalize().multiply(0.4f)).setScaleMultiplier(0.2f + TileRitualPedestal.rand.nextFloat() * 0.15f).motion(VFXMotionController.target(() -> new Vector3(this).add((Vec3i)TileRitualPedestal.RITUAL_ANCHOR_OFFEST).add(0.5, 0.5, 0.5), 0.1f)).setMaxAge(30 + TileRitualPedestal.rand.nextInt(50));
         }
         final List<BlockPos> activeMirrors = this.offsetMirrors.entrySet().stream().filter(Map.Entry::getValue).map((Function<? super Object, ?>)Map.Entry::getKey).collect((Collector<? super Object, ?, List<BlockPos>>)Collectors.toList());
         final IWeakConstellation ritualConstellation = this.getRitualConstellation();
@@ -302,8 +302,8 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
                         to = new Vector3(this).add(0.5, 3.5 + TileRitualPedestal.rand.nextFloat() * 2.5, 0.5);
                     }
                     else {
-                        final BlockPos mirror = MiscUtils.getRandomEntry(activeMirrors, TileRitualPedestal.rand).func_177971_a((Vector3i)this.getBlockState());
-                        to = new Vector3((Vector3i)mirror).add(0.5, 0.5, 0.5);
+                        final BlockPos mirror = MiscUtils.getRandomEntry(activeMirrors, TileRitualPedestal.rand).func_177971_a((Vec3i)this.getBlockState());
+                        to = new Vector3((Vec3i)mirror).add(0.5, 0.5, 0.5);
                     }
                     EffectHelper.of(EffectTemplatesAS.LIGHTNING).setOwner(this.ownerUUID).spawn(from3).makeDefault(to).color(VFXColorFunction.constant(ritualConstellation.getConstellationColor()));
                 }
@@ -312,12 +312,12 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
         for (final BlockPos mirror2 : this.offsetMirrors.keySet()) {
             if (this.ticksExisted % 32 == 0) {
                 Vector3 source = new Vector3(this).add(0.5, 0.9, 0.5);
-                final Vector3 to = new Vector3(this).add((Vector3i)mirror2).add(0.5, 0.5, 0.5);
+                final Vector3 to = new Vector3(this).add((Vec3i)mirror2).add(0.5, 0.5, 0.5);
                 EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).setOwner(this.ownerUUID).spawn(source).setup(to, 0.800000011920929, 0.800000011920929);
                 if (this.ritualLinkTo == null || !this.offsetMirrors.get(mirror2)) {
                     continue;
                 }
-                source = new Vector3(this).add((Vector3i)TileRitualPedestal.RITUAL_ANCHOR_OFFEST).add(0.5, 0.5, 0.5);
+                source = new Vector3(this).add((Vec3i)TileRitualPedestal.RITUAL_ANCHOR_OFFEST).add(0.5, 0.5, 0.5);
                 EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).setOwner(this.ownerUUID).spawn(source).setup(to, 0.800000011920929, 0.800000011920929).color(VFXColorFunction.random());
             }
         }
@@ -328,7 +328,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     }
     
     public Map<BlockPos, Boolean> getMirrors() {
-        return MapStream.of(this.offsetMirrors).mapKey(pos -> pos.func_177971_a((Vector3i)this.getBlockState())).toMap();
+        return MapStream.of(this.offsetMirrors).mapKey(pos -> pos.func_177971_a((Vec3i)this.getBlockState())).toMap();
     }
     
     public int getMirrorCount() {

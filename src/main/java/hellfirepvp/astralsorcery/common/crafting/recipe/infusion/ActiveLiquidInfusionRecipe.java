@@ -135,7 +135,7 @@ public class ActiveLiquidInfusionRecipe
         final VFXColorFunction<?> colorFn = (fx, pTicks) -> new Color(ColorUtils.getOverlayColor(required));
         for (int i = 0; i < 2 * this.supportingChalices.size(); ++i) {
             final BlockPos chalice = MiscUtils.getRandomEntry(chalices, ActiveLiquidInfusionRecipe.rand);
-            final Vector3 pos = new Vector3((Vector3i)chalice).add(0.5, 1.4, 0.5);
+            final Vector3 pos = new Vector3((Vec3i)chalice).add(0.5, 1.4, 0.5);
             int maxAge = 30;
             maxAge *= (int)Math.max(pos.distance(target) / 3.0, 1.0);
             if (ActiveLiquidInfusionRecipe.rand.nextInt(3) != 0) {
@@ -158,10 +158,10 @@ public class ActiveLiquidInfusionRecipe
     
     @OnlyIn(Dist.CLIENT)
     private void playLiquidPoolEffect(final TileInfuser infuser, final FluidStack required) {
-        final List<BlockPos> posList = TileInfuser.getLiquidOffsets().stream().map(pos -> pos.func_177971_a((Vector3i)infuser.getBlockState())).collect((Collector<? super Object, ?, List<BlockPos>>)Collectors.toList());
+        final List<BlockPos> posList = TileInfuser.getLiquidOffsets().stream().map(pos -> pos.func_177971_a((Vec3i)infuser.getBlockState())).collect((Collector<? super Object, ?, List<BlockPos>>)Collectors.toList());
         final BlockPos at = MiscUtils.getRandomEntry(posList, ActiveLiquidInfusionRecipe.rand);
         if (at != null) {
-            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)at).add(ActiveLiquidInfusionRecipe.rand.nextFloat(), 1.0f, ActiveLiquidInfusionRecipe.rand.nextFloat())).setScaleMultiplier(0.1f + ActiveLiquidInfusionRecipe.rand.nextFloat() * 0.15f).color((fx, pTicks) -> ColorizationHelper.getColor(required).orElse(Color.WHITE)).setAlphaMultiplier(1.0f).alpha(VFXAlphaFunction.FADE_OUT).setMotion(new Vector3(0.0, 0.15, 0.0)).setGravityStrength(0.005f + ActiveLiquidInfusionRecipe.rand.nextFloat() * 0.008f);
+            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vec3i)at).add(ActiveLiquidInfusionRecipe.rand.nextFloat(), 1.0f, ActiveLiquidInfusionRecipe.rand.nextFloat())).setScaleMultiplier(0.1f + ActiveLiquidInfusionRecipe.rand.nextFloat() * 0.15f).color((fx, pTicks) -> ColorizationHelper.getColor(required).orElse(Color.WHITE)).setAlphaMultiplier(1.0f).alpha(VFXAlphaFunction.FADE_OUT).setMotion(new Vector3(0.0, 0.15, 0.0)).setGravityStrength(0.005f + ActiveLiquidInfusionRecipe.rand.nextFloat() * 0.008f);
         }
     }
     
@@ -215,12 +215,12 @@ public class ActiveLiquidInfusionRecipe
         if (infusion.doesConsumeMultipleFluids()) {
             for (final BlockPos at : TileInfuser.getLiquidOffsets()) {
                 if (ActiveLiquidInfusionRecipe.rand.nextFloat() < chance) {
-                    infuser.getLevel().func_180501_a(at.func_177971_a((Vector3i)infuser.getBlockState()), Blocks.AIR.defaultBlockState(), 11);
+                    infuser.getLevel().func_180501_a(at.func_177971_a((Vec3i)infuser.getBlockState()), Blocks.AIR.defaultBlockState(), 11);
                 }
             }
         }
         else {
-            final BlockPos at2 = MiscUtils.getRandomEntry(TileInfuser.getLiquidOffsets(), ActiveLiquidInfusionRecipe.rand).func_177971_a((Vector3i)infuser.getBlockState());
+            final BlockPos at2 = MiscUtils.getRandomEntry(TileInfuser.getLiquidOffsets(), ActiveLiquidInfusionRecipe.rand).func_177971_a((Vec3i)infuser.getBlockState());
             if (ActiveLiquidInfusionRecipe.rand.nextFloat() < chance) {
                 infuser.getLevel().func_180501_a(at2, Blocks.AIR.defaultBlockState(), 11);
             }

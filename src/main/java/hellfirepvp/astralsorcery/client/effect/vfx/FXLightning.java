@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.LinkedList;
 import com.google.common.collect.Lists;
 import java.util.Random;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 
@@ -54,7 +54,7 @@ public class FXLightning extends EntityVisualFX
         final double dstLength = to.clone().subtract(this.getPosition()).length();
         float perc = 1.0f;
         if (dstLength > 7.0) {
-            perc = MathHelper.func_76133_a(dstLength / 7.0);
+            perc = Mth.func_76133_a(dstLength / 7.0);
         }
         else if (dstLength < 7.0) {
             perc = (float)Math.pow(dstLength / 7.0, 2.0);
@@ -73,7 +73,7 @@ public class FXLightning extends EntityVisualFX
         this.root.next.add(new LightningVertex(destination));
         rootVertices.add(this.root);
         final double l = directionVector.length();
-        for (int iterations = Math.min(MathHelper.func_76141_d((float)Math.round(Math.sqrt(l))), 200), i = 0; i < iterations; ++i) {
+        for (int iterations = Math.min(Mth.func_76141_d((float)Math.round(Math.sqrt(l))), 200), i = 0; i < iterations; ++i) {
             final LinkedList<LightningVertex> newRootVertices = new LinkedList<LightningVertex>();
             for (final LightningVertex sourceVertex : rootVertices) {
                 final LinkedList<LightningVertex> newNext = new LinkedList<LightningVertex>();

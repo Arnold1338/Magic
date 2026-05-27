@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.screen.journal.progression;
 
-import net.minecraft.client.renderer.BufferBuilder;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import org.lwjgl.opengl.GL11;
@@ -15,7 +15,7 @@ import java.awt.Color;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import net.minecraft.client.renderer.RenderHelper;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
 import java.awt.geom.Point2D;
 import java.util.List;
@@ -152,7 +152,7 @@ public class ScreenJournalClusterRenderer
         this.alpha = this.progressionSizeHandler.getScalingFactor();
         this.alpha -= 0.25f;
         this.alpha /= 0.75f;
-        this.alpha = MathHelper.func_76131_a(this.alpha, 0.0f, 1.0f);
+        this.alpha = Mth.func_76131_a(this.alpha, 0.0f, 1.0f);
         final Map<ResearchNode, Point2D.Float> displayPositions = new HashMap<ResearchNode, Point2D.Float>();
         final Iterator<ResearchNode> iterator = this.progression.getResearchNodes().iterator();
         ResearchNode node = null;
@@ -177,7 +177,7 @@ public class ScreenJournalClusterRenderer
         final float offsetY = offset.y - zoomedWH / 2.0f;
         node.getBackgroundTexture().resolve().bindTexture();
         if (this.progressionSizeHandler.getScalingFactor() >= 0.7) {
-            this.clickableNodes.put(new Rectangle(MathHelper.func_76141_d(offsetX), MathHelper.func_76141_d(offsetY), MathHelper.func_76141_d(zoomedWH), MathHelper.func_76141_d(zoomedWH)), node);
+            this.clickableNodes.put(new Rectangle(Mth.func_76141_d(offsetX), Mth.func_76141_d(offsetY), Mth.func_76141_d(zoomedWH), Mth.func_76141_d(zoomedWH)), node);
         }
         this.drawResearchItemBackground(zoomedWH, offsetX, offsetY, zLevel);
         final float pxWH = this.progressionSizeHandler.getZoomedWHNode() / 16.0f;
@@ -189,7 +189,7 @@ public class ScreenJournalClusterRenderer
                 renderStack.func_227861_a_(3.0, 3.0, 100.0);
                 renderStack.translate(0.75f, 0.75f, 1.0f);
                 RenderHelper.func_227780_a_();
-                RenderingUtils.renderTranslucentItemStackModelGUI(node.getRenderItemStack(ClientScheduler.getClientTick()), renderStack, Color.WHITE, Blending.DEFAULT, MathHelper.func_76125_a((int)(this.alpha * 255.0f), 0, 255));
+                RenderingUtils.renderTranslucentItemStackModelGUI(node.getRenderItemStack(ClientScheduler.getClientTick()), renderStack, Color.WHITE, Blending.DEFAULT, Mth.func_76125_a((int)(this.alpha * 255.0f), 0, 255));
                 RenderHelper.func_74518_a();
                 renderStack.scale();
                 break;

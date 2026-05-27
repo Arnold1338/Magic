@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.network.chat.LanguageMap;
 import net.minecraft.util.FormattedCharSequence;
-import net.minecraft.network.chat.FormattedCharSequence;
+import net.minecraft.util.FormattedCharSequence;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import com.google.common.collect.Maps;

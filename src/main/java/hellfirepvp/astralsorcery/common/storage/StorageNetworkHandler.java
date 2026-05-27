@@ -12,22 +12,22 @@ import java.util.Map;
 
 public class StorageNetworkHandler
 {
-    private static final Map<RegistryKey<Level>, NetworkHelper> mappingHelpers;
+    private static final Map<ResourceKey<Level>, NetworkHelper> mappingHelpers;
     
     public static NetworkHelper getHandler(final Level world) {
-        return StorageNetworkHandler.mappingHelpers.computeIfAbsent((RegistryKey<Level>)world.dimension(), id -> new NetworkHelper(world));
+        return StorageNetworkHandler.mappingHelpers.computeIfAbsent((ResourceKey<Level>)world.dimension(), id -> new NetworkHelper(world));
     }
     
     public static void clearHandler(final Level world) {
-        clearHandler((RegistryKey<Level>)world.dimension());
+        clearHandler((ResourceKey<Level>)world.dimension());
     }
     
-    public static void clearHandler(final RegistryKey<Level> dimKey) {
+    public static void clearHandler(final ResourceKey<Level> dimKey) {
         StorageNetworkHandler.mappingHelpers.remove(dimKey);
     }
     
     static {
-        mappingHelpers = new HashMap<RegistryKey<Level>, NetworkHelper>();
+        mappingHelpers = new HashMap<ResourceKey<Level>, NetworkHelper>();
     }
     
     public static class NetworkHelper

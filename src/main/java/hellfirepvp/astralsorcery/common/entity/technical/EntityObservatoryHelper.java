@@ -8,7 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.phys.HitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.container.ContainerObservatory;
@@ -107,7 +107,7 @@ public class EntityObservatoryHelper extends Entity
         final double yawRad = -Math.toRadians(to.observatoryYaw);
         final double xComp = 0.5 + Math.sin(yawRad) * xOffset - Math.cos(yawRad) * zOffset;
         final double zComp = 0.5 + Math.cos(yawRad) * xOffset + Math.sin(yawRad) * zOffset;
-        final Vector3 pos = new Vector3((Vector3i)to.getBlockState()).add(xComp, 0.4000000059604645, zComp);
+        final Vector3 pos = new Vector3((Vec3i)to.getBlockState()).add(xComp, 0.4000000059604645, zComp);
         this.func_226286_f_(pos.getX(), pos.getY(), pos.getZ());
     }
     

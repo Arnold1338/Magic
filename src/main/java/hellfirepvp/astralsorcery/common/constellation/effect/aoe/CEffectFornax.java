@@ -82,7 +82,7 @@ public class CEffectFornax extends CEffectAbstractList<ListEntries.PosEntry>
             motion.setY(Math.abs(motion.getY()) * -1.0);
         }
         final Color c = MiscUtils.eitherOf(CEffectFornax.rand, (Supplier<Color>[])new Supplier[] { () -> ColorsAS.CONSTELLATION_FORNAX.brighter(), () -> ColorsAS.CONSTELLATION_FORNAX.darker(), () -> ColorsAS.CONSTELLATION_FORNAX.darker(), () -> ColorsAS.CONSTELLATION_FORNAX.darker().darker() });
-        EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)pos).add(0.5, 0.2, 0.5)).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.constant(c)).setScaleMultiplier(0.3f + CEffectFornax.rand.nextFloat() * 0.4f).setMotion(motion).setGravityStrength(-0.0015f).setMaxAge(60 + CEffectFornax.rand.nextInt(30));
+        EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vec3i)pos).add(0.5, 0.2, 0.5)).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.constant(c)).setScaleMultiplier(0.3f + CEffectFornax.rand.nextFloat() * 0.4f).setMotion(motion).setGravityStrength(-0.0015f).setMaxAge(60 + CEffectFornax.rand.nextInt(30));
     }
     
     @Override
@@ -100,7 +100,7 @@ public class CEffectFornax extends CEffectAbstractList<ListEntries.PosEntry>
                     return true;
                 }
                 else {
-                    this.sendConstellationPing(world, new Vector3((Vector3i)at).add(0.5, 0.5, 0.5));
+                    this.sendConstellationPing(world, new Vector3((Vec3i)at).add(0.5, 0.5, 0.5));
                     return false;
                 }
             }
@@ -111,7 +111,7 @@ public class CEffectFornax extends CEffectAbstractList<ListEntries.PosEntry>
                     return true;
                 }
                 else {
-                    this.sendConstellationPing(world, new Vector3((Vector3i)at).add(0.5, 0.5, 0.5));
+                    this.sendConstellationPing(world, new Vector3((Vec3i)at).add(0.5, 0.5, 0.5));
                     return false;
                 }
             }

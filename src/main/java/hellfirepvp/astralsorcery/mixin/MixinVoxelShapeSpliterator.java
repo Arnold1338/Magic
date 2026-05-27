@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.mixin;
 
 import hellfirepvp.astralsorcery.common.util.collision.CollisionHelper;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

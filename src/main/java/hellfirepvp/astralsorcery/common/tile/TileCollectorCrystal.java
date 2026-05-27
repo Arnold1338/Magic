@@ -4,7 +4,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.ITransmissionSour
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.starlight.transmission.base.crystal.IndependentCrystalSource;
 import hellfirepvp.astralsorcery.common.starlight.IIndependentStarlightSource;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import net.minecraft.nbt.CompoundTag;
@@ -88,8 +88,8 @@ public class TileCollectorCrystal extends TileSourceBase<SimpleTransmissionSourc
                     this.effectOrbitals[i] = null;
                 }
             }
-            final BlockPos starlightSource = MiscUtils.getRandomEntry(TileCollectorCrystal.OFFSETS_LIQUID_STARLIGHT, TileCollectorCrystal.rand).func_177971_a((Vector3i)this.getBlockState());
-            final Vector3 from = new Vector3((Vector3i)starlightSource).add(TileCollectorCrystal.rand.nextFloat(), 0.85f, TileCollectorCrystal.rand.nextFloat());
+            final BlockPos starlightSource = MiscUtils.getRandomEntry(TileCollectorCrystal.OFFSETS_LIQUID_STARLIGHT, TileCollectorCrystal.rand).func_177971_a((Vec3i)this.getBlockState());
+            final Vector3 from = new Vector3((Vec3i)starlightSource).add(TileCollectorCrystal.rand.nextFloat(), 0.85f, TileCollectorCrystal.rand.nextFloat());
             final Vector3 motion = thisPos.clone().subtract(from).normalize().multiply(0.08f);
             final Color particleColor = MiscUtils.eitherOf(TileCollectorCrystal.rand, new Color[] { Color.WHITE, c, c.brighter() });
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(from).setMotion(motion).alpha(VFXAlphaFunction.proximity(thisPos::clone, 2.0f).andThen(VFXAlphaFunction.FADE_OUT)).setScaleMultiplier(0.2f + TileCollectorCrystal.rand.nextFloat() * 0.1f).color(VFXColorFunction.constant(particleColor)).setMaxAge(30 + TileCollectorCrystal.rand.nextInt(10));

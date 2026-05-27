@@ -67,7 +67,7 @@ public abstract class TemplateStructure extends TemplateStructurePiece
     }
     
     protected void func_186175_a(final String function, final BlockPos pos, final IServerWorld worldIn, final Random rand, final MutableBoundingBox sbb) {
-        if (sbb.func_175898_b((Vector3i)pos)) {
+        if (sbb.func_175898_b((Vec3i)pos)) {
             MarkerManagerAS.handleMarker(function, pos, (IWorld)worldIn, rand, this.field_74887_e);
         }
     }

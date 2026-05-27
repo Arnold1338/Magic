@@ -72,8 +72,8 @@ public class GatewayInteractionHandler
             return;
         }
         final BlockPos clickedPos = event.getPos();
-        MapStream.of(node.getAllowedUsers()).filter(tpl -> TileCelestialGateway.getAllowedUserOffset((int)tpl.getA()).func_177971_a((Vector3i)node.getPos()).renderItem().equals((Object)clickedPos)).findAny().map((Function<? super net.minecraft.util.Tuple<Integer, PlayerReference>, ?>)Tuple::func_76340_b).ifPresent(playerRef -> {
-            final PktRevokeGatewayAccess pkt = new PktRevokeGatewayAccess((RegistryKey<Level>)world.dimension(), gateway.getBlockState(), playerRef.getPlayerUUID());
+        MapStream.of(node.getAllowedUsers()).filter(tpl -> TileCelestialGateway.getAllowedUserOffset((int)tpl.getA()).func_177971_a((Vec3i)node.getPos()).renderItem().equals((Object)clickedPos)).findAny().map((Function<? super net.minecraft.util.Tuple<Integer, PlayerReference>, ?>)Tuple::func_76340_b).ifPresent(playerRef -> {
+            final PktRevokeGatewayAccess pkt = new PktRevokeGatewayAccess((ResourceKey<Level>)world.dimension(), gateway.getBlockState(), playerRef.getPlayerUUID());
             PacketChannel.CHANNEL.sendToServer(pkt);
         });
     }

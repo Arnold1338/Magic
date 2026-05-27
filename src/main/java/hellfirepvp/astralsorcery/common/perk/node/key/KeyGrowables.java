@@ -54,18 +54,18 @@ public class KeyGrowables extends KeyPerk implements PlayerTickPerk
             if (plant != null) {
                 if (plant.tryGrow((IWorld)w, KeyGrowables.rand)) {
                     AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)KeyGrowables.CONFIG.chargeCost.get(), false);
-                    pkt = new PktPlayEffect(PktPlayEffect.Type.CROP_GROWTH).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vector3i)pos)));
+                    pkt = new PktPlayEffect(PktPlayEffect.Type.CROP_GROWTH).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos)));
                 }
             }
             else {
                 final BlockState at = w.getBlockState(pos);
                 if (at.getBlock().equals(Blocks.field_150346_d) && w.isEmptyBlock(pos.above()) && w.func_175656_a(pos, Blocks.field_196658_i.defaultBlockState())) {
                     AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)KeyGrowables.CONFIG.chargeCost.get(), false);
-                    pkt = new PktPlayEffect(PktPlayEffect.Type.CROP_GROWTH).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vector3i)pos)));
+                    pkt = new PktPlayEffect(PktPlayEffect.Type.CROP_GROWTH).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos)));
                 }
             }
             if (pkt != null) {
-                PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(w, (Vector3i)pos, 16.0));
+                PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(w, (Vec3i)pos, 16.0));
             }
         }
     }

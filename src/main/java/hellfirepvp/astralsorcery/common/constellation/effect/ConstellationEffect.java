@@ -33,7 +33,7 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import java.util.Random;
 
 public abstract class ConstellationEffect
@@ -70,7 +70,7 @@ public abstract class ConstellationEffect
             final TileRitualLink link = (TileRitualLink)te;
             pos = link.getLinkedTo();
             if (pos != null) {
-                pos = pos.func_177973_b((Vector3i)TileRitualPedestal.RITUAL_ANCHOR_OFFEST);
+                pos = pos.func_177973_b((Vec3i)TileRitualPedestal.RITUAL_ANCHOR_OFFEST);
                 return MiscUtils.getTileAt((IBlockReader)world, pos, TileRitualPedestal.class, false);
             }
         }
@@ -127,7 +127,7 @@ public abstract class ConstellationEffect
             ByteBufUtils.writeRegistryEntry(buf, (net.minecraftforge.registries.IForgeRegistryEntry<Object>)cst);
             return;
         });
-        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vector3i)at.toBlockPos(), 32.0));
+        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vec3i)at.toBlockPos(), 32.0));
     }
     
     protected void markPlayerAffected(final Player player) {

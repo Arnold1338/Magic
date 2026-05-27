@@ -18,10 +18,10 @@ import hellfirepvp.astralsorcery.common.data.sync.base.ClientData;
 
 public class ClientTimeFreezeEntities extends ClientData<ClientTimeFreezeEntities>
 {
-    private final Map<RegistryKey<Level>, Set<Integer>> clientActiveEntityFreeze;
+    private final Map<ResourceKey<Level>, Set<Integer>> clientActiveEntityFreeze;
     
     public ClientTimeFreezeEntities() {
-        this.clientActiveEntityFreeze = new HashMap<RegistryKey<Level>, Set<Integer>>();
+        this.clientActiveEntityFreeze = new HashMap<ResourceKey<Level>, Set<Integer>>();
     }
     
     public boolean isFrozen(final Entity e) {
@@ -29,7 +29,7 @@ public class ClientTimeFreezeEntities extends ClientData<ClientTimeFreezeEntitie
     }
     
     @Override
-    public void clear(final RegistryKey<Level> dimType) {
+    public void clear(final ResourceKey<Level> dimType) {
         this.clientActiveEntityFreeze.remove(dimType);
     }
     
@@ -53,7 +53,7 @@ public class ClientTimeFreezeEntities extends ClientData<ClientTimeFreezeEntitie
         private void readEntityInformation(final ClientTimeFreezeEntities data, final CompoundTag compound) {
             final CompoundTag dimTypes = compound.func_74775_l("dimTypes");
             for (final String key : dimTypes.func_150296_c()) {
-                final RegistryKey<Level> dim = (RegistryKey<Level>)RegistryKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(key));
+                final ResourceKey<Level> dim = (ResourceKey<Level>)ResourceKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(key));
                 final ListTag list = dimTypes.getList(key, 3);
                 final Set<Integer> entities = new HashSet<Integer>();
                 for (int i = 0; i < list.size(); ++i) {

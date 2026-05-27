@@ -19,10 +19,10 @@ import java.io.File;
 public class CelestialGatewayFilter
 {
     private final File gatewayFilter;
-    private Set<RegistryKey<Level>> cache;
+    private Set<ResourceKey<Level>> cache;
     
     CelestialGatewayFilter() {
-        this.cache = new HashSet<RegistryKey<Level>>();
+        this.cache = new HashSet<ResourceKey<Level>>();
         this.gatewayFilter = this.loadFilter();
         this.loadCache();
     }
@@ -45,13 +45,13 @@ public class CelestialGatewayFilter
         return this.cache.contains(worldKey);
     }
     
-    void addDim(final RegistryKey<Level> worldKey) {
+    void addDim(final ResourceKey<Level> worldKey) {
         if (this.cache.add(worldKey)) {
             this.saveCache();
         }
     }
     
-    void removeDim(final RegistryKey<Level> worldKey) {
+    void removeDim(final ResourceKey<Level> worldKey) {
         if (this.cache.remove(worldKey)) {
             this.saveCache();
         }
@@ -61,21 +61,21 @@ public class CelestialGatewayFilter
         try {
             final CompoundTag tag = NbtIo.func_74797_a(this.gatewayFilter);
             final ListTag list = tag.getList("list", 8);
-            this.cache = new HashSet<RegistryKey<Level>>();
+            this.cache = new HashSet<ResourceKey<Level>>();
             for (int i = 0; i < list.size(); ++i) {
                 final ResourceLocation location = new ResourceLocation(list.func_150307_f(i));
-                this.cache.add((RegistryKey<Level>)RegistryKey.func_240903_a_(Registry.field_239699_ae_, location));
+                this.cache.add((ResourceKey<Level>)ResourceKey.func_240903_a_(Registry.field_239699_ae_, location));
             }
         }
         catch (final IOException ignored) {
-            this.cache = new HashSet<RegistryKey<Level>>();
+            this.cache = new HashSet<ResourceKey<Level>>();
         }
     }
     
     private void saveCache() {
         try {
             final ListTag list = new ListTag();
-            for (final RegistryKey<Level> dimType : this.cache) {
+            for (final ResourceKey<Level> dimType : this.cache) {
                 list.add((Object)StringTag.valueOf(dimType.func_240901_a_().withStyle()));
             }
             final CompoundTag cmp = new CompoundTag();

@@ -30,12 +30,12 @@ public interface RefreshFunction<T extends EntityComplexFX>
     
     public static class TileExists<E extends BlockEntity, T extends EntityComplexFX> implements RefreshFunction<T>
     {
-        private final RegistryKey<Level> dimType;
+        private final ResourceKey<Level> dimType;
         private final BlockPos pos;
         private final Class<E> clazzExpected;
         
         public TileExists(final E tile) {
-            this.dimType = (RegistryKey<Level>)tile.getLevel().dimension();
+            this.dimType = (ResourceKey<Level>)tile.getLevel().dimension();
             this.pos = tile.getBlockState();
             this.clazzExpected = (Class<E>)tile.getClass();
         }

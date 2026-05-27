@@ -86,7 +86,7 @@ public class MantleEffectMineralis extends MantleEffect
         }
         final BlockPos at = positions.get(index);
         final BlockState displayState = player.level().getBlockState(at);
-        MiscPlayEffect.playSingleBlockTumbleDepthEffect(new Vector3((Vector3i)at).add(0.5, 0.5, 0.5), displayState);
+        MiscPlayEffect.playSingleBlockTumbleDepthEffect(new Vector3((Vec3i)at).add(0.5, 0.5, 0.5), displayState);
     }
     
     @Override

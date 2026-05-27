@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.util.VoxelUtils;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.level.block.Block;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesWood;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import net.minecraft.world.level.block.BaseEntityBlock;
 

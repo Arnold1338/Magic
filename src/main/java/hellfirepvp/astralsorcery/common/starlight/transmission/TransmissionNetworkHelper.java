@@ -45,7 +45,7 @@ public class TransmissionNetworkHelper
                 return false;
             }
         }
-        return tr.getTrPos().func_218141_a((Vector3i)new BlockPos((Vector3i)end), 16.0);
+        return tr.getTrPos().func_218141_a((Vec3i)new BlockPos((Vec3i)end), 16.0);
     }
     
     public static boolean createTransmissionLink(final IStarlightTransmission<?> tr, final BlockPos next) {
@@ -70,7 +70,7 @@ public class TransmissionNetworkHelper
         final WorldNetworkHandler handler = WorldNetworkHandler.getNetworkHandler(transmission.getTrWorld());
         final IPrismTransmissionNode nextNode = handler.getTransmissionNode(to);
         removeLink(transmissionNode, nextNode, transmission.getTrWorld(), transmission.getTrPos(), to);
-        handler.markDirty((Vector3i)transmission.getTrPos(), (Vector3i)to);
+        handler.markDirty((Vec3i)transmission.getTrPos(), (Vec3i)to);
     }
     
     private static void removeLink(final IPrismTransmissionNode thisNode, final IPrismTransmissionNode nextNode, final Level world, final BlockPos from, final BlockPos to) {
@@ -91,7 +91,7 @@ public class TransmissionNetworkHelper
         final WorldNetworkHandler handler = WorldNetworkHandler.getNetworkHandler(transmission.getTrWorld());
         final IPrismTransmissionNode nextNode = handler.getTransmissionNode(to);
         createLink(transmissionNode, nextNode, transmission.getTrWorld(), transmission.getTrPos(), to);
-        handler.markDirty((Vector3i)transmission.getTrPos(), (Vector3i)to);
+        handler.markDirty((Vec3i)transmission.getTrPos(), (Vec3i)to);
     }
     
     private static void createLink(final IPrismTransmissionNode thisNode, final IPrismTransmissionNode nextNode, final Level world, final BlockPos from, final BlockPos to) {

@@ -25,7 +25,7 @@ public class ChainingSkyRenderer implements ISkyRenderHandler
     
     public void render(final int ticks, final float partialTicks, final PoseStack renderStack, final ClientLevel world, final Minecraft mc) {
         EventFlags.SKY_RENDERING.executeWithFlag(() -> {
-            final RegistryKey dim = world.dimension();
+            final ResourceKey dim = world.dimension();
             if (world.func_239132_a_().func_241683_c_() == DimensionRenderInfo.FogType.NORMAL) {
                 if (((List)RenderingConfig.CONFIG.dimensionsWithOnlyConstellationRendering.get()).contains(dim.func_240901_a_())) {
                     if (this.existingSkyRenderer != null) {

@@ -27,7 +27,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.WellLiquefaction;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileWell;
 import net.minecraft.world.level.InteractionResult;
-import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -40,7 +40,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMarble;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.astralsorcery.common.block.base.BlockStarlightNetwork;
 
@@ -98,7 +98,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock
                     final FluidActionResult far = FluidUtil.tryFillContainerAndStow(heldItem, handler, (IItemHandler)new InvWrapper((Container)player.getInventory()), 1000, player, true);
                     if (far.isSuccess()) {
                         player.func_184611_a(hand, far.getResult());
-                        SoundHelper.playSoundAround(SoundEvents.field_187630_M, world, (Vector3i)pos, 1.0f, 1.0f);
+                        SoundHelper.playSoundAround(SoundEvents.field_187630_M, world, (Vec3i)pos, 1.0f, 1.0f);
                         tw.markForUpdate();
                     }
                 });

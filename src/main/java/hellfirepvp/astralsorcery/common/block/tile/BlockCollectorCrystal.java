@@ -44,7 +44,7 @@ import net.minecraftforge.common.ToolAction;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import hellfirepvp.astralsorcery.common.block.tile.crystal.CollectorCrystalType;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.observerlib.api.block.BlockStructureObserver;
 import hellfirepvp.astralsorcery.common.block.base.BlockStarlightNetwork;

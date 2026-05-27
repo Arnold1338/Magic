@@ -23,7 +23,7 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 public class PktRotateTelescope extends ASPacket<PktRotateTelescope>
 {
     private boolean isClockwise;
-    private RegistryKey<Level> dim;
+    private ResourceKey<Level> dim;
     private BlockPos pos;
     
     public PktRotateTelescope() {
@@ -32,7 +32,7 @@ public class PktRotateTelescope extends ASPacket<PktRotateTelescope>
         this.pos = BlockPos.field_177992_a;
     }
     
-    public PktRotateTelescope(final boolean isClockwise, final RegistryKey<Level> dim, final BlockPos pos) {
+    public PktRotateTelescope(final boolean isClockwise, final ResourceKey<Level> dim, final BlockPos pos) {
         this.isClockwise = false;
         this.dim = null;
         this.pos = BlockPos.field_177992_a;
@@ -57,7 +57,7 @@ public class PktRotateTelescope extends ASPacket<PktRotateTelescope>
         return (Decoder<PktRotateTelescope>)(buffer -> {
             final PktRotateTelescope pkt = new PktRotateTelescope();
             pkt.isClockwise = buffer.readBoolean();
-            pkt.dim = (RegistryKey<Level>)ByteBufUtils.readOptional(buffer, ByteBufUtils::readVanillaRegistryEntry);
+            pkt.dim = (ResourceKey<Level>)ByteBufUtils.readOptional(buffer, ByteBufUtils::readVanillaRegistryEntry);
             pkt.pos = ByteBufUtils.readPos(buffer);
             return pkt;
         });

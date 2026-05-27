@@ -8,7 +8,7 @@ import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import net.minecraft.network.chat.MutableComponent;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
-import net.minecraft.network.chat.FormattedCharSequence;
+import net.minecraft.util.FormattedCharSequence;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;

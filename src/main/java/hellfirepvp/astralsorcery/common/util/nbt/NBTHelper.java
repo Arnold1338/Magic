@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.util.nbt;
 
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.core.BlockPos;
 import java.util.UUID;

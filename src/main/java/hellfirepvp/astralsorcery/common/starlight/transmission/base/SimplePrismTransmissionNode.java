@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.starlight.transmission.base;
 
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import hellfirepvp.astralsorcery.common.util.RaytraceAssist;
 import java.util.Objects;
 import net.minecraft.nbt.Tag;
@@ -197,11 +197,11 @@ public class SimplePrismTransmissionNode implements IPrismTransmissionNode
             else {
                 this.reachable = oldRayState;
             }
-            this.distanceSq = end.func_218138_a((IPosition)Vec3.func_237491_b_((Vector3i)start), false);
+            this.distanceSq = end.func_218138_a((IPosition)Vec3.func_237491_b_((Vec3i)start), false);
         }
         
         private boolean notifyBlockPlace(final Level world, final BlockPos connect, final BlockPos at) {
-            final Vec3 bPosAt = Vec3.func_237491_b_((Vector3i)at);
+            final Vec3 bPosAt = Vec3.func_237491_b_((Vec3i)at);
             final double dstStart = connect.func_218138_a((IPosition)bPosAt, false);
             final double dstEnd = this.pos.func_218138_a((IPosition)bPosAt, false);
             if (dstStart > this.distanceSq || dstEnd > this.distanceSq) {

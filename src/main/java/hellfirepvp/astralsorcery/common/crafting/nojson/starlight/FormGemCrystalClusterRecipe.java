@@ -71,7 +71,7 @@ public class FormGemCrystalClusterRecipe extends LiquidStarlightRecipe
     
     @Override
     public void doServerCraftTick(final ItemEntity trigger, final Level world, final BlockPos at) {
-        final Random r = new Random(Mth.func_180186_a((Vector3i)at));
+        final Random r = new Random(Mth.func_180186_a((Vec3i)at));
         if (this.getAndIncrementCraftingTick((Entity)trigger) > 50 + r.nextInt(20) && this.consumeItemEntityInBlock((IWorld)world, at, ItemsAS.ILLUMINATION_POWDER) != null && this.consumeItemEntityInBlock((IWorld)world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase) != null) {
             world.func_175656_a(at, BlocksAS.GEM_CRYSTAL_CLUSTER.defaultBlockState());
         }

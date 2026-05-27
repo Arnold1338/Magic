@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.level.block.state.Property;
 import net.minecraft.world.level.block.state.BlockState;
@@ -35,7 +35,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import hellfirepvp.astralsorcery.common.block.tile.crystal.CollectorCrystalType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.IntegerProperty;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.astralsorcery.common.block.base.BlockStarlightRecipient;
 import hellfirepvp.astralsorcery.common.block.base.BlockCrystalContainer;
@@ -116,8 +116,8 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
     public void func_196243_a(final BlockState state, final Level world, final BlockPos pos, final BlockState newState, final boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             super.func_196243_a(state, world, pos, newState, isMoving);
-            final PktPlayEffect effect = new PktPlayEffect(PktPlayEffect.Type.SMALL_CRYSTAL_BREAK).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vector3i)pos).add(state.func_191059_e((IBlockReader)world, pos)).add(0.5, 0.4, 0.5)));
-            PacketChannel.CHANNEL.sendToAllAround(effect, PacketChannel.pointFromPos(world, (Vector3i)pos, 32.0));
+            final PktPlayEffect effect = new PktPlayEffect(PktPlayEffect.Type.SMALL_CRYSTAL_BREAK).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos).add(state.func_191059_e((IBlockReader)world, pos)).add(0.5, 0.4, 0.5)));
+            PacketChannel.CHANNEL.sendToAllAround(effect, PacketChannel.pointFromPos(world, (Vec3i)pos, 32.0));
         }
     }
     

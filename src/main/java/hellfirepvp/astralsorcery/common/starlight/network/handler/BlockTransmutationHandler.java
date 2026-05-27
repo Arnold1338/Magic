@@ -55,7 +55,7 @@ public class BlockTransmutationHandler implements StarlightNetworkRegistry.IStar
         }
         activeRecipe.acceptStarlight(amount);
         final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.BLOCK_TRANSMUTATION_TICK).addData(buf -> ByteBufUtils.writePos(buf, pos));
-        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vector3i)pos, 24.0));
+        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vec3i)pos, 24.0));
         if (activeRecipe.isFinished() && activeRecipe.finish((IWorld)world, pos)) {
             BlockTransmutationHandler.runningTransmutations.remove(at);
         }
@@ -65,7 +65,7 @@ public class BlockTransmutationHandler implements StarlightNetworkRegistry.IStar
     public static void playTransmutation(final PktPlayEffect effect) {
         final Random rand = new Random();
         final BlockPos pos = ByteBufUtils.readPos(effect.getExtraData());
-        EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)pos).add(rand.nextFloat(), rand.nextFloat(), rand.nextFloat())).setAlphaMultiplier(1.0f).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.constant(ColorsAS.ROCK_CRYSTAL)).setScaleMultiplier(0.2f + rand.nextFloat() * 0.15f).setGravityStrength(-0.0014f).setMaxAge(40 + rand.nextInt(20));
+        EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vec3i)pos).add(rand.nextFloat(), rand.nextFloat(), rand.nextFloat())).setAlphaMultiplier(1.0f).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.constant(ColorsAS.ROCK_CRYSTAL)).setScaleMultiplier(0.2f + rand.nextFloat() * 0.15f).setGravityStrength(-0.0014f).setMaxAge(40 + rand.nextInt(20));
     }
     
     static {

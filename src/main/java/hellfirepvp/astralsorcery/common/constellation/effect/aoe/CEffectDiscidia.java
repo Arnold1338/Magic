@@ -52,7 +52,7 @@ public class CEffectDiscidia extends ConstellationEffectEntityCollect<LivingEnti
     @OnlyIn(Dist.CLIENT)
     @Override
     public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
-        final Vector3 playAt = new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5);
+        final Vector3 playAt = new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5);
         if (pos.equals((Object)pedestal.getBlockState())) {
             playAt.add(CEffectDiscidia.rand.nextFloat() * 0.1 * (CEffectDiscidia.rand.nextBoolean() ? 1 : -1), CEffectDiscidia.rand.nextFloat() * 5.0f, CEffectDiscidia.rand.nextFloat() * 0.1 * (CEffectDiscidia.rand.nextBoolean() ? 1 : -1));
         }

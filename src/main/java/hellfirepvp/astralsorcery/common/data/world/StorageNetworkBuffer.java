@@ -6,7 +6,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import java.util.Iterator;
 import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;

@@ -10,7 +10,7 @@ import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import hellfirepvp.astralsorcery.common.entity.EntitySpectralTool;
 import net.minecraft.world.entity.LivingEntity;
 

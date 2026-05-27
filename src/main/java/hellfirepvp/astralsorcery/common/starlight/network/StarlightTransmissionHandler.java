@@ -14,10 +14,10 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 public class StarlightTransmissionHandler implements ITickHandler
 {
     private static final StarlightTransmissionHandler instance;
-    private final Map<RegistryKey<Level>, TransmissionWorldHandler> worldHandlers;
+    private final Map<ResourceKey<Level>, TransmissionWorldHandler> worldHandlers;
     
     private StarlightTransmissionHandler() {
-        this.worldHandlers = new HashMap<RegistryKey<Level>, TransmissionWorldHandler>();
+        this.worldHandlers = new HashMap<ResourceKey<Level>, TransmissionWorldHandler>();
     }
     
     public static StarlightTransmissionHandler getInstance() {
@@ -29,7 +29,7 @@ public class StarlightTransmissionHandler implements ITickHandler
         if (world.level() || !(world instanceof ServerLevel)) {
             return;
         }
-        this.worldHandlers.computeIfAbsent((RegistryKey<Level>)world.dimension(), TransmissionWorldHandler::new).tick((ServerLevel)world);
+        this.worldHandlers.computeIfAbsent((ResourceKey<Level>)world.dimension(), TransmissionWorldHandler::new).tick((ServerLevel)world);
     }
     
     public void clearServer() {
@@ -38,7 +38,7 @@ public class StarlightTransmissionHandler implements ITickHandler
     }
     
     public void informWorldUnload(final Level world) {
-        final RegistryKey<Level> dimKey = (RegistryKey<Level>)world.dimension();
+        final ResourceKey<Level> dimKey = (ResourceKey<Level>)world.dimension();
         final TransmissionWorldHandler handle = this.worldHandlers.get(dimKey);
         if (handle != null) {
             handle.clear();

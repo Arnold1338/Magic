@@ -123,7 +123,7 @@ public class TileChalice extends TileEntityTick
             for (LiquidInteraction recipe = LiquidInteraction.pickRecipe(recipes); recipe != null; recipe = LiquidInteraction.pickRecipe(recipes)) {
                 if (recipe.consumeInputs(this, otherChalice)) {
                     final Vector3 thisChaliceV = new Vector3(this).add(0.5, 1.5, 0.5);
-                    final Vector3 otherChaliceV = new Vector3((Vector3i)otherChalicePos).add(0.5, 1.5, 0.5);
+                    final Vector3 otherChaliceV = new Vector3((Vec3i)otherChalicePos).add(0.5, 1.5, 0.5);
                     final Vector3 target = thisChaliceV.getMidpoint(otherChaliceV);
                     recipe.getResult().doResult(this.getLevel(), target.clone());
                     final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.LIQUID_INTERACTION_LINE).addData(buf -> {
@@ -135,7 +135,7 @@ public class TileChalice extends TileEntityTick
                         ByteBufUtils.writeFluidStack(buf, otherFluid);
                         return;
                     });
-                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vector3i)target.toBlockPos(), 32.0));
+                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vec3i)target.toBlockPos(), 32.0));
                     return;
                 }
                 recipes.remove(recipe);
@@ -150,7 +150,7 @@ public class TileChalice extends TileEntityTick
         final Vector3 thisVector = new Vector3(this).add(0.5, 1.5, 0.5);
         final List<BlockPos> fountains = BlockDiscoverer.searchForBlocksAround(this.level, this.field_174879_c, 16, BlockPredicates.isBlock((Block)BlocksAS.FOUNTAIN));
         fountains.removeIf(pos -> {
-            final Vector3 fountainVec = new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5);
+            final Vector3 fountainVec = new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5);
             final RaytraceAssist assist = new RaytraceAssist(thisVector, fountainVec);
             return !assist.isClear(this.level);
         });
@@ -166,14 +166,14 @@ public class TileChalice extends TileEntityTick
                 if (maxFillable > 0) {
                     final FluidStack actual = fountain.getTank().drain(new FluidStack(drained, maxFillable), IFluidHandler.FluidAction.EXECUTE);
                     this.getTank().fill(actual, IFluidHandler.FluidAction.EXECUTE);
-                    final Vector3 wellVec = new Vector3((Vector3i)wellPos).add(0.5, 0.5, 0.5);
+                    final Vector3 wellVec = new Vector3((Vec3i)wellPos).add(0.5, 0.5, 0.5);
                     final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.LIQUID_INTERACTION_LINE).addData(buf -> {
                         ByteBufUtils.writeVector(buf, wellVec);
                         ByteBufUtils.writeVector(buf, thisVector);
                         ByteBufUtils.writeFluidStack(buf, actual);
                         return;
                     });
-                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vector3i)wellVec.toBlockPos(), 32.0));
+                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vec3i)wellVec.toBlockPos(), 32.0));
                     return true;
                 }
                 continue;
@@ -193,7 +193,7 @@ public class TileChalice extends TileEntityTick
         final Vector3 thisVector = new Vector3(this).add(0.5, 1.5, 0.5);
         final List<BlockPos> wellPositions = BlockDiscoverer.searchForBlocksAround(this.level, this.field_174879_c, 16, BlockPredicates.isBlock((Block)BlocksAS.WELL));
         wellPositions.removeIf(pos -> {
-            final Vector3 wellVec2 = new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5);
+            final Vector3 wellVec2 = new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5);
             final RaytraceAssist assist = new RaytraceAssist(thisVector, wellVec2);
             return !assist.isClear(this.level);
         });
@@ -209,14 +209,14 @@ public class TileChalice extends TileEntityTick
                 if (maxFillable > 0) {
                     final FluidStack actual = well.getTank().drain(new FluidStack(drained, maxFillable), IFluidHandler.FluidAction.EXECUTE);
                     this.getTank().fill(actual, IFluidHandler.FluidAction.EXECUTE);
-                    final Vector3 wellVec = new Vector3((Vector3i)wellPos).add(0.5, 0.5, 0.5);
+                    final Vector3 wellVec = new Vector3((Vec3i)wellPos).add(0.5, 0.5, 0.5);
                     final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.LIQUID_INTERACTION_LINE).addData(buf -> {
                         ByteBufUtils.writeVector(buf, wellVec);
                         ByteBufUtils.writeVector(buf, thisVector);
                         ByteBufUtils.writeFluidStack(buf, actual);
                         return;
                     });
-                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vector3i)wellVec.toBlockPos(), 32.0));
+                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vec3i)wellVec.toBlockPos(), 32.0));
                     return true;
                 }
                 return false;

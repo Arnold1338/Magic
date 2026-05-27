@@ -141,7 +141,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
         final int tick = this.getTick();
         if (tick % 40 == 0) {
             for (final BlockPos pos : altar.getConstellationPositions(cst)) {
-                final Vector3 from = new Vector3((Vector3i)pos).add(0.5, 0.0, 0.5);
+                final Vector3 from = new Vector3((Vec3i)pos).add(0.5, 0.0, 0.5);
                 MiscUtils.applyRandomOffset(from, this.rand, 0.1f);
                 EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).spawn(from).setup(from.clone().addY(6.0), 1.2, 1.2).setAlphaMultiplier(0.8f).color(beamColor).setMaxAge(60);
             }
@@ -165,11 +165,11 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
             final Set<BlockPos> offsets = altar.getConstellationPositions(cst);
             final BlockPos pos2 = MiscUtils.getRandomEntry(offsets, this.rand);
             if (tick <= 380) {
-                final Vector3 offset2 = new Vector3((Vector3i)pos2).add(0.5, 0.0, 0.5).add(Vector3.random().setY(0).multiply(0.6));
+                final Vector3 offset2 = new Vector3((Vec3i)pos2).add(0.5, 0.0, 0.5).add(Vector3.random().setY(0).multiply(0.6));
                 EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(offset2).color(VFXColorFunction.WHITE).setGravityStrength(-6.0E-4f + this.rand.nextFloat() * -0.003f).setMotion(Vector3.random().addY(4.0).normalize().multiply(0.015 + this.rand.nextFloat() * 0.01)).setAlphaMultiplier(0.6f).setScaleMultiplier(0.3f + this.rand.nextFloat() * 0.15f).alpha(VFXAlphaFunction.FADE_OUT).setMaxAge(60 + this.rand.nextInt(20));
             }
             else {
-                Vector3 offset2 = new Vector3((Vector3i)pos2).add(0.5, 0.0, 0.5).add(Vector3.random().setY(0).multiply(0.5));
+                Vector3 offset2 = new Vector3((Vec3i)pos2).add(0.5, 0.0, 0.5).add(Vector3.random().setY(0).multiply(0.5));
                 EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(offset2).setAlphaMultiplier(0.6f).alpha(VFXAlphaFunction.proximity(playerTarget::clone, 3.0f)).motion(VFXMotionController.target(playerTarget::clone, 0.08f)).setScaleMultiplier(0.2f + this.rand.nextFloat() * 0.1f).color(VFXColorFunction.WHITE).setMotion(new Vector3(0.0, 0.2 + this.rand.nextFloat() * 0.15f, 0.0)).setMaxAge(60 + this.rand.nextInt(20));
                 offset2 = new Vector3(altar).add(0.5, 0.0, 0.5).add(Vector3.random().setY(0).multiply(0.6));
                 EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(offset2).color(VFXColorFunction.WHITE).setGravityStrength(-6.0E-4f + this.rand.nextFloat() * -0.004f).setMotion(Vector3.random().addY(4.0).normalize().multiply(0.02 + this.rand.nextFloat() * 0.01)).setAlphaMultiplier(0.75f).setScaleMultiplier(0.3f + this.rand.nextFloat() * 0.1f).alpha(VFXAlphaFunction.FADE_OUT).setMaxAge(40 + this.rand.nextInt(10));
@@ -262,7 +262,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
                 final ICameraTransformer transformer = (ICameraTransformer)this.cameraHack;
                 final ICameraPersistencyFunction persistency = transformer.getPersistencyFunction();
                 if (persistency.isExpired() && !persistency.wasForciblyStopped()) {
-                    final PktAttunePlayerConstellation attuneRequest = new PktAttunePlayerConstellation(this.constellation, (RegistryKey<Level>)altar.getLevel().dimension(), at);
+                    final PktAttunePlayerConstellation attuneRequest = new PktAttunePlayerConstellation(this.constellation, (ResourceKey<Level>)altar.getLevel().dimension(), at);
                     PacketChannel.CHANNEL.sendToServer(attuneRequest);
                 }
             }

@@ -18,30 +18,30 @@ import net.minecraft.core.BlockPos;
 
 public class WorldBlockPos extends BlockPos
 {
-    private final TransformReference<RegistryKey<Level>, Level> worldReference;
+    private final TransformReference<ResourceKey<Level>, Level> worldReference;
     
-    private WorldBlockPos(final TransformReference<RegistryKey<Level>, Level> worldReference, final BlockPos pos) {
-        super((Vector3i)pos);
+    private WorldBlockPos(final TransformReference<ResourceKey<Level>, Level> worldReference, final BlockPos pos) {
+        super((Vec3i)pos);
         this.worldReference = worldReference;
     }
     
-    private WorldBlockPos(final RegistryKey<Level> type, final BlockPos pos, final Function<RegistryKey<Level>, Level> worldProvider) {
-        super((Vector3i)pos);
-        this.worldReference = new TransformReference<RegistryKey<Level>, Level>(type, worldProvider);
+    private WorldBlockPos(final ResourceKey<Level> type, final BlockPos pos, final Function<ResourceKey<Level>, Level> worldProvider) {
+        super((Vec3i)pos);
+        this.worldReference = new TransformReference<ResourceKey<Level>, Level>(type, worldProvider);
     }
     
     public static WorldBlockPos wrapServer(final Level world, final BlockPos pos) {
-        return new WorldBlockPos((RegistryKey<Level>)world.dimension(), pos, type -> {
+        return new WorldBlockPos((ResourceKey<Level>)world.dimension(), pos, type -> {
             final MinecraftServer server = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
             return server.getLevel(type);
         });
     }
     
     public static WorldBlockPos wrapTileEntity(final BlockEntity tile) {
-        return new WorldBlockPos((RegistryKey<Level>)tile.getLevel().dimension(), tile.getBlockState(), type -> tile.getLevel());
+        return new WorldBlockPos((ResourceKey<Level>)tile.getLevel().dimension(), tile.getBlockState(), type -> tile.getLevel());
     }
     
-    public RegistryKey<Level> getWorldKey() {
+    public ResourceKey<Level> getWorldKey() {
         return this.worldReference.getReference();
     }
     
@@ -57,7 +57,7 @@ public class WorldBlockPos extends BlockPos
         return this.wrapInternal(super.func_177963_a(x, y, z));
     }
     
-    public WorldBlockPos add(final Vector3i vec) {
+    public WorldBlockPos add(final Vec3i vec) {
         return this.wrapInternal(super.func_177971_a(vec));
     }
     

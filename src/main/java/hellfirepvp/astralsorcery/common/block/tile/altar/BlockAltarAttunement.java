@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.util.VoxelUtils;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.tile.BlockAltar;
 
 public class BlockAltarAttunement extends BlockAltar

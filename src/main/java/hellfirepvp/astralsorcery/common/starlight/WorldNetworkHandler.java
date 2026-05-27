@@ -9,7 +9,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.ITransmissionSour
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.Tuple;
 import java.util.Collection;
 import java.util.Iterator;
@@ -66,7 +66,7 @@ public class WorldNetworkHandler
             if (!((IIndependentStarlightSource)source.getB()).providesAutoLink()) {
                 continue;
             }
-            if (((BlockPos)source.getA()).func_218138_a((IPosition)Vec3.func_237491_b_((Vector3i)at), false) > 256.0) {
+            if (((BlockPos)source.getA()).func_218138_a((IPosition)Vec3.func_237491_b_((Vec3i)at), false) > 256.0) {
                 continue;
             }
             final IPrismTransmissionNode node = this.getTransmissionNode((BlockPos)source.getA());
@@ -84,7 +84,7 @@ public class WorldNetworkHandler
                     continue;
                 }
                 sourceNode.notifyLink(this.getWorld(), at);
-                this.markDirty((Vector3i)at, (Vector3i)source.getA());
+                this.markDirty((Vec3i)at, (Vec3i)source.getA());
                 if (handle == null) {
                     continue;
                 }
@@ -99,7 +99,7 @@ public class WorldNetworkHandler
             if (!((IIndependentStarlightSource)source.getB()).providesAutoLink()) {
                 continue;
             }
-            if (((BlockPos)source.getA()).func_218138_a((IPosition)Vec3.func_237491_b_((Vector3i)at), false) > 256.0) {
+            if (((BlockPos)source.getA()).func_218138_a((IPosition)Vec3.func_237491_b_((Vec3i)at), false) > 256.0) {
                 continue;
             }
             final IPrismTransmissionNode node = this.getTransmissionNode((BlockPos)source.getA());
@@ -116,7 +116,7 @@ public class WorldNetworkHandler
                 if (!sourceNode.notifyUnlink(this.getWorld(), at)) {
                     continue;
                 }
-                this.markDirty((Vector3i)at, (Vector3i)source.getA());
+                this.markDirty((Vec3i)at, (Vec3i)source.getA());
                 if (handle == null) {
                     continue;
                 }
@@ -137,9 +137,9 @@ public class WorldNetworkHandler
         return null;
     }
     
-    public void markDirty(final Vector3i... positions) {
-        for (final Vector3i pos : positions) {
-            this.buffer.markDirty(pos);
+    public void markDirty(final Vec3i... positions) {
+        for (final Vec3i pos : positions) {
+            this.buffer.markDirty(new net.minecraft.core.Vec3i(pos.getX(), pos.getY(), pos.getZ()));
         }
     }
     

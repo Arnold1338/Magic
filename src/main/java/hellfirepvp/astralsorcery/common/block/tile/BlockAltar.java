@@ -23,7 +23,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.InteractionResult;
-import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.BlockPos;

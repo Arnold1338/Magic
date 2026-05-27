@@ -15,13 +15,13 @@ public class EffectProperties<T extends EntityVisualFX>
     private static List<Consumer<EntityVisualFX>> specialEffects;
     private EffectType type;
     private UUID owner;
-    private Vector3i position;
+    private Vec3i position;
     private boolean ignoreLimit;
     
     public EffectProperties(final BatchRenderContext<T> ctx) {
         this.type = null;
         this.owner = null;
-        this.position = Vector3i.field_177959_e;
+        this.position = Vec3i.field_177959_e;
         this.ignoreLimit = false;
         this.ctx = ctx;
     }
@@ -36,7 +36,7 @@ public class EffectProperties<T extends EntityVisualFX>
         return (I)this;
     }
     
-    public <I extends EffectProperties<T>> I setPosition(@Nonnull final Vector3i position) {
+    public <I extends EffectProperties<T>> I setPosition(@Nonnull final Vec3i position) {
         this.position = position;
         return (I)this;
     }
@@ -61,7 +61,7 @@ public class EffectProperties<T extends EntityVisualFX>
     }
     
     @Nonnull
-    public Vector3i getPosition() {
+    public Vec3i getPosition() {
         return this.position;
     }
     

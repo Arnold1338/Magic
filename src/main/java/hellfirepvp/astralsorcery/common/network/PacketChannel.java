@@ -105,12 +105,12 @@ public class PacketChannel
         PacketChannel.CHANNEL.messageBuilder((Class<Object>)packet.getClass(), PacketChannel.packetIndex++).encoder((BiConsumer)packet.encoder()).decoder((Function)packet.decoder()).consumer((BiConsumer)packet.handler()).add();
     }
     
-    public static PacketDistributor.TargetPoint pointFromPos(final Level world, final Vector3i pos, final double range) {
-        return pointFromPos((RegistryKey<Level>)world.dimension(), pos, range);
+    public static PacketDistributor.TargetPoint pointFromPos(final Level world, final Vec3i pos, final double range) {
+        return pointFromPos((ResourceKey<Level>)world.dimension(), pos, range);
     }
     
-    public static PacketDistributor.TargetPoint pointFromPos(final RegistryKey<Level> world, final Vector3i pos, final double range) {
-        return new PacketDistributor.TargetPoint((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), range, (RegistryKey)world);
+    public static PacketDistributor.TargetPoint pointFromPos(final ResourceKey<Level> world, final Vec3i pos, final double range) {
+        return new PacketDistributor.TargetPoint((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), range, (ResourceKey)world);
     }
     
     static {

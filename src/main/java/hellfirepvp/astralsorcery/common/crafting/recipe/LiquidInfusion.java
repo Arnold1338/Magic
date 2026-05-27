@@ -67,7 +67,7 @@ public class LiquidInfusion extends CustomMatcherRecipe implements GatedRecipe.P
         if (!hasProgress) {
             return false;
         }
-        final boolean hasFluidInputs = MapStream.of(infuser.getLiquids()).mapKey(pos -> pos.func_177971_a((Vector3i)infuser.getBlockState())).allMatch(tpl -> this.liquidInput.equals(tpl.getB()));
+        final boolean hasFluidInputs = MapStream.of(infuser.getLiquids()).mapKey(pos -> pos.func_177971_a((Vec3i)infuser.getBlockState())).allMatch(tpl -> this.liquidInput.equals(tpl.getB()));
         return hasFluidInputs && this.itemInput.test(infuser.getItemInput());
     }
     

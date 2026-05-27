@@ -17,7 +17,7 @@ public class SkyCollectionHelper
     private static final Random sharedRand;
     
     @OnlyIn(Dist.CLIENT)
-    public static Optional<Float> getSkyNoiseDistributionClient(final RegistryKey<Level> dim, final BlockPos pos) {
+    public static Optional<Float> getSkyNoiseDistributionClient(final ResourceKey<Level> dim, final BlockPos pos) {
         return WorldSeedCache.getSeedIfPresent(dim).map(seed -> getDistributionInternal(seed, pos));
     }
     

@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.screen.journal.page;
 
 import net.minecraft.client.renderer.RenderType;
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import net.minecraft.network.chat.FormattedCharSequence;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;

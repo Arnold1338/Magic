@@ -47,7 +47,7 @@ public class EventHelperSpawnDeny
                 if (!entry.getKey().getWorldKey().equals(entity.level().dimension())) {
                     continue;
                 }
-                if (entityPos.distance((Vector3i)entry.getKey()) <= entry.getValue().getValue()) {
+                if (entityPos.distance((Vec3i)entry.getKey()) <= entry.getValue().getValue()) {
                     event.setResult(Event.Result.DENY);
                 }
             }

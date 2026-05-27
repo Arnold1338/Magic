@@ -6,7 +6,7 @@ import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
-import net.minecraft.network.chat.FormattedCharSequence;
+import net.minecraft.util.FormattedCharSequence;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;

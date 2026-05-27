@@ -46,7 +46,7 @@ public abstract class FountainEffect<E extends EffectContext>
     public abstract void onReplace(final TileFountain p0, final E p1, @Nullable final FountainEffect<?> p2, final LogicalSide p3);
     
     @OnlyIn(Dist.CLIENT)
-    protected void playFountainVortexParticles(final Vector3i pos, final float chance) {
+    protected void playFountainVortexParticles(final Vec3i pos, final float chance) {
         final Vector3 at = new Vector3(pos).add(0.5, 0.5, 0.5);
         for (int i = 0; i < 18; ++i) {
             if (FountainEffect.rand.nextFloat() < chance) {
@@ -58,7 +58,7 @@ public abstract class FountainEffect<E extends EffectContext>
     }
     
     @OnlyIn(Dist.CLIENT)
-    protected void playFountainArcs(final Vector3i pos, final float chance) {
+    protected void playFountainArcs(final Vec3i pos, final float chance) {
         if (FountainEffect.rand.nextFloat() < chance && FountainEffect.rand.nextInt(8) == 0) {
             final Vector3 at = new Vector3(pos).add(0.5, 0.5, 0.5);
             final Vector3 pos2 = Vector3.random().setY(0).normalize().multiply(4).add(at);

@@ -56,7 +56,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
     @Override
     public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         if (pedestal.getTicksExisted() % 20 == 0) {
-            EffectHelper.spawnSource(new FXOrbitalArmara(new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5)).setOrbitRadius(0.8 + CEffectArmara.rand.nextFloat() * 0.7).setOrbitAxis(Vector3.RotAxis.Y_AXIS).setTicksPerRotation(20 + CEffectArmara.rand.nextInt(20)));
+            EffectHelper.spawnSource(new FXOrbitalArmara(new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5)).setOrbitRadius(0.8 + CEffectArmara.rand.nextFloat() * 0.7).setOrbitAxis(Vector3.RotAxis.Y_AXIS).setTicksPerRotation(20 + CEffectArmara.rand.nextInt(20)));
         }
         final ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
         final ItemStack socket = pedestal.getCurrentCrystal();

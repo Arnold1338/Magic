@@ -25,7 +25,7 @@ public interface TileAreaOfInfluence
     BlockPos getEffectOriginPosition();
     
     @Nonnull
-    RegistryKey<Level> getDimension();
+    ResourceKey<Level> getDimension();
     
     boolean providesEffect();
 }

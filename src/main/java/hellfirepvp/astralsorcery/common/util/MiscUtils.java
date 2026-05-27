@@ -7,12 +7,12 @@ import net.minecraft.world.level.chunk.ChunkSource;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.util.log.LogCategory;
 import java.awt.Color;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.phys.HitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import java.util.LinkedList;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.level.chunk.ChunkAccess;
@@ -416,18 +416,18 @@ public class MiscUtils
     }
     
     @Nullable
-    public static <T extends Entity> T transferEntityTo(T entity, final RegistryKey<Level> target, final BlockPos targetPos) {
+    public static <T extends Entity> T transferEntityTo(T entity, final ResourceKey<Level> target, final BlockPos targetPos) {
         if (entity.level().isClientSide) {
             return null;
         }
         entity.func_226284_e_(false);
-        final RegistryKey<Level> src = (RegistryKey<Level>)entity.level().dimension();
+        final ResourceKey<Level> src = (ResourceKey<Level>)entity.level().dimension();
         if (!src.equals(target)) {
-            if (!ForgeHooks.onTravelToDimension((Entity)entity, (RegistryKey)target)) {
+            if (!ForgeHooks.onTravelToDimension((Entity)entity, (ResourceKey)target)) {
                 return null;
             }
             final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
-            final ServerLevel targetWorld = srv.getLevel((RegistryKey)target);
+            final ServerLevel targetWorld = srv.getLevel((ResourceKey)target);
             if (targetWorld == null) {
                 return null;
             }

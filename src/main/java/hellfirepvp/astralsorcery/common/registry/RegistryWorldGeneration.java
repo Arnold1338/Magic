@@ -111,7 +111,7 @@ public class RegistryWorldGeneration
             if (cfg.isEnabled() && cfg.canGenerateIn(event.getCategory())) {
                 final GenerationStage.Decoration stage = RegistryWorldGeneration.FEATURE_STAGE.get(feature);
                 if (stage == null) {
-                    final ResourceLocation key = WorldGenRegistries.field_243653_e.func_230519_c_((Object)feature).map(RegistryKey::func_240901_a_).orElse(new ResourceLocation("not_registered"));
+                    final ResourceLocation key = WorldGenRegistries.field_243653_e.func_230519_c_((Object)feature).map(ResourceKey::func_240901_a_).orElse(new ResourceLocation("not_registered"));
                     throw new IllegalArgumentException("Unknown generation stage for feature " + key + "!");
                 }
                 else {

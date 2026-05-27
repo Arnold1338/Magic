@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import java.util.Map;
 import net.minecraft.util.Mth;
 import net.minecraft.util.EntityPredicates;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.client.effect.function.VFXAlphaFunction;
@@ -106,7 +106,7 @@ public class TimeStopEffectHelper
                     final Map<BlockPos, BlockEntity> map = ch.func_177434_r();
                     for (final Map.Entry<BlockPos, BlockEntity> teEntry : map.entrySet()) {
                         final BlockEntity te = teEntry.getValue();
-                        if (TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(te) && te.getBlockState().func_218141_a((Vector3i)this.position, (double)this.range)) {
+                        if (TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(te) && te.getBlockState().func_218141_a((Vec3i)this.position, (double)this.range)) {
                             final double x = te.getBlockState().getX() + TimeStopEffectHelper.rand.nextFloat();
                             final double y = te.getBlockState().getY() + TimeStopEffectHelper.rand.nextFloat();
                             final double z = te.getBlockState().getZ() + TimeStopEffectHelper.rand.nextFloat();
@@ -117,12 +117,12 @@ public class TimeStopEffectHelper
             }
         }
         for (int i = 0; i < 10; ++i) {
-            final Vector3 pos = Vector3.random().normalize().multiply(TimeStopEffectHelper.rand.nextFloat() * this.range).add((Vector3i)this.position);
+            final Vector3 pos = Vector3.random().normalize().multiply(TimeStopEffectHelper.rand.nextFloat() * this.range).add((Vec3i)this.position);
             playParticles(pos.getX(), pos.getY(), pos.getZ());
         }
         if (TimeStopEffectHelper.rand.nextInt(4) == 0) {
-            final Vector3 rand1 = Vector3.random().normalize().multiply(TimeStopEffectHelper.rand.nextFloat() * this.range).add((Vector3i)this.position);
-            Vector3 rand2 = Vector3.random().normalize().multiply(TimeStopEffectHelper.rand.nextFloat() * this.range).add((Vector3i)this.position);
+            final Vector3 rand1 = Vector3.random().normalize().multiply(TimeStopEffectHelper.rand.nextFloat() * this.range).add((Vec3i)this.position);
+            Vector3 rand2 = Vector3.random().normalize().multiply(TimeStopEffectHelper.rand.nextFloat() * this.range).add((Vec3i)this.position);
             if (rand1.distance(rand2) > 10.0) {
                 final Vector3 dir = rand1.vectorFromHereTo(rand2);
                 rand2 = rand1.clone().add(dir.normalize().multiply(10));

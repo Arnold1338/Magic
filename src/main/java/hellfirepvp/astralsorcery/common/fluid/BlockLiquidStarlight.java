@@ -112,8 +112,8 @@ public class BlockLiquidStarlight extends FlowingFluidBlock
     public void func_180655_c(final BlockState state, final Level world, final BlockPos pos, final Random rand) {
         final Integer level = (Integer)state.getValue((Property)BlockLiquidStarlight.field_176367_b);
         final double percHeight = 1.0 - (level + 1.0) / 8.0;
-        playLiquidStarlightBlockEffect(rand, new Vector3((Vector3i)pos).addY(percHeight * rand.nextFloat()), 1.0f);
-        playLiquidStarlightBlockEffect(rand, new Vector3((Vector3i)pos).addY(percHeight * rand.nextFloat()), 1.0f);
+        playLiquidStarlightBlockEffect(rand, new Vector3((Vec3i)pos).addY(percHeight * rand.nextFloat()), 1.0f);
+        playLiquidStarlightBlockEffect(rand, new Vector3((Vec3i)pos).addY(percHeight * rand.nextFloat()), 1.0f);
     }
     
     @OnlyIn(Dist.CLIENT)

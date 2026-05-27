@@ -15,7 +15,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 public class StarlightUpdateHandler implements ITickHandler
 {
     private static final StarlightUpdateHandler instance;
-    private static final Map<RegistryKey<Level>, List<IPrismTransmissionNode>> updateRequired;
+    private static final Map<ResourceKey<Level>, List<IPrismTransmissionNode>> updateRequired;
     private static final Object accessLock;
     
     private StarlightUpdateHandler() {
@@ -39,7 +39,7 @@ public class StarlightUpdateHandler implements ITickHandler
     }
     
     private List<IPrismTransmissionNode> getNodes(final Level world) {
-        return StarlightUpdateHandler.updateRequired.computeIfAbsent((RegistryKey<Level>)world.dimension(), k -> new LinkedList());
+        return StarlightUpdateHandler.updateRequired.computeIfAbsent((ResourceKey<Level>)world.dimension(), k -> new LinkedList());
     }
     
     public void removeNode(final Level world, final IPrismTransmissionNode node) {
@@ -80,7 +80,7 @@ public class StarlightUpdateHandler implements ITickHandler
     
     static {
         instance = new StarlightUpdateHandler();
-        updateRequired = new HashMap<RegistryKey<Level>, List<IPrismTransmissionNode>>();
+        updateRequired = new HashMap<ResourceKey<Level>, List<IPrismTransmissionNode>>();
         accessLock = new Object();
     }
 }

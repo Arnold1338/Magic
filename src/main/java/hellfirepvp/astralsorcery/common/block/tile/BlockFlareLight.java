@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.StateContainer;
 import net.minecraft.world.level.LevelReader;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.phys.HitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -27,7 +27,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.Property;
 import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMisc;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.state.EnumProperty;
 import net.minecraft.world.level.block.Block;
@@ -46,10 +46,10 @@ public class BlockFlareLight extends Block
     public void func_180655_c(final BlockState state, final Level world, final BlockPos pos, final Random rand) {
         final Color c = ColorUtils.flareColorFromDye((DyeColor)state.getValue((Property)BlockFlareLight.COLOR));
         for (int i = 0; i < 2; ++i) {
-            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)pos).add(0.5, 0.2, 0.5).add(rand.nextFloat() * 0.1 * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * 0.1 * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * 0.1 * (rand.nextBoolean() ? 1 : -1))).setScaleMultiplier(0.4f + rand.nextFloat() * 0.1f).setAlphaMultiplier(0.35f).setMotion(new Vector3(0.0f, rand.nextFloat() * 0.01f, 0.0f)).color(VFXColorFunction.constant(c)).setMaxAge(50 + rand.nextInt(20));
+            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vec3i)pos).add(0.5, 0.2, 0.5).add(rand.nextFloat() * 0.1 * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * 0.1 * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * 0.1 * (rand.nextBoolean() ? 1 : -1))).setScaleMultiplier(0.4f + rand.nextFloat() * 0.1f).setAlphaMultiplier(0.35f).setMotion(new Vector3(0.0f, rand.nextFloat() * 0.01f, 0.0f)).color(VFXColorFunction.constant(c)).setMaxAge(50 + rand.nextInt(20));
         }
         if (rand.nextBoolean()) {
-            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)pos).add(0.5, 0.3, 0.5).add(rand.nextFloat() * 0.02 * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * 0.1 * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * 0.02 * (rand.nextBoolean() ? 1 : -1))).setScaleMultiplier(0.15f + rand.nextFloat() * 0.1f).setMotion(new Vector3(0.0f, rand.nextFloat() * 0.01f, 0.0f)).color(VFXColorFunction.WHITE).setMaxAge(25 + rand.nextInt(10));
+            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vec3i)pos).add(0.5, 0.3, 0.5).add(rand.nextFloat() * 0.02 * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * 0.1 * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * 0.02 * (rand.nextBoolean() ? 1 : -1))).setScaleMultiplier(0.15f + rand.nextFloat() * 0.1f).setMotion(new Vector3(0.0f, rand.nextFloat() * 0.01f, 0.0f)).color(VFXColorFunction.WHITE).setMaxAge(25 + rand.nextInt(10));
         }
     }
     

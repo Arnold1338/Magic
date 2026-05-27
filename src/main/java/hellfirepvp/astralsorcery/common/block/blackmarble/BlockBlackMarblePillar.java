@@ -22,7 +22,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.Property;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.level.block.state.EnumProperty;
 import net.minecraft.world.level.block.state.BooleanProperty;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;

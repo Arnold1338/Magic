@@ -94,17 +94,17 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
                     changedFlag = true;
                 }
                 else if (plant.tryGrow((IWorld)world, CEffectAevitas.rand)) {
-                    final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.CROP_GROWTH).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vector3i)plant.getPos())));
-                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vector3i)plant.getPos(), 16.0));
+                    final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.CROP_GROWTH).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vec3i)plant.getPos())));
+                    PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vec3i)plant.getPos(), 16.0));
                     changedFlag = true;
                 }
                 return changedFlag;
             }, false);
         }
-        if (this.findNewPosition(world, pos, properties).ifRight(attemptedPos -> this.sendConstellationPing(world, new Vector3((Vector3i)attemptedPos).add(0.5, 0.5, 0.5))).left().isPresent()) {
+        if (this.findNewPosition(world, pos, properties).ifRight(attemptedPos -> this.sendConstellationPing(world, new Vector3((Vec3i)attemptedPos).add(0.5, 0.5, 0.5))).left().isPresent()) {
             changed = true;
         }
-        if (this.findNewPosition(world, pos, properties).ifRight(attemptedPos -> this.sendConstellationPing(world, new Vector3((Vector3i)attemptedPos).add(0.5, 0.5, 0.5))).left().isPresent()) {
+        if (this.findNewPosition(world, pos, properties).ifRight(attemptedPos -> this.sendConstellationPing(world, new Vector3((Vec3i)attemptedPos).add(0.5, 0.5, 0.5))).left().isPresent()) {
             changed = true;
         }
         final int amplifier = (int)CEffectAevitas.CONFIG.potionAmplifier.get();

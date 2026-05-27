@@ -10,6 +10,6 @@ public class BlockRandomProximityPositionGenerator extends BlockRandomPositionGe
     protected BlockPos genNext(final Vector3 offset, final double radius) {
         final BlockPos next1 = super.genNext(offset, radius);
         final BlockPos next2 = super.genNext(offset, radius);
-        return (offset.distance((Vector3i)next1) < offset.distance((Vector3i)next2)) ? next1 : next2;
+        return (offset.distance((Vec3i)next1) < offset.distance((Vec3i)next2)) ? next1 : next2;
     }
 }

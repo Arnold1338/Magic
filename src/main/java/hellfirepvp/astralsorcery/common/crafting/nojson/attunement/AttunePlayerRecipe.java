@@ -23,7 +23,7 @@ import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import hellfirepvp.astralsorcery.common.crafting.nojson.attunement.active.ActivePlayerAttunementRecipe;
 
 public class AttunePlayerRecipe extends AttunementRecipe<ActivePlayerAttunementRecipe>

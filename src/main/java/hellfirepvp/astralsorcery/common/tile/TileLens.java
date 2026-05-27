@@ -108,7 +108,7 @@ public class TileLens extends TileTransmissionBase<IPrismTransmissionNode> imple
         final Vector3 thisVec = new Vector3(this).add(0.5, 0.5, 0.5);
         for (final BlockPos linkedTo : linked) {
             final PartialEffectExecutor exec = new PartialEffectExecutor(1.0f / linked.size() * effectMultiplier, TileLens.rand);
-            final Vector3 to = new Vector3((Vector3i)linkedTo).add(0.5, 0.5, 0.5);
+            final Vector3 to = new Vector3((Vec3i)linkedTo).add(0.5, 0.5, 0.5);
             final RaytraceAssist rta = new RaytraceAssist(thisVec, to).includeEndPoint();
             if (this.colorType.getType().doBlockInteraction()) {
                 if (!rta.isClear(world) && rta.positionHit() != null) {
@@ -140,7 +140,7 @@ public class TileLens extends TileTransmissionBase<IPrismTransmissionNode> imple
         EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3(this).add(0.2, 0.2, 0.2).add(TileLens.rand.nextFloat() * 0.6, TileLens.rand.nextFloat() * 0.6, TileLens.rand.nextFloat() * 0.6)).color(VFXColorFunction.constant(lensColor)).setScaleMultiplier(0.1f + TileLens.rand.nextFloat() * 0.15f);
         if (this.getTicksExisted() % 40 == 0) {
             for (final BlockPos connected : this.occupiedConnections) {
-                final Vector3 to = new Vector3((Vector3i)connected).add(0.5, 0.5, 0.5);
+                final Vector3 to = new Vector3((Vec3i)connected).add(0.5, 0.5, 0.5);
                 EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).spawn(at).setup(to, 0.6, 0.6).color(VFXColorFunction.constant(lensColor));
             }
         }

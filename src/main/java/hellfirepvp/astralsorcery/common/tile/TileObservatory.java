@@ -6,7 +6,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Iterator;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import hellfirepvp.astralsorcery.common.entity.technical.EntityObservatoryHelper;
 import net.minecraft.core.BlockPos;

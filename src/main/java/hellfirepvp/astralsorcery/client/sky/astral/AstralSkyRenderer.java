@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.sky.astral;
 
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.util.math.MathHelper;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import java.util.Iterator;
@@ -10,13 +10,13 @@ import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.common.constellation.world.ActiveCelestialsHandler;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.level.LevelAccessor;
 import hellfirepvp.astralsorcery.common.base.MoonPhase;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
-import net.minecraft.util.math.vector.Vector3d;
+import org.joml.Vector3d;
 import org.joml.Vector3f;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import net.minecraft.client.renderer.FogRenderer;
@@ -26,7 +26,7 @@ import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.client.resource.AssetLibrary;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.world.ClientWorld;
+import net.minecraft.client.multiplayer.ClientLevel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -80,7 +80,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         this.initialized = true;
     }
     
-    public void render(final int ticks, final float pTicks, final PoseStack renderStack, final ClientWorld world, final Minecraft mc) {
+    public void render(final int ticks, final float pTicks, final PoseStack renderStack, final ClientLevel world, final Minecraft mc) {
         if (AssetLibrary.isReloading()) {
             return;
         }
@@ -145,7 +145,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         RenderSystem.disableFog();
     }
     
-    public static void renderConstellationsSky(final ClientWorld world, final PoseStack renderStack, final float pTicks) {
+    public static void renderConstellationsSky(final ClientLevel world, final PoseStack renderStack, final float pTicks) {
         final WorldContext ctx = SkyHandler.getContext((World)world, LogicalSide.CLIENT);
         if (ctx == null) {
             return;
@@ -174,7 +174,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         }
     }
     
-    private void renderStars(final ClientWorld world, final PoseStack renderStack, final float pTicks) {
+    private void renderStars(final ClientLevel world, final PoseStack renderStack, final float pTicks) {
         final float starBrightness = world.func_228330_j_(pTicks) * (1.0f - world.func_72867_j(pTicks));
         if (starBrightness > 0.0f) {
             this.starLists.forEach(list -> {
@@ -187,7 +187,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         }
     }
     
-    private void renderCelestials(final ClientWorld world, final PoseStack renderStack, final float pTicks) {
+    private void renderCelestials(final ClientLevel world, final PoseStack renderStack, final float pTicks) {
         final WorldContext ctx = SkyHandler.getContext((World)world, LogicalSide.CLIENT);
         final float rainAlpha = 1.0f - world.func_72867_j(pTicks);
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, rainAlpha);
@@ -268,8 +268,8 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         });
     }
     
-    private void renderDuskDawn(final float[] duskDawnColors, final PoseStack renderStack, final ClientWorld world, final float pTicks) {
-        final float f3 = (MathHelper.func_76126_a(world.func_72929_e(pTicks)) < 0.0f) ? 180.0f : 0.0f;
+    private void renderDuskDawn(final float[] duskDawnColors, final PoseStack renderStack, final ClientLevel world, final float pTicks) {
+        final float f3 = (Mth.func_76126_a(world.func_72929_e(pTicks)) < 0.0f) ? 180.0f : 0.0f;
         renderStack.popPose();
         renderStack.mulPose(new org.joml.Vector3f(1, 0, 0).func_229187_a_(90.0f));
         renderStack.mulPose(new org.joml.Vector3f(0, 0, 1).func_229187_a_(f3));
@@ -282,8 +282,8 @@ public class AstralSkyRenderer implements ISkyRenderHandler
             buf.func_225582_a_(0.0, 100.0, 0.0).color(r, g, b, a).endVertex();
             for (int i = 0; i <= 16; ++i) {
                 final float f4 = i * 6.2831855f / 16.0f;
-                final float f5 = MathHelper.func_76126_a(f4);
-                final float f6 = MathHelper.func_76134_b(f4);
+                final float f5 = Mth.func_76126_a(f4);
+                final float f6 = Mth.func_76134_b(f4);
                 buf.func_225582_a_((double)(f5 * 120.0f), (double)(f6 * 120.0f), (double)(-f6 * 40.0f * a)).color(r, g, b, 0.0f).endVertex();
             }
             return;

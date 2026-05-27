@@ -50,7 +50,7 @@ import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.level.ClipContext;
 import com.google.common.collect.Sets;
@@ -195,7 +195,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
                 ByteBufUtils.writeBlockState(buf, prevState);
                 return;
             });
-            PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vector3i)placePos, 32.0));
+            PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vec3i)placePos, 32.0));
         }
         return InteractionResult.SUCCESS;
     }

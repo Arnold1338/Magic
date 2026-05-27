@@ -8,7 +8,7 @@ import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import hellfirepvp.astralsorcery.common.item.base.IConstellationFocus;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
@@ -213,7 +213,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
             buf.writeBoolean(isChaining);
             return;
         });
-        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vector3i)this.getBlockState(), 32.0));
+        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vec3i)this.getBlockState(), 32.0));
         this.knownRecipes.add(recipeName);
         this.markForUpdate();
     }
@@ -311,9 +311,9 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
             for (int zz = -3; zz <= 3; ++zz) {
                 if (xx != 0 || zz != 0) {
                     final BlockPos offset = new BlockPos(xx, 0, zz);
-                    final TileSpectralRelay tar = MiscUtils.getTileAt((IBlockReader)this.getLevel(), this.getBlockState().func_177971_a((Vector3i)offset), TileSpectralRelay.class, true);
+                    final TileSpectralRelay tar = MiscUtils.getTileAt((IBlockReader)this.getLevel(), this.getBlockState().func_177971_a((Vec3i)offset), TileSpectralRelay.class, true);
                     if (tar != null) {
-                        eligableRelayOffsets.add(this.getBlockState().func_177971_a((Vector3i)offset));
+                        eligableRelayOffsets.add(this.getBlockState().func_177971_a((Vec3i)offset));
                     }
                 }
             }

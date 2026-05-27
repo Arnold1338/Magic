@@ -26,10 +26,10 @@ public class ChaliceHelper
 {
     @Nonnull
     public static List<BlockPos> findNearbyChalices(final Level world, final BlockPos origin, final int distance) {
-        final Vector3 thisVector = new Vector3((Vector3i)origin).add(0.5, 1.5, 0.5);
+        final Vector3 thisVector = new Vector3((Vec3i)origin).add(0.5, 1.5, 0.5);
         final List<BlockPos> foundChalices = BlockDiscoverer.searchForBlocksAround(world, origin, Mth.getDescriptionId(distance, 0, 16), (w, pos, state) -> !pos.equals((Object)origin) && state.getBlock() instanceof BlockChalice && !w.func_175640_z(pos) && !(w.getBlockState(pos.renderItem()).getBlock() instanceof BlockFountain));
         foundChalices.removeIf(pos -> {
-            final Vector3 chaliceVector = new Vector3((Vector3i)pos).add(0.5, 1.5, 0.5);
+            final Vector3 chaliceVector = new Vector3((Vec3i)pos).add(0.5, 1.5, 0.5);
             final RaytraceAssist assist = new RaytraceAssist(thisVector, chaliceVector);
             return !assist.isClear(world);
         });

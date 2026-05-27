@@ -33,7 +33,7 @@ public class RockCrystalBuffer extends SectionWorldData<BufferSection>
         for (int xx = -chunkRadius; xx <= chunkRadius; ++xx) {
             for (int zz = -chunkRadius; zz <= chunkRadius; ++zz) {
                 final ChunkPos other = new ChunkPos(center.field_77276_a + xx, center.field_77275_b + zz);
-                final BufferSection section = (BufferSection)this.getSection((Vector3i)other.func_206849_h());
+                final BufferSection section = (BufferSection)this.getSection((Vec3i)other.func_206849_h());
                 if (section != null) {
                     this.read(() -> out.addAll(section.crystalPositions));
                 }
@@ -43,13 +43,13 @@ public class RockCrystalBuffer extends SectionWorldData<BufferSection>
     }
     
     public void addOre(final BlockPos pos) {
-        final BufferSection section = (BufferSection)this.getOrCreateSection((Vector3i)pos);
+        final BufferSection section = (BufferSection)this.getOrCreateSection((Vec3i)pos);
         this.write(() -> section.crystalPositions.add(pos));
         this.markDirty((WorldSection)section);
     }
     
     public void removeOre(final BlockPos pos) {
-        final BufferSection section = (BufferSection)this.getSection((Vector3i)pos);
+        final BufferSection section = (BufferSection)this.getSection((Vec3i)pos);
         if (section != null) {
             this.write(() -> section.crystalPositions.remove(pos));
             this.markDirty((WorldSection)section);

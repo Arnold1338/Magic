@@ -55,7 +55,7 @@ public class CEffectBootes extends ConstellationEffectEntityCollect<LivingEntity
     public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         if (CEffectBootes.rand.nextInt(3) == 0) {
             final ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
-            final Vector3 playAt = new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5).add(CEffectBootes.rand.nextFloat() * (prop.getSize() / 2.0) * (CEffectBootes.rand.nextBoolean() ? 1 : -1), CEffectBootes.rand.nextFloat() * (prop.getSize() / 4.0), CEffectBootes.rand.nextFloat() * (prop.getSize() / 2.0) * (CEffectBootes.rand.nextBoolean() ? 1 : -1));
+            final Vector3 playAt = new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5).add(CEffectBootes.rand.nextFloat() * (prop.getSize() / 2.0) * (CEffectBootes.rand.nextBoolean() ? 1 : -1), CEffectBootes.rand.nextFloat() * (prop.getSize() / 4.0), CEffectBootes.rand.nextFloat() * (prop.getSize() / 2.0) * (CEffectBootes.rand.nextBoolean() ? 1 : -1));
             final Vector3 motion = Vector3.random().multiply(0.015);
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(playAt).setMotion(motion).color(VFXColorFunction.constant(ColorsAS.CONSTELLATION_BOOTES)).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.5f).setMaxAge(30 + CEffectBootes.rand.nextInt(20));
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(playAt).setMotion(motion.clone().negate()).color(VFXColorFunction.constant(ColorsAS.CONSTELLATION_BOOTES)).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.5f).setMaxAge(30 + CEffectBootes.rand.nextInt(20));

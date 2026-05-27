@@ -30,7 +30,7 @@ public class AreaOfInfluencePreview implements ITickHandler
     private static final float alphaTick = 0.025f;
     private static final float sizeCube1 = 1.25f;
     private static final float sizeCube2 = 1.35f;
-    private RegistryKey<Level> tileDimension;
+    private ResourceKey<Level> tileDimension;
     private BlockPos tilePosition;
     private FXCube effect1;
     private FXCube effect2;
@@ -74,7 +74,7 @@ public class AreaOfInfluencePreview implements ITickHandler
             this.removeEffects();
             return;
         }
-        final RegistryKey<Level> clientDimType = (RegistryKey<Level>)clientWorld.dimension();
+        final ResourceKey<Level> clientDimType = (ResourceKey<Level>)clientWorld.dimension();
         if (!clientDimType.equals(this.tileDimension)) {
             this.clearClient();
             this.removeEffects();

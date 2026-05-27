@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import java.util.Collection;
 import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.event.helper.EventHelperEntityFreeze;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.entity.boss.dragon.EnderDragonEntity;
@@ -32,7 +32,7 @@ import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.data.config.registry.TechnicalEntityRegistry;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraftforge.fml.LogicalSide;
@@ -160,21 +160,21 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
         final float segmentPercent = this.getSegmentPercent(currentSegment, operationTick);
         switch (currentSegment) {
             case STARTUP: {
-                this.playFountainVortexParticles((Vector3i)fountainPos, segmentPercent);
-                this.playFountainArcs((Vector3i)fountainPos, segmentPercent);
+                this.playFountainVortexParticles((Vec3i)fountainPos, segmentPercent);
+                this.playFountainArcs((Vec3i)fountainPos, segmentPercent);
                 this.playCoreParticles(fountainPos, segmentPercent);
                 break;
             }
             case PREPARATION: {
-                this.playFountainArcs((Vector3i)fountainPos, 1.0f - segmentPercent);
-                this.playFountainVortexParticles((Vector3i)fountainPos, 1.0f - segmentPercent);
+                this.playFountainArcs((Vec3i)fountainPos, 1.0f - segmentPercent);
+                this.playFountainVortexParticles((Vec3i)fountainPos, 1.0f - segmentPercent);
                 this.playCoreParticles(fountainPos, 1.0f - segmentPercent * 2.0f);
                 this.playCorePrimerParticles(fountainPos, segmentPercent);
                 break;
             }
             case RUNNING: {
-                this.playFountainVortexParticles((Vector3i)fountainPos, 0.2f);
-                this.playFountainArcs((Vector3i)fountainPos, 0.6f);
+                this.playFountainVortexParticles((Vec3i)fountainPos, 0.2f);
+                this.playFountainArcs((Vec3i)fountainPos, 0.6f);
                 this.playFountainVortexLowerParticles(fountainPos);
                 this.playVortexEffects(fountainPos, fountain, ctx);
                 break;
@@ -184,7 +184,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
     
     @OnlyIn(Dist.CLIENT)
     private void playVortexEffects(final BlockPos pos, final TileFountain fountain, final VortexContext ctx) {
-        final Vector3 at = new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5);
+        final Vector3 at = new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5);
         final Vector3 vortexAt = at.clone().addY(-4.0);
         FXFacingSprite sprite = (FXFacingSprite)ctx.facingVortexPlane;
         if (sprite == null) {
@@ -207,7 +207,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
     
     @OnlyIn(Dist.CLIENT)
     private void playFountainVortexLowerParticles(final BlockPos pos) {
-        final Vector3 at = new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5);
+        final Vector3 at = new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5);
         final Vector3 coreAt = at.clone().addY(-1.15);
         final Vector3 vortexAt = at.clone().addY(-4.0);
         for (int i = 0; i < 2; ++i) {
@@ -233,7 +233,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
     
     @OnlyIn(Dist.CLIENT)
     private void playCoreParticles(final BlockPos pos, final float chance) {
-        final Vector3 at = new Vector3((Vector3i)pos).add(0.5, -0.5, 0.5);
+        final Vector3 at = new Vector3((Vec3i)pos).add(0.5, -0.5, 0.5);
         for (int i = 0; i < 18; ++i) {
             if (FountainEffectVortex.rand.nextFloat() < chance) {
                 final Vector3 particlePos = new Vector3(pos.getX() - 1 + FountainEffectVortex.rand.nextFloat() * 3.0f, pos.getY() - 1.5 + FountainEffectVortex.rand.nextFloat() * 2.0f, pos.getZ() - 1 + FountainEffectVortex.rand.nextFloat() * 3.0f);

@@ -4,14 +4,14 @@ import net.minecraft.world.level.block.RenderShape;
 import javax.annotation.Nonnull;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.InteractionResult;
-import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import com.google.common.collect.Lists;
 import net.minecraft.world.item.ItemStack;
 import java.util.List;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.level.block.SoundType;
 import javax.annotation.Nullable;
@@ -19,7 +19,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.phys.HitResult;
+import net.minecraft.world.phys.HitResult;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraftforge.api.distmarker.Dist;
@@ -61,7 +61,7 @@ public abstract class BlockFakedState extends BaseEntityBlock
             if (fakedState != null) {
                 colorFn = VFXColorFunction.constant(fakedState.getOverlayColor());
             }
-            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.random().abs().add((Vector3i)pos)).alpha(VFXAlphaFunction.FADE_OUT).color(colorFn).setScaleMultiplier(0.2f + rand.nextFloat() * 0.05f).setMaxAge(25 + rand.nextInt(5));
+            EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.random().abs().add((Vec3i)pos)).alpha(VFXAlphaFunction.FADE_OUT).color(colorFn).setScaleMultiplier(0.2f + rand.nextFloat() * 0.05f).setMaxAge(25 + rand.nextInt(5));
         }
     }
     

@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.pathfinding.PathType;
@@ -22,7 +22,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMisc;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.astralsorcery.common.block.base.BlockStarlightNetwork;
 

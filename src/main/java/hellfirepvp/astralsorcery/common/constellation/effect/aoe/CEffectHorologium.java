@@ -73,12 +73,12 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
         final ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
         for (int i = 0; i < 2; ++i) {
             final Color c = MiscUtils.eitherOf(CEffectHorologium.rand, (Supplier<Color>[])new Supplier[] { () -> Color.WHITE, () -> ColorsAS.CONSTELLATION_HOROLOGIUM });
-            final Vector3 at = Vector3.random().normalize().multiply(CEffectHorologium.rand.nextFloat() * prop.getSize()).add((Vector3i)pos).add(0.5, 0.5, 0.5);
+            final Vector3 at = Vector3.random().normalize().multiply(CEffectHorologium.rand.nextFloat() * prop.getSize()).add((Vec3i)pos).add(0.5, 0.5, 0.5);
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.constant(c)).setScaleMultiplier(0.3f + CEffectHorologium.rand.nextFloat() * 0.5f).setMaxAge(40 + CEffectHorologium.rand.nextInt(20));
         }
         if (CEffectHorologium.rand.nextInt(16) == 0) {
-            final Vector3 rand1 = Vector3.random().normalize().multiply(CEffectHorologium.rand.nextFloat() * prop.getSize()).add((Vector3i)pos).add(0.5, 0.5, 0.5);
-            final Vector3 rand2 = Vector3.random().normalize().multiply(CEffectHorologium.rand.nextFloat() * prop.getSize()).add((Vector3i)pos).add(0.5, 0.5, 0.5);
+            final Vector3 rand1 = Vector3.random().normalize().multiply(CEffectHorologium.rand.nextFloat() * prop.getSize()).add((Vec3i)pos).add(0.5, 0.5, 0.5);
+            final Vector3 rand2 = Vector3.random().normalize().multiply(CEffectHorologium.rand.nextFloat() * prop.getSize()).add((Vec3i)pos).add(0.5, 0.5, 0.5);
             EffectHelper.of(EffectTemplatesAS.LIGHTNING).spawn(rand1).makeDefault(rand2).color(VFXColorFunction.WHITE);
         }
     }
@@ -98,8 +98,8 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
         if (entry != null && MiscUtils.executeWithChunk((IWorldReader)world, entry.getPos(), () -> {
             final BlockEntity tile = MiscUtils.getTileAt((IBlockReader)world, entry.getPos(), BlockEntity.class, true);
             if (tile != null && this.isValid(world, entry)) {
-                this.sendConstellationPing(world, new Vector3((Vector3i)entry.getPos()).add(Vector3.positiveRandom()));
-                this.sendConstellationPing(world, new Vector3((Vector3i)entry.getPos()).add(Vector3.positiveRandom()));
+                this.sendConstellationPing(world, new Vector3((Vec3i)entry.getPos()).add(Vector3.positiveRandom()));
+                this.sendConstellationPing(world, new Vector3((Vec3i)entry.getPos()).add(Vector3.positiveRandom()));
                 try {
                     final long startNs = System.nanoTime();
                     int times = 4 + CEffectHorologium.rand.nextInt(2);
@@ -129,7 +129,7 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
         }, false)) {
             changed = true;
         }
-        if (this.findNewPosition(world, pos, properties).ifRight(attemptedPos -> this.sendConstellationPing(world, new Vector3((Vector3i)attemptedPos).add(0.5, 0.5, 0.5))).left().isPresent()) {
+        if (this.findNewPosition(world, pos, properties).ifRight(attemptedPos -> this.sendConstellationPing(world, new Vector3((Vec3i)attemptedPos).add(0.5, 0.5, 0.5))).left().isPresent()) {
             changed = true;
         }
         return changed;

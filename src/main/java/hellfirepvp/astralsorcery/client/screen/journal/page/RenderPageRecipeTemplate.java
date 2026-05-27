@@ -7,16 +7,16 @@ package hellfirepvp.astralsorcery.client.screen.journal.page;
 import net.minecraft.item.Item;
 import net.minecraftforge.fluids.FluidStack;
 import hellfirepvp.astralsorcery.common.crafting.helper.ingredient.FluidIngredient;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagKey;
 import java.util.Collection;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import hellfirepvp.astralsorcery.common.data.research.ProgressionTier;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.AltarUpgradeRecipe;
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
 import java.util.LinkedList;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import java.util.ArrayList;
 import net.minecraft.util.FormattedCharSequence;
 import java.util.function.Consumer;
@@ -28,19 +28,19 @@ import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
 import hellfirepvp.astralsorcery.common.auxiliary.book.BookLookupInfo;
 import java.util.Iterator;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.auxiliary.book.BookLookupRegistry;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.Util;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.renderer.RenderHelper;
 import hellfirepvp.astralsorcery.common.crafting.helper.WrappedIngredient;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import java.util.List;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import hellfirepvp.astralsorcery.common.util.IngredientHelper;
@@ -49,12 +49,12 @@ import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.HashMap;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
 import java.awt.Rectangle;
 import java.util.Map;
@@ -78,7 +78,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         this.thisFrameInfoStar = null;
     }
     
-    public void renderRecipeGrid(final MatrixStack renderStack, final float offsetX, final float offsetY, final float zLevel, final AbstractRenderableTexture tex) {
+    public void renderRecipeGrid(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final AbstractRenderableTexture tex) {
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
         tex.bindTexture();
@@ -86,7 +86,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         RenderSystem.disableBlend();
     }
     
-    public void renderExpectedIngredientInput(final MatrixStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float scale, final long tickOffset, final Ingredient ingredient) {
+    public void renderExpectedIngredientInput(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float scale, final long tickOffset, final Ingredient ingredient) {
         final ItemStack expected = IngredientHelper.getRandomVisibleStack(ingredient, ClientScheduler.getClientTick() + tickOffset);
         if (!expected.func_190926_b()) {
             BlockAtlasTexture.getInstance().bindTexture();
@@ -95,9 +95,9 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         }
     }
     
-    public void renderExpectedIngredientInput(final MatrixStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float scale, final long tickOffset, final List<ItemStack> displayOptions) {
+    public void renderExpectedIngredientInput(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float scale, final long tickOffset, final List<ItemStack> displayOptions) {
         final int mod = (int)((ClientScheduler.getClientTick() + tickOffset) / 20L % displayOptions.size());
-        final ItemStack expected = displayOptions.get(MathHelper.func_76125_a(mod, 0, displayOptions.size() - 1));
+        final ItemStack expected = displayOptions.get(Mth.func_76125_a(mod, 0, displayOptions.size() - 1));
         if (!expected.func_190926_b()) {
             BlockAtlasTexture.getInstance().bindTexture();
             this.renderItemStack(renderStack, offsetX, offsetY, zLevel, scale, expected);
@@ -105,7 +105,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         }
     }
     
-    public void renderExpectedRelayInputs(final MatrixStack renderStack, final float offsetX, final float offsetY, final float zLevel, final SimpleAltarRecipe altarRecipe) {
+    public void renderExpectedRelayInputs(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final SimpleAltarRecipe altarRecipe) {
         final float centerX = offsetX + 80.0f;
         final float centerY = offsetY + 128.0f;
         final float perc = ClientScheduler.getClientTick() % 3000L / 3000.0f;
@@ -113,7 +113,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         final int amt = ingredients.size();
         for (int i = 0; i < ingredients.size(); ++i) {
             double part = i / (double)amt * 2.0 * 3.141592653589793;
-            part = MathHelper.func_151237_a(part, 0.0, 6.283185307179586);
+            part = Mth.func_151237_a(part, 0.0, 6.283185307179586);
             part += 6.283185307179586 * perc + 3.141592653589793;
             final double xAdd = Math.sin(part) * 75.0;
             final double yAdd = Math.cos(part) * 75.0;
@@ -121,7 +121,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         }
     }
     
-    public void renderExpectedItemStackOutput(final MatrixStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float scale, final ItemStack stack) {
+    public void renderExpectedItemStackOutput(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float scale, final ItemStack stack) {
         if (!stack.func_190926_b()) {
             BlockAtlasTexture.getInstance().bindTexture();
             this.renderItemStack(renderStack, offsetX, offsetY, zLevel, scale, stack);
@@ -129,7 +129,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         }
     }
     
-    protected void renderItemStack(final MatrixStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float scale, final ItemStack stack) {
+    protected void renderItemStack(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float scale, final ItemStack stack) {
         RenderSystem.depthMask(true);
         RenderSystem.enableDepthTest();
         RenderHelper.func_227780_a_();
@@ -156,8 +156,8 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         for (final Rectangle r : this.thisFrameInputStacks.keySet()) {
             if (r.contains(mouseX, mouseZ)) {
                 final ItemStack stack = (ItemStack)this.thisFrameInputStacks.get(r).func_76341_a();
-                final BookLookupInfo info = BookLookupRegistry.findPage((PlayerEntity)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT, stack);
-                if (info != null && info.canSee(ResearchHelper.getProgress((PlayerEntity)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT)) && !info.getResearchNode().equals(this.getResearchNode())) {
+                final BookLookupInfo info = BookLookupRegistry.findPage((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT, stack);
+                if (info != null && info.canSee(ResearchHelper.getProgress((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT)) && !info.getResearchNode().equals(this.getResearchNode())) {
                     info.openGui();
                     return true;
                 }
@@ -166,8 +166,8 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         }
         if (this.thisFrameOuputStack != null && ((Rectangle)this.thisFrameOuputStack.func_76341_a()).contains(mouseX, mouseZ)) {
             final ItemStack stack2 = (ItemStack)this.thisFrameOuputStack.func_76340_b();
-            final BookLookupInfo info2 = BookLookupRegistry.findPage((PlayerEntity)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT, stack2);
-            if (info2 != null && info2.canSee(ResearchHelper.getProgress((PlayerEntity)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT)) && !info2.getResearchNode().equals(this.getResearchNode())) {
+            final BookLookupInfo info2 = BookLookupRegistry.findPage((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT, stack2);
+            if (info2 != null && info2.canSee(ResearchHelper.getProgress((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT)) && !info2.getResearchNode().equals(this.getResearchNode())) {
                 info2.openGui();
                 return true;
             }
@@ -175,14 +175,14 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         return false;
     }
     
-    public void renderInfoStar(final MatrixStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float pTicks) {
+    public void renderInfoStar(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float pTicks) {
         renderStack.func_227860_a_();
         renderStack.translate((double)(offsetX + 140.0f), (double)(offsetY + 20.0f), (double)zLevel);
         (this.thisFrameInfoStar = RenderingDrawUtils.drawInfoStar(renderStack, IDrawRenderTypeBuffer.defaultBuffer(), 15.0f, pTicks)).translate((int)(offsetX + 140.0f), (int)(offsetY + 20.0f));
         renderStack.func_227865_b_();
     }
     
-    public void renderRequiredConstellation(final MatrixStack renderStack, final float offsetX, final float offsetY, final float zLevel, @Nullable final IConstellation constellation) {
+    public void renderRequiredConstellation(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, @Nullable final IConstellation constellation) {
         if (constellation != null) {
             RenderSystem.enableBlend();
             Blending.DEFAULT.apply();
@@ -191,7 +191,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         }
     }
     
-    public void renderInfoStarTooltips(final MatrixStack renderStack, final float offsetX, final float offsetY, float zLevel, final float mouseX, final float mouseY, final Consumer<List<FormattedCharSequence>> tooltipProvider) {
+    public void renderInfoStarTooltips(final PoseStack renderStack, final float offsetX, final float offsetY, float zLevel, final float mouseX, final float mouseY, final Consumer<List<FormattedCharSequence>> tooltipProvider) {
         if (this.thisFrameInfoStar == null) {
             return;
         }
@@ -206,7 +206,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         }
     }
     
-    public void renderHoverTooltips(final MatrixStack renderStack, final float mouseX, final float mouseY, float zLevel, final ResourceLocation recipeName) {
+    public void renderHoverTooltips(final PoseStack renderStack, final float mouseX, final float mouseY, float zLevel, final ResourceLocation recipeName) {
         final List<FormattedCharSequence> toolTip = new LinkedList<FormattedCharSequence>();
         this.addStackTooltip(mouseX, mouseY, recipeName, toolTip);
         if (!toolTip.isEmpty()) {
@@ -303,29 +303,29 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
             this.addInputInformation(stack, null, tooltip);
             if (Minecraft.func_71410_x().options.advancedItemTooltips) {
                 tooltip.add((FormattedCharSequence)StringTextComponent.empty());
-                tooltip.add((FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.recipename", new Object[] { recipeName.toString() }).func_240699_a_(TextFormatting.LIGHT_PURPLE).func_240699_a_(TextFormatting.ITALIC));
-                tooltip.add((FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.ctrlcopy", new Object[] { recipeName.toString() }).func_240699_a_(TextFormatting.LIGHT_PURPLE).func_240699_a_(TextFormatting.ITALIC));
+                tooltip.add((FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.recipename", new Object[] { recipeName.toString() }).func_240699_a_(ChatFormatting.LIGHT_PURPLE).func_240699_a_(ChatFormatting.ITALIC));
+                tooltip.add((FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.ctrlcopy", new Object[] { recipeName.toString() }).func_240699_a_(ChatFormatting.LIGHT_PURPLE).func_240699_a_(ChatFormatting.ITALIC));
             }
         }
     }
     
     protected void addInputInformation(final ItemStack stack, @Nullable final Ingredient stackIngredient, final List<FormattedCharSequence> tooltip) {
         try {
-            tooltip.addAll(stack.func_82840_a((PlayerEntity)Minecraft.func_71410_x().field_71439_g, (TooltipFlag)(Minecraft.func_71410_x().options.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
+            tooltip.addAll(stack.func_82840_a((Player)Minecraft.func_71410_x().field_71439_g, (TooltipFlag)(Minecraft.func_71410_x().options.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL)));
         }
         catch (final Exception exc) {
-            tooltip.add((FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.tooltipError").func_240699_a_(TextFormatting.RED));
+            tooltip.add((FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.tooltipError").func_240699_a_(ChatFormatting.RED));
         }
-        final BookLookupInfo info = BookLookupRegistry.findPage((PlayerEntity)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT, stack);
-        if (info != null && info.canSee(ResearchHelper.getProgress((PlayerEntity)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT)) && !info.getResearchNode().equals(this.getResearchNode())) {
+        final BookLookupInfo info = BookLookupRegistry.findPage((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT, stack);
+        if (info != null && info.canSee(ResearchHelper.getProgress((Player)Minecraft.func_71410_x().field_71439_g, LogicalSide.CLIENT)) && !info.getResearchNode().equals(this.getResearchNode())) {
             tooltip.add((FormattedCharSequence)StringTextComponent.empty());
-            tooltip.add((FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.craftInformation").func_240699_a_(TextFormatting.GRAY));
+            tooltip.add((FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.craftInformation").func_240699_a_(ChatFormatting.GRAY));
         }
         if (stackIngredient != null && Minecraft.func_71410_x().options.advancedItemTooltips) {
             final ITag<Item> itemTag = IngredientHelper.guessTag(stackIngredient);
             if (itemTag instanceof ITag.INamedTag) {
                 tooltip.add((FormattedCharSequence)StringTextComponent.empty());
-                tooltip.add((FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.input.tag", new Object[] { ((ITag.INamedTag)itemTag).func_230234_a_().toString() }).func_240699_a_(TextFormatting.GRAY));
+                tooltip.add((FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.input.tag", new Object[] { ((ITag.INamedTag)itemTag).func_230234_a_().toString() }).func_240699_a_(ChatFormatting.GRAY));
             }
             if (stackIngredient instanceof FluidIngredient) {
                 final List<FluidStack> fluids = ((FluidIngredient)stackIngredient).getFluids();
@@ -336,11 +336,11 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
                             cmp = (FormattedCharSequence)f.getFluid().getAttributes().getDisplayName(f);
                         }
                         else {
-                            cmp = (FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.input.fluid.chain", new Object[] { cmp, f.getFluid().getAttributes().getDisplayName(f) }).func_240699_a_(TextFormatting.GRAY);
+                            cmp = (FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.input.fluid.chain", new Object[] { cmp, f.getFluid().getAttributes().getDisplayName(f) }).func_240699_a_(ChatFormatting.GRAY);
                         }
                     }
                     tooltip.add((FormattedCharSequence)StringTextComponent.empty());
-                    tooltip.add((FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.input.fluid", new Object[] { cmp }).func_240699_a_(TextFormatting.GRAY));
+                    tooltip.add((FormattedCharSequence)new TranslationTextComponent("astralsorcery.misc.input.fluid", new Object[] { cmp }).func_240699_a_(ChatFormatting.GRAY));
                 }
             }
         }

@@ -10,7 +10,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
@@ -150,8 +150,8 @@ public class EntityFlare extends FlyingMob
                     }
                     if (this.currentMoveTarget == null && this.random.nextInt(150) == 0) {
                         final BlockPos newTarget = this.func_233580_cy_().offset(this.random.nextInt(31) * (this.random.nextBoolean() ? 1 : -1), this.random.nextInt(31) * (this.random.nextBoolean() ? 1 : -1), this.random.nextInt(31) * (this.random.nextBoolean() ? 1 : -1));
-                        if (newTarget.getY() > 1 && newTarget.getY() < 254 && new Vector3((Vector3i)newTarget).distance((Entity)this) >= 5.0) {
-                            MiscUtils.executeWithChunk((IWorldReader)this.level(), newTarget, () -> this.currentMoveTarget = new Vector3((Vector3i)newTarget));
+                        if (newTarget.getY() > 1 && newTarget.getY() < 254 && new Vector3((Vec3i)newTarget).distance((Entity)this) >= 5.0) {
+                            MiscUtils.executeWithChunk((IWorldReader)this.level(), newTarget, () -> this.currentMoveTarget = new Vector3((Vec3i)newTarget));
                         }
                     }
                 }
@@ -231,7 +231,7 @@ public class EntityFlare extends FlyingMob
             buf.writeInt(ColorsAS.EFFECT_LIGHTNING.getRGB());
             return;
         });
-        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.level(), (Vector3i)this.func_233580_cy_(), 32.0));
+        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.level(), (Vec3i)this.func_233580_cy_(), 32.0));
     }
     
     private void doMovement() {

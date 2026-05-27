@@ -30,7 +30,7 @@ public class PatreonPartialEntity
     protected Vector3 motion;
     protected boolean removed;
     protected boolean updatePos;
-    private RegistryKey<Level> lastTickedDimension;
+    private ResourceKey<Level> lastTickedDimension;
     
     public PatreonPartialEntity(final UUID effectUUID, final UUID ownerUUID) {
         this.pos = new Vector3();
@@ -65,7 +65,7 @@ public class PatreonPartialEntity
     }
     
     @Nullable
-    public RegistryKey<Level> getLastTickedDimension() {
+    public ResourceKey<Level> getLastTickedDimension() {
         return this.lastTickedDimension;
     }
     
@@ -79,7 +79,7 @@ public class PatreonPartialEntity
     
     public boolean tick(final Level world) {
         boolean changed = this.lastTickedDimension == null || !this.lastTickedDimension.equals(world.dimension());
-        this.lastTickedDimension = (RegistryKey<Level>)world.dimension();
+        this.lastTickedDimension = (ResourceKey<Level>)world.dimension();
         if (this.updateMotion((IWorld)world)) {
             changed = true;
         }
@@ -140,7 +140,7 @@ public class PatreonPartialEntity
     public void readFromNBT(final CompoundTag cmp) {
         if (cmp.contains("lastTickedDimension")) {
             final ResourceLocation worldKey = new ResourceLocation(cmp.getString("lastTickedDimension"));
-            this.lastTickedDimension = (RegistryKey<Level>)RegistryKey.func_240903_a_(Registry.field_239699_ae_, worldKey);
+            this.lastTickedDimension = (ResourceKey<Level>)ResourceKey.func_240903_a_(Registry.field_239699_ae_, worldKey);
         }
         else {
             this.lastTickedDimension = null;

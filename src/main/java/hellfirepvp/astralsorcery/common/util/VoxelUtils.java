@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.common.util;
 
-import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.Shapes;
 import java.util.List;
 import java.util.Arrays;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.BooleanOp;
 
 public class VoxelUtils

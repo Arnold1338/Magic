@@ -68,11 +68,11 @@ public interface IPrismTransmissionNode extends ILocatable
     default void update(final Level world) {
     }
     
-    default void postLoad(final IWorld world) {
+    default void postLoad(final LevelAccessor world) {
     }
     
     default void markDirty(final Level world) {
-        ((LightNetworkBuffer)DataAS.DOMAIN_AS.getData(world, (WorldCacheDomain.SaveKey)DataAS.KEY_STARLIGHT_NETWORK)).markDirty((Vector3i)this.getLocationPos());
+        ((LightNetworkBuffer)DataAS.DOMAIN_AS.getData(world, (WorldCacheDomain.SaveKey)DataAS.KEY_STARLIGHT_NETWORK)).markDirty((Vec3i)this.getLocationPos());
     }
     
     TransmissionProvider getProvider();

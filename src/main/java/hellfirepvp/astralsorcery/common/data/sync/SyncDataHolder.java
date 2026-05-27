@@ -97,10 +97,10 @@ public class SyncDataHolder implements ITickHandler
     }
     
     public static void clearWorld(final Level world) {
-        final RegistryKey<Level> dim = (RegistryKey<Level>)world.dimension();
+        final ResourceKey<Level> dim = (ResourceKey<Level>)world.dimension();
         for (final ResourceLocation key : SyncDataRegistry.getKnownKeys()) {
             if (!world.level()) {
-                executeServer(key, AbstractData.class, data -> data.clear((RegistryKey<Level>)dim));
+                executeServer(key, AbstractData.class, data -> data.clear((ResourceKey<Level>)dim));
             }
         }
     }

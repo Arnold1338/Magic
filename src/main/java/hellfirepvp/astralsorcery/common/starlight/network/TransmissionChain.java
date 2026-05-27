@@ -57,8 +57,8 @@ public class TransmissionChain
     public static void buildNetworkChain(final Level world, final TransmissionWorldHandler handle, final IIndependentStarlightSource source, final WorldNetworkHandler netHandler, final BlockPos sourcePos) {
         final TransmissionChain chain = buildFromSource(netHandler, sourcePos);
         handle.updateNetworkChainData(world, chain, source, netHandler, sourcePos);
-        SyncDataHolder.executeServer(SyncDataHolder.DATA_LIGHT_CONNECTIONS, DataLightConnections.class, data -> data.updateNewConnectionsThreaded((RegistryKey<Level>)netHandler.getWorld().dimension(), chain.getFoundConnections()));
-        SyncDataHolder.executeServer(SyncDataHolder.DATA_LIGHT_BLOCK_ENDPOINTS, DataLightBlockEndpoints.class, data -> data.updateNewEndpoints((RegistryKey<Level>)netHandler.getWorld().dimension(), chain.getResolvedNormalBlockPositions()));
+        SyncDataHolder.executeServer(SyncDataHolder.DATA_LIGHT_CONNECTIONS, DataLightConnections.class, data -> data.updateNewConnectionsThreaded((ResourceKey<Level>)netHandler.getWorld().dimension(), chain.getFoundConnections()));
+        SyncDataHolder.executeServer(SyncDataHolder.DATA_LIGHT_BLOCK_ENDPOINTS, DataLightBlockEndpoints.class, data -> data.updateNewEndpoints((ResourceKey<Level>)netHandler.getWorld().dimension(), chain.getResolvedNormalBlockPositions()));
     }
     
     private static TransmissionChain buildFromSource(final WorldNetworkHandler netHandler, final BlockPos at) {
@@ -88,7 +88,7 @@ public class TransmissionChain
     protected void updatePosAsResolved(final Level world, final BlockPos pos) {
         if (this.uncheckedEndpointsBlock.contains(pos) && !this.resolvedNormalBlockPositions.contains(pos)) {
             this.resolvedNormalBlockPositions.add(pos);
-            SyncDataHolder.executeServer(SyncDataHolder.DATA_LIGHT_BLOCK_ENDPOINTS, DataLightBlockEndpoints.class, data -> data.updateNewEndpoint((RegistryKey<Level>)world.dimension(), pos));
+            SyncDataHolder.executeServer(SyncDataHolder.DATA_LIGHT_BLOCK_ENDPOINTS, DataLightBlockEndpoints.class, data -> data.updateNewEndpoint((ResourceKey<Level>)world.dimension(), pos));
         }
     }
     

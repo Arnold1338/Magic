@@ -79,7 +79,7 @@ public class CEffectEvorsio extends CEffectAbstractList<ListEntries.PosEntry>
             addY = 0.0f;
         }
         final Vector3 motion = Vector3.random().multiply(0.1);
-        EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5).addY(addY)).alpha(VFXAlphaFunction.FADE_OUT).setMotion(motion).color(VFXColorFunction.constant(ColorsAS.CONSTELLATION_EVORSIO)).setScaleMultiplier(0.3f + CEffectEvorsio.rand.nextFloat() * 0.4f).setMaxAge(50);
+        EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5).addY(addY)).alpha(VFXAlphaFunction.FADE_OUT).setMotion(motion).color(VFXColorFunction.constant(ColorsAS.CONSTELLATION_EVORSIO)).setScaleMultiplier(0.3f + CEffectEvorsio.rand.nextFloat() * 0.4f).setMaxAge(50);
     }
     
     @Override
@@ -88,7 +88,7 @@ public class CEffectEvorsio extends CEffectAbstractList<ListEntries.PosEntry>
             final BlockPos at = newEntry.getPos();
             if (properties.isCorrupted()) {
                 if (at.getY() < pos.getY() && world.isEmptyBlock(at)) {
-                    final double distance = pos.func_177951_i((Vector3i)at) / (properties.getSize() * properties.getSize());
+                    final double distance = pos.func_177951_i((Vec3i)at) / (properties.getSize() * properties.getSize());
                     BlockState state = Blocks.field_150347_e.defaultBlockState();
                     if (distance >= 0.8500000238418579 && CEffectEvorsio.rand.nextInt(4) == 0) {
                         state = Blocks.field_150346_d.defaultBlockState();
@@ -119,12 +119,12 @@ public class CEffectEvorsio extends CEffectAbstractList<ListEntries.PosEntry>
                         return true;
                     }
                     else {
-                        this.sendConstellationPing(world, new Vector3((Vector3i)at).add(0.5, 0.5, 0.5));
+                        this.sendConstellationPing(world, new Vector3((Vec3i)at).add(0.5, 0.5, 0.5));
                     }
                 }
                 return false;
             }
-        }).ifRight(attemptedBreak -> this.sendConstellationPing(world, new Vector3((Vector3i)attemptedBreak).add(0.5, 0.5, 0.5))).left().orElse(false);
+        }).ifRight(attemptedBreak -> this.sendConstellationPing(world, new Vector3((Vec3i)attemptedBreak).add(0.5, 0.5, 0.5))).left().orElse(false);
     }
     
     private boolean canBreakBlock(final Level world, final BlockPos pos, final BlockState state, final Predicate<BlockState> blacklist) {

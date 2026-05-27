@@ -52,8 +52,8 @@ public class ItemColoredLensGrowth extends ItemColoredLens
                 executor.executeAll(() -> {
                     if (ItemColoredLensGrowth.count.nextInt(18) == 0) {
                         plant.tryGrow((IWorld)world, ItemColoredLensGrowth.count);
-                        final PktPlayEffect packet = new PktPlayEffect(PktPlayEffect.Type.CROP_GROWTH).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vector3i)pos)));
-                        PacketChannel.CHANNEL.sendToAllAround(packet, PacketChannel.pointFromPos(world, (Vector3i)pos, 16.0));
+                        final PktPlayEffect packet = new PktPlayEffect(PktPlayEffect.Type.CROP_GROWTH).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos)));
+                        PacketChannel.CHANNEL.sendToAllAround(packet, PacketChannel.pointFromPos(world, (Vec3i)pos, 16.0));
                     }
                 });
             }

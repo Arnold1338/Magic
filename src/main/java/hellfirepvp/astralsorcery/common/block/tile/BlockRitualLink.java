@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
-import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.Shapes;
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.tile.TileRitualLink;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -11,7 +11,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesGlass;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import net.minecraft.world.level.block.BaseEntityBlock;
 

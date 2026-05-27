@@ -45,7 +45,7 @@ public abstract class ItemColoredLens extends Item implements ItemDynamicColor
                         player.func_184611_a(ctx.func_221531_n(), ItemStack.EMPTY);
                     }
                 }
-                SoundHelper.playSoundAround(SoundsAS.BLOCK_COLOREDLENS_ATTACH, world, (Vector3i)ctx.func_195995_a(), 0.8f, 1.5f);
+                SoundHelper.playSoundAround(SoundsAS.BLOCK_COLOREDLENS_ATTACH, world, (Vec3i)ctx.func_195995_a(), 0.8f, 1.5f);
                 if (oldType != null) {
                     player.getInventory().func_191975_a(world, oldType.getStack());
                 }

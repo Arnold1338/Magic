@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.NodeConnection;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.starlight.WorldNetworkHandler;
 import java.util.Iterator;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.RaytraceAssist;
 import net.minecraft.core.Vec3i;
@@ -236,15 +236,15 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         while (offset == null && c > 0) {
             --c;
             final BlockPos test = MiscUtils.getRandomEntry(TileRitualPedestal.RITUAL_CIRCLE_OFFSETS, r);
-            final RaytraceAssist ray = new RaytraceAssist(this.getLocationPos(), this.getLocationPos().func_177971_a((Vector3i)test));
+            final RaytraceAssist ray = new RaytraceAssist(this.getLocationPos(), this.getLocationPos().func_177971_a((Vec3i)test));
             final Vector3 from = new Vector3(0.5, 0.7, 0.5);
-            final Vector3 newDir = new Vector3((Vector3i)test).add(0.5, 0.5, 0.5).subtract(from);
+            final Vector3 newDir = new Vector3((Vec3i)test).add(0.5, 0.5, 0.5).subtract(from);
             for (final BlockPos p : this.offsetMirrors.keySet()) {
-                final Vector3 toDir = new Vector3((Vector3i)p).add(0.5, 0.5, 0.5).subtract(from);
+                final Vector3 toDir = new Vector3((Vec3i)p).add(0.5, 0.5, 0.5).subtract(from);
                 if (Math.toDegrees(toDir.angle(newDir)) <= 30.0) {
                     continue Label_0114;
                 }
-                if (from.distanceSquared(Vec3.func_237489_a_((Vector3i)p)) <= 3.0) {
+                if (from.distanceSquared(Vec3.func_237489_a_((Vec3i)p)) <= 3.0) {
                     continue Label_0114;
                 }
             }
@@ -265,7 +265,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         final List<BlockPos> srcLinkingToThis = this.getSources();
         boolean needsUpdate = false;
         for (final BlockPos pos : new ArrayList(this.offsetMirrors.keySet())) {
-            final BlockPos actualPos = this.getLocationPos().func_177971_a((Vector3i)pos);
+            final BlockPos actualPos = this.getLocationPos().func_177971_a((Vec3i)pos);
             final boolean existingFlag = this.offsetMirrors.get(pos);
             if (!srcLinkingToThis.contains(actualPos)) {
                 this.offsetMirrors.put(pos, false);

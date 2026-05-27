@@ -18,7 +18,7 @@ public class BlockSymmetryHelper
         final SymmetryResult result = new SymmetryResult(layerPositions.size());
         final Set<BlockPos> visitedBlocks = new HashSet<BlockPos>();
         for (final BlockPos offset : layerPositions) {
-            final BlockPos at = center.func_177971_a((Vector3i)offset);
+            final BlockPos at = center.func_177971_a((Vec3i)offset);
             if (visitedBlocks.contains(at)) {
                 continue;
             }
@@ -31,14 +31,14 @@ public class BlockSymmetryHelper
                 result.fillerBlocks.add(at);
             }
             else if (applicableStateFilter.test(state)) {
-                final BlockPos dotSym = center.func_177973_b((Vector3i)offset);
+                final BlockPos dotSym = center.func_177973_b((Vec3i)offset);
                 final BlockState dotState = world.getBlockState(dotSym);
                 if (applicableStateFilter.test(dotState)) {
                     result.symmetryPairs.add(new BiDiPair(at, dotSym));
                     if (!allowMirrorSymmetry) {
-                        checkMirrorSymmetry(world, new Vector3i(-offset.getX(), offset.getY(), offset.getZ()), center, result, visitedBlocks);
-                        checkMirrorSymmetry(world, new Vector3i(offset.getX(), -offset.getY(), offset.getZ()), center, result, visitedBlocks);
-                        checkMirrorSymmetry(world, new Vector3i(offset.getX(), offset.getY(), -offset.getZ()), center, result, visitedBlocks);
+                        checkMirrorSymmetry(world, new Vec3i(-offset.getX(), offset.getY(), offset.getZ()), center, result, visitedBlocks);
+                        checkMirrorSymmetry(world, new Vec3i(offset.getX(), -offset.getY(), offset.getZ()), center, result, visitedBlocks);
+                        checkMirrorSymmetry(world, new Vec3i(offset.getX(), offset.getY(), -offset.getZ()), center, result, visitedBlocks);
                     }
                 }
                 else if (!dotState.isAir(world, dotSym)) {
@@ -58,7 +58,7 @@ public class BlockSymmetryHelper
         return result;
     }
     
-    private static void checkMirrorSymmetry(final IBlockReader world, final Vector3i offset, final BlockPos center, final SymmetryResult result, final Set<BlockPos> visitedBlocks) {
+    private static void checkMirrorSymmetry(final IBlockReader world, final Vec3i offset, final BlockPos center, final SymmetryResult result, final Set<BlockPos> visitedBlocks) {
         final BlockPos at = center.func_177971_a(offset);
         final BlockState state = world.getBlockState(at);
         visitedBlocks.add(at);

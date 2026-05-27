@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import net.minecraft.core.Vec3i;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.entity.LivingEntity;
 import com.google.common.collect.Lists;
 import net.minecraft.world.level.Level;
@@ -141,7 +141,7 @@ public class KeyLightningArc extends KeyPerk
                     if (last != null) {
                         final Vector3 from = Vector3.atEntityCenter((Entity)entity);
                         final Vector3 to = Vector3.atEntityCenter((Entity)last);
-                        final PacketDistributor.TargetPoint target = PacketChannel.pointFromPos(this.world, (Vector3i)entity.func_233580_cy_(), 16.0);
+                        final PacketDistributor.TargetPoint target = PacketChannel.pointFromPos(this.world, (Vec3i)entity.func_233580_cy_(), 16.0);
                         PacketChannel.CHANNEL.sendToAllAround(new PktPlayEffect(PktPlayEffect.Type.LIGHTNING).addData(buf -> {
                             ByteBufUtils.writeVector(buf, from);
                             ByteBufUtils.writeVector(buf, to);

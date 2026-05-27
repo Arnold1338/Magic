@@ -62,7 +62,7 @@ public class TreeDiscoverer
                     for (int yy = -1; yy <= 1; ++yy) {
                         for (int zz = -1; zz <= 1; ++zz) {
                             final BlockPos newPos = offset.offset(xx, yy, zz);
-                            if ((xzLimitSq == -1 || flatDistanceSq((Vector3i)newPos, (Vector3i)at) <= xzLimitSq) && !out.hasBlockAt(newPos)) {
+                            if ((xzLimitSq == -1 || flatDistanceSq((Vec3i)newPos, (Vec3i)at) <= xzLimitSq) && !out.hasBlockAt(newPos)) {
                                 discoverPositions.push(newPos);
                             }
                         }
@@ -72,7 +72,7 @@ public class TreeDiscoverer
             else {
                 for (final Direction dir : Direction.values()) {
                     final BlockPos newPos2 = offset.func_177972_a(dir);
-                    if ((xzLimitSq == -1 || flatDistanceSq((Vector3i)newPos2, (Vector3i)at) <= xzLimitSq) && !out.hasBlockAt(newPos2)) {
+                    if ((xzLimitSq == -1 || flatDistanceSq((Vec3i)newPos2, (Vec3i)at) <= xzLimitSq) && !out.hasBlockAt(newPos2)) {
                         discoverPositions.push(newPos2);
                     }
                 }
@@ -80,7 +80,7 @@ public class TreeDiscoverer
         }
     }
     
-    private static double flatDistanceSq(final Vector3i from, final Vector3i to) {
+    private static double flatDistanceSq(final Vec3i from, final Vec3i to) {
         final double xDiff = from.getX() - (double)to.getX();
         final double zDiff = from.getZ() - (double)to.getZ();
         return xDiff * xDiff + zDiff * zDiff;

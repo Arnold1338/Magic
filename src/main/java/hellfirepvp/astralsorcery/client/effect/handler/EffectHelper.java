@@ -48,7 +48,7 @@ public final class EffectHelper
         }
         
         @Override
-        public Builder<T> setPosition(@Nonnull final Vector3i position) {
+        public Builder<T> setPosition(@Nonnull final Vec3i position) {
             return super.setPosition(position);
         }
         
@@ -58,7 +58,7 @@ public final class EffectHelper
         }
         
         public T spawn(@Nonnull final Vector3 spawnPos) {
-            this.setPosition((Vector3i)spawnPos.toBlockPos());
+            this.setPosition((Vec3i)spawnPos.toBlockPos());
             return EffectRegistrar.registerFX(this.getContext().makeParticle(spawnPos), this);
         }
     }

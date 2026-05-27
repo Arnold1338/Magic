@@ -35,7 +35,7 @@ import java.util.function.Supplier;
 import java.util.function.Consumer;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;

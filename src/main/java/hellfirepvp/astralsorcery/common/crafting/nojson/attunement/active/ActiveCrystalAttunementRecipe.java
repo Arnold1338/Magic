@@ -153,7 +153,7 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
         final VFXColorFunction<?> beamColor = VFXColorFunction.constant(ColorsAS.DEFAULT_GENERIC_PARTICLE);
         if (this.getTick() >= 80 && this.getTick() % 40 == 0) {
             for (final BlockPos pos : altar.getConstellationPositions(this.constellation)) {
-                final Vector3 from = new Vector3((Vector3i)pos).add(0.5, 0.0, 0.5);
+                final Vector3 from = new Vector3((Vec3i)pos).add(0.5, 0.0, 0.5);
                 MiscUtils.applyRandomOffset(from, this.rand, 0.1f);
                 EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).spawn(from).setup(from.clone().addY(6.0), 1.2, 1.2).setAlphaMultiplier(0.8f).color(beamColor).setMaxAge(60);
             }

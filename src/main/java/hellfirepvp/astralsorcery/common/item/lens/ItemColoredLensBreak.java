@@ -62,7 +62,7 @@ public class ItemColoredLensBreak extends ItemColoredLens
                     buf.writeInt(Block.func_196246_j(state));
                     return;
                 });
-                PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vector3i)pos, 16.0));
+                PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vec3i)pos, 16.0));
             }
         }
     }

@@ -4,7 +4,7 @@ import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -19,7 +19,7 @@ import java.io.InputStream;
 import java.util.zip.GZIPInputStream;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraft.client.renderer.vertex.VertexBuffer;
+import com.mojang.blaze3d.vertex.VertexBuffer;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.client.util.obj.WavefrontObject;
 

@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.util.collision;
 
 import java.util.List;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.entity.Entity;
 
 public interface CustomCollisionHandler

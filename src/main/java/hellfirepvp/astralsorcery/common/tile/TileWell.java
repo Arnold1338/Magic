@@ -155,8 +155,8 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell>
         this.inventory.setStackInSlot(0, ItemStack.EMPTY);
         this.runningRecipe = null;
         final PktPlayEffect effect = new PktPlayEffect(PktPlayEffect.Type.SMALL_CRYSTAL_BREAK).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3(this).add(0.5, 1.3, 0.5)));
-        PacketChannel.CHANNEL.sendToAllAround(effect, PacketChannel.pointFromPos(this.getLevel(), (Vector3i)this.getBlockState(), 32.0));
-        SoundHelper.playSoundAround(SoundEvents.field_187561_bM, this.getLevel(), (Vector3i)this.getBlockState(), 1.0f, 1.0f);
+        PacketChannel.CHANNEL.sendToAllAround(effect, PacketChannel.pointFromPos(this.getLevel(), (Vec3i)this.getBlockState(), 32.0));
+        SoundHelper.playSoundAround(SoundEvents.field_187561_bM, this.getLevel(), (Vec3i)this.getBlockState(), 1.0f, 1.0f);
         this.markForUpdate();
     }
     

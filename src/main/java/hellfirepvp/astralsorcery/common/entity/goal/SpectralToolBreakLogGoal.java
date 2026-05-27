@@ -92,7 +92,7 @@ public class SpectralToolBreakLogGoal extends SpectralToolGoal
         }
         else {
             this.getEntity().func_70605_aq().func_75642_a(this.selectedBreakPos.getX() + 0.5, this.selectedBreakPos.getY() + 0.5, this.selectedBreakPos.getZ() + 0.5, this.getSpeed());
-            if (Vector3.atEntityCorner((Entity)this.getEntity()).distanceSquared((Vector3i)this.selectedBreakPos) <= 9.0) {
+            if (Vector3.atEntityCorner((Entity)this.getEntity()).distanceSquared((Vec3i)this.selectedBreakPos) <= 9.0) {
                 ++this.actionCooldown;
                 if (this.actionCooldown >= (int)MantleEffectPelotrio.CONFIG.ticksPerAxeLogBreak.get() && world instanceof ServerLevel) {
                     final LivingEntity owner = this.getEntity().getOwningEntity();

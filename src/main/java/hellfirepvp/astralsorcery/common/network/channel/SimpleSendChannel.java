@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.network.channel;
 
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkDirection;
-import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Connection;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraft.server.level.ServerPlayer;
@@ -40,7 +40,7 @@ public abstract class SimpleSendChannel
         this.channel.sendToServer((Object)message);
     }
     
-    public <MSG> void sendTo(final MSG message, final NetworkManager manager, final NetworkDirection direction) {
+    public <MSG> void sendTo(final MSG message, final Connection manager, final NetworkDirection direction) {
         this.channel.sendTo((Object)message, manager, direction);
     }
     

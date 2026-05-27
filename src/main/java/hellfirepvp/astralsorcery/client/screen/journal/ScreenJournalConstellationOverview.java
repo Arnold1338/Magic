@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.screen.journal;
 
-import net.minecraft.client.renderer.BufferBuilder;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import java.util.Iterator;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.Minecraft;
@@ -9,7 +9,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import java.util.Random;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
@@ -107,7 +107,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
     }
     
     private Rectangle drawConstellation(final PoseStack renderStack, final IConstellation display, final double offsetX, final double offsetY, final float zLevel, final float partial, final int mouseX, final int mouseY) {
-        final Rectangle rect = new Rectangle(MathHelper.func_76128_c(offsetX), MathHelper.func_76128_c(offsetY), 80, 110);
+        final Rectangle rect = new Rectangle(Mth.func_76128_c(offsetX), Mth.func_76128_c(offsetY), 80, 110);
         renderStack.popPose();
         renderStack.func_227861_a_(offsetX + 40.0, offsetY + 40.0, (double)zLevel);
         if (rect.contains(mouseX, mouseY)) {

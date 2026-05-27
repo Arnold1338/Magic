@@ -33,7 +33,7 @@ import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.block.state.BlockState;
@@ -58,7 +58,7 @@ public class BlockUtils
     
     @Nonnull
     public static List<ItemStack> getDrops(final ServerLevel world, final BlockPos pos, final BlockState state, final int harvestFortune, final Random rand, final ItemStack tool) {
-        final LootContext.Builder builder = new LootContext.Builder(world).withParameter(LootContextParams.LAST_DAMAGE_PLAYER, (Object)Vec3.func_237489_a_((Vector3i)pos)).withParameter(LootParameters.field_216287_g, (Object)state).withParameter(LootContextParams.TOOL, (Object)tool).withOptionalParameter(LootParameters.field_216288_h, (Object)MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true)).withRandom(rand).withLuck((float)harvestFortune);
+        final LootContext.Builder builder = new LootContext.Builder(world).withParameter(LootContextParams.LAST_DAMAGE_PLAYER, (Object)Vec3.func_237489_a_((Vec3i)pos)).withParameter(LootParameters.field_216287_g, (Object)state).withParameter(LootContextParams.TOOL, (Object)tool).withOptionalParameter(LootParameters.field_216288_h, (Object)MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true)).withRandom(rand).withLuck((float)harvestFortune);
         return state.func_215693_a(builder);
     }
     

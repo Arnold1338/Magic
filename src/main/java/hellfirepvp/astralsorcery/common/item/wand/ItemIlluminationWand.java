@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.tile.TileIlluminator;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
-import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Vec3i;
 import net.minecraft.sounds.SoundEvent;
@@ -83,13 +83,13 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
             if (state.getBlock() instanceof BlockTranslucentBlock) {
                 final TileTranslucentBlock tb = MiscUtils.getTileAt((IBlockReader)world, pos, TileTranslucentBlock.class, true);
                 if (tb != null && (tb.getPlayerUUID() == null || tb.getPlayerUUID().equals(player.getUUID())) && tb.revert()) {
-                    SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_UNHIGHLIGHT, SoundSource.BLOCKS, world, (Vector3i)pos, 0.6f, 0.9f + ItemIlluminationWand.count.nextFloat() * 0.2f);
+                    SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_UNHIGHLIGHT, SoundSource.BLOCKS, world, (Vec3i)pos, 0.6f, 0.9f + ItemIlluminationWand.count.nextFloat() * 0.2f);
                 }
             }
             else {
                 final BlockEntity tile = MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true);
                 if (tile == null && !state.hasTileEntity() && player.func_175151_a(pos, dir, stack) && VoxelShapes.func_197868_b().equals(world.getBlockState(pos).func_196954_c((IBlockReader)world, pos)) && AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, 650.0f, false) && world.func_180501_a(pos, BlocksAS.TRANSLUCENT_BLOCK.defaultBlockState(), 11)) {
-                    SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_HIGHLIGHT, SoundSource.BLOCKS, world, (Vector3i)pos, 0.6f, 0.9f + ItemIlluminationWand.count.nextFloat() * 0.2f);
+                    SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_HIGHLIGHT, SoundSource.BLOCKS, world, (Vec3i)pos, 0.6f, 0.9f + ItemIlluminationWand.count.nextFloat() * 0.2f);
                     final TileTranslucentBlock tb2 = MiscUtils.getTileAt((IBlockReader)world, pos, TileTranslucentBlock.class, true);
                     if (tb2 != null) {
                         tb2.setFakedState(state);
@@ -106,7 +106,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
         final TileIlluminator illum = MiscUtils.getTileAt((IBlockReader)world, pos, TileIlluminator.class, true);
         if (illum != null) {
             illum.onWandUsed(stack);
-            SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_LIGHT, SoundSource.BLOCKS, world, (Vector3i)pos, 0.6f, 1.0f);
+            SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_LIGHT, SoundSource.BLOCKS, world, (Vec3i)pos, 0.6f, 1.0f);
             return InteractionResult.SUCCESS;
         }
         final CollisionContext selContext = CollisionContext.func_216374_a((Entity)player);
@@ -121,11 +121,11 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
         if (player.func_175151_a(placePos, dir, stack)) {
             if (world.getBlockState(placePos).equals(placeState)) {
                 if (world.func_180501_a(placePos, Blocks.AIR.defaultBlockState(), 11)) {
-                    SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_LIGHT, SoundSource.BLOCKS, world, (Vector3i)pos, 0.6f, 1.0f);
+                    SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_LIGHT, SoundSource.BLOCKS, world, (Vec3i)pos, 0.6f, 1.0f);
                 }
             }
             else if (placeState.func_196955_c((IWorldReader)world, placePos) && world.func_226663_a_(placeState, placePos, selContext) && AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, 300.0f, false) && world.func_180501_a(placePos, placeState, 11)) {
-                SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_LIGHT, SoundSource.BLOCKS, world, (Vector3i)pos, 0.6f, 1.0f);
+                SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_LIGHT, SoundSource.BLOCKS, world, (Vec3i)pos, 0.6f, 1.0f);
             }
         }
         return InteractionResult.SUCCESS;

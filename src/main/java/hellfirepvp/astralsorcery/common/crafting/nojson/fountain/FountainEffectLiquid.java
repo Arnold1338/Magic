@@ -136,22 +136,22 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
         final float segmentPercent = this.getSegmentPercent(currentSegment, operationTick);
         switch (currentSegment) {
             case STARTUP: {
-                this.playFountainVortexParticles((Vector3i)fountainPos, segmentPercent);
-                this.playFountainArcs((Vector3i)fountainPos, segmentPercent);
+                this.playFountainVortexParticles((Vec3i)fountainPos, segmentPercent);
+                this.playFountainArcs((Vec3i)fountainPos, segmentPercent);
                 break;
             }
             case PREPARATION: {
-                this.playFountainArcs((Vector3i)fountainPos, 1.0f - segmentPercent);
-                this.playFountainVortexParticles((Vector3i)fountainPos, 1.0f - segmentPercent);
-                this.playDigPreparation((Vector3i)fountainPos, segmentPercent);
+                this.playFountainArcs((Vec3i)fountainPos, 1.0f - segmentPercent);
+                this.playFountainVortexParticles((Vec3i)fountainPos, 1.0f - segmentPercent);
+                this.playDigPreparation((Vec3i)fountainPos, segmentPercent);
                 break;
             }
             case RUNNING: {
-                this.playFountainVortexParticles((Vector3i)fountainPos, 0.2f);
-                this.playFountainArcs((Vector3i)fountainPos, 0.6f);
-                this.playDigParticles((Vector3i)fountainPos);
+                this.playFountainVortexParticles((Vec3i)fountainPos, 0.2f);
+                this.playFountainArcs((Vec3i)fountainPos, 0.6f);
+                this.playDigParticles((Vec3i)fountainPos);
                 if (fountain.getTicksExisted() % 40 == 0) {
-                    this.playDigLightbeam((Vector3i)fountainPos);
+                    this.playDigLightbeam((Vec3i)fountainPos);
                     break;
                 }
                 break;
@@ -160,7 +160,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
     }
     
     @OnlyIn(Dist.CLIENT)
-    private void playDigPreparation(final Vector3i pos, final float chance) {
+    private void playDigPreparation(final Vec3i pos, final float chance) {
         final Vector3 at = new Vector3(pos).add(0.5, 0.5, 0.5);
         for (int i = 0; i < 12; ++i) {
             if (FountainEffectLiquid.rand.nextFloat() < chance) {
@@ -178,7 +178,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
     }
     
     @OnlyIn(Dist.CLIENT)
-    private void playDigParticles(final Vector3i pos) {
+    private void playDigParticles(final Vec3i pos) {
         for (int i = 0; i < 2; ++i) {
             final Vector3 at = new Vector3(pos).add(0.3 + FountainEffectLiquid.rand.nextFloat() * 0.4, -FountainEffectLiquid.rand.nextFloat() * 1.7, 0.3 + FountainEffectLiquid.rand.nextFloat() * 0.4);
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).setScaleMultiplier(0.25f).setAlphaMultiplier(1.0f).setMotion(new Vector3(0.0f, -FountainEffectLiquid.rand.nextFloat() * 0.008f, 0.0f)).color(VFXColorFunction.random());
@@ -186,7 +186,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
     }
     
     @OnlyIn(Dist.CLIENT)
-    private void playDigLightbeam(final Vector3i pos) {
+    private void playDigLightbeam(final Vec3i pos) {
         final Vector3 from = new Vector3(pos).add(0.5, 1.5, 0.5);
         MiscUtils.applyRandomOffset(from, FountainEffectLiquid.rand, 0.1f);
         final Vector3 to = from.clone().setY(0);
@@ -210,11 +210,11 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
     private void markDigProcess(final BlockPos pos) {
         for (int yy = 0; yy <= pos.getY(); ++yy) {
             for (int i = 0; i < 4; ++i) {
-                final Vector3 at = new Vector3((Vector3i)pos).setY(yy).add(FountainEffectLiquid.rand.nextFloat(), FountainEffectLiquid.rand.nextFloat(), FountainEffectLiquid.rand.nextFloat());
+                final Vector3 at = new Vector3((Vec3i)pos).setY(yy).add(FountainEffectLiquid.rand.nextFloat(), FountainEffectLiquid.rand.nextFloat(), FountainEffectLiquid.rand.nextFloat());
                 EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).setAlphaMultiplier(1.0f).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.2f + FountainEffectLiquid.rand.nextFloat() * 0.1f).setMaxAge(20 + FountainEffectLiquid.rand.nextInt(40));
             }
         }
-        final Vector3 from = new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5);
+        final Vector3 from = new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5);
         final Vector3 to = from.clone().setY(0);
         EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).spawn(from).setup(to, 1.5, 1.5).setAlphaMultiplier(1.0f).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.constant(ColorsAS.EFFECT_BLUE_LIGHT));
     }

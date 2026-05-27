@@ -21,24 +21,24 @@ import hellfirepvp.astralsorcery.common.data.sync.base.ClientData;
 
 public class ClientTimeFreezeEffects extends ClientData<ClientTimeFreezeEffects>
 {
-    private final Map<RegistryKey<Level>, List<TimeStopEffectHelper>> clientActiveFreezeZones;
+    private final Map<ResourceKey<Level>, List<TimeStopEffectHelper>> clientActiveFreezeZones;
     
     public ClientTimeFreezeEffects() {
-        this.clientActiveFreezeZones = new HashMap<RegistryKey<Level>, List<TimeStopEffectHelper>>();
+        this.clientActiveFreezeZones = new HashMap<ResourceKey<Level>, List<TimeStopEffectHelper>>();
     }
     
     @Nonnull
     public List<TimeStopEffectHelper> getTimeStopEffects(final Level world) {
-        return this.getTimeStopEffects((RegistryKey<Level>)world.dimension());
+        return this.getTimeStopEffects((ResourceKey<Level>)world.dimension());
     }
     
     @Nonnull
-    public List<TimeStopEffectHelper> getTimeStopEffects(final RegistryKey<Level> dim) {
+    public List<TimeStopEffectHelper> getTimeStopEffects(final ResourceKey<Level> dim) {
         return this.clientActiveFreezeZones.getOrDefault(dim, Collections.emptyList());
     }
     
     private void applyChange(final DataTimeFreezeEffects.ServerSyncAction action) {
-        final RegistryKey<Level> worldKey = action.getDimKey();
+        final ResourceKey<Level> worldKey = action.getDimKey();
         switch (action.getType()) {
             case ADD: {
                 final List<TimeStopEffectHelper> zones = this.clientActiveFreezeZones.computeIfAbsent(worldKey, id -> new LinkedList());
@@ -60,7 +60,7 @@ public class ClientTimeFreezeEffects extends ClientData<ClientTimeFreezeEffects>
     }
     
     @Override
-    public void clear(final RegistryKey<Level> dim) {
+    public void clear(final ResourceKey<Level> dim) {
         this.clientActiveFreezeZones.remove(dim);
     }
     
@@ -76,7 +76,7 @@ public class ClientTimeFreezeEffects extends ClientData<ClientTimeFreezeEffects>
             data.clientActiveFreezeZones.clear();
             final CompoundTag dimTag = compound.func_74775_l("dimTypes");
             for (final String dimKey : dimTag.func_150296_c()) {
-                final RegistryKey<Level> dim = (RegistryKey<Level>)RegistryKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(dimKey));
+                final ResourceKey<Level> dim = (ResourceKey<Level>)ResourceKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(dimKey));
                 final List<TimeStopEffectHelper> effects = new LinkedList<TimeStopEffectHelper>();
                 final ListTag listEffects = dimTag.getList(dimKey, 10);
                 for (final Tag iNBT : listEffects) {

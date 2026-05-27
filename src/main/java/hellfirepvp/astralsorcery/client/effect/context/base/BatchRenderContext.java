@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.effect.context.base;
 
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import hellfirepvp.astralsorcery.client.util.draw.RenderInfo;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.VertexConsumer;

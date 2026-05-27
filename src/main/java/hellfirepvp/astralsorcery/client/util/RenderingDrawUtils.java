@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.client.util;
 
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.util.math.vector.Matrix3f;
-import net.minecraft.util.math.vector.Vector3d;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import org.joml.Matrix3f;
+import org.joml.Vector3d;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import hellfirepvp.astralsorcery.client.util.draw.RenderInfo;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
@@ -20,7 +20,7 @@ import java.util.List;
 import org.joml.Matrix4f;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import java.awt.Rectangle;
@@ -105,13 +105,13 @@ public class RenderingDrawUtils
         final VertexConsumer vb = buffer.getBuffer(RenderTypesAS.GUI_MISC_INFO_STAR);
         final float tick = ClientScheduler.getClientTick() + pTicks;
         float deg = tick * 2.0f % 360.0f;
-        float wh = widthHeightBase - widthHeightBase / 6.0f * (MathHelper.func_76126_a((float)Math.toRadians(tick * 4.0f % 360.0f)) + 1.0f);
+        float wh = widthHeightBase - widthHeightBase / 6.0f * (Mth.func_76126_a((float)Math.toRadians(tick * 4.0f % 360.0f)) + 1.0f);
         drawInfoStarSingle(renderStack, vb, wh, Math.toRadians(deg));
         deg = (tick + 22.5f) * 2.0f % 360.0f;
-        wh = widthHeightBase - widthHeightBase / 6.0f * (MathHelper.func_76126_a((float)Math.toRadians((tick + 45.0f) * 4.0f % 360.0f)) + 1.0f);
+        wh = widthHeightBase - widthHeightBase / 6.0f * (Mth.func_76126_a((float)Math.toRadians((tick + 45.0f) * 4.0f % 360.0f)) + 1.0f);
         drawInfoStarSingle(renderStack, vb, wh, Math.toRadians(deg));
         buffer.draw(RenderTypesAS.GUI_MISC_INFO_STAR);
-        return new Rectangle(MathHelper.func_76141_d(-widthHeightBase / 2.0f), MathHelper.func_76141_d(-widthHeightBase / 2.0f), MathHelper.func_76141_d(widthHeightBase), MathHelper.func_76141_d(widthHeightBase));
+        return new Rectangle(Mth.func_76141_d(-widthHeightBase / 2.0f), Mth.func_76141_d(-widthHeightBase / 2.0f), Mth.func_76141_d(widthHeightBase), Mth.func_76141_d(widthHeightBase));
     }
     
     private static void drawInfoStarSingle(final PoseStack renderStack, final VertexConsumer vb, final float widthHeight, final double deg) {
@@ -352,9 +352,9 @@ public class RenderingDrawUtils
         Vector3 v4 = new Vector3(arX * scale + arYZ * scale, arXZ * scale, arZ * scale + arXY * scale);
         Vector3 v5 = new Vector3(arX * scale - arYZ * scale, -arXZ * scale, arZ * scale - arXY * scale);
         if (angle != 0.0f) {
-            final float cAngle = MathHelper.func_76134_b(angle * 0.5f);
+            final float cAngle = Mth.func_76134_b(angle * 0.5f);
             final float cAngleSq = cAngle * cAngle;
-            final Vector3 vAngle = new Vector3(MathHelper.func_76126_a(angle * 0.5f) * look.func_195899_a(), MathHelper.func_76126_a(angle * 0.5f) * look.func_195900_b(), MathHelper.func_76126_a(angle * 0.5f) * look.func_195902_c());
+            final Vector3 vAngle = new Vector3(Mth.func_76126_a(angle * 0.5f) * look.func_195899_a(), Mth.func_76126_a(angle * 0.5f) * look.func_195900_b(), Mth.func_76126_a(angle * 0.5f) * look.func_195902_c());
             v2 = vAngle.clone().multiply(2.0 * v2.dot(vAngle)).add(v2.clone().multiply(cAngleSq - vAngle.dot(vAngle))).add(vAngle.clone().crossProduct(v2.clone().multiply(2.0f * cAngle)));
             v3 = vAngle.clone().multiply(2.0 * v3.dot(vAngle)).add(v3.clone().multiply(cAngleSq - vAngle.dot(vAngle))).add(vAngle.clone().crossProduct(v3.clone().multiply(2.0f * cAngle)));
             v4 = vAngle.clone().multiply(2.0 * v4.dot(vAngle)).add(v4.clone().multiply(cAngleSq - vAngle.dot(vAngle))).add(vAngle.clone().crossProduct(v4.clone().multiply(2.0f * cAngle)));

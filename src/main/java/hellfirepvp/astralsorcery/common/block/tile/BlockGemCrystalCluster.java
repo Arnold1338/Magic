@@ -21,8 +21,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.phys.Vec3;
-import net.minecraft.world.level.phys.shapes.Shapes;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
@@ -38,7 +38,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import hellfirepvp.astralsorcery.common.block.tile.crystal.CollectorCrystalType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.EnumProperty;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import net.minecraft.world.level.block.BaseEntityBlock;
 
@@ -110,11 +110,11 @@ public class BlockGemCrystalCluster extends BaseEntityBlock implements CustomIte
         if (state.getBlock() != newState.getBlock()) {
             super.func_196243_a(state, world, pos, newState, isMoving);
             final PktPlayEffect effect = new PktPlayEffect(PktPlayEffect.Type.GEM_CRYSTAL_BREAK).addData(buf -> {
-                ByteBufUtils.writeVector(buf, new Vector3((Vector3i)pos).add(state.func_191059_e((IBlockReader)world, pos)));
+                ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos).add(state.func_191059_e((IBlockReader)world, pos)));
                 buf.writeInt(((GrowthStageType)state.getValue((Property)BlockGemCrystalCluster.STAGE)).ordinal());
                 return;
             });
-            PacketChannel.CHANNEL.sendToAllAround(effect, PacketChannel.pointFromPos(world, (Vector3i)pos, 32.0));
+            PacketChannel.CHANNEL.sendToAllAround(effect, PacketChannel.pointFromPos(world, (Vec3i)pos, 32.0));
         }
     }
     

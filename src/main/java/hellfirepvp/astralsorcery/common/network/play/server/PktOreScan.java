@@ -60,7 +60,7 @@ public class PktOreScan extends ASPacket<PktOreScan>
                         final Iterator iterator;
                         while (iterator.hasNext()) {
                             final BlockPos at = iterator.next();
-                            final Vector3 atPos = new Vector3((Vector3i)at).add(0.5, 0.5, 0.5);
+                            final Vector3 atPos = new Vector3((Vec3i)at).add(0.5, 0.5, 0.5);
                             atPos.add(PktOreScan.rand.nextFloat() - PktOreScan.rand.nextFloat(), PktOreScan.rand.nextFloat() - PktOreScan.rand.nextFloat(), PktOreScan.rand.nextFloat() - PktOreScan.rand.nextFloat());
                             final BlockState state = Minecraft.getInstance().level.getBlockState(at);
                             MiscPlayEffect.playSingleBlockTumbleDepthEffect(atPos, state);

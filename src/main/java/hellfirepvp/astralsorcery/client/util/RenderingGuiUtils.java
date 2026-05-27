@@ -4,7 +4,7 @@ import org.joml.Matrix4f;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import java.awt.Color;
-import net.minecraft.client.renderer.BufferBuilder;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;

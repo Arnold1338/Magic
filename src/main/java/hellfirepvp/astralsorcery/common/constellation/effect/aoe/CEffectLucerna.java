@@ -42,7 +42,7 @@ public class CEffectLucerna extends ConstellationEffect implements Constellation
     @Override
     public void playClientEffect(final Level world, final BlockPos pos, final TileRitualPedestal pedestal, final float alphaMultiplier, final boolean extended) {
         if (ClientScheduler.getClientTick() % 20L == 0L) {
-            EffectHelper.spawnSource(new FXOrbitalLucerna(new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5)).setOrbitAxis(Vector3.RotAxis.Y_AXIS).setOrbitRadius(0.8 + CEffectLucerna.rand.nextFloat() * 0.7).setTicksPerRotation(20 + CEffectLucerna.rand.nextInt(20)));
+            EffectHelper.spawnSource(new FXOrbitalLucerna(new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5)).setOrbitAxis(Vector3.RotAxis.Y_AXIS).setOrbitRadius(0.8 + CEffectLucerna.rand.nextFloat() * 0.7).setTicksPerRotation(20 + CEffectLucerna.rand.nextInt(20)));
         }
     }
     

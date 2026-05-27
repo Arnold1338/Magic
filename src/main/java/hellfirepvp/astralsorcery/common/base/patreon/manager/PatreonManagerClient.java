@@ -32,7 +32,7 @@ public class PatreonManagerClient implements ITickHandler
         if (clWorld == null || thisPlayer == null) {
             return;
         }
-        final RegistryKey<Level> clientWorld = (RegistryKey<Level>)clWorld.dimension();
+        final ResourceKey<Level> clientWorld = (ResourceKey<Level>)clWorld.dimension();
         final Vector3 thisPlayerPos = Vector3.atEntityCenter((Entity)thisPlayer);
         SyncDataHolder.executeClient(SyncDataHolder.DATA_PATREON_FLARES, ClientPatreonFlares.class, data -> {
             data.getEntities().iterator();

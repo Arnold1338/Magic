@@ -19,7 +19,7 @@ import java.util.Iterator;
 import net.minecraft.client.gui.Font;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import net.minecraft.util.FormattedCharSequence;
-import net.minecraft.network.chat.FormattedCharSequence;
+import net.minecraft.util.FormattedCharSequence;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import com.mojang.blaze3d.systems.RenderSystem;

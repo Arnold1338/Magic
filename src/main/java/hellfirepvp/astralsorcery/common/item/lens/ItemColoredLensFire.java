@@ -110,8 +110,8 @@ public class ItemColoredLensFire extends ItemColoredLens
             if (result.isEmpty()) {
                 return;
             }
-            final PktPlayEffect ev = new PktPlayEffect(PktPlayEffect.Type.MELT_BLOCK).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vector3i)pos)));
-            PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vector3i)pos, 16.0));
+            final PktPlayEffect ev = new PktPlayEffect(PktPlayEffect.Type.MELT_BLOCK).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos)));
+            PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vec3i)pos, 16.0));
             while (executor.canExecute()) {
                 executor.markExecution();
                 if (ItemColoredLensFire.count.nextInt(6) != 0) {

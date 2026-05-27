@@ -49,15 +49,15 @@ public class LightbeamRenderHelper implements ITickHandler
             }
             if (rView != null) {
                 final Entity renderView = rView;
-                final RegistryKey<Level> dimKey = (RegistryKey<Level>)renderView.level().dimension();
+                final ResourceKey<Level> dimKey = (ResourceKey<Level>)renderView.level().dimension();
                 SyncDataHolder.executeClient(SyncDataHolder.DATA_LIGHT_CONNECTIONS, ClientLightConnections.class, data -> {
-                    data.getClientConnections((RegistryKey<Level>)dimKey).entrySet().iterator();
+                    data.getClientConnections((ResourceKey<Level>)dimKey).entrySet().iterator();
                     final Iterator iterator;
                     while (iterator.hasNext()) {
                         final Map.Entry<BlockPos, Set<BlockPos>> entry = iterator.next();
                         final BlockPos at = entry.getKey();
                         if (renderView.func_70092_e((double)at.getX(), (double)at.getY(), (double)at.getZ()) <= RenderingConfig.CONFIG.getMaxEffectRenderDistanceSq()) {
-                            final Vector3 source = new Vector3((Vector3i)at).add(0.5, 0.5, 0.5);
+                            final Vector3 source = new Vector3((Vec3i)at).add(0.5, 0.5, 0.5);
                             Color overlay = null;
                             final TileLens lens = MiscUtils.getTileAt((IBlockReader)renderView.level(), at, TileLens.class, true);
                             if (lens != null && lens.getColorType() != null) {
@@ -67,7 +67,7 @@ public class LightbeamRenderHelper implements ITickHandler
                             final Iterator iterator2;
                             while (iterator2.hasNext()) {
                                 final BlockPos dst = iterator2.next();
-                                final Vector3 to = new Vector3((Vector3i)dst).add(0.5, 0.5, 0.5);
+                                final Vector3 to = new Vector3((Vec3i)dst).add(0.5, 0.5, 0.5);
                                 final FXLightbeam beam = EffectHelper.of(EffectTemplatesAS.LIGHTBEAM_TRANSFER).spawn(source).setup(to, 0.4, 0.4).setAlphaMultiplier(0.4f);
                                 if (overlay != null) {
                                     beam.color(VFXColorFunction.constant(overlay));

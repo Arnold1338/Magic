@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
 import net.minecraft.world.level.InteractionResult;
-import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -33,8 +33,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesWood;
-import net.minecraft.world.level.phys.AABB;
-import net.minecraft.world.level.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import hellfirepvp.astralsorcery.common.block.base.LargeBlock;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -70,7 +70,7 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
                 offset.addX(1.5);
             }
             offset.addZ(random % (ColorsAS.REFRACTION_TABLE_COLORS.length / 2) * 0.25);
-            offset.add(rand.nextFloat() * 0.1, 0.0, rand.nextFloat() * 0.1).add((Vector3i)pos);
+            offset.add(rand.nextFloat() * 0.1, 0.0, rand.nextFloat() * 0.1).add((Vec3i)pos);
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(offset).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.15f + rand.nextFloat() * 0.1f).color(VFXColorFunction.constant(ColorsAS.REFRACTION_TABLE_COLORS[random])).setMaxAge(35 + rand.nextInt(30));
         }
     }

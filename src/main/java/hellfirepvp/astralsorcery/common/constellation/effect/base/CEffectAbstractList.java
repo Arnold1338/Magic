@@ -70,7 +70,7 @@ public abstract class CEffectAbstractList<T extends ListEntry> extends Constella
     
     protected void selectSphericalPositions() {
         this.positionStrategy.andFilter((pos, radius) -> {
-            final double dst = new Vector3((Vector3i)this.getPos().getLocationPos()).add(0.5, 0.5, 0.5).distanceSquared(new Vector3((Vector3i)pos).add((Vector3i)this.getPos().getLocationPos()).add(0.5, 0.5, 0.5));
+            final double dst = new Vector3((Vec3i)this.getPos().getLocationPos()).add(0.5, 0.5, 0.5).distanceSquared(new Vector3((Vec3i)pos).add((Vec3i)this.getPos().getLocationPos()).add(0.5, 0.5, 0.5));
             return dst <= radius * radius;
         });
     }
@@ -150,7 +150,7 @@ public abstract class CEffectAbstractList<T extends ListEntry> extends Constella
             gen.copyFilterFrom(this.positionStrategy);
         }
         final BlockPos at = gen.generateNextPosition(new Vector3(0.5, 0.5, 0.5), prop.getSize());
-        final BlockPos actual = at.func_177971_a((Vector3i)pos);
+        final BlockPos actual = at.func_177971_a((Vec3i)pos);
         if (this.getCount() >= this.maxAmount) {
             return (Either<T, BlockPos>)Either.right((Object)actual);
         }

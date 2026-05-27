@@ -11,7 +11,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.client.gui.Font;
 import java.util.Collection;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.FormattedCharSequence;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInteractionContext;

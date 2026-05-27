@@ -28,7 +28,7 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 
 public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess>
 {
-    private RegistryKey<Level> dim;
+    private ResourceKey<Level> dim;
     private BlockPos pos;
     private UUID revokeUUID;
     
@@ -38,7 +38,7 @@ public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess>
         this.revokeUUID = null;
     }
     
-    public PktRevokeGatewayAccess(final RegistryKey<Level> dim, final BlockPos pos, final UUID revokeUUID) {
+    public PktRevokeGatewayAccess(final ResourceKey<Level> dim, final BlockPos pos, final UUID revokeUUID) {
         this.dim = null;
         this.pos = BlockPos.field_177992_a;
         this.revokeUUID = null;
@@ -71,7 +71,7 @@ public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess>
                 final Player sender = (Player)context.getSender();
                 if (sender != null) {
                     final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
-                    final Level world = (Level)srv.getLevel((RegistryKey)packet.dim);
+                    final Level world = (Level)srv.getLevel((ResourceKey)packet.dim);
                     final TileCelestialGateway gateway = MiscUtils.getTileAt((IBlockReader)world, packet.pos, TileCelestialGateway.class, false);
                     if (gateway != null && gateway.isLocked() && gateway.getOwner() != null && gateway.getOwner().isPlayer(sender)) {
                         final BlockPos testPos = Vector3.atEntityCorner((Entity)sender).toBlockPos();

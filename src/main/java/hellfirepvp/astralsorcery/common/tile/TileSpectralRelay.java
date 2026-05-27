@@ -33,7 +33,7 @@ import hellfirepvp.astralsorcery.common.block.tile.BlockSpectralRelay;
 import java.util.function.Consumer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.BlockGetter;
@@ -112,11 +112,11 @@ public class TileSpectralRelay extends TileEntityTick
         }
         this.setClosestRelayPos(null);
         final BlockPos thisPos = this.getBlockState();
-        final Vec3 thisVPos = Vec3.func_237491_b_((Vector3i)thisPos);
+        final Vec3 thisVPos = Vec3.func_237491_b_((Vec3i)thisPos);
         foreachNearbyRelay(this.getLevel(), thisPos, relay -> {
             final BlockPos relayPos = relay.getBlockState();
             if (!relayPos.equals((Object)thisPos)) {
-                final Vec3 relayVPos = Vec3.func_237491_b_((Vector3i)relayPos);
+                final Vec3 relayVPos = Vec3.func_237491_b_((Vec3i)relayPos);
                 final BlockPos otherClosestPos = relay.closestRelayPos;
                 if (otherClosestPos == null || thisPos.func_218138_a((IPosition)relayVPos, false) < otherClosestPos.func_218138_a((IPosition)relayVPos, false)) {
                     relay.setClosestRelayPos(thisPos);
@@ -144,7 +144,7 @@ public class TileSpectralRelay extends TileEntityTick
     @OnlyIn(Dist.CLIENT)
     private void playAltarParticles() {
         final Vector3 pos = new Vector3(this).add(0.5, 0.35, 0.5);
-        final Vector3 target = new Vector3((Vector3i)this.altarPos).add(0.5, 0.5, 0.5);
+        final Vector3 target = new Vector3((Vec3i)this.altarPos).add(0.5, 0.5, 0.5);
         int maxAge = 30;
         maxAge *= (int)Math.max(pos.distance(target) / 3.0, 1.0);
         final EntityVisualFX vfx = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(pos).alpha(VFXAlphaFunction.proximity(target::clone, 2.0f).andThen(VFXAlphaFunction.FADE_OUT)).motion(VFXMotionController.target(target::clone, 0.08f)).setMotion(Vector3.random().normalize().multiply(0.1f + TileSpectralRelay.rand.nextFloat() * 0.05f)).setScaleMultiplier(0.15f + TileSpectralRelay.rand.nextFloat() * 0.05f).setMaxAge(maxAge);
@@ -209,7 +209,7 @@ public class TileSpectralRelay extends TileEntityTick
     
     private void updateAltarPos() {
         final Set<BlockPos> altarPositions = BlockDiscoverer.searchForTileEntitiesAround(this.getLevel(), this.getBlockState(), 16, tile -> tile instanceof TileAltar);
-        final Vec3 thisPos = Vec3.func_237491_b_((Vector3i)this.getBlockState());
+        final Vec3 thisPos = Vec3.func_237491_b_((Vec3i)this.getBlockState());
         BlockPos closestAltar = null;
         for (final BlockPos other : altarPositions) {
             if (closestAltar == null || other.func_218138_a((IPosition)thisPos, false) < closestAltar.func_218138_a((IPosition)thisPos, false)) {
@@ -227,7 +227,7 @@ public class TileSpectralRelay extends TileEntityTick
             this.proximityMultiplier = 1.0f;
         }
         else {
-            this.proximityMultiplier = Mth.canEnchant((float)new Vector3((Vector3i)this.getBlockState()).distance((Vector3i)this.closestRelayPos) / 8.0f, 0.0f, 1.0f);
+            this.proximityMultiplier = Mth.canEnchant((float)new Vector3((Vec3i)this.getBlockState()).distance((Vec3i)this.closestRelayPos) / 8.0f, 0.0f, 1.0f);
         }
     }
     

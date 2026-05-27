@@ -19,7 +19,7 @@ import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
-import net.minecraft.world.level.phys.AABB;
+import net.minecraft.world.phys.AABB;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
 
 public class TileVanishing extends TileEntityTick
@@ -66,7 +66,7 @@ public class TileVanishing extends TileEntityTick
     private void tickClient() {
         for (int i = 0; i < 3; ++i) {
             if (TileVanishing.rand.nextFloat() < 0.07f) {
-                final Vector3 at = new Vector3((Vector3i)this.field_174879_c).add(0.5f, 0.5f, 0.5f).add(Vector3.random());
+                final Vector3 at = new Vector3((Vec3i)this.field_174879_c).add(0.5f, 0.5f, 0.5f).add(Vector3.random());
                 final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).setScaleMultiplier(0.15f + TileVanishing.rand.nextFloat() * 0.1f).alpha(VFXAlphaFunction.PYRAMID).setMaxAge(40 + TileVanishing.rand.nextInt(10));
                 if (TileVanishing.rand.nextBoolean()) {
                     p.color(VFXColorFunction.WHITE);

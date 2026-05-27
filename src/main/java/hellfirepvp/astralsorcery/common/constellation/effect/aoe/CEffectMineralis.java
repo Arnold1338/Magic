@@ -83,7 +83,7 @@ public class CEffectMineralis extends CEffectAbstractList<ListEntries.PosEntry>
         final ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
         if (CEffectMineralis.rand.nextFloat() < 0.6f) {
             final Color c = MiscUtils.eitherOf(CEffectMineralis.rand, (Supplier<Color>[])new Supplier[] { () -> ColorsAS.CONSTELLATION_MINERALIS, () -> ColorsAS.CONSTELLATION_MINERALIS.brighter() });
-            final Vector3 at = Vector3.random().normalize().multiply(CEffectMineralis.rand.nextFloat() * prop.getSize()).add((Vector3i)pos).add(0.5, 0.5, 0.5);
+            final Vector3 at = Vector3.random().normalize().multiply(CEffectMineralis.rand.nextFloat() * prop.getSize()).add((Vec3i)pos).add(0.5, 0.5, 0.5);
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).alpha(VFXAlphaFunction.FADE_OUT).setMotion(Vector3.random().multiply(0.05f)).color(VFXColorFunction.constant(c)).setScaleMultiplier(0.5f + CEffectMineralis.rand.nextFloat() * 0.25f).setMaxAge(50 + CEffectMineralis.rand.nextInt(40));
         }
     }
@@ -116,14 +116,14 @@ public class CEffectMineralis extends CEffectAbstractList<ListEntries.PosEntry>
                     return world.func_175656_a(at, ore2.defaultBlockState());
                 }
                 else {
-                    this.sendConstellationPing(world, new Vector3((Vector3i)at).add(0.5, 0.5, 0.5));
+                    this.sendConstellationPing(world, new Vector3((Vec3i)at).add(0.5, 0.5, 0.5));
                 }
             }
             else {
-                this.sendConstellationPing(world, new Vector3((Vector3i)at).add(0.5, 0.5, 0.5));
+                this.sendConstellationPing(world, new Vector3((Vec3i)at).add(0.5, 0.5, 0.5));
             }
             return false;
-        }).ifRight(attemptedBreak -> this.sendConstellationPing(world, new Vector3((Vector3i)attemptedBreak).add(0.5, 0.5, 0.5))).left().orElse(false);
+        }).ifRight(attemptedBreak -> this.sendConstellationPing(world, new Vector3((Vec3i)attemptedBreak).add(0.5, 0.5, 0.5))).left().orElse(false);
     }
     
     @Override

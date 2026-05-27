@@ -10,7 +10,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.registry.SourceCl
 import javax.annotation.Nullable;
 import java.util.Iterator;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import java.util.Map;
 import hellfirepvp.astralsorcery.common.tile.TileCollectorCrystal;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -73,12 +73,12 @@ public class IndependentCrystalSource implements IIndependentStarlightSource
         }
         if (this.closestOtherCollector != null && IndependentCrystalSource.rand.nextInt(40) == 0) {
             final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.LIGHTNING).addData(buf -> {
-                ByteBufUtils.writeVector(buf, new Vector3((Vector3i)pos).add(0.5, 0.5, 0.5));
-                ByteBufUtils.writeVector(buf, new Vector3((Vector3i)this.closestOtherCollector).add(0.5, 0.5, 0.5));
+                ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5));
+                ByteBufUtils.writeVector(buf, new Vector3((Vec3i)this.closestOtherCollector).add(0.5, 0.5, 0.5));
                 buf.writeInt(this.constellation.getConstellationColor().darker().getRGB());
                 return;
             });
-            PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos((Level)world, (Vector3i)pos, 32.0));
+            PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos((Level)world, (Vec3i)pos, 32.0));
         }
         final Function<Float, Float> distrFunction = this.getDistributionFunc();
         float perc = CrystalCalculations.getCollectorCrystalCollectionRate(this);
@@ -123,7 +123,7 @@ public class IndependentCrystalSource implements IIndependentStarlightSource
             if (other.equals((Object)thisPos)) {
                 continue;
             }
-            final double dstSq = thisPos.func_218138_a((IPosition)Vec3.func_237491_b_((Vector3i)other), false);
+            final double dstSq = thisPos.func_218138_a((IPosition)Vec3.func_237491_b_((Vec3i)other), false);
             if (dstSq >= minDstSq) {
                 continue;
             }

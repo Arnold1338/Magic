@@ -39,7 +39,7 @@ public class ItemInfusedCrystalShovel extends ItemCrystalShovel
                                         ByteBufUtils.writeBlockState(buf, currentState);
                                         return;
                                     });
-                                    PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vector3i)at, 32.0));
+                                    PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vec3i)at, 32.0));
                                 }
                                 return;
                             });

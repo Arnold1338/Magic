@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.cmd.sub;
 
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.phys.BlockHitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import hellfirepvp.astralsorcery.common.util.block.BlockStateHelper;
 import net.minecraft.world.level.block.Blocks;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;

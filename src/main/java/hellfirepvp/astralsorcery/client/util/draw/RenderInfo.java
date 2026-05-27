@@ -7,7 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.Camera;
 import net.minecraft.util.Mth;
 import net.minecraftforge.event.TickEvent;
-import net.minecraft.world.level.phys.Vec3;
+import net.minecraft.world.phys.Vec3;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 
 public class RenderInfo implements ITickHandler

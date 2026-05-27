@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 public class FeatureGenerationConfig extends ConfigEntry
 {
     private List<Biome.Category> categories;
-    private List<RegistryKey<Level>> worlds;
+    private List<ResourceKey<Level>> worlds;
     private boolean defaultEveryBiome;
     private boolean defaultEveryWorld;
     private ForgeConfigSpec.BooleanValue enabled;
@@ -34,7 +34,7 @@ public class FeatureGenerationConfig extends ConfigEntry
     public FeatureGenerationConfig(final String featureName) {
         super(featureName);
         this.categories = new ArrayList<Biome.Category>();
-        this.worlds = new ArrayList<RegistryKey<Level>>();
+        this.worlds = new ArrayList<ResourceKey<Level>>();
         this.defaultEveryBiome = false;
         this.defaultEveryWorld = false;
     }
@@ -44,7 +44,7 @@ public class FeatureGenerationConfig extends ConfigEntry
         return (T)this;
     }
     
-    public <T extends FeatureGenerationConfig> T generatesInWorlds(final List<RegistryKey<Level>> worlds) {
+    public <T extends FeatureGenerationConfig> T generatesInWorlds(final List<ResourceKey<Level>> worlds) {
         this.worlds = worlds;
         return (T)this;
     }
@@ -67,7 +67,7 @@ public class FeatureGenerationConfig extends ConfigEntry
         final String allCategories = Arrays.stream(Biome.Category.values()).map((Function<? super Biome.Category, ?>)Biome.Category::func_176610_l).collect((Collector<? super Object, ?, String>)Collectors.joining(","));
         final List<String> defaultCategories = this.categories.stream().map((Function<? super Object, ?>)Biome.Category::func_176610_l).collect((Collector<? super Object, ?, List<String>>)Collectors.toList());
         this.biomeCategoryNames = (ForgeConfigSpec.ConfigValue<List<String>>)cfgBuilder.comment("Sets the categories to generate this feature in. Available categories: " + allCategories).translation(this.translationKey("biomeCategoryNames")).define("biomeCategoryNames", (Object)defaultCategories);
-        final List<String> defaultWorlds = this.worlds.stream().map((Function<? super Object, ?>)RegistryKey::func_240901_a_).map((Function<? super Object, ?>)ResourceLocation::func_110623_a).collect((Collector<? super Object, ?, List<String>>)Collectors.toList());
+        final List<String> defaultWorlds = this.worlds.stream().map((Function<? super Object, ?>)ResourceKey::func_240901_a_).map((Function<? super Object, ?>)ResourceLocation::func_110623_a).collect((Collector<? super Object, ?, List<String>>)Collectors.toList());
         this.worldNames = (ForgeConfigSpec.ConfigValue<List<String>>)cfgBuilder.comment("Sets the worlds to generate this feature in. (Does NOT work for structures!)").translation(this.translationKey("worldNames")).define("worldNames", (Object)defaultWorlds);
     }
     
@@ -80,6 +80,6 @@ public class FeatureGenerationConfig extends ConfigEntry
     }
     
     public WorldFilterConfig worldFilterConfig() {
-        return new WorldFilterConfig(this.everyWorld::get, () -> ((List)this.worldNames.get()).stream().map(ResourceLocation::new).map(key -> RegistryKey.func_240903_a_(Registry.field_239699_ae_, key)).collect(Collectors.toList()));
+        return new WorldFilterConfig(this.everyWorld::get, () -> ((List)this.worldNames.get()).stream().map(ResourceLocation::new).map(key -> ResourceKey.func_240903_a_(Registry.field_239699_ae_, key)).collect(Collectors.toList()));
     }
 }

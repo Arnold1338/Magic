@@ -168,14 +168,14 @@ public class ByteBufUtils
         return (T)RegistryManager.ACTIVE.getRegistry(registryName).getValue(entryName);
     }
     
-    public static void writeVanillaRegistryEntry(final FriendlyByteBuf buf, final RegistryKey<?> key) {
+    public static void writeVanillaRegistryEntry(final FriendlyByteBuf buf, final ResourceKey<?> key) {
         writeResourceLocation(buf, key.getRegistryName());
         writeResourceLocation(buf, key.func_240901_a_());
     }
     
-    public static <T> RegistryKey<T> readVanillaRegistryEntry(final FriendlyByteBuf buf) {
+    public static <T> ResourceKey<T> readVanillaRegistryEntry(final FriendlyByteBuf buf) {
         final ResourceLocation registryName = readResourceLocation(buf);
-        return (RegistryKey<T>)RegistryKey.func_240903_a_(ResourceKey.create(registryName), readResourceLocation(buf));
+        return (ResourceKey<T>)ResourceKey.func_240903_a_(ResourceKey.create(registryName), readResourceLocation(buf));
     }
     
     public static void writeResourceLocation(final FriendlyByteBuf buf, final ResourceLocation key) {
