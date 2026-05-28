@@ -9,7 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+
 import net.minecraft.world.level.material.Fluids;
 import java.awt.Color;
 import net.minecraft.world.level.material.Fluid;

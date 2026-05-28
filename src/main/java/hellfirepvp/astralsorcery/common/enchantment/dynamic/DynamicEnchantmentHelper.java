@@ -7,7 +7,7 @@ import hellfirepvp.astralsorcery.common.event.DynamicEnchantmentEvent;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.enchantment.amulet.AmuletEnchantmentHelper;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import hellfirepvp.astralsorcery.common.base.Mods;
 import net.minecraft.world.item.BookItem;
 import hellfirepvp.astralsorcery.common.util.object.ObjectReference;

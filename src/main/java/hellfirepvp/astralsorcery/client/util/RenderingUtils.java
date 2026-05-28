@@ -26,7 +26,7 @@ import net.minecraft.client.player.ClientPlayerEntity;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import net.minecraft.network.chat.Component;
 import org.apache.commons.lang3.ObjectUtils;
-import net.minecraft.client.renderer.RenderHelper;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.OverlayTexture;

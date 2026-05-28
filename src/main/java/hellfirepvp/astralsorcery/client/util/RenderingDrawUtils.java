@@ -28,7 +28,7 @@ import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.text.LanguageMap;
-import net.minecraft.util.IReorderingProcessor;
+import net.minecraft.util.FormattedCharSequence;
 import java.awt.Color;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.FormattedCharSequence;
@@ -59,7 +59,7 @@ public class RenderingDrawUtils
         return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().field_71466_p, Color.WHITE.getRGB(), false);
     }
     
-    public static float renderString(final IReorderingProcessor text) {
+    public static float renderString(final FormattedCharSequence text) {
         return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().field_71466_p, Color.WHITE.getRGB(), false);
     }
     
@@ -67,7 +67,7 @@ public class RenderingDrawUtils
         return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().field_71466_p, color, false);
     }
     
-    public static float renderString(final IReorderingProcessor text, final int color) {
+    public static float renderString(final FormattedCharSequence text, final int color) {
         return renderStringAt(text, RenderingDrawUtils.EMPTY, Minecraft.getInstance().field_71466_p, color, false);
     }
     
@@ -75,7 +75,7 @@ public class RenderingDrawUtils
         return renderStringAt(text, RenderingDrawUtils.EMPTY, fr, color, false);
     }
     
-    public static float renderString(@Nullable final Font fr, final IReorderingProcessor text, final int color) {
+    public static float renderString(@Nullable final Font fr, final FormattedCharSequence text, final int color) {
         return renderStringAt(text, RenderingDrawUtils.EMPTY, fr, color, false);
     }
     
@@ -83,7 +83,7 @@ public class RenderingDrawUtils
         return renderStringAt(text, renderStack, fr, color, true);
     }
     
-    public static float renderStringAt(@Nullable final Font fr, final PoseStack renderStack, final IReorderingProcessor text, final int color) {
+    public static float renderStringAt(@Nullable final Font fr, final PoseStack renderStack, final FormattedCharSequence text, final int color) {
         return renderStringAt(text, renderStack, fr, color, true);
     }
     
@@ -91,7 +91,7 @@ public class RenderingDrawUtils
         return renderStringAt(LanguageMap.func_74808_a().func_241870_a(text), renderStack, fr, color, dropShadow);
     }
     
-    public static float renderStringAt(final IReorderingProcessor text, final PoseStack renderStack, @Nullable Font fr, final int color, final boolean dropShadow) {
+    public static float renderStringAt(final FormattedCharSequence text, final PoseStack renderStack, @Nullable Font fr, final int color, final boolean dropShadow) {
         if (fr == null) {
             fr = Minecraft.getInstance().field_71466_p;
         }
@@ -160,17 +160,17 @@ public class RenderingDrawUtils
                 x -= maxWidth + 24;
             }
             final int formatWidth = anyItemFound ? (maxWidth - stackBoxSize) : maxWidth;
-            final List<Tuple<ItemStack, List<IReorderingProcessor>>> lengthLimitedToolTip = new LinkedList<Tuple<ItemStack, List<IReorderingProcessor>>>();
+            final List<Tuple<ItemStack, List<FormattedCharSequence>>> lengthLimitedToolTip = new LinkedList<Tuple<ItemStack, List<FormattedCharSequence>>>();
             for (final Tuple<ItemStack, FormattedCharSequence> toolTip2 : tooltipData) {
                 Font customFR2 = ((ItemStack)toolTip2.func_76341_a()).func_77973_b().getFontRenderer((ItemStack)toolTip2.func_76341_a());
                 if (customFR2 == null) {
                     customFR2 = fontRenderer;
                 }
-                List<IReorderingProcessor> textLines = customFR2.func_238425_b_((FormattedCharSequence)toolTip2.func_76340_b(), formatWidth);
+                List<FormattedCharSequence> textLines = customFR2.func_238425_b_((FormattedCharSequence)toolTip2.func_76340_b(), formatWidth);
                 if (textLines.isEmpty()) {
-                    textLines = Collections.singletonList(IReorderingProcessor.field_242232_a);
+                    textLines = Collections.singletonList(FormattedCharSequence.field_242232_a);
                 }
-                lengthLimitedToolTip.add((Tuple<ItemStack, List<IReorderingProcessor>>)new Tuple(toolTip2.func_76341_a(), (Object)textLines));
+                lengthLimitedToolTip.add((Tuple<ItemStack, List<FormattedCharSequence>>)new Tuple(toolTip2.func_76341_a(), (Object)textLines));
             }
             final float pX = x + 12.0f;
             final float pY = y - 12.0f;
@@ -179,9 +179,9 @@ public class RenderingDrawUtils
                 if (lengthLimitedToolTip.size() > 1 && isFirstLineHeadline) {
                     sumLineHeight += 2;
                 }
-                final Iterator<Tuple<ItemStack, List<IReorderingProcessor>>> iterator = lengthLimitedToolTip.iterator();
+                final Iterator<Tuple<ItemStack, List<FormattedCharSequence>>> iterator = lengthLimitedToolTip.iterator();
                 while (iterator.hasNext()) {
-                    final Tuple<ItemStack, List<IReorderingProcessor>> toolTip3 = iterator.next();
+                    final Tuple<ItemStack, List<FormattedCharSequence>> toolTip3 = iterator.next();
                     int segmentHeight = 0;
                     if (!((ItemStack)toolTip3.func_76341_a()).func_190926_b()) {
                         segmentHeight += 2;
@@ -211,7 +211,7 @@ public class RenderingDrawUtils
             renderStack.popPose();
             renderStack.func_227861_a_((double)pX, (double)pY, 0.0);
             boolean first = true;
-            for (final Tuple<ItemStack, List<IReorderingProcessor>> toolTip4 : lengthLimitedToolTip) {
+            for (final Tuple<ItemStack, List<FormattedCharSequence>> toolTip4 : lengthLimitedToolTip) {
                 int minYShift = 10;
                 if (!((ItemStack)toolTip4.func_76341_a()).func_190926_b()) {
                     renderStack.popPose();
@@ -221,7 +221,7 @@ public class RenderingDrawUtils
                     minYShift = stackBoxSize;
                     renderStack.func_227861_a_(0.0, 2.0, 0.0);
                 }
-                for (final IReorderingProcessor text : (List)toolTip4.func_76340_b()) {
+                for (final FormattedCharSequence text : (List)toolTip4.func_76340_b()) {
                     Font customFR3 = ((ItemStack)toolTip4.func_76341_a()).func_77973_b().getFontRenderer((ItemStack)toolTip4.func_76341_a());
                     if (customFR3 == null) {
                         customFR3 = fontRenderer;

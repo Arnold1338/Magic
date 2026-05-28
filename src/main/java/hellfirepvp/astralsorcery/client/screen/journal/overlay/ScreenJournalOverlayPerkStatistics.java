@@ -21,7 +21,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Iterator;
 import net.minecraft.world.entity.player.Player;
 import java.util.Comparator;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.perk.type.vanilla.VanillaPerkAttributeType;

@@ -25,7 +25,7 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.function.Function;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import java.util.List;
 import hellfirepvp.astralsorcery.common.lib.AdvancementsAS;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;

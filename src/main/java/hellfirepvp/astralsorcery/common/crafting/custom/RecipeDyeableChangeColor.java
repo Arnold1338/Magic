@@ -18,17 +18,17 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import java.util.function.BiConsumer;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.IRecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import java.util.function.Supplier;
 import net.minecraft.world.item.crafting.SpecialRecipe;
 
 public class RecipeDyeableChangeColor extends SpecialRecipe
 {
-    private final Supplier<IRecipeSerializer<?>> serializer;
+    private final Supplier<RecipeSerializer<?>> serializer;
     private final Item targetItem;
     private final BiConsumer<ItemStack, DyeColor> colorFn;
     
-    public RecipeDyeableChangeColor(final ResourceLocation idIn, final Supplier<IRecipeSerializer<?>> serializer, final Item targetItem, final BiConsumer<ItemStack, DyeColor> colorFn) {
+    public RecipeDyeableChangeColor(final ResourceLocation idIn, final Supplier<RecipeSerializer<?>> serializer, final Item targetItem, final BiConsumer<ItemStack, DyeColor> colorFn) {
         super(idIn);
         this.serializer = serializer;
         this.targetItem = targetItem;
@@ -79,7 +79,7 @@ public class RecipeDyeableChangeColor extends SpecialRecipe
         return width * height >= 2;
     }
     
-    public IRecipeSerializer<?> func_199559_b() {
+    public RecipeSerializer<?> func_199559_b() {
         return this.serializer.get();
     }
     

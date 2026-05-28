@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.crafting.serializer;
 
 import net.minecraft.world.item.crafting.Recipe;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomMatcherRecipe;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.network.FriendlyByteBuf;
 import java.awt.Color;

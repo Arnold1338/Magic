@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.perk.modifier;
 import java.util.Objects;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
@@ -20,10 +20,9 @@ import java.util.Map;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class PerkAttributeModifier extends ForgeRegistryEntry<PerkAttributeModifier>
-{
+
+public class PerkAttributeModifier {
     private static long counter;
     protected ResourceLocation comparisonKey;
     protected final ModifierType mode;

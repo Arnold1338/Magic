@@ -2,10 +2,10 @@ package hellfirepvp.astralsorcery.common.crafting.helper;
 
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.IRecipeSerializer;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 
-public abstract class CustomRecipeSerializer<T extends CustomMatcherRecipe> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T>
+
+public abstract class CustomRecipeSerializer<T extends CustomMatcherRecipe> extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<T>
 {
     public CustomRecipeSerializer(final ResourceLocation name) {
         this.setRegistryName(name);

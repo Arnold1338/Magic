@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.crafting.helper;
 
-import net.minecraft.world.item.crafting.IRecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Container;
 import net.minecraft.world.level.Level;

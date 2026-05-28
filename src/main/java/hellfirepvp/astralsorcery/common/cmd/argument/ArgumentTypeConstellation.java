@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.function.Function;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import com.mojang.brigadier.suggestion.Suggestions;
 import java.util.concurrent.CompletableFuture;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;

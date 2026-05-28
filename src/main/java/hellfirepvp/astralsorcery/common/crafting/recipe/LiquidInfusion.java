@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.crafting.recipe;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.item.crafting.IRecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomRecipeSerializer;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
@@ -10,7 +10,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import com.google.gson.JsonElement;
 import hellfirepvp.astralsorcery.common.util.data.JsonHelper;
 import com.google.gson.JsonObject;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Mth;
@@ -134,7 +134,7 @@ public class LiquidInfusion extends CustomMatcherRecipe implements GatedRecipe.P
     }
     
     public final void write(final FriendlyByteBuf buffer) {
-        ByteBufUtils.writeRegistryEntry(buffer, (net.minecraftforge.registries.IForgeRegistryEntry<Object>)this.getLiquidInput());
+        buffer.writeUtf(this.getLiquidInput().toString());
         this.getItemInput().func_199564_a(buffer);
         ByteBufUtils.writeItemStack(buffer, this.output);
         buffer.writeFloat(this.getConsumptionChance());

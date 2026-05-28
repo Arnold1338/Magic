@@ -20,7 +20,7 @@ import net.minecraft.network.chat.MutableComponent;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.constellation.star.StarConnection;
 import hellfirepvp.astralsorcery.common.constellation.star.StarLocation;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 
 public interface IConstellation extends IForgeRegistryEntry<IConstellation>, Comparable<IConstellation>
 {

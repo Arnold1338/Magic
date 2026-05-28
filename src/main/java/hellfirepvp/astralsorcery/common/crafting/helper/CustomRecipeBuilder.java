@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.crafting.helper;
 
-import net.minecraft.world.item.crafting.IRecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import org.apache.logging.log4j.Level;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import com.google.gson.JsonObject;
@@ -66,8 +66,8 @@ public abstract class CustomRecipeBuilder<R extends CustomMatcherRecipe>
             return this.id;
         }
         
-        public IRecipeSerializer<?> func_218609_c() {
-            return (IRecipeSerializer<?>)this.recipe.getSerializer();
+        public RecipeSerializer<?> func_218609_c() {
+            return (RecipeSerializer<?>)this.recipe.getSerializer();
         }
         
         @Nullable

@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.crafting.builder;
 
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+
 import javax.annotation.Nullable;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomMatcherRecipe;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;

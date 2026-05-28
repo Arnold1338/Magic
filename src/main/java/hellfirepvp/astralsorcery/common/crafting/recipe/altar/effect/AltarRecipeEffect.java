@@ -11,7 +11,7 @@ import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.Random;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+
 
 public abstract class AltarRecipeEffect extends ForgeRegistryEntry<AltarRecipeEffect>
 {

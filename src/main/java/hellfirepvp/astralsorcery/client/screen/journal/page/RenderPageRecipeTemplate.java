@@ -31,13 +31,13 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.auxiliary.book.BookLookupRegistry;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.Util;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import net.minecraft.client.renderer.RenderHelper;
+import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.common.crafting.helper.WrappedIngredient;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
 import net.minecraft.util.Mth;
@@ -146,7 +146,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
         if (Minecraft.func_71410_x().options.advancedItemTooltips && Screen.func_231172_r_() && ((Rectangle)this.thisFrameOuputStack.func_76341_a()).contains(mouseX, mouseZ)) {
             final String recipeName = recipe.func_199560_c().toString();
             Minecraft.func_71410_x().field_195559_v.func_197960_a(recipeName);
-            Minecraft.func_71410_x().field_71439_g.sendSystemMessage((ITextComponent)new TranslationTextComponent("astralsorcery.misc.ctrlcopy.copied", new Object[] { recipeName }), Util.field_240973_b_);
+            Minecraft.func_71410_x().field_71439_g.sendSystemMessage((Component)new TranslationTextComponent("astralsorcery.misc.ctrlcopy.copied", new Object[] { recipeName }), Util.field_240973_b_);
             return true;
         }
         return false;

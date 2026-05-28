@@ -34,7 +34,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.perk.node.socket.GemSocketItem;
-import net.minecraft.util.text.Style;
+import net.minecraft.network.chat.Style;
 import hellfirepvp.astralsorcery.common.data.research.PlayerPerkData;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.MutableComponent;
@@ -73,7 +73,7 @@ import hellfirepvp.astralsorcery.common.perk.PerkTree;
 import hellfirepvp.astralsorcery.client.screen.journal.perk.PerkTreeSizeHandler;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.perk.node.socket.GemSocketPerk;
@@ -119,7 +119,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
     private ItemStack foundSeals;
     
     public ScreenJournalPerkTree() {
-        super((ITextComponent)Component.translatable("screen.astralsorcery.tome.perks"), 30);
+        super((Component)Component.translatable("screen.astralsorcery.tome.perks"), 30);
         this.unlockPrimed = null;
         this.sealBreakPrimed = null;
         this.tickSealBreak = 0;
@@ -895,7 +895,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 if (mouseButton == 0 && mc.options.advancedItemTooltips && func_231172_r_()) {
                     final String perkKey = perk.getRegistryName().toString();
                     Minecraft.getInstance().field_195559_v.func_197960_a(perkKey);
-                    mc.player.sendSystemMessage((ITextComponent)Component.translatable("astralsorcery.misc.ctrlcopy.copied"), Util.field_240973_b_);
+                    mc.player.sendSystemMessage((Component)Component.translatable("astralsorcery.misc.ctrlcopy.copied"), Util.field_240973_b_);
                     break;
                 }
                 if (mouseButton == 1) {

@@ -8,7 +8,7 @@ import net.minecraftforge.fluids.FluidStack;
 import org.apache.commons.lang3.ObjectUtils;
 import net.minecraftforge.registries.ForgeRegistry;
 import net.minecraftforge.registries.RegistryManager;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import java.util.function.Consumer;
 import java.util.Optional;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;

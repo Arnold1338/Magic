@@ -1,5 +1,6 @@
 package hellfirepvp.astralsorcery.client.screen;
 
+import hellfirepvp.astralsorcery.client.screen.base.ConstellationDiscoveryScreen.DrawArea;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
@@ -45,6 +46,7 @@ import net.minecraft.network.chat.Component;
 import java.awt.geom.Point2D;
 import java.util.List;
 import hellfirepvp.astralsorcery.client.screen.base.ConstellationDiscoveryScreen;
+import hellfirepvp.astralsorcery.client.screen.base.ConstellationDiscoveryScreen.DrawArea;
 
 public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
 {

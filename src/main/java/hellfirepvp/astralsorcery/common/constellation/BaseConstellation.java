@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.constellation.star.StarConnection;
 import hellfirepvp.astralsorcery.common.constellation.star.StarLocation;
 import java.util.List;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+
 
 public abstract class BaseConstellation extends ForgeRegistryEntry<IConstellation> implements IConstellation
 {

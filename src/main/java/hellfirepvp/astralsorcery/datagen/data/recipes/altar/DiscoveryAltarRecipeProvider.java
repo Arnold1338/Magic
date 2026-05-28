@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.lib.FluidsAS;
 import net.minecraft.world.item.crafting.Ingredient;
 import hellfirepvp.astralsorcery.common.crafting.helper.ingredient.CrystalIngredient;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.AltarRecipeGrid;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.crafting.builder.SimpleAltarRecipeBuilder;

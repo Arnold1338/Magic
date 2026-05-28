@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.awt.Point;
 import javax.annotation.Nonnull;
 import java.util.Collection;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import java.util.LinkedList;
 import hellfirepvp.astralsorcery.common.constellation.DrawnConstellation;

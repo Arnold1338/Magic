@@ -11,7 +11,7 @@ import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import net.minecraft.server.MinecraftServer;
 import javax.annotation.Nonnull;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;

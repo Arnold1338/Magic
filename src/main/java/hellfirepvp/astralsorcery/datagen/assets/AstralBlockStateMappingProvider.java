@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.block.infusedwood.BlockInfusedWoodColumn
 import hellfirepvp.astralsorcery.common.block.blackmarble.BlockBlackMarblePillar;
 import net.minecraft.world.level.block.StairsBlock;
 import net.minecraft.world.level.block.SlabBlock;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import net.minecraft.world.level.block.state.Property;
 import hellfirepvp.astralsorcery.common.block.marble.BlockMarblePillar;
 import net.minecraft.world.level.block.Block;

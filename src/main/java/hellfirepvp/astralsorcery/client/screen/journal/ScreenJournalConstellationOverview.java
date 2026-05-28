@@ -25,7 +25,7 @@ import java.util.function.Function;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import java.util.HashMap;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import java.awt.Rectangle;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
@@ -47,7 +47,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
     private Rectangle rectNext;
     
     private ScreenJournalConstellationOverview(final int pageId, final List<IConstellation> constellations) {
-        super((ITextComponent)Component.translatable("screen.astralsorcery.tome.constellations"), 20);
+        super((Component)Component.translatable("screen.astralsorcery.tome.constellations"), 20);
         this.rectCRenderMap = new HashMap<Rectangle, IConstellation>();
         this.constellations = constellations;
         this.pageId = pageId;

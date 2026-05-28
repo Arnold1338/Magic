@@ -6,7 +6,7 @@ import java.util.Arrays;
 import net.minecraft.world.item.ItemStack;
 import java.util.List;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.world.item.crafting.Recipe;

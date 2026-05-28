@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.function.Predicate;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+
 
 public abstract class CrystalProperty extends ForgeRegistryEntry<CrystalProperty> implements Comparable<CrystalProperty>
 {

@@ -8,10 +8,9 @@ import net.minecraft.world.entity.player.Player;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeMap;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import java.text.DecimalFormat;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public abstract class PerkAttributeReader extends ForgeRegistryEntry<PerkAttributeReader>
-{
+
+public abstract class PerkAttributeReader {
     private static final DecimalFormat percentageFormat;
     private final PerkAttributeType type;
     

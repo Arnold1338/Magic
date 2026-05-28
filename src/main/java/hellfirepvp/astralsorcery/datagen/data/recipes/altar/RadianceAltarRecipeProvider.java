@@ -6,7 +6,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.altar.builtin.Constellat
 import java.util.List;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import hellfirepvp.astralsorcery.common.base.Mods;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.common.constellation.IMajorConstellation;
@@ -29,7 +29,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import hellfirepvp.astralsorcery.common.crafting.helper.ingredient.CrystalIngredient;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.AltarRecipeGrid;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import hellfirepvp.astralsorcery.common.crafting.builder.SimpleAltarRecipeBuilder;

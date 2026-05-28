@@ -33,7 +33,7 @@ import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.event.PlayerAffectionFlags;
 import java.util.Random;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+
 
 public abstract class MantleEffect extends ForgeRegistryEntry<MantleEffect> implements ITickHandler
 {

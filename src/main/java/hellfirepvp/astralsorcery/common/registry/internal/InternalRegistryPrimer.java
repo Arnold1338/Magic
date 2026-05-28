@@ -8,7 +8,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import java.util.Collections;
 import com.google.common.collect.Lists;
 import java.util.HashMap;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import java.util.List;
 import java.util.Map;
 

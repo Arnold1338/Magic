@@ -8,7 +8,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.LanguageMap;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.MutableComponent;
 import javax.annotation.Nonnull;
 import net.minecraft.world.item.enchantment.Enchantment;

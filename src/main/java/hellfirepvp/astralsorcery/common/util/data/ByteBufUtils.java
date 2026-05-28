@@ -28,7 +28,7 @@ import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.RegistryManager;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import java.nio.charset.StandardCharsets;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;

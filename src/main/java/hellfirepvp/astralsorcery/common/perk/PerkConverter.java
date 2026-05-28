@@ -13,10 +13,9 @@ import hellfirepvp.astralsorcery.common.perk.modifier.PerkAttributeModifier;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public abstract class PerkConverter extends ForgeRegistryEntry<PerkConverter>
-{
+
+public abstract class PerkConverter {
     public PerkConverter(final ResourceLocation id) {
         this.setRegistryName(id);
     }

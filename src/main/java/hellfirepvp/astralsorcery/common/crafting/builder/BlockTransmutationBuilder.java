@@ -10,7 +10,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+
 import java.util.ArrayList;
 import net.minecraft.world.level.block.Blocks;
 import hellfirepvp.astralsorcery.common.util.block.BlockMatchInformation;

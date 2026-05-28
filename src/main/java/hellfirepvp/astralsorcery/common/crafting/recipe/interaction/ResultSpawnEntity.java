@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.crafting.recipe.interaction;
 
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.network.FriendlyByteBuf;
 import com.google.gson.JsonParseException;

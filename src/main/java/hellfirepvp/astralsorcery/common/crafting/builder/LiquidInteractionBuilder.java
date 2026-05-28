@@ -5,7 +5,7 @@ import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;
 import hellfirepvp.astralsorcery.common.crafting.helper.CustomRecipeSerializer;
 import javax.annotation.Nonnull;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+
 import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.InteractionResult;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraft.resources.ResourceLocation;

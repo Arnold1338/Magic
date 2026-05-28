@@ -10,7 +10,7 @@ import net.minecraftforge.fml.ModContainer;
 import net.minecraft.ChatFormatting;
 import com.google.common.collect.Lists;
 import net.minecraft.network.chat.Component;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.client.resources.language.I18n;
 import java.util.ArrayList;
 import java.util.Collection;
 import net.minecraft.network.chat.Component;

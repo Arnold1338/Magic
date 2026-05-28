@@ -13,10 +13,9 @@ import net.minecraft.network.chat.Component;
 import hellfirepvp.observerlib.api.util.BlockArray;
 import java.util.function.Supplier;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public class StructureType implements IForgeRegistryEntry<StructureType>
-{
+
+public class StructureType {
     private final ResourceLocation name;
     private final Supplier<BlockArray> structureSupplier;
     

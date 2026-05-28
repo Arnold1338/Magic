@@ -35,7 +35,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.ArrayList;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.util.List;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+
 
 public class EngravingEffect extends ForgeRegistryEntry<EngravingEffect>
 {

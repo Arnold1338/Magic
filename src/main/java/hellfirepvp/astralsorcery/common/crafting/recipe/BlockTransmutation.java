@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.crafting.recipe;
 
-import net.minecraft.world.item.crafting.IRecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import net.minecraft.world.item.crafting.RecipeType;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;

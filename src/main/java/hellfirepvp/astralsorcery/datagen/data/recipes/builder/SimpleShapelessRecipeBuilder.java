@@ -1,14 +1,14 @@
 package hellfirepvp.astralsorcery.datagen.data.recipes.builder;
 
 import javax.annotation.Nullable;
-import net.minecraft.world.item.crafting.IRecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import java.util.Iterator;
 import net.minecraft.core.Registry;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.data.IFinishedRecipe;
 import java.util.function.Consumer;
@@ -113,8 +113,8 @@ public class SimpleShapelessRecipeBuilder
             json.add("result", (JsonElement)result);
         }
         
-        public IRecipeSerializer<?> func_218609_c() {
-            return (IRecipeSerializer<?>)IRecipeSerializer.field_222158_b;
+        public RecipeSerializer<?> func_218609_c() {
+            return (RecipeSerializer<?>)RecipeSerializer.field_222158_b;
         }
         
         public ResourceLocation func_200442_b() {

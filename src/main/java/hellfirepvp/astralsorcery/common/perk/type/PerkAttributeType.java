@@ -26,10 +26,9 @@ import net.minecraftforge.fml.LogicalSide;
 import java.util.Map;
 import java.util.Random;
 import hellfirepvp.astralsorcery.common.util.ReadWriteLockable;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class PerkAttributeType extends ForgeRegistryEntry<PerkAttributeType> implements ReadWriteLockable
-{
+
+public class PerkAttributeType implements ReadWriteLockable {
     protected static final Random rand;
     private final Map<LogicalSide, Set<UUID>> applicationCache;
     private final ReadWriteLock accessLock;

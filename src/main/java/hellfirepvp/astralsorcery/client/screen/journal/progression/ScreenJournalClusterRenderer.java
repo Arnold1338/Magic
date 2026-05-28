@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import java.awt.Color;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
-import net.minecraft.client.renderer.RenderHelper;
+import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
@@ -188,9 +188,9 @@ public class ScreenJournalClusterRenderer
                 renderStack.translate(this.progressionSizeHandler.getScalingFactor(), this.progressionSizeHandler.getScalingFactor(), 1.0f);
                 renderStack.func_227861_a_(3.0, 3.0, 100.0);
                 renderStack.translate(0.75f, 0.75f, 1.0f);
-                RenderHelper.func_227780_a_();
+                ;
                 RenderingUtils.renderTranslucentItemStackModelGUI(node.getRenderItemStack(ClientScheduler.getClientTick()), renderStack, Color.WHITE, Blending.DEFAULT, Mth.func_76125_a((int)(this.alpha * 255.0f), 0, 255));
-                RenderHelper.func_74518_a();
+                ;
                 renderStack.scale();
                 break;
             }

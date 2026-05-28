@@ -10,7 +10,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
 import hellfirepvp.astralsorcery.common.lib.FluidsAS;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+
 import hellfirepvp.astralsorcery.common.crafting.builder.LiquidInfusionBuilder;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import net.minecraft.data.IFinishedRecipe;

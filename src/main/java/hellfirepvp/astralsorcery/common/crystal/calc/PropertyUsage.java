@@ -4,7 +4,7 @@ import java.util.Objects;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+
 
 public class PropertyUsage extends ForgeRegistryEntry<PropertyUsage>
 {
