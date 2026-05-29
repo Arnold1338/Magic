@@ -5,10 +5,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
 
-public abstract class CustomRecipeSerializer<T extends CustomMatcherRecipe> extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<T>
+public abstract class CustomRecipeSerializer<T extends CustomMatcherRecipe> > implements RecipeSerializer<T>
 {
     public CustomRecipeSerializer(final ResourceLocation name) {
-        this.setRegistryName(name);
+        this;
     }
     
     public abstract void write(final JsonObject p0, final T p1);

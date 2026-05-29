@@ -87,7 +87,7 @@ public class RecipeDyeableChangeColor extends SpecialRecipe
     {
         public IlluminationWandColorSerializer() {
             super(id -> new RecipeDyeableChangeColor(id, () -> RecipeSerializersAS.CUSTOM_CHANGE_WAND_COLOR_SERIALIZER, (Item)ItemsAS.ILLUMINATION_WAND, ItemIlluminationWand::setConfiguredColor));
-            this.setRegistryName(RecipeSerializersAS.CUSTOM_CHANGE_WAND_COLOR);
+            this;
         }
     }
     
@@ -95,7 +95,7 @@ public class RecipeDyeableChangeColor extends SpecialRecipe
     {
         public CelestialGatewayColorSerializer() {
             super(id -> new RecipeDyeableChangeColor(id, () -> RecipeSerializersAS.CUSTOM_CHANGE_GATEWAY_COLOR_SERIALIZER, Item.func_150898_a((Block)BlocksAS.GATEWAY), BlockCelestialGateway::setColor));
-            this.setRegistryName(RecipeSerializersAS.CUSTOM_CHANGE_GATEWAY_COLOR);
+            this;
         }
     }
 }

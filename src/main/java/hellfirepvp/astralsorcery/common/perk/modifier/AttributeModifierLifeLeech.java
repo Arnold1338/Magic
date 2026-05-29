@@ -20,6 +20,6 @@ public class AttributeModifierLifeLeech extends PerkAttributeModifier
     @OnlyIn(Dist.CLIENT)
     @Override
     public String getAttributeDisplayFormat() {
-        return I18n.func_135052_a("perk.modifier.astralsorcery.format.lifeleech", new Object[0]);
+        return net.minecraft.client.resources.language.I18n.func_135052_a("perk.modifier.astralsorcery.format.lifeleech", new Object[0]);
     }
 }

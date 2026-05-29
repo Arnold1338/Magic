@@ -17,7 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public abstract class PerkConverter {
     public PerkConverter(final ResourceLocation id) {
-        this.setRegistryName(id);
+        this;
     }
     
     @Nonnull

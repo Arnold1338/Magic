@@ -113,7 +113,7 @@ public class RegistryTileEntities
             }
         }, validBlocks);
         final BlockEntityType<T> type = (BlockEntityType<T>)typeBuilder.func_206865_a((Type)null);
-        type.setRegistryName(name);
+        type;
         AstralSorcery.getProxy().getRegistryPrimer().register(type);
         return type;
     }

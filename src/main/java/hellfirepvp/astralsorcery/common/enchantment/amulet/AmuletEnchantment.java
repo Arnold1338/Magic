@@ -28,7 +28,7 @@ public class AmuletEnchantment extends DynamicEnchantment
     @OnlyIn(Dist.CLIENT)
     public MutableComponent getDisplay() {
         final String typeStr = this.getType().getDisplayName();
-        final String levelsStr = I18n.func_135052_a(String.format("astralsorcery.amulet.enchantment.level.%s", (this.levelAddition > 1) ? "more" : "one"), new Object[0]);
+        final String levelsStr = net.minecraft.client.resources.language.I18n.func_135052_a(String.format("astralsorcery.amulet.enchantment.level.%s", (this.levelAddition > 1) ? "more" : "one"), new Object[0]);
         if (this.getType().isEnchantmentSpecific()) {
             return (MutableComponent)new Component(typeStr, new Object[] { String.valueOf(this.getLevelAddition()), levelsStr, LanguageMap.func_74808_a().func_230503_a_(this.getEnchantment().func_77320_a()) });
         }

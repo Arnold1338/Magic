@@ -28,7 +28,7 @@ public class PktDiscoverConstellation extends ASPacket<PktDiscoverConstellation>
     @Nonnull
     @Override
     public Encoder<PktDiscoverConstellation> encoder() {
-        return (packet, buffer) -> ByteBufUtils.writeRegistryEntry(buffer, (net.minecraftforge.registries.IForgeRegistryEntry<Object>)packet.constellation);
+        return (packet, buffer) -> ByteBufUtils.writeRegistryEntry(buffer, (net.minecraftforge.registries.Object<Object>)packet.constellation);
     }
     
     @Nonnull

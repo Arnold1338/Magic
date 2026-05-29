@@ -8,7 +8,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import net.minecraft.util.profiling.IProfiler;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.resources.IFutureReloadListener;
+import net.minecraft.server.packs.resources.PreparableReloadListener;
 import javax.annotation.Nullable;
 import java.awt.image.BufferedImage;
 import hellfirepvp.astralsorcery.AstralSorcery;
@@ -107,7 +107,7 @@ public class ColorizationHelper
         return bufferedImage;
     }
     
-    public static IFutureReloadListener onReload() {
+    public static PreparableReloadListener onReload() {
         return (stage, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) -> stage.func_216872_a((Object)Unit.INSTANCE).thenRunAsync(() -> {
             if (!(!SelectiveReloadStateHandler.INSTANCE.get().test(VanillaResourceType.TEXTURES))) {
                 ColorizationHelper.itemColors.clear();

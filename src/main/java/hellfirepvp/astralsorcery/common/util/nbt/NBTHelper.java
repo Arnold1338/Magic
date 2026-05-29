@@ -358,13 +358,13 @@ public class NBTHelper
         return null;
     }
     
-    public static <T extends IForgeRegistryEntry<T>> void setRegistryEntry(final CompoundTag compoundNBT, final String tag, final T entry) {
+    public static <T extends Object<T>> void setRegistryEntry(final CompoundTag compoundNBT, final String tag, final T entry) {
         setResourceLocation(compoundNBT, tag + "_registry", RegistryManager.ACTIVE.getRegistry(entry.getRegistryType()).getRegistryName());
         setResourceLocation(compoundNBT, tag, entry.getRegistryName());
     }
     
     @Nullable
-    public static <T extends IForgeRegistryEntry<T>> T getRegistryEntry(final CompoundTag compoundNBT, final String tag) {
+    public static <T extends Object<T>> T getRegistryEntry(final CompoundTag compoundNBT, final String tag) {
         final ResourceLocation registryName = getResourceLocation(compoundNBT, tag + "_registry");
         if (registryName != null) {
             final ForgeRegistry<T> registry = (ForgeRegistry<T>)RegistryManager.ACTIVE.getRegistry(registryName);

@@ -68,7 +68,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
                 this.statistics.add(strPerkStat);
             }
         }
-        this.statistics.sort(Comparator.comparing(perkStatistic -> I18n.func_135052_a(perkStatistic.getUnlocPerkTypeName(), new Object[0])));
+        this.statistics.sort(Comparator.comparing(perkStatistic -> net.minecraft.client.resources.language.I18n.func_135052_a(perkStatistic.getUnlocPerkTypeName(), new Object[0])));
     }
     
     @Override

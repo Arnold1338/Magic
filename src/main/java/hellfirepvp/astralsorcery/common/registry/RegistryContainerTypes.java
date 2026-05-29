@@ -60,7 +60,7 @@ public class RegistryContainerTypes
     
     private static <C extends Container, T extends ContainerType<C>> T register(final ResourceLocation name, final IContainerFactory<C> containerFactory) {
         final ContainerType<C> type = (ContainerType<C>)new ContainerType((ContainerType.IFactory)containerFactory);
-        type.setRegistryName(name);
+        type;
         AstralSorcery.getProxy().getRegistryPrimer().register(type);
         return (T)type;
     }

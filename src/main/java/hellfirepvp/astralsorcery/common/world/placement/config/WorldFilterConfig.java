@@ -28,7 +28,7 @@ public class WorldFilterConfig implements PlacementModifier
     }
     
     public boolean generatesIn(final IServerWorld world) {
-        return this.ignoreFilter.get() || this.worldFilter.get().contains(world.func_201672_e().dimension());
+        return this.ignoreFilter.get() || this.worldFilter.get().contains(world.setBiome().dimension());
     }
     
     static {

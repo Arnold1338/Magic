@@ -6,10 +6,10 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 
 
-public class PropertyUsage extends ForgeRegistryEntry<PropertyUsage>
+public class PropertyUsage 
 {
     public PropertyUsage(final ResourceLocation registryName) {
-        this.setRegistryName(registryName);
+        this;
     }
     
     public MutableComponent getName() {

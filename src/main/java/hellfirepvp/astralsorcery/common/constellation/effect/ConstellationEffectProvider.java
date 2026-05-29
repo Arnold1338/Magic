@@ -7,12 +7,12 @@ import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 
 
 
-public abstract class ConstellationEffectProvider extends ForgeRegistryEntry<ConstellationEffectProvider> {
+public abstract class ConstellationEffectProvider  {
     private final IWeakConstellation cst;
     
     protected ConstellationEffectProvider(final IWeakConstellation cst) {
         this.cst = cst;
-        this.setRegistryName(cst.getRegistryName());
+        this);
     }
     
     @Nonnull

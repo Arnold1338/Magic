@@ -157,7 +157,7 @@ public class ByteBufUtils
         return new String(strBytes, StandardCharsets.UTF_8);
     }
     
-    public static <T> void writeRegistryEntry(final FriendlyByteBuf buf, final IForgeRegistryEntry<T> entry) {
+    public static <T> void writeRegistryEntry(final FriendlyByteBuf buf, final Object<T> entry) {
         writeResourceLocation(buf, entry.getRegistryName());
         writeResourceLocation(buf, RegistryManager.ACTIVE.getRegistry(entry.getRegistryType()).getRegistryName());
     }
@@ -270,7 +270,7 @@ public class ByteBufUtils
     }
     
     public static void writeBlockState(final FriendlyByteBuf byteBuf, @Nonnull final BlockState state) {
-        writeRegistryEntry(byteBuf, (net.minecraftforge.registries.IForgeRegistryEntry<Object>)state.getBlock());
+        writeRegistryEntry(byteBuf, (net.minecraftforge.registries.Object<Object>)state.getBlock());
         final Collection<Property<?>> properties = state.func_235904_r_();
         byteBuf.writeInt(properties.size());
         for (final Property prop : properties) {

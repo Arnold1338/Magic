@@ -44,7 +44,7 @@ public class PktAttunePlayerConstellation extends ASPacket<PktAttunePlayerConste
     @Override
     public Encoder<PktAttunePlayerConstellation> encoder() {
         return (packet, buffer) -> {
-            ByteBufUtils.writeRegistryEntry(buffer, (net.minecraftforge.registries.IForgeRegistryEntry<Object>)packet.attunement);
+            ByteBufUtils.writeRegistryEntry(buffer, (net.minecraftforge.registries.Object<Object>)packet.attunement);
             ByteBufUtils.writeVanillaRegistryEntry(buffer, packet.world);
             ByteBufUtils.writePos(buffer, packet.at);
         };

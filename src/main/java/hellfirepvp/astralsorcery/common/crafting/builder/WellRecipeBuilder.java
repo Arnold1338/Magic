@@ -36,7 +36,7 @@ public class WellRecipeBuilder extends CustomRecipeBuilder<WellLiquefaction>
         this.id = id;
     }
     
-    public static WellRecipeBuilder builder(final ForgeRegistryEntry<?> nameProvider) {
+    public static WellRecipeBuilder builder(final Object<?> nameProvider) {
         return new WellRecipeBuilder(AstralSorcery.key(nameProvider.getRegistryName().addTransientModifier()));
     }
     

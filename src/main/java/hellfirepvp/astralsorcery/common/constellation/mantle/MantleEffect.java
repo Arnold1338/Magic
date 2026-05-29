@@ -35,7 +35,7 @@ import java.util.Random;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 
 
-public abstract class MantleEffect extends ForgeRegistryEntry<MantleEffect> implements ITickHandler
+public abstract class MantleEffect  implements ITickHandler
 {
     protected static final Random rand;
     private final PlayerAffectionFlags.AffectionFlag playerAffectionFlag;
@@ -43,7 +43,7 @@ public abstract class MantleEffect extends ForgeRegistryEntry<MantleEffect> impl
     
     public MantleEffect(final IWeakConstellation constellation) {
         this.constellation = constellation;
-        this.setRegistryName(this.constellation.getRegistryName());
+        this);
         this.playerAffectionFlag = new PlayerAffectionFlags.NoOpAffectionFlag(AstralSorcery.key("mantle_effect_" + constellation.getSimpleName()));
         this.attachEventListeners(MinecraftForge.EVENT_BUS);
         this.attachTickHandlers(AstralSorcery.getProxy().getTickManager()::register);

@@ -21,7 +21,7 @@ public abstract class JEICategory<T extends Recipe<?>> implements IRecipeCategor
     }
     
     public JEICategory(final String unlocTitle, final ResourceLocation uid) {
-        this.locTitle = I18n.func_135052_a(unlocTitle, new Object[0]);
+        this.locTitle = net.minecraft.client.resources.language.I18n.func_135052_a(unlocTitle, new Object[0]);
         this.uid = uid;
     }
     

@@ -180,7 +180,7 @@ public class DynamicEnchantmentHelper
                         catch (final NullPointerException exc) {
                             return;
                         }
-                        if (Mods.DRACONIC_EVOLUTION.owns((IForgeRegistryEntry<?>)stack.getItem())) {
+                        if (Mods.DRACONIC_EVOLUTION.owns((Object<?>)stack.getItem())) {
                             return;
                         }
                         else {

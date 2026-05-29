@@ -124,7 +124,7 @@ public abstract class ConstellationEffect
     public static void sendConstellationPing(final Level world, final Vector3 at, final IConstellation cst) {
         final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.CONSTELLATION_EFFECT_PING).addData(buf -> {
             ByteBufUtils.writeVector(buf, at);
-            ByteBufUtils.writeRegistryEntry(buf, (net.minecraftforge.registries.IForgeRegistryEntry<Object>)cst);
+            ByteBufUtils.writeRegistryEntry(buf, (net.minecraftforge.registries.Object<Object>)cst);
             return;
         });
         PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vec3i)at.toBlockPos(), 32.0));

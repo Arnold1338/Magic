@@ -52,7 +52,7 @@ public class WellRecipeSerializer extends CustomRecipeSerializer<WellLiquefactio
     
     public void write(final FriendlyByteBuf buffer, final WellLiquefaction recipe) {
         recipe.getInput().func_199564_a(buffer);
-        ByteBufUtils.writeRegistryEntry(buffer, (net.minecraftforge.registries.IForgeRegistryEntry<Object>)recipe.getFluidOutput());
+        ByteBufUtils.writeRegistryEntry(buffer, (net.minecraftforge.registries.Object<Object>)recipe.getFluidOutput());
         buffer.writeFloat(recipe.getShatterMultiplier());
         buffer.writeFloat(recipe.getProductionMultiplier());
         ByteBufUtils.writeOptional(buffer, recipe.getCatalystColor(), (buf, color) -> buf.writeInt(color.getRGB()));

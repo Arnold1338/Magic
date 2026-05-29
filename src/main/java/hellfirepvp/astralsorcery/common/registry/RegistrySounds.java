@@ -44,14 +44,14 @@ public class RegistrySounds
     private static <T extends SoundEvent> T registerSound(final String jsonName, final SoundSource predefinedCategory) {
         final ResourceLocation res = AstralSorcery.key(jsonName);
         final CategorizedSoundEvent se = new CategorizedSoundEvent(res, predefinedCategory);
-        se.setRegistryName(res);
+        se;
         return registerSound((T)se);
     }
     
     private static <T extends SoundEvent> T registerSound(final String jsonName) {
         final ResourceLocation res = AstralSorcery.key(jsonName);
         final SoundEvent se = new SoundEvent(res);
-        se.setRegistryName(res);
+        se;
         return registerSound(se);
     }
     

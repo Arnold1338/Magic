@@ -42,14 +42,14 @@ public class ReaderBreakSpeed extends ReaderFlatAttribute
         if (PerkAttributeLimiter.hasLimit(this.getType())) {
             final Pair<Double, Double> limits = PerkAttributeLimiter.getLimit(this.getType());
             limit = (Double)limits.getRight();
-            limitStr = I18n.func_135052_a("perk.reader.astralsorcery.limit.percent", new Object[] { Mth.func_76128_c(limit * 100.0) });
+            limitStr = net.minecraft.client.resources.language.I18n.func_135052_a("perk.reader.astralsorcery.limit.percent", new Object[] { Mth.func_76128_c(limit * 100.0) });
         }
         double value = player.getDigSpeed(Blocks.field_150347_e.defaultBlockState(), BlockPos.field_177992_a);
         String postProcess = "";
         final double post = AttributeEvent.postProcessModded(player, this.getType(), value);
         if (Math.abs(value - post) > 1.0E-4 && (limit == null || Math.abs(post - limit) > 1.0E-4)) {
             if (Math.abs(post) >= 1.0E-4) {
-                postProcess = I18n.func_135052_a("perk.reader.astralsorcery.postprocess.default", new Object[] { ((post >= 0.0) ? "+" : "") + PerkAttributeReader.formatDecimal(post) });
+                postProcess = net.minecraft.client.resources.language.I18n.func_135052_a("perk.reader.astralsorcery.postprocess.default", new Object[] { ((post >= 0.0) ? "+" : "") + PerkAttributeReader.formatDecimal(post) });
             }
             value = post;
         }

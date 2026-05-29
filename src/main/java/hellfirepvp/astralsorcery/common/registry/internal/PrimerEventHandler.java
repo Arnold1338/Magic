@@ -10,10 +10,11 @@ import hellfirepvp.astralsorcery.common.registry.RegistryEntities;
 import hellfirepvp.astralsorcery.common.registry.RegistryTileEntities;
 import hellfirepvp.astralsorcery.common.registry.RegistryBlocks;
 import hellfirepvp.astralsorcery.common.registry.RegistryFluids;
-import net.minecraftforge.registries.IForgeRegistry;
+
 
 import hellfirepvp.astralsorcery.common.registry.RegistryItems;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.registries.NewRegistryEvent;
+import net.minecraftforge.registries.RegisterEvent;
 import hellfirepvp.astralsorcery.common.registry.RegistryPerkAttributeReaders;
 import hellfirepvp.astralsorcery.common.registry.RegistryPerkCustomModifiers;
 import hellfirepvp.astralsorcery.common.registry.RegistryPerkConverters;
@@ -122,140 +123,140 @@ public class PrimerEventHandler
         RegistryPerkAttributeReaders.init();
     }
     
-    private void registerItems(final RegistryEvent.Register<Item> event) {
+    private void registerItems(final RegisterEvent<Item> event) {
         RegistryItems.registerItems();
         RegistryItems.registerItemBlocks();
         RegistryItems.registerFluidContainerItems();
         RegistryItems.registerDispenseBehaviors();
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
         this.registerRemainingData();
     }
     
-    private void registerBlocks(final RegistryEvent.Register<Block> event) {
+    private void registerBlocks(final RegisterEvent<Block> event) {
         RegistryFluids.registerFluids();
         RegistryBlocks.registerBlocks();
         RegistryBlocks.registerFluidBlocks();
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerFluids(final RegistryEvent.Register<Fluid> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerFluids(final RegisterEvent<Fluid> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerTiles(final RegistryEvent.Register<BlockEntityType<?>> event) {
+    private void registerTiles(final RegisterEvent<BlockEntityType<?>> event) {
         RegistryTileEntities.registerTiles();
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
+    private void registerEntities(final RegisterEvent<EntityType<?>> event) {
         RegistryEntities.init();
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerEffects(final RegistryEvent.Register<Effect> event) {
+    private void registerEffects(final RegisterEvent<Effect> event) {
         RegistryEffects.init();
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerEnchantments(final RegistryEvent.Register<Enchantment> event) {
+    private void registerEnchantments(final RegisterEvent<Enchantment> event) {
         RegistryEnchantments.init();
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerGlobalLootModifierSerializers(final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
+    private void registerGlobalLootModifierSerializers(final RegisterEvent<GlobalLootModifierSerializer<?>> event) {
         RegistryLoot.init();
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerConstellations(final RegistryEvent.Register<IConstellation> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerConstellations(final RegisterEvent<IConstellation> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerConstellationEffects(final RegistryEvent.Register<ConstellationEffectProvider> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerConstellationEffects(final RegisterEvent<ConstellationEffectProvider> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerMantleEffects(final RegistryEvent.Register<MantleEffect> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerMantleEffects(final RegisterEvent<MantleEffect> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerEngravingEffects(final RegistryEvent.Register<EngravingEffect> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerEngravingEffects(final RegisterEvent<EngravingEffect> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerPerkAttributeTypes(final RegistryEvent.Register<PerkAttributeType> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerPerkAttributeTypes(final RegisterEvent<PerkAttributeType> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerPerkConverters(final RegistryEvent.Register<PerkConverter> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerPerkConverters(final RegisterEvent<PerkConverter> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerPerkCustomModifiers(final RegistryEvent.Register<PerkAttributeModifier> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerPerkCustomModifiers(final RegisterEvent<PerkAttributeModifier> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerPerkAttributeReaders(final RegistryEvent.Register<PerkAttributeReader> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerPerkAttributeReaders(final RegisterEvent<PerkAttributeReader> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerContainerTypes(final RegistryEvent.Register<ContainerType<?>> event) {
+    private void registerContainerTypes(final RegisterEvent<ContainerType<?>> event) {
         RegistryContainerTypes.init();
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerCrystalProperties(final RegistryEvent.Register<CrystalProperty> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerCrystalProperties(final RegisterEvent<CrystalProperty> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerCrystalUsages(final RegistryEvent.Register<PropertyUsage> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerCrystalUsages(final RegisterEvent<PropertyUsage> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerAltarRecipeEffects(final RegistryEvent.Register<AltarRecipeEffect> event) {
+    private void registerAltarRecipeEffects(final RegisterEvent<AltarRecipeEffect> event) {
         RegistryRecipeTypes.initAltarEffects();
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerDataSerializers(final RegistryEvent.Register<DataSerializerEntry> event) {
+    private void registerDataSerializers(final RegisterEvent<DataSerializerEntry> event) {
         RegistryDataSerializers.registerSerializers();
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerRecipeSerializers(final RegistryEvent.Register<RecipeSerializer<?>> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerRecipeSerializers(final RegisterEvent<RecipeSerializer<?>> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerStructures(final RegistryEvent.Register<MatchableStructure> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerStructures(final RegisterEvent<MatchableStructure> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerStructureProviders(final RegistryEvent.Register<ObserverProvider> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerStructureProviders(final RegisterEvent<ObserverProvider> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerStructureTypes(final RegistryEvent.Register<StructureType> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerStructureTypes(final RegisterEvent<StructureType> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerStructureTemplates(final RegistryEvent.Register<Structure<?>> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerStructureTemplates(final RegisterEvent<Structure<?>> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerFeatures(final RegistryEvent.Register<Feature<?>> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerFeatures(final RegisterEvent<Feature<?>> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerPlacements(final RegistryEvent.Register<Placement<?>> event) {
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+    private void registerPlacements(final RegisterEvent<Placement<?>> event) {
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerSounds(final RegistryEvent.Register<SoundEvent> event) {
+    private void registerSounds(final RegisterEvent<SoundEvent> event) {
         RegistrySounds.init();
-        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<IForgeRegistryEntry>)event.getRegistry());
+        this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private <T extends IForgeRegistryEntry<T>> void fillRegistry(final Class<T> registrySuperType, final IForgeRegistry<T> forgeRegistry) {
-        this.registry.getEntries(registrySuperType).forEach(e -> forgeRegistry.register((IForgeRegistryEntry)e));
+    private <T extends Object<T>> void fillRegistry(final Class<T> registrySuperType, final IForgeRegistry<T> forgeRegistry) {
+        this.registry.getEntries(registrySuperType).forEach(e -> forgeRegistry.register((Object)e));
     }
 }

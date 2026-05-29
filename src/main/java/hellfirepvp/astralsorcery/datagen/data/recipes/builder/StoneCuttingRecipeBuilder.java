@@ -34,7 +34,7 @@ public class StoneCuttingRecipeBuilder
     }
     
     public void build(final Consumer<IFinishedRecipe> consumerIn) {
-        this.build(consumerIn, ForgeRegistries.ITEMS.getKey((IForgeRegistryEntry)this.output.func_199767_j()));
+        this.build(consumerIn, ForgeRegistries.ITEMS.getKey((Object)this.output.func_199767_j()));
     }
     
     public void build(final Consumer<IFinishedRecipe> consumerIn, ResourceLocation id) {
@@ -58,7 +58,7 @@ public class StoneCuttingRecipeBuilder
         
         public void func_218610_a(final JsonObject jsonObject) {
             jsonObject.add("ingredient", this.ingredient.func_200304_c());
-            jsonObject.addProperty("result", ForgeRegistries.ITEMS.getKey((IForgeRegistryEntry)this.result).toString());
+            jsonObject.addProperty("result", ForgeRegistries.ITEMS.getKey((Object)this.result).toString());
             jsonObject.addProperty("count", (Number)this.count);
         }
         

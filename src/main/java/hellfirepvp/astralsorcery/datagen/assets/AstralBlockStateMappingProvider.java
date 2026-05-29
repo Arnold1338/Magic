@@ -44,7 +44,7 @@ public class AstralBlockStateMappingProvider extends BlockStateProvider
         this.pillarModel(BlocksAS.MARBLE_PILLAR, (net.minecraft.state.Property<BlockMarblePillar.PillarType>)BlockMarblePillar.PILLAR_TYPE, BlockMarblePillar.PillarType.MIDDLE, BlockMarblePillar.PillarType.TOP, BlockMarblePillar.PillarType.BOTTOM);
         this.simpleBlockState(BlocksAS.MARBLE_RAW);
         this.simpleBlockState(BlocksAS.MARBLE_RUNED);
-        this.simpleSlabs(BlocksAS.MARBLE_SLAB, this.model((IForgeRegistryEntry<?>)BlocksAS.MARBLE_BRICKS));
+        this.simpleSlabs(BlocksAS.MARBLE_SLAB, this.model((Object<?>)BlocksAS.MARBLE_BRICKS));
         this.simpleStairs(BlocksAS.MARBLE_STAIRS);
         this.simpleBlockState(BlocksAS.BLACK_MARBLE_ARCH);
         this.simpleBlockState(BlocksAS.BLACK_MARBLE_BRICKS);
@@ -53,7 +53,7 @@ public class AstralBlockStateMappingProvider extends BlockStateProvider
         this.pillarModel(BlocksAS.BLACK_MARBLE_PILLAR, (net.minecraft.state.Property<BlockBlackMarblePillar.PillarType>)BlockBlackMarblePillar.PILLAR_TYPE, BlockBlackMarblePillar.PillarType.MIDDLE, BlockBlackMarblePillar.PillarType.TOP, BlockBlackMarblePillar.PillarType.BOTTOM);
         this.simpleBlockState(BlocksAS.BLACK_MARBLE_RAW);
         this.simpleBlockState(BlocksAS.BLACK_MARBLE_RUNED);
-        this.simpleSlabs(BlocksAS.BLACK_MARBLE_SLAB, this.model((IForgeRegistryEntry<?>)BlocksAS.BLACK_MARBLE_BRICKS));
+        this.simpleSlabs(BlocksAS.BLACK_MARBLE_SLAB, this.model((Object<?>)BlocksAS.BLACK_MARBLE_BRICKS));
         this.simpleStairs(BlocksAS.BLACK_MARBLE_STAIRS);
         this.simpleBlockState(BlocksAS.INFUSED_WOOD);
         this.simpleBlockState(BlocksAS.INFUSED_WOOD_ARCH);
@@ -62,7 +62,7 @@ public class AstralBlockStateMappingProvider extends BlockStateProvider
         this.simpleBlockState(BlocksAS.INFUSED_WOOD_ENRICHED);
         this.simpleBlockState(BlocksAS.INFUSED_WOOD_INFUSED);
         this.simpleBlockState(BlocksAS.INFUSED_WOOD_PLANKS);
-        this.simpleSlabs(BlocksAS.INFUSED_WOOD_SLAB, this.model((IForgeRegistryEntry<?>)BlocksAS.INFUSED_WOOD_PLANKS));
+        this.simpleSlabs(BlocksAS.INFUSED_WOOD_SLAB, this.model((Object<?>)BlocksAS.INFUSED_WOOD_PLANKS));
         this.simpleStairs(BlocksAS.INFUSED_WOOD_STAIRS);
         this.multiLayerBlockState((Block)BlocksAS.AQUAMARINE_SAND_ORE);
         this.multiLayerBlockState(BlocksAS.ROCK_CRYSTAL_ORE);
@@ -102,7 +102,7 @@ public class AstralBlockStateMappingProvider extends BlockStateProvider
         this.getVariantBuilder((Block)BlocksAS.FLARE_LIGHT).forAllStates(state -> ArrayUtils.toArray((Object[])new ConfiguredModel[] { new ConfiguredModel(this.modelNothing()) }));
         this.simpleBlockState((Block)BlocksAS.TRANSLUCENT_BLOCK, this.modelNothing());
         this.simpleBlockState((Block)BlocksAS.VANISHING, this.modelNothing());
-        this.getVariantBuilder((Block)BlocksAS.STRUCTURAL).partialState().with((Property)BlockStructural.BLOCK_TYPE, (Comparable)BlockStructural.BlockType.TELESCOPE).addModels(new ConfiguredModel[] { new ConfiguredModel(this.model((IForgeRegistryEntry<?>)BlocksAS.TELESCOPE)) }).partialState().with((Property)BlockStructural.BLOCK_TYPE, (Comparable)BlockStructural.BlockType.DUMMY).addModels(new ConfiguredModel[] { new ConfiguredModel(this.modelNothing()) });
+        this.getVariantBuilder((Block)BlocksAS.STRUCTURAL).partialState().with((Property)BlockStructural.BLOCK_TYPE, (Comparable)BlockStructural.BlockType.TELESCOPE).addModels(new ConfiguredModel[] { new ConfiguredModel(this.model((Object<?>)BlocksAS.TELESCOPE)) }).partialState().with((Property)BlockStructural.BLOCK_TYPE, (Comparable)BlockStructural.BlockType.DUMMY).addModels(new ConfiguredModel[] { new ConfiguredModel(this.modelNothing()) });
     }
     
     private <T extends Comparable<T>> void pillarModel(final Block b, final Property<T> pillarType, final T middle, final T top, final T bottom) {
@@ -166,7 +166,7 @@ public class AstralBlockStateMappingProvider extends BlockStateProvider
         return this.model(AstralSorcery.key(name));
     }
     
-    private ModelFile model(final IForgeRegistryEntry<?> entry) {
+    private ModelFile model(final Object<?> entry) {
         return this.model(entry.getRegistryName());
     }
     

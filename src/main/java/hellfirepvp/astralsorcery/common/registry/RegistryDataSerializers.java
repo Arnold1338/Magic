@@ -20,7 +20,7 @@ public class RegistryDataSerializers
     
     private static <V, T extends IDataSerializer<V>> T register(final T dataSerializer, final String name) {
         final DataSerializerEntry entry = new DataSerializerEntry((IDataSerializer)dataSerializer);
-        entry.setRegistryName(AstralSorcery.key(name.toLowerCase(Locale.ROOT)));
+        entry));
         AstralSorcery.getProxy().getRegistryPrimer().register(entry);
         return dataSerializer;
     }

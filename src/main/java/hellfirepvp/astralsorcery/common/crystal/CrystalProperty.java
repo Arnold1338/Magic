@@ -12,7 +12,7 @@ import java.util.List;
 import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 
 
-public abstract class CrystalProperty extends ForgeRegistryEntry<CrystalProperty> implements Comparable<CrystalProperty>
+public abstract class CrystalProperty  implements Comparable<CrystalProperty>
 {
     private static int counter;
     private final int sortingId;
@@ -25,7 +25,7 @@ public abstract class CrystalProperty extends ForgeRegistryEntry<CrystalProperty
         this.modifiers = new ArrayList<CrystalPropertyModifierFunction>();
         this.usageTests = (ctx -> false);
         this.sortingId = CrystalProperty.counter++;
-        this.setRegistryName(registryName);
+        this;
     }
     
     public CrystalProperty setRequiredResearch(final ResearchProgression requiredResearch) {

@@ -138,11 +138,11 @@ public class RegistryWorldGeneration
     }
     
     private static void registerFeature(final ResourceLocation key, final Feature<?> feature) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(feature.setRegistryName(key));
+        AstralSorcery.getProxy().getRegistryPrimer().register(feature);
     }
     
     private static void registerPlacement(final ResourceLocation key, final Placement<?> placement) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(placement.setRegistryName(key));
+        AstralSorcery.getProxy().getRegistryPrimer().register(placement);
     }
     
     private static <T extends StructurePieceType> T registerStructurePiece(final ResourceLocation key, final T type) {
@@ -150,7 +150,7 @@ public class RegistryWorldGeneration
     }
     
     private static <S extends TemplateStructureFeature> S registerStructure(final ResourceLocation key, final StructureGenerationConfig cfg, final S structure) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(structure.setRegistryName(key));
+        AstralSorcery.getProxy().getRegistryPrimer().register(structure);
         Structure.field_236365_a_.put((Object)structure.func_143025_a(), (Object)structure);
         final StructureFeature<?, ?> structureFeature = (StructureFeature<?, ?>)structure.func_236391_a_((FeatureConfiguration)FeatureConfiguration.field_202429_e);
         RegistryWorldGeneration.STRUCTURES.put(structureFeature, cfg);

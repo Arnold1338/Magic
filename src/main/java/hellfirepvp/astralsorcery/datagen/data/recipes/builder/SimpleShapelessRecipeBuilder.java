@@ -73,7 +73,7 @@ public class SimpleShapelessRecipeBuilder
     }
     
     public void build(final Consumer<IFinishedRecipe> consumerIn) {
-        this.build(consumerIn, ForgeRegistries.ITEMS.getKey((IForgeRegistryEntry)this.result.getItem()));
+        this.build(consumerIn, ForgeRegistries.ITEMS.getKey((Object)this.result.getItem()));
     }
     
     public void build(final Consumer<IFinishedRecipe> consumerIn, ResourceLocation id) {

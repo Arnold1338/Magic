@@ -203,13 +203,13 @@ public class AbstractPerk implements ModifierSource
     @OnlyIn(Dist.CLIENT)
     public Collection<MutableComponent> getDescription() {
         final List<MutableComponent> toolTip = new ArrayList<MutableComponent>();
-        if (I18n.func_188566_a(this.unlocalizedKey + ".desc.1")) {
-            for (int count = 1; I18n.func_188566_a(this.unlocalizedKey + ".desc." + count); ++count) {
+        if (net.minecraft.client.resources.language.I18n.func_188566_a(this.unlocalizedKey + ".desc.1")) {
+            for (int count = 1; net.minecraft.client.resources.language.I18n.func_188566_a(this.unlocalizedKey + ".desc." + count); ++count) {
                 toolTip.add((MutableComponent)new Component(this.unlocalizedKey + ".desc." + count));
             }
             toolTip.add((MutableComponent)new Component(""));
         }
-        else if (I18n.func_188566_a(this.unlocalizedKey + ".desc")) {
+        else if (net.minecraft.client.resources.language.I18n.func_188566_a(this.unlocalizedKey + ".desc")) {
             toolTip.add((MutableComponent)new Component(this.unlocalizedKey + ".desc"));
             toolTip.add((MutableComponent)new Component(""));
         }

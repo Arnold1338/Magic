@@ -50,7 +50,7 @@ public class PerkAttributeModifier {
         this.attributeType = type;
         this.mode = mode;
         this.value = value;
-        this.setRegistryName(persistentKey);
+        this;
         this.initModifier();
     }
     
@@ -130,7 +130,7 @@ public class PerkAttributeModifier {
     
     @OnlyIn(Dist.CLIENT)
     public boolean hasDisplayString() {
-        return I18n.func_188566_a(this.getAttributeType().getUnlocalizedName());
+        return net.minecraft.client.resources.language.I18n.func_188566_a(this.getAttributeType().getUnlocalizedName());
     }
     
     @OnlyIn(Dist.CLIENT)
@@ -140,12 +140,12 @@ public class PerkAttributeModifier {
     
     @OnlyIn(Dist.CLIENT)
     public String getLocalizedModifierName() {
-        return I18n.func_135052_a(this.getMode().getUnlocalizedModifierName(this.getValueForDisplay((Player)Minecraft.getInstance().player, ResearchHelper.getClientProgress())), new Object[0]);
+        return net.minecraft.client.resources.language.I18n.func_135052_a(this.getMode().getUnlocalizedModifierName(this.getValueForDisplay((Player)Minecraft.getInstance().player, ResearchHelper.getClientProgress())), new Object[0]);
     }
     
     @OnlyIn(Dist.CLIENT)
     public String getAttributeDisplayFormat() {
-        return I18n.func_135052_a("perk.modifier.astralsorcery.format", new Object[0]);
+        return net.minecraft.client.resources.language.I18n.func_135052_a("perk.modifier.astralsorcery.format", new Object[0]);
     }
     
     @Nullable
@@ -154,7 +154,7 @@ public class PerkAttributeModifier {
         if (!this.hasDisplayString()) {
             return null;
         }
-        return String.format(this.getAttributeDisplayFormat(), this.getLocalizedAttributeValue(), this.getLocalizedModifierName(), I18n.func_135052_a(this.getUnlocalizedAttributeName(), new Object[0]));
+        return String.format(this.getAttributeDisplayFormat(), this.getLocalizedAttributeValue(), this.getLocalizedModifierName(), net.minecraft.client.resources.language.I18n.func_135052_a(this.getUnlocalizedAttributeName(), new Object[0]));
     }
     
     public boolean equals(final Object o) {

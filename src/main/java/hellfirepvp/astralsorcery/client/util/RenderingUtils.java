@@ -340,14 +340,12 @@ public class RenderingUtils
         final BakedModel bakedModel = ForgeHooksClient.handleCameraTransforms(renderStack, getItemModel(stack), ItemTransforms.TransformType.GUI, false);
         final boolean isSideLit = bakedModel.func_230044_c_();
         if (!isSideLit) {
-            RenderHelper.func_227783_c_();
-        }
+            }
         final MultiBufferSource.Impl buffer = Minecraft.getInstance().func_228019_au_().func_228487_b_();
         renderItemModelWithColor(stack, ItemTransforms.TransformType.GUI, bakedModel, renderStack, (MultiBufferSource)buffer, LightmapUtil.getPackedFullbrightCoords(), OverlayTexture.field_229196_a_, overlayColor, Mth.getDescriptionId(alpha, 0, 255));
         buffer.func_228461_a_();
         if (!isSideLit) {
-            RenderHelper.func_227784_d_();
-        }
+            }
         Blending.DEFAULT.apply();
         RenderSystem.disableBlend();
         RenderSystem.disableAlphaTest();

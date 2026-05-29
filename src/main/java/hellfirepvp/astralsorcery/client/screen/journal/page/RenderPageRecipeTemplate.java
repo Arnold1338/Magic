@@ -132,13 +132,11 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
     protected void renderItemStack(final PoseStack renderStack, final float offsetX, final float offsetY, final float zLevel, final float scale, final ItemStack stack) {
         RenderSystem.depthMask(true);
         RenderSystem.enableDepthTest();
-        RenderHelper.func_227780_a_();
         renderStack.func_227860_a_();
         renderStack.translate((double)offsetX, (double)offsetY, (double)zLevel);
         renderStack.func_227862_a_(scale, scale, 1.0f);
         RenderingUtils.renderItemStackGUI(renderStack, stack, null);
         renderStack.func_227865_b_();
-        RenderHelper.func_74518_a();
         RenderSystem.depthMask(false);
     }
     

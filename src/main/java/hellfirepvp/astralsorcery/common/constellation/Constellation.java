@@ -41,11 +41,11 @@ public abstract class Constellation extends BaseConstellation implements IConste
         this.simpleName = name;
         final ModContainer mod = MiscUtils.getCurrentlyActiveMod();
         if (mod != null) {
-            this.setRegistryName(new ResourceLocation(mod.getModId(), name));
+            this, name));
             this.name = mod.getModId() + ".constellation." + name;
         }
         else {
-            this.setRegistryName(AstralSorcery.key(name));
+            this);
             this.name = "unknown.constellation." + name;
         }
         this.color = color;

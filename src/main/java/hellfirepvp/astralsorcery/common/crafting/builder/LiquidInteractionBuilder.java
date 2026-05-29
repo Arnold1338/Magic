@@ -32,7 +32,7 @@ public class LiquidInteractionBuilder extends CustomRecipeBuilder<LiquidInteract
         this.id = id;
     }
     
-    public static LiquidInteractionBuilder builder(final ForgeRegistryEntry<?> nameProvider) {
+    public static LiquidInteractionBuilder builder(final Object<?> nameProvider) {
         return new LiquidInteractionBuilder(AstralSorcery.key(nameProvider.getRegistryName().addTransientModifier()));
     }
     

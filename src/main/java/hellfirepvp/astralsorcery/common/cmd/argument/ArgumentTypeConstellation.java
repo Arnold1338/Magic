@@ -49,7 +49,7 @@ public class ArgumentTypeConstellation implements ArgumentType<IConstellation>
     }
     
     public <S> CompletableFuture<Suggestions> listSuggestions(final CommandContext<S> context, final SuggestionsBuilder builder) {
-        return ISuggestionProvider.func_197014_a((Iterable)ConstellationRegistry.getAllConstellations().stream().filter(this.filter).map((Function<? super IConstellation, ?>)IForgeRegistryEntry::getRegistryName).collect((Collector<? super Object, ?, List<? super Object>>)Collectors.toList()), builder);
+        return ISuggestionProvider.func_197014_a((Iterable)ConstellationRegistry.getAllConstellations().stream().filter(this.filter).map((Function<? super IConstellation, ?>)Object::getRegistryName).collect((Collector<? super Object, ?, List<? super Object>>)Collectors.toList()), builder);
     }
     
     public static ArgumentTypeConstellation weak() {

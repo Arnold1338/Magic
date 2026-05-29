@@ -37,13 +37,13 @@ import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import java.util.List;
 
 
-public class EngravingEffect extends ForgeRegistryEntry<EngravingEffect>
+public class EngravingEffect 
 {
     private final List<ApplicableEffect> effects;
     
     public EngravingEffect(final IConstellation cst) {
         this.effects = new ArrayList<ApplicableEffect>();
-        this.setRegistryName(cst.getRegistryName());
+        this);
     }
     
     public EngravingEffect addEffect(final ApplicableEffect potion) {

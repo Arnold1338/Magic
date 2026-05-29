@@ -138,7 +138,7 @@ public class SimpleAltarRecipeBuilder<T extends SimpleAltarRecipe> extends Custo
             this.type = type;
         }
         
-        public SimpleAltarRecipeBuilder<T> createRecipe(final ForgeRegistryEntry<?> nameProvider, final AltarType altarType) {
+        public SimpleAltarRecipeBuilder<T> createRecipe(final Object<?> nameProvider, final AltarType altarType) {
             return this.createRecipe(AstralSorcery.key(nameProvider.getRegistryName().addTransientModifier()), altarType);
         }
         

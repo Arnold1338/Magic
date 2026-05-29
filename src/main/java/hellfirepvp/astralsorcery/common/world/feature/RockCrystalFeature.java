@@ -12,7 +12,7 @@ public class RockCrystalFeature extends ReplaceBlockFeature
 {
     @Override
     protected boolean setBlockState(final IServerWorld world, final BlockPos pos, final BlockState state) {
-        ((RockCrystalBuffer)DataAS.DOMAIN_AS.getData((Level)world.func_201672_e(), (WorldCacheDomain.SaveKey)DataAS.KEY_ROCK_CRYSTAL_BUFFER)).addOre(pos);
+        ((RockCrystalBuffer)DataAS.DOMAIN_AS.getData((Level)world.setBiome(), (WorldCacheDomain.SaveKey)DataAS.KEY_ROCK_CRYSTAL_BUFFER)).addOre(pos);
         return super.setBlockState(world, pos, state);
     }
 }

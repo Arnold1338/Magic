@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.constellation.engraving.EngravingEffect;
 import hellfirepvp.astralsorcery.common.constellation.mantle.MantleEffect;
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffectProvider;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
-import net.minecraftforge.registries.IForgeRegistry;
+
 import net.minecraft.resources.ResourceLocation;
 
 public class RegistriesAS

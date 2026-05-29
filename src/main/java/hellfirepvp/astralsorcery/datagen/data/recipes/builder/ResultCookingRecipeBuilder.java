@@ -43,11 +43,11 @@ public class ResultCookingRecipeBuilder
     }
     
     public void build(final Consumer<IFinishedRecipe> consumerIn) {
-        this.build(consumerIn, ForgeRegistries.ITEMS.getKey((IForgeRegistryEntry)this.result.getItem()));
+        this.build(consumerIn, ForgeRegistries.ITEMS.getKey((Object)this.result.getItem()));
     }
     
     public void build(final Consumer<IFinishedRecipe> consumerIn, final String save) {
-        final ResourceLocation itemKey = ForgeRegistries.ITEMS.getKey((IForgeRegistryEntry)this.result.getItem());
+        final ResourceLocation itemKey = ForgeRegistries.ITEMS.getKey((Object)this.result.getItem());
         final ResourceLocation saveNameKey = new ResourceLocation(save);
         if (saveNameKey.equals((Object)itemKey)) {
             throw new IllegalStateException("Recipe " + saveNameKey + " should remove its 'save' argument");

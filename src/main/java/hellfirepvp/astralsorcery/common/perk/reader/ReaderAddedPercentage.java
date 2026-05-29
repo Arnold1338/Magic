@@ -53,7 +53,7 @@ public class ReaderAddedPercentage extends PerkAttributeReader
         if (PerkAttributeLimiter.hasLimit(this.getType())) {
             final Pair<Double, Double> limits = PerkAttributeLimiter.getLimit(this.getType());
             limit = (Double)limits.getRight();
-            limitStr = I18n.func_135052_a("perk.reader.astralsorcery.limit.percent", new Object[] { Mth.func_76128_c(limit * 100.0) });
+            limitStr = net.minecraft.client.resources.language.I18n.func_135052_a("perk.reader.astralsorcery.limit.percent", new Object[] { Mth.func_76128_c(limit * 100.0) });
         }
         double value = statMap.modifyValue(player, ResearchHelper.getProgress(player, LogicalSide.CLIENT), this.getType(), (float)this.getDefaultValue(statMap, player, LogicalSide.CLIENT));
         if (this.getType().isMultiplicative()) {
@@ -63,7 +63,7 @@ public class ReaderAddedPercentage extends PerkAttributeReader
         final double postValue = AttributeEvent.postProcessModded(player, this.getType(), value);
         if (Math.abs(value - postValue) > 1.0E-4 && (limit == null || Math.abs(postValue - limit) > 1.0E-4)) {
             if (Math.abs(postValue) >= 1.0E-4) {
-                postProcess = I18n.func_135052_a("perk.reader.astralsorcery.postprocess.default", new Object[] { ((postValue >= 0.0) ? "+" : "") + PerkAttributeReader.formatDecimal(postValue) + "%" });
+                postProcess = net.minecraft.client.resources.language.I18n.func_135052_a("perk.reader.astralsorcery.postprocess.default", new Object[] { ((postValue >= 0.0) ? "+" : "") + PerkAttributeReader.formatDecimal(postValue) + "%" });
             }
             value = postValue;
         }

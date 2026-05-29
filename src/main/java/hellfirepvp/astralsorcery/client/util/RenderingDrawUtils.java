@@ -27,7 +27,7 @@ import java.awt.Rectangle;
 import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.text.LanguageMap;
+import net.minecraft.network.chat.LanguageMap;
 import net.minecraft.util.FormattedCharSequence;
 import java.awt.Color;
 import net.minecraft.client.Minecraft;

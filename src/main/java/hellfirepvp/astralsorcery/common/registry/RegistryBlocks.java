@@ -181,7 +181,7 @@ public class RegistryBlocks
     }
     
     private static <T extends Block> T registerBlock(final T block, final ResourceLocation name) {
-        block.setRegistryName(name);
+        block;
         AstralSorcery.getProxy().getRegistryPrimer().register(block);
         if (block instanceof CustomItemBlock) {
             RegistryBlocks.ITEM_BLOCKS.add((CustomItemBlock)block);

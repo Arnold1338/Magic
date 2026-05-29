@@ -50,7 +50,7 @@ public class ReaderVanillaAttribute extends PerkAttributeReader
         if (PerkAttributeLimiter.hasLimit(this.getType())) {
             final Pair<Double, Double> limits = PerkAttributeLimiter.getLimit(this.getType());
             limit = (Double)limits.getRight();
-            limitStr = I18n.func_135052_a("perk.reader.astralsorcery.limit.default", new Object[] { Mth.func_76128_c((double)limit) });
+            limitStr = net.minecraft.client.resources.language.I18n.func_135052_a("perk.reader.astralsorcery.limit.default", new Object[] { Mth.func_76128_c((double)limit) });
         }
         double value = this.getDefaultValue(statMap, player, LogicalSide.CLIENT);
         value = statMap.modifyValue(player, ResearchHelper.getProgress(player, LogicalSide.CLIENT), this.getType(), (float)value);
@@ -58,7 +58,7 @@ public class ReaderVanillaAttribute extends PerkAttributeReader
         final double post = AttributeEvent.postProcessVanilla(value, player.getAttribute((Attribute)this.attribute.get()));
         if (Math.abs(value - post) > 1.0E-4 && (limit == null || Math.abs(post - limit) > 1.0E-4)) {
             if (Math.abs(post) >= 1.0E-4) {
-                postProcess = I18n.func_135052_a("perk.reader.astralsorcery.postprocess.default", new Object[] { this.formatForDisplay(post) });
+                postProcess = net.minecraft.client.resources.language.I18n.func_135052_a("perk.reader.astralsorcery.postprocess.default", new Object[] { this.formatForDisplay(post) });
             }
             value = post;
         }

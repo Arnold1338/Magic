@@ -150,7 +150,7 @@ public class ResearchManager
         if (!progress.isValid()) {
             return false;
         }
-        progress.setStoredConstellationPapers((List<ResourceLocation>)papers.stream().map((Function<? super Object, ?>)IForgeRegistryEntry::getRegistryName).collect((Collector<? super Object, ?, List<? super Object>>)Collectors.toList()));
+        progress.setStoredConstellationPapers((List<ResourceLocation>)papers.stream().map((Function<? super Object, ?>)Object::getRegistryName).collect((Collector<? super Object, ?, List<? super Object>>)Collectors.toList()));
         ResearchSyncHelper.pushProgressToClientUnsafe(progress, player);
         ResearchHelper.savePlayerKnowledge(player);
         return true;

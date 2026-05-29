@@ -48,7 +48,7 @@ public class PktEngraveGlass extends ASPacket<PktEngraveGlass>
             ByteBufUtils.writeCollection(buffer, packet.constellations, (buf, cst) -> {
                 buf.writeInt(cst.getPoint().x);
                 buf.writeInt(cst.getPoint().y);
-                ByteBufUtils.writeRegistryEntry(buf, (net.minecraftforge.registries.IForgeRegistryEntry<Object>)cst.getConstellation());
+                ByteBufUtils.writeRegistryEntry(buf, (net.minecraftforge.registries.Object<Object>)cst.getConstellation());
             });
         };
     }

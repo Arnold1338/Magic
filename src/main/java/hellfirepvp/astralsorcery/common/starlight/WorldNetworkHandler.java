@@ -139,7 +139,7 @@ public class WorldNetworkHandler
     
     public void markDirty(final Vec3i... positions) {
         for (final Vec3i pos : positions) {
-            this.buffer.markDirty(new net.minecraft.core.Vec3i(pos.getX(), pos.getY(), pos.getZ()));
+            this.buffer.markDirty(pos);
         }
     }
     

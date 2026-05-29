@@ -63,7 +63,7 @@ import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import hellfirepvp.astralsorcery.client.util.word.RandomWordGenerator;
 import hellfirepvp.astralsorcery.client.util.ColorizationHelper;
 import hellfirepvp.astralsorcery.client.resource.AssetPreLoader;
-import net.minecraft.resources.IFutureReloadListener;
+import net.minecraft.server.packs.resources.PreparableReloadListener;
 import hellfirepvp.astralsorcery.client.resource.AssetLibrary;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IReloadableResourceManager;
@@ -81,8 +81,8 @@ public class ClientProxy extends CommonProxy
         this.clientScheduler = new ClientScheduler();
         if (!AstralSorcery.isDoingDataGeneration()) {
             final IReloadableResourceManager resMgr = (IReloadableResourceManager)Minecraft.getInstance().func_195551_G();
-            resMgr.func_219534_a((IFutureReloadListener)AssetLibrary.INSTANCE);
-            resMgr.func_219534_a((IFutureReloadListener)AssetPreLoader.INSTANCE);
+            resMgr.func_219534_a((PreparableReloadListener)AssetLibrary.INSTANCE);
+            resMgr.func_219534_a((PreparableReloadListener)AssetPreLoader.INSTANCE);
             resMgr.func_219534_a(ColorizationHelper.onReload());
             resMgr.func_219534_a((stage, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) -> stage.func_216872_a((Object)Unit.INSTANCE).thenRunAsync(() -> {
                 if (!(!SelectiveReloadStateHandler.INSTANCE.get().test(VanillaResourceType.LANGUAGES))) {

@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.Random;
 
 
-public abstract class AltarRecipeEffect extends ForgeRegistryEntry<AltarRecipeEffect>
+public abstract class AltarRecipeEffect 
 {
     protected static final int INDEX_NOISE_PLANE_LAYER1 = 0;
     protected static final int INDEX_NOISE_PLANE_LAYER2 = 1;

@@ -1,3 +1,4 @@
+import net.minecraft.server.packs.resources.PreparableReloadListener;
 package hellfirepvp.astralsorcery.common;
 
 import hellfirepvp.astralsorcery.common.item.armor.ArmorMaterialImbuedLeather;
@@ -6,11 +7,11 @@ import net.minecraft.world.level.ItemLike;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.util.DamageSourceUtil;
-import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
-import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
-import net.minecraft.resources.IFutureReloadListener;
+import net.minecraftforge.event.server.ServerStoppedEvent;
+import net.minecraftforge.event.server.ServerStoppingEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.event.server.ServerStartedEvent;
+
 import hellfirepvp.astralsorcery.common.perk.data.PerkTreeLoader;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import hellfirepvp.astralsorcery.common.integration.IntegrationCurios;
@@ -197,7 +198,7 @@ public class CommonProxy
         modEventBus.addListener((Consumer)this::onEnqueueIMC);
         modEventBus.addListener((Consumer)BaseConfiguration::refreshConfiguration);
         modEventBus.addListener((Consumer)RegistryRegistries::buildRegistries);
-        modEventBus.addListener((Consumer)RegistryEntities::initAttributes);
+        
         this.registryEventHandler.attachEventHandlers(modEventBus);
     }
     
@@ -346,21 +347,21 @@ public class CommonProxy
     }
     
     private void onRegisterReloadListeners(final AddReloadListenerEvent event) {
-        event.addListener((IFutureReloadListener)PerkTreeLoader.INSTANCE);
+        event.addListener((PreparableReloadListener)PerkTreeLoader.INSTANCE);
     }
     
-    private void onServerStarted(final FMLServerStartedEvent event) {
+    private void onServerStarted(final ServerStartedEvent event) {
         this.serverLifecycleListeners.forEach(ServerLifecycleListener::onServerStart);
     }
     
-    private void onServerStarting(final FMLServerStartingEvent event) {
+    private void onServerStarting(final ServerStartingEvent event) {
     }
     
-    private void onServerStopping(final FMLServerStoppingEvent event) {
+    private void onServerStopping(final ServerStoppingEvent event) {
         this.serverLifecycleListeners.forEach(ServerLifecycleListener::onServerStop);
     }
     
-    private void onServerStop(final FMLServerStoppedEvent event) {
+    private void onServerStop(final ServerStoppedEvent event) {
     }
     
     static {

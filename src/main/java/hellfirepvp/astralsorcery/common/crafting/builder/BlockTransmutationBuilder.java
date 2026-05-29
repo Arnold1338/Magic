@@ -40,7 +40,7 @@ public class BlockTransmutationBuilder extends CustomRecipeBuilder<BlockTransmut
         this.id = id;
     }
     
-    public static BlockTransmutationBuilder builder(final ForgeRegistryEntry<?> nameProvider) {
+    public static BlockTransmutationBuilder builder(final Object<?> nameProvider) {
         return new BlockTransmutationBuilder(AstralSorcery.key(nameProvider.getRegistryName().addTransientModifier()));
     }
     

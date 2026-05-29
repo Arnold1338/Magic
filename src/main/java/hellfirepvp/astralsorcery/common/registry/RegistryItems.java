@@ -183,13 +183,13 @@ public class RegistryItems
     
     private static void registerItemBlock(final CustomItemBlock block) {
         final BlockItem itemBlock = block.createItemBlock(buildItemBlockProperties((Block)block));
-        itemBlock.setRegistryName(itemBlock.func_179223_d().getRegistryName());
+        itemBlock.getRegistryName());
         AstralSorcery.getProxy().getRegistryPrimer().register(itemBlock);
     }
     
     private static <T extends Item> T registerItem(final T item) {
         final ResourceLocation name = NameUtil.fromClass(item, "Item");
-        item.setRegistryName(name);
+        item;
         AstralSorcery.getProxy().getRegistryPrimer().register(item);
         if (item instanceof ItemDynamicColor) {
             RegistryItems.colorItems.add((ItemDynamicColor)item);

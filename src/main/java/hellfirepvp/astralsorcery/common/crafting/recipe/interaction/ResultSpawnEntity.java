@@ -67,6 +67,6 @@ public class ResultSpawnEntity extends InteractionResult
     
     @Override
     public void write(final FriendlyByteBuf buf) {
-        ByteBufUtils.writeRegistryEntry(buf, (net.minecraftforge.registries.IForgeRegistryEntry<Object>)this.entityType);
+        ByteBufUtils.writeRegistryEntry(buf, (net.minecraftforge.registries.Object<Object>)this.entityType);
     }
 }

@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.constellation.star.StarConnection;
 import hellfirepvp.astralsorcery.common.constellation.star.StarLocation;
 
 
-public interface IConstellation extends IForgeRegistryEntry<IConstellation>, Comparable<IConstellation>
+public interface IConstellation extends Comparable<IConstellation>
 {
     public static final int STAR_GRID_INDEX = 31;
     public static final int STAR_GRID_WIDTH_HEIGHT = 32;
