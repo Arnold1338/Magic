@@ -30,7 +30,7 @@ public class PatreonDataManager
                 AstralSorcery.log.error("Failed to connect to patreon fileserver! Not loading patreon files...");
                 e.printStackTrace();
                 PatreonEffectHelper.loadingFinished = true;
-                return;
+
             }
             PatreonData data;
             try {
@@ -64,7 +64,7 @@ public class PatreonDataManager
                 AstralSorcery.log.error("Failed to connect to patreon fileserver! Not loading patreon files...");
                 e2.printStackTrace();
                 PatreonEffectHelper.loadingFinished = true;
-                return;
+
             }
             int skipped = 0;
             data.getEffectList().iterator();
@@ -79,7 +79,7 @@ public class PatreonDataManager
                 }
                 catch (final Exception exc) {
                     ++skipped;
-                    continue;
+
                 }
                 try {
                     final PatreonEffect pe = (PatreonEffect)type.getProvider().buildEffect(plUuid, entry.getParameters());
@@ -99,7 +99,7 @@ public class PatreonDataManager
             AstralSorcery.log.info("Patreon effect loading finished.");
             final UUID hellfire = UUID.fromString("7f6971c5-fb58-4519-a975-b1b5766e92d1");
             PatreonEffectHelper.loadingFinished = true;
-            return;
+
         });
         tr.setName("AstralSorcery Patreon Effect Loader");
         tr.start();

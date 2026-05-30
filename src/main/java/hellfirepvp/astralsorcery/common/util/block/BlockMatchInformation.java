@@ -145,11 +145,11 @@ public class BlockMatchInformation implements Predicate<BlockState>
             case 0: {
                 ByteBufUtils.writeBlockState(buf, this.matchState);
                 buf.writeBoolean(this.matchExact);
-                break;
+
             }
             case 1: {
                 ByteBufUtils.writeString(buf, this.matchTagKey.toString());
-                break;
+
             }
         }
     }

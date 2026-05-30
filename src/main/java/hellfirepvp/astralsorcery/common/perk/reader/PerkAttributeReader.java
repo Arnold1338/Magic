@@ -16,7 +16,7 @@ public abstract class PerkAttributeReader {
     
     protected PerkAttributeReader(final PerkAttributeType type) {
         this.type = type;
-        this);
+
     }
     
     public final PerkAttributeType getType() {

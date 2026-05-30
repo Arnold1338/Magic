@@ -89,11 +89,11 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor
     
     public static void freezeAmuletColor(final ItemStack stack) {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemEnchantmentAmulet)) {
-            return;
+
         }
         final CompoundTag tag = NBTHelper.getPersistentData(stack);
         if (tag.contains("amuletColor")) {
-            return;
+
         }
         if (ItemEnchantmentAmulet.rand.nextInt(400) == 0) {
             tag.putInt("amuletColor", -1);
@@ -125,7 +125,7 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor
     
     public static void setAmuletEnchantments(final ItemStack stack, final List<AmuletEnchantment> enchantments) {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemEnchantmentAmulet)) {
-            return;
+
         }
         enchantments.sort(Comparator.comparing((Function<? super AmuletEnchantment, ? extends Comparable>)DynamicEnchantment::getType));
         final CompoundTag tag = NBTHelper.getPersistentData(stack);

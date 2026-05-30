@@ -52,7 +52,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     renderStack.popPose();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, degPitch);
-                break;
+
             }
             case UP: {
                 if (!linked.isEmpty() && linked.size() == 1) {
@@ -73,7 +73,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     renderStack.popPose();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, -degPitch);
-                break;
+
             }
             case NORTH: {
                 if (!linked.isEmpty() && linked.size() == 1) {
@@ -95,7 +95,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     renderStack.popPose();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, degPitch);
-                break;
+
             }
             case SOUTH: {
                 if (!linked.isEmpty() && linked.size() == 1) {
@@ -117,7 +117,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     renderStack.popPose();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, -degPitch);
-                break;
+
             }
             case WEST: {
                 if (!linked.isEmpty() && linked.size() == 1) {
@@ -139,7 +139,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     renderStack.popPose();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, degPitch);
-                break;
+
             }
             case EAST: {
                 if (!linked.isEmpty() && linked.size() == 1) {
@@ -161,7 +161,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens>
                     renderStack.popPose();
                 }
                 this.renderLens(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, -degPitch);
-                break;
+
             }
         }
         renderStack.popPose();

@@ -60,11 +60,11 @@ public class ColorThief
             case 5:
             case 6: {
                 pixelArray = getPixelsFast(sourceImage, quality, ignoreWhite);
-                break;
+
             }
             default: {
                 pixelArray = getPixelsSlow(sourceImage, quality, ignoreWhite);
-                break;
+
             }
         }
         final MMCQ.CMap cmap = MMCQ.quantize(pixelArray, colorCount);
@@ -80,11 +80,11 @@ public class ColorThief
         switch (type) {
             case 5: {
                 colorDepth = 3;
-                break;
+
             }
             case 6: {
                 colorDepth = 4;
-                break;
+
             }
             default: {
                 throw new IllegalArgumentException("Unhandled type: " + type);
@@ -109,7 +109,7 @@ public class ColorThief
                         ++numUsedPixels;
                     }
                 }
-                break;
+
             }
             case 6: {
                 for (int i = 0; i < pixelCount; i += quality) {
@@ -123,7 +123,7 @@ public class ColorThief
                         ++numUsedPixels;
                     }
                 }
-                break;
+
             }
             default: {
                 throw new IllegalArgumentException("Unhandled type: " + type);

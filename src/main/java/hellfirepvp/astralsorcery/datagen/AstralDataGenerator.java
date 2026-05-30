@@ -22,7 +22,7 @@ public class AstralDataGenerator
     @SubscribeEvent
     public static void gather(final GatherDataEvent event) {
         if (!AstralSorcery.isDoingDataGeneration()) {
-            return;
+
         }
         final DataGenerator gen = event.getGenerator();
         final ExistingFileHelper fileHelper = event.getExistingFileHelper();

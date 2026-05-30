@@ -61,7 +61,7 @@ public class TransmissionNetworkHelper
     public static void removeTransmissionLink(final IStarlightTransmission<?> tr, final BlockPos next) {
         final IPrismTransmissionNode node = (IPrismTransmissionNode)tr.getNode();
         if (node == null) {
-            return;
+
         }
         removeLink(node, tr, next);
     }

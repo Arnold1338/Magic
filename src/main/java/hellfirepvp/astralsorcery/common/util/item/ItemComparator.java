@@ -55,8 +55,7 @@ public class ItemComparator
         AMOUNT_LEAST, 
         NBT_STRICT, 
         NBT_LEAST, 
-        CAPABILITIES_COMPATIBLE;
-        
+
         public static class Sets
         {
             public static final Clause[] ITEMSTACK_STRICT;

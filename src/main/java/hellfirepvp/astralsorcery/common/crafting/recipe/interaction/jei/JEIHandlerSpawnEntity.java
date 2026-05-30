@@ -34,11 +34,11 @@ public class JEIHandlerSpawnEntity extends JEIInteractionResultHandler
     public void drawRecipe(final LiquidInteraction recipe, final PoseStack renderStack, final double mouseX, final double mouseY) {
         final InteractionResult result = recipe.getResult();
         if (!(result instanceof ResultSpawnEntity)) {
-            return;
+
         }
         final Entity le = ((ResultSpawnEntity)result).getEntityType().func_200721_a((Level)Minecraft.getInstance().level);
         if (!(le instanceof LivingEntity)) {
-            return;
+
         }
         renderStack.popPose();
         renderStack.translate(55.0, 35.0, 500.0);

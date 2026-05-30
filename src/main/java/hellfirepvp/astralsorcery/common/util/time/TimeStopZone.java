@@ -46,7 +46,7 @@ public class TimeStopZone
     
     void onServerTick() {
         if (!this.active) {
-            return;
+
         }
         --this.ticksToLive;
         final int minX = Mth.func_76128_c((this.offset.getX() - this.range) / 16.0);
@@ -72,11 +72,11 @@ public class TimeStopZone
     
     private void safeCacheTile(final BlockEntity te) {
         if (te == null) {
-            return;
+
         }
         for (final BlockEntity tile : this.cachedTiles) {
             if (tile.getBlockState().equals((Object)te.getBlockState())) {
-                return;
+
             }
         }
         this.cachedTiles.add(te);
@@ -92,7 +92,7 @@ public class TimeStopZone
             if (state.getBlock().hasTileEntity(state)) {
                 final BlockEntity te = state.getBlock().createTileEntity(state, (IBlockReader)this.world);
                 if (te == null || !te.getClass().isAssignableFrom(cached.getClass())) {
-                    continue;
+
                 }
                 this.world.field_175730_i.add(cached);
             }

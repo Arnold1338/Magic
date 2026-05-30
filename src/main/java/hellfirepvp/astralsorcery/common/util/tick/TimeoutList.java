@@ -35,7 +35,7 @@ public class TimeoutList<V> implements ITickHandler, Iterable<V>
     
     public void add(final int timeout, final V value) {
         if (value == null) {
-            return;
+
         }
         this.tickEntries.add(new TimeoutEntry<V>(timeout, (Object)value));
     }
@@ -81,7 +81,7 @@ public class TimeoutList<V> implements ITickHandler, Iterable<V>
     
     public void addAll(final TimeoutList<V> entries) {
         if (entries == null) {
-            return;
+
         }
         for (final TimeoutEntry<V> entry : entries.tickEntries) {
             this.setOrAddTimeout(((TimeoutEntry<Object>)entry).timeout, ((TimeoutEntry<Object>)entry).value);

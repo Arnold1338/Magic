@@ -105,14 +105,14 @@ public class ItemResonator extends Item implements OverrideInteractItem
                 if (getCurrentUpgrade((Player)player, stack) == ResonatorUpgrade.FLUID_FIELDS) {
                     final float distribution = DayTimeHelper.getCurrentDaytimeDistribution(world);
                     if (distribution <= 1.0E-4) {
-                        return;
+
                     }
                     if (ItemResonator.count.nextFloat() < distribution && ItemResonator.count.nextInt(12) == 0) {
                         final int offsetX = ItemResonator.count.nextInt(30) * (ItemResonator.count.nextBoolean() ? 1 : -1);
                         final int offsetZ = ItemResonator.count.nextInt(30) * (ItemResonator.count.nextBoolean() ? 1 : -1);
                         final BlockPos pos = world.func_205770_a(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, new BlockPos((Vec3i)entity.func_233580_cy_()).offset(offsetX, 0, offsetZ));
                         if (pos.func_177951_i((Vec3i)entity.func_233580_cy_()) > 5625.0) {
-                            return;
+
                         }
                         final IChunk ch = world.func_217349_x(pos);
                         if (ch instanceof Chunk) {
@@ -122,7 +122,7 @@ public class ItemResonator extends Item implements OverrideInteractItem
                                     final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.LIQUID_FOUNTAIN).addData(buf -> {
                                         ByteBufUtils.writeFluidStack(buf, display);
                                         ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos));
-                                        return;
+
                                     });
                                     PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vec3i)pos, 32.0));
                                 }
@@ -140,13 +140,13 @@ public class ItemResonator extends Item implements OverrideInteractItem
     @OnlyIn(Dist.CLIENT)
     private void clientInventoryTick(final ItemStack stack, final Level world, final Entity entity, final int slot, final boolean selected) {
         if (!(entity instanceof Player)) {
-            return;
+
         }
         final Player player = (Player)entity;
         if (selected && getCurrentUpgrade(player, stack) == ResonatorUpgrade.STARLIGHT && WorldSeedCache.getSeedIfPresent((ResourceKey<Level>)world.dimension()).isPresent()) {
             final float distribution = DayTimeHelper.getCurrentDaytimeDistribution(world);
             if (distribution <= 1.0E-4) {
-                return;
+
             }
             final BlockPos center = player.func_233580_cy_();
             final int offsetX = center.getX();
@@ -332,7 +332,7 @@ public class ItemResonator extends Item implements OverrideInteractItem
         
         public void applyUpgrade(final ItemStack stack) {
             if (this.hasUpgrade(stack)) {
-                return;
+
             }
             final CompoundTag cmp = NBTHelper.getPersistentData(stack);
             if (!cmp.func_150297_b("upgrades", 9)) {

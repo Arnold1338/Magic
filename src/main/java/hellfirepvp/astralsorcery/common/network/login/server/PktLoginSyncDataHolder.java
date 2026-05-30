@@ -35,7 +35,7 @@ public class PktLoginSyncDataHolder extends ASLoginPacket<PktLoginSyncDataHolder
                 final CompoundTag nbt = new CompoundTag();
                 data.writeAllDataToPacket(nbt);
                 pkt.syncData.put(key, nbt);
-                return;
+
             });
         }
         return pkt;

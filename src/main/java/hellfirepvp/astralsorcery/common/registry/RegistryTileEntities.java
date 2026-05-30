@@ -112,8 +112,8 @@ public class RegistryTileEntities
                 throw new IllegalArgumentException("Unexpected Constructor for class: " + tileClass.getName());
             }
         }, validBlocks);
-        final BlockEntityType<T> type = (BlockEntityType<T>)typeBuilder.func_206865_a((Type)null);
-        type;
+        final BlockEntityType<T> type = (BlockEntityType<T>)typeBuilder.build(null)null);
+
         AstralSorcery.getProxy().getRegistryPrimer().register(type);
         return type;
     }

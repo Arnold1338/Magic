@@ -104,7 +104,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
     
     private void renderDragging(final PoseStack renderStack, final int mouseX, final int mouseY) {
         if (this.dragging == null) {
-            return;
+
         }
         final int whDrawn = 30;
         final Point offset = new Point(mouseX, mouseY);
@@ -136,7 +136,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
     
     private void renderInputItem(final PoseStack renderStack) {
         if (this.getTile().getInputStack().func_190926_b() || this.getTile().hasParchment()) {
-            return;
+
         }
         this.func_230926_e_(100);
         final ItemStack input = this.getTile().getInputStack();
@@ -152,7 +152,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
     
     private void renderRunningHalo(final PoseStack renderStack) {
         if (this.getTile().getRunProgress() <= 0.0f) {
-            return;
+
         }
         SpritesAS.SPR_HALO_INFUSION.bindTexture();
         final Tuple<Float, Float> uvFrame = SpritesAS.SPR_HALO_INFUSION.getUVOffset(ClientScheduler.getClientTick());
@@ -173,17 +173,17 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
     private void renderDrawnConstellations(final PoseStack renderStack, final int mouseX, final int mouseY, final List<FormattedCharSequence> tooltip) {
         final ItemStack glass = this.getTile().getGlassStack();
         if (glass.func_190926_b()) {
-            return;
+
         }
         final World world = this.getTile().func_145831_w();
         final float nightPerc = DayTimeHelper.getCurrentDaytimeDistribution(world);
         final WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
         if (ctx == null || !this.getTile().doesSeeSky() || nightPerc <= 0.05f) {
-            return;
+
         }
         final EngravedStarMap map = ItemInfusedGlass.getEngraving(glass);
         if (map == null) {
-            return;
+
         }
         for (final DrawnConstellation cst : map.getDrawnConstellations()) {
             final int whDrawn = 30;
@@ -201,13 +201,13 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
     private void renderConstellationOptions(final PoseStack renderStack, final int mouseX, final int mouseY, final List<FormattedCharSequence> tooltip) {
         final ItemStack glass = this.getTile().getGlassStack();
         if (glass.func_190926_b()) {
-            return;
+
         }
         final World world = this.getTile().func_145831_w();
         final float nightPerc = DayTimeHelper.getCurrentDaytimeDistribution(world);
         final WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
         if (ctx == null || !this.getTile().doesSeeSky() || nightPerc <= 0.05f) {
-            return;
+
         }
         final List<IConstellation> cstList = ctx.getActiveCelestialsHandler().getActiveConstellations().stream().filter(c -> ResearchHelper.getClientProgress().hasConstellationDiscovered(c)).collect((Collector<? super IConstellation, ?, List<IConstellation>>)Collectors.toList());
         final Random rand = new Random(WorldSeedCache.getSeedIfPresent((ResourceKey<World>)world.func_234923_W_()).orElse(5863439008313086302L));
@@ -289,7 +289,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
             buf.vertex(offset, offsetX, offsetY + height, 0.0f).color(r, g, b, (float)alpha.get()).endVertex();
             buf.vertex(offset, offsetX, offsetY + height, 0.0f).color(r, g, b, (float)alpha.get()).endVertex();
             buf.vertex(offset, offsetX, offsetY, 0.0f).color(r, g, b, (float)alpha.get()).endVertex();
-            return;
+
         });
         RenderSystem.enableDepthTest();
         RenderSystem.enableTexture();

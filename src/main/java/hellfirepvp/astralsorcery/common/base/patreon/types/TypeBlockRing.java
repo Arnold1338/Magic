@@ -83,7 +83,7 @@ public class TypeBlockRing extends PatreonEffect
     public void onRenderPost(final RenderPlayerEvent.Post ev) {
         final Player player = ev.getPlayer();
         if (!player.getUUID().equals(this.playerUUID)) {
-            return;
+
         }
         this.renderRingAt(ev.getMatrixStack(), player, 88, ev.getPartialRenderTick());
     }
@@ -106,7 +106,7 @@ public class TypeBlockRing extends PatreonEffect
                 final BlockState state = this.pattern.get(offset);
                 final TextureAtlasSprite tas = RenderingUtils.getParticleTexture(state, offset);
                 if (tas == null) {
-                    continue;
+
                 }
                 final float angle = offset.getZ() * this.rotationAngle + rotation + addedRotationAngle;
                 final Vector3 dir = new Vector3(offset.getX() - this.distance, (float)offset.getY(), 0.0f);

@@ -63,7 +63,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
             if (type.hasTypeApplied(player, LogicalSide.CLIENT)) {
                 final PerkStatistic strPerkStat = interpreter.getValue(type);
                 if (strPerkStat == null) {
-                    continue;
+
                 }
                 this.statistics.add(strPerkStat);
             }
@@ -156,7 +156,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay
         final PerkAttributeType type = stat.getType();
         final PerkAttributeReader reader = type.getReader();
         if (reader == null) {
-            return;
+
         }
         final Player player = (Player)Minecraft.getInstance().player;
         final PerkAttributeMap attrMap = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.CLIENT);

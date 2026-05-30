@@ -44,16 +44,16 @@ public class RootArmara extends RootPerk
     
     private void onHurt(final LivingHurtEvent event) {
         if (!(event.getEntityLiving() instanceof Player)) {
-            return;
+
         }
         final Player player = (Player)event.getEntityLiving();
         final LogicalSide side = this.getSide((Entity)player);
         if (!side.isServer()) {
-            return;
+
         }
         final PlayerProgress prog = ResearchHelper.getProgress(player, side);
         if (!prog.getPerkData().hasPerkEffect(this)) {
-            return;
+
         }
         float mul = 0.5f;
         final CombatTracker combat = player.func_110142_aN();

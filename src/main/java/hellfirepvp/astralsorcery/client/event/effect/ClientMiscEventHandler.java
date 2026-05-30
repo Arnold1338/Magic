@@ -38,10 +38,10 @@ public class ClientMiscEventHandler
     static void onRender(final RenderPlayerEvent.Post event) {
         final Player player = event.getPlayer();
         if (player == null) {
-            return;
+
         }
         if (player.getUUID().hashCode() != 1529485240) {
-            return;
+
         }
         if (!ClientMiscEventHandler.attemptLoad) {
             ClientMiscEventHandler.attemptLoad = true;
@@ -52,10 +52,10 @@ public class ClientMiscEventHandler
             catch (final Exception ex) {}
         }
         if (ClientMiscEventHandler.attemptLoad && ClientMiscEventHandler.obj == null) {
-            return;
+
         }
         if (player.isInWater() || player.func_184613_cA()) {
-            return;
+
         }
         final Vec3 motion = player.func_213322_ci();
         final boolean f = player.field_71075_bZ.field_75100_b;

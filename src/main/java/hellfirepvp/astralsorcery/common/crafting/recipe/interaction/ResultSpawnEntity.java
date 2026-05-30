@@ -39,7 +39,7 @@ public class ResultSpawnEntity extends InteractionResult
     public void doResult(final Level world, final Vector3 at) {
         final Entity e = this.entityType.func_200721_a(world);
         if (!(e instanceof LivingEntity)) {
-            return;
+
         }
         e.func_70012_b(at.getX(), at.getY(), at.getZ(), world.field_73012_v.nextFloat() * 360.0f, 0.0f);
         world.addFreshEntity(e);

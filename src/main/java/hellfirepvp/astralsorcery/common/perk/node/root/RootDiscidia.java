@@ -52,15 +52,15 @@ public class RootDiscidia extends RootPerk
             player = (Player)ds.getDirectEntity();
         }
         if (player == null) {
-            return;
+
         }
         final LogicalSide side = this.getSide((Entity)player);
         if (!side.isServer()) {
-            return;
+
         }
         final PlayerProgress prog = ResearchHelper.getProgress(player, side);
         if (!prog.getPerkData().hasPerkEffect(this)) {
-            return;
+
         }
         float mul = 4.0f;
         final CombatTracker combat = event.getEntityLiving().func_110142_aN();

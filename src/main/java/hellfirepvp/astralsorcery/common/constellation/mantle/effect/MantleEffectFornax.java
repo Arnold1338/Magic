@@ -33,13 +33,13 @@ public class MantleEffectFornax extends MantleEffect
     private void onHurt(final LivingHurtEvent event) {
         final Level world = event.getEntityLiving().level();
         if (world.level()) {
-            return;
+
         }
         final LivingEntity attacked = event.getEntityLiving();
         final Entity attacker = event.getSource().getDirectEntity();
         if (attacker instanceof LivingEntity) {
             if (attacked instanceof ServerPlayer && MiscUtils.isPlayerFakeMP((ServerPlayer)attacked)) {
-                return;
+
             }
             if (attacker.func_70027_ad() && ItemMantle.getEffect((LivingEntity)attacker, ConstellationsAS.fornax) != null) {
                 event.setAmount((float)(event.getAmount() * (double)MantleEffectFornax.CONFIG.damageIncreaseInFire.get()));

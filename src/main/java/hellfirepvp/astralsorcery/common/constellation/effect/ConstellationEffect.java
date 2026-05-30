@@ -125,14 +125,14 @@ public abstract class ConstellationEffect
         final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.CONSTELLATION_EFFECT_PING).addData(buf -> {
             ByteBufUtils.writeVector(buf, at);
             ByteBufUtils.writeRegistryEntry(buf, (net.minecraftforge.registries.Object<Object>)cst);
-            return;
+
         });
         PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vec3i)at.toBlockPos(), 32.0));
     }
     
     protected void markPlayerAffected(final Player player) {
         if (player.level()) {
-            return;
+
         }
         PlayerAffectionFlags.markPlayerAffected(player, this.getPlayerAffectionFlag());
     }

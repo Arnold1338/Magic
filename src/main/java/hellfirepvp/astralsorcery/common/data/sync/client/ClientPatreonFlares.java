@@ -70,11 +70,11 @@ public class ClientPatreonFlares extends ClientData<ClientPatreonFlares>
                     final UUID effectUUID = entityNBT.getUUID("id");
                     final PatreonEffect effect = PatreonEffectHelper.getPatreonEffects(LogicalSide.CLIENT, playerUUID).stream().filter(eff -> eff.getEffectUUID().equals(effectUUID)).findFirst().orElse(null);
                     if (effect == null) {
-                        continue;
+
                     }
                     final PatreonPartialEntity entity = effect.createEntity(playerUUID);
                     if (entity == null) {
-                        continue;
+
                     }
                     entity.readFromNBT(entityNBT.func_74775_l("data"));
                     entitySet.add(entity);
@@ -96,13 +96,13 @@ public class ClientPatreonFlares extends ClientData<ClientPatreonFlares>
                     final UUID effectUUID = entityNBT.getUUID("id");
                     final PatreonEffect effect = PatreonEffectHelper.getPatreonEffects(LogicalSide.CLIENT, playerUUID).stream().filter(eff -> eff.getEffectUUID().equals(effectUUID)).findFirst().orElse(null);
                     if (effect == null) {
-                        continue;
+
                     }
                     PatreonPartialEntity entity = entitySet.stream().filter(e -> e.getEffectUUID().equals(effectUUID)).findFirst().orElse(null);
                     if (entity == null) {
                         entity = effect.createEntity(playerUUID);
                         if (entity == null) {
-                            continue;
+
                         }
                         entitySet.add(entity);
                     }

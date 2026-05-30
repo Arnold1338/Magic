@@ -114,7 +114,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
                             ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5));
                             ByteBufUtils.writeVector(buf, new Vector3((Vec3i)this.getBlockState()).add(0.5, 0.5, 0.5));
                             buf.writeInt(this.getColor(LogicalSide.SERVER).getRGB());
-                            return;
+
                         });
                         PacketChannel.CHANNEL.sendToAllAround(effect, PacketChannel.pointFromPos(this.getLevel(), (Vec3i)this.getBlockState(), 32.0));
                     }
@@ -140,7 +140,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
         final List<ItemStack> drops = BlockUtils.getDrops((ServerLevel)world, harvest.getBlockState(), harvest.getFakedState(), 2, TileTreeBeacon.rand, ItemStack.EMPTY);
         drops.forEach(drop -> {
             if (drop.isEmpty()) {
-                return;
+
             }
             else {
                 final Vector3 offset = new Vector3(0.5, 0.5, 0.5);
@@ -148,7 +148,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
                 offset.setY(Math.abs(offset.getY()));
                 final Vector3 at = new Vector3((Vec3i)this.getBlockState()).add(offset);
                 ItemUtils.dropItemNaturally(world, at.getX(), at.getY(), at.getZ(), drop);
-                return;
+
             }
         });
         return false;
@@ -302,7 +302,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
             if (component != null) {
                 component.revert();
             }
-            return;
+
         });
         this.treeComponents.clear();
     }
@@ -329,7 +329,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
             NBTHelper.writeBlockPosToNBT(pos, tag);
             tag.putInt("weight", (int)weight);
             componentList.add((Object)tag);
-            return;
+
         });
         compound.put("components", (Tag)componentList);
         compound.func_74776_a("starlight", this.starlight);
@@ -383,22 +383,22 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
         
         public static void onGrow(final SaplingGrowTreeEvent event) {
             if (event.getWorld().level() || !(event.getWorld() instanceof ServerLevel)) {
-                return;
+
             }
             final ServerLevel world = (ServerLevel)event.getWorld();
             final BlockPos treePos = event.getPos();
             final TreeType type = TreeType.isTree((Level)world, treePos);
             if (type == null) {
-                return;
+
             }
             final double rangeSq = (double)Config.CONFIG.range.get() * (double)Config.CONFIG.range.get();
             final BlockPos closestBeacon = TreeWatcher.WATCHERS.getOrDefault(world.dimension(), Collections.emptySet()).stream().filter(pos -> pos.func_177951_i((Vec3i)treePos) < rangeSq).min(Comparator.comparing(pos -> pos.func_177951_i((Vec3i)treePos))).orElse(null);
             if (closestBeacon == null) {
-                return;
+
             }
             final TileTreeBeacon ttb = MiscUtils.getTileAt((IBlockReader)world, closestBeacon, TileTreeBeacon.class, false);
             if (ttb == null) {
-                return;
+
             }
             event.setResult(Event.Result.DENY);
             final Supplier<List<BlockPos>> generator = type.getTreeGenerator(world, treePos, event.getRand());

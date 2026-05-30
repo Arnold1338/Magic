@@ -49,7 +49,7 @@ public class GatewayUI
     
     private void initializePlayerConstellations() {
         if (!this.getThisGatewayNode().isLocked() || this.getThisGatewayNode().getAllowedUsers().isEmpty()) {
-            return;
+
         }
         for (final PlayerReference playerRef : this.getThisGatewayNode().getAllowedUsers().values()) {
             final UUID playerUUID = playerRef.getPlayerUUID();
@@ -72,13 +72,13 @@ public class GatewayUI
         final Player thisPlayer = (Player)Minecraft.getInstance().player;
         for (final GatewayCache.GatewayNode node : CelestialGatewayHandler.INSTANCE.getGatewaysForWorld(world, LogicalSide.CLIENT)) {
             if (!node.hasAccess(thisPlayer)) {
-                continue;
+
             }
             appendEntry(ui, node, dimType, true, sphereRadius);
         }
         CelestialGatewayHandler.INSTANCE.getGatewayCache(LogicalSide.CLIENT).forEach((dimTypeKey, gatewayNodes) -> {
             if (dimTypeKey.equals(dimType)) {
-                return;
+
             }
             else {
                 gatewayNodes.iterator();
@@ -86,13 +86,13 @@ public class GatewayUI
                 while (iterator2.hasNext()) {
                     final GatewayCache.GatewayNode node2 = iterator2.next();
                     if (!node2.hasAccess(thisPlayer)) {
-                        continue;
+
                     }
                     else {
                         appendEntry(ui, node2, (ResourceKey<Level>)dimTypeKey, false, sphereRadius);
                     }
                 }
-                return;
+
             }
         });
         return ui;
@@ -103,7 +103,7 @@ public class GatewayUI
         final Vector3 nodePos = new Vector3((Vec3i)node.getPos());
         if (sameWorld) {
             if (renderPos.distance(nodePos) < 16.0) {
-                return;
+
             }
             final Vector3 dir = nodePos.subtract(renderPos);
             dir.setY(Math.max(dir.getY(), 0.0));
@@ -149,7 +149,7 @@ public class GatewayUI
                     otherEntry = iterator.next();
                     if (Math.abs(otherEntry.pitch - entry2.pitch) < 15.0f && (Math.abs(otherEntry.yaw - entry2.yaw) <= 15.0f || Math.abs(otherEntry.yaw - entry2.yaw - 360.0f) <= 15.0f)) {
                         mayAdd = false;
-                        break;
+
                     }
                 }
                 if (mayAdd) {

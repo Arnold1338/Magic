@@ -54,17 +54,17 @@ public class IngredientHelper
         for (final ResourceLocation key : first.getItem().getTags()) {
             final ITag<Item> wrapper = (ITag<Item>)TagCollectionManager.func_242178_a().func_241836_b().func_199910_a(key);
             if (wrapper == null) {
-                continue;
+
             }
             boolean containsAllItems = true;
             for (final Item itemInTag : wrapper.func_230236_b_()) {
                 if (!ingredient.test(new ItemStack((ItemLike)itemInTag))) {
                     containsAllItems = false;
-                    break;
+
                 }
             }
             if (!containsAllItems) {
-                continue;
+
             }
             applicableTags.add(wrapper);
         }

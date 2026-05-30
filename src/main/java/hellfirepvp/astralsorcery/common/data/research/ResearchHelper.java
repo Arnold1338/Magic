@@ -204,7 +204,7 @@ public class ResearchHelper
     
     private static void savePlayerKnowledge(final UUID pUUID, final boolean force) {
         if (ResearchHelper.playerProgressServer.get(pUUID) == null) {
-            return;
+
         }
         final PlayerProgress progress = ResearchHelper.playerProgressServer.get(pUUID);
         if (force) {

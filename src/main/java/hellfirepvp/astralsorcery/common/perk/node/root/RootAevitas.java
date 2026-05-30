@@ -42,16 +42,16 @@ public class RootAevitas extends RootPerk
     
     private void onPlace(final BlockEvent.EntityPlaceEvent event) {
         if (!(event.getEntity() instanceof Player)) {
-            return;
+
         }
         final Player player = (Player)event.getEntity();
         final LogicalSide side = this.getSide((Entity)player);
         if (!side.isServer()) {
-            return;
+
         }
         final PlayerProgress prog = ResearchHelper.getProgress(player, side);
         if (!prog.getPerkData().hasPerkEffect(this)) {
-            return;
+
         }
         float hardness;
         try {

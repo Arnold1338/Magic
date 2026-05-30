@@ -64,7 +64,7 @@ public class SkyHandler implements ITickHandler
             if (ctx == null) {
                 final Optional<Long> seedOpt = WorldSeedCache.getSeedIfPresent(dimKey);
                 if (!seedOpt.isPresent()) {
-                    return;
+
                 }
                 ctx = this.createContext(seedOpt.get());
                 this.worldHandlersClient.put(dimKey, ctx);

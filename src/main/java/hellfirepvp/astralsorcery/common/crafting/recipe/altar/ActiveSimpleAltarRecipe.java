@@ -143,7 +143,7 @@ public class ActiveSimpleAltarRecipe
                     final ItemStack stack2 = tarInventory.getStackInSlot(0);
                     final FluidActionResult far2 = FluidUtil.tryEmptyContainer(stack2, (IFluidHandler)VoidFluidHandler.INSTANCE, 1000, (Player)null, true);
                     if (!far2.isSuccess()) {
-                        continue;
+
                     }
                     tarInventory.setStackInSlot(0, far2.getResult());
                 }
@@ -168,7 +168,7 @@ public class ActiveSimpleAltarRecipe
                 return false;
             }
             if (!testNecessaryRelayInputs) {
-                continue;
+
             }
             final WrappedIngredient ingredient = listIngredients.get(stack.getStackIndex());
             if (!ingredient.getIngredient().test(relay.getInventory().getStackInSlot(0))) {
@@ -208,13 +208,13 @@ public class ActiveSimpleAltarRecipe
                     relays.removeIf(pos -> MiscUtils.contains(this.focusStacks, fs -> fs.getRealPosition().equals((Object)pos)));
                     if (relays.isEmpty()) {
                         waitMissingInputs = true;
-                        continue;
+
                     }
                     final BlockPos at = MiscUtils.getRandomEntry(relays, ActiveSimpleAltarRecipe.rand);
                     final TileSpectralRelay tar = MiscUtils.getTileAt((IBlockReader)altar.getLevel(), at, TileSpectralRelay.class, true);
                     if (tar == null) {
                         waitMissingInputs = true;
-                        continue;
+
                     }
                     found = new CraftingFocusStack(index, input, at);
                     this.focusStacks.add(found);
@@ -303,6 +303,6 @@ public class ActiveSimpleAltarRecipe
     public enum CraftingState
     {
         ACTIVE, 
-        WAITING;
+
     }
 }

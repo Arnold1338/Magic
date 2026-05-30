@@ -38,7 +38,7 @@ public class ItemColoredLensDamage extends ItemColoredLens
         @Override
         public void entityInBeam(final Level world, final Vector3 origin, final Vector3 target, final Entity entity, final PartialEffectExecutor executor) {
             if (world.level() || !(entity instanceof LivingEntity)) {
-                return;
+
             }
             executor.executeAll(() -> {
                 if (!(entity instanceof Player) || ((boolean)GeneralConfig.CONFIG.doColoredLensesAffectPlayers.get() && entity.func_184102_h() != null && entity.func_184102_h().func_71219_W())) {

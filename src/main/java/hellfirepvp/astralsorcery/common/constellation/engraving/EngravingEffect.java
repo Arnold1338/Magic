@@ -43,7 +43,7 @@ public class EngravingEffect
     
     public EngravingEffect(final IConstellation cst) {
         this.effects = new ArrayList<ApplicableEffect>();
-        this);
+
     }
     
     public EngravingEffect addEffect(final ApplicableEffect potion) {
@@ -165,7 +165,7 @@ public class EngravingEffect
                     return false;
                 }
                 if (this.ignoreCompat) {
-                    continue;
+
                 }
                 if (toApply.func_191560_c(applied) && !(stack.getItem() instanceof EnchantedBookItem)) {
                     return false;
@@ -187,7 +187,7 @@ public class EngravingEffect
                 for (final Enchantment e : enchantments.keySet()) {
                     if (e.equals(newEnch) || !e.func_191560_c(newEnch)) {
                         hasIncompat = true;
-                        break;
+
                     }
                 }
                 if (hasIncompat) {

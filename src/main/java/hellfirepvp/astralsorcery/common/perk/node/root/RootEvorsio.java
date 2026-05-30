@@ -47,11 +47,11 @@ public class RootEvorsio extends RootPerk
         final Player player = event.getPlayer();
         final LogicalSide side = this.getSide((Entity)player);
         if (!side.isServer()) {
-            return;
+
         }
         final PlayerProgress prog = ResearchHelper.getProgress(player, side);
         if (!prog.getPerkData().hasPerkEffect(this)) {
-            return;
+
         }
         final BlockState broken = event.getState();
         final IWorld world = event.getWorld();
@@ -63,7 +63,7 @@ public class RootEvorsio extends RootPerk
             gainedExp = 0.5f;
         }
         if (gainedExp < 0.0f) {
-            return;
+
         }
         gainedExp *= (float)this.getExpMultiplier();
         gainedExp *= this.getDiminishingReturns(player);

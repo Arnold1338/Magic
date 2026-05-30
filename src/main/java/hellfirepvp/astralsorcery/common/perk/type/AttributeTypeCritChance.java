@@ -45,7 +45,7 @@ public class AttributeTypeCritChance extends PerkAttributeType
                 final Player player = (Player)shooter;
                 final LogicalSide side = this.getSide((Entity)player);
                 if (!this.hasTypeApplied(player, side)) {
-                    return;
+
                 }
                 float critChance = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, ResearchHelper.getProgress(player, side), this, 0.0f);
                 critChance = AttributeEvent.postProcessModded(player, this, critChance);
@@ -59,12 +59,12 @@ public class AttributeTypeCritChance extends PerkAttributeType
     
     private void onHitCrit(final CriticalHitEvent event) {
         if (event.isVanillaCritical() || event.getResult() == Event.Result.ALLOW) {
-            return;
+
         }
         final Player player = event.getPlayer();
         final LogicalSide side = this.getSide((Entity)player);
         if (!this.hasTypeApplied(player, side)) {
-            return;
+
         }
         float critChance = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, ResearchHelper.getProgress(player, side), this, 0.0f);
         critChance = AttributeEvent.postProcessModded(player, this, critChance);

@@ -37,16 +37,16 @@ public class ItemInfusedCrystalShovel extends ItemCrystalShovel
                                     final PktPlayEffect ev = new PktPlayEffect(PktPlayEffect.Type.BLOCK_EFFECT).addData(buf -> {
                                         ByteBufUtils.writePos(buf, at);
                                         ByteBufUtils.writeBlockState(buf, currentState);
-                                        return;
+
                                     });
                                     PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vec3i)at, 32.0));
                                 }
-                                return;
+
                             });
                             serverPlayer.isSleeping().func_185145_a(itemstack.getItem(), 120);
                         }
                     }
-                    return;
+
                 });
             }
         }

@@ -47,12 +47,12 @@ public class AttributeTypeMiningSize extends PerkAttributeType
         final IWorld world = event.getWorld();
         final Player player = event.getPlayer();
         if (!(world instanceof Level) || world.level()) {
-            return;
+
         }
         if (player instanceof ServerPlayer) {
             final PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
             if (!prog.doPerkAbilities() || MiscUtils.isPlayerFakeMP((ServerPlayer)player)) {
-                return;
+
             }
             EventFlags.MINING_SIZE_BREAK.executeWithFlag(() -> {
                 final float size = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.SERVER).modifyValue(player, prog, PerkAttributeTypesAS.ATTR_TYPE_MINING_SIZE, 0.0f);
@@ -78,7 +78,7 @@ public class AttributeTypeMiningSize extends PerkAttributeType
     
     private void breakBlocksPlaneVertical(final ServerPlayer player, final Direction sideBroken, final Level world, final BlockPos at, final BlockPredicate miningTest, final int size) {
         if (size <= 0) {
-            return;
+
         }
         for (int xx = -size; xx <= size; ++xx) {
             if (sideBroken.func_176730_m().getX() == 0 || xx == 0) {
@@ -106,7 +106,7 @@ public class AttributeTypeMiningSize extends PerkAttributeType
     
     private void breakBlocksPlaneHorizontal(final ServerPlayer player, final Direction sideBroken, final Level world, final BlockPos at, final BlockPredicate miningTest, final int size) {
         if (size <= 0) {
-            return;
+
         }
         for (int xx = -size; xx <= size; ++xx) {
             if (sideBroken.func_176730_m().getX() == 0 || xx == 0) {

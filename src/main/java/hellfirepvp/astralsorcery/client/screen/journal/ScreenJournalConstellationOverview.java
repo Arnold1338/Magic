@@ -79,7 +79,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
             buf.vertex(offset, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).color(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(1.0f, 1.0f).endVertex();
             buf.vertex(offset, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).color(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(1.0f, 0.0f).endVertex();
             buf.vertex(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).color(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(0.0f, 0.0f).endVertex();
-            return;
+
         });
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -90,7 +90,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
             buf.vertex(offset2, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + this.guiHeight - 10), (float)this.getGuiZLevel()).color(0.8f, 0.8f, 1.0f, 0.7f).func_225583_a_(0.9f, 0.9f).endVertex();
             buf.vertex(offset2, (float)(this.guiLeft + this.guiWidth - 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).color(0.8f, 0.8f, 1.0f, 0.7f).func_225583_a_(0.9f, 0.1f).endVertex();
             buf.vertex(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).color(0.8f, 0.8f, 1.0f, 0.7f).func_225583_a_(0.1f, 0.1f).endVertex();
-            return;
+
         });
         RenderSystem.disableBlend();
     }

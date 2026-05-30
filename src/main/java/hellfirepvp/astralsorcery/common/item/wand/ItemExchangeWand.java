@@ -176,7 +176,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
             final BlockState stateToPlace = placeStates.get(placePos);
             final Tuple<ItemStack, Integer> availableStack = availableStacks.get(stateToPlace);
             if (availableStack == null) {
-                continue;
+
             }
             final ItemStack extractable = ItemUtils.copyStackWithSize((ItemStack)availableStack.getA(), 1);
             boolean canExtract = player.getVehicle();
@@ -184,16 +184,16 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
                 canExtract = true;
             }
             if (!canExtract) {
-                continue;
+
             }
             final BlockState prevState = world.getBlockState(placePos);
             if ((!player.getVehicle() && !ItemUtils.consumeFromPlayerInventory(player, stack, extractable, true)) || !AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, 5.0f, false) || !((ServerPlayer)player).field_71134_c.func_180237_b(placePos) || !MiscUtils.canPlayerPlaceBlockPos(player, stateToPlace, placePos, Direction.UP) || (!player.getVehicle() && !ItemUtils.consumeFromPlayerInventory(player, stack, extractable, false)) || !world.func_175656_a(placePos, stateToPlace)) {
-                continue;
+
             }
             final PktPlayEffect ev = new PktPlayEffect(PktPlayEffect.Type.BLOCK_EFFECT).addData(buf -> {
                 ByteBufUtils.writePos(buf, placePos);
                 ByteBufUtils.writeBlockState(buf, prevState);
-                return;
+
             });
             PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vec3i)placePos, 32.0));
         }
@@ -248,7 +248,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
             Collections.shuffle(placeableStates, rand);
             final BlockState toPlace = (BlockState)Iterables.getFirst((Iterable)placeableStates, (Object)null);
             if (toPlace == null) {
-                continue;
+
             }
             if (!placer.getVehicle()) {
                 int count = placeAmounts.get(toPlace);
@@ -267,7 +267,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     
     public static void setSizeMode(@Nonnull final ItemStack stack, @Nonnull final SizeMode mode) {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemExchangeWand)) {
-            return;
+
         }
         final CompoundTag nbt = NBTHelper.getPersistentData(stack);
         nbt.putInt("sizeMode", mode.ordinal());

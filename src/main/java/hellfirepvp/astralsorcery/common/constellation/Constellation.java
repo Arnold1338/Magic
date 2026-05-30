@@ -45,7 +45,7 @@ public abstract class Constellation extends BaseConstellation implements IConste
             this.name = mod.getModId() + ".constellation." + name;
         }
         else {
-            this);
+
             this.name = "unknown.constellation." + name;
         }
         this.color = color;

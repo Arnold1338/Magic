@@ -126,7 +126,7 @@ public class SyncDataHolder implements ITickHandler
     
     public void tick(final TickEvent.Type type, final Object... context) {
         if (SyncDataHolder.dirtyData.isEmpty()) {
-            return;
+
         }
         final Map<ResourceLocation, CompoundTag> pktData = new HashMap<ResourceLocation, CompoundTag>();
         synchronized (SyncDataHolder.lck) {

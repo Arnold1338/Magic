@@ -170,7 +170,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
             final BlockState stateToPlace = placeStates.get(placePos);
             final Tuple<ItemStack, Integer> availableStack = availableStacks.get(stateToPlace);
             if (availableStack == null) {
-                continue;
+
             }
             final ItemStack extractable = ItemUtils.copyStackWithSize((ItemStack)availableStack.getA(), 1);
             boolean canExtract = player.getVehicle();
@@ -178,15 +178,15 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
                 canExtract = true;
             }
             if (!canExtract) {
-                continue;
+
             }
             if (!AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, 8.0f, true) || (!player.getVehicle() && !ItemUtils.consumeFromPlayerInventory(player, held, extractable, true)) || !MiscUtils.canPlayerPlaceBlockPos(player, stateToPlace, placePos, Direction.UP) || (!player.getVehicle() && !ItemUtils.consumeFromPlayerInventory(player, held, extractable, false)) || !AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, 8.0f, false) || !world.func_175656_a(placePos, stateToPlace)) {
-                continue;
+
             }
             final PktPlayEffect ev = new PktPlayEffect(PktPlayEffect.Type.BLOCK_EFFECT).addData(buf -> {
                 ByteBufUtils.writePos(buf, placePos);
                 ByteBufUtils.writeBlockState(buf, stateToPlace);
-                return;
+
             });
             PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vec3i)placePos, 32.0));
         }
@@ -242,7 +242,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
             Collections.shuffle(placeableStates, rand);
             final BlockState toPlace = (BlockState)Iterables.getFirst((Iterable)placeableStates, (Object)null);
             if (toPlace == null) {
-                continue;
+
             }
             MiscUtils.executeWithChunk((IWorldReader)world, pos, () -> {
                 if (BlockUtils.isReplaceable(world, pos)) {
@@ -258,7 +258,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
                     }
                     placeables.put(pos, toPlace);
                 }
-                return;
+
             });
         }
         return placeables;
@@ -266,7 +266,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
     
     public static void setPlaceMode(@Nonnull final ItemStack stack, @Nonnull final PlaceMode mode) {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemArchitectWand)) {
-            return;
+
         }
         final CompoundTag nbt = NBTHelper.getPersistentData(stack);
         nbt.putInt("placeMode", mode.ordinal());
@@ -293,17 +293,17 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
                     case X: {
                         cmpFrom = center.getX();
                         cmpTo = player.getX();
-                        break;
+
                     }
                     case Y: {
                         cmpFrom = center.getY();
                         cmpTo = player.getY();
-                        break;
+
                     }
                     case Z: {
                         cmpFrom = center.getZ();
                         cmpTo = player.getZ();
-                        break;
+
                     }
                     default: {
                         return Lists.newLinkedList();
@@ -312,7 +312,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
                 for (int length = (int)Math.min(20.0, Math.abs(cmpFrom + 0.5 - cmpTo)), i = 0; i < length; ++i) {
                     final BlockPos at = center.func_177967_a(placedAgainst, i);
                     if (MiscUtils.executeWithChunk((IWorldReader)world, at, () -> !BlockUtils.isReplaceable(world, at), true)) {
-                        break;
+
                     }
                     blocks.add(at);
                 }

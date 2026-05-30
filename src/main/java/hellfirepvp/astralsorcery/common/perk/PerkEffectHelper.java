@@ -53,12 +53,12 @@ public class PerkEffectHelper
     public static void clientChangePerkData(final AbstractPerk perk, final CompoundTag oldData, final CompoundTag newData) {
         final Player player = (Player)Minecraft.getInstance().player;
         if (player == null) {
-            return;
+
         }
         final PlayerProgress progress = ResearchHelper.getProgress(player, LogicalSide.CLIENT);
         final PlayerPerkData perkData = progress.getPerkData();
         if (!perkData.hasPerkAllocation(perk)) {
-            return;
+
         }
         perkData.updatePerkData(perk, oldData);
         modifySource(player, LogicalSide.CLIENT, perk, Action.REMOVE);
@@ -70,11 +70,11 @@ public class PerkEffectHelper
     public static void clientClearAllPerks() {
         final Player player = (Player)Minecraft.getInstance().player;
         if (player == null) {
-            return;
+
         }
         final PlayerProgress progress = ResearchHelper.getProgress(player, LogicalSide.CLIENT);
         if (!progress.isValid()) {
-            return;
+
         }
         final PerkAttributeMap attr = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.CLIENT);
         for (final ModifierSource source : ModifierManager.getAppliedModifiers(player, LogicalSide.CLIENT)) {
@@ -88,7 +88,7 @@ public class PerkEffectHelper
     public static void clientRefreshAllPerks() {
         final Player player = (Player)Minecraft.getInstance().player;
         if (player == null) {
-            return;
+
         }
         modifyAllPerks(player, LogicalSide.CLIENT, Action.ADD);
         PerkCooldownHelper.removeAllCooldowns(player, LogicalSide.CLIENT);
@@ -101,7 +101,7 @@ public class PerkEffectHelper
     public static void updateSource(final Player player, final LogicalSide side, final ModifierSource oldSource, final ModifierSource newSource) {
         final PlayerProgress progress = ResearchHelper.getProgress(player, side);
         if (!progress.isValid()) {
-            return;
+
         }
         final PerkAttributeMap attributeMap = PerkAttributeHelper.getOrCreateMap(player, side);
         attributeMap.write(() -> {
@@ -117,19 +117,19 @@ public class PerkEffectHelper
     public static <T extends ModifierSource> void modifySources(final Player player, final LogicalSide side, final Collection<T> sources, final Action action) {
         final PlayerProgress progress = ResearchHelper.getProgress(player, side);
         if (!progress.isValid()) {
-            return;
+
         }
         final PerkAttributeMap attributeMap = PerkAttributeHelper.getOrCreateMap(player, side);
         for (final T src : sources) {
             if (action.isRemove()) {
                 if (!ModifierManager.isModifierApplied(player, side, src)) {
-                    continue;
+
                 }
                 attributeMap.write(() -> removeSource(attributeMap, player, side, src));
             }
             else {
                 if (ModifierManager.isModifierApplied(player, side, src) || !src.canApplySource(player, side)) {
-                    continue;
+
                 }
                 attributeMap.write(() -> applySource(attributeMap, player, side, src));
             }
@@ -139,7 +139,7 @@ public class PerkEffectHelper
     public static void modifySource(final Player player, final LogicalSide side, final ModifierSource source, final Action action) {
         final PlayerProgress progress = ResearchHelper.getProgress(player, side);
         if (!progress.isValid()) {
-            return;
+
         }
         final PerkAttributeMap attributeMap = PerkAttributeHelper.getOrCreateMap(player, side);
         if (action.isRemove()) {
@@ -157,7 +157,7 @@ public class PerkEffectHelper
         sources.forEach(source -> {
             removeModifiers(source, attrMap, player, side);
             ModifierManager.removeModifier(player, side, source);
-            return;
+
         });
         if (add instanceof AttributeConverterProvider) {
             ((AttributeConverterProvider)add).getConverters(player, side, false).forEach(c -> attrMap.applyConverter(player, c));
@@ -166,7 +166,7 @@ public class PerkEffectHelper
         sources.forEach(source -> {
             applyModifiers(source, attrMap, player, side);
             ModifierManager.addModifier(player, side, source);
-            return;
+
         });
         ModifierManager.addModifier(player, side, add);
         newModifiers.forEach(mod -> mod.getAttributeType().onApply(player, side, add));
@@ -188,7 +188,7 @@ public class PerkEffectHelper
         sources.forEach(source -> {
             removeModifiers(source, attrMap, player, side);
             ModifierManager.removeModifier(player, side, source);
-            return;
+
         });
         final Collection<PerkAttributeModifier> removedModifiers = removeModifiers(remove, attrMap, player, side);
         if (remove instanceof AttributeConverterProvider) {
@@ -197,7 +197,7 @@ public class PerkEffectHelper
         sources.forEach(source -> {
             applyModifiers(source, attrMap, player, side);
             ModifierManager.addModifier(player, side, source);
-            return;
+
         });
         final PerkAttributeMap map = PerkAttributeHelper.getOrCreateMap(player, side);
         removedModifiers.forEach(mod -> mod.getAttributeType().onRemove(player, side, !map.hasModifiers(mod.getAttributeType()), remove));
@@ -216,8 +216,7 @@ public class PerkEffectHelper
     public enum Action
     {
         ADD, 
-        REMOVE;
-        
+
         private boolean isRemove() {
             return this == Action.REMOVE;
         }

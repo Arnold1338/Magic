@@ -83,7 +83,7 @@ public class EntityNocturnalSpark extends ThrowableEntity
     public void func_70071_h_() {
         super.tick();
         if (!this.isAlive()) {
-            return;
+
         }
         if (!this.level()) {
             this.removeLights();
@@ -119,13 +119,13 @@ public class EntityNocturnalSpark extends ThrowableEntity
         final List<EntityNocturnalSpark> sparks = this.level().func_217357_a((Class)EntityNocturnalSpark.class, EntityNocturnalSpark.NO_DUPE_BOX.func_186670_a(this.func_233580_cy_()));
         for (final EntityNocturnalSpark spark : sparks) {
             if (this.equals((Object)spark)) {
-                continue;
+
             }
             if (!spark.isAlive()) {
-                continue;
+
             }
             if (!spark.isSpawning()) {
-                continue;
+
             }
             spark.func_70106_y();
         }
@@ -170,7 +170,7 @@ public class EntityNocturnalSpark extends ThrowableEntity
             pos.offset(this.random.nextInt(2) - this.random.nextInt(2), 1, this.random.nextInt(2) - this.random.nextInt(2));
             pos = BlockUtils.firstSolidDown((IBlockReader)this.level(), pos).above();
             if (pos.func_177951_i((Vec3i)this.func_233580_cy_()) >= 16.0) {
-                return;
+
             }
             EntityUtils.performWorldSpawningAt((ServerLevel)this.level(), pos, MobCategory.MONSTER, MobSpawnType.SPAWNER, true, 11);
         }
@@ -181,22 +181,22 @@ public class EntityNocturnalSpark extends ThrowableEntity
         switch (this.random.nextInt(3)) {
             case 0: {
                 p.color(VFXColorFunction.constant(ColorsAS.NOCTURNAL_POWDER_1));
-                break;
+
             }
             case 1: {
                 p.color(VFXColorFunction.constant(ColorsAS.NOCTURNAL_POWDER_2));
-                break;
+
             }
             case 2: {
                 p.color(VFXColorFunction.constant(ColorsAS.NOCTURNAL_POWDER_3));
-                break;
+
             }
         }
     }
     
     protected void func_70227_a(final HitResult result) {
         if (HitResult.Type.ENTITY.equals((Object)result.func_216346_c())) {
-            return;
+
         }
         final Vec3 hit = result.func_216347_e();
         this.setSpawning();

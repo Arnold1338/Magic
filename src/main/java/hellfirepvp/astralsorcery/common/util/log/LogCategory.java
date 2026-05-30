@@ -8,8 +8,7 @@ public enum LogCategory
     PERKS, 
     UNINTENDED_CHUNK_LOADING, 
     STRUCTURE_MATCH, 
-    GATEWAY_CACHE;
-    
+
     public boolean isEnabled() {
         return LogConfig.CONFIG.isLoggingEnabled(this);
     }

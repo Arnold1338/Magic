@@ -98,7 +98,7 @@ public class ConstellationHandler
     
     private void addConstellationCycle(final IConstellation cst, final Random rand, final boolean[] slots) {
         if (cst instanceof IConstellationSpecialShowup) {
-            return;
+
         }
         if (cst instanceof IMinorConstellation) {
             for (final MoonPhase ph : ((IMinorConstellation)cst).getShowupMoonPhases(this.ctx.getSeed())) {

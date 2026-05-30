@@ -40,14 +40,14 @@ public class ConstellationBaseMergeStatsRecipe extends ConstellationBaseItemReci
     
     private void setStats(final ItemStack out, final Iterable<ItemStack> inventoryContents) {
         if (!(out.getItem() instanceof CrystalAttributeItem)) {
-            return;
+
         }
         final CrystalAttributes.Builder builder = CrystalAttributes.Builder.newBuilder(true);
         for (final ItemStack stack : inventoryContents) {
             if (stack.getItem() instanceof CrystalAttributeItem) {
                 final CrystalAttributes attr = ((CrystalAttributeItem)stack.getItem()).getAttributes(stack);
                 if (attr == null) {
-                    continue;
+
                 }
                 builder.addAll(attr);
             }

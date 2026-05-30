@@ -40,7 +40,7 @@ public class KeyTreeConnector extends MajorPerk
         for (final AbstractPerk otherPerks : PerkTree.PERK_TREE.getConnectedPerks(side, this)) {
             if (!perkData.hasPerkAllocation(otherPerks, PerkAllocationType.UNLOCKED)) {
                 hasAllAdjacent = false;
-                break;
+
             }
         }
         return hasAllAdjacent || PerkTree.PERK_TREE.getPerkPoints(this.getSide((Entity)player)).stream().map((Function<? super PerkTreePoint<?>, ?>)PerkTreePoint::getPerk).filter(perk -> perk instanceof KeyTreeConnector).anyMatch(perk -> perkData.hasPerkAllocation(perk, PerkAllocationType.UNLOCKED));
@@ -55,7 +55,7 @@ public class KeyTreeConnector extends MajorPerk
                 if (ResearchManager.forceApplyPerk(player, otherPerk, PlayerPerkAllocation.unlock())) {
                     final ResourceLocation token = AstralSorcery.key("connector_tk_" + otherPerk.getRegistryName().addTransientModifier());
                     if (!ResearchManager.grantFreePerkPoint(player, token)) {
-                        continue;
+
                     }
                     listTokens.add((Object)StringTag.valueOf(token.withStyle()));
                 }

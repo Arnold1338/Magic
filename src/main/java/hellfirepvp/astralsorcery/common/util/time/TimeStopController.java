@@ -57,7 +57,7 @@ public class TimeStopController implements ITickHandler
     
     public static void onWorldUnload(final Level world) {
         if (world.level()) {
-            return;
+
         }
         final ResourceKey<Level> dimKey = (ResourceKey<Level>)world.dimension();
         for (final TimeStopZone stop : TimeStopController.activeTimeStopZones.getOrDefault(dimKey, Collections.emptyList())) {
@@ -121,7 +121,7 @@ public class TimeStopController implements ITickHandler
                 else {
                     zone.onServerTick();
                     if (!zone.shouldDespawn()) {
-                        continue;
+
                     }
                     zone.stopEffect();
                     SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, DataTimeFreezeEffects.class, data -> data.removeEffect((ResourceKey<Level>)zoneMap.getKey(), TimeStopEffectHelper.fromZone(zone)));

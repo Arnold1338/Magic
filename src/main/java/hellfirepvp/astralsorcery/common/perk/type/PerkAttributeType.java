@@ -41,7 +41,7 @@ public class PerkAttributeType implements ReadWriteLockable {
     protected PerkAttributeType(final ResourceLocation key, final boolean isMultiplicative) {
         this.applicationCache = Maps.newHashMap();
         this.accessLock = new ReentrantReadWriteLock(true);
-        this;
+
         this.isOnlyMultiplicative = isMultiplicative;
         this.init();
         this.attachListeners(MinecraftForge.EVENT_BUS);

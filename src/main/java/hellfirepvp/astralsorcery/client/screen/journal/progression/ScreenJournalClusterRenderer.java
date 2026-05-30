@@ -159,7 +159,7 @@ public class ScreenJournalClusterRenderer
         while (iterator.hasNext()) {
             node = iterator.next();
             if (!node.canSee(ResearchHelper.getClientProgress())) {
-                continue;
+
             }
             final Point2D.Float from = this.progressionSizeHandler.scalePointToGui(parentGui, this.mousePointScaled, new Point2D.Float(node.renderPosX, node.renderPosZ));
             for (final ResearchNode target : node.getConnectionsTo()) {
@@ -188,11 +188,11 @@ public class ScreenJournalClusterRenderer
                 renderStack.translate(this.progressionSizeHandler.getScalingFactor(), this.progressionSizeHandler.getScalingFactor(), 1.0f);
                 renderStack.func_227861_a_(3.0, 3.0, 100.0);
                 renderStack.translate(0.75f, 0.75f, 1.0f);
-                ;
+
                 RenderingUtils.renderTranslucentItemStackModelGUI(node.getRenderItemStack(ClientScheduler.getClientTick()), renderStack, Color.WHITE, Blending.DEFAULT, Mth.func_76125_a((int)(this.alpha * 255.0f), 0, 255));
-                ;
+
                 renderStack.scale();
-                break;
+
             }
             case TEXTURE_SPRITE: {
                 final Color col = node.getTextureColorHint();
@@ -213,12 +213,12 @@ public class ScreenJournalClusterRenderer
                     buf.vertex(matr, zoomedWH - pxWH, zoomedWH - pxWH, zLevel).color(r, g, b, a).func_225583_a_((float)uvTexture.func_76341_a() + res.getULength(), (float)uvTexture.func_76340_b() + res.getVLength()).endVertex();
                     buf.vertex(matr, zoomedWH - pxWH, pxWH, zLevel).color(r, g, b, a).func_225583_a_((float)uvTexture.func_76341_a() + res.getULength(), (float)uvTexture.func_76340_b()).endVertex();
                     buf.vertex(matr, pxWH, pxWH, zLevel).color(r, g, b, a).func_225583_a_((float)uvTexture.func_76341_a(), (float)uvTexture.func_76340_b()).endVertex();
-                    return;
+
                 });
                 RenderSystem.defaultBlendFunc();
                 RenderSystem.disableBlend();
                 renderStack.scale();
-                break;
+
             }
         }
     }
@@ -244,7 +244,7 @@ public class ScreenJournalClusterRenderer
                 final float brightness2 = brightness + 0.4f * this.evaluateBrightness(i, activeSegment);
                 this.drawLinePart((VertexConsumer)buf, renderStack, lx, ly, origin.getX(), origin.getY(), zLevel, brightness2);
             }
-            return;
+
         });
         RenderSystem.lineWidth(2.0f);
         GL11.glDisable(2848);
@@ -273,7 +273,7 @@ public class ScreenJournalClusterRenderer
             buf.func_225582_a_(xAdd + zoomedWH, yAdd + zoomedWH, (double)zLevel).color(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(1.0f, 1.0f).endVertex();
             buf.func_225582_a_(xAdd + zoomedWH, yAdd, (double)zLevel).color(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(1.0f, 0.0f).endVertex();
             buf.func_225582_a_(xAdd, yAdd, (double)zLevel).color(this.alpha, this.alpha, this.alpha, this.alpha).func_225583_a_(0.0f, 0.0f).endVertex();
-            return;
+
         });
         RenderSystem.disableBlend();
     }

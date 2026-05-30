@@ -102,7 +102,7 @@ public class BlockStateHelper
                 if (property != null) {
                     final Optional<T> value = property.func_185929_b(strValue);
                     if (!value.isPresent()) {
-                        continue;
+
                     }
                     state = (BlockState)state.setValue((Property)property, (Comparable)value.get());
                 }
@@ -132,7 +132,7 @@ public class BlockStateHelper
                     final String propValue = JSONUtils.func_151200_h(objProperty, "value");
                     final Optional<T> value = property.func_185929_b(propValue);
                     if (!value.isPresent()) {
-                        continue;
+
                     }
                     state = (BlockState)state.setValue((Property)property, (Comparable)value.get());
                 }

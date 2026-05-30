@@ -72,11 +72,11 @@ public class BatchRenderContext<T extends EntityVisualFX> extends OrderSortable
             drawType = (RenderType)RenderTypeDecorator.wrapSetup(this.getRenderType(), () -> {
                 RenderSystem.enableTexture();
                 this.getSprite().bindTexture();
-                return;
+
             }, () -> {
                 BlockAtlasTexture.getInstance().bindTexture();
                 RenderSystem.disableTexture();
-                return;
+
             });
         }
         final VertexConsumer buf = drawBuffer.getBuffer(drawType);

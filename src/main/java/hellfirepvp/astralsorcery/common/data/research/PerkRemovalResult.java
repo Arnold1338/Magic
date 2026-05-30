@@ -5,8 +5,7 @@ public enum PerkRemovalResult
     FAILURE, 
     REMOVE_ALLOCATION, 
     REMOVE_ALLOCATION_TYPE, 
-    REMOVE_PERK;
-    
+
     public boolean isFailure() {
         return this == PerkRemovalResult.FAILURE;
     }

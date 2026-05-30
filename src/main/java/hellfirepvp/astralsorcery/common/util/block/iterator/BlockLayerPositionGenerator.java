@@ -34,7 +34,7 @@ public class BlockLayerPositionGenerator extends BlockPositionGenerator
     private void generatePositions(final int maxLayers) {
         if (maxLayers <= 0) {
             this.currentPositions.add(BlockPos.field_177992_a);
-            return;
+
         }
         ++this.layer;
         if (this.layer > maxLayers) {

@@ -45,7 +45,7 @@ public class BlockTransmutationHandler implements StarlightNetworkRegistry.IStar
     public void receiveStarlight(final Level world, final Random rand, final BlockPos pos, final BlockState state, final IWeakConstellation starlightType, final double amount) {
         final BlockTransmutation recipe = RecipeTypesAS.TYPE_BLOCK_TRANSMUTATION.findRecipe(new BlockTransmutationContext((IWorld)world, pos, state, starlightType));
         if (recipe == null) {
-            return;
+
         }
         final WorldBlockPos at = WorldBlockPos.wrapServer(world, pos);
         ActiveTransmutation activeRecipe = BlockTransmutationHandler.runningTransmutations.get(at);

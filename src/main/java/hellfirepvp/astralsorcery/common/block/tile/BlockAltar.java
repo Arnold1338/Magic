@@ -58,25 +58,25 @@ public abstract class BlockAltar extends BlockStarlightNetwork implements Custom
                         provider = new ContainerAltarDiscoveryProvider(altar);
                         if (!ResearchHelper.getProgress(player, LogicalSide.SERVER).getTierReached().isThisLaterOrEqual(ProgressionTier.BASIC_CRAFT)) {
                             ResearchManager.informCrafted(player, new ItemStack((ItemLike)BlocksAS.ALTAR_DISCOVERY));
-                            break;
+
                         }
-                        break;
+
                     }
                     case ATTUNEMENT: {
                         provider = new ContainerAltarAttunementProvider(altar);
-                        break;
+
                     }
                     case CONSTELLATION: {
                         provider = new ContainerAltarConstellationProvider(altar);
-                        break;
+
                     }
                     case RADIANCE: {
                         provider = new ContainerAltarRadianceProvider(altar);
-                        break;
+
                     }
                     default: {
                         provider = null;
-                        break;
+
                     }
                 }
                 if (provider != null) {

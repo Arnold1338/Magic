@@ -66,7 +66,7 @@ public class ResearchIOThread implements ServerLifecycleListener
     
     public void doSave() {
         if (this.skipTick) {
-            return;
+
         }
         this.inSave = true;
         for (final Map.Entry<UUID, PlayerProgress> entry : this.playerSaveQueue.entrySet()) {

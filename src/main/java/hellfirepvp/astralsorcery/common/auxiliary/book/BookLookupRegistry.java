@@ -30,7 +30,7 @@ public class BookLookupRegistry
                 if (info.canSee(prog)) {
                     return info;
                 }
-                continue;
+
             }
         }
         return null;

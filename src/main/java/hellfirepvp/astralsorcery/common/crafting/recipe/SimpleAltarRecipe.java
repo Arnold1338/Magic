@@ -99,7 +99,7 @@ public class SimpleAltarRecipe extends CustomMatcherRecipe implements GatedRecip
             }
             case DISCOVERY: {
                 this.addAltarEffect(AltarRecipeEffectsAS.BUILTIN_DISCOVERY_CENTRAL_BEAM);
-                break;
+
             }
         }
     }

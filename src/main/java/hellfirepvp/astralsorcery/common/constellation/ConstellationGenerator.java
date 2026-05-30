@@ -51,7 +51,7 @@ public class ConstellationGenerator
             if (cst.getStars().contains(c.to) && cst.getStars().contains(c.from)) {
                 cst.addConnection(c.from, c.to);
             }
-            return;
+
         });
         return cst;
     }
@@ -101,7 +101,7 @@ public class ConstellationGenerator
                     continue Label_0000;
                 }
             }
-            break;
+
         }
         return opt;
     }

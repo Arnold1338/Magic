@@ -44,7 +44,7 @@ public class BlockDiscoverer
             for (final Direction face : faces) {
                 final BlockPos at = offset.func_177972_a(face);
                 if (out.contains(at)) {
-                    continue;
+
                 }
                 final BlockState test = world.getBlockState(at);
                 if (BlockUtils.matchStateExact(match, test) && addCheck.test(world, at, test)) {
@@ -54,7 +54,7 @@ public class BlockDiscoverer
                     continue Label_0019;
                 }
             }
-            break;
+
         }
         return out;
     }
@@ -88,7 +88,7 @@ public class BlockDiscoverer
                         if (match.test(world, (BlockPos)offset, atState)) {
                             out.add(new BlockPos((Vec3i)offset));
                         }
-                        return;
+
                     });
                 }
             }
@@ -109,7 +109,7 @@ public class BlockDiscoverer
                             if (acceptor.test(world, pos, state)) {
                                 posList.add(pos);
                             }
-                            return;
+
                         });
                     }
                 }
@@ -165,7 +165,7 @@ public class BlockDiscoverer
                                                         foundResult.add(search);
                                                         searchQueue.add(search);
                                                     }
-                                                    return;
+
                                                 });
                                             }
                                         }
@@ -189,7 +189,7 @@ public class BlockDiscoverer
                                                 foundResult.add(search);
                                                 searchQueue.add(search);
                                             }
-                                            return;
+
                                         });
                                     }
                                 }

@@ -126,7 +126,7 @@ public class ItemWand extends Item implements OverrideInteractItem
         final Vector3 at = ByteBufUtils.readVector(effect.getExtraData());
         final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
-            return;
+
         }
         final float dstr = 0.4f + 0.6f * DayTimeHelper.getCurrentDaytimeDistribution(world);
         final Vector3 plVec = Vector3.atEntityCorner((Entity)Minecraft.getInstance().player);
@@ -144,7 +144,7 @@ public class ItemWand extends Item implements OverrideInteractItem
         final Vector3 pos = ByteBufUtils.readVector(effect.getExtraData());
         final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
-            return;
+
         }
         final BlockPos at = pos.toBlockPos();
         final BlockPos top = world.func_205770_a(Heightmap.Type.WORLD_SURFACE, at);

@@ -101,14 +101,14 @@ public interface GemSocketPerk
             throw new UnsupportedOperationException("Cannot do perk-specific socketing logic on something that's not a perk!");
         }
         if (player.level()) {
-            return;
+
         }
         final boolean updateData = data == null;
         if (updateData) {
             data = ((AbstractPerk)this).getPerkData(player, LogicalSide.SERVER);
         }
         if (data == null) {
-            return;
+
         }
         final CompoundTag prev = data.func_74737_b();
         final ItemStack contained = this.getContainedItem(player, LogicalSide.SERVER, data);
@@ -124,12 +124,12 @@ public interface GemSocketPerk
     @OnlyIn(Dist.CLIENT)
     default <T extends AbstractPerk & GemSocketPerk> void addTooltipInfo(final Collection<MutableComponent> tooltip) {
         if (!(this instanceof AbstractPerk)) {
-            return;
+
         }
         final T thisPerk = (T)this;
         final PlayerProgress prog = ResearchHelper.getClientProgress();
         if (!prog.isValid()) {
-            return;
+
         }
         final PlayerPerkData perkData = prog.getPerkData();
         final ItemStack contained = this.getContainedItem((Player)Minecraft.getInstance().player, LogicalSide.CLIENT);

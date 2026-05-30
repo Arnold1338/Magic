@@ -1,5 +1,6 @@
-import net.minecraft.server.packs.resources.PreparableReloadListener;
 package hellfirepvp.astralsorcery.common;
+
+import net.minecraft.server.packs.resources.PreparableReloadListener;
 
 import hellfirepvp.astralsorcery.common.item.armor.ArmorMaterialImbuedLeather;
 import net.minecraft.ChatFormatting;

@@ -66,7 +66,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
     public void tick(final TileFountain fountain, final LiquidContext ctx, final int operationTick, final LogicalSide side, final OperationSegment currentSegment) {
         if (side.isClient()) {
             this.tickEffects(fountain, ctx, operationTick, currentSegment);
-            return;
+
         }
         if (currentSegment.isLaterOrEqualTo(OperationSegment.RUNNING)) {
             final Level w = fountain.getLevel();
@@ -138,13 +138,13 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
             case STARTUP: {
                 this.playFountainVortexParticles((Vec3i)fountainPos, segmentPercent);
                 this.playFountainArcs((Vec3i)fountainPos, segmentPercent);
-                break;
+
             }
             case PREPARATION: {
                 this.playFountainArcs((Vec3i)fountainPos, 1.0f - segmentPercent);
                 this.playFountainVortexParticles((Vec3i)fountainPos, 1.0f - segmentPercent);
                 this.playDigPreparation((Vec3i)fountainPos, segmentPercent);
-                break;
+
             }
             case RUNNING: {
                 this.playFountainVortexParticles((Vec3i)fountainPos, 0.2f);
@@ -152,9 +152,9 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
                 this.playDigParticles((Vec3i)fountainPos);
                 if (fountain.getTicksExisted() % 40 == 0) {
                     this.playDigLightbeam((Vec3i)fountainPos);
-                    break;
+
                 }
-                break;
+
             }
         }
     }

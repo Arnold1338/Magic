@@ -26,16 +26,16 @@ public class OverlayRenderer
     private void onOverlayRender(final RenderGameOverlayEvent.Post event) {
         final float pTicks = event.getPartialTicks();
         if (event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
-            return;
+
         }
         final Player player = (Player)Minecraft.getInstance().player;
         if (player == null || Minecraft.getInstance().level == null) {
-            return;
+
         }
         final PoseStack renderStack = event.getMatrixStack();
         for (final EquipmentSlot type : EquipmentSlot.values()) {
             if (this.doHudRender(renderStack, player.getItemBySlot(type), pTicks)) {
-                break;
+
             }
         }
     }

@@ -663,7 +663,7 @@ public class Vector3
         public void normalize() {
             double d = this.mag();
             if (d == 0.0) {
-                return;
+
             }
             d = 1.0 / d;
             this.i *= d;

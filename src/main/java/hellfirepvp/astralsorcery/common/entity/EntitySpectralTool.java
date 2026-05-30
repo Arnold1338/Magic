@@ -102,13 +102,13 @@ public class EntitySpectralTool extends FlyingMob
         else {
             if (this.startPosition == null) {
                 this.func_70106_y();
-                return;
+
             }
             if (!this.task.func_75250_a()) {
                 ++this.idleTime;
                 if (this.idleTime >= 30) {
                     this.func_70106_y();
-                    return;
+
                 }
             }
             else {

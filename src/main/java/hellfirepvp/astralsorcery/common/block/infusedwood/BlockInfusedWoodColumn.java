@@ -128,8 +128,7 @@ public class BlockInfusedWoodColumn extends BlockInfusedWoodTemplate implements 
     {
         TOP, 
         MIDDLE, 
-        BOTTOM;
-        
+
         public String func_176610_l() {
             return this.name().toLowerCase(Locale.ROOT);
         }

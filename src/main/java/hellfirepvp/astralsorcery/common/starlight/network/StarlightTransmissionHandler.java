@@ -27,7 +27,7 @@ public class StarlightTransmissionHandler implements ITickHandler
     public void tick(final TickEvent.Type type, final Object... context) {
         final Level world = (Level)context[0];
         if (world.level() || !(world instanceof ServerLevel)) {
-            return;
+
         }
         this.worldHandlers.computeIfAbsent((ResourceKey<Level>)world.dimension(), TransmissionWorldHandler::new).tick((ServerLevel)world);
     }

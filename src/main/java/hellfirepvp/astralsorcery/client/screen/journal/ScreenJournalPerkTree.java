@@ -182,7 +182,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         super.func_231160_c_();
         if (this.expectReinit) {
             this.expectReinit = false;
-            return;
+
         }
         this.guiOffsetX = this.guiLeft + 10;
         this.guiOffsetY = this.guiTop + 10;
@@ -284,12 +284,12 @@ public class ScreenJournalPerkTree extends ScreenJournal
                     toolTip.addAll(this.func_231151_a_(in));
                     RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)mouseX, (float)mouseY, (float)this.getGuiZLevel(), toolTip, fr, true);
                 }
-                return;
+
             }
         }
         if (this.rStatStar.contains(mouseX, mouseY)) {
             RenderingDrawUtils.renderBlueTooltipComponents(renderStack, this.rStatStar.x + this.rStatStar.width / 2.0f, (float)(this.rStatStar.y + this.rStatStar.height), (float)this.getGuiZLevel(), Lists.newArrayList((Object[])new FormattedCharSequence[] { (FormattedCharSequence)Component.translatable("perk.reader.astralsorcery.infostar") }), this.field_230712_o_, false);
-            return;
+
         }
         if (!this.foundSeals.func_190926_b() && ScreenJournalPerkTree.rectSealBox.contains(mouseX - this.guiLeft, mouseY - this.guiTop)) {
             final List<FormattedCharSequence> toolTip2 = new ArrayList<FormattedCharSequence>();
@@ -311,7 +311,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                             line.func_240699_a_(ChatFormatting.GRAY).func_240699_a_(ChatFormatting.ITALIC);
                         }
                         toolTip.add(line);
-                        return;
+
                     });
                     if (perkData.isPerkSealed(perk)) {
                         toolTip3.add((FormattedCharSequence)Component.translatable("perk.info.astralsorcery.sealed").func_240699_a_(ChatFormatting.RED));
@@ -341,7 +341,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                         toolTip3.add((FormattedCharSequence)Component.translatable("astralsorcery.misc.ctrlcopy").func_240699_a_(ChatFormatting.GRAY));
                     }
                     RenderingDrawUtils.renderBlueTooltipComponents(renderStack, (float)mouseX, (float)mouseY, (float)this.getGuiZLevel(), toolTip3, this.field_230712_o_, true);
-                    break;
+
                 }
             }
         }
@@ -364,7 +364,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
             });
             if (found.isEmpty()) {
                 this.closeSocketMenu();
-                return;
+
             }
             final Point2D.Float offset = this.sizeHandler.scalePointToGui(this, this.mousePosition, sMenuPerk.getPoint().getOffset());
             float offsetX = (float)Mth.func_76141_d(offset.x);
@@ -378,7 +378,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
             this.rSocketMenu = new Rectangle2D.Float(offsetX + 12.0f * scale - 4.0f, offsetY - 12.0f * scale - 4.0f, width + 4.0f, height + 4.0f);
             if (!this.guiBox.isInBox(this.rSocketMenu.x - this.guiLeft, this.rSocketMenu.y - this.guiTop) || !this.guiBox.isInBox(this.rSocketMenu.x + this.rSocketMenu.width - this.guiLeft, this.rSocketMenu.y + this.rSocketMenu.height - this.guiTop)) {
                 this.closeSocketMenu();
-                return;
+
             }
             renderStack.popPose();
             renderStack.func_227861_a_((double)offsetX, (double)offsetY, (double)this.getGuiZLevel());
@@ -396,7 +396,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                     final float addedY2 = index2 / 5 * scaledSlotSize;
                     RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, inventoryOffsetX + addedX2, inventoryOffsetY + addedY2, (float)this.getGuiZLevel(), scaledSlotSize, scaledSlotSize).draw();
                 }
-                return;
+
             });
             RenderSystem.disableBlend();
             offsetX += 12.0f * scale;
@@ -474,7 +474,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 final Tuple<AbstractPerk, AbstractPerk> perkConnection = (Tuple<AbstractPerk, AbstractPerk>)iterator2.next();
                 if (((AbstractPerk)perkConnection.func_76341_a()).isVisible(progress, player)) {
                     if (!((AbstractPerk)perkConnection.func_76340_b()).isVisible(progress, player)) {
-                        continue;
+
                     }
                     else {
                         int alloc = 0;
@@ -500,7 +500,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                     }
                 }
             }
-            return;
+
         });
         RenderSystem.disableBlend();
         ScreenJournalPerkTree.drawBuffer.beginDrawingPerks();
@@ -509,12 +509,12 @@ public class ScreenJournalPerkTree extends ScreenJournal
         for (final PerkTreePoint<?> perkPoint : PerkTree.PERK_TREE.getPerkPoints(LogicalSide.CLIENT)) {
             perk = (AbstractPerk)perkPoint.getPerk();
             if (!perk.isVisible(progress, player)) {
-                continue;
+
             }
             final Point2D.Float offset = perkPoint.getOffset();
             final Rectangle2D.Float perkRect = this.drawPerk(ScreenJournalPerkTree.drawBuffer, renderStack, perkPoint, partialTicks, ClientScheduler.getClientTick() + (int)offset.x + (int)offset.y, perkData.isPerkSealed(perk), renderDynamic);
             if (perkRect == null) {
-                continue;
+
             }
             this.thisFramePerks.put(perk, perkRect);
         }
@@ -547,7 +547,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
         RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> {
             final Point2D.Float pOffset = perk.getPoint().getOffset();
             this.drawSeal(buf, renderStack, sealWidth, offset.x, offset.y, ClientScheduler.getClientTick() + (int)pOffset.x + (int)pOffset.y, sealFade * 0.75f);
-            return;
+
         });
         final float uLength = sealBreakSprite.getUWidth();
         final float vLength = sealBreakSprite.getVWidth();
@@ -620,7 +620,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
     private void drawSeal(final BufferBuilder vb, final PoseStack renderStack, final double size, final double x, final double y, final long spriteOffsetTick, final float alpha) {
         final SpriteSheetResource tex = SpritesAS.SPR_PERK_SEAL;
         if (tex == null) {
-            return;
+
         }
         final float uLength = tex.getULength();
         final float vLength = tex.getVLength();
@@ -725,12 +725,12 @@ public class ScreenJournalPerkTree extends ScreenJournal
         this.searchMatches.clear();
         final String matchText = this.searchTextEntry.getText().toLowerCase(Locale.ROOT);
         if (matchText.length() < 3) {
-            return;
+
         }
         for (final PerkTreePoint<?> point : PerkTree.PERK_TREE.getPerkPoints(LogicalSide.CLIENT)) {
             final AbstractPerk perk = (AbstractPerk)point.getPerk();
             if (perk instanceof ProgressGatedPerk && !((ProgressGatedPerk)perk).canSeeClient()) {
-                continue;
+
             }
             if (perk.getCategory().getName().getString().toLowerCase(Locale.ROOT).contains(matchText)) {
                 this.searchMatches.add(perk);
@@ -739,7 +739,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 for (final MutableComponent tooltip : perk.getLocalizedTooltip()) {
                     if (tooltip.getString().toLowerCase(Locale.ROOT).contains(matchText)) {
                         this.searchMatches.add(perk);
-                        break;
+
                     }
                 }
             }
@@ -792,9 +792,9 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 if (!perkData2.hasPerkAllocation(perk) && perk.mayUnlockPerk(prog, player)) {
                     final PktUnlockPerk pkt2 = new PktUnlockPerk(false, rctPerk2.getKey());
                     PacketChannel.CHANNEL.sendToServer(pkt2);
-                    break;
+
                 }
-                continue;
+
             }
         }
         this.unlockPrimed = null;
@@ -845,7 +845,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                 if (perk instanceof GemSocketPerk) {
                     return false;
                 }
-                continue;
+
             }
         }
         return true;
@@ -868,7 +868,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                         if (this.tryInsertGem(slotId, this.socketMenu)) {
                             return true;
                         }
-                        continue;
+
                     }
                 }
             }
@@ -896,7 +896,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                     final String perkKey = perk.getRegistryName().toString();
                     Minecraft.getInstance().field_195559_v.func_197960_a(perkKey);
                     mc.player.sendSystemMessage((Component)Component.translatable("astralsorcery.misc.ctrlcopy.copied"), Util.field_240973_b_);
-                    break;
+
                 }
                 if (mouseButton == 1) {
                     if (perkData.hasPerkEffect(perk) && perk instanceof GemSocketPerk) {
@@ -907,7 +907,7 @@ public class ScreenJournalPerkTree extends ScreenJournal
                                 if (mc.field_71462_r == this) {
                                     this.updateSearchHighlight();
                                 }
-                                return;
+
                             }, 10);
                             SoundHelper.playSoundClient(SoundEvents.field_187567_bP, 0.35f, 9.0f);
                         }
@@ -916,11 +916,11 @@ public class ScreenJournalPerkTree extends ScreenJournal
                         }
                         return true;
                     }
-                    continue;
+
                 }
                 else {
                     if (mouseButton != 0) {
-                        continue;
+
                     }
                     if (perk.handleMouseClick(this, mouseX, mouseY)) {
                         return true;

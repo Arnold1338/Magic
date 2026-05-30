@@ -218,7 +218,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
             catch (final Exception exc) {
                 AstralSorcery.log.warn("Couldn't write source-node data for network node at " + pos.toString() + "!");
                 AstralSorcery.log.warn("This is a major problem. To be perfectly save, consider making a backup, then break or mcedit the tileentity out and place a proper/new one...");
-                continue;
+
             }
             source.putString("sTypeId", sourceNode.getProvider().getIdentifier().toString());
             sourceTag.put("source", (Tag)source);
@@ -261,7 +261,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
     public void removeSource(final BlockPos pos) {
         final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vec3i)pos);
         if (data == null) {
-            return;
+
         }
         data.removeSourceTile(pos);
         this.removeIndependentSource(pos);
@@ -276,7 +276,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
     public void removeTransmission(final BlockPos pos) {
         final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vec3i)pos);
         if (data == null) {
-            return;
+
         }
         data.removeTransmissionTile(pos);
         this.checkIntegrity(pos);
@@ -286,7 +286,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
     private void checkIntegrity(final BlockPos actualPos) {
         final ChunkNetworkData data = (ChunkNetworkData)this.getSection((Vec3i)actualPos);
         if (data == null) {
-            return;
+
         }
         data.checkIntegrity();
         if (data.isEmpty()) {
@@ -327,7 +327,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
                     yLevel = Integer.parseInt(key);
                 }
                 catch (final NumberFormatException exc) {
-                    continue;
+
                 }
                 final ListTag yData = tag.getList(key, 10);
                 final ChunkSectionNetworkData sectionNetData = loadFromNBT(yData);
@@ -377,7 +377,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
             final int yLevel = (pos.getY() & 0xFF) >> 4;
             final ChunkSectionNetworkData section = this.getSection(yLevel);
             if (section == null) {
-                return;
+
             }
             section.removeSourceTile(pos);
         }
@@ -386,7 +386,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
             final int yLevel = (pos.getY() & 0xFF) >> 4;
             final ChunkSectionNetworkData section = this.getSection(yLevel);
             if (section == null) {
-                return;
+
             }
             section.removeTransmissionTile(pos);
         }

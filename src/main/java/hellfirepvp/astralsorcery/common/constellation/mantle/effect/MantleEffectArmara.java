@@ -53,7 +53,7 @@ public class MantleEffectArmara extends MantleEffect
         super.tickServer(player);
         if (this.getCurrentImmunityStacks((LivingEntity)player) >= (int)MantleEffectArmara.CONFIG.immunityStacks.get()) {
             this.setCurrentImmunityRechargeTick((LivingEntity)player, (int)MantleEffectArmara.CONFIG.immunityRechargeTicks.get());
-            return;
+
         }
         int tick = this.getCurrentImmunityRechargeTick((LivingEntity)player);
         if (--tick <= 0) {
@@ -107,7 +107,7 @@ public class MantleEffectArmara extends MantleEffect
         final Level world = event.getEntity().level();
         final LivingEntity hurt = event.getEntityLiving();
         if (world.level()) {
-            return;
+
         }
         final MantleEffectArmara armara = ItemMantle.getEffect(hurt, ConstellationsAS.armara);
         if (armara != null && this.shouldPreventDamage(hurt, event.getSource(), false)) {

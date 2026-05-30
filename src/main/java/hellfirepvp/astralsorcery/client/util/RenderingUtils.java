@@ -313,11 +313,11 @@ public class RenderingUtils
             final RenderTypeDecorator decorated = RenderTypeDecorator.wrapSetup(renderType, () -> {
                 RenderSystem.enableBlend();
                 blendMode.apply();
-                return;
+
             }, () -> {
                 Blending.DEFAULT.apply();
                 RenderSystem.disableBlend();
-                return;
+
             });
             return buffer.getBuffer((RenderType)decorated);
         }, LightmapUtil.getPackedFullbrightCoords(), OverlayTexture.field_229196_a_, overlayColor, alpha);
@@ -357,7 +357,7 @@ public class RenderingUtils
     @Deprecated
     public static void mcdefault_renderItemOverlayIntoGUI(final Font fr, final PoseStack renderStack, final ItemStack stack, final float pTicks, @Nullable final String text) {
         if (stack.isEmpty()) {
-            return;
+
         }
         RenderSystem.disableLighting();
         renderStack.popPose();
@@ -381,7 +381,7 @@ public class RenderingUtils
             draw(7, DefaultVertexFormat.POSITION_TEX_COLOR, buf -> {
                 RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 2.0f, 13.0f, 0.0f, 13.0f, 2.0f).color(0, 0, 0, 255).draw();
                 RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, 2.0f, 13.0f, 0.0f, durabilityPercent, 1.0f).color(color >> 16 & 0xFF, color >> 8 & 0xFF, color & 0xFF, 255).draw();
-                return;
+
             });
             RenderSystem.enableBlend();
             RenderSystem.enableAlphaTest();
@@ -494,7 +494,7 @@ public class RenderingUtils
         }
         final RenderShape brt = state.func_185901_i();
         if (brt == RenderShape.INVISIBLE) {
-            return;
+
         }
         final BlockRenderDispatcher brd = Minecraft.getInstance().func_175602_ab();
         IModelData data = (IModelData)EmptyModelData.INSTANCE;
@@ -511,7 +511,7 @@ public class RenderingUtils
     public static void renderSimpleBlockModelCurrentWorld(final BlockState state, final PoseStack renderStack, final VertexConsumer buf, final BlockPos pos, @Nullable final BlockEntity te, final int combinedOverlayIn, final boolean checkRenderSide) {
         final RenderShape brt = state.func_185901_i();
         if (brt == RenderShape.INVISIBLE) {
-            return;
+
         }
         final BlockRenderDispatcher brd = Minecraft.getInstance().func_175602_ab();
         IModelData data = (IModelData)EmptyModelData.INSTANCE;

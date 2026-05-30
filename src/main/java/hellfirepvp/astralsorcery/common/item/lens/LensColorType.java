@@ -76,8 +76,7 @@ public abstract class LensColorType
         ANY, 
         ENTITY, 
         BLOCK, 
-        NONE;
-        
+
         public boolean doEntityInteraction() {
             return this == TargetType.ANY || this == TargetType.ENTITY;
         }

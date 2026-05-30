@@ -56,7 +56,6 @@ public class ItemKnowledgeShare extends Item
         if (isCreative(stack)) {
             tooltip.add(Component.translatable("astralsorcery.misc.knowledge.inscribed.creative").withStyle(ChatFormatting.LIGHT_PURPLE));
 
-            return;
         }
         if (getKnowledge(stack) == null) {
             tooltip.add(Component.translatable("astralsorcery.misc.knowledge.missing").withStyle(ChatFormatting.GRAY));
@@ -101,18 +100,18 @@ public class ItemKnowledgeShare extends Item
     
     private void tryGiveKnowledge(final ItemStack stack, final Player player) {
         if (player instanceof ServerPlayer && MiscUtils.isPlayerFakeMP((ServerPlayer)player)) {
-            return;
+
         }
         if (isCreative(stack)) {
             ResearchManager.forceMaximizeAll(player);
-            return;
+
         }
         if (canInscribeKnowledge(stack, player)) {
-            return;
+
         }
         final PlayerProgress progress = getKnowledge(stack);
         if (progress == null) {
-            return;
+
         }
         final ProgressionTier prev = progress.getTierReached();
         if (ResearchHelper.mergeApplyPlayerprogress(progress, player) && progress.getTierReached().isThisLater(prev)) {
@@ -183,7 +182,7 @@ public class ItemKnowledgeShare extends Item
     
     public static void setKnowledge(final ItemStack stack, final Player player, final PlayerProgress progress) {
         if (isCreative(stack) || !progress.isValid()) {
-            return;
+
         }
         final CompoundTag knowledge = new CompoundTag();
         progress.storeKnowledge(knowledge);

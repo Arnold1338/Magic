@@ -39,7 +39,7 @@ public class ArgumentTypeConstellation implements ArgumentType<IConstellation>
         final ResourceLocation name = ResourceLocation.func_195826_a(reader);
         for (final IConstellation cst : ConstellationRegistry.getAllConstellations()) {
             if (!this.filter.test(cst)) {
-                continue;
+
             }
             if (cst.getRegistryName().equals((Object)name)) {
                 return cst;

@@ -17,7 +17,7 @@ public class RenderCollectorCrystal extends CustomTileEntityRenderer<TileCollect
     
     public void render(final TileCollectorCrystal tile, final float pTicks, final PoseStack renderStack, final MultiBufferSource renderTypeBuffer, final int combinedLight, final int combinedOverlay) {
         if (!tile.doesSeeSky()) {
-            return;
+
         }
         Color color = tile.getCollectorType().getDisplayColor();
         long seed = RenderingUtils.getPositionSeed(tile.getBlockState());

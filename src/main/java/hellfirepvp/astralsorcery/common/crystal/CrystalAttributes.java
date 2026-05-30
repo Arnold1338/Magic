@@ -140,7 +140,7 @@ public final class CrystalAttributes
             if (attr.getTier() > 0) {
                 final CrystalProperty prop = attr.getProperty();
                 if (!prop.hasUsageFor(ctx) && !ctx.isEmpty()) {
-                    continue;
+
                 }
                 if (!prop.canSee(progress) || !attr.isDiscovered()) {
                     missing = true;
@@ -330,7 +330,7 @@ public final class CrystalAttributes
     {
         ADDED_ALL, 
         ADDED_ALL_WITH_MISSING, 
-        ALL_MISSING;
+
     }
     
     public static class Builder

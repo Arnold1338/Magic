@@ -110,7 +110,7 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
     
     public void inventoryTick(final ItemStack stack, final Level world, final Entity entity, final int slot, final boolean isSelected) {
         if (world.isClientSide || !(entity instanceof Player)) {
-            return;
+
         }
         IConstellation cst = this.getConstellation(stack);
         if (cst == null) {
@@ -146,7 +146,7 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
                 final IConstellation c2 = ConstellationRegistry.getConstellation(strConstellation);
                 if (c2 != null && c2.equals(cst)) {
                     has = true;
-                    break;
+
                 }
             }
             if (!has && cst.canDiscover((Player)entity, progress) && ResearchManager.memorizeConstellation(cst, (Player)entity)) {

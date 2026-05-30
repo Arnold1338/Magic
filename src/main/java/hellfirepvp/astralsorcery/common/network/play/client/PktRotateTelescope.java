@@ -77,7 +77,7 @@ public class PktRotateTelescope extends ASPacket<PktRotateTelescope>
                         if (tt != null) {
                             tt.setRotation(packet.isClockwise ? tt.getRotation().nextClockWise() : tt.getRotation().nextCounterClockWise());
                         }
-                        return;
+
                     });
                     if (Minecraft.getInstance().gui instanceof ScreenTelescope) {
                         ((ScreenTelescope)Minecraft.getInstance().gui).handleRotationChange(packet.isClockwise);

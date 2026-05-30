@@ -159,7 +159,7 @@ public class ClientProxy extends CommonProxy
     public void openGui(final Player player, final GuiType type, final Object... data) {
         if (player instanceof AbstractClientPlayerEntity) {
             this.openGuiClient(type, type.serializeArguments(data));
-            return;
+
         }
         super.openGui(player, type, data);
     }

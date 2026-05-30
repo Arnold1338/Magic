@@ -61,7 +61,7 @@ public class AssetLibrary implements ISelectiveResourceReloadListener
     
     public void onResourceManagerReload(final ResourceManager resourceManager, final Predicate<IResourceType> resourcePredicate) {
         if (AssetLibrary.reloading || !resourcePredicate.test((IResourceType)VanillaResourceType.TEXTURES)) {
-            return;
+
         }
         AssetLibrary.reloading = true;
         AstralSorcery.log.info("[AssetLibrary] Refreshing and Invalidating Resources");

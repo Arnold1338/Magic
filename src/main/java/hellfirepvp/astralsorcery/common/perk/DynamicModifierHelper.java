@@ -74,7 +74,7 @@ public class DynamicModifierHelper
     public static void addModifierTooltip(final ItemStack stack, final List<Component> tooltip) {
         final Player clientPlayer = (Player)Minecraft.getInstance().player;
         if (clientPlayer == null) {
-            return;
+
         }
         for (final PerkAttributeModifier mod : getDynamicModifiers(stack, (Player)Minecraft.getInstance().player, LogicalSide.CLIENT, false)) {
             if (mod.hasDisplayString()) {

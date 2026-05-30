@@ -61,7 +61,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
             items.add((Object)new ItemStack((ItemLike)this));
             for (final IConstellation cst : RegistriesAS.REGISTRY_CONSTELLATIONS.getValues()) {
                 if (!(cst instanceof IWeakConstellation)) {
-                    continue;
+
                 }
                 final ItemStack stack = new ItemStack((ItemLike)this);
                 this.setConstellation(stack, cst);

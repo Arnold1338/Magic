@@ -50,7 +50,7 @@ public class PerkAttributeModifier {
         this.attributeType = type;
         this.mode = mode;
         this.value = value;
-        this;
+
         this.initModifier();
     }
     

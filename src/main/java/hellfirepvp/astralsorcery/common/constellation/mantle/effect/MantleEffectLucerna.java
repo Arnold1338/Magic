@@ -58,11 +58,11 @@ public class MantleEffectLucerna extends MantleEffect
         final Set<BlockPos> positions = BlockDiscoverer.searchForTileEntitiesAround(player.level(), player.func_233580_cy_(), (int)MantleEffectLucerna.CONFIG.range.get(), test);
         for (final BlockPos pos : positions) {
             if (MantleEffectLucerna.rand.nextFloat() > chance) {
-                continue;
+
             }
             final Vector3 at = new Vector3((Vec3i)pos).add(MantleEffectLucerna.rand.nextFloat(), MantleEffectLucerna.rand.nextFloat(), MantleEffectLucerna.rand.nextFloat());
             if (at.distance((Entity)player) < 4.0) {
-                continue;
+
             }
             EffectHelper.of(EffectTemplatesAS.GENERIC_DEPTH_PARTICLE).setOwner(player.getUUID()).spawn(at).color(VFXColorFunction.constant(highlightColor)).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.4f + MantleEffectLucerna.rand.nextFloat() * 0.4f).setMaxAge(30 + MantleEffectLucerna.rand.nextInt(15));
             if (MantleEffectLucerna.rand.nextFloat() > 0.35f) {
@@ -79,16 +79,16 @@ public class MantleEffectLucerna extends MantleEffect
         for (final LivingEntity entity : entities) {
             if (entity.isAlive() && !entity.equals((Object)player)) {
                 if (MantleEffectLucerna.rand.nextInt(8) != 0) {
-                    continue;
+
                 }
                 final Vector3 atEntity = Vector3.atEntityCorner((Entity)entity);
                 if (atEntity.distance((Entity)player) < 2.0) {
-                    continue;
+
                 }
                 atEntity.add(MantleEffectLucerna.rand.nextFloat() * entity.func_213311_cf(), MantleEffectLucerna.rand.nextFloat() * entity.func_213302_cg(), MantleEffectLucerna.rand.nextFloat() * entity.func_213311_cf());
                 EffectHelper.of(EffectTemplatesAS.GENERIC_DEPTH_PARTICLE).setOwner(player.getUUID()).spawn(atEntity).color(VFXColorFunction.constant(this.getAssociatedConstellation().getConstellationColor())).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.4f + MantleEffectLucerna.rand.nextFloat() * 0.4f).setMaxAge(30 + MantleEffectLucerna.rand.nextInt(15));
                 if (MantleEffectLucerna.rand.nextFloat() <= 0.35f) {
-                    continue;
+
                 }
                 EffectHelper.of(EffectTemplatesAS.GENERIC_DEPTH_PARTICLE).setOwner(player.getUUID()).spawn(atEntity).color(VFXColorFunction.WHITE).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.2f + MantleEffectLucerna.rand.nextFloat() * 0.2f).setMaxAge(20 + MantleEffectLucerna.rand.nextInt(10));
             }

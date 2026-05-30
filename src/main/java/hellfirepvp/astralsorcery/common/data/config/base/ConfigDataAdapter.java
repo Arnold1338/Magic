@@ -50,7 +50,7 @@ public abstract class ConfigDataAdapter<T extends ConfigDataSet>
                 catch (final IllegalArgumentException exc) {
                     AstralSorcery.log.error("Skipping configured entry in " + this.getSectionName() + "!");
                     AstralSorcery.log.error(exc.getMessage());
-                    continue;
+
                 }
                 if (val != null) {
                     this.configuredValues.add(val);

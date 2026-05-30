@@ -48,16 +48,16 @@ public class KeyDamageEffects extends KeyPerk
                     switch (KeyDamageEffects.rand.nextInt(3)) {
                         case 0: {
                             attacked.func_195064_c(new MobEffectInstance(Effects.field_82731_v, 200, 1, false, false, true));
-                            break;
+
                         }
                         case 1: {
                             attacked.func_195064_c(new MobEffectInstance(Effects.field_76436_u, 200, 1, false, false, true));
-                            break;
+
                         }
                         case 2: {
                             attacked.func_195064_c(new MobEffectInstance(Effects.field_76421_d, 200, 1, false, false, true));
                             attacked.func_195064_c(new MobEffectInstance(Effects.field_76437_t, 200, 1, false, false, true));
-                            break;
+
                         }
                     }
                 }

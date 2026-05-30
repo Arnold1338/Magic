@@ -119,7 +119,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
         final BlockPos at = ByteBufUtils.readPos(pkt.getExtraData());
         final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
-            return;
+
         }
         final TileInfuser thisInfuser = MiscUtils.getTileAt((IBlockReader)world, at, TileInfuser.class, false);
         if (thisInfuser != null) {
@@ -143,15 +143,15 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
     
     private void doCraftingCycle() {
         if (this.activeRecipe == null) {
-            return;
+
         }
         if (!this.hasMultiblock() || !this.activeRecipe.matches(this)) {
             this.abortCrafting();
-            return;
+
         }
         if (this.activeRecipe.isFinished()) {
             this.finishRecipe();
-            return;
+
         }
         this.activeRecipe.tick();
         this.markForUpdate();
@@ -169,7 +169,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
         final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.INFUSER_RECIPE_FINISH).addData(buf -> {
             ByteBufUtils.writeResourceLocation(buf, recipeName);
             ByteBufUtils.writePos(buf, this.getBlockState());
-            return;
+
         });
         PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vec3i)this.getBlockState(), 32.0));
         EntityFlare.spawnAmbientFlare(this.getLevel(), this.getBlockState().offset(-3 + TileInfuser.rand.nextInt(7), 1 + TileInfuser.rand.nextInt(3), -3 + TileInfuser.rand.nextInt(7)));
@@ -247,19 +247,19 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
         switch (TileInfuser.rand.nextInt(4)) {
             case 3: {
                 vec.add(0.5, 0.0, 0.875);
-                break;
+
             }
             case 2: {
                 vec.add(0.5, 0.0, 0.125);
-                break;
+
             }
             case 1: {
                 vec.add(0.125, 0.0, 0.5);
-                break;
+
             }
             case 0: {
                 vec.add(0.875, 0.0, 0.5);
-                break;
+
             }
         }
         return vec;

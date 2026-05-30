@@ -62,11 +62,11 @@ public class MantleEffectDiscidia extends MantleEffect
         final DamageSource source = event.getSource();
         final Entity attacker = source.getDirectEntity();
         if (world.level()) {
-            return;
+
         }
         if (attacker instanceof Player) {
             if (attacked instanceof ServerPlayer && MiscUtils.isPlayerFakeMP((ServerPlayer)attacked)) {
-                return;
+
             }
             final Player player = (Player)attacker;
             final MantleEffectDiscidia eff = ItemMantle.getEffect((LivingEntity)player, ConstellationsAS.discidia);
@@ -87,7 +87,7 @@ public class MantleEffectDiscidia extends MantleEffect
         final Level world = event.getEntity().level();
         final LivingEntity hurt = event.getEntityLiving();
         if (world.level()) {
-            return;
+
         }
         final MantleEffectDiscidia armara = ItemMantle.getEffect(hurt, ConstellationsAS.discidia);
         if (armara != null) {

@@ -21,7 +21,7 @@ public class BatchedVertexList
     
     public void batch(final Consumer<BufferBuilder> batchFn) {
         if (this.initialized) {
-            return;
+
         }
         final BufferBuilder buf = Tessellator.func_178181_a().func_178180_c();
         this.vbo = new VertexBuffer(this.vFormat);
@@ -33,7 +33,7 @@ public class BatchedVertexList
     
     public void render(final PoseStack renderStack) {
         if (!this.initialized) {
-            return;
+
         }
         this.vbo.func_177359_a();
         this.vFormat.func_227892_a_(0L);

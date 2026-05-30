@@ -50,7 +50,7 @@ public class KeyDamageArmor extends KeyPerk
                     }
                 }
                 if (armorPieces == 0) {
-                    return;
+
                 }
                 final double dmgArmor = (double)KeyDamageArmor.CONFIG.damagePerArmor.get();
                 float dmg = event.getAmount();

@@ -95,7 +95,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
     @OnlyIn(Dist.CLIENT)
     private void playEngravingEffects() {
         if (this.runTick <= 0) {
-            return;
+
         }
         if (this.effectHalo != null && ((FXSpritePlane)this.effectHalo).isRemoved()) {
             EffectHelper.refresh(this.effectHalo, EffectTemplatesAS.TEXTURE_SPRITE);

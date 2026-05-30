@@ -45,14 +45,14 @@ public class AreaOfInfluencePreview implements ITickHandler
     public void showOrRemoveIdentical(final TileAreaOfInfluence aoeTile) {
         if (this.tileDimension == aoeTile.getDimension() && aoeTile.getEffectOriginPosition().equals((Object)this.tilePosition)) {
             this.clearClient();
-            return;
+
         }
         this.show(aoeTile);
     }
     
     public void show(final TileAreaOfInfluence aoeTile) {
         if (!(aoeTile instanceof BlockEntity)) {
-            return;
+
         }
         this.tileDimension = aoeTile.getDimension();
         this.tilePosition = aoeTile.getEffectOriginPosition();
@@ -66,19 +66,19 @@ public class AreaOfInfluencePreview implements ITickHandler
     public void tick(final TickEvent.Type type, final Object... context) {
         if (this.tileDimension == null || this.tilePosition == null) {
             this.removeEffects();
-            return;
+
         }
         final Level clientWorld = (Level)Minecraft.getInstance().level;
         if (clientWorld == null) {
             this.clearClient();
             this.removeEffects();
-            return;
+
         }
         final ResourceKey<Level> clientDimType = (ResourceKey<Level>)clientWorld.dimension();
         if (!clientDimType.equals(this.tileDimension)) {
             this.clearClient();
             this.removeEffects();
-            return;
+
         }
         final TileAreaOfInfluence aoeTile = MiscUtils.getTileAt((IBlockReader)clientWorld, this.tilePosition, TileAreaOfInfluence.class, true);
         if (aoeTile != null && aoeTile.providesEffect() && this.shouldContinueEffect(aoeTile)) {

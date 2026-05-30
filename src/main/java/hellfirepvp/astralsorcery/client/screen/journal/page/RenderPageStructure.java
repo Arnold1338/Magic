@@ -155,7 +155,7 @@ public class RenderPageStructure extends RenderablePage
                 renderStack.func_227863_a_(new org.joml.Vector3f(0, 1, 0).func_229187_a_(225.0f));
                 RenderingUtils.renderSimpleBlockModel(Blocks.GLASS.func_176223_P(), renderStack, (VertexConsumer)buf);
                 renderStack.func_227865_b_();
-                return;
+
             });
             RenderSystem.depthMask(true);
         }
@@ -224,7 +224,7 @@ public class RenderPageStructure extends RenderablePage
             renderStack.func_227862_a_(scale, scale, scale);
             RenderingDrawUtils.renderStringAt(slice, renderStack, fr, 14540253, true);
             renderStack.func_227865_b_();
-            return;
+
         });
         RenderSystem.enableDepthTest();
         return length + 8.0f;

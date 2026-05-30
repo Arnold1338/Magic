@@ -129,15 +129,15 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
                 switch (type) {
                     case ATTUNEMENT: {
                         sound = SoundsAS.ALTAR_CRAFT_LOOP_T2;
-                        break;
+
                     }
                     case CONSTELLATION: {
                         sound = SoundsAS.ALTAR_CRAFT_LOOP_T3;
-                        break;
+
                     }
                     case RADIANCE: {
                         sound = SoundsAS.ALTAR_CRAFT_LOOP_T4;
-                        break;
+
                     }
                 }
                 this.clientCraftSound = SoundHelper.playSoundLoopFadeInClient(sound, new Vector3(this).add(0.5, 0.5, 0.5), 0.6f, 1.0f, false, s -> this.func_145837_r() || SoundHelper.getSoundVolume(SoundSource.BLOCKS) <= 0.0f || this.getActiveRecipe() == null).setFadeInTicks(40.0f).setFadeOutTicks(20.0f);
@@ -165,7 +165,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         final boolean isChaining = pkt.getExtraData().readBoolean();
         final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
-            return;
+
         }
         final TileAltar thisAltar = MiscUtils.getTileAt((IBlockReader)world, at, TileAltar.class, false);
         if (thisAltar != null) {
@@ -181,15 +181,15 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     
     private void doCraftingCycle() {
         if (this.activeRecipe == null) {
-            return;
+
         }
         if (!this.hasMultiblock() || !this.activeRecipe.matches(this, false, false)) {
             this.abortCrafting();
-            return;
+
         }
         if (this.activeRecipe.isFinished()) {
             this.finishRecipe();
-            return;
+
         }
         this.activeRecipe.setState(this.activeRecipe.tick(this));
     }
@@ -211,7 +211,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
             ByteBufUtils.writeResourceLocation(buf, recipeName);
             ByteBufUtils.writePos(buf, this.getBlockState());
             buf.writeBoolean(isChaining);
-            return;
+
         });
         PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vec3i)this.getBlockState(), 32.0));
         this.knownRecipes.add(recipeName);
@@ -265,7 +265,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
                 this.starlightNextTick = 0;
                 this.markForUpdate();
             }
-            return;
+
         }
         this.starlightNextTick *= (int)0.9f;
         if (this.doesSeeSky()) {

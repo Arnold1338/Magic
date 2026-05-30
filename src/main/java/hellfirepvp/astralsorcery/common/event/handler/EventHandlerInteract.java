@@ -52,11 +52,11 @@ public class EventHandlerInteract
     
     private static void onSinglePlace(final BlockEvent.EntityPlaceEvent event) {
         if (event instanceof BlockEvent.EntityMultiPlaceEvent) {
-            return;
+
         }
         final IWorld world = event.getWorld();
         if (world.level() || !(event.getEntity() instanceof Player)) {
-            return;
+
         }
         handleOwnerPlacement(world, event.getPos(), (Player)event.getEntity());
     }
@@ -64,7 +64,7 @@ public class EventHandlerInteract
     private static void onMultiPlace(final BlockEvent.EntityMultiPlaceEvent event) {
         final IWorld world = event.getWorld();
         if (world.level() || !(event.getEntity() instanceof Player)) {
-            return;
+
         }
         final Player placer = (Player)event.getEntity();
         for (final BlockSnapshot snapshot : event.getReplacedBlockSnapshots()) {

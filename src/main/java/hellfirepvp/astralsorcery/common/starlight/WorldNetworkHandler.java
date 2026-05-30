@@ -44,12 +44,12 @@ public class WorldNetworkHandler
     public void informBlockChange(final BlockPos at) {
         final List<LightNetworkBuffer.ChunkSectionNetworkData> relatedData = this.getAffectedChunkSections(at);
         if (relatedData.isEmpty()) {
-            return;
+
         }
         final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(this.getWorld());
         for (final LightNetworkBuffer.ChunkSectionNetworkData data : relatedData) {
             if (data == null) {
-                continue;
+
             }
             final Collection<IPrismTransmissionNode> transmissionNodes = data.getAllTransmissionNodes();
             for (final IPrismTransmissionNode node : transmissionNodes) {
@@ -64,10 +64,10 @@ public class WorldNetworkHandler
         final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(this.world);
         for (final Tuple<BlockPos, IIndependentStarlightSource> source : this.getAllSources()) {
             if (!((IIndependentStarlightSource)source.getB()).providesAutoLink()) {
-                continue;
+
             }
             if (((BlockPos)source.getA()).func_218138_a((IPosition)Vec3.func_237491_b_((Vec3i)at), false) > 256.0) {
-                continue;
+
             }
             final IPrismTransmissionNode node = this.getTransmissionNode((BlockPos)source.getA());
             if (node == null) {
@@ -81,12 +81,12 @@ public class WorldNetworkHandler
             else {
                 final ITransmissionSource sourceNode = (ITransmissionSource)node;
                 if (sourceNode.getLocationPos().getY() <= at.getY()) {
-                    continue;
+
                 }
                 sourceNode.notifyLink(this.getWorld(), at);
                 this.markDirty((Vec3i)at, (Vec3i)source.getA());
                 if (handle == null) {
-                    continue;
+
                 }
                 handle.notifyTransmissionNodeChange(sourceNode);
             }
@@ -97,10 +97,10 @@ public class WorldNetworkHandler
         final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(this.world);
         for (final Tuple<BlockPos, IIndependentStarlightSource> source : this.getAllSources()) {
             if (!((IIndependentStarlightSource)source.getB()).providesAutoLink()) {
-                continue;
+
             }
             if (((BlockPos)source.getA()).func_218138_a((IPosition)Vec3.func_237491_b_((Vec3i)at), false) > 256.0) {
-                continue;
+
             }
             final IPrismTransmissionNode node = this.getTransmissionNode((BlockPos)source.getA());
             if (node == null) {
@@ -114,11 +114,11 @@ public class WorldNetworkHandler
             else {
                 final ITransmissionSource sourceNode = (ITransmissionSource)node;
                 if (!sourceNode.notifyUnlink(this.getWorld(), at)) {
-                    continue;
+
                 }
                 this.markDirty((Vec3i)at, (Vec3i)source.getA());
                 if (handle == null) {
-                    continue;
+
                 }
                 handle.notifyTransmissionNodeChange(sourceNode);
             }
@@ -177,14 +177,14 @@ public class WorldNetworkHandler
     private void removeThisNextFromSources(final IStarlightTransmission<?> tr) {
         final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(this.getWorld());
         if (handle == null) {
-            return;
+
         }
         final IPrismTransmissionNode node = (IPrismTransmissionNode)tr.getNode();
         if (node == null) {
             new Throwable().printStackTrace();
             AstralSorcery.log.warn("Could not find transmission node for Transmission tile '" + tr.getClass().getSimpleName() + "'");
             AstralSorcery.log.warn("This is an implementation error. Report it along with the steps to create this, if you come across this.");
-            return;
+
         }
         for (final BlockPos pos : node.getSources()) {
             final IPrismTransmissionNode sourceNode = this.getTransmissionNode(pos);
@@ -199,7 +199,7 @@ public class WorldNetworkHandler
         if (node == null) {
             AstralSorcery.log.warn("Could not find transmission node for Transmission tile '" + tr.getClass().getSimpleName() + "'");
             AstralSorcery.log.warn("This is an implementation error. Report it along with the steps to create this, if you come across this.");
-            return;
+
         }
         final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(this.getWorld());
         if (handle != null) {
@@ -211,7 +211,7 @@ public class WorldNetworkHandler
             if (connection.getNode() != null) {
                 connection.getNode().notifySourceUnlink(this.getWorld(), thisPos);
                 if (handle == null) {
-                    continue;
+
                 }
                 handle.notifyTransmissionNodeChange(connection.getNode());
             }
@@ -223,14 +223,14 @@ public class WorldNetworkHandler
         if (node == null) {
             AstralSorcery.log.warn("Previously added Transmission tile '" + tr.getClass().getSimpleName() + "' didn't create a Transmission node!");
             AstralSorcery.log.warn("This is an implementation error. Report it along with the steps to create this, if you come across this.");
-            return;
+
         }
         final BlockPos thisPos = tr.getTrPos();
         final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(this.getWorld());
         final List<LightNetworkBuffer.ChunkSectionNetworkData> dataList = this.getAffectedChunkSections(tr.getTrPos());
         for (final LightNetworkBuffer.ChunkSectionNetworkData data : dataList) {
             if (data == null) {
-                continue;
+
             }
             for (final IPrismTransmissionNode otherNode : data.getAllTransmissionNodes()) {
                 final List<NodeConnection<IPrismTransmissionNode>> nodeConnections = otherNode.queryNext(this);
@@ -238,7 +238,7 @@ public class WorldNetworkHandler
                     if (connection.getTo().equals((Object)thisPos)) {
                         node.notifySourceLink(this.getWorld(), otherNode.getLocationPos());
                         if (handle == null) {
-                            continue;
+
                         }
                         handle.notifyTransmissionNodeChange(otherNode);
                     }

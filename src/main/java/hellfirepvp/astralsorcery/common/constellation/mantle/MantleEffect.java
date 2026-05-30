@@ -43,7 +43,7 @@ public abstract class MantleEffect  implements ITickHandler
     
     public MantleEffect(final IWeakConstellation constellation) {
         this.constellation = constellation;
-        this);
+
         this.playerAffectionFlag = new PlayerAffectionFlags.NoOpAffectionFlag(AstralSorcery.key("mantle_effect_" + constellation.getSimpleName()));
         this.attachEventListeners(MinecraftForge.EVENT_BUS);
         this.attachTickHandlers(AstralSorcery.getProxy().getTickManager()::register);
@@ -111,17 +111,17 @@ public abstract class MantleEffect  implements ITickHandler
     
     public final void tick(final TickEvent.Type type, final Object... context) {
         if (!(boolean)this.getConfig().enabled.get()) {
-            return;
+
         }
         final Player pl = (Player)context[0];
         final LogicalSide side = (LogicalSide)context[1];
         final boolean hasMantle = ItemMantle.getEffect((LivingEntity)pl, this.getAssociatedConstellation()) != null;
         if (!hasMantle) {
-            return;
+
         }
         if (side.isServer()) {
             if (!(pl instanceof ServerPlayer) || MiscUtils.isPlayerFakeMP((ServerPlayer)pl)) {
-                return;
+
             }
             PlayerAffectionFlags.markPlayerAffected(pl, this.playerAffectionFlag);
             this.tickServer(pl);

@@ -114,8 +114,7 @@ public class PktPlayEffect extends ASPacket<PktPlayEffect>
         GATEWAY_REVOKE_EFFECT, 
         LIQUID_INTERACTION_LINE, 
         FOUNTAIN_TRANSITION_SEGMENT, 
-        FOUNTAIN_REPLACE_EFFECT;
-        
+
         @OnlyIn(Dist.CLIENT)
         private Consumer<PktPlayEffect> runEffect() {
             switch (this) {

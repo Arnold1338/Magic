@@ -97,10 +97,10 @@ public class BlockStructural extends Block
             switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
                 case TELESCOPE: {
                     manager.func_180533_a(pos.renderItem(), BlocksAS.TELESCOPE.defaultBlockState());
-                    break;
+
                 }
             }
-            return;
+
         });
         return true;
     }
@@ -112,10 +112,10 @@ public class BlockStructural extends Block
                 switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
                     case TELESCOPE: {
                         manager.func_180533_a(((BlockHitResult)target).func_216350_a().renderItem(), BlocksAS.TELESCOPE.defaultBlockState());
-                        break;
+
                     }
                 }
-                return;
+
             });
         }
         return true;
@@ -164,7 +164,7 @@ public class BlockStructural extends Block
                 if (world.isEmptyBlock(pos.renderItem())) {
                     world.func_217377_a(pos, isMoving);
                 }
-                return;
+
             }
             default: {
                 super.func_220069_a(state, world, pos, block, fromPos, isMoving);
@@ -174,15 +174,15 @@ public class BlockStructural extends Block
     
     public void onNeighborChange(final BlockState state, final IWorldReader world, final BlockPos pos, final BlockPos neighbor) {
         if (!(world instanceof IWorldWriter)) {
-            return;
+
         }
         switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
             case TELESCOPE: {
                 if (world.isEmptyBlock(pos.renderItem())) {
                     ((IWorldWriter)world).func_217377_a(pos, false);
-                    break;
+
                 }
-                break;
+
             }
         }
     }

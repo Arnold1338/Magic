@@ -34,7 +34,7 @@ public class AttributeTypeArrowSpeed extends PerkAttributeType
                 final Player player = (Player)shooter;
                 final LogicalSide side = this.getSide((Entity)player);
                 if (!this.hasTypeApplied(player, side)) {
-                    return;
+
                 }
                 Vector3 motion = new Vector3(arrow.func_213322_ci());
                 float mul = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, ResearchHelper.getProgress(player, side), this, 1.0f);

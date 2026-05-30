@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 public class PropertyUsage 
 {
     public PropertyUsage(final ResourceLocation registryName) {
-        this;
+
     }
     
     public MutableComponent getName() {

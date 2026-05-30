@@ -26,11 +26,11 @@ public class RenderChalice extends CustomTileEntityRenderer<TileChalice>
     public void render(final TileChalice tile, final float pTicks, final PoseStack renderStack, final MultiBufferSource renderTypeBuffer, final int combinedLight, final int combinedOverlay) {
         final FluidStack stack = tile.getTank().getFluid();
         if (stack.isEmpty()) {
-            return;
+
         }
         final TextureAtlasSprite tas = RenderingUtils.getParticleTexture(stack);
         if (tas == null) {
-            return;
+
         }
         final Vector3 rotation = RenderingVectorUtils.interpolate(tile.getPrevRotation(), tile.getRotation(), pTicks);
         final Color color = new Color(ColorUtils.getOverlayColor(stack));

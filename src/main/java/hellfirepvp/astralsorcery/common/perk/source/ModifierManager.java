@@ -54,7 +54,7 @@ public class ModifierManager implements ITickHandler
         final Player player = (Player)context[0];
         final LogicalSide side = (LogicalSide)context[1];
         if (!side.isServer() || !(player instanceof ServerPlayer)) {
-            return;
+
         }
         final ServerPlayer serverPlayer = (ServerPlayer)player;
         for (final ModifierSourceProvider<?> sourceProvider : ModifierManager.sourceProviders.values()) {

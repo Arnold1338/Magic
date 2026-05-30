@@ -48,7 +48,7 @@ public class BlockLiquidStarlight extends FlowingFluidBlock
     public void func_196262_a(final BlockState state, final Level world, final BlockPos pos, final Entity entity) {
         super.func_196262_a(state, world, pos, entity);
         if ((int)state.getValue((Property)BlockLiquidStarlight.field_176367_b) != 0) {
-            return;
+
         }
         if (entity instanceof LivingEntity) {
             ((LivingEntity)entity).func_195064_c(new MobEffectInstance(Effects.field_76439_r, 300, 0, true, true));

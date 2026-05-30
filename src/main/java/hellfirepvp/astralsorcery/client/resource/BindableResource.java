@@ -60,13 +60,13 @@ public class BindableResource extends AbstractRenderableTexture.Full implements 
     @Override
     public void bindTexture() {
         if (AssetLibrary.isReloading()) {
-            return;
+
         }
         if (this.resource == null) {
             this.resource = this.allocateGlId();
         }
         if (this.resource == null) {
-            return;
+
         }
         RenderSystem.bindTexture(this.resource.func_110552_b());
     }

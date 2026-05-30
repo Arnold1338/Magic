@@ -69,7 +69,7 @@ public class CEffectDiscidia extends ConstellationEffectEntityCollect<LivingEnti
         final List<LivingEntity> entities = this.collectEntities(world, pos, properties);
         for (final LivingEntity entity : entities) {
             if (CEffectDiscidia.rand.nextInt(6) != 0) {
-                continue;
+
             }
             if (properties.isCorrupted() && entity instanceof MobEntity && entity.getClassification(false) == MobCategory.MONSTER) {
                 entity.heal(damage);
@@ -77,10 +77,10 @@ public class CEffectDiscidia extends ConstellationEffectEntityCollect<LivingEnti
             }
             else {
                 if (entity instanceof Player) {
-                    continue;
+
                 }
                 if (entity.equals((Object)owner)) {
-                    continue;
+
                 }
                 DamageUtil.shotgunAttack(entity, e -> DamageUtil.attackEntityFrom((Entity)entity, src, damage));
             }

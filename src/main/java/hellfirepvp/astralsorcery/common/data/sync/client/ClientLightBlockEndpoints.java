@@ -68,7 +68,7 @@ public class ClientLightBlockEndpoints extends ClientData<ClientLightBlockEndpoi
             }
             for (final String dimKey2 : compound.func_150296_c()) {
                 if (clearedDimensions.contains(dimKey2)) {
-                    continue;
+
                 }
                 final ResourceKey<Level> dim2 = (ResourceKey<Level>)ResourceKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(dimKey2));
                 final Set<BlockPos> positions = data.clientPositions.computeIfAbsent(dim2, k -> new HashSet());

@@ -83,15 +83,15 @@ public class MiscPlayEffect
         switch (MiscPlayEffect.rand.nextInt(3)) {
             case 2: {
                 ctx = EffectTemplatesAS.CRYSTAL_BURST_3;
-                break;
+
             }
             case 1: {
                 ctx = EffectTemplatesAS.CRYSTAL_BURST_2;
-                break;
+
             }
             default: {
                 ctx = EffectTemplatesAS.CRYSTAL_BURST_1;
-                break;
+
             }
         }
         EffectHelper.of(ctx).spawn(vec).setScaleMultiplier(1.5f);
@@ -107,17 +107,17 @@ public class MiscPlayEffect
             case STAGE_2_SKY: {
                 ctx = EffectTemplatesAS.GEM_CRYSTAL_BURST_SKY;
                 scale = 1.2f;
-                break;
+
             }
             case STAGE_2_DAY: {
                 ctx = EffectTemplatesAS.GEM_CRYSTAL_BURST_DAY;
                 scale = 1.2f;
-                break;
+
             }
             case STAGE_2_NIGHT: {
                 ctx = EffectTemplatesAS.GEM_CRYSTAL_BURST_NIGHT;
                 scale = 1.2f;
-                break;
+
             }
         }
         EffectHelper.of(ctx).spawn(vec.add(0.5, 0.3, 0.5)).setScaleMultiplier(scale);

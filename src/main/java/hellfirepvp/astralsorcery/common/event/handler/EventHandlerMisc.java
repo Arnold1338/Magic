@@ -51,7 +51,7 @@ public class EventHandlerMisc
     
     private static void onLecternOpen(final PlayerInteractEvent.RightClickBlock event) {
         if (event.getWorld().level()) {
-            return;
+
         }
         final LecternTileEntity lectern = MiscUtils.getTileAt((IBlockReader)event.getWorld(), event.getPos(), LecternTileEntity.class, false);
         if (lectern != null) {

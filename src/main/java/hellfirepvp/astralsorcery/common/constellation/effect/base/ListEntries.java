@@ -73,7 +73,7 @@ public class ListEntries
         
         public void spawn(final ServerLevel world, final MobSpawnType reason) {
             if (this.type == null) {
-                return;
+
             }
             final Entity e = this.type.func_200721_a((Level)world);
             if (e != null) {
@@ -84,7 +84,7 @@ public class ListEntries
                     ((MobEntity)e).func_213386_a((IServerWorld)world, world.func_175649_E(at), reason, (SpawnGroupData)null, (CompoundTag)null);
                     if (!((MobEntity)e).func_205019_a((IWorldReader)world)) {
                         e.func_70106_y();
-                        return;
+
                     }
                 }
                 world.addFreshEntity(e);

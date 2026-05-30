@@ -37,27 +37,27 @@ public abstract class VanillaAttributeType extends PerkAttributeType implements 
         super.onModeApply(player, mode, side);
         final AttributeInstance attr = player.getMainHandItem().func_233779_a_(this.getAttribute());
         if (attr == null) {
-            return;
+
         }
         final AttributeModifier modifier;
         if (side.isClient() && (modifier = attr.func_111127_a(this.getID(mode))) != null) {
             if (modifier instanceof DynamicAttributeModifier) {
-                return;
+
             }
             attr.func_188479_b(this.getID(mode));
         }
         switch (mode) {
             case ADDITION: {
                 attr.func_233767_b_((AttributeModifier)new DynamicAttributeModifier(this.getID(mode), this.getDescription() + " Add", this, mode, player, side));
-                break;
+
             }
             case ADDED_MULTIPLY: {
                 attr.func_233767_b_((AttributeModifier)new DynamicAttributeModifier(this.getID(mode), this.getDescription() + " Multiply Add", this, mode, player, side));
-                break;
+
             }
             case STACKING_MULTIPLY: {
                 attr.func_233767_b_((AttributeModifier)new DynamicAttributeModifier(this.getID(mode), this.getDescription() + " Stack Add", this, mode, player, side));
-                break;
+
             }
         }
     }
@@ -67,7 +67,7 @@ public abstract class VanillaAttributeType extends PerkAttributeType implements 
         super.onModeRemove(player, mode, side, removedCompletely);
         final AttributeInstance attr = player.getMainHandItem().func_233779_a_(this.getAttribute());
         if (attr == null) {
-            return;
+
         }
         attr.func_188479_b(this.getID(mode));
     }
@@ -76,7 +76,7 @@ public abstract class VanillaAttributeType extends PerkAttributeType implements 
     public void refreshAttribute(final Player player) {
         final AttributeInstance attr = player.getMainHandItem().func_233779_a_(this.getAttribute());
         if (attr == null) {
-            return;
+
         }
         final double base = attr.func_111125_b();
         if (base == 0.0) {

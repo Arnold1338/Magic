@@ -139,7 +139,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
             Blending.DEFAULT.apply();
             RenderSystem.disableBlend();
             RenderSystem.enableAlphaTest();
-            return;
+
         }
         final WorldContext ctx = this.getContext();
         if (ctx != null && canSeeSky) {
@@ -159,7 +159,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
                     final float brightness2 = this.multiplyStarBrightness(pTicks, brightness);
                     RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(innerOffsetX, innerOffsetY).dim(starSize, starSize).color(brightness2, brightness2, brightness2, brightness2).draw();
                 }
-                return;
+
             });
             this.func_230926_e_(-7);
             for (final TelescopeRotationDrawArea area : this.getVisibleDrawAreas()) {

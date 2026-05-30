@@ -24,7 +24,7 @@ public class EffectFocusDustSwirl extends AltarRecipeEffect implements IFocusEff
         if (state == ActiveSimpleAltarRecipe.CraftingState.ACTIVE) {
             final ActiveSimpleAltarRecipe recipe = altar.getActiveRecipe();
             if (recipe == null) {
-                return;
+
             }
             final IConstellation focus = recipe.getRecipeToCraft().getFocusConstellation();
             final long tick = this.getClientTick();

@@ -168,7 +168,7 @@ public class ScreenJournalProgressionRenderer
                 }
             }
             if (this.focusedClusterZoom == null) {
-                return;
+
             }
             if (scale < 6.1f) {
                 final float vDiv = (2.0f - (scale - 4.0f)) * 10.0f;
@@ -264,7 +264,7 @@ public class ScreenJournalProgressionRenderer
     private void drawClusters(final PoseStack renderStack, final float zLevel) {
         this.clusterRectMap.clear();
         if (this.sizeHandler.getScalingFactor() >= 8.01) {
-            return;
+
         }
         final PlayerProgress thisProgress = ResearchHelper.getClientProgress();
         for (final ResearchProgression progress : thisProgress.getResearchProgression()) {
@@ -298,7 +298,7 @@ public class ScreenJournalProgressionRenderer
             buf.vertex(offset, pCluster.x + width, pCluster.y + height, zLevel).color(br, br, br, br).func_225583_a_(1.0f, 1.0f).endVertex();
             buf.vertex(offset, pCluster.x + width, pCluster.y + 0.0f, zLevel).color(br, br, br, br).func_225583_a_(1.0f, 0.0f).endVertex();
             buf.vertex(offset, pCluster.x + 0.0f, pCluster.y + 0.0f, zLevel).color(br, br, br, br).func_225583_a_(0.0f, 0.0f).endVertex();
-            return;
+
         });
         Blending.DEFAULT.apply();
         RenderSystem.disableBlend();
@@ -325,7 +325,7 @@ public class ScreenJournalProgressionRenderer
             buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)(this.realCoordLowerY + this.realRenderHeight), zLevel).color(br, br, br, br).func_225583_a_(1.0f, 1.0f).endVertex();
             buf.vertex(offset, (float)(this.realCoordLowerX + this.realRenderWidth), (float)this.realCoordLowerY, zLevel).color(br, br, br, br).func_225583_a_(1.0f, 0.0f).endVertex();
             buf.vertex(offset, (float)this.realCoordLowerX, (float)this.realCoordLowerY, zLevel).color(br, br, br, br).func_225583_a_(0.0f, 0.0f).endVertex();
-            return;
+
         });
         RenderSystem.defaultBlendFunc();
         RenderSystem.disableBlend();
@@ -356,7 +356,7 @@ public class ScreenJournalProgressionRenderer
             this.drawStarOverlay((VertexConsumer)buf, renderStack, zLevel, offsetX, offsetY, 0.75f);
             this.drawStarOverlay((VertexConsumer)buf, renderStack, zLevel, offsetX, offsetY, 0.5f);
             this.drawStarOverlay((VertexConsumer)buf, renderStack, zLevel, offsetX, offsetY, 0.3f);
-            return;
+
         });
         RenderSystem.defaultBlendFunc();
         RenderSystem.disableBlend();
@@ -373,7 +373,7 @@ public class ScreenJournalProgressionRenderer
         final float uL = 0.6f * scaleFactor - scale * 2.0f;
         final float vL = 0.6f * scaleFactor - scale * 2.0f;
         if (vL <= 0.0f || uL <= 0.0f) {
-            return;
+
         }
         final Matrix4f offset = renderStack.last().func_227870_a_();
         buf.vertex(offset, x, y + height, zLevel).color(0.75f, 0.75f, 0.75f, 0.7f).func_225583_a_(u, v + vL).endVertex();

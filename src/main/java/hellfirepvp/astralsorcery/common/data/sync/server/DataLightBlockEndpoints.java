@@ -106,7 +106,7 @@ public class DataLightBlockEndpoints extends AbstractData
         compound.put("clear", (Tag)clearList);
         for (final ResourceKey<Level> dim : this.serverChangeBuffer.keySet()) {
             if (this.dimensionClearBuffer.contains(dim)) {
-                continue;
+
             }
             final Map<BlockPos, Boolean> data = this.serverChangeBuffer.get(dim);
             final ListTag dataList = new ListTag();

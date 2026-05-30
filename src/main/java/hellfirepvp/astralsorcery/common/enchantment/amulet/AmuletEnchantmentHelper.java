@@ -82,7 +82,7 @@ public class AmuletEnchantmentHelper {
             anyTool.setDamageValue(stack.getDamageValue());
             if (ItemComparator.compare(stack, anyTool, ItemComparator.Clause.Sets.ITEMSTACK_STRICT)) {
                 foundTool = true;
-                break;
+
             }
         }
         anyTool.setDamageValue(originalDamage);

@@ -81,7 +81,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         super.update(world);
         ++this.ticksExisted;
         if (!this.hasMultiblock || this.channelingType == null || this.attributes == null) {
-            return;
+
         }
         if (this.ticksExisted % 20 == 0) {
             this.validateMirrorPositions(world);
@@ -113,7 +113,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
             if ((boolean)this.effect.getConfig().enabled.get() && ((ConstellationEffectStatus)this.effect).runStatusEffect(world, to, this.getMirrorCount(), properties, this.channelingTrait)) {
                 this.markDirty(world);
             }
-            return;
+
         }
         final float max = 10.0f * properties.getEffectAmplifier();
         final float stretch = 10.0f / properties.getPotency();
@@ -133,7 +133,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
                     didEffectExecute = this.effect.playEffect(world, to, properties, this.channelingTrait);
                 }
                 if (!didEffectExecute) {
-                    continue;
+
                 }
                 this.markDirty(world);
             }
@@ -144,7 +144,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
     private void collectStarlight(final Level world) {
         final WorldContext ctx = SkyHandler.getContext(world, LogicalSide.SERVER);
         if (ctx == null) {
-            return;
+
         }
         double collected = 1.3;
         collected *= 0.25 + 0.75 * DayTimeHelper.getCurrentDaytimeDistribution(world);
@@ -221,7 +221,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
     
     private void findNextMirror(final Level world) {
         if (this.offsetMirrors.size() >= 5 || this.effect == null || this.channelingType == null) {
-            return;
+
         }
         long seed = 3451968351053166105L;
         seed |= this.getLocationPos().func_218275_a() * 31L;
@@ -249,7 +249,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
                 }
             }
             if (!ray.isClear(world)) {
-                continue;
+
             }
             offset = test;
         }
@@ -270,14 +270,14 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
             if (!srcLinkingToThis.contains(actualPos)) {
                 this.offsetMirrors.put(pos, false);
                 if (!existingFlag) {
-                    continue;
+
                 }
                 needsUpdate = true;
             }
             else {
                 final IPrismTransmissionNode other = handle.getTransmissionNode(actualPos);
                 if (other == null) {
-                    continue;
+
                 }
                 boolean foundLink = false;
                 for (final NodeConnection<IPrismTransmissionNode> n : other.queryNext(handle)) {
@@ -288,15 +288,15 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
                             needsUpdate = true;
                         }
                         foundLink = true;
-                        break;
+
                     }
                 }
                 if (foundLink) {
-                    continue;
+
                 }
                 this.offsetMirrors.put(pos, false);
                 if (!existingFlag) {
-                    continue;
+
                 }
                 needsUpdate = true;
             }

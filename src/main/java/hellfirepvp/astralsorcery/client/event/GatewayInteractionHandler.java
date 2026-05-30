@@ -57,19 +57,19 @@ public class GatewayInteractionHandler
         final Player player = event.getPlayer();
         final Level world = event.getWorld();
         if (player == null || world == null || !world.level() || event.getHand() != InteractionHand.MAIN_HAND) {
-            return;
+
         }
         final GatewayUI ui = GatewayUIRenderHandler.getInstance().getCurrentUI();
         if (ui == null) {
-            return;
+
         }
         final GatewayCache.GatewayNode node = ui.getThisGatewayNode();
         if (node == null || !node.isLocked() || node.getOwner() == null || node.getAllowedUsers().isEmpty()) {
-            return;
+
         }
         final TileCelestialGateway gateway = MiscUtils.getTileAt((IBlockReader)world, Vector3.atEntityCorner((Entity)player).toBlockPos(), TileCelestialGateway.class, true);
         if (gateway == null || !gateway.hasMultiblock() || !gateway.doesSeeSky()) {
-            return;
+
         }
         final BlockPos clickedPos = event.getPos();
         MapStream.of(node.getAllowedUsers()).filter(tpl -> TileCelestialGateway.getAllowedUserOffset((int)tpl.getA()).func_177971_a((Vec3i)node.getPos()).renderItem().equals((Object)clickedPos)).findAny().map((Function<? super net.minecraft.util.Tuple<Integer, PlayerReference>, ?>)Tuple::func_76340_b).ifPresent(playerRef -> {
@@ -84,35 +84,35 @@ public class GatewayInteractionHandler
         if (player == null || world == null) {
             GatewayInteractionHandler.focusingEntry = null;
             GatewayInteractionHandler.focusTicks = 0;
-            return;
+
         }
         final GatewayUI ui = GatewayUIRenderHandler.getInstance().getCurrentUI();
         if (ui == null) {
             GatewayInteractionHandler.focusingEntry = null;
             GatewayInteractionHandler.focusTicks = 0;
-            return;
+
         }
         final TileCelestialGateway gateway = MiscUtils.getTileAt((IBlockReader)world, Vector3.atEntityCorner((Entity)player).toBlockPos(), TileCelestialGateway.class, true);
         if (gateway == null || !gateway.hasMultiblock() || !gateway.doesSeeSky()) {
             GatewayInteractionHandler.focusingEntry = null;
             GatewayInteractionHandler.focusTicks = 0;
-            return;
+
         }
         final GatewayUI.GatewayEntry entry = GatewayUIRenderHandler.getInstance().findMatchingEntry(Mth.func_76142_g(player.yRot), Mth.func_76142_g(player.xRot));
         if (entry == null) {
             GatewayInteractionHandler.focusingEntry = null;
             GatewayInteractionHandler.focusTicks = 0;
-            return;
+
         }
         if (!Minecraft.getInstance().options.field_74313_G.func_151470_d() && !Minecraft.getInstance().options.field_228046_af_.func_151470_d()) {
             GatewayInteractionHandler.focusingEntry = null;
             GatewayInteractionHandler.focusTicks = 0;
-            return;
+
         }
         if (GatewayInteractionHandler.focusingEntry != null && !entry.equals(GatewayInteractionHandler.focusingEntry)) {
             GatewayInteractionHandler.focusingEntry = null;
             GatewayInteractionHandler.focusTicks = 0;
-            return;
+
         }
         GatewayInteractionHandler.focusingEntry = entry;
         ++GatewayInteractionHandler.focusTicks;
@@ -173,12 +173,12 @@ public class GatewayInteractionHandler
     private static void renderTick(final TickEvent.RenderTickEvent event) {
         final GatewayUI ui = GatewayUIRenderHandler.getInstance().getCurrentUI();
         if (ui == null) {
-            return;
+
         }
         if (event.phase == TickEvent.Phase.START) {
             GatewayInteractionHandler.fovPre = Minecraft.getInstance().options.field_74334_X;
             if (GatewayInteractionHandler.focusTicks < 80) {
-                return;
+
             }
             float percDone = 1.0f - (GatewayInteractionHandler.focusTicks - 80.0f + event.renderTickTime) / 15.0f;
             percDone = (float)Math.pow(percDone, 2.4000000953674316);

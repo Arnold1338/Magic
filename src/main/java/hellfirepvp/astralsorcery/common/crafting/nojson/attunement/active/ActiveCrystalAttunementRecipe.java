@@ -121,7 +121,7 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
     public void doTick(final LogicalSide side, final TileAttunementAltar altar) {
         final ItemEntity crystal = this.getEntity(altar.getLevel());
         if (crystal == null) {
-            return;
+
         }
         final Vector3 crystalHoverPos = new Vector3(altar).add(0.5, 1.4, 0.5);
         crystal.setPos(crystalHoverPos.getX(), crystalHoverPos.getY(), crystalHoverPos.getZ());

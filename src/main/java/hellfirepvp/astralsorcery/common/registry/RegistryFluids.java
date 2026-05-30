@@ -57,7 +57,7 @@ public class RegistryFluids
     }
     
     private static <T extends Fluid> T registerFluid(final T fluid, final ResourceLocation name) {
-        fluid;
+
         AstralSorcery.getProxy().getRegistryPrimer().register(fluid);
         return fluid;
     }

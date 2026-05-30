@@ -60,7 +60,7 @@ public class AstralAdvancementProvider extends AdvancementProvider
                 catch (final IOException ioexception) {
                     AstralAdvancementProvider.LOGGER.error("Couldn't save advancement {}", (Object)outPath, (Object)ioexception);
                 }
-                return;
+
             }
         };
         this.registerAdvancements(registrar);

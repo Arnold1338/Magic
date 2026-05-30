@@ -10,12 +10,12 @@ import net.minecraft.world.level.inventory.MenuType;
 
 public class ContainerTypesAS
 {
-    public static ContainerType<ContainerTome> TOME;
-    public static ContainerType<ContainerObservatory> OBSERVATORY;
-    public static ContainerType<ContainerAltarDiscovery> ALTAR_DISCOVERY;
-    public static ContainerType<ContainerAltarAttunement> ALTAR_ATTUNEMENT;
-    public static ContainerType<ContainerAltarConstellation> ALTAR_CONSTELLATION;
-    public static ContainerType<ContainerAltarTrait> ALTAR_RADIANCE;
+    public static MenuType<ContainerTome> TOME;
+    public static MenuType<ContainerObservatory> OBSERVATORY;
+    public static MenuType<ContainerAltarDiscovery> ALTAR_DISCOVERY;
+    public static MenuType<ContainerAltarAttunement> ALTAR_ATTUNEMENT;
+    public static MenuType<ContainerAltarConstellation> ALTAR_CONSTELLATION;
+    public static MenuType<ContainerAltarTrait> ALTAR_RADIANCE;
     
     private ContainerTypesAS() {
     }

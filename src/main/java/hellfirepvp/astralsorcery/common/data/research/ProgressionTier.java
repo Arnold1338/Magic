@@ -7,8 +7,7 @@ public enum ProgressionTier
     ATTUNEMENT, 
     CONSTELLATION_CRAFT, 
     TRAIT_CRAFT, 
-    BRILLIANCE;
-    
+
     public boolean hasNextTier() {
         return this.ordinal() < values().length - 1;
     }

@@ -21,7 +21,7 @@ public class RegistryEffects
     }
     
     private static <T extends EffectCustomTexture> T register(final T effect) {
-        effect);
+
         effect.attachEventListeners(MinecraftForge.EVENT_BUS);
         AstralSorcery.getProxy().getRegistryPrimer().register(effect);
         return effect;

@@ -35,17 +35,17 @@ public class EventHelperSpawnDeny
     
     private static void onSpawn(final LivingSpawnEvent.CheckSpawn event) {
         if (event.getResult() == Event.Result.DENY || event.getWorld().level() || event.getSpawner() != null) {
-            return;
+
         }
         final LivingEntity entity = event.getEntityLiving();
         if (entity.func_184216_O().contains("skip.spawn.deny")) {
-            return;
+
         }
         if ((boolean)GeneralConfig.CONFIG.mobSpawningDenyAllTypes.get() || entity.getClassification(false) == MobCategory.MONSTER) {
             final Vector3 entityPos = Vector3.atEntityCorner((Entity)entity);
             for (final Map.Entry<WorldBlockPos, TickTokenMap.SimpleTickToken<Double>> entry : EventHelperSpawnDeny.spawnDenyRegions.entrySet()) {
                 if (!entry.getKey().getWorldKey().equals(entity.level().dimension())) {
-                    continue;
+
                 }
                 if (entityPos.distance((Vec3i)entry.getKey()) <= entry.getValue().getValue()) {
                     event.setResult(Event.Result.DENY);

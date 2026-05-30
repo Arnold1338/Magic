@@ -26,11 +26,11 @@ public class ItemHeldEffectRenderer
         final float pTicks = event.getPartialTicks();
         final PoseStack renderStack = event.getMatrixStack();
         if (Minecraft.getInstance().player == null || Minecraft.getInstance().level == null) {
-            return;
+
         }
         for (final EquipmentSlot type : EquipmentSlot.values()) {
             if (this.doHeldRender(Minecraft.getInstance().player.getItemBySlot(type), renderStack, pTicks)) {
-                break;
+
             }
         }
     }

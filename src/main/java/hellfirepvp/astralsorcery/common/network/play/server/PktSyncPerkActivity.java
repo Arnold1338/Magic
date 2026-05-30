@@ -113,20 +113,20 @@ public class PktSyncPerkActivity extends ASPacket<PktSyncPerkActivity>
                         switch (packet.type) {
                             case CLEARALL: {
                                 PerkEffectHelper.clientClearAllPerks();
-                                break;
+
                             }
                             case REMOVE_LISTED: {
                                 final List perks = (List)packet.perkKeys.stream().map(key -> PerkTree.PERK_TREE.getPerk(LogicalSide.CLIENT, key)).filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
                                 PerkEffectHelper.modifySources(player, LogicalSide.CLIENT, (Collection<AbstractPerk>)perks, PerkEffectHelper.Action.REMOVE);
-                                break;
+
                             }
                             case UNLOCKALL: {
                                 PerkEffectHelper.clientRefreshAllPerks();
-                                break;
+
                             }
                             case DATACHANGE: {
                                 PerkTree.PERK_TREE.getPerk(LogicalSide.CLIENT, packet.perkKey).ifPresent(perk -> PerkEffectHelper.clientChangePerkData(perk, packet.oldData, packet.newData));
-                                break;
+
                             }
                         }
                     }
@@ -144,6 +144,6 @@ public class PktSyncPerkActivity extends ASPacket<PktSyncPerkActivity>
         CLEARALL, 
         REMOVE_LISTED, 
         UNLOCKALL, 
-        DATACHANGE;
+
     }
 }

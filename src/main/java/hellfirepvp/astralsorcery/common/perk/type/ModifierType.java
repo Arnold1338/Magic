@@ -9,8 +9,7 @@ public enum ModifierType
 {
     ADDITION, 
     ADDED_MULTIPLY, 
-    STACKING_MULTIPLY;
-    
+
     private static final DecimalFormat DISPLAY_NUMBER_FORMAT;
     
     public static ModifierType fromVanillaAttributeOperation(final AttributeModifier.Operation op) {

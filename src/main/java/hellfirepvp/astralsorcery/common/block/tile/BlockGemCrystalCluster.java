@@ -69,23 +69,23 @@ public class BlockGemCrystalCluster extends BaseEntityBlock implements CustomIte
         switch ((GrowthStageType)state.getValue((Property)BlockGemCrystalCluster.STAGE)) {
             case STAGE_0: {
                 shape = BlockGemCrystalCluster.STAGE_0;
-                break;
+
             }
             case STAGE_1: {
                 shape = BlockGemCrystalCluster.STAGE_1;
-                break;
+
             }
             case STAGE_2_SKY: {
                 shape = BlockGemCrystalCluster.STAGE_2_SKY;
-                break;
+
             }
             case STAGE_2_DAY: {
                 shape = BlockGemCrystalCluster.STAGE_2_DAY;
-                break;
+
             }
             case STAGE_2_NIGHT: {
                 shape = BlockGemCrystalCluster.STAGE_2_NIGHT;
-                break;
+
             }
         }
         return shape.func_197751_a(offset.field_72450_a, offset.field_72448_b, offset.field_72449_c);
@@ -112,7 +112,7 @@ public class BlockGemCrystalCluster extends BaseEntityBlock implements CustomIte
             final PktPlayEffect effect = new PktPlayEffect(PktPlayEffect.Type.GEM_CRYSTAL_BREAK).addData(buf -> {
                 ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos).add(state.func_191059_e((IBlockReader)world, pos)));
                 buf.writeInt(((GrowthStageType)state.getValue((Property)BlockGemCrystalCluster.STAGE)).ordinal());
-                return;
+
             });
             PacketChannel.CHANNEL.sendToAllAround(effect, PacketChannel.pointFromPos(world, (Vec3i)pos, 32.0));
         }

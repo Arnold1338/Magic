@@ -69,11 +69,11 @@ public class PatreonFlare extends PatreonPartialEntity
     public void tickEffects(final Level world) {
         super.tickEffects(world);
         if (!(boolean)RenderingConfig.CONFIG.patreonEffects.get() || PatreonFlare.rand.nextBoolean()) {
-            return;
+
         }
         final Color c = this.getColor();
         if (c == null) {
-            return;
+
         }
         final int age = 30 + PatreonFlare.rand.nextInt(15);
         final float scale = 0.1f + PatreonFlare.rand.nextFloat() * 0.1f;

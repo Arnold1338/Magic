@@ -90,21 +90,21 @@ public class WavefrontObject
                     if (currentLine.startsWith("v ")) {
                         final Vertex vertex = this.parseVertex(currentLine, lineCount);
                         if (vertex == null) {
-                            continue;
+
                         }
                         this.vertices.add(vertex);
                     }
                     else if (currentLine.startsWith("vn ")) {
                         final Vertex vertex = this.parseVertexNormal(currentLine, lineCount);
                         if (vertex == null) {
-                            continue;
+
                         }
                         this.vertexNormals.add(vertex);
                     }
                     else if (currentLine.startsWith("vt ")) {
                         final TextureCoordinate textureCoordinate = this.parseTextureCoordinate(currentLine, lineCount);
                         if (textureCoordinate == null) {
-                            continue;
+
                         }
                         this.textureCoordinates.add(textureCoordinate);
                     }
@@ -114,13 +114,13 @@ public class WavefrontObject
                         }
                         final Face face = this.parseFace(currentLine, lineCount);
                         if (face == null) {
-                            continue;
+
                         }
                         this.currentGroupObject.faces.add(face);
                     }
                     else {
                         if (!(currentLine.startsWith("g ") | currentLine.startsWith("o "))) {
-                            continue;
+
                         }
                         final GroupObject group = this.parseGroupObject(currentLine, lineCount);
                         if (group != null && this.currentGroupObject != null) {

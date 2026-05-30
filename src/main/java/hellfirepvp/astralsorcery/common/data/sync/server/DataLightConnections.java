@@ -56,11 +56,11 @@ public class DataLightConnections extends AbstractData
                 final BlockPos start = c.getStart();
                 final Set<BlockPos> ends = posBufferDim.get(start);
                 if (ends == null) {
-                    continue;
+
                 }
                 ends.remove(c.getEnd());
                 if (!ends.isEmpty()) {
-                    continue;
+
                 }
                 posBufferDim.remove(start);
             }
@@ -109,7 +109,7 @@ public class DataLightConnections extends AbstractData
             for (final BlockPos start : dat.keySet()) {
                 final Set<BlockPos> endPositions = dat.get(start);
                 if (endPositions == null) {
-                    continue;
+
                 }
                 for (final BlockPos end : endPositions) {
                     final CompoundTag cmp = new CompoundTag();
@@ -131,11 +131,11 @@ public class DataLightConnections extends AbstractData
         compound.put("clear", (Tag)clearList);
         for (final ResourceKey<Level> dim : this.serverChangeBuffer.keySet()) {
             if (this.dimensionClearBuffer.contains(dim)) {
-                continue;
+
             }
             final LinkedList<Tuple<TransmissionChain.LightConnection, Boolean>> changes = this.serverChangeBuffer.get(dim);
             if (changes.isEmpty()) {
-                continue;
+
             }
             final ListTag list = new ListTag();
             for (final Tuple<TransmissionChain.LightConnection, Boolean> tuple : changes) {

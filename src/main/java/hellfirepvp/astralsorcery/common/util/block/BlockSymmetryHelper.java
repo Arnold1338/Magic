@@ -20,13 +20,13 @@ public class BlockSymmetryHelper
         for (final BlockPos offset : layerPositions) {
             final BlockPos at = center.func_177971_a((Vec3i)offset);
             if (visitedBlocks.contains(at)) {
-                continue;
+
             }
             visitedBlocks.add(at);
             final BlockState state = world.getBlockState(at);
             if (offset.getX() == 0 || offset.getY() == 0 || offset.getZ() == 0) {
                 if (state.isAir(world, at)) {
-                    continue;
+
                 }
                 result.fillerBlocks.add(at);
             }
@@ -49,7 +49,7 @@ public class BlockSymmetryHelper
             }
             else {
                 if (state.isAir(world, at)) {
-                    continue;
+
                 }
                 result.fillerBlocks.add(at);
             }

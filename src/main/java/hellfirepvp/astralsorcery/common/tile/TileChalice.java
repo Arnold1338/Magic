@@ -90,7 +90,7 @@ public class TileChalice extends TileEntityTick
                 this.nextInteraction = this.ticksExisted + 20 + TileChalice.rand.nextInt(40);
             }
             if (this.ticksExisted < this.nextInteraction) {
-                return;
+
             }
             this.nextInteraction = this.ticksExisted + 20 + TileChalice.rand.nextInt(40);
             if (!this.tickLightwellDraw() && !this.tickFountainDraw()) {
@@ -101,22 +101,22 @@ public class TileChalice extends TileEntityTick
     
     private void tickChaliceInteractions() {
         if (this.getLevel().func_175640_z(this.field_174879_c) || this.getLevel().getBlockState(this.getBlockState().renderItem()).getBlock() instanceof BlockFountain) {
-            return;
+
         }
         final FluidStack thisFluid = this.getTank().getFluid();
         if (thisFluid.isEmpty()) {
-            return;
+
         }
         final List<BlockPos> chalicePositions = ChaliceHelper.findNearbyChalices(this.getLevel(), this.getBlockState(), 16);
         Collections.shuffle(chalicePositions, TileChalice.rand);
         for (final BlockPos otherChalicePos : chalicePositions) {
             final TileChalice otherChalice = MiscUtils.getTileAt((IBlockReader)this.getLevel(), otherChalicePos, TileChalice.class, false);
             if (otherChalice == null) {
-                continue;
+
             }
             final FluidStack otherFluid = otherChalice.getTank().getFluid();
             if (otherFluid.isEmpty()) {
-                continue;
+
             }
             final LiquidInteractionContext ctx = new LiquidInteractionContext(thisFluid, otherFluid);
             final List<LiquidInteraction> recipes = RecipeTypesAS.TYPE_LIQUID_INTERACTION.findMatchingRecipes(ctx);
@@ -133,10 +133,10 @@ public class TileChalice extends TileEntityTick
                         ByteBufUtils.writeVector(buf, otherChaliceV);
                         ByteBufUtils.writeVector(buf, target);
                         ByteBufUtils.writeFluidStack(buf, otherFluid);
-                        return;
+
                     });
                     PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vec3i)target.toBlockPos(), 32.0));
-                    return;
+
                 }
                 recipes.remove(recipe);
             }
@@ -160,7 +160,7 @@ public class TileChalice extends TileEntityTick
             if (fountain != null) {
                 final FluidStack drained = fountain.getTank().drain(400, IFluidHandler.FluidAction.SIMULATE);
                 if (drained.getAmount() <= 100) {
-                    continue;
+
                 }
                 final int maxFillable = this.getTank().fill(drained, IFluidHandler.FluidAction.SIMULATE);
                 if (maxFillable > 0) {
@@ -171,12 +171,12 @@ public class TileChalice extends TileEntityTick
                         ByteBufUtils.writeVector(buf, wellVec);
                         ByteBufUtils.writeVector(buf, thisVector);
                         ByteBufUtils.writeFluidStack(buf, actual);
-                        return;
+
                     });
                     PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vec3i)wellVec.toBlockPos(), 32.0));
                     return true;
                 }
-                continue;
+
             }
         }
         return false;
@@ -203,7 +203,7 @@ public class TileChalice extends TileEntityTick
             if (well != null) {
                 final FluidStack drained = well.getTank().drain(400, IFluidHandler.FluidAction.SIMULATE);
                 if (!(drained.getFluid() instanceof FluidLiquidStarlight) || drained.getAmount() <= 100) {
-                    continue;
+
                 }
                 final int maxFillable = this.getTank().getMaxAddable(drained.getAmount());
                 if (maxFillable > 0) {
@@ -214,7 +214,7 @@ public class TileChalice extends TileEntityTick
                         ByteBufUtils.writeVector(buf, wellVec);
                         ByteBufUtils.writeVector(buf, thisVector);
                         ByteBufUtils.writeFluidStack(buf, actual);
-                        return;
+
                     });
                     PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getLevel(), (Vec3i)wellVec.toBlockPos(), 32.0));
                     return true;

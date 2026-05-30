@@ -87,7 +87,7 @@ public class TimeStopEffectHelper
     public void playClientTickEffect() {
         final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
-            return;
+
         }
         final List<LivingEntity> entities = world.func_175647_a((Class)LivingEntity.class, new AABB((double)(-this.range), (double)(-this.range), (double)(-this.range), (double)this.range, (double)this.range, (double)this.range).func_72317_d((double)this.position.getX(), (double)this.position.getY(), (double)this.position.getZ()), EntityPredicates.func_188443_a((double)this.position.getX(), (double)this.position.getY(), (double)this.position.getZ(), (double)this.range));
         for (final LivingEntity e : entities) {

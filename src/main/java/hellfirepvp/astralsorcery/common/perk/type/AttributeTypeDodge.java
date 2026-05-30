@@ -40,12 +40,12 @@ public class AttributeTypeDodge extends PerkAttributeType
     
     private void onDamageTaken(final LivingDamageEvent event) {
         if (!(event.getEntityLiving() instanceof Player)) {
-            return;
+
         }
         final Player player = (Player)event.getEntityLiving();
         final LogicalSide side = this.getSide((Entity)player);
         if (!this.hasTypeApplied(player, side)) {
-            return;
+
         }
         float chance = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, ResearchHelper.getProgress(player, side), this, 0.0f);
         chance /= 100.0f;

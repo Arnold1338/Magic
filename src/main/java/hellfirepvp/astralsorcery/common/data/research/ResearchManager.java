@@ -43,7 +43,7 @@ public class ResearchManager
     public static void unsafeForceGiveResearch(final ServerPlayer player, final ResearchProgression prog) {
         final PlayerProgress progress = ResearchHelper.getProgress((Player)player, LogicalSide.SERVER);
         if (!progress.isValid()) {
-            return;
+
         }
         final ProgressionTier reqTier = prog.getRequiredProgress();
         if (!progress.getTierReached().isThisLaterOrEqual(reqTier)) {
@@ -493,7 +493,7 @@ public class ResearchManager
         if (!(crafter instanceof ServerPlayer)) {
             AstralSorcery.log.warn("Infusion finished, player that initialized crafting could not be found!");
             AstralSorcery.log.warn("Affected tile: " + infuser.getBlockState() + " in dim " + infuser.getLevel().dimension().func_240901_a_());
-            return;
+
         }
         informCrafted(crafter, crafted);
     }
@@ -503,7 +503,7 @@ public class ResearchManager
         if (!(crafter instanceof ServerPlayer)) {
             AstralSorcery.log.warn("Crafting finished, player that initialized crafting could not be found!");
             AstralSorcery.log.warn("Affected tile: " + altar.getBlockState() + " in dim " + altar.getLevel().dimension().func_240901_a_());
-            return;
+
         }
         informCrafted(crafter, crafted);
         AdvancementsAS.ALTAR_CRAFT.trigger((ServerPlayer)crafter, recipe.getRecipeToCraft(), crafted);
@@ -531,7 +531,7 @@ public class ResearchManager
                 case ATTUNEMENT: {
                     grantProgress(crafter, ProgressionTier.ATTUNEMENT);
                     grantResearch(crafter, ResearchProgression.ATTUNEMENT);
-                    break;
+
                 }
             }
         }

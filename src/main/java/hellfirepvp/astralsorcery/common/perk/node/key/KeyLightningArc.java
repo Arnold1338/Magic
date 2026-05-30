@@ -62,7 +62,7 @@ public class KeyLightningArc extends KeyPerk
     
     private void onAttack(final LivingHurtEvent event) {
         if (EventFlags.LIGHTNING_ARC.isSet()) {
-            return;
+
         }
         final DamageSource source = event.getSource();
         if (source.getDirectEntity() != null && source.getDirectEntity() instanceof Player) {
@@ -126,7 +126,7 @@ public class KeyLightningArc extends KeyPerk
         
         void fire() {
             if (!this.player.isAlive()) {
-                return;
+
             }
             int chainTimes = Math.round(PerkAttributeHelper.getOrCreateMap(this.player, LogicalSide.SERVER).modifyValue(this.player, ResearchHelper.getProgress(this.player, LogicalSide.SERVER), PerkAttributeTypesAS.ATTR_TYPE_ARC_CHAINS, 3.0f));
             final List<LivingEntity> visitedEntities = Lists.newArrayList();
@@ -146,13 +146,13 @@ public class KeyLightningArc extends KeyPerk
                             ByteBufUtils.writeVector(buf, from);
                             ByteBufUtils.writeVector(buf, to);
                             buf.writeInt(ColorsAS.EFFECT_LIGHTNING.getRGB());
-                            return;
+
                         }), target);
                         PacketChannel.CHANNEL.sendToAllAround(new PktPlayEffect(PktPlayEffect.Type.LIGHTNING).addData(buf -> {
                             ByteBufUtils.writeVector(buf, to);
                             ByteBufUtils.writeVector(buf, from);
                             buf.writeInt(ColorsAS.EFFECT_LIGHTNING.getRGB());
-                            return;
+
                         }), target);
                     }
                     final List<LivingEntity> entities = entity.level().func_175647_a((Class)LivingEntity.class, box.func_191194_a(entity.position()), (Predicate)EntityUtils.selectEntities(LivingEntity.class));

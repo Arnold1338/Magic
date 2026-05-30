@@ -223,7 +223,7 @@ public class AltarRecipeGrid
             }
             final char c = key.charAt(0);
             if (AltarRecipeGrid.SKIP_CHARS.matcher(String.valueOf(c)).matches()) {
-                continue;
+
             }
             if (!usedChars.contains(c)) {
                 throw new JsonSyntaxException("Invalid Key: '" + key + "'! Not used in the pattern map!");

@@ -30,7 +30,7 @@ public class PatreonManagerClient implements ITickHandler
         final Level clWorld = (Level)Minecraft.getInstance().level;
         final Player thisPlayer = (Player)Minecraft.getInstance().player;
         if (clWorld == null || thisPlayer == null) {
-            return;
+
         }
         final ResourceKey<Level> clientWorld = (ResourceKey<Level>)clWorld.dimension();
         final Vector3 thisPlayerPos = Vector3.atEntityCenter((Entity)thisPlayer);
@@ -45,7 +45,7 @@ public class PatreonManagerClient implements ITickHandler
                     final PatreonPartialEntity entity = iterator2.next();
                     if (entity.getLastTickedDimension() != null) {
                         if (!entity.getLastTickedDimension().equals(clientWorld)) {
-                            continue;
+
                         }
                         else {
                             if (entity.getPos().distanceSquared(thisPlayerPos) <= RenderingConfig.CONFIG.getMaxEffectRenderDistanceSq()) {
@@ -56,7 +56,7 @@ public class PatreonManagerClient implements ITickHandler
                     }
                 }
             }
-            return;
+
         });
         SyncDataHolder.executeClient(SyncDataHolder.DATA_PATREON_FLARES, ClientPatreonFlares.class, data -> {
             clWorld.func_217369_A().iterator();

@@ -45,7 +45,7 @@ public class ItemColoredLensGrowth extends ItemColoredLens
         @Override
         public void blockInBeam(final Level world, final BlockPos pos, final BlockState state, final PartialEffectExecutor executor) {
             if (world.level()) {
-                return;
+
             }
             final CropHelper.GrowablePlant plant = CropHelper.wrapPlant((IWorld)world, pos);
             if (plant != null) {

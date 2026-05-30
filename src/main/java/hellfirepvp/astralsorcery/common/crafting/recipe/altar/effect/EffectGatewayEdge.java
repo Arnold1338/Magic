@@ -33,11 +33,11 @@ public class EffectGatewayEdge extends AltarRecipeEffect
             switch (EffectGatewayEdge.rand.nextInt(4)) {
                 case 0: {
                     particle.color(VFXColorFunction.WHITE);
-                    break;
+
                 }
                 case 1: {
                     particle.color(VFXColorFunction.constant(ColorsAS.CELESTIAL_CRYSTAL));
-                    break;
+
                 }
             }
         }

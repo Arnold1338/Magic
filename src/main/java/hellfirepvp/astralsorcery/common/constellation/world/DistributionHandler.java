@@ -35,7 +35,7 @@ public class DistributionHandler
             this.initialize();
         }
         if (this.lastRecordedDay == tracked) {
-            return;
+
         }
         this.lastRecordedDay = tracked;
         this.updateDistribution(world);
@@ -69,7 +69,7 @@ public class DistributionHandler
             if (cst instanceof IWeakConstellation) {
                 final MoonPhase offsetPhase = this.ctx.getConstellationHandler().getOffset(cst);
                 if (offsetPhase == null) {
-                    return;
+
                 }
                 final int offset = offsetPhase.ordinal();
                 for (final MoonPhase ph2 : MoonPhase.values()) {

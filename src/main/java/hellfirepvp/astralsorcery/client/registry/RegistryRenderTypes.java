@@ -138,13 +138,13 @@ public class RegistryRenderTypes
                 RenderSystem.mulTextureByProjModelView();
                 RenderSystem.matrixMode(5888);
                 RenderSystem.setupEndPortalTexGen();
-                return;
+
             }, () -> {
                 RenderSystem.matrixMode(5890);
                 RenderSystem.popMatrix();
                 RenderSystem.matrixMode(5888);
                 RenderSystem.clearTexGen();
-                return;
+
             });
             this.zoom = zoom;
         }

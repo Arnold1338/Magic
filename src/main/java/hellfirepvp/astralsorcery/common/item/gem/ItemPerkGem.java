@@ -27,7 +27,7 @@ public abstract class ItemPerkGem extends Item implements GemSocketItem
     
     public void inventoryTick(final ItemStack stack, final Level world, final Entity entity, final int itemSlot, final boolean isSelected) {
         if (world.level()) {
-            return;
+
         }
         if (DynamicModifierHelper.getStaticModifiers(stack).isEmpty()) {
             GemAttributeHelper.rollGem(stack);

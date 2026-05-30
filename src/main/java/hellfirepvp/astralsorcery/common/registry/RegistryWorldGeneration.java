@@ -93,7 +93,7 @@ public class RegistryWorldGeneration
                     final StructureSeparationSettings structureSeparationSettings = noiseStructureSettings.put(structureFeature.field_236268_b_, settings);
                 });
             }
-            return;
+
         });
         DimensionStructuresSettings.field_236191_b_ = builder.build();
         Structure.field_236384_t_ = (List)ImmutableList.builder().addAll((Iterable)Structure.field_236384_t_).add((Object[])new Structure[] { WorldGenerationAS.Structures.STRUCTURE_ANCIENT_SHRINE, WorldGenerationAS.Structures.STRUCTURE_DESERT_SHRINE, WorldGenerationAS.Structures.STRUCTURE_SMALL_SHRINE }).build();
@@ -105,7 +105,7 @@ public class RegistryWorldGeneration
             if (cfg.isEnabled() && cfg.canGenerateIn(event.getCategory())) {
                 gen.func_242516_a(structureFeature);
             }
-            return;
+
         });
         RegistryWorldGeneration.FEATURES.forEach((feature, cfg) -> {
             if (cfg.isEnabled() && cfg.canGenerateIn(event.getCategory())) {

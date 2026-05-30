@@ -101,7 +101,7 @@ public class AlignmentChargeHandler implements ITickHandler
         float charge = this.getCurrentCharge(player, side);
         final float max = this.getMaximumCharge(player, side);
         if (charge >= max) {
-            return;
+
         }
         final PlayerProgress progress = ResearchHelper.getProgress(player, side);
         float regenPerTick = max / 120.0f;

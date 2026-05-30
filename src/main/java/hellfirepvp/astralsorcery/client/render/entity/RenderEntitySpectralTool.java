@@ -25,7 +25,7 @@ public class RenderEntitySpectralTool extends EntityRenderer<EntitySpectralTool>
     public void render(final EntitySpectralTool entity, final float entityYaw, final float partialTicks, final PoseStack renderStack, final MultiBufferSource buffer, final int packedLight) {
         final ItemStack stack = entity.getItem();
         if (stack.isEmpty() || !entity.isAlive()) {
-            return;
+
         }
         renderStack.popPose();
         renderStack.translate(0.0, (double)(entity.func_213302_cg() / 2.0f), 0.0);

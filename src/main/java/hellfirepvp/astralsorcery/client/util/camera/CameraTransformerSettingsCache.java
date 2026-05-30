@@ -57,7 +57,7 @@ public abstract class CameraTransformerSettingsCache implements ICameraTransform
     @Override
     public void transformRenderView(final float pTicks) {
         if (!this.active) {
-            return;
+
         }
         final GameSettings settings = Minecraft.getInstance().options;
         settings.field_74319_N = true;

@@ -120,7 +120,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
             RenderSystem.enableAlphaTest();
             Blending.DEFAULT.apply();
             RenderSystem.disableBlend();
-            return;
+
         }
         final WorldContext ctx = SkyHandler.getContext((Level)Minecraft.getInstance().level, LogicalSide.CLIENT);
         if (ctx != null && canSeeSky) {
@@ -147,7 +147,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
                     final float brightness3 = brightness2 * brMultiplier;
                     RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, pos.x + this.getGuiLeft(), pos.y + this.getGuiTop(), (float)this.getGuiZLevel(), starSize, starSize).color(brightness3, brightness3, brightness3, brightness3).draw();
                 }
-                return;
+
             });
             this.func_230926_e_(-7);
             for (final DrawArea areas : this.getVisibleDrawAreas()) {
@@ -155,14 +155,14 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
                     final ConstellationDisplayInformation info = areas.getDisplayMap().get(cst);
                     info.getFrameDrawInformation().clear();
                     if (!(info instanceof PlayerAngledConstellationInformation)) {
-                        continue;
+
                     }
                     final PlayerAngledConstellationInformation cstInfo = (PlayerAngledConstellationInformation)info;
                     final float diffYaw = playerYaw - cstInfo.getYaw();
                     final float diffPitch = playerPitch - cstInfo.getPitch();
                     final float maxDistance = 35.0f;
                     if ((Math.abs(diffYaw) > maxDistance && Math.abs(playerYaw + 360.0f) > maxDistance) || Math.abs(diffPitch) > maxDistance) {
-                        continue;
+
                     }
                     final float rainBr = 1.0f - Minecraft.getInstance().level.func_72867_j(pTicks);
                     final int wPart = Mth.func_76141_d(this.getGuiWidth() * 0.1f);
@@ -187,7 +187,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
     
     public void func_212927_b(final double xPos, final double yPos) {
         if (!Minecraft.getInstance().field_71417_B.func_198035_h()) {
-            return;
+
         }
         final int offsetX = 6;
         final int offsetY = 6;
@@ -218,7 +218,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<DrawArea>
             }
             else {
                 if (sl.y <= offsetY + height) {
-                    continue;
+
                 }
                 final Point2D.Float float6 = sl;
                 float6.y -= height;

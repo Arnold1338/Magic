@@ -64,18 +64,18 @@ public class ItemColoredLensFire extends ItemColoredLens
         @Override
         public void entityInBeam(final Level world, final Vector3 origin, final Vector3 target, final Entity entity, final PartialEffectExecutor executor) {
             if (world.level()) {
-                return;
+
             }
             if (entity instanceof ItemEntity) {
                 final ItemStack current = ((ItemEntity)entity).func_92059_d();
                 final ItemStack result = RecipeHelper.findSmeltingResult(entity.level(), current).map((Function<? super Tuple<ItemStack, Float>, ? extends ItemStack>)Tuple::func_76341_a).orElse(ItemStack.EMPTY);
                 if (result.isEmpty()) {
-                    return;
+
                 }
                 while (executor.canExecute()) {
                     executor.markExecution();
                     if (ItemColoredLensFire.count.nextInt(10) != 0) {
-                        continue;
+
                     }
                     final Vector3 entityPos = Vector3.atEntityCorner(entity);
                     ItemUtils.dropItemNaturally(entity.level(), entityPos.getX(), entityPos.getY(), entityPos.getZ(), ItemUtils.copyStackWithSize(result, result.getCount()));
@@ -90,7 +90,7 @@ public class ItemColoredLensFire extends ItemColoredLens
             }
             else if (entity instanceof LivingEntity) {
                 if (entity instanceof Player && (!(boolean)GeneralConfig.CONFIG.doColoredLensesAffectPlayers.get() || entity.func_184102_h() == null || !entity.func_184102_h().func_71219_W())) {
-                    return;
+
                 }
                 entity.hurt(DamageSource.field_76370_b, 0.5f);
                 entity.setAge(5);
@@ -100,22 +100,22 @@ public class ItemColoredLensFire extends ItemColoredLens
         @Override
         public void blockInBeam(final Level world, final BlockPos pos, final BlockState state, final PartialEffectExecutor executor) {
             if (!(world instanceof ServerLevel)) {
-                return;
+
             }
             final ItemStack blockStack = ItemUtils.createBlockStack(state);
             if (blockStack.isEmpty()) {
-                return;
+
             }
             final ItemStack result = RecipeHelper.findSmeltingResult(world, blockStack).map((Function<? super Tuple<ItemStack, Float>, ? extends ItemStack>)Tuple::func_76341_a).orElse(ItemStack.EMPTY);
             if (result.isEmpty()) {
-                return;
+
             }
             final PktPlayEffect ev = new PktPlayEffect(PktPlayEffect.Type.MELT_BLOCK).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos)));
             PacketChannel.CHANNEL.sendToAllAround(ev, PacketChannel.pointFromPos(world, (Vec3i)pos, 16.0));
             while (executor.canExecute()) {
                 executor.markExecution();
                 if (ItemColoredLensFire.count.nextInt(6) != 0) {
-                    continue;
+
                 }
                 final BlockState resState = ItemUtils.createBlockState(result);
                 if (resState != null) {

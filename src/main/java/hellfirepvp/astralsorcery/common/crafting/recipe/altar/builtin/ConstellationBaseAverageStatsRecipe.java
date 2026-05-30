@@ -40,7 +40,7 @@ public class ConstellationBaseAverageStatsRecipe extends ConstellationBaseItemRe
     
     private void setStats(final ItemStack out, final Iterable<ItemStack> inventoryContents) {
         if (!(out.getItem() instanceof CrystalAttributeItem)) {
-            return;
+
         }
         int count = 0;
         final CrystalAttributes.Builder builder = CrystalAttributes.Builder.newBuilder(true);
@@ -48,7 +48,7 @@ public class ConstellationBaseAverageStatsRecipe extends ConstellationBaseItemRe
             if (stack.getItem() instanceof CrystalAttributeItem) {
                 final CrystalAttributes attr = ((CrystalAttributeItem)stack.getItem()).getAttributes(stack);
                 if (attr == null) {
-                    continue;
+
                 }
                 builder.addAll(attr);
                 ++count;

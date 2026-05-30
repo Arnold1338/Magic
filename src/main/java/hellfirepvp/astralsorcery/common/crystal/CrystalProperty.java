@@ -25,7 +25,7 @@ public abstract class CrystalProperty  implements Comparable<CrystalProperty>
         this.modifiers = new ArrayList<CrystalPropertyModifierFunction>();
         this.usageTests = (ctx -> false);
         this.sortingId = CrystalProperty.counter++;
-        this;
+
     }
     
     public CrystalProperty setRequiredResearch(final ResearchProgression requiredResearch) {

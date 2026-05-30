@@ -453,7 +453,7 @@ public class MiscUtils
             downPos = blockpos.renderItem();
             final BlockState test = world.getBlockState(downPos);
             if (!world.isEmptyBlock(downPos) && !test.func_235714_a_((ITag)BlockTags.field_206952_E) && test.func_224755_d((IBlockReader)world, downPos, Direction.UP)) {
-                break;
+
             }
         }
         return downPos;
@@ -649,9 +649,9 @@ public class MiscUtils
             catch (final Exception exc) {
                 AstralSorcery.log.error((Object)exc);
                 ++i;
-                continue;
+
             }
-            break;
+
         }
         return Optional.empty();
     }
@@ -666,7 +666,7 @@ public class MiscUtils
                 final Class<?> specificPlayerClass = mod.getExtendedPlayerClass();
                 if (specificPlayerClass != null && player.getClass() != ServerPlayer.class && player.getClass() == specificPlayerClass) {
                     isModdedPlayer = true;
-                    break;
+
                 }
             }
         }

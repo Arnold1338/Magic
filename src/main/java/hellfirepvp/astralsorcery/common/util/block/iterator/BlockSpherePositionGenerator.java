@@ -34,7 +34,7 @@ public class BlockSpherePositionGenerator extends BlockPositionGenerator
     private void generatePositions(final double maxRadius) {
         if (maxRadius <= 0.0) {
             this.currentPositions.add(BlockPos.field_177992_a);
-            return;
+
         }
         if (this.currentRadius >= maxRadius || this.currentRadius < 0) {
             this.currentRadius = 0;

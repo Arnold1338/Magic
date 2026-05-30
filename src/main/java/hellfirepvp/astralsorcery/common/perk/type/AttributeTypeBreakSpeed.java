@@ -28,12 +28,12 @@ public class AttributeTypeBreakSpeed extends PerkAttributeType
     
     private void onBreakSpeed(final PlayerEvent.BreakSpeed event) {
         if (AttributeTypeBreakSpeed.evaluateBreakSpeedWithoutPerks) {
-            return;
+
         }
         final Player player = event.getPlayer();
         final LogicalSide side = this.getSide((Entity)player);
         if (!this.hasTypeApplied(player, side)) {
-            return;
+
         }
         float speed = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, ResearchHelper.getProgress(player, side), this, event.getNewSpeed());
         speed = AttributeEvent.postProcessModded(player, this, speed);

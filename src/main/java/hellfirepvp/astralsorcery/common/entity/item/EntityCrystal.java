@@ -99,7 +99,7 @@ public class EntityCrystal extends EntityItemExplosionResistant implements Inter
         for (int i = 0; i < maxSplit; ++i) {
             final CrystalProperty prop = MiscUtils.getRandomEntry(resultThisAttributes.getProperties(), this.random);
             if (prop == null) {
-                break;
+
             }
             resultThisAttributes = resultThisAttributes.modifyLevel(prop, -1);
             if (lostModifiers > 0) {

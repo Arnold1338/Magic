@@ -98,7 +98,7 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler
     void onRender(final RenderPlayerEvent.Post event) {
         final Player player = event.getPlayer();
         if (!this.shouldDoEffect(player)) {
-            return;
+
         }
         this.renderWings(player, event.getMatrixStack(), event.getPartialRenderTick());
     }

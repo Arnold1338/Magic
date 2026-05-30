@@ -179,6 +179,6 @@ public class ResearchNode
     public enum NodeRenderType
     {
         ITEMSTACK, 
-        TEXTURE_SPRITE;
+
     }
 }

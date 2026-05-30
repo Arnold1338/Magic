@@ -121,7 +121,7 @@ public class EntityShootingStar extends ThrowableEntity
         final int newChunkZ = Mth.func_76128_c(z / 16.0);
         if ((chunkX != newChunkX || chunkZ != newChunkZ) && !this.level().func_217354_b(newChunkX, newChunkZ)) {
             this.func_70106_y();
-            return;
+
         }
         super.setPos(x, y, z);
     }

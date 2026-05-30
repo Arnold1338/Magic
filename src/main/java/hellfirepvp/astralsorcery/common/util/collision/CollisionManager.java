@@ -72,13 +72,13 @@ public class CollisionManager
             }
             catch (final NoSuchElementException exc) {
                 if (CollisionManager.accessList.isEmpty()) {
-                    return;
+
                 }
                 try {
                     oldest = CollisionManager.accessList.get(CollisionManager.accessList.size() - 1);
                 }
                 catch (final Exception e) {
-                    return;
+
                 }
             }
             if (oldest != null) {

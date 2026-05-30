@@ -153,7 +153,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
             Blending.DEFAULT.apply();
             RenderSystem.disableBlend();
             RenderSystem.enableAlphaTest();
-            return;
+
         }
         float playerYaw = Minecraft.getInstance().player.yRot % 360.0f;
         if (playerYaw < 0.0f) {
@@ -180,7 +180,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
                     final float brightness3 = brightness2 * brMultiplier;
                     RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(16.0f + star.x, 16.0f + star.y).dim(size2, size2).color(brightness3, brightness3, brightness3, brightness3).draw();
                 }
-                return;
+
             });
             this.func_230926_e_(-7);
             for (final DrawArea area : this.getVisibleDrawAreas()) {
@@ -188,14 +188,14 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
                     final ConstellationDisplayInformation info = area.getDisplayMap().get(cst);
                     info.getFrameDrawInformation().clear();
                     if (!(info instanceof PlayerAngledConstellationInformation)) {
-                        continue;
+
                     }
                     final PlayerAngledConstellationInformation cstInfo = (PlayerAngledConstellationInformation)info;
                     final float size = cstInfo.getRenderSize();
                     float diffYaw = playerYaw - cstInfo.getYaw();
                     final float diffPitch = playerPitch - cstInfo.getPitch();
                     if ((Math.abs(diffYaw) > size && Math.abs(diffYaw += 360.0f) > size) || Math.abs(diffPitch) > size) {
-                        continue;
+
                     }
                     final int wPart = Mth.func_76141_d(this.getGuiWidth() * 0.1f);
                     final int hPart = Mth.func_76141_d(this.getGuiHeight() * 0.1f);
@@ -227,7 +227,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
             RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at((float)(this.getGuiWidth() + 16), 16.0f).dim(16.0f, (float)this.getGuiHeight()).tex(0.0f, 0.85f, 0.4f, 0.05f).draw();
             RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(16.0f, (float)(this.getGuiHeight() + 16)).dim((float)this.getGuiWidth(), 16.0f).tex(0.85f, 0.0f, 0.05f, 0.4f).draw();
             RenderingGuiUtils.rect((VertexConsumer)buf, renderStack, this).at(0.0f, 16.0f).dim(16.0f, (float)this.getGuiHeight()).tex(0.0f, 0.8f, 0.4f, 0.05f).draw();
-            return;
+
         });
         this.func_230926_e_(0);
     }
@@ -239,7 +239,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
     
     public void func_212927_b(final double xPos, final double yPos) {
         if (!Minecraft.getInstance().field_71417_B.func_198035_h()) {
-            return;
+
         }
         final int offsetX = 6;
         final int offsetY = 6;
@@ -279,7 +279,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
             }
             else {
                 if (sl.y <= offsetY + height) {
-                    continue;
+
                 }
                 final Point2D.Float float6 = sl;
                 float6.y -= height;

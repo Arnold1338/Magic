@@ -22,7 +22,7 @@ public class EventHelperDamageCancelling
     
     public static void markInvulnerableToNextDamage(final Player player, final DamageSource source) {
         if (player.level()) {
-            return;
+
         }
         EventHelperDamageCancelling.invulnerableTypes.computeIfAbsent(player.getUUID(), uuid -> new HashSet()).add(source);
     }
@@ -42,7 +42,7 @@ public class EventHelperDamageCancelling
     
     private static void onLivingDamage(final LivingHurtEvent event) {
         if (!(event.getEntityLiving() instanceof Player)) {
-            return;
+
         }
         final Player player = (Player)event.getEntityLiving();
         final Set<DamageSource> sources = EventHelperDamageCancelling.invulnerableTypes.getOrDefault(player.getUUID(), Collections.emptySet());

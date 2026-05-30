@@ -87,7 +87,7 @@ public abstract class TileNetwork<T extends IPrismTransmissionNode> extends Tile
     public void func_145843_s() {
         super.func_145843_s();
         if (this.getLevel() == null || this.getLevel().level()) {
-            return;
+
         }
         TransmissionNetworkHelper.informNetworkTileRemoval(this);
         this.isNetworkInformed = false;

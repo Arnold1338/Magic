@@ -76,23 +76,23 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
         switch ((int)state.getValue((Property)BlockCelestialCrystalCluster.STAGE)) {
             case 4: {
                 shape = BlockCelestialCrystalCluster.GROWTH_STAGE_4;
-                break;
+
             }
             case 3: {
                 shape = BlockCelestialCrystalCluster.GROWTH_STAGE_3;
-                break;
+
             }
             case 2: {
                 shape = BlockCelestialCrystalCluster.GROWTH_STAGE_2;
-                break;
+
             }
             case 1: {
                 shape = BlockCelestialCrystalCluster.GROWTH_STAGE_1;
-                break;
+
             }
             default: {
                 shape = BlockCelestialCrystalCluster.GROWTH_STAGE_0;
-                break;
+
             }
         }
         return shape.func_197751_a(offset.field_72450_a, offset.field_72448_b, offset.field_72449_c);

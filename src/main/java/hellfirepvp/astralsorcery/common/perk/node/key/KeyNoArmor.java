@@ -34,7 +34,7 @@ public class KeyNoArmor extends KeyPerk
     
     private void onLivingHurt(final LivingHurtEvent event) {
         if (!(event.getEntityLiving() instanceof Player)) {
-            return;
+
         }
         final Player player = (Player)event.getEntityLiving();
         final LogicalSide side = this.getSide((Entity)player);

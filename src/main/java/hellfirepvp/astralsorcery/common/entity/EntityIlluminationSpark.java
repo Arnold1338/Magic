@@ -77,26 +77,26 @@ public class EntityIlluminationSpark extends ThrowableEntity
         switch (this.random.nextInt(3)) {
             case 0: {
                 p.color(VFXColorFunction.constant(ColorsAS.ILLUMINATION_POWDER_1));
-                break;
+
             }
             case 1: {
                 p.color(VFXColorFunction.constant(ColorsAS.ILLUMINATION_POWDER_2));
-                break;
+
             }
             case 2: {
                 p.color(VFXColorFunction.constant(ColorsAS.ILLUMINATION_POWDER_3));
-                break;
+
             }
         }
     }
     
     protected void func_70227_a(final HitResult result) {
         if (this.level()) {
-            return;
+
         }
         if (!(result instanceof BlockHitResult) || !(this.func_234616_v_() instanceof Player)) {
             this.func_70106_y();
-            return;
+
         }
         final Player player = (Player)this.func_234616_v_();
         final BlockHitResult brtr = (BlockHitResult)result;

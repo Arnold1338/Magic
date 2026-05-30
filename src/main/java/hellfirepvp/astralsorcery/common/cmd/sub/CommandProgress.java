@@ -47,27 +47,27 @@ public class CommandProgress
         switch (goal) {
             case DISCOVERY: {
                 research = ResearchProgression.DISCOVERY;
-                break;
+
             }
             case BASIC_CRAFT: {
                 research = ResearchProgression.BASIC_CRAFT;
-                break;
+
             }
             case ATTUNEMENT: {
                 research = ResearchProgression.ATTUNEMENT;
-                break;
+
             }
             case CONSTELLATION_CRAFT: {
                 research = ResearchProgression.CONSTELLATION;
-                break;
+
             }
             case TRAIT_CRAFT: {
                 research = ResearchProgression.RADIANCE;
-                break;
+
             }
             case BRILLIANCE: {
                 research = ResearchProgression.BRILLIANCE;
-                break;
+
             }
         }
         if (research == null) {

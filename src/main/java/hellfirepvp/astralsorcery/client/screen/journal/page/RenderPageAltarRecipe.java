@@ -82,7 +82,7 @@ public class RenderPageAltarRecipe extends RenderPageRecipeTemplate
         this.renderInfoStarTooltips(renderStack, x, y, z, mouseX, mouseY, toolTip -> {
             this.addAltarRecipeTooltip(this.recipe, toolTip);
             this.addConstellationInfoTooltip(this.recipe.getFocusConstellation(), toolTip);
-            return;
+
         });
         super.postRender(renderStack, x, y, z, pTicks, mouseX, mouseY);
     }

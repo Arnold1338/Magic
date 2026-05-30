@@ -26,7 +26,7 @@ public class AmuletRandomizeHelper
     
     public static void rollAmulet(final ItemStack stack) {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemEnchantmentAmulet)) {
-            return;
+
         }
         final List<AmuletEnchantment> ench = new ArrayList<AmuletEnchantment>();
         while (mayGetAdditionalRoll(ench)) {
@@ -36,7 +36,7 @@ public class AmuletRandomizeHelper
                 if (type.isEnchantmentSpecific()) {
                     final Enchantment e = AmuletEnchantmentRegistry.getRandomEnchant();
                     if (e == null) {
-                        continue;
+
                     }
                     ench.add(new AmuletEnchantment(type, e, lvl));
                 }
@@ -81,7 +81,7 @@ public class AmuletRandomizeHelper
                     }
                     return DynamicEnchantmentType.ADD_TO_EXISTING_SPECIFIC;
                 }
-                break;
+
             }
             default: {
                 return null;
@@ -131,7 +131,7 @@ public class AmuletRandomizeHelper
                 if (ex.canMerge(e)) {
                     ex.merge(e);
                     found = true;
-                    break;
+
                 }
             }
             if (!found) {

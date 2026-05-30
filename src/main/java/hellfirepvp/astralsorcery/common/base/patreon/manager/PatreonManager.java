@@ -34,7 +34,7 @@ public class PatreonManager implements ITickHandler
     public void tick(final TickEvent.Type type, final Object... context) {
         final MinecraftServer server = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
         if (server == null) {
-            return;
+
         }
         SyncDataHolder.executeServer(SyncDataHolder.DATA_PATREON_FLARES, DataPatreonFlares.class, data -> {
             final ArrayList<UUID> owners = new ArrayList<UUID>(data.getOwners());
@@ -46,7 +46,7 @@ public class PatreonManager implements ITickHandler
                 final UUID playerUUID = iterator.next();
                 final ServerPlayer player = server.getPlayerList().getPlayer(playerUUID);
                 if (player == null) {
-                    continue;
+
                 }
                 else {
                     final ArrayList<PatreonPartialEntity> knownEntities = new ArrayList<PatreonPartialEntity>(data.getEntities(playerUUID));
@@ -56,7 +56,7 @@ public class PatreonManager implements ITickHandler
                         final PatreonEffect effect = iterator2.next();
                         if (effect != null) {
                             if (!effect.hasPartialEntity()) {
-                                continue;
+
                             }
                             else {
                                 foundValidOwners.add(playerUUID);
@@ -72,7 +72,7 @@ public class PatreonManager implements ITickHandler
                                     data.updateEntitiesOf(playerUUID);
                                 }
                                 else {
-                                    continue;
+
                                 }
                             }
                         }
@@ -84,7 +84,7 @@ public class PatreonManager implements ITickHandler
             while (iterator3.hasNext()) {
                 final UUID owner = iterator3.next();
                 if (foundValidOwners.contains(owner)) {
-                    continue;
+
                 }
                 else {
                     data.removeEntities(owner);

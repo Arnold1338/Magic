@@ -32,7 +32,7 @@ public class KeySpawnLights extends KeyPerk implements PlayerTickPerk
         if (side.isServer()) {
             final PlayerProgress prog = ResearchHelper.getProgress(player, side);
             if (!prog.isValid() || !prog.doPerkAbilities()) {
-                return;
+
             }
             int spawnRate = (int)KeySpawnLights.CONFIG.lightSpawnRate.get();
             spawnRate = Math.max(spawnRate, 1);
@@ -54,7 +54,7 @@ public class KeySpawnLights extends KeyPerk implements PlayerTickPerk
                             return Boolean.valueOf(false);
                         }
                     }, false)) {
-                        return;
+
                     }
                 }
             }

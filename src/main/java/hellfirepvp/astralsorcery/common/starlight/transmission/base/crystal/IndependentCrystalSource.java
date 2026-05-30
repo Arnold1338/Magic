@@ -76,7 +76,7 @@ public class IndependentCrystalSource implements IIndependentStarlightSource
                 ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos).add(0.5, 0.5, 0.5));
                 ByteBufUtils.writeVector(buf, new Vector3((Vec3i)this.closestOtherCollector).add(0.5, 0.5, 0.5));
                 buf.writeInt(this.constellation.getConstellationColor().darker().getRGB());
-                return;
+
             });
             PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos((Level)world, (Vec3i)pos, 32.0));
         }
@@ -121,11 +121,11 @@ public class IndependentCrystalSource implements IIndependentStarlightSource
         BlockPos closest = null;
         for (final BlockPos other : otherSources.keySet()) {
             if (other.equals((Object)thisPos)) {
-                continue;
+
             }
             final double dstSq = thisPos.func_218138_a((IPosition)Vec3.func_237491_b_((Vec3i)other), false);
             if (dstSq >= minDstSq) {
-                continue;
+
             }
             minDstSq = dstSq;
             closest = other;

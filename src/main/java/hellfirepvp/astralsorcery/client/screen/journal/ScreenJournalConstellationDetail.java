@@ -196,7 +196,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     private void testActivePhases() {
         final WorldContext ctx = SkyHandler.getContext((World)Minecraft.getInstance().level, LogicalSide.CLIENT);
         if (ctx == null) {
-            return;
+
         }
         this.activePhases = new LinkedList<MoonPhase>();
         for (final MoonPhase phase : MoonPhase.values()) {
@@ -222,23 +222,23 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
                 this.drawPageConstellation(renderStack, pTicks);
                 this.drawPagePhaseInformation(renderStack);
                 this.drawPageExtendedInformation(renderStack);
-                break;
+
             }
             case 1: {
                 this.drawRefractionTableInformation(renderStack, mouseX, mouseY, pTicks);
-                break;
+
             }
             case 2: {
                 this.drawCapeInformationPages(renderStack, mouseX, mouseY, pTicks);
                 if (this.constellation instanceof IMinorConstellation) {
                     this.drawConstellationPaperRecipePage(renderStack, mouseX, mouseY, pTicks);
-                    break;
+
                 }
-                break;
+
             }
             case 3: {
                 this.drawConstellationPaperRecipePage(renderStack, mouseX, mouseY, pTicks);
-                break;
+
             }
         }
         this.func_230926_e_(0);
@@ -316,7 +316,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         if (this.activePhases == null) {
             this.testActivePhases();
             if (this.activePhases == null) {
-                return;
+
             }
         }
         final List<MoonPhase> phases = this.activePhases;
@@ -408,7 +408,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
             buf.vertex(offset, (float)(this.guiLeft + 200), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).color(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(1.0f, 1.0f).endVertex();
             buf.vertex(offset, (float)(this.guiLeft + 200), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).color(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(1.0f, 0.0f).endVertex();
             buf.vertex(offset, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).color(1.0f, 1.0f, 1.0f, 1.0f).func_225583_a_(0.0f, 0.0f).endVertex();
-            return;
+
         });
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -419,7 +419,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
             buf.vertex(offset2, (float)(this.guiLeft + 200), (float)(this.guiTop + 240), (float)this.getGuiZLevel()).color(0.8f, 0.8f, 1.0f, 0.5f).func_225583_a_(0.7f, 0.9f).endVertex();
             buf.vertex(offset2, (float)(this.guiLeft + 200), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).color(0.8f, 0.8f, 1.0f, 0.5f).func_225583_a_(0.7f, 0.1f).endVertex();
             buf.vertex(offset2, (float)(this.guiLeft + 15), (float)(this.guiTop + 10), (float)this.getGuiZLevel()).color(0.8f, 0.8f, 1.0f, 0.5f).func_225583_a_(0.3f, 0.1f).endVertex();
-            return;
+
         });
         RenderSystem.disableBlend();
     }

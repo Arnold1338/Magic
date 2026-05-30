@@ -40,7 +40,7 @@ public class EffectDropModifier extends EffectCustomTexture
     private void onDrops(final LivingDropsEvent event) {
         final LivingEntity le = event.getEntityLiving();
         if (le.level() || !(le instanceof MobEntity) || !(le.level() instanceof ServerLevel) || !le.level().func_82736_K().func_223586_b(GameRules.field_223602_e)) {
-            return;
+
         }
         if (le.hasEffect((MobEffect)EffectsAS.EFFECT_DROP_MODIFIER)) {
             final DamageSource src = event.getSource();
@@ -53,7 +53,7 @@ public class EffectDropModifier extends EffectCustomTexture
                     final List<ItemStack> loot = EntityUtils.generateLoot(le, EffectDropModifier.rand, src, event.isRecentlyHit() ? le.func_94060_bK() : null);
                     for (final ItemStack stack : loot) {
                         if (stack.isEmpty()) {
-                            continue;
+
                         }
                         event.getDrops().add(le.func_199701_a_(stack));
                     }

@@ -122,9 +122,9 @@ public class StorageCache
                     }
                     if (stack.isEmpty()) {
                         stacks.remove(stack);
-                        break;
+
                     }
-                    continue;
+
                 }
             }
         }

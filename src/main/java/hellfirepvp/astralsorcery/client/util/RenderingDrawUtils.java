@@ -282,7 +282,7 @@ public class RenderingDrawUtils
             buf.vertex(offset, left, top, zLevel).color(startRed, startGreen, startBlue, startAlpha).endVertex();
             buf.vertex(offset, left, bottom, zLevel).color(endRed, endGreen, endBlue, endAlpha).endVertex();
             buf.vertex(offset, right, bottom, zLevel).color(endRed, endGreen, endBlue, endAlpha).endVertex();
-            return;
+
         });
         RenderSystem.shadeModel(7424);
         RenderSystem.enableTexture();

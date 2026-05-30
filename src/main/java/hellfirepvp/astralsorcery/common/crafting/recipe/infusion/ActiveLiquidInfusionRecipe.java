@@ -128,7 +128,7 @@ public class ActiveLiquidInfusionRecipe
     private void playLiquidDrawEffect(final TileInfuser infuser, final FluidStack required) {
         final Collection<BlockPos> chalices = this.supportingChalices;
         if (chalices.isEmpty()) {
-            return;
+
         }
         final Vector3 target = new Vector3(infuser).add(0.5, 1.1, 0.5);
         final TextureAtlasSprite tas = RenderingUtils.getParticleTexture(required);
@@ -201,11 +201,11 @@ public class ActiveLiquidInfusionRecipe
                 for (final TileChalice chalice : chalices.get()) {
                     left.shrink(chalice.getTank().drain(left, IFluidHandler.FluidAction.EXECUTE).getAmount());
                     if (left.isEmpty()) {
-                        break;
+
                     }
                 }
                 if (left.isEmpty()) {
-                    return;
+
                 }
                 chaliceSupplied = required.getAmount() / (float)left.getAmount();
             }

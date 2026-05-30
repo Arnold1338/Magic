@@ -46,7 +46,7 @@ public class PerkCooldownHelper
     
     public static void removePerkCooldowns(final LogicalSide side, final AbstractPerk perk) {
         if (!(perk instanceof CooldownPerk)) {
-            return;
+
         }
         final TimeoutListContainer<UUID, ResourceLocation> container = side.isClient() ? PerkCooldownHelper.perkCooldownsClient : PerkCooldownHelper.perkCooldowns;
         container.removeList(key -> key.equals((Object)perk.getRegistryName()));
@@ -63,7 +63,7 @@ public class PerkCooldownHelper
     
     public static void setCooldownActiveForPlayer(final Player player, final AbstractPerk perk, final int cooldownTicks) {
         if (!(perk instanceof CooldownPerk)) {
-            return;
+
         }
         final TimeoutListContainer<UUID, ResourceLocation> container = player.level().isClientSide ? PerkCooldownHelper.perkCooldownsClient : PerkCooldownHelper.perkCooldowns;
         final UUID playerUUID = player.getUUID();
@@ -72,7 +72,7 @@ public class PerkCooldownHelper
     
     public static void forceSetCooldownForPlayer(final Player player, final AbstractPerk perk, final int cooldownTicks) {
         if (!(perk instanceof CooldownPerk)) {
-            return;
+
         }
         final TimeoutListContainer<UUID, ResourceLocation> container = player.level().isClientSide ? PerkCooldownHelper.perkCooldownsClient : PerkCooldownHelper.perkCooldowns;
         final UUID playerUUID = player.getUUID();

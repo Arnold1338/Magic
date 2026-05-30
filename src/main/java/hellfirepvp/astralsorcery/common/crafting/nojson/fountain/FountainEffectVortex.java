@@ -84,7 +84,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
             le = iterator.next();
             if (le != null && le.isAlive() && !(le instanceof Player)) {
                 if (!TechnicalEntityRegistry.INSTANCE.canAffect((Entity)le)) {
-                    continue;
+
                 }
                 final float entitySize = le.func_213302_cg() * le.func_213311_cf() * le.func_213311_cf();
                 density += entitySize;
@@ -114,7 +114,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
         for (final LivingEntity le2 : pulling) {
             if (le2 != null && le2.isAlive() && !(le2 instanceof Player)) {
                 if (!TechnicalEntityRegistry.INSTANCE.canAffect((Entity)le2)) {
-                    continue;
+
                 }
                 EventHelperEntityFreeze.freeze((Entity)le2);
                 EntityUtils.applyVortexMotion(() -> Vector3.atEntityCorner((Entity)le), v -> {
@@ -132,10 +132,10 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
                         le.func_213317_d(le.func_213322_ci().func_72441_c(v.getX(), v.getY() * 2.5, v.getZ()));
                         le.field_70133_I = true;
                     }
-                    return;
+
                 }, vortexAt, 48.0, 3.0);
                 if (vortexAt.distanceSquared((Entity)le2) > 16.0) {
-                    continue;
+
                 }
                 final Vector3 randomRanges = new Vector3(Math.max(0.0, (captureBox.func_216364_b() - le2.func_213311_cf()) / 2.0), Math.max(0.0, (captureBox.func_216360_c() - le2.func_213302_cg()) / 2.0), Math.max(0.0, (captureBox.func_216362_d() - le2.func_213311_cf()) / 2.0));
                 final Vector3 randomPos = vortexAt.clone().add(randomRanges.getX() * FountainEffectVortex.rand.nextFloat() * (FountainEffectVortex.rand.nextBoolean() ? 1 : -1), randomRanges.getY() * FountainEffectVortex.rand.nextFloat() * (FountainEffectVortex.rand.nextBoolean() ? 1 : -1), randomRanges.getZ() * FountainEffectVortex.rand.nextFloat() * (FountainEffectVortex.rand.nextBoolean() ? 1 : -1));
@@ -163,21 +163,21 @@ public class FountainEffectVortex extends FountainEffect<VortexContext>
                 this.playFountainVortexParticles((Vec3i)fountainPos, segmentPercent);
                 this.playFountainArcs((Vec3i)fountainPos, segmentPercent);
                 this.playCoreParticles(fountainPos, segmentPercent);
-                break;
+
             }
             case PREPARATION: {
                 this.playFountainArcs((Vec3i)fountainPos, 1.0f - segmentPercent);
                 this.playFountainVortexParticles((Vec3i)fountainPos, 1.0f - segmentPercent);
                 this.playCoreParticles(fountainPos, 1.0f - segmentPercent * 2.0f);
                 this.playCorePrimerParticles(fountainPos, segmentPercent);
-                break;
+
             }
             case RUNNING: {
                 this.playFountainVortexParticles((Vec3i)fountainPos, 0.2f);
                 this.playFountainArcs((Vec3i)fountainPos, 0.6f);
                 this.playFountainVortexLowerParticles(fountainPos);
                 this.playVortexEffects(fountainPos, fountain, ctx);
-                break;
+
             }
         }
     }

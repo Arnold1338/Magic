@@ -200,7 +200,7 @@ public class ScreenJournalPages extends ScreenJournal implements NavigationArrow
         if (this.pages.size() > index) {
             final RenderablePage page = this.pages.get(index);
             if (page != null && page.propagateMouseDrag(mouseOffsetX, mouseOffsetY)) {
-                return;
+
             }
         }
         ++index;

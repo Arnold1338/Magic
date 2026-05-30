@@ -12,8 +12,7 @@ public enum AllocationStatus
     UNALLOCATED, 
     ALLOCATED, 
     GRANTED, 
-    UNLOCKABLE;
-    
+
     public boolean isAllocated() {
         return this == AllocationStatus.ALLOCATED || this == AllocationStatus.GRANTED;
     }

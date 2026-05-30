@@ -28,7 +28,7 @@ public class StarlightUpdateHandler implements ITickHandler
     public void tick(final TickEvent.Type type, final Object... context) {
         final Level world = (Level)context[0];
         if (world.level()) {
-            return;
+
         }
         final List<IPrismTransmissionNode> nodes = this.getNodes(world);
         synchronized (StarlightUpdateHandler.accessLock) {

@@ -54,13 +54,13 @@ public class RegistryContainerTypes
         ScreenManager.func_216911_a((ContainerType)ContainerTypesAS.ALTAR_RADIANCE, ScreenContainerAltarRadiance::new);
     }
     
-    private static <C extends Container, T extends ContainerType<C>> T register(final String name, final IContainerFactory<C> containerFactory) {
+    private static <C extends Container, T extends MenuType<C>> T register(final String name, final IContainerFactory<C> containerFactory) {
         return register(AstralSorcery.key(name), containerFactory);
     }
     
-    private static <C extends Container, T extends ContainerType<C>> T register(final ResourceLocation name, final IContainerFactory<C> containerFactory) {
-        final ContainerType<C> type = (ContainerType<C>)new ContainerType((ContainerType.IFactory)containerFactory);
-        type;
+    private static <C extends Container, T extends MenuType<C>> T register(final ResourceLocation name, final IContainerFactory<C> containerFactory) {
+        final MenuType<C> type = (MenuType<C>)net.minecraftforge.common.extensions.IForgeMenuType.create((net.minecraftforge.common.extensions.IForgeMenuType.IContainerFactory)containerFactory);
+
         AstralSorcery.getProxy().getRegistryPrimer().register(type);
         return (T)type;
     }

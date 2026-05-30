@@ -22,7 +22,7 @@ public class EffectAltarFocusSparkle extends AltarRecipeEffect implements IFocus
     public void onTick(final TileAltar altar, final ActiveSimpleAltarRecipe.CraftingState state) {
         final ActiveSimpleAltarRecipe recipe = altar.getActiveRecipe();
         if (recipe == null) {
-            return;
+
         }
         final IConstellation focus = recipe.getRecipeToCraft().getFocusConstellation();
         final double scale = AltarRecipeEffect.getRandomPillarOffset(altar.getAltarType()).getX();

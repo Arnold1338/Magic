@@ -117,7 +117,7 @@ public class AttributeModifierPerk extends AttributeConverterPerk implements Att
             final JsonArray array = new JsonArray();
             for (final PerkAttributeModifier modifier : this.modifiers) {
                 if (modifier instanceof DynamicAttributeModifier) {
-                    continue;
+
                 }
                 final JsonObject serializedModifier = new JsonObject();
                 if (modifier.getRegistryName() != null) {

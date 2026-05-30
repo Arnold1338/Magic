@@ -52,7 +52,7 @@ public abstract class PerkDataProvider implements IDataProvider
             else {
                 builtPerks.add(finishedPerk);
                 this.savePerkFile(cache, (JsonElement)finishedPerk.serialize(), path.resolve(String.format("data/%s/perks/%s.json", perkName.func_110624_b(), perkName.addTransientModifier())));
-                return;
+
             }
         });
         final JsonObject allPerks = new JsonObject();

@@ -32,7 +32,7 @@ public class AttributeTypeProjectileAttackDamage extends PerkAttributeType
                 final Player player = (Player)source.getDirectEntity();
                 final LogicalSide side = this.getSide((Entity)player);
                 if (!this.hasTypeApplied(player, side)) {
-                    return;
+
                 }
                 float amt = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, ResearchHelper.getProgress(player, side), this, event.getAmount());
                 amt = AttributeEvent.postProcessModded(player, this, amt);

@@ -25,7 +25,7 @@ public class RenderTileFakedState extends CustomTileEntityRenderer<TileFakedStat
     public void render(final TileFakedState tile, final float pTicks, final PoseStack renderStack, final MultiBufferSource renderTypeBuffer, final int combinedLight, final int combinedOverlay) {
         final BlockState fakedState = tile.getFakedState();
         if (fakedState.getBlock() instanceof AirBlock) {
-            return;
+
         }
         final Color blendColor = tile.getOverlayColor();
         final int[] color = { blendColor.getRed(), blendColor.getGreen(), blendColor.getBlue(), 128 };
@@ -34,12 +34,12 @@ public class RenderTileFakedState extends CustomTileEntityRenderer<TileFakedStat
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
             RenderSystem.depthMask(false);
-            return;
+
         }, () -> {
             RenderSystem.depthMask(true);
             RenderSystem.defaultBlendFunc();
             RenderSystem.disableBlend();
-            return;
+
         });
         final BufferDecoratorBuilder decorator = BufferDecoratorBuilder.withColor((r, g, b, a) -> color);
         final VertexConsumer buf = renderTypeBuffer.getBuffer((RenderType)decorated);

@@ -32,13 +32,13 @@ public class DependencySorter<T>
             final List<T> after = Lists.newArrayList();
             for (final Object otherItem : itemsToSort) {
                 if (item == otherItem) {
-                    continue;
+
                 }
                 if (isBefore.test(item, otherItem)) {
                     before.add((T)otherItem);
                 }
                 if (!isAfter.test(item, otherItem)) {
-                    continue;
+
                 }
                 after.add((T)otherItem);
             }

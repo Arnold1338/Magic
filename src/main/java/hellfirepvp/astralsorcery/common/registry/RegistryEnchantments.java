@@ -12,8 +12,8 @@ public class RegistryEnchantments
     }
     
     public static void init() {
-        EnchantmentsAS.NIGHT_VISION = (Enchantment)register(new EnchantmentNightVision()));
-        EnchantmentsAS.SCORCHING_HEAT = (Enchantment)register(new EnchantmentScorchingHeat()));
+        EnchantmentsAS.NIGHT_VISION = (Enchantment)register(new EnchantmentNightVision());
+        EnchantmentsAS.SCORCHING_HEAT = (Enchantment)register(new EnchantmentScorchingHeat());
     }
     
     private static <T extends Enchantment> T register(final T effect) {

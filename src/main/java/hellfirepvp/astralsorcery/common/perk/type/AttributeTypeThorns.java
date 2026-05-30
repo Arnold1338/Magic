@@ -41,19 +41,19 @@ public class AttributeTypeThorns extends PerkAttributeType
     
     private void onThronsReflect(final LivingHurtEvent event) {
         if (!(event.getEntityLiving() instanceof Player)) {
-            return;
+
         }
         final Player player = (Player)event.getEntityLiving();
         final LogicalSide side = this.getSide((Entity)player);
         if (!this.hasTypeApplied(player, side)) {
-            return;
+
         }
         final PlayerProgress prog = ResearchHelper.getProgress(player, side);
         float reflectAmount = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, prog, this, 0.0f);
         reflectAmount = AttributeEvent.postProcessModded(player, this, reflectAmount);
         reflectAmount /= 100.0f;
         if (reflectAmount <= 0.0f) {
-            return;
+
         }
         reflectAmount = Mth.canEnchant(reflectAmount, 0.0f, 1.0f);
         final DamageSource source = event.getSource();

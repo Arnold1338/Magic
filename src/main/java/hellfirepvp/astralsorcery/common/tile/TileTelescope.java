@@ -52,8 +52,7 @@ public class TileTelescope extends TileEntitySynchronized implements NamedInvent
         S, 
         S_W, 
         W, 
-        N_W;
-        
+
         public TelescopeRotation nextClockWise() {
             return values()[(this.ordinal() + 1) % values().length];
         }

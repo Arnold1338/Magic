@@ -213,7 +213,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
                     final Vector3 at = pos.add(ePos);
                     final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(at).setScaleMultiplier(0.3f + this.random.nextFloat() * 0.3f).alpha(VFXAlphaFunction.FADE_OUT).color(VFXColorFunction.constant(ColorsAS.DEFAULT_GENERIC_PARTICLE)).setMotion(motion).setMaxAge(25 + this.random.nextInt(20));
                     if (!this.random.nextBoolean()) {
-                        continue;
+
                     }
                     p.color(VFXColorFunction.WHITE);
                 }
@@ -289,16 +289,16 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
         switch (result.func_216346_c()) {
             case BLOCK: {
                 this.setPulling(true, null);
-                break;
+
             }
             case ENTITY: {
                 final Entity e = ((EntityHitResult)result).func_216348_a();
                 if (!(e instanceof LivingEntity) || (this.func_234616_v_() != null && e.equals((Object)this.func_234616_v_()))) {
-                    return;
+
                 }
                 this.setPulling(true, (LivingEntity)((EntityHitResult)result).func_216348_a());
                 hit = new Vec3(hit.field_72450_a, hit.field_72448_b + ((EntityHitResult)result).func_216348_a().func_213302_cg() * 3.0f / 4.0f, hit.field_72449_c);
-                break;
+
             }
         }
         this.func_213293_j(0.0, 0.0, 0.0);

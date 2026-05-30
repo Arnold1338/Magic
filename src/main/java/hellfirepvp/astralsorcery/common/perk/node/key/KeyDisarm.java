@@ -53,7 +53,7 @@ public class KeyDisarm extends KeyPerk
                         if (!stack.isEmpty()) {
                             attacked.func_184201_a(slot, ItemStack.EMPTY);
                             ItemUtils.dropItemNaturally(attacked.level(), attacked.getX(), attacked.getY(), attacked.getZ(), stack);
-                            break;
+
                         }
                     }
                 }

@@ -24,7 +24,7 @@ public class AssetPreLoader implements ISelectiveResourceReloadListener
     public void onResourceManagerReload(final ResourceManager resourceManager, final Predicate<IResourceType> resourcePredicate) {
         if (resourcePredicate.test((IResourceType)VanillaResourceType.TEXTURES)) {
             if (this.initialized) {
-                return;
+
             }
             RegistryTextures.loadTextures();
             RegistrySprites.loadSprites();

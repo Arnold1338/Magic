@@ -64,10 +64,10 @@ public class CelestialStrike
         for (final LivingEntity living : livingEntities) {
             if (living instanceof Player) {
                 if (living.func_175149_v() || ((Player)living).getVehicle()) {
-                    continue;
+
                 }
                 if (attacker != null && living.func_184191_r((Entity)attacker)) {
-                    continue;
+
                 }
             }
             float dstPerc = (float)(Vector3.atEntityCenter((Entity)living).distance(at) / radius);
@@ -76,11 +76,11 @@ public class CelestialStrike
             if (dmgDealt > 0.5) {
                 DamageUtil.attackEntityFrom((Entity)living, ds, dmgDealt);
                 if (attacker == null) {
-                    continue;
+
                 }
                 final int fireAspectLevel = EnchantmentHelper.func_185284_a(Enchantments.field_77334_n, attacker);
                 if (fireAspectLevel <= 0 || living.func_70027_ad()) {
-                    continue;
+
                 }
                 living.setAge(fireAspectLevel * 4);
             }

@@ -137,7 +137,7 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell>
     private void fillAndDiscardRest(final WellLiquefaction recipe, final double gain) {
         final Fluid produced = recipe.getFluidOutput();
         if (produced == null) {
-            return;
+
         }
         if (this.tank.getFluidAmount() < 10) {
             this.tank.setFluid(produced);
@@ -146,7 +146,7 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell>
             this.tank.setFluid(produced);
         }
         else if (!produced.equals(this.tank.getFluid().getFluid())) {
-            return;
+
         }
         this.tank.addAmount(gain);
     }

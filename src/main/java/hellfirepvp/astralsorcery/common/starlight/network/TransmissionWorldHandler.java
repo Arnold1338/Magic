@@ -63,13 +63,13 @@ public class TransmissionWorldHandler
             final List<ChunkPos> activeChunks = this.activeChunkMap.get(source);
             if (activeChunks != null) {
                 if (activeChunks.isEmpty()) {
-                    continue;
+
                 }
                 final TransmissionChain chain = this.cachedSourceChain.get(source);
                 final float starlight = source.produceStarlightTick(world, at);
                 final IWeakConstellation type = source.getStarlightType();
                 if (type == null) {
-                    continue;
+
                 }
                 final Map<BlockPos, Float> lossMultipliers = chain.getLossMultipliers();
                 Float multiplier = null;
@@ -85,7 +85,7 @@ public class TransmissionWorldHandler
                         if (multiplier >= 0.01f) {
                             node.onTransmissionTick((Level)world, starlight * multiplier, type);
                         }
-                        return;
+
                     });
                 }
                 for (final BlockPos endPointPos : chain.getUncheckedEndpointsBlock()) {
@@ -164,7 +164,7 @@ public class TransmissionWorldHandler
                 if (sources != null) {
                     sources.remove(source);
                     if (!sources.isEmpty()) {
-                        continue;
+
                     }
                     this.involvedSourceMap.remove(chPos);
                 }
@@ -174,7 +174,7 @@ public class TransmissionWorldHandler
                 if (sources != null) {
                     sources.remove(source);
                     if (!sources.isEmpty()) {
-                        continue;
+
                     }
                     this.posToSourceMap.remove(pos);
                 }
@@ -194,7 +194,7 @@ public class TransmissionWorldHandler
                 if (activeChunks != null) {
                     activeChunks.remove(pos);
                     if (!activeChunks.isEmpty()) {
-                        continue;
+
                     }
                     this.activeChunkMap.remove(source);
                 }
@@ -211,7 +211,7 @@ public class TransmissionWorldHandler
                     if (this.activeChunkMap.containsKey(source)) {
                         final List<ChunkPos> positions = this.activeChunkMap.get(source);
                         if (positions.contains(pos)) {
-                            continue;
+
                         }
                         positions.add(pos);
                     }

@@ -56,7 +56,7 @@ public class PktToggleClientOption extends ASPacket<PktToggleClientOption>
                 switch (packet.option) {
                     case DISABLE_PERK_ABILITIES: {
                         if (!ResearchManager.togglePerkAbilities((Player)player)) {
-                            break;
+
                         }
                         final PlayerProgress prog = ResearchHelper.getProgress((Player)player, LogicalSide.SERVER);
                         if (prog.isValid()) {
@@ -68,9 +68,9 @@ public class PktToggleClientOption extends ASPacket<PktToggleClientOption>
                                 status = Component.translatable("astralsorcery.progress.perk_abilities.disable").withStyle(ChatFormatting.RED);
                             }
                             player.sendSystemMessage(Component.translatable("astralsorcery.progress.perk_abilities").withStyle(ChatFormatting.GRAY));
-                            break;
+
                         }
-                        break;
+
                     }
                 }
             }
@@ -83,6 +83,6 @@ public class PktToggleClientOption extends ASPacket<PktToggleClientOption>
     
     public enum Option
     {
-        DISABLE_PERK_ABILITIES;
+
     }
 }

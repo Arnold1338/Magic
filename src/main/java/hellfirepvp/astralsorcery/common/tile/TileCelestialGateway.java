@@ -95,7 +95,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
                         cache.updateGatewayNode(this.getBlockState(), node -> {
                             node.setDisplayName(this.displayText);
                             node.setColor(this.color);
-                            return;
+
                         });
                         this.updateAccessInformation();
                         this.networkRegistered = true;
@@ -124,7 +124,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
                 ((EntityVisualFX)this.clientGatewaySphereEffect).requestRemoval();
                 this.clientGatewaySphereEffect = null;
             }
-            return;
+
         }
         final Vector3 at = new Vector3(this).add(0.5, 1.7, 0.5);
         final double distance = Vector3.atEntityCorner((Entity)Minecraft.getInstance().player).distance(at);
@@ -145,7 +145,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     @OnlyIn(Dist.CLIENT)
     private void playGatewayParticles() {
         if (!this.hasMultiblock() || !this.doesSeeSky()) {
-            return;
+
         }
         final Color gatewayColor = ColorUtils.flareColorFromDye(this.getColor().orElse(DyeColor.YELLOW));
         for (int i = 0; i < 3; ++i) {
@@ -276,7 +276,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
             node.setLocked(this.isLocked());
             node.setOwner(this.getOwner());
             node.setAllowedUsers(this.allowedUsers);
-            return;
+
         });
         this.markForUpdate();
     }

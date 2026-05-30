@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.common.loot.global;
 
-import net.minecraftforge.common.loot.IGlobalLootModifier;
+
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
+
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import javax.annotation.Nonnull;
 import net.minecraft.world.item.Item;

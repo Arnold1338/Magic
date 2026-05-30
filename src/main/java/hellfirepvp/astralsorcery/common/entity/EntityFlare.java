@@ -79,7 +79,7 @@ public class EntityFlare extends FlyingMob
     
     public static void spawnAmbientFlare(final Level world, final BlockPos at) {
         if (world.level() || (int)EntityConfig.CONFIG.flareAmbientSpawnChance.get() <= 0) {
-            return;
+
         }
         final float nightPercent = DayTimeHelper.getCurrentDaytimeDistribution(world);
         if (world.field_73012_v.nextInt((int)EntityConfig.CONFIG.flareAmbientSpawnChance.get()) == 0 && world.field_73012_v.nextFloat() < nightPercent) {
@@ -172,7 +172,7 @@ public class EntityFlare extends FlyingMob
                 else {
                     if (this.followingEntityId == -1) {
                         DamageUtil.attackEntityFrom((Entity)this, CommonProxy.DAMAGE_SOURCE_STELLAR, 1.0f);
-                        return;
+
                     }
                     final LivingEntity following = this.getFollowingTarget();
                     if (following == null) {
@@ -182,7 +182,7 @@ public class EntityFlare extends FlyingMob
                         final MantleEffectBootes effect = ItemMantle.getEffect(following, ConstellationsAS.bootes);
                         if (effect == null) {
                             DamageUtil.attackEntityFrom((Entity)this, CommonProxy.DAMAGE_SOURCE_STELLAR, 1.0f);
-                            return;
+
                         }
                         if (this.func_70638_az() != null && !this.func_70638_az().isAlive()) {
                             this.func_70624_b((LivingEntity)null);
@@ -229,7 +229,7 @@ public class EntityFlare extends FlyingMob
             ByteBufUtils.writeVector(buf, Vector3.atEntityCorner((Entity)this).addY(this.func_213302_cg() / 2.0f));
             ByteBufUtils.writeVector(buf, Vector3.atEntityCorner((Entity)target).addY(target.func_213302_cg() / 2.0f));
             buf.writeInt(ColorsAS.EFFECT_LIGHTNING.getRGB());
-            return;
+
         });
         PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.level(), (Vec3i)this.func_233580_cy_(), 32.0));
     }
@@ -295,7 +295,7 @@ public class EntityFlare extends FlyingMob
             if (this.random.nextBoolean()) {
                 p2.color(VFXColorFunction.WHITE);
             }
-            return;
+
         });
         for (int i = 0; i < 10; ++i) {
             final FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(Vector3.atEntityCorner((Entity)this).add(this.random.nextFloat() * 0.15 * (this.random.nextBoolean() ? 1 : -1), this.func_213302_cg() / 2.0f + this.random.nextFloat() * 0.15 * (this.random.nextBoolean() ? 1 : -1), this.random.nextFloat() * 0.15 * (this.random.nextBoolean() ? 1 : -1))).alpha(VFXAlphaFunction.FADE_OUT).setMotion(Vector3.random().multiply(0.05f)).setScaleMultiplier(0.25f + this.random.nextFloat() * 0.1f).setMaxAge(40 + this.random.nextInt(40));

@@ -22,11 +22,11 @@ public class PlayerAmuletHandler implements ITickHandler
     
     public static void onEnchantmentAdd(final DynamicEnchantmentEvent.Add event) {
         if (!DynamicEnchantmentHelper.canHaveDynamicEnchantment(event.getEnchantedItemStack())) {
-            return;
+
         }
         final Tuple<ItemStack, Player> linkedAmulet = AmuletEnchantmentHelper.getWornAmulet(event.getEnchantedItemStack());
         if (linkedAmulet == null || ((ItemStack)linkedAmulet.getA()).isEmpty() || linkedAmulet.getB() == null) {
-            return;
+
         }
         event.getEnchantmentsToApply().addAll(ItemEnchantmentAmulet.getAmuletEnchantments((ItemStack)linkedAmulet.getA()));
     }

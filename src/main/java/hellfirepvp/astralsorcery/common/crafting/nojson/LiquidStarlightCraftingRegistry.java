@@ -31,7 +31,7 @@ public class LiquidStarlightCraftingRegistry extends CustomRecipeRegistry<Liquid
     
     public static void tryCraft(final ItemEntity itemEntity, final BlockPos at) {
         if (!itemEntity.isAlive()) {
-            return;
+
         }
         final Level world = itemEntity.level();
         final LiquidStarlightRecipe recipe = LiquidStarlightCraftingRegistry.INSTANCE.getRecipeFor(itemEntity, world, at);

@@ -67,7 +67,7 @@ public abstract class FXSourceOrbital<E extends EntityVisualFX, T extends BatchR
     @Override
     public void tickSpawnFX(final Function<Vector3, E> effectRegistrar) {
         if (Minecraft.getInstance().func_147113_T()) {
-            return;
+
         }
         for (int branch = 0; branch < this.branches; ++branch) {
             final Vector3 point = this.orbitAxis.clone().perpendicular().normalize().multiply(this.orbitRadius).rotate(Math.toRadians(this.getRotationDegree(branch)), this.orbitAxis).add(this.offset).add(this.getPosition());

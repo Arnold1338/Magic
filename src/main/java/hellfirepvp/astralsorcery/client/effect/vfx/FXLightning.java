@@ -107,7 +107,7 @@ public class FXLightning extends EntityVisualFX
     @Override
     public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final VertexConsumer vb, final float pTicks) {
         if (this.root == null) {
-            return;
+
         }
         final Color c = this.getColor(pTicks);
         final float alpha = (float)this.getAlpha(pTicks);

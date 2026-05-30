@@ -1,9 +1,9 @@
 package hellfirepvp.astralsorcery.common.loot.global;
 
-import net.minecraftforge.common.loot.IGlobalLootModifier;
+
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
+
 import javax.annotation.Nonnull;
 import java.util.Optional;
 import net.minecraft.server.level.ServerLevel;
@@ -79,7 +79,7 @@ public class LootModifierScorchingHeat extends LootModifier
                         }
                     }
                 }
-                return;
+
             });
             return (ItemStack)furnaceResult.map((Function<? super Tuple<ItemStack, Float>, ? extends ItemStack>)Tuple::func_76341_a).orElse(stack);
         }).collect((Collector<? super Object, ?, List<ItemStack>>)Collectors.toList());

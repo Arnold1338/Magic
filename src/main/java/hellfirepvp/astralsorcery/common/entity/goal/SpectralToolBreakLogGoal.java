@@ -79,7 +79,7 @@ public class SpectralToolBreakLogGoal extends SpectralToolGoal
     public void func_75246_d() {
         super.func_75246_d();
         if (!this.func_75253_b()) {
-            return;
+
         }
         if (this.actionCooldown < 0) {
             this.actionCooldown = 0;

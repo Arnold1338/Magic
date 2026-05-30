@@ -9,7 +9,7 @@ public abstract class ContainerTileEntity<T extends BlockEntity> extends Contain
 {
     private final T te;
     
-    protected ContainerTileEntity(final T tileEntity, @Nullable final ContainerType<?> type, final int windowId) {
+    protected ContainerTileEntity(final T tileEntity, @Nullable final MenuType<?> type, final int windowId) {
         super((ContainerType)type, windowId);
         this.te = tileEntity;
     }

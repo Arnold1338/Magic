@@ -85,7 +85,7 @@ public class GatewayUIRenderHandler implements ITickHandler
     
     void render(final RenderWorldLastEvent event) {
         if (this.validate()) {
-            return;
+
         }
         final float pTicks = event.getPartialTicks();
         final PoseStack renderStack = event.getMatrixStack();
@@ -93,7 +93,7 @@ public class GatewayUIRenderHandler implements ITickHandler
         final Player player = (Player)Minecraft.getInstance().player;
         final double dst = renderOffset.distance(Vector3.atEntityCorner((Entity)player).addY(1.5));
         if (dst > 3.0) {
-            return;
+
         }
         if (Minecraft.func_238218_y_()) {
             RenderSystem.clear(256, Minecraft.field_142025_a);
@@ -106,7 +106,7 @@ public class GatewayUIRenderHandler implements ITickHandler
     private void renderGatewayAllowedPlayers(final PoseStack renderStack, final Vector3 renderOffset, final double distance, final float pTicks) {
         final GatewayCache.GatewayNode node = this.currentUI.getThisGatewayNode();
         if (node == null || !node.isLocked() || node.getOwner() == null || node.getAllowedUsers().isEmpty()) {
-            return;
+
         }
         final UUID currentUUID = (Minecraft.getInstance().player != null) ? Minecraft.getInstance().player.getUUID() : null;
         final HitResult mouseOverRtr = Minecraft.getInstance().field_71476_x;
@@ -198,7 +198,7 @@ public class GatewayUIRenderHandler implements ITickHandler
                 final float a5 = a4 * alpha;
                 RenderingDrawUtils.renderFacingFullQuadVB((VertexConsumer)buf, renderStack, renderOffset.getX() + entry.getRelativePos().getX(), renderOffset.getY() + entry.getRelativePos().getY(), renderOffset.getZ() + entry.getRelativePos().getZ(), 0.16f, 0.0f, r, g, b, (int)(a5 * 255.0f));
             }
-            return;
+
         });
         RenderSystem.depthMask(true);
         RenderSystem.disableDepthTest();

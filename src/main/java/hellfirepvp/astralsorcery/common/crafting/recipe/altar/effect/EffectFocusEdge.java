@@ -24,7 +24,7 @@ public class EffectFocusEdge extends AltarRecipeEffect implements IFocusEffect
         if (state == ActiveSimpleAltarRecipe.CraftingState.ACTIVE) {
             final ActiveSimpleAltarRecipe recipe = altar.getActiveRecipe();
             if (recipe == null) {
-                return;
+
             }
             final IConstellation focus = recipe.getRecipeToCraft().getFocusConstellation();
             final double offsetLength = AltarRecipeEffect.getPillarOffset(altar.getAltarType(), 0).getX();

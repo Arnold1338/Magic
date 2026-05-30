@@ -74,7 +74,7 @@ public class FXColorEffectSphere extends EntityVisualFX
         final int alpha = this.getAlpha(pTicks);
         if (this.removeIfInvisible && alpha <= 0) {
             this.requestRemoval();
-            return;
+
         }
         final Color c = this.getColor(pTicks);
         final int r = c.getRed();

@@ -36,7 +36,7 @@ public class KeyDigTypes extends KeyPerk
     
     private void onHarvest(final PlayerEvent.HarvestCheck event) {
         if (event.canHarvest()) {
-            return;
+
         }
         final Player player = event.getPlayer();
         final LogicalSide side = this.getSide((Entity)player);

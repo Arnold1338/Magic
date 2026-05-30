@@ -39,10 +39,10 @@ public class ItemColoredLensRegeneration extends ItemColoredLens
         @Override
         public void entityInBeam(final Level world, final Vector3 origin, final Vector3 target, final Entity entity, final PartialEffectExecutor executor) {
             if (world.level() || !(entity instanceof LivingEntity) || !entity.isAlive()) {
-                return;
+
             }
             if (entity instanceof Player && !(boolean)GeneralConfig.CONFIG.doColoredLensesAffectPlayers.get()) {
-                return;
+
             }
             final LivingEntity le = (LivingEntity)entity;
             executor.executeAll(() -> {

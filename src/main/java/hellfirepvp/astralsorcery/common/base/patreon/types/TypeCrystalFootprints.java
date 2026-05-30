@@ -55,7 +55,7 @@ public class TypeCrystalFootprints extends PatreonEffect implements ITickHandler
     private void spawnFootprint(final Player player) {
         final Vector3 pos = Vector3.atEntityCorner((Entity)player).subtract(player.func_213311_cf() / 2.0f, 0.1, player.func_213311_cf() / 2.0f).add(player.func_213311_cf() * TypeCrystalFootprints.rand.nextFloat(), 0.0f, player.func_213311_cf() * TypeCrystalFootprints.rand.nextFloat());
         if (player.level().isEmptyBlock(pos.toBlockPos())) {
-            return;
+
         }
         EffectHelper.of(EffectTemplatesAS.CRYSTAL).spawn(pos).rotation(TypeCrystalFootprints.rand.nextFloat() * 35.0f * (TypeCrystalFootprints.rand.nextBoolean() ? 1 : -1), TypeCrystalFootprints.rand.nextFloat() * 35.0f * (TypeCrystalFootprints.rand.nextBoolean() ? 1 : -1), TypeCrystalFootprints.rand.nextFloat() * 35.0f * (TypeCrystalFootprints.rand.nextBoolean() ? 1 : -1)).color(VFXColorFunction.constant(this.color)).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.025f + TypeCrystalFootprints.rand.nextFloat() * 0.03f).setMaxAge(60 + TypeCrystalFootprints.rand.nextInt(30));
     }

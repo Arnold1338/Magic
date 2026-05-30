@@ -57,7 +57,7 @@ public class ChaliceHelper
             if (chalice != null) {
                 final FluidStack drained = chalice.getTank().drain(expected, IFluidHandler.FluidAction.SIMULATE);
                 if (drained.isEmpty()) {
-                    continue;
+
                 }
                 required.shrink(drained.getAmount());
                 out.add(chalice);
@@ -76,7 +76,7 @@ public class ChaliceHelper
             if (chalice != null) {
                 final FluidStack drained = chalice.getTank().drain(expected, IFluidHandler.FluidAction.SIMULATE);
                 if (drained.isEmpty()) {
-                    continue;
+
                 }
                 required.shrink(drained.getAmount());
             }

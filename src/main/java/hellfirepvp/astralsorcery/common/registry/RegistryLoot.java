@@ -12,8 +12,8 @@ import hellfirepvp.astralsorcery.common.lib.LootAS;
 import net.minecraft.world.level.storage.loot.LootFunction;
 import hellfirepvp.astralsorcery.common.loot.LinearLuckBonus;
 import hellfirepvp.astralsorcery.common.loot.global.LootModifierPerkVoidTrash;
-import net.minecraftforge.common.loot.IGlobalLootModifier;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
+
+
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.loot.global.LootModifierScorchingHeat;
 
@@ -23,8 +23,8 @@ public class RegistryLoot
     }
     
     public static void init() {
-        registerGlobalModifier((net.minecraftforge.common.loot.GlobalLootModifierSerializer<IGlobalLootModifier>)new LootModifierScorchingHeat.Serializer(), AstralSorcery.key("scorching_heat"));
-        registerGlobalModifier((net.minecraftforge.common.loot.GlobalLootModifierSerializer<IGlobalLootModifier>)new LootModifierPerkVoidTrash.Serializer(), AstralSorcery.key("perk_void_trash"));
+        registerGlobalModifier((net.minecraftforge.common.loot.GlobalLootModifierSerializer<net.minecraftforge.common.loot.IGlobalLootModifier>)new LootModifierScorchingHeat.Serializer(), AstralSorcery.key("scorching_heat"));
+        registerGlobalModifier((net.minecraftforge.common.loot.GlobalLootModifierSerializer<net.minecraftforge.common.loot.IGlobalLootModifier>)new LootModifierPerkVoidTrash.Serializer(), AstralSorcery.key("perk_void_trash"));
         LootAS.Functions.LINEAR_LUCK_BONUS = registerFunction((LootFunction.Serializer<LootFunction>)new LinearLuckBonus.Serializer(), AstralSorcery.key("linear_luck_bonus"));
         LootAS.Functions.RANDOM_CRYSTAL_PROPERTIES = registerFunction((LootFunction.Serializer<LootFunction>)new RandomCrystalProperty.Serializer(), AstralSorcery.key("random_crystal_property"));
         LootAS.Functions.COPY_CRYSTAL_PROPERTIES = registerFunction((LootFunction.Serializer<LootFunction>)new CopyCrystalProperties.Serializer(), AstralSorcery.key("copy_crystal_properties"));
@@ -36,8 +36,8 @@ public class RegistryLoot
         return LootFunctionManager.func_237451_a_(key.toString(), (ILootSerializer)serializer);
     }
     
-    private static <T extends IGlobalLootModifier> void registerGlobalModifier(final GlobalLootModifierSerializer<T> modifier, final ResourceLocation key) {
-        modifier;
+    private static <T extends net.minecraftforge.common.loot.IGlobalLootModifier> void registerGlobalModifier(final GlobalLootModifierSerializer<T> modifier, final ResourceLocation key) {
+
         AstralSorcery.getProxy().getRegistryPrimer().register(modifier);
     }
 }

@@ -54,7 +54,7 @@ public class FluidIngredientSerializer implements IIngredientSerializer<FluidIng
                 else {
                     throw new JsonSyntaxException("Value at key 'fluid' has to be a fluid name or an array of fluid names or objects containing 'fluid'.");
                 }
-                return;
+
             });
         }
         else {

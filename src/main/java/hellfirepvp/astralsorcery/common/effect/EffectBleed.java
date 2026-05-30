@@ -26,7 +26,7 @@ public class EffectBleed extends EffectCustomTexture
     
     public void func_76394_a(final LivingEntity entity, final int amplifier) {
         if (entity instanceof Player && !entity.level().isClientSide() && entity.level() instanceof ServerLevel && !((MinecraftServer)ServerLifecycleHooks.getCurrentServer()).func_71219_W()) {
-            return;
+
         }
         DamageUtil.shotgunAttack(entity, e -> DamageUtil.attackEntityFrom((Entity)e, CommonProxy.DAMAGE_SOURCE_BLEED, 0.5f * (amplifier + 1)));
     }

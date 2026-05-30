@@ -40,12 +40,12 @@ public class BuiltInEffectTraitRelayHighlight extends AltarRecipeEffect
             for (final CraftingFocusStack stack : recipe.getFocusStacks()) {
                 if (stack.getStackIndex() >= 0) {
                     if (stack.getStackIndex() >= additionalIngredients.size()) {
-                        continue;
+
                     }
                     final WrappedIngredient match = additionalIngredients.get(stack.getStackIndex());
                     final TileSpectralRelay relay = MiscUtils.getTileAt((IBlockReader)altar.getLevel(), stack.getRealPosition(), TileSpectralRelay.class, false);
                     if (relay == null) {
-                        continue;
+
                     }
                     final ItemStack in = relay.getInventory().getStackInSlot(0);
                     if (!in.isEmpty() && match.getIngredient().test(in)) {
@@ -53,7 +53,7 @@ public class BuiltInEffectTraitRelayHighlight extends AltarRecipeEffect
                         this.playLightbeam(altar, relay, color);
                         this.playRelayHighlightParticles(relay, color);
                         if (BuiltInEffectTraitRelayHighlight.rand.nextInt(4) != 0) {
-                            continue;
+
                         }
                         EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3(altar).add(-3 + BuiltInEffectTraitRelayHighlight.rand.nextInt(7), 0.02, -3 + BuiltInEffectTraitRelayHighlight.rand.nextInt(7))).color(VFXColorFunction.constant(color)).alpha(VFXAlphaFunction.FADE_OUT).setScaleMultiplier(0.15f + BuiltInEffectTraitRelayHighlight.rand.nextFloat() * 0.2f);
                     }
@@ -98,13 +98,13 @@ public class BuiltInEffectTraitRelayHighlight extends AltarRecipeEffect
             for (final CraftingFocusStack stack : focusStacks) {
                 if (stack.getStackIndex() >= 0) {
                     if (stack.getStackIndex() >= additionalIngredients.size()) {
-                        continue;
+
                     }
                     final WrappedIngredient match = additionalIngredients.get(stack.getStackIndex());
                     final BlockPos offset = stack.getRealPosition().func_177973_b((Vec3i)altar.getBlockState());
                     final TileSpectralRelay relay = MiscUtils.getTileAt((IBlockReader)altar.getLevel(), stack.getRealPosition(), TileSpectralRelay.class, false);
                     if (relay != null && match.getIngredient().test(relay.getInventory().getStackInSlot(0))) {
-                        continue;
+
                     }
                     final ItemStack potential = match.getRandomMatchingStack(this.getClientTick());
                     renderStack.popPose();

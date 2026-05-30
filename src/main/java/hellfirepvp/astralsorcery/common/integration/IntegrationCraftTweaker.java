@@ -29,7 +29,7 @@ public class IntegrationCraftTweaker
             RegistriesAS.REGISTRY_CONSTELLATIONS.getKeys().forEach(resourceLocation -> {
                 final IConstellation constellation = (IConstellation)RegistriesAS.REGISTRY_CONSTELLATIONS.getValue(resourceLocation);
                 CraftTweakerAPI.logDump("%s\tis weak: %s, is major: %s", new Object[] { resourceLocation.toString(), constellation instanceof IWeakConstellation, constellation instanceof IMajorConstellation });
-                return;
+
             });
             final Component message = new Component(ChatFormatting.GREEN + "Constellations written to the log" + ChatFormatting.RESET);
             ((CommandSourceStack)commandContext.getSource()).sendSuccess((Component)message, true);

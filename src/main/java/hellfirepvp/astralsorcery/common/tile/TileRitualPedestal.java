@@ -315,7 +315,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
                 final Vector3 to = new Vector3(this).add((Vec3i)mirror2).add(0.5, 0.5, 0.5);
                 EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).setOwner(this.ownerUUID).spawn(source).setup(to, 0.800000011920929, 0.800000011920929);
                 if (this.ritualLinkTo == null || !this.offsetMirrors.get(mirror2)) {
-                    continue;
+
                 }
                 source = new Vector3(this).add((Vec3i)TileRitualPedestal.RITUAL_ANCHOR_OFFEST).add(0.5, 0.5, 0.5);
                 EffectHelper.of(EffectTemplatesAS.LIGHTBEAM).setOwner(this.ownerUUID).spawn(source).setup(to, 0.800000011920929, 0.800000011920929).color(VFXColorFunction.random());

@@ -200,11 +200,11 @@ public class ItemUtils
             final ItemStack s = handler.getStackInSlot(j);
             if (strict) {
                 if (!ItemComparator.compare(s, match, ItemComparator.Clause.ITEM, ItemComparator.Clause.NBT_STRICT, ItemComparator.Clause.CAPABILITIES_COMPATIBLE)) {
-                    continue;
+
                 }
             }
             else if (!ItemComparator.compare(s, match, ItemComparator.Clause.ITEM)) {
-                continue;
+
             }
             stacksOut.add(copyStackWithSize(s, s.getCount()));
         }
@@ -267,7 +267,7 @@ public class ItemUtils
                 handler.setStackInSlot(slot, copyStackWithSize(inSlot, inSlot.getCount() - toRemove));
             }
             if (cAmt <= 0) {
-                break;
+
             }
         }
         return cAmt <= 0;
@@ -275,7 +275,7 @@ public class ItemUtils
     
     public static void dropInventory(final IItemHandler handle, final Level worldIn, final BlockPos pos) {
         if (worldIn.isClientSide) {
-            return;
+
         }
         for (int i = 0; i < handle.getSlots(); ++i) {
             final ItemStack stack = handle.getStackInSlot(i);
@@ -287,11 +287,11 @@ public class ItemUtils
     
     public static void decrStackInInventory(final ItemStackHandler handler, final int slot) {
         if (slot < 0 || slot >= handler.getSlots()) {
-            return;
+
         }
         final ItemStack st = handler.getStackInSlot(slot);
         if (st.isEmpty()) {
-            return;
+
         }
         st.setCount(st.getCount() - 1);
         if (st.getCount() <= 0) {

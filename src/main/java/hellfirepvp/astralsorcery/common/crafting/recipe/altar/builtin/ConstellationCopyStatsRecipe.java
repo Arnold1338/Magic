@@ -88,11 +88,11 @@ public class ConstellationCopyStatsRecipe extends ConstellationBaseAverageStatsR
                             }
                         }
                         if (iOut.getTraitConstellation(out) != null) {
-                            continue;
+
                         }
                         final IMinorConstellation c2 = ((ConstellationItem)stack.getItem()).getTraitConstellation(stack);
                         if (c2 == null) {
-                            continue;
+
                         }
                         iOut.setTraitConstellation(out, c2);
                     }

@@ -37,7 +37,7 @@ public class ItemColoredLensPush extends ItemColoredLens
         @Override
         public void entityInBeam(final Level world, final Vector3 origin, final Vector3 target, final Entity entity, final PartialEffectExecutor executor) {
             if (entity instanceof Player && !(boolean)GeneralConfig.CONFIG.doColoredLensesAffectPlayers.get() && executor.canExecute()) {
-                return;
+
             }
             final Vector3 dir = target.clone().subtract(origin).normalize().multiply(0.4f);
             final Vec3 eMotion = entity.func_213322_ci();

@@ -75,15 +75,15 @@ public class PktSyncModifierSource extends ASPacket<PktSyncModifierSource>
                         switch (packet.actionType) {
                             case UPDATE: {
                                 PerkEffectHelper.updateSource(player, LogicalSide.CLIENT, packet.source, packet.newSource);
-                                break;
+
                             }
                             case ADD: {
                                 PerkEffectHelper.modifySource(player, LogicalSide.CLIENT, packet.source, PerkEffectHelper.Action.ADD);
-                                break;
+
                             }
                             case REMOVE: {
                                 PerkEffectHelper.modifySource(player, LogicalSide.CLIENT, packet.source, PerkEffectHelper.Action.REMOVE);
-                                break;
+
                             }
                         }
                     }
@@ -100,6 +100,6 @@ public class PktSyncModifierSource extends ASPacket<PktSyncModifierSource>
     {
         ADD, 
         REMOVE, 
-        UPDATE;
+
     }
 }

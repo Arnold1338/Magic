@@ -74,7 +74,7 @@ public class MantleEffectOctans extends MantleEffect
                 EventFlags.CHECK_UNDERWATER_BREAK_SPEED.executeWithFlag(() -> {
                     event.setNewSpeed(player.getDigSpeed(event.getState(), event.getPos()));
                     AlignmentChargeHandler.INSTANCE.drainCharge(player, side, (float)(int)MantleEffectOctans.CONFIG.chargeCostPerBreakSpeed.get(), false);
-                    return;
+
                 });
                 player.getInventory().field_70460_b.set(EquipmentSlot.HEAD.func_188454_b(), (Object)existing);
             }

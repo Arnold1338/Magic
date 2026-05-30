@@ -45,7 +45,7 @@ public class ItemColoredLensBreak extends ItemColoredLens
         @Override
         public void blockInBeam(final Level world, final BlockPos pos, final BlockState state, final PartialEffectExecutor executor) {
             if (world.level()) {
-                return;
+
             }
             final boolean ranOnce = executor.executeAll(() -> BlockBreakHelper.addProgress(world, pos, 0.4f, () -> {
                 final float hardness = state.func_185887_b((IBlockReader)world, pos);
@@ -60,7 +60,7 @@ public class ItemColoredLensBreak extends ItemColoredLens
                 final PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.BEAM_BREAK).addData(buf -> {
                     ByteBufUtils.writePos(buf, pos);
                     buf.writeInt(Block.func_196246_j(state));
-                    return;
+
                 });
                 PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, (Vec3i)pos, 16.0));
             }

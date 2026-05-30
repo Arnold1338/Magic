@@ -31,14 +31,14 @@ public class AttributeTypeCooldown extends PerkAttributeType
         final Player player = event.getPlayer();
         final Level world = player.level();
         if (world.level()) {
-            return;
+
         }
         final PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
         if (!prog.isValid()) {
-            return;
+
         }
         if (player instanceof ServerPlayer && MiscUtils.isPlayerFakeMP((ServerPlayer)player)) {
-            return;
+
         }
         float multiplier = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.SERVER).modifyValue(player, prog, this, 1.0f);
         --multiplier;

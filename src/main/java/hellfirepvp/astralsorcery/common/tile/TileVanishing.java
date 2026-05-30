@@ -41,13 +41,13 @@ public class TileVanishing extends TileEntityTick
                     final double yDiff = player.getY() - this.getBlockState().getY();
                     if (player.func_233570_aj_() && yDiff >= 0.95 && yDiff <= 1.15) {
                         if (player.isCrouching()) {
-                            break;
+
                         }
                         removeBlock = false;
                     }
                     else {
                         if (!player.isCrouching() || yDiff < 0.95 || yDiff > 2.15) {
-                            continue;
+
                         }
                         removeBlock = false;
                     }

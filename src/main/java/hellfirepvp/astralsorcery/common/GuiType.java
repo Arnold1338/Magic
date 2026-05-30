@@ -29,20 +29,19 @@ public enum GuiType
     TOME, 
     REFRACTION_TABLE, 
     TELESCOPE, 
-    HAND_TELESCOPE;
-    
+
     public CompoundTag serializeArguments(final Object[] data) {
         try {
             final CompoundTag nbt = new CompoundTag();
             switch (this) {
                 case CONSTELLATION_PAPER: {
                     nbt.putString("cst", ((IConstellation)data[0]).getRegistryName().toString());
-                    break;
+
                 }
                 case REFRACTION_TABLE:
                 case TELESCOPE: {
                     NBTHelper.writeBlockPosToNBT((BlockPos)data[0], nbt);
-                    break;
+
                 }
             }
             return nbt;

@@ -32,10 +32,10 @@ public class KeyMending extends KeyPerk implements PlayerTickPerk
             repairChance = Math.max(repairChance, 1);
             for (final ItemStack armor : player.func_184193_aE()) {
                 if (KeyMending.rand.nextInt(repairChance) != 0) {
-                    continue;
+
                 }
                 if (armor.isEmpty() || !armor.isDamaged() || !armor.isRepairable() || !AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, (float)(int)KeyMending.CONFIG.chargeCost.get(), false)) {
-                    continue;
+
                 }
                 armor.setDamageValue(armor.getDamageValue() - 1);
             }

@@ -72,7 +72,7 @@ public class EntityObservatoryHelper extends Entity
             if (!this.level()) {
                 this.func_70106_y();
             }
-            return;
+
         }
         final Entity riding = (Entity)Iterables.getFirst((Iterable)this.func_184188_bt(), (Object)null);
         if (riding instanceof Player) {

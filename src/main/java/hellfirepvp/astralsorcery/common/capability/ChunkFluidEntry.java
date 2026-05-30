@@ -40,7 +40,7 @@ public class ChunkFluidEntry implements INBTSerializable<CompoundTag>
     
     public void generate(final long seed) {
         if (this.isInitialized()) {
-            return;
+
         }
         final Random r = new Random(seed);
         final FluidRarityEntry fluidEntry = FluidRarityRegistry.INSTANCE.getRandomValue(r);

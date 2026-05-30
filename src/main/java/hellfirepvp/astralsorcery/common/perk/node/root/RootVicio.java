@@ -60,7 +60,7 @@ public class RootVicio extends RootPerk implements PlayerTickPerk
     @Override
     public void onPlayerTick(final Player player, final LogicalSide side) {
         if (!side.isServer() || !(player instanceof ServerPlayer)) {
-            return;
+
         }
         final UUID uuid = player.getUUID();
         final ServerPlayer sPlayer = (ServerPlayer)player;

@@ -134,7 +134,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
     private void doEffectTick(final TileAttunementAltar altar) {
         final IConstellation cst = altar.getActiveConstellation();
         if (cst == null) {
-            return;
+
         }
         final Vector3 playerTarget = new Vector3(altar).add(0.5, 2.5, 0.5);
         final VFXColorFunction<?> beamColor = VFXColorFunction.constant(ColorsAS.DEFAULT_GENERIC_PARTICLE);

@@ -231,12 +231,12 @@ public class MMCQ
                 }
                 Collections.sort(lh, comparator);
                 if (ncolors >= target) {
-                    return;
+
                 }
                 if (niters++ > 1000) {
-                    return;
+
                 }
-                continue;
+
             }
         }
     }

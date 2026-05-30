@@ -72,17 +72,17 @@ public class MantleEffectMineralis extends MantleEffect
             state = ItemUtils.createBlockState(player.getItemInHand(InteractionHand.OFF_HAND));
         }
         if (state == null || state.getBlock() instanceof AirBlock) {
-            return;
+
         }
         final BlockState fState = state;
         final BlockPredicate search = (world, pos, foundState) -> foundState == fState;
         final List<BlockPos> positions = BlockDiscoverer.searchForBlocksAround(player.level(), player.func_233580_cy_(), (int)MantleEffectMineralis.CONFIG.highlightRange.get(), search);
         if (positions.isEmpty()) {
-            return;
+
         }
         final int index = (positions.size() > 10) ? MantleEffectMineralis.rand.nextInt(positions.size()) : MantleEffectMineralis.rand.nextInt(10);
         if (index >= positions.size()) {
-            return;
+
         }
         final BlockPos at = positions.get(index);
         final BlockState displayState = player.level().getBlockState(at);

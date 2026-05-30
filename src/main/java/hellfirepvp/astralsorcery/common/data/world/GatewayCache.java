@@ -106,7 +106,7 @@ public class GatewayCache extends GlobalWorldData
             }
             catch (final Exception loadEx) {
                 LogUtil.info(LogCategory.GATEWAY_CACHE, () -> "Failed to check gateway for " + node + " skipping");
-                continue;
+
             }
             if (gateway == null) {
                 iterator.remove();
@@ -229,7 +229,7 @@ public class GatewayCache extends GlobalWorldData
                 return new Tuple((Object)compound.getInt("index"), (Object)PlayerReference.deserialize(compound.func_74775_l("player")));
             }).forEach(tpl -> {
                 final PlayerReference playerReference = node.allowedUsers.put((Integer)tpl.getA(), (PlayerReference)tpl.getB());
-                return;
+
             });
             return node;
         }

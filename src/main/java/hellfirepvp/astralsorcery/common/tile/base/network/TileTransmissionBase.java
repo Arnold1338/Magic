@@ -75,7 +75,7 @@ public abstract class TileTransmissionBase<T extends IPrismTransmissionNode> ext
     @Override
     public void onBlockLinkCreate(final Player player, final BlockPos other) {
         if (other.equals((Object)this.getBlockState())) {
-            return;
+
         }
         if (TransmissionNetworkHelper.createTransmissionLink(this, other)) {
             if (this.isSingleLink()) {

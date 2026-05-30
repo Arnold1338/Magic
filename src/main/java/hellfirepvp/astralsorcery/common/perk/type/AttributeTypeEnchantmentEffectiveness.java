@@ -29,7 +29,7 @@ public class AttributeTypeEnchantmentEffectiveness extends PerkAttributeType
         final Player player = event.getResolvedPlayer();
         final LogicalSide side = this.getSide((Entity)player);
         if (!this.hasTypeApplied(player, side)) {
-            return;
+
         }
         final float inc = PerkAttributeHelper.getOrCreateMap(player, side).getModifier(player, ResearchHelper.getProgress(player, side), this);
         for (final DynamicEnchantment ench : event.getEnchantmentsToApply()) {

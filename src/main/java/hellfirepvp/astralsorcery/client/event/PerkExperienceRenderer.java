@@ -48,13 +48,13 @@ public class PerkExperienceRenderer implements ITickHandler
     
     private void onRenderOverlay(final RenderGameOverlayEvent.Post event) {
         if (event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
-            return;
+
         }
         if (this.visibilityReveal <= 0.0f) {
-            return;
+
         }
         if (!ResearchHelper.getClientProgress().isAttuned()) {
-            return;
+
         }
         final PoseStack renderStack = event.getMatrixStack();
         final Player player = (Player)Minecraft.getInstance().player;

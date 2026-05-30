@@ -47,7 +47,7 @@ public class CelestialGatewayHandler
     
     public void addPosition(final Level world, final GatewayCache.GatewayNode node) {
         if (world.level()) {
-            return;
+
         }
         final ResourceKey<Level> dimKey = (ResourceKey<Level>)world.dimension();
         if (!this.cache.getData(LogicalSide.SERVER).map(map -> map.get(dimKey)).isPresent()) {
@@ -56,7 +56,7 @@ public class CelestialGatewayHandler
         final Optional<Collection<GatewayCache.GatewayNode>> worldData = this.cache.getData(LogicalSide.SERVER).map(map -> map.get(dimKey));
         if (!worldData.isPresent()) {
             AstralSorcery.log.info("Couldn't add gateway at " + node.getPos() + " - loading the world failed.");
-            return;
+
         }
         final Collection<GatewayCache.GatewayNode> nodes = worldData.get();
         this.getFilter().addDim(dimKey);
@@ -68,12 +68,12 @@ public class CelestialGatewayHandler
     
     public void removePosition(final Level world, final BlockPos pos) {
         if (world.level()) {
-            return;
+
         }
         final ResourceKey<Level> dimKey = (ResourceKey<Level>)world.dimension();
         final Optional<Collection<GatewayCache.GatewayNode>> worldData = this.cache.getData(LogicalSide.SERVER).map(map -> map.get(dimKey));
         if (!worldData.isPresent()) {
-            return;
+
         }
         final Collection<GatewayCache.GatewayNode> nodes = worldData.get();
         if (nodes.removeIf(node -> node.getPos().equals((Object)pos))) {
@@ -102,11 +102,11 @@ public class CelestialGatewayHandler
     
     public void onWorldInit(final WorldEvent.Load event) {
         if (this.startUp) {
-            return;
+
         }
         final IWorld world = event.getWorld();
         if (world.level() || !(world instanceof Level)) {
-            return;
+
         }
         this.loadIntoCache((Level)world);
         this.syncToAll();

@@ -106,7 +106,7 @@ public class ScreenJournalProgression extends ScreenJournal
         super.func_231160_c_();
         if (this.expectReinit) {
             this.expectReinit = false;
-            return;
+
         }
         if (ScreenJournalProgression.currentInstance == null || ScreenJournalProgression.progressionRenderer == null) {
             ScreenJournalProgression.currentInstance = this;
@@ -196,7 +196,7 @@ public class ScreenJournalProgression extends ScreenJournal
             if (this.searchHoverNode == null) {
                 final Rectangle rctDrawn = new Rectangle(offsetX - 2, startOffsetY - 2, (int)(maxLength + 4.0f), offsetY - startOffsetY);
                 if (!rctDrawn.contains(mouseX, mouseY)) {
-                    continue;
+
                 }
                 func_238467_a_(renderStack, rctDrawn.x, rctDrawn.y, rctDrawn.x + rctDrawn.width, rctDrawn.y + rctDrawn.height, boxColor.getRGB());
                 this.searchHoverNode = node;
@@ -222,7 +222,7 @@ public class ScreenJournalProgression extends ScreenJournal
             if (this.searchHoverNode == null) {
                 final Rectangle rctDrawn = new Rectangle(offsetX - 2, startOffsetY - 2, (int)(maxLength + 4.0f), offsetY - startOffsetY);
                 if (!rctDrawn.contains(mouseX, mouseY)) {
-                    continue;
+
                 }
                 func_238467_a_(renderStack, rctDrawn.x, rctDrawn.y, rctDrawn.x + rctDrawn.width, rctDrawn.y + rctDrawn.height, boxColor.getRGB());
                 this.searchHoverNode = node;

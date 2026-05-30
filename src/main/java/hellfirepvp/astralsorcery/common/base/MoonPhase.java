@@ -18,8 +18,7 @@ public enum MoonPhase
     NEW, 
     WAXING_1_4, 
     WAXING_1_2, 
-    WAXING_3_4;
-    
+
     public static MoonPhase fromWorld(final IWorld world) {
         return MiscUtils.getEnumEntry(MoonPhase.class, world.dimensionType().func_236035_c_(world.func_241851_ab()));
     }

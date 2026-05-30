@@ -25,7 +25,7 @@ public class RenderRitualPedestal extends CustomTileEntityRenderer<TileRitualPed
     public void render(final TileRitualPedestal tile, final float pTicks, final PoseStack renderStack, final MultiBufferSource renderTypeBuffer, final int combinedLight, final int combinedOverlay) {
         final ItemStack stack = tile.getCurrentCrystal();
         if (stack.isEmpty()) {
-            return;
+
         }
         ItemStack display = stack;
         if (display.getItem() instanceof ItemAttunedRockCrystal) {

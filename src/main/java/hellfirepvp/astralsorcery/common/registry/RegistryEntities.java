@@ -70,8 +70,8 @@ public class RegistryEntities
     }
     
     private static <E extends Entity> EntityType<E> register(final String name, final EntityType.Builder<E> typeBuilder) {
-        final EntityType<E> type = (EntityType<E>)typeBuilder.func_206830_a(AstralSorcery.key(name).toString());
-        type);
+        final EntityType<E> type = (EntityType<E>)typeBuilder.build(AstralSorcery.key(name).toString());
+
         AstralSorcery.getProxy().getRegistryPrimer().register(type);
         return type;
     }

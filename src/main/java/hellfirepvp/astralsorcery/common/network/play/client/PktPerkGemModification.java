@@ -75,17 +75,17 @@ public class PktPerkGemModification extends ASPacket<PktPerkGemModification>
                 switch (packet.action) {
                     case 0: {
                         this.tryInsertPerk(perk, player, packet);
-                        break;
+
                     }
                     case 1: {
                         if (((GemSocketPerk)perk).hasItem(player, LogicalSide.SERVER)) {
                             ((GemSocketPerk)perk).dropItemToPlayer(player);
-                            break;
+
                         }
                         else {
-                            break;
+
                         }
-                        break;
+
                     }
                 }
             }
@@ -95,12 +95,12 @@ public class PktPerkGemModification extends ASPacket<PktPerkGemModification>
     private <T extends AbstractPerk & GemSocketPerk> void tryInsertPerk(final AbstractPerk perk, final Player player, final PktPerkGemModification packet) {
         final PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
         if (!prog.isValid()) {
-            return;
+
         }
         final T socketPerk = (T)perk;
         final ItemStack stack = player.getInventory().func_70301_a(packet.slotId);
         if (stack.isEmpty()) {
-            return;
+
         }
         final ItemStack toInsert = ItemUtils.copyStackWithSize(stack, 1);
         if (!toInsert.isEmpty() && toInsert.getItem() instanceof GemSocketItem) {

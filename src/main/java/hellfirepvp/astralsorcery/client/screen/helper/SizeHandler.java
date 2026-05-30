@@ -107,14 +107,14 @@ public abstract class SizeHandler
     
     public void handleZoomIn() {
         if (this.scalingFactor >= this.maxScale) {
-            return;
+
         }
         this.scalingFactor = Math.min(this.maxScale, this.scalingFactor + this.scaleSpeed);
     }
     
     public void handleZoomOut() {
         if (this.scalingFactor <= this.minScale) {
-            return;
+
         }
         this.scalingFactor = Math.max(this.minScale, this.scalingFactor - this.scaleSpeed);
     }

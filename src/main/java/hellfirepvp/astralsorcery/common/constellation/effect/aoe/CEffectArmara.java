@@ -65,7 +65,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
             if (trait != null) {
                 trait.affectConstellationEffect(prop);
                 if (prop.isCorrupted()) {
-                    return;
+
                 }
             }
         }
@@ -84,7 +84,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
                     }
                     else {
                         if (!(e instanceof MobEntity)) {
-                            continue;
+
                         }
                         ((LivingEntity)e).func_233627_a_(0.4f, pos.getX() + 0.5 - e.getX(), pos.getZ() + 0.5 - e.getZ());
                     }
@@ -126,7 +126,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
                         }
                         else {
                             if (!(e instanceof MobEntity)) {
-                                continue;
+
                             }
                             ((LivingEntity)e).func_233627_a_(0.4f, pos.getX() + 0.5 - e.getX(), pos.getZ() + 0.5 - e.getZ());
                         }
@@ -140,7 +140,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
             if (entity.isAlive() && (entity instanceof MobEntity || entity instanceof Player)) {
                 if (properties.isCorrupted()) {
                     if (entity instanceof Player) {
-                        continue;
+
                     }
                     EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance(Effects.field_76424_c, 100, potionAmplifier + 4));
                     EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance(Effects.field_76428_l, 100, potionAmplifier + 4));
@@ -157,7 +157,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
                     }
                 }
                 if (!(entity instanceof Player)) {
-                    continue;
+
                 }
                 this.markPlayerAffected((Player)entity);
             }

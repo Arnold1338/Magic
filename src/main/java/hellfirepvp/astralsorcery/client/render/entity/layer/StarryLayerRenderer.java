@@ -41,7 +41,7 @@ public class StarryLayerRenderer<E extends LivingEntity, M extends HumanoidModel
     
     public void func_225628_a_(final PoseStack renderStack, final MultiBufferSource buffer, final int light, final E entity, final float limbSwing, final float limbSwingAmount, final float partialTicks, final float ageInTicks, final float netHeadYaw, final float headPitch) {
         if (!(entity instanceof Player)) {
-            return;
+
         }
         for (final EquipmentSlot slotType : EquipmentSlot.values()) {
             if (slotType.func_188453_a() == EquipmentSlot.Group.ARMOR && StarryLayerRenderer.renderTest.test((Player)entity, slotType)) {

@@ -200,7 +200,7 @@ public class PlayerPerkData
     protected void modifyExp(double exp, final Player player) {
         final int currLevel = PerkLevelManager.getLevel(this.getPerkExp(), player, LogicalSide.SERVER);
         if (exp >= 0.0 && currLevel >= PerkLevelManager.getLevelCap(LogicalSide.SERVER, player)) {
-            return;
+
         }
         final long expThisLevel = PerkLevelManager.getExpForLevel(currLevel, player, LogicalSide.SERVER);
         final long expNextLevel = PerkLevelManager.getExpForLevel(currLevel + 1, player, LogicalSide.SERVER);
@@ -221,7 +221,7 @@ public class PlayerPerkData
         this.perkExp = 0.0;
         if (this.isLegacyData(tag)) {
             this.loadLegacyData(progress, tag);
-            return;
+
         }
         this.perkExp = tag.putDouble("perkExp");
         final long perkTreeVersion = tag.getDouble("perkTreeVersion");
@@ -236,7 +236,7 @@ public class PlayerPerkData
                     this.perks.put(root, newPerk);
                 }
             }
-            return;
+
         }
         CompoundTag nbt = null;
         this.freePointTokens.addAll(NBTHelper.readList(tag, "tokens", 8, nbt -> new ResourceLocation(nbt.func_150285_a_().replace("-", "_"))));
@@ -245,7 +245,7 @@ public class PlayerPerkData
             nbt = list.getCompound(i);
             deserialize(nbt).ifPresent(perk -> {
                 final AppliedPerk appliedPerk = this.perks.put(perk.getPerk(), perk);
-                return;
+
             });
         }
     }
@@ -291,7 +291,7 @@ public class PlayerPerkData
         });
         appliedPerks.forEach(appliedPerk -> {
             final AppliedPerk appliedPerk2 = data.perks.put(appliedPerk.getPerk(), appliedPerk);
-            return;
+
         });
         return data;
     }
@@ -334,7 +334,7 @@ public class PlayerPerkData
                         appliedPerk.addAllocation(PlayerPerkAllocation.unlock(), false);
                         appliedPerk.perkData = data;
                         this.perks.put(perk, appliedPerk);
-                        return;
+
                     });
                 }
             }
@@ -348,7 +348,7 @@ public class PlayerPerkData
                         if (newPerk2 != null) {
                             newPerk2.setSealed(true);
                         }
-                        return;
+
                     });
                 }
             }
@@ -459,7 +459,7 @@ public class PlayerPerkData
                         allocations.remove(i);
                     }
                     removedMatch = true;
-                    break;
+
                 }
             }
             if (!removedMatch) {

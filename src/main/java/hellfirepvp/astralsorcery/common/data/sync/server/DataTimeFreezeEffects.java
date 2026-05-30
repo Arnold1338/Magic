@@ -101,7 +101,7 @@ public class DataTimeFreezeEffects extends AbstractData
                 case ADD:
                 case REMOVE: {
                     out.put("effectTag", (Tag)this.involvedEffect.serializeNBT());
-                    break;
+
                 }
             }
             return out;
@@ -116,7 +116,7 @@ public class DataTimeFreezeEffects extends AbstractData
                 case ADD:
                 case REMOVE: {
                     helper = TimeStopEffectHelper.deserializeNBT(cmp.func_74775_l("effectTag"));
-                    break;
+
                 }
             }
             return new ServerSyncAction(type, dim, helper);
@@ -139,7 +139,7 @@ public class DataTimeFreezeEffects extends AbstractData
         {
             ADD, 
             REMOVE, 
-            CLEAR;
+
         }
     }
     

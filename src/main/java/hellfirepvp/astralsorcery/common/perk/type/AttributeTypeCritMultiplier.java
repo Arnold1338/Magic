@@ -32,14 +32,14 @@ public class AttributeTypeCritMultiplier extends PerkAttributeType
         if (event.getEntity() instanceof ArrowEntity) {
             final ArrowEntity arrow = (ArrowEntity)event.getEntity();
             if (!arrow.func_70241_g()) {
-                return;
+
             }
             final Entity shooter = arrow.func_234616_v_();
             if (shooter instanceof Player) {
                 final Player player = (Player)shooter;
                 final LogicalSide side = this.getSide((Entity)player);
                 if (!this.hasTypeApplied(player, side)) {
-                    return;
+
                 }
                 float dmgMod = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, ResearchHelper.getProgress(player, side), this, 1.0f);
                 dmgMod = AttributeEvent.postProcessModded(player, this, dmgMod);
@@ -50,12 +50,12 @@ public class AttributeTypeCritMultiplier extends PerkAttributeType
     
     private void onHitCrit(final CriticalHitEvent event) {
         if (!event.isVanillaCritical() && event.getResult() != Event.Result.ALLOW) {
-            return;
+
         }
         final Player player = event.getPlayer();
         final LogicalSide side = this.getSide((Entity)player);
         if (!this.hasTypeApplied(player, side)) {
-            return;
+
         }
         float dmgMod = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, ResearchHelper.getProgress(player, side), this, 1.0f);
         dmgMod = AttributeEvent.postProcessModded(player, this, dmgMod);

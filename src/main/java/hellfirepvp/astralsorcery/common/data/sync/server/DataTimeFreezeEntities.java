@@ -81,7 +81,7 @@ public class DataTimeFreezeEntities extends AbstractData
             final ListTag nbtEntities = new ListTag();
             entityIds.forEach(id -> nbtEntities.add((Object)IntTag.func_229692_a_((int)id)));
             dimTag.put(dim.func_240901_a_().toString(), (Tag)nbtEntities);
-            return;
+
         });
         out.put("dimTypes", (Tag)dimTag);
     }

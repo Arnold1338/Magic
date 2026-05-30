@@ -83,7 +83,7 @@ public class ItemInfusedGlass extends Item
     
     public static void setEngraving(@Nonnull final ItemStack stack, @Nullable final EngravedStarMap map) {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemInfusedGlass)) {
-            return;
+
         }
         final CompoundTag tag = NBTHelper.getPersistentData(stack);
         if (map == null) {

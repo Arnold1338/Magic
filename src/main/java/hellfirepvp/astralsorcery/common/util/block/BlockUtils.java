@@ -102,19 +102,19 @@ public class BlockUtils
             switch (entity.func_70660_b(Effects.field_76419_f).func_76458_c()) {
                 case 0: {
                     fatigueMultiplier = (float)Math.pow(0.30000001192092896, 1.0);
-                    break;
+
                 }
                 case 1: {
                     fatigueMultiplier = (float)Math.pow(0.30000001192092896, 2.0);
-                    break;
+
                 }
                 case 2: {
                     fatigueMultiplier = (float)Math.pow(0.30000001192092896, 3.0);
-                    break;
+
                 }
                 default: {
                     fatigueMultiplier = (float)Math.pow(0.30000001192092896, 4.0);
-                    break;
+
                 }
             }
             breakSpeed *= fatigueMultiplier;
@@ -163,7 +163,7 @@ public class BlockUtils
                 if (!original.equals(test)) {
                     return false;
                 }
-                continue;
+
             }
             catch (final Exception exc) {
                 return false;

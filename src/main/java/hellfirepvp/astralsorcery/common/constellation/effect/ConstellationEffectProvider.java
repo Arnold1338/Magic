@@ -12,7 +12,7 @@ public abstract class ConstellationEffectProvider  {
     
     protected ConstellationEffectProvider(final IWeakConstellation cst) {
         this.cst = cst;
-        this);
+
     }
     
     @Nonnull

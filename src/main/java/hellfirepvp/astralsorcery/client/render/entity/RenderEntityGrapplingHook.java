@@ -40,7 +40,7 @@ public class RenderEntityGrapplingHook extends EntityRenderer<EntityGrapplingHoo
             alphaMultiplier = 255;
         }
         if (alphaMultiplier <= 1.0E-4) {
-            return;
+
         }
         final Vector3 entityPos = RenderingVectorUtils.interpolatePosition((Entity)entity, partialTicks);
         final List<Vector3> line = entity.buildLine(partialTicks);
@@ -60,7 +60,7 @@ public class RenderEntityGrapplingHook extends EntityRenderer<EntityGrapplingHoo
                 final Vector3 at = pos.multiply(2).add(entityPos);
                 RenderingDrawUtils.renderFacingFullQuadVB((VertexConsumer)buf, matrixStack, at.getX(), at.getY(), at.getZ(), 0.3f, 0.0f, 50, 40, 180, (int)(alphaMultiplier * 0.8f));
             }
-            return;
+
         });
         RenderSystem.enableCull();
         Blending.DEFAULT.apply();

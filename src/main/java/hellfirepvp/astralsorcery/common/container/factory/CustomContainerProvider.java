@@ -16,9 +16,9 @@ import net.minecraft.world.level.inventory.AbstractContainerMenu;
 
 public abstract class CustomContainerProvider<C extends Container> implements INamedContainerProvider
 {
-    private final ContainerType<C> type;
+    private final MenuType<C> type;
     
-    public CustomContainerProvider(final ContainerType<C> type) {
+    public CustomContainerProvider(final MenuType<C> type) {
         this.type = type;
     }
     

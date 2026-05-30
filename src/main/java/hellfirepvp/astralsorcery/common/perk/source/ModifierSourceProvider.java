@@ -53,7 +53,7 @@ public abstract class ModifierSourceProvider<T extends ModifierSource>
         final T existing = this.getModifier(player, identifier);
         if (existing != null) {
             if (existing.isEqual(source)) {
-                return;
+
             }
             needsRemoval = true;
         }

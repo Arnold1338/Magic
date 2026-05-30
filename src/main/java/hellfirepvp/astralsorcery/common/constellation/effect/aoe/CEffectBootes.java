@@ -71,19 +71,19 @@ public class CEffectBootes extends ConstellationEffectEntityCollect<LivingEntity
         for (final LivingEntity entity : entities) {
             final AnimalHelper.HerdableAnimal animal = AnimalHelper.getHandler(entity);
             if (animal == null) {
-                continue;
+
             }
             if (properties.isCorrupted()) {
                 entity.field_70172_ad = 0;
                 entity.func_195064_c(new MobEffectInstance((MobEffect)EffectsAS.EFFECT_DROP_MODIFIER, 1000, 5));
                 if (!DamageUtil.attackEntityFrom((Entity)entity, CommonProxy.DAMAGE_SOURCE_STELLAR, 5000.0f)) {
-                    continue;
+
                 }
                 didEffect = true;
             }
             else {
                 if (CEffectBootes.rand.nextFloat() >= (double)CEffectBootes.CONFIG.herdingChance.get()) {
-                    continue;
+
                 }
                 didEffect = MiscUtils.executeWithChunk((IWorldReader)world, entity.func_233580_cy_(), didEffect, didEffectFlag -> {
                     final List<ItemStack> rawDrops = EntityUtils.generateLoot(entity, CEffectBootes.rand, CommonProxy.DAMAGE_SOURCE_STELLAR, null);
@@ -93,7 +93,7 @@ public class CEffectBootes extends ConstellationEffectEntityCollect<LivingEntity
                         for (int i = 0; i < drop.getCount(); ++i) {
                             drops.add(ItemUtils.copyStackWithSize(drop, 1));
                         }
-                        return;
+
                     });
                     drops.iterator();
                     final Iterator iterator2;

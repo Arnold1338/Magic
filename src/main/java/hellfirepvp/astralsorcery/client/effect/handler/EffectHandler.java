@@ -61,7 +61,7 @@ public final class EffectHandler
     
     public void render(final PoseStack renderStack, final float pTicks) {
         if (this.orderedEffects == null || AssetLibrary.isReloading()) {
-            return;
+
         }
         final IDrawRenderTypeBuffer drawBuffer = IDrawRenderTypeBuffer.defaultBuffer();
         this.acceptsNewEffects = false;
@@ -88,12 +88,12 @@ public final class EffectHandler
         }
         if (rView == null) {
             cleanUp();
-            return;
+
         }
         if (this.orderedEffects == null) {
             (this.orderedEffects = DependencySorter.getSorted(EffectTemplatesAS.LIST_ALL_RENDER_CONTEXT)).forEach(ctx -> {
                 final List list = this.effectMap.put(ctx, new ArrayList<PendingEffect>());
-                return;
+
             });
         }
         this.acceptsNewEffects = false;
@@ -108,7 +108,7 @@ public final class EffectHandler
                     fx.flagAsRemoved();
                 }
             }
-            return;
+
         });
         this.sources.forEach(src -> {
             src.tick();
@@ -139,7 +139,7 @@ public final class EffectHandler
     
     private void registerUnsafe(final PendingEffect pendingEffect) {
         if (!this.mayAcceptParticle(pendingEffect.getProperties())) {
-            return;
+
         }
         final EntityVisualFX effect = pendingEffect.getEffect();
         final BatchRenderContext<?> ctx = pendingEffect.getProperties().getContext();

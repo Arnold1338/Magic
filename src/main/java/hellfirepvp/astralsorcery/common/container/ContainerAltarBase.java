@@ -19,7 +19,7 @@ public abstract class ContainerAltarBase extends ContainerTileEntity<TileAltar>
     private final Inventory playerInv;
     private final TileInventory invHandler;
     
-    protected ContainerAltarBase(final TileAltar altar, @Nullable final ContainerType<?> type, final Inventory inv, final int windowId) {
+    protected ContainerAltarBase(final TileAltar altar, @Nullable final MenuType<?> type, final Inventory inv, final int windowId) {
         super(altar, type, windowId);
         this.playerInv = inv;
         this.invHandler = altar.getInventory();

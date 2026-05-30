@@ -40,6 +40,6 @@ public interface NavigationArrowScreen
     public enum Type
     {
         LEFT, 
-        RIGHT;
+
     }
 }

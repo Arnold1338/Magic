@@ -41,7 +41,7 @@ public class KeyAreaOfEffect extends KeyAddEnchantment
     
     private void onDamage(final LivingHurtEvent event) {
         if (EventFlags.SWEEP_ATTACK.isSet()) {
-            return;
+
         }
         final DamageSource source = event.getSource();
         if (source instanceof IndirectDamageSource && source.getDirectEntity() != null && source.getDirectEntity() instanceof Player) {

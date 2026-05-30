@@ -51,11 +51,11 @@ public class PerkTreeConstellation<T extends AbstractPerk> extends PerkTreePoint
     @Override
     public void renderAt(final AllocationStatus status, final PoseStack renderStack, final long spriteOffsetTick, final float pTicks, final float x, final float y, final float zLevel, final float scale) {
         if (this.associatedConstellation == null) {
-            return;
+
         }
         final PlayerProgress prog = ResearchHelper.getClientProgress();
         if (!prog.hasConstellationDiscovered(this.associatedConstellation)) {
-            return;
+
         }
         final float size = this.perkSpriteSize * scale * 0.85f;
         RenderSystem.enableBlend();

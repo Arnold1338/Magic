@@ -159,7 +159,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
                     info.openGui();
                     return true;
                 }
-                continue;
+
             }
         }
         if (this.thisFrameOuputStack != null && ((Rectangle)this.thisFrameOuputStack.func_76341_a()).contains(mouseX, mouseZ)) {
@@ -191,7 +191,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
     
     public void renderInfoStarTooltips(final PoseStack renderStack, final float offsetX, final float offsetY, float zLevel, final float mouseX, final float mouseY, final Consumer<List<FormattedCharSequence>> tooltipProvider) {
         if (this.thisFrameInfoStar == null) {
-            return;
+
         }
         if (this.thisFrameInfoStar.contains(mouseX, mouseY)) {
             final List<FormattedCharSequence> toolTip = new ArrayList<FormattedCharSequence>();
@@ -293,7 +293,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage
             if (rect.contains(mouseX, mouseY)) {
                 final Tuple<ItemStack, Ingredient> inputInfo = this.thisFrameInputStacks.get(rect);
                 this.addInputInformation((ItemStack)inputInfo.func_76341_a(), (Ingredient)inputInfo.func_76340_b(), tooltip);
-                return;
+
             }
         }
         if (((Rectangle)this.thisFrameOuputStack.func_76341_a()).contains(mouseX, mouseY)) {

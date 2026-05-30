@@ -70,7 +70,7 @@ public class ClientLightConnections extends ClientData<ClientLightConnections>
             }
             for (final String dimKey2 : compound.func_150296_c()) {
                 if (clearedDimensions.contains(dimKey2)) {
-                    continue;
+
                 }
                 final ResourceKey<Level> dim2 = (ResourceKey<Level>)ResourceKey.func_240903_a_(Registry.field_239699_ae_, new ResourceLocation(dimKey2));
                 final Map<BlockPos, Set<BlockPos>> posMap = cl.clientPosBuffer.computeIfAbsent(dim2, d -> new HashMap());
@@ -86,7 +86,7 @@ public class ClientLightConnections extends ClientData<ClientLightConnections>
                     else {
                         final Set<BlockPos> endPoints = posMap.get(start);
                         if (endPoints == null || !endPoints.remove(end) || !endPoints.isEmpty()) {
-                            continue;
+
                         }
                         posMap.remove(start);
                     }

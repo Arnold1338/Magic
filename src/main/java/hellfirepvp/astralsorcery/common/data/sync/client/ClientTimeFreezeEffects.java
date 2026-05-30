@@ -43,18 +43,18 @@ public class ClientTimeFreezeEffects extends ClientData<ClientTimeFreezeEffects>
             case ADD: {
                 final List<TimeStopEffectHelper> zones = this.clientActiveFreezeZones.computeIfAbsent(worldKey, id -> new LinkedList());
                 zones.add(action.getInvolvedEffect());
-                break;
+
             }
             case REMOVE: {
                 if (this.clientActiveFreezeZones.containsKey(worldKey)) {
                     this.clientActiveFreezeZones.get(worldKey).remove(action.getInvolvedEffect());
-                    break;
+
                 }
-                break;
+
             }
             case CLEAR: {
                 this.clientActiveFreezeZones.remove(worldKey);
-                break;
+
             }
         }
     }

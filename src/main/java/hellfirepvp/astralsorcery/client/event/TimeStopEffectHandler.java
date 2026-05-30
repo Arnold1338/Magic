@@ -19,7 +19,7 @@ public class TimeStopEffectHandler implements ITickHandler
     
     public void tick(final TickEvent.Type type, final Object... context) {
         if (Minecraft.getInstance().level == null) {
-            return;
+
         }
         SyncDataHolder.executeClient(SyncDataHolder.DATA_TIME_FREEZE_EFFECTS, ClientTimeFreezeEffects.class, effects -> {
             final List<TimeStopEffectHelper> zoneEffects = effects.getTimeStopEffects((Level)Minecraft.getInstance().level);

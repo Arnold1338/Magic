@@ -128,8 +128,7 @@ public class BlockMarblePillar extends BlockMarbleTemplate implements SimpleWate
     {
         TOP, 
         MIDDLE, 
-        BOTTOM;
-        
+
         public String func_176610_l() {
             return this.name().toLowerCase(Locale.ROOT);
         }

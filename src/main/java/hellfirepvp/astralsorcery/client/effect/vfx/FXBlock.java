@@ -54,7 +54,7 @@ public class FXBlock extends EntityVisualFX
     @Override
     public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final VertexConsumer vb, final float pTicks) {
         if (this.blockState == null) {
-            return;
+
         }
         final int alpha = this.getAlpha(pTicks);
         final Color c = this.getColor(pTicks);

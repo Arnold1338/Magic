@@ -97,13 +97,13 @@ public class TileLens extends TileTransmissionBase<IPrismTransmissionNode> imple
             this.preventNetworkSync();
         }
         if (this.accumulatedStarlight <= 0.0f) {
-            return;
+
         }
         final float effectMultiplier = this.accumulatedStarlight * 1.4f;
         this.accumulatedStarlight = 0.0f;
         final List<BlockPos> linked = this.getLinkedPositions();
         if (linked.isEmpty()) {
-            return;
+
         }
         final Vector3 thisVec = new Vector3(this).add(0.5, 0.5, 0.5);
         for (final BlockPos linkedTo : linked) {

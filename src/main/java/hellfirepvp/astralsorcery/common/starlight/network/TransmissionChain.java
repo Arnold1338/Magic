@@ -94,7 +94,7 @@ public class TransmissionChain
     
     private void recBuildChain(final IPrismTransmissionNode node, final float lossMultiplier, final LinkedList<BlockPos> prevPath) {
         if (lossMultiplier <= 0.001f) {
-            return;
+
         }
         final CrystalAttributes lensProperties = node.getTransmissionProperties();
         final float lossPerc = lossMultiplier * CrystalCalculations.getThroughputMultiplier(lensProperties);
@@ -112,13 +112,13 @@ public class TransmissionChain
                 final BlockPos nextPos = nextNode.getTo();
                 this.addIfNonExistentConnection(node.getLocationPos(), nextPos);
                 if (prevPath.contains(nextPos)) {
-                    continue;
+
                 }
                 this.remainMultiplierMap.merge(nextPos, nextLoss, Float::sum);
                 if (trNode != null) {
                     if (trNode instanceof ITransmissionReceiver) {
                         if (this.endpointsNodes.contains(trNode)) {
-                            continue;
+
                         }
                         this.endpointsNodes.add((ITransmissionReceiver)trNode);
                     }

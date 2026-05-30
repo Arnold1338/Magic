@@ -42,7 +42,7 @@ public class BlockBreakHelper
         if (breakProgress == null) {
             final Float hardness = expectedHardness.get();
             if (hardness == null) {
-                return;
+
             }
             breakProgress = new BreakEntry(expectedHardness.get(), (IWorld)world, pos, world.getBlockState(pos));
             map.put(pos, breakProgress);
@@ -98,7 +98,7 @@ public class BlockBreakHelper
         @Override
         public void onTimeout() {
             if (this.breakProgress > 0.0f) {
-                return;
+
             }
             final BlockState nowAt = this.world.getBlockState(this.pos);
             if (this.world instanceof ServerLevel && BlockUtils.matchStateExact(this.expected, nowAt)) {

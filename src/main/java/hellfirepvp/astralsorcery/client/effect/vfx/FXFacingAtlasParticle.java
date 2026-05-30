@@ -47,7 +47,7 @@ public class FXFacingAtlasParticle extends EntityVisualFX
     @Override
     public <T extends EntityVisualFX> void render(final BatchRenderContext<T> ctx, final PoseStack renderStack, final VertexConsumer vb, final float pTicks) {
         if (this.sprite == null) {
-            return;
+
         }
         final Vector3 vec = this.getRenderPosition(pTicks);
         final int alpha = this.getAlpha(pTicks);

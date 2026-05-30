@@ -148,7 +148,7 @@ public class TileCollectorCrystal extends TileSourceBase<SimpleTransmissionSourc
     @Override
     public void setAttributes(@Nullable final CrystalAttributes attributes) {
         if (this.crystalAttributes == null && attributes == null) {
-            return;
+
         }
         if (attributes == null || !attributes.equals(this.crystalAttributes)) {
             this.markForUpdate();

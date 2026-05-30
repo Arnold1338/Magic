@@ -47,9 +47,9 @@ import hellfirepvp.observerlib.api.ObserverProvider;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import hellfirepvp.observerlib.api.structure.MatchableStructure;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.registries.DataSerializerEntry;
+
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
+
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.effect.MobEffect;
@@ -84,7 +84,7 @@ public class PrimerEventHandler
         eventBus.addGenericListener((Class)SoundEvent.class, (Consumer)this::registerSounds);
         eventBus.addGenericListener((Class)GlobalLootModifierSerializer.class, (Consumer)this::registerGlobalLootModifierSerializers);
         eventBus.addGenericListener((Class)IConstellation.class, (Consumer)this::registerConstellations);
-        eventBus.addGenericListener((Class)DataSerializerEntry.class, (Consumer)this::registerDataSerializers);
+        eventBus.addGenericListener((Class)net.minecraft.network.syncher.EntityDataSerializer.class, (Consumer)this::registerDataSerializers);
         eventBus.addGenericListener((Class)RecipeSerializer.class, (Consumer)this::registerRecipeSerializers);
         eventBus.addGenericListener((Class)MatchableStructure.class, (Consumer)this::registerStructures);
         eventBus.addGenericListener((Class)StructureType.class, (Consumer)this::registerStructureTypes);
@@ -200,7 +200,7 @@ public class PrimerEventHandler
         this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerContainerTypes(final RegisterEvent<ContainerType<?>> event) {
+    private void registerContainerTypes(final RegisterEvent<MenuType<?>> event) {
         RegistryContainerTypes.init();
         this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
@@ -218,7 +218,7 @@ public class PrimerEventHandler
         this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }
     
-    private void registerDataSerializers(final RegisterEvent<DataSerializerEntry> event) {
+    private void registerDataSerializers(final RegisterEvent<net.minecraft.network.syncher.EntityDataSerializer> event) {
         RegistryDataSerializers.registerSerializers();
         this.fillRegistry(event.getRegistry().getRegistrySuperType(), (net.minecraftforge.registries.IForgeRegistry<Object>)event.getRegistry());
     }

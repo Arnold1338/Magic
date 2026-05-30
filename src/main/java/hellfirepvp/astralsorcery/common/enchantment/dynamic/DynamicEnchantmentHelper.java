@@ -56,23 +56,23 @@ public class DynamicEnchantmentHelper
                 case ADD_TO_SPECIFIC: {
                     if (enchantment.equals(target)) {
                         current += mod.getLevelAddition();
-                        continue;
+
                     }
-                    continue;
+
                 }
                 case ADD_TO_EXISTING_SPECIFIC: {
                     if (enchantment.equals(target) && current > 0) {
                         current += mod.getLevelAddition();
-                        continue;
+
                     }
-                    continue;
+
                 }
                 case ADD_TO_EXISTING_ALL: {
                     if (current > 0) {
                         current += mod.getLevelAddition();
-                        continue;
+
                     }
-                    continue;
+
                 }
             }
         }
@@ -107,17 +107,17 @@ public class DynamicEnchantmentHelper
             if (mod.getType() == DynamicEnchantmentType.ADD_TO_SPECIFIC) {
                 final Enchantment ench = mod.getEnchantment();
                 if (ench == null) {
-                    continue;
+
                 }
                 if (!AmuletEnchantmentRegistry.canBeInfluenced(ench)) {
-                    continue;
+
                 }
                 if (!stack.canApplyAtEnchantingTable(ench)) {
-                    continue;
+
                 }
                 final String enchName = ench.getRegistryName().toString();
                 if (enchantments.contains(enchName)) {
-                    continue;
+
                 }
                 final CompoundTag newEnchTag2 = new CompoundTag();
                 newEnchTag2.putString("id", enchName);
@@ -145,13 +145,13 @@ public class DynamicEnchantmentHelper
             if (mod.getType() == DynamicEnchantmentType.ADD_TO_SPECIFIC) {
                 final Enchantment ench = mod.getEnchantment();
                 if (ench == null) {
-                    continue;
+
                 }
                 if (!AmuletEnchantmentRegistry.canBeInfluenced(ench)) {
-                    continue;
+
                 }
                 if (enchantmentLevelMap.containsKey(ench)) {
-                    continue;
+
                 }
                 enchantmentLevelMap.put(ench, getNewEnchantmentLevel(0, ench, stack, context));
             }
@@ -164,28 +164,28 @@ public class DynamicEnchantmentHelper
             final ObjectReference<Boolean> mayHaveDynamicEnchantments = new ObjectReference<Boolean>(false);
             EventFlags.CAN_HAVE_DYN_ENCHANTMENTS.executeWithFlag(() -> {
                 if (stack.isEmpty()) {
-                    return;
+
                 }
                 else {
                     final Item i = stack.getItem();
                     if (i.getRegistryName() == null) {
-                        return;
+
                     }
                     else {
                         try {
                             if (!i.func_77616_k(stack) || i instanceof BookItem) {
-                                return;
+
                             }
                         }
                         catch (final NullPointerException exc) {
-                            return;
+
                         }
                         if (Mods.DRACONIC_EVOLUTION.owns((Object<?>)stack.getItem())) {
-                            return;
+
                         }
                         else {
                             mayHaveDynamicEnchantments.set(true);
-                            return;
+
                         }
                     }
                 }

@@ -101,14 +101,14 @@ public class TileSpectralRelay extends TileEntityTick
     
     public static void cascadeRelayProximityUpdates(final Level world, final BlockPos pos) {
         if (world.level()) {
-            return;
+
         }
         foreachNearbyRelay(world, pos, TileSpectralRelay::updateRelayProximity);
     }
     
     private void updateRelayProximity() {
         if (this.getLevel().level() || !this.hasGlassLens()) {
-            return;
+
         }
         this.setClosestRelayPos(null);
         final BlockPos thisPos = this.getBlockState();
@@ -202,7 +202,7 @@ public class TileSpectralRelay extends TileEntityTick
         if (!this.hasGlassLens() || !this.hasMultiblock()) {
             this.altarPos = null;
             this.markForUpdate();
-            return;
+
         }
         this.updateAltarPos();
     }

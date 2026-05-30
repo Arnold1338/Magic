@@ -51,7 +51,7 @@ public class PreparedPerkTreeData
             }
             else {
                 treeData.treePoints.add((PerkTreePoint<AbstractPerk>)offsetPoint);
-                return;
+
             }
         });
         perks.forEach(perkData -> {
@@ -66,7 +66,7 @@ public class PreparedPerkTreeData
                 });
                 treeData.getConnector(perkTo).ifPresent(connector -> connector.connect(perkData.getPerk()));
             }
-            return;
+
         });
         treeData.version = treeData.computeTreeHash();
         return treeData;

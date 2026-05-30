@@ -106,7 +106,7 @@ public class TileAttunementAltar extends TileEntityTick
                     this.currentRecipe = null;
                     this.markForUpdate();
                 }
-                return;
+
             }
             this.updateActiveConstellation();
             if (this.currentRecipe == null) {
@@ -177,14 +177,14 @@ public class TileAttunementAltar extends TileEntityTick
     private void tickEffects() {
         if (!this.hasMultiblock() || !this.doesSeeSky()) {
             this.tickEffectNonActive();
-            return;
+
         }
         this.spawnAmbientEffects();
         this.spawnHighlightedEffects();
         this.tickEffectsConstellation();
         if (!this.canPlayConstellationActiveEffects()) {
             this.tickEffectNonActive();
-            return;
+
         }
         this.tickEffectActive();
         this.tickConstellationBeams();
@@ -201,7 +201,7 @@ public class TileAttunementAltar extends TileEntityTick
                 if (!positions.contains(key)) {
                     final FXFacingSprite sprite = this.activeStarSprites.get(key);
                     if (sprite.isRemoved()) {
-                        continue;
+
                     }
                     sprite.requestRemoval();
                 }
@@ -239,7 +239,7 @@ public class TileAttunementAltar extends TileEntityTick
     private void tickSoundIdle() {
         if (SoundHelper.getSoundVolume(SoundSource.BLOCKS) <= 0.0f) {
             this.attunementAltarIdleSound = null;
-            return;
+
         }
         if (this.attunementAltarIdleSound == null || ((PositionedLoopSound)this.attunementAltarIdleSound).hasStoppedPlaying()) {
             this.attunementAltarIdleSound = SoundHelper.playSoundLoopFadeInClient(SoundsAS.ATTUNEMENT_ATLAR_IDLE, new Vector3(this).add(0.5, 1.0, 0.5), 0.4f, 1.0f, false, s -> !this.canPlayConstellationActiveEffects() || SoundHelper.getSoundVolume(SoundSource.BLOCKS) <= 0.0f || this.getActiveRecipe() != null).setFadeInTicks(20.0f).setFadeOutTicks(20.0f);
@@ -299,15 +299,15 @@ public class TileAttunementAltar extends TileEntityTick
     @OnlyIn(Dist.CLIENT)
     private void spawnHighlightedEffects() {
         if (this.canPlayConstellationActiveEffects()) {
-            return;
+
         }
         final WorldContext ctx = SkyHandler.getContext(this.getLevel(), LogicalSide.CLIENT);
         if (ctx == null) {
-            return;
+
         }
         final Player player = (Player)Minecraft.getInstance().player;
         if (player == null || player.func_195048_a(Vec3.func_237489_a_((Vec3i)this.getBlockState())) >= 256.0) {
-            return;
+
         }
         final Tuple<Hand, ItemStack> heldTpl = MiscUtils.getMainOrOffHand((LivingEntity)player, stack -> stack.getItem() instanceof ItemConstellationPaper);
         if (heldTpl != null) {
@@ -361,7 +361,7 @@ public class TileAttunementAltar extends TileEntityTick
     
     private void searchAndStartRecipe() {
         if (this.currentRecipe != null) {
-            return;
+
         }
         final AttunementRecipe<?> match = this.searchMatchingRecipe();
         if (match != null) {
@@ -392,17 +392,17 @@ public class TileAttunementAltar extends TileEntityTick
             boolean isValid = true;
             for (final BlockPos expectedRelayPos : this.getConstellationPositions(cst)) {
                 if (expectedRelayPos.equals((Object)this.getBlockState())) {
-                    continue;
+
                 }
                 final BlockEntity tile = MiscUtils.getTileAt((IBlockReader)this.getLevel(), expectedRelayPos, BlockEntity.class, true);
                 if (!(tile instanceof TileSpectralRelay) && !(tile instanceof TileAttunementAltar)) {
                     isValid = false;
-                    break;
+
                 }
             }
             if (isValid) {
                 match = cst;
-                break;
+
             }
         }
         if (match != null && cstHandler.isActiveCurrently(match, MoonPhase.fromWorld((IWorld)this.getLevel()))) {

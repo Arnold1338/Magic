@@ -65,11 +65,11 @@ public class GemAttributeHelper
                         for (final DynamicAttributeModifier m : mods) {
                             if (m.getAttributeType().equals(item.getType())) {
                                 foundType = true;
-                                break;
+
                             }
                         }
                         if (foundType) {
-                            continue;
+
                         }
                         entry = item;
                     }

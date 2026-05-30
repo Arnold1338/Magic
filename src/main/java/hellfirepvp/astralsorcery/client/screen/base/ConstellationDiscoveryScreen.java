@@ -135,7 +135,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
     protected void renderDrawnLines(final PoseStack renderStack, final Random rand, final float pTicks) {
         if (!this.canDraw()) {
             this.clearDrawing();
-            return;
+
         }
         final float lineBreadth = 2.0f;
         final Supplier<Float> brightnessFn = () -> RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), pTicks, 5 + rand.nextInt(10));
@@ -159,7 +159,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
         final float brightness = brightnessFn.get();
         float starBr = this.multiplyStarBrightness(pTicks, brightness);
         if (starBr <= 0.0f) {
-            return;
+
         }
         starBr = starBr * 0.75f + 0.25f;
         final Vector3 fromStar = new Vector3(this.guiLeft + from.getX(), this.guiTop + from.getY(), this.getGuiZLevel());
@@ -180,7 +180,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
     @Override
     protected void mouseDragStart(final double mouseX, final double mouseY) {
         if (!this.canDraw()) {
-            return;
+
         }
         if (this.currentDrawArea != null && !this.currentDrawArea.contains(mouseX, mouseY)) {
             this.clearDrawing();
@@ -190,7 +190,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
         }
         if (this.currentDrawArea == null) {
             this.clearDrawing();
-            return;
+
         }
         this.dragStart = new Point((int)mouseX, (int)mouseY);
         this.dragEnd = new Point((int)mouseX, (int)mouseY);
@@ -199,11 +199,11 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
     @Override
     protected void mouseDragTick(final double mouseX, final double mouseY, final double mouseDiffX, final double mouseDiffY, final double mouseOffsetX, final double mouseOffsetY) {
         if (!this.canDraw() || this.dragStart == null || this.currentDrawArea == null) {
-            return;
+
         }
         if (!this.currentDrawArea.contains(mouseX, mouseY)) {
             this.clearDrawing();
-            return;
+
         }
         this.dragEnd = new Point((int)mouseX, (int)mouseY);
     }
@@ -211,11 +211,11 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
     @Override
     protected void mouseDragStop(final double mouseX, final double mouseY, final double mouseDiffX, final double mouseDiffY) {
         if (!this.canDraw() || this.dragStart == null || this.currentDrawArea == null) {
-            return;
+
         }
         if (!this.currentDrawArea.contains(mouseX, mouseY)) {
             this.clearDrawing();
-            return;
+
         }
         this.dragEnd = new Point((int)mouseX, (int)mouseY);
         this.finishDrawingLine();
@@ -225,7 +225,7 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
     
     protected void finishDrawingLine() {
         if (Math.abs(this.dragStart.getX() - this.dragEnd.getX()) <= 2.0 && Math.abs(this.dragStart.getY() - this.dragEnd.getY()) <= 2.0) {
-            return;
+
         }
         final Point adjStart = new Point(this.dragStart.x - this.guiLeft, this.dragStart.y - this.guiTop);
         final Point adjEnd = new Point(this.dragEnd.x - this.guiLeft, this.dragEnd.y - this.guiTop);
@@ -254,20 +254,20 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
     
     private void checkConstellationMatch() {
         if (this.currentDrawArea == null || this.currentDrawArea.cstDisplay.isEmpty()) {
-            return;
+
         }
         final PlayerProgress progress = ResearchHelper.getClientProgress();
         for (final IConstellation cst : this.currentDrawArea.cstDisplay.keySet()) {
             final ConstellationDisplayInformation info = this.currentDrawArea.cstDisplay.get(cst);
             if (!progress.hasConstellationDiscovered(cst)) {
                 if (!progress.hasSeenConstellation(cst)) {
-                    continue;
+
                 }
                 if (cst.getStarConnections().size() != this.drawnLines.size()) {
-                    continue;
+
                 }
                 if (!cst.canDiscover((Player)Minecraft.getInstance().player, progress)) {
-                    continue;
+
                 }
                 boolean didMatch = true;
                 for (final StarConnection cstConnection : cst.getStarConnections()) {
@@ -275,19 +275,19 @@ public abstract class ConstellationDiscoveryScreen<D extends DrawArea> extends W
                     final Rectangle2D.Float rctTo = info.frameDrawInformation.get(((BiDiPair<K, Object>)cstConnection).getRight());
                     if (rctFrom == null || rctTo == null) {
                         didMatch = false;
-                        break;
+
                     }
                     if (!this.hasMatchingDrawnLine(rctFrom, rctTo)) {
                         didMatch = false;
-                        break;
+
                     }
                 }
                 if (didMatch) {
                     PacketChannel.CHANNEL.sendToServer(new PktDiscoverConstellation(cst));
                     this.clearDrawing();
-                    return;
+
                 }
-                continue;
+
             }
         }
     }

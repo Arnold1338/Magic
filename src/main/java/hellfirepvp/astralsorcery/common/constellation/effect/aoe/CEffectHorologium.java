@@ -106,7 +106,7 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
                     while (times > 0) {
                         ((ITickableTileEntity)tile).func_73660_a();
                         if (System.nanoTime() - startNs >= 80000L) {
-                            break;
+
                         }
                         else {
                             --times;

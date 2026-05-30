@@ -121,7 +121,7 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
                     EntityUtils.applyPotionEffectAtHalf(entity, new MobEffectInstance(Effects.field_76428_l, 120, amplifier));
                 }
                 if (!(entity instanceof Player)) {
-                    continue;
+
                 }
                 this.markPlayerAffected((Player)entity);
             }

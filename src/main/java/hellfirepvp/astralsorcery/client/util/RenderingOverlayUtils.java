@@ -42,7 +42,7 @@ public class RenderingOverlayUtils
                     buf.vertex(offset, (float)(offsetX + width), currentY + heightSplit, 10.0f).func_225583_a_(1.0f, 0.5f).endVertex();
                     buf.vertex(offset, (float)(offsetX + width), currentY, 10.0f).func_225583_a_(1.0f, 0.0f).endVertex();
                     buf.vertex(offset, (float)offsetX, currentY, 10.0f).func_225583_a_(0.0f, 0.0f).endVertex();
-                    return;
+
                 });
                 tempY += heightSplit;
             }
@@ -54,7 +54,7 @@ public class RenderingOverlayUtils
                     buf.vertex(offset2, (float)(offsetX + width), currentY + heightNormal, 10.0f).func_225583_a_(1.0f, 1.0f).endVertex();
                     buf.vertex(offset2, (float)(offsetX + width), currentY, 10.0f).func_225583_a_(1.0f, 0.0f).endVertex();
                     buf.vertex(offset2, (float)offsetX, currentY, 10.0f).func_225583_a_(0.0f, 0.0f).endVertex();
-                    return;
+
                 });
                 tempY += heightNormal;
             }
@@ -67,7 +67,7 @@ public class RenderingOverlayUtils
                     buf.vertex(offset3, (float)(offsetX + width), drawY + heightSplit, 10.0f).func_225583_a_(1.0f, 1.0f).endVertex();
                     buf.vertex(offset3, (float)(offsetX + width), drawY, 10.0f).func_225583_a_(1.0f, 0.5f).endVertex();
                     buf.vertex(offset3, (float)offsetX, drawY, 10.0f).func_225583_a_(0.0f, 0.5f).endVertex();
-                    return;
+
                 });
                 tempY += heightSplit;
             }

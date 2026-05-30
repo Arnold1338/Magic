@@ -40,7 +40,7 @@ public class KeyGrowables extends KeyPerk implements PlayerTickPerk
     @Override
     public void onPlayerTick(final Player player, final LogicalSide side) {
         if (!side.isServer()) {
-            return;
+
         }
         final PlayerProgress prog = ResearchHelper.getProgress(player, side);
         final float cChance = PerkAttributeHelper.getOrCreateMap(player, side).modifyValue(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT, ((Double)KeyGrowables.CONFIG.chanceToBonemeal.get()).floatValue());

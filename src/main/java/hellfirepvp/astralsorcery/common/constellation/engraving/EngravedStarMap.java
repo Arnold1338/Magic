@@ -58,7 +58,7 @@ public class EngravedStarMap
             for (final DrawnConstellation otherCst : cstCoordinates.keySet()) {
                 if (!drawn.equals(otherCst)) {
                     if (drawn.getConstellation().equals(otherCst.getConstellation())) {
-                        continue;
+
                     }
                     final List<Rectangle2D.Double> otherPositions = cstCoordinates.get(otherCst);
                     for (final Rectangle2D.Double starPos : positions) {
@@ -99,7 +99,7 @@ public class EngravedStarMap
                 if (effect != null && !effect.getApplicableEffects(stack).isEmpty()) {
                     return true;
                 }
-                continue;
+
             }
         }
         return false;
@@ -115,7 +115,7 @@ public class EngravedStarMap
             if (effect != null) {
                 final List<EngravingEffect.ApplicableEffect> applicable = effect.getApplicableEffects(stack);
                 if (applicable.isEmpty()) {
-                    continue;
+
                 }
                 final float distribution = this.getDistribution(cst);
                 for (final EngravingEffect.ApplicableEffect applicableEffect : applicable) {
@@ -168,7 +168,7 @@ public class EngravedStarMap
             NBTHelper.setResourceLocation(cstTag, "cst", constellationKey);
             cstTag.func_74776_a("percent", (float)percent);
             list.add((Object)cstTag);
-            return;
+
         });
         tag.put("distributions", (Tag)list);
         final ListTag listDrawn = new ListTag();
@@ -178,7 +178,7 @@ public class EngravedStarMap
             cstTag2.putInt("x", drawCst.getPoint().x);
             cstTag2.putInt("y", drawCst.getPoint().y);
             listDrawn.add((Object)cstTag2);
-            return;
+
         });
         tag.put("drawInformation", (Tag)listDrawn);
         return tag;

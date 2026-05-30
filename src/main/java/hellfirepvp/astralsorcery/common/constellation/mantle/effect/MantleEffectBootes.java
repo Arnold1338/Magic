@@ -54,7 +54,7 @@ public class MantleEffectBootes extends MantleEffect
         super.tickServer(player);
         final ItemStack mantle = player.getItemBySlot(EquipmentSlot.CHEST);
         if (mantle.isEmpty() || !(mantle.getItem() instanceof ItemMantle)) {
-            return;
+
         }
         final Level world = player.level();
         final List<EntityFlare> flares = this.gatherFlares(world, mantle);
@@ -71,11 +71,11 @@ public class MantleEffectBootes extends MantleEffect
             if (flare2.getFollowingTarget() != null) {
                 if (flare2.func_70638_az() == null) {
                     if (player.func_70032_d((Entity)flare2) < 12.0f) {
-                        continue;
+
                     }
                 }
                 else if (player.func_70032_d((Entity)flare2) < 35.0f) {
-                    continue;
+
                 }
                 flare2.func_70080_a(player.getX(), player.getY(), player.getZ(), 0.0f, 0.0f);
             }
@@ -97,7 +97,7 @@ public class MantleEffectBootes extends MantleEffect
             final LivingEntity attacker = (LivingEntity)src.getDirectEntity();
             if (ItemMantle.getEffect(attacker, ConstellationsAS.bootes) != null && attacked.isAlive()) {
                 if (attacked instanceof Player && !MiscUtils.canPlayerAttackServer(attacker, attacked)) {
-                    return;
+
                 }
                 this.forEachFlare(attacker, flare -> flare.func_70624_b(attacked));
             }
@@ -117,7 +117,7 @@ public class MantleEffectBootes extends MantleEffect
     protected void forEachFlare(final LivingEntity owner, final Consumer<EntityFlare> fn) {
         final ItemStack mantle = owner.getItemBySlot(EquipmentSlot.CHEST);
         if (mantle.isEmpty() || !(mantle.getItem() instanceof ItemMantle)) {
-            return;
+
         }
         this.gatherFlares(owner.level(), mantle).forEach(fn);
     }

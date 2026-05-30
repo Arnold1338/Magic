@@ -38,7 +38,7 @@ public class KeyCleanseBadPotions extends KeyPerk
             final Player player = (Player)entity;
             final List<MobEffectInstance> badEffects = player.func_70651_bq().stream().filter(p -> p.func_188419_a().func_220303_e() == EffectType.HARMFUL).collect((Collector<? super Object, ?, List<MobEffectInstance>>)Collectors.toList());
             if (badEffects.isEmpty()) {
-                return;
+
             }
             final MobEffectInstance effect = badEffects.get(KeyCleanseBadPotions.rand.nextInt(badEffects.size()));
             final PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);

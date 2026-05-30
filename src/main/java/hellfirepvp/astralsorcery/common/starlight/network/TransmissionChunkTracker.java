@@ -24,7 +24,7 @@ public class TransmissionChunkTracker
     private void onChLoad(final ChunkEvent.Load event) {
         final IWorld iWorld = event.getWorld();
         if (iWorld.level() || !(iWorld instanceof Level)) {
-            return;
+
         }
         final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler((Level)iWorld);
         if (handle != null) {
@@ -35,7 +35,7 @@ public class TransmissionChunkTracker
     private void onChUnload(final ChunkEvent.Unload event) {
         final IWorld iWorld = event.getWorld();
         if (iWorld.level() || !(iWorld instanceof Level)) {
-            return;
+
         }
         final TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler((Level)iWorld);
         if (handle != null) {
@@ -46,7 +46,7 @@ public class TransmissionChunkTracker
     private void onWorldLoad(final WorldEvent.Load event) {
         final IWorld iWorld = event.getWorld();
         if (iWorld.level() || !(iWorld instanceof Level)) {
-            return;
+
         }
         StarlightUpdateHandler.getInstance().informWorldLoad((Level)iWorld);
     }
@@ -54,7 +54,7 @@ public class TransmissionChunkTracker
     private void onWorldUnload(final WorldEvent.Unload event) {
         final IWorld iWorld = event.getWorld();
         if (iWorld.level() || !(iWorld instanceof Level)) {
-            return;
+
         }
         StarlightTransmissionHandler.getInstance().informWorldUnload((Level)iWorld);
     }

@@ -88,20 +88,20 @@ public class LinkHandler implements ITickHandler
             case SELECT_START: {
                 if (session.getType() == LinkType.ENTITY) {
                     playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.start").withStyle(ChatFormatting.GREEN));
-                    break;
+
                 }
                 final String name = tile.getUnLocalizedDisplayName();
                 if (tile.onSelect(playerIn) && name != null) {
                     playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.start").withStyle(ChatFormatting.GREEN));
                 }
-                break;
+
             }
             case TRY_LINK: {
                 final BlockEntity te = MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true);
                 String linkedToName = "astralsorcery.misc.link.link.block";
                 if (te instanceof LinkableTileEntity) {
                     if (!((LinkableTileEntity)te).doesAcceptLinks()) {
-                        return;
+
                     }
                     final String unloc = ((LinkableTileEntity)te).getUnLocalizedDisplayName();
                     if (unloc != null) {
@@ -114,7 +114,7 @@ public class LinkHandler implements ITickHandler
                     if (linkTarget.tryLinkEntity(playerIn, linked)) {
                         linkTarget.onEntityLinkCreate(playerIn, linked);
                     }
-                    break;
+
                 }
                 if (tile.tryLinkBlock(playerIn, pos)) {
                     tile.onBlockLinkCreate(playerIn, pos);
@@ -122,9 +122,9 @@ public class LinkHandler implements ITickHandler
                     if (linkedFrom != null) {
                         playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.link").withStyle(ChatFormatting.GREEN));
                     }
-                    break;
+
                 }
-                break;
+
             }
             case TRY_UNLINK: {
                 if (tile.tryUnlink(playerIn, pos)) {
@@ -140,9 +140,9 @@ public class LinkHandler implements ITickHandler
                     if (linkedFrom != null) {
                         playerIn.sendSystemMessage(Component.translatable("astralsorcery.misc.link.unlink").withStyle(ChatFormatting.GREEN));
                     }
-                    break;
+
                 }
-                break;
+
             }
         }
     }
@@ -150,7 +150,7 @@ public class LinkHandler implements ITickHandler
     public void tick(final TickEvent.Type type, final Object... context) {
         final MinecraftServer server = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
         if (server == null) {
-            return;
+
         }
         final Iterator<UUID> iterator = LinkHandler.players.keySet().iterator();
         while (iterator.hasNext()) {
@@ -167,20 +167,20 @@ public class LinkHandler implements ITickHandler
                         final LivingEntity entity = session.getSelectedEntity();
                         if (!entity.isAlive() || !entity.level().dimension().equals(player.level().dimension())) {
                             needsRemoval = true;
-                            break;
+
                         }
-                        break;
+
                     }
                     case BLOCK: {
                         if (!session.getSelectedTile().getLinkWorld().dimension().equals(player.level().dimension())) {
                             needsRemoval = true;
-                            break;
+
                         }
-                        break;
+
                     }
                 }
                 if (!needsRemoval) {
-                    continue;
+
                 }
                 iterator.remove();
                 player.sendSystemMessage(Component.translatable("astralsorcery.misc.link.stop").withStyle(ChatFormatting.RED));
@@ -270,7 +270,7 @@ public class LinkHandler implements ITickHandler
     public enum LinkType
     {
         ENTITY, 
-        BLOCK;
+
     }
     
     public enum RightClickResultType
@@ -278,6 +278,6 @@ public class LinkHandler implements ITickHandler
         SELECT_START, 
         TRY_LINK, 
         TRY_UNLINK, 
-        NONE;
+
     }
 }

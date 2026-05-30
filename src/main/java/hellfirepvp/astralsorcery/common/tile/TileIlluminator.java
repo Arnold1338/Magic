@@ -60,7 +60,7 @@ public class TileIlluminator extends TileEntityTick
     public void func_73660_a() {
         super.func_73660_a();
         if (!this.isPlayerPlaced()) {
-            return;
+
         }
         if (!this.level.level()) {
             if (this.layerPositions == null) {
@@ -125,7 +125,7 @@ public class TileIlluminator extends TileEntityTick
     @OnlyIn(Dist.CLIENT)
     private void tickEffects() {
         if (!this.doesSeeSky() && this.boostedTicks <= 0) {
-            return;
+
         }
         FXFacingParticle p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(new Vector3(this).add(0.5, 0.5, 0.5)).setScaleMultiplier(0.25f).setMotion(new Vector3(TileIlluminator.rand.nextFloat() * 0.025f * (TileIlluminator.rand.nextBoolean() ? 1 : -1), TileIlluminator.rand.nextFloat() * 0.025f * (TileIlluminator.rand.nextBoolean() ? 1 : -1), TileIlluminator.rand.nextFloat() * 0.025f * (TileIlluminator.rand.nextBoolean() ? 1 : -1)));
         final Color c = ColorUtils.flareColorFromDye(this.getColor());
@@ -160,7 +160,7 @@ public class TileIlluminator extends TileEntityTick
                             EntityFlare.spawnAmbientFlare(this.level, this.getBlockState());
                         }
                     }
-                    return;
+
                 });
             }
         }

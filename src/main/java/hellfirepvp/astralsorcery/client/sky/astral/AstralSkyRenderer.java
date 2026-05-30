@@ -82,7 +82,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
     
     public void render(final int ticks, final float pTicks, final PoseStack renderStack, final ClientLevel world, final Minecraft mc) {
         if (AssetLibrary.isReloading()) {
-            return;
+
         }
         if (!this.initialized) {
             this.initialize();
@@ -148,17 +148,17 @@ public class AstralSkyRenderer implements ISkyRenderHandler
     public static void renderConstellationsSky(final ClientLevel world, final PoseStack renderStack, final float pTicks) {
         final WorldContext ctx = SkyHandler.getContext((World)world, LogicalSide.CLIENT);
         if (ctx == null) {
-            return;
+
         }
         final int dayLength = (int)GeneralConfig.CONFIG.dayLength.get();
         final long wTime = (world.func_72820_D() % dayLength + dayLength) % dayLength;
         if (wTime < dayLength / 2.0f) {
-            return;
+
         }
         final float rainDim = 1.0f - world.func_72867_j(pTicks);
         final float brightness = world.func_228330_j_(pTicks) * rainDim;
         if (brightness <= 0.0f) {
-            return;
+
         }
         final Random gen = ctx.getRandom();
         final PlayerProgress clientProgress = ResearchHelper.getClientProgress();
@@ -166,7 +166,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
         for (final IConstellation cst : constellations.keySet()) {
             if (clientProgress.hasConstellationDiscovered(cst)) {
                 if (!ctx.getConstellationHandler().isActiveCurrently(cst, MoonPhase.fromWorld((IWorld)world))) {
-                    continue;
+
                 }
                 final ActiveCelestialsHandler.RenderPosition pos = constellations.get(cst);
                 RenderingConstellationUtils.renderConstellationSky(cst, renderStack, pos, () -> RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), pTicks, 10 + gen.nextInt(5)) * brightness * 1.25f);
@@ -181,7 +181,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
                 final float br = RenderingConstellationUtils.stdFlicker(ClientScheduler.getClientTick(), pTicks, list.flickerSpeed) * starBrightness;
                 RenderSystem.color4f(starBrightness, starBrightness, starBrightness, br);
                 list.render(renderStack);
-                return;
+
             });
             RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         }
@@ -232,7 +232,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
             buf.vertex(matr, sunSize, 100.0f, -sunSize).func_225583_a_((uOffset + 1.0f) / 7.0f, 0.0f).endVertex();
             buf.vertex(matr, sunSize, 100.0f, sunSize).func_225583_a_((uOffset + 1.0f) / 7.0f, 1.0f).endVertex();
             buf.vertex(matr, -sunSize, 100.0f, sunSize).func_225583_a_(uOffset / 7.0f, 1.0f).endVertex();
-            return;
+
         });
         renderStack.scale();
     }
@@ -286,7 +286,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler
                 final float f6 = Mth.func_76134_b(f4);
                 buf.func_225582_a_((double)(f5 * 120.0f), (double)(f6 * 120.0f), (double)(-f6 * 40.0f * a)).color(r, g, b, 0.0f).endVertex();
             }
-            return;
+
         });
         renderStack.scale();
     }

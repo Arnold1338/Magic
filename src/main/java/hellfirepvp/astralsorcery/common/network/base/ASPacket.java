@@ -40,11 +40,11 @@ public abstract class ASPacket<T extends ASPacket<T>>
             switch (ctx.getDirection().getReceptionSide()) {
                 case CLIENT: {
                     this.handleClient(t, ctx);
-                    break;
+
                 }
                 case SERVER: {
                     this.handleServer(t, ctx);
-                    break;
+
                 }
             }
             ctx.setPacketHandled(true);

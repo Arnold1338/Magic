@@ -190,7 +190,7 @@ public class NBTHelper
                 final Tag existing = dst.get(i);
                 if (existing.equals(toAdd)) {
                     found = true;
-                    break;
+
                 }
             }
             if (!found) {
@@ -302,7 +302,7 @@ public class NBTHelper
                 propTag.putString("value", property.func_177702_a(state.getValue(property)));
             }
             catch (final Exception exc) {
-                continue;
+
             }
             propTag.putString("property", property.func_177701_a());
             properties.add((Object)propTag);

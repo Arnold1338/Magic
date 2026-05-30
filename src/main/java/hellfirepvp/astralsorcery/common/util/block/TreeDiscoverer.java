@@ -33,13 +33,13 @@ public class TreeDiscoverer
         while (!discoverPositions.isEmpty()) {
             final BlockPos offset = discoverPositions.pop();
             if (world.isEmptyBlock(offset)) {
-                continue;
+
             }
             final BlockState foundState = world.getBlockState(offset);
             final Block foundBlock = foundState.getBlock();
             if (foundTreeType.matchLog == null) {
                 if (!BlockTags.field_200031_h.func_230235_a_((Object)foundBlock)) {
-                    return;
+
                 }
                 foundTreeType.matchLog = BlockPredicates.isBlock(foundBlock);
             }
@@ -54,7 +54,7 @@ public class TreeDiscoverer
                 successful = true;
             }
             if (!successful) {
-                continue;
+
             }
             out.addBlock(foundState, offset.getX(), offset.getY(), offset.getZ());
             if (checkCorners) {

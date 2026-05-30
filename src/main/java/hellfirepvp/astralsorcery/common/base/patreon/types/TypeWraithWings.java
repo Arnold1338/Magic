@@ -42,7 +42,7 @@ public class TypeWraithWings extends PatreonEffect
     void onRender(final RenderPlayerEvent.Post event) {
         final Player player = event.getPlayer();
         if (!this.shouldDoEffect(player)) {
-            return;
+
         }
         final PoseStack renderStack = event.getMatrixStack();
         final float rot = RenderingVectorUtils.interpolateRotation(player.field_70760_ar, player.field_70761_aq, event.getPartialRenderTick());

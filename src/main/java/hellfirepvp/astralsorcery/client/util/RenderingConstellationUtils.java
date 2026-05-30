@@ -50,7 +50,7 @@ public class RenderingConstellationUtils
                     final Vector3 pos = ofStar.clone().add(dirU.clone().multiply(u << 1).multiply(bgScale / 2)).add(dirV.clone().multiply(v << 1).multiply(bgScale / 2));
                     buf.vertex(matr, (float)pos.getX(), (float)pos.getY(), (float)pos.getZ()).func_225586_a_(r, g, b, Mth.func_76125_a((int)(brightnessFn.get() * 255.0f * 0.5), 0, 255)).func_225583_a_((float)u, (float)v).endVertex();
                 }
-                return;
+
             });
         }
         TexturesAS.TEX_STAR_CONNECTION.bindTexture();
@@ -73,7 +73,7 @@ public class RenderingConstellationUtils
                     }
                 }
             }
-            return;
+
         });
         TexturesAS.TEX_STAR_1.bindTexture();
         RenderingUtils.draw(7, DefaultVertexFormat.BLIT_SCREEN, buf -> {
@@ -198,7 +198,7 @@ public class RenderingConstellationUtils
                         final Vector3 pos = bgVec.clone().addX(width * u).addY(height * v);
                         buf.vertex(offset, offsetX + width * u, offsetY + height * v, zLevel).func_225586_a_(r, g, b, Mth.func_76125_a((int)(alpha * 1.2f + 0.2f), 0, 255)).func_225583_a_((float)u, (float)v).endVertex();
                     }
-                    return;
+
                 });
             }
             TexturesAS.TEX_STAR_CONNECTION.bindTexture();
@@ -223,7 +223,7 @@ public class RenderingConstellationUtils
                         }
                     }
                 }
-                return;
+
             });
         }
         final Map<StarLocation, Rectangle2D.Float> starRectangles = new HashMap<StarLocation, Rectangle2D.Float>();
@@ -245,7 +245,7 @@ public class RenderingConstellationUtils
                 }
                 starRectangles.put(sl, new Rectangle2D.Float((float)starVec.getX(), (float)starVec.getY(), ulength * 2.0f, vlength * 2.0f));
             }
-            return;
+
         });
         return starRectangles;
     }

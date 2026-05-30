@@ -167,7 +167,7 @@ public class BlockCelestialGateway extends BaseEntityBlock implements CustomItem
     
     public static void setColor(final ItemStack stack, @Nullable final DyeColor color) {
         if (!(stack.getItem() instanceof BlockItem) || !(((BlockItem)stack.getItem()).func_179223_d() instanceof BlockCelestialGateway)) {
-            return;
+
         }
         final CompoundTag tag = NBTHelper.getPersistentData(stack);
         if (color == null) {

@@ -49,13 +49,13 @@ public class AlignmentChargeRenderer implements ITickHandler
     
     private void onRenderOverlay(final RenderGameOverlayEvent.Post event) {
         if (event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
-            return;
+
         }
         if (Minecraft.getInstance().gameMode != null && Minecraft.getInstance().gameMode.func_178889_l() == GameType.SPECTATOR) {
-            return;
+
         }
         if (this.alphaReveal <= 0.0f) {
-            return;
+
         }
         final PoseStack renderStack = event.getMatrixStack();
         final MainWindow window = event.getWindow();
@@ -76,7 +76,7 @@ public class AlignmentChargeRenderer implements ITickHandler
                 usagePerc = Math.min(chargeRequired / max, percFilled);
                 hasEnoughCharge = (percFilled > usagePerc);
                 percFilled -= usagePerc;
-                break;
+
             }
         }
         final Tuple<Float, Float> uvColored = SpritesAS.SPR_OVERLAY_CHARGE.getUVOffset();
@@ -107,7 +107,7 @@ public class AlignmentChargeRenderer implements ITickHandler
                 final ItemStack stack = player.getItemBySlot(slot);
                 if (!stack.isEmpty() && stack.getItem() instanceof AlignmentChargeRevealer && ((AlignmentChargeRevealer)stack.getItem()).shouldReveal(stack)) {
                     this.revealCharge(20);
-                    break;
+
                 }
             }
         }

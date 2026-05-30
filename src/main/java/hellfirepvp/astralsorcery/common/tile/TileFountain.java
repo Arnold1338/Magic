@@ -72,7 +72,7 @@ public class TileFountain extends TileEntityTick
                     if (!this.consumeLiquidStarlight(1)) {
                         this.setCurrentEffect(null);
                         this.replaceCurrentEffect(effect, ctx, null);
-                        return;
+
                     }
                     final FountainEffect.OperationSegment segment = this.getSegment();
                     if (segment != FountainEffect.OperationSegment.RUNNING) {
@@ -85,7 +85,7 @@ public class TileFountain extends TileEntityTick
                             ByteBufUtils.writePos(buf, this.field_174879_c);
                             ByteBufUtils.writeEnumValue(buf, segment);
                             ByteBufUtils.writeEnumValue(buf, nextSegment);
-                            return;
+
                         });
                         PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.level, (Vec3i)this.field_174879_c, 32.0));
                     }
@@ -108,15 +108,15 @@ public class TileFountain extends TileEntityTick
         final FountainEffect.OperationSegment nextSegment = ByteBufUtils.readEnumValue(pktPlayEffect.getExtraData(), FountainEffect.OperationSegment.class);
         final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
-            return;
+
         }
         final TileFountain fountain = MiscUtils.getTileAt((IBlockReader)world, at, TileFountain.class, false);
         if (fountain == null) {
-            return;
+
         }
         final FountainEffect effect = fountain.getCurrentEffect();
         if (effect == null) {
-            return;
+
         }
         effect.transition(fountain, fountain.effectContext, LogicalSide.CLIENT, segment, nextSegment);
     }
@@ -126,15 +126,15 @@ public class TileFountain extends TileEntityTick
         final BlockPos at = ByteBufUtils.readPos(pktPlayEffect.getExtraData());
         final Level world = (Level)Minecraft.getInstance().level;
         if (world == null) {
-            return;
+
         }
         final TileFountain fountain = MiscUtils.getTileAt((IBlockReader)world, at, TileFountain.class, false);
         if (fountain == null) {
-            return;
+
         }
         final FountainEffect effect = fountain.getCurrentEffect();
         if (effect == null) {
-            return;
+
         }
         effect.onReplace(fountain, fountain.effectContext, null, LogicalSide.CLIENT);
     }

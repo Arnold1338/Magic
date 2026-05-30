@@ -92,7 +92,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
                 if (entity != null && entity.isAlive() && CEffectPelotrio.rand.nextInt(300) == 0) {
                     final LivingEntity transmuted = EntityTransmutationRegistry.INSTANCE.transmuteEntity((ServerLevel)world, entity);
                     if (transmuted == null) {
-                        continue;
+
                     }
                     transmuted.func_195064_c(new MobEffectInstance((MobEffect)EffectsAS.EFFECT_DROP_MODIFIER, Integer.MAX_VALUE, 1));
                     AstralSorcery.getProxy().scheduleDelayed(() -> world.addFreshEntity((Entity)transmuted));

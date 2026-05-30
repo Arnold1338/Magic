@@ -23,7 +23,7 @@ public class RegistryStructures
     }
     
     public static void init() {
-        StructuresAS.EMPTY = register(new PatternBlockArray(AstralSorcery.key("empty")));
+        StructuresAS.EMPTY = register(new PatternBlockArray(AstralSorcery.key("empty"));
         StructuresAS.STRUCT_ALTAR_ATTUNEMENT = register(new PatternAltarAttunement());
         StructuresAS.STRUCT_ALTAR_CONSTELLATION = register(new PatternAltarConstellation());
         StructuresAS.STRUCT_ALTAR_TRAIT = register(new PatternAltarTrait());
