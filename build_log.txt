@@ -41,139 +41,70 @@ Executing steps
  > Running 'listLibraries'
  > Running 'rename'
 Stopping at requested step: /home/runner/.gradle/caches/forge_gradle/mcp_repo/de/oceanlabs/mcp/mcp_config/1.20.1-20230612.114412/joined/rename/output.jar
-[19:22:00] [main/INFO]: Writing debug log file accesstransform.log
-[19:22:00] [main/INFO]: Access Transformer processor running version 8.2.14
-[19:22:00] [main/INFO]: Command line arguments [--inJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar, --outJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, --logFile, accesstransform.log, --atFile, /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg, --atFile, /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg]
-[19:22:00] [main/INFO]: Reading from /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar
-[19:22:00] [main/INFO]: Writing to /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
-[19:22:00] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg
-[19:22:00] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg
-[19:22:00] [main/WARN]: Found existing output jar /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, overwriting
-[19:22:04] [main/INFO]: JAR transformation complete /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
+[06:48:52] [main/INFO]: Writing debug log file accesstransform.log
+[06:48:52] [main/INFO]: Access Transformer processor running version 8.2.14
+[06:48:52] [main/INFO]: Command line arguments [--inJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar, --outJar, /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, --logFile, accesstransform.log, --atFile, /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg, --atFile, /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg]
+[06:48:52] [main/INFO]: Reading from /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20/forge-1.20.1-47.4.20-injected.jar
+[06:48:52] [main/INFO]: Writing to /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
+[06:48:52] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/src/main/resources/META-INF/accesstransformer.cfg
+[06:48:52] [main/INFO]: Transformer file /home/runner/work/Magic/Magic/build/_atJar_4/parent_at.cfg
+[06:48:52] [main/WARN]: Found existing output jar /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar, overwriting
+[06:48:56] [main/INFO]: JAR transformation complete /home/runner/work/Magic/Magic/build/fg_cache/net/minecraftforge/forge/1.20.1-47.4.20_mapped_official_1.20.1/forge-1.20.1-47.4.20_mapped_official_1.20.1.jar
 Creating SRG -> MCP TSRG
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/type/PerkAttributeType.java:44: error: not a statement
-        this;
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/TileTelescope.java:56: error: enum constant expected here
+        public TelescopeRotation nextClockWise() {
         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/reader/PerkAttributeReader.java:19: error: not a statement
-        this);
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/PerkEffectHelper.java:220: error: enum constant expected here
+        private boolean isRemove() {
         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/reader/PerkAttributeReader.java:19: error: ';' expected
-        this);
-            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/PerkConverter.java:20: error: not a statement
-        this;
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/modifier/PerkAttributeModifier.java:53: error: not a statement
-        this;
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryItems.java:186: error: ';' expected
-        itemBlock.getRegistryName());
-                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryItems.java:192: error: not a statement
-        item;
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryEnchantments.java:15: error: ';' expected
-        EnchantmentsAS.NIGHT_VISION = (Enchantment)register(new EnchantmentNightVision()));
-                                                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryEnchantments.java:16: error: ';' expected
-        EnchantmentsAS.SCORCHING_HEAT = (Enchantment)register(new EnchantmentScorchingHeat()));
-                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryEntities.java:74: error: not a statement
-        type);
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryEntities.java:74: error: ';' expected
-        type);
-            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistrySounds.java:47: error: not a statement
-        se;
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistrySounds.java:54: error: not a statement
-        se;
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryContainerTypes.java:63: error: not a statement
-        type;
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryRecipeTypes.java:89: error: not a statement
-        recipeEffect);
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryRecipeTypes.java:89: error: ';' expected
-        recipeEffect);
-                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryFluids.java:60: error: not a statement
-        fluid;
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryLoot.java:40: error: not a statement
-        modifier;
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryEffects.java:24: error: not a statement
-        effect);
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryEffects.java:24: error: ';' expected
-        effect);
-              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryTileEntities.java:116: error: not a statement
-        type;
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryBlocks.java:184: error: not a statement
-        block;
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryDataSerializers.java:23: error: not a statement
-        entry));
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryDataSerializers.java:23: error: ';' expected
-        entry));
-             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/custom/RecipeDyeableChangeColor.java:90: error: not a statement
-            this;
-            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/custom/RecipeDyeableChangeColor.java:98: error: not a statement
-            this;
-            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/helper/CustomRecipeSerializer.java:8: error: '{' expected
-public abstract class CustomRecipeSerializer<T extends CustomMatcherRecipe> > implements RecipeSerializer<T>
-                                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/helper/CustomRecipeSerializer.java:8: error: class, interface, enum, or record expected
-public abstract class CustomRecipeSerializer<T extends CustomMatcherRecipe> > implements RecipeSerializer<T>
-                                                                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/helper/CustomRecipeSerializer.java:10: error: class, interface, enum, or record expected
-    public CustomRecipeSerializer(final ResourceLocation name) {
-           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/helper/CustomRecipeSerializer.java:10: error: class, interface, enum, or record expected
-    public CustomRecipeSerializer(final ResourceLocation name) {
-                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/helper/CustomRecipeSerializer.java:12: error: class, interface, enum, or record expected
-    }
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/type/ModifierType.java:13: error: enum constant expected here
+    private static final DecimalFormat DISPLAY_NUMBER_FORMAT;
     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/helper/CustomRecipeSerializer.java:14: error: class, interface, enum, or record expected
-    public abstract void write(final JsonObject p0, final T p1);
-                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/helper/CustomRecipeSerializer.java:14: error: class, interface, enum, or record expected
-    public abstract void write(final JsonObject p0, final T p1);
-                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/helper/CustomRecipeSerializer.java:14: error: class, interface, enum, or record expected
-    public abstract void write(final JsonObject p0, final T p1);
-                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/helper/CustomRecipeSerializer.java:15: error: class, interface, enum, or record expected
-}
-^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/engraving/EngravingEffect.java:46: error: not a statement
-        this);
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/AllocationStatus.java:16: error: enum constant expected here
+    public boolean isAllocated() {
+    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/AllocationStatus.java:20: error: <identifier> expected
+    @OnlyIn(Dist.CLIENT)
+                        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/AllocationStatus.java:36: error: <identifier> expected
+    @OnlyIn(Dist.CLIENT)
+                        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/network/play/server/PktPlayEffect.java:118: error: <identifier> expected
+        @OnlyIn(Dist.CLIENT)
+                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/network/play/server/PktPlayEffect.java:119: error: enum constant expected here
+        private Consumer<PktPlayEffect> runEffect() {
         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/engraving/EngravingEffect.java:46: error: ';' expected
-        this);
-            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/effect/ConstellationEffectProvider.java:15: error: not a statement
-        this);
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/GuiType.java:33: error: enum constant expected here
+    public CompoundTag serializeArguments(final Object[] data) {
+    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/GuiType.java:55: error: <identifier> expected
+    @OnlyIn(Dist.CLIENT)
+                        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/log/LogCategory.java:12: error: enum constant expected here
+    public boolean isEnabled() {
+    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/item/ItemComparator.java:59: error: enum constant expected here
+        public static class Sets
         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/effect/ConstellationEffectProvider.java:15: error: ';' expected
-        this);
-            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/mantle/MantleEffect.java:46: error: not a statement
-        this);
-        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/mantle/MantleEffect.java:46: error: ';' expected
-        this);
-            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryStructures.java:26: error: ')' expected
+        StructuresAS.EMPTY = register(new PatternBlockArray(AstralSorcery.key("empty"));
+                                                                                       ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryPerkAttributeReaders.java:25: error: ')' expected
+        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_HEALTH, ref("generic.max_health"));
+                                                                                                             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryPerkAttributeReaders.java:28: error: ')' expected
+        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_ARMOR, ref("generic.armor"));
+                                                                                                       ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryPerkAttributeReaders.java:29: error: ')' expected
+        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_ARMOR_TOUGHNESS, ref("generic.armor_toughness"));
+                                                                                                                           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryTileEntities.java:115: error: ';' expected
+        final BlockEntityType<T> type = (BlockEntityType<T>)typeBuilder.build(null)null);
+                                                                                   ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/RegistryDataSerializers.java:22: error: ';' expected
+        final net.minecraft.network.syncher.EntityDataSerializer entry = dataSerializerdataSerializer);
+                                                                                                     ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/Constellation.java:44: error: not a statement
             this, name));
             ^
@@ -186,22 +117,40 @@ public abstract class CustomRecipeSerializer<T extends CustomMatcherRecipe> > im
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/Constellation.java:44: error: ';' expected
             this, name));
                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/Constellation.java:48: error: not a statement
-            this);
-            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/Constellation.java:48: error: ';' expected
-            this);
-                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crystal/CrystalProperty.java:28: error: not a statement
-        this;
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/base/MoonPhase.java:22: error: enum constant expected here
+    public static MoonPhase fromWorld(final IWorld world) {
+    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/base/MoonPhase.java:26: error: <identifier> expected
+    @OnlyIn(Dist.CLIENT)
+                        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/item/lens/LensColorType.java:80: error: enum constant expected here
+        public boolean doEntityInteraction() {
         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crystal/calc/PropertyUsage.java:12: error: not a statement
-        this;
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/research/ProgressionTier.java:11: error: enum constant expected here
+    public boolean hasNextTier() {
+    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/research/PerkRemovalResult.java:9: error: enum constant expected here
+    public boolean isFailure() {
+    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/block/infusedwood/BlockInfusedWoodColumn.java:132: error: enum constant expected here
+        public String func_176610_l() {
         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/CommonProxy.java:2: error: class, interface, enum, or record expected
-package hellfirepvp.astralsorcery.common;
-^
-50 errors
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/block/infusedwood/BlockInfusedWoodColumn.java:136: error: <identifier> expected
+        @Override
+                 ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/block/blackmarble/BlockBlackMarblePillar.java:132: error: enum constant expected here
+        public String func_176610_l() {
+        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/block/blackmarble/BlockBlackMarblePillar.java:136: error: <identifier> expected
+        @Override
+                 ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/block/marble/BlockMarblePillar.java:132: error: enum constant expected here
+        public String func_176610_l() {
+        ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/block/marble/BlockMarblePillar.java:136: error: <identifier> expected
+        @Override
+                 ^
+33 errors
 
 > Task :compileJava FAILED
 
@@ -246,35 +195,6 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':compile
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:463)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:380)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:116)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:138)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:123)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:51)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:177)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:44)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:177)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:264)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:80)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Compilation failed; see the compiler error output for details.
@@ -427,35 +347,6 @@ Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Com
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:463)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:380)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:116)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:138)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:123)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:51)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:177)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:44)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:177)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:264)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:80)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 
@@ -466,5 +357,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 2m 45s
+BUILD FAILED in 5m 17s
 4 actionable tasks: 4 executed
