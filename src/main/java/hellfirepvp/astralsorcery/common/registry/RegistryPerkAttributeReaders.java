@@ -22,7 +22,7 @@ public class RegistryPerkAttributeReaders
     
     public static void init() {
         register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_MELEE_DAMAGE, ref("generic.attack_damage")).formatAsDecimal());
-        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_HEALTH, ref("generic.max_health"));
+        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_HEALTH, ref("generic.max_health")));
         register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_MOVESPEED, ref("generic.movement_speed")).formatAsDecimal());
         register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_SWIMSPEED, (RegistryObject<Attribute>)ForgeMod.SWIM_SPEED).formatAsDecimal());
         register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_ARMOR, ref("generic.armor"));

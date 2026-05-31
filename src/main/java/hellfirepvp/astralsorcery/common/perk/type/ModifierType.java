@@ -9,11 +9,12 @@ public enum ModifierType
 {
     ADDITION, 
     ADDED_MULTIPLY, 
-
+    STACKING_MULTIPLY;
+    
     private static final DecimalFormat DISPLAY_NUMBER_FORMAT;
     
     public static ModifierType fromVanillaAttributeOperation(final AttributeModifier.Operation op) {
-        return MiscUtils.getEnumEntry(ModifierType.class, op.func_220371_a());
+        return MiscUtils.getEnumEntry(ModifierType.class, op.toValue());
     }
     
     public AttributeModifier.Operation getVanillaAttributeOperation() {

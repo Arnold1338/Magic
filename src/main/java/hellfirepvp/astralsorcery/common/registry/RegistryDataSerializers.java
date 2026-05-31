@@ -19,7 +19,7 @@ public class RegistryDataSerializers
     }
     
     private static <V, T extends IDataSerializer<V>> T register(final T dataSerializer, final String name) {
-        final net.minecraft.network.syncher.EntityDataSerializer entry = dataSerializerdataSerializer);
+        final EntityDataSerializer entry = dataSerializer;
 
         AstralSorcery.getProxy().getRegistryPrimer().register(entry);
         return dataSerializer;

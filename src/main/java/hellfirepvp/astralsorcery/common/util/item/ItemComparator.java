@@ -20,11 +20,11 @@ public class ItemComparator
             }
         }
         if (lClauses.contains(Clause.AMOUNT_EXACT)) {
-            if (thisStack.getCount() != sampleCompare.getCount()) {
+            if (thisStack.func_190916_E() != sampleCompare.func_190916_E()) {
                 return false;
             }
         }
-        else if (lClauses.contains(Clause.AMOUNT_LEAST) && thisStack.getCount() > sampleCompare.getCount()) {
+        else if (lClauses.contains(Clause.AMOUNT_LEAST) && thisStack.func_190916_E() > sampleCompare.func_190916_E()) {
             return false;
         }
         final boolean thisHasTag = thisStack.hasTag() && !thisStack.getTag().isEmpty();
@@ -55,7 +55,8 @@ public class ItemComparator
         AMOUNT_LEAST, 
         NBT_STRICT, 
         NBT_LEAST, 
-
+        CAPABILITIES_COMPATIBLE;
+        
         public static class Sets
         {
             public static final Clause[] ITEMSTACK_STRICT;

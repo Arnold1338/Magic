@@ -41,7 +41,7 @@ public abstract class Constellation extends BaseConstellation implements IConste
         this.simpleName = name;
         final ModContainer mod = MiscUtils.getCurrentlyActiveMod();
         if (mod != null) {
-            this, name));
+
             this.name = mod.getModId() + ".constellation." + name;
         }
         else {

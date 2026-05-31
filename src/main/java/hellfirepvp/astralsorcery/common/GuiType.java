@@ -9,7 +9,7 @@ import hellfirepvp.astralsorcery.client.screen.ScreenHandTelescope;
 import hellfirepvp.astralsorcery.client.screen.ScreenTelescope;
 import hellfirepvp.astralsorcery.common.tile.TileTelescope;
 import hellfirepvp.astralsorcery.client.screen.ScreenRefractionTable;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.IBlockReader;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalProgression;
@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.client.screen.ScreenConstellationPaper;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screen.Screen;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
@@ -29,19 +29,20 @@ public enum GuiType
     TOME, 
     REFRACTION_TABLE, 
     TELESCOPE, 
-
+    HAND_TELESCOPE;
+    
     public CompoundTag serializeArguments(final Object[] data) {
         try {
             final CompoundTag nbt = new CompoundTag();
             switch (this) {
                 case CONSTELLATION_PAPER: {
-                    nbt.putString("cst", ((IConstellation)data[0]).getRegistryName().toString());
-
+                    nbt.func_74778_a("cst", ((IConstellation)data[0]).getRegistryName().toString());
+                    break;
                 }
                 case REFRACTION_TABLE:
                 case TELESCOPE: {
                     NBTHelper.writeBlockPosToNBT((BlockPos)data[0], nbt);
-
+                    break;
                 }
             }
             return nbt;
@@ -54,7 +55,7 @@ public enum GuiType
     @Nullable
     @OnlyIn(Dist.CLIENT)
     public Screen deserialize(final CompoundTag data) {
-        final Level clWorld = (Level)Minecraft.getInstance().level;
+        final World clWorld = (World)Minecraft.getInstance().level;
         final Player clPlayer = (Player)Minecraft.getInstance().player;
         if (clWorld == null || clPlayer == null) {
             return null;
@@ -62,7 +63,7 @@ public enum GuiType
         try {
             switch (this) {
                 case CONSTELLATION_PAPER: {
-                    return new ScreenConstellationPaper((IConstellation)RegistriesAS.REGISTRY_CONSTELLATIONS.getValue(new ResourceLocation(data.getString("cst"))));
+                    return new ScreenConstellationPaper((IConstellation)RegistriesAS.REGISTRY_CONSTELLATIONS.getValue(new ResourceLocation(data.func_74779_i("cst"))));
                 }
                 case TOME: {
                     return ScreenJournalProgression.getOpenJournalInstance();
