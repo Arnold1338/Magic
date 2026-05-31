@@ -21,16 +21,16 @@ public class RegistryPerkAttributeReaders
     }
     
     public static void init() {
-        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_MELEE_DAMAGE, ref("generic.attack_damage")).formatAsDecimal());
+        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_MELEE_DAMAGE, ref("generic.attack_damage").formatAsDecimal()));
         register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_HEALTH, ref("generic.max_health")));
-        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_MOVESPEED, ref("generic.movement_speed")).formatAsDecimal());
+        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_MOVESPEED, ref("generic.movement_speed").formatAsDecimal()));
         register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_SWIMSPEED, (RegistryObject<Attribute>)ForgeMod.SWIM_SPEED).formatAsDecimal());
-        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_ARMOR, ref("generic.armor"));
-        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_ARMOR_TOUGHNESS, ref("generic.armor_toughness"));
-        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_ATTACK_SPEED, ref("generic.attack_speed")).formatAsDecimal());
+        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_ARMOR, ref("generic.armor")));
+        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_ARMOR_TOUGHNESS, ref("generic.armor_toughness")));
+        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_ATTACK_SPEED, ref("generic.attack_speed").formatAsDecimal()));
         register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_REACH, (RegistryObject<Attribute>)ForgeMod.REACH_DISTANCE).formatAsDecimal());
-        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_LUCK, ref("generic.luck")).formatAsDecimal());
-        register(new ReaderFlatAttribute(PerkAttributeTypesAS.ATTR_TYPE_ALIGNMENT_CHARGE_MAXIMUM, 1000.0)).formatAsDecimal();
+        register(new ReaderVanillaAttribute(PerkAttributeTypesAS.ATTR_TYPE_LUCK, ref("generic.luck").formatAsDecimal()));
+        register(new ReaderFlatAttribute(PerkAttributeTypesAS.ATTR_TYPE_ALIGNMENT_CHARGE_MAXIMUM, 1000.0).formatAsDecimal());
         register(new ReaderFlatAttribute(PerkAttributeTypesAS.ATTR_TYPE_MINING_SIZE, 0.0));
         registerDefaultReader(PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT);
         registerDefaultReader(PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EXP);
