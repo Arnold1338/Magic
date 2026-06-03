@@ -73,7 +73,7 @@ public class PktRotateTelescope extends ASPacket<PktRotateTelescope>
                 context.enqueueWork(() -> {
                     final Optional clWorld = (Optional)Optional.ofNullable(Minecraft.getInstance().level);
                     clWorld.ifPresent(world -> {
-                        final TileTelescope tt = MiscUtils.getTileAt((IBlockReader)world, packet.pos, TileTelescope.class, (boolean)(0 != 0));
+                        final TileTelescope tt = MiscUtils.getTileAt((BlockGetter)world, packet.pos, TileTelescope.class, (boolean)(0 != 0));
                         if (tt != null) {
                             tt.setRotation(packet.isClockwise ? tt.getRotation().nextClockWise() : tt.getRotation().nextCounterClockWise());
                         }
@@ -90,7 +90,7 @@ public class PktRotateTelescope extends ASPacket<PktRotateTelescope>
                 context.enqueueWork(() -> {
                     final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
                     final Level world = (Level)srv.getLevel(packet.dim);
-                    final TileTelescope tt = MiscUtils.getTileAt((IBlockReader)world, packet.pos, TileTelescope.class, false);
+                    final TileTelescope tt = MiscUtils.getTileAt((BlockGetter)world, packet.pos, TileTelescope.class, false);
                     if (tt != null) {
                         tt.setRotation(packet.isClockwise ? tt.getRotation().nextClockWise() : tt.getRotation().nextCounterClockWise());
                         packet.replyWith(new PktRotateTelescope(packet.isClockwise, packet.dim, packet.pos), context);

@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.container.factory;
 
 import net.minecraftforge.fml.network.IContainerFactory;
-import net.minecraft.world.level.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import javax.annotation.Nonnull;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;

@@ -14,7 +14,7 @@ public class BlockInfusedWoodTemplate extends Block implements CustomItemBlock
         super(PropertiesWood.defaultInfusedWood());
     }
     
-    public int getFlammability(final BlockState state, final IBlockReader world, final BlockPos pos, final Direction face) {
+    public int getFlammability(final BlockState state, final BlockGetter world, final BlockPos pos, final Direction face) {
         return 60;
     }
 }

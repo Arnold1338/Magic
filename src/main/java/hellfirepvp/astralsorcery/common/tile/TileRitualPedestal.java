@@ -148,7 +148,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     private void updateLinkTile() {
         final boolean hasLink = this.ritualLinkTo != null;
         final BlockPos link = this.getBlockState().func_177971_a((Vec3i)TileRitualPedestal.RITUAL_ANCHOR_OFFEST);
-        final TileRitualLink linkTile = MiscUtils.getTileAt((IBlockReader)this.level, link, TileRitualLink.class, true);
+        final TileRitualLink linkTile = MiscUtils.getTileAt((BlockGetter)this.level, link, TileRitualLink.class, true);
         boolean hasLinkNow;
         if (linkTile != null) {
             this.ritualLinkTo = linkTile.getLinkedTo();

@@ -36,13 +36,13 @@ public class BlockChalice extends BaseEntityBlock implements CustomItemBlock
         super(PropertiesMisc.defaultGoldMachinery().harvestLevel(1).harvestTool(ToolType.PICKAXE));
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         return BlockChalice.CHALICE;
     }
     
     public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult brtr) {
         final ItemStack interact = player.getItemInHand(hand);
-        final TileChalice tc = MiscUtils.getTileAt((IBlockReader)world, pos, TileChalice.class, true);
+        final TileChalice tc = MiscUtils.getTileAt((BlockGetter)world, pos, TileChalice.class, true);
         if (tc != null) {
             final IFluidHandlerItem handlerItem = (IFluidHandlerItem)FluidUtil.getFluidHandler(interact).orElse((Object)null);
             if (handlerItem != null) {
@@ -76,14 +76,14 @@ public class BlockChalice extends BaseEntityBlock implements CustomItemBlock
     }
     
     public int func_180641_l(final BlockState state, final Level world, final BlockPos pos) {
-        final TileChalice tc = MiscUtils.getTileAt((IBlockReader)world, pos, TileChalice.class, false);
+        final TileChalice tc = MiscUtils.getTileAt((BlockGetter)world, pos, TileChalice.class, false);
         if (tc != null) {
             return Mth.func_76123_f(tc.getTank().getPercentageFilled() * 15.0f);
         }
         return 0;
     }
     
-    public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {
+    public boolean func_196266_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final PathType type) {
         return false;
     }
     
@@ -92,7 +92,7 @@ public class BlockChalice extends BaseEntityBlock implements CustomItemBlock
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader worldIn) {
+    public BlockEntity func_196283_a_(final BlockGetter worldIn) {
         return new TileChalice();
     }
     

@@ -143,7 +143,7 @@ public abstract class CEffectAbstractList<T extends ListEntry> extends Constella
     @Nonnull
     public Either<T, BlockPos> peekNewPosition(final Level world, final BlockPos pos, final ConstellationEffectProperties prop) {
         if (this.excludesRitual || this.excludeRitualColumn) {
-            MiscUtils.executeWithChunk((IWorldReader)world, pos, () -> this.isLinkedRitual = (MiscUtils.getTileAt((IBlockReader)world, pos, TileRitualLink.class, true) != null));
+            MiscUtils.executeWithChunk((IWorldReader)world, pos, () -> this.isLinkedRitual = (MiscUtils.getTileAt((BlockGetter)world, pos, TileRitualLink.class, true) != null));
         }
         final BlockPositionGenerator gen = this.selectPositionStrategy(this.positionStrategy, prop);
         if (gen != this.positionStrategy) {

@@ -34,11 +34,11 @@ public interface ItemBlockStorage
     public static final Random random = new Random();
     
     default boolean storeBlockState(final ItemStack stack, final Level world, final BlockPos pos) {
-        if (MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true) != null) {
+        if (MiscUtils.getTileAt((BlockGetter)world, pos, BlockEntity.class, true) != null) {
             return false;
         }
         final BlockState state = world.getBlockState(pos);
-        if (state.isAir((IBlockReader)world, pos) || state.func_185887_b((IBlockReader)world, pos) == -1.0f || ItemUtils.createBlockStack(state).isEmpty()) {
+        if (state.isAir((BlockGetter)world, pos) || state.func_185887_b((BlockGetter)world, pos) == -1.0f || ItemUtils.createBlockStack(state).isEmpty()) {
             return false;
         }
         final CompoundTag persistent = NBTHelper.getPersistentData(stack);

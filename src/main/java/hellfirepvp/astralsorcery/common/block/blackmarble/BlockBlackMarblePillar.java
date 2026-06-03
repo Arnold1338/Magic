@@ -15,7 +15,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.core.Direction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.state.StateContainer;
 import hellfirepvp.astralsorcery.common.util.VoxelUtils;
 import net.minecraft.util.math.shapes.IBooleanFunction;
@@ -64,7 +64,7 @@ public class BlockBlackMarblePillar extends BlockBlackMarbleTemplate implements 
         builder.func_206894_a(new Property[] { (Property)BlockBlackMarblePillar.PILLAR_TYPE, (Property)BlockBlackMarblePillar.WATERLOGGED });
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final ISelectionContext ctx) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter world, final BlockPos pos, final ISelectionContext ctx) {
         switch ((PillarType)state.func_177229_b((Property)BlockBlackMarblePillar.PILLAR_TYPE)) {
             case TOP: {
                 return this.topShape;
@@ -82,7 +82,7 @@ public class BlockBlackMarblePillar extends BlockBlackMarbleTemplate implements 
         if (thisState.func_177229_b((Property)BlockBlackMarblePillar.WATERLOGGED)) {
             world.func_205219_F_().func_205360_a(thisPos, (Object)Fluids.field_204546_a, Fluids.field_204546_a.func_205569_a((IWorldReader)world));
         }
-        return (BlockState)this.getThisState((IBlockReader)world, thisPos).func_206870_a((Property)BlockBlackMarblePillar.WATERLOGGED, thisState.func_177229_b((Property)BlockBlackMarblePillar.WATERLOGGED));
+        return (BlockState)this.getThisState((BlockGetter)world, thisPos).func_206870_a((Property)BlockBlackMarblePillar.WATERLOGGED, thisState.func_177229_b((Property)BlockBlackMarblePillar.WATERLOGGED));
     }
     
     @Nullable
@@ -90,10 +90,10 @@ public class BlockBlackMarblePillar extends BlockBlackMarbleTemplate implements 
         final BlockPos blockpos = ctx.func_195995_a();
         final World world = ctx.func_195991_k();
         final FluidState fluidState = world.func_204610_c(blockpos);
-        return (BlockState)this.getThisState((IBlockReader)world, blockpos).func_206870_a((Property)BlockBlackMarblePillar.WATERLOGGED, (Comparable)(fluidState.func_206886_c() == Fluids.field_204546_a));
+        return (BlockState)this.getThisState((BlockGetter)world, blockpos).func_206870_a((Property)BlockBlackMarblePillar.WATERLOGGED, (Comparable)(fluidState.func_206886_c() == Fluids.field_204546_a));
     }
     
-    private BlockState getThisState(final IBlockReader world, final BlockPos pos) {
+    private BlockState getThisState(final BlockGetter world, final BlockPos pos) {
         final boolean hasUp = world.getBlockState(pos.func_177984_a()).func_177230_c() instanceof BlockBlackMarblePillar;
         final boolean hasDown = world.getBlockState(pos.func_177977_b()).func_177230_c() instanceof BlockBlackMarblePillar;
         if (hasUp) {
@@ -115,7 +115,7 @@ public class BlockBlackMarblePillar extends BlockBlackMarbleTemplate implements 
     }
     
     @Nullable
-    public PathNodeType getAiPathNodeType(final BlockState state, final IBlockReader world, final BlockPos pos, @Nullable final MobEntity entity) {
+    public PathNodeType getAiPathNodeType(final BlockState state, final BlockGetter world, final BlockPos pos, @Nullable final MobEntity entity) {
         return PathNodeType.BLOCKED;
     }
     

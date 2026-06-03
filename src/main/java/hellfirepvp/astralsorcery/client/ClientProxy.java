@@ -6,11 +6,11 @@ import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
 import net.minecraftforge.fml.LogicalSide;
 import hellfirepvp.astralsorcery.common.perk.PerkTree;
 import net.minecraftforge.resource.VanillaResourceType;
-import net.minecraftforge.resource.SelectiveReloadStateHandler;
+
 import net.minecraft.util.Unit;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
-import net.minecraft.util.profiling.IProfiler;
+import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.server.packs.resources.ResourceManager;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalPerkTree;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
@@ -20,19 +20,19 @@ import java.util.function.Supplier;
 import hellfirepvp.astralsorcery.client.screen.journal.bookmark.BookmarkProvider;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalProgression;
 import java.util.Map;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.client.renderer.entity.IEntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderer;
 import hellfirepvp.astralsorcery.client.render.entity.layer.StarryLayerRenderer;
-import net.minecraft.client.renderer.entity.PlayerRenderer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import hellfirepvp.astralsorcery.common.registry.RegistryBlockRenderTypes;
 import hellfirepvp.astralsorcery.client.registry.RegistryKeyBindings;
 import hellfirepvp.astralsorcery.common.registry.RegistryTileEntities;
 import hellfirepvp.astralsorcery.common.registry.RegistryEntities;
 import hellfirepvp.astralsorcery.common.registry.RegistryContainerTypes;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraft.client.player.AbstractClientPlayerEntity;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
@@ -66,7 +66,7 @@ import hellfirepvp.astralsorcery.client.resource.AssetPreLoader;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import hellfirepvp.astralsorcery.client.resource.AssetLibrary;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.IReloadableResourceManager;
+import net.minecraft.server.packs.resources.ResourceManager;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.client.data.config.ClientConfig;
 import hellfirepvp.astralsorcery.common.CommonProxy;
@@ -80,12 +80,12 @@ public class ClientProxy extends CommonProxy
     public void initialize() {
         this.clientScheduler = new ClientScheduler();
         if (!AstralSorcery.isDoingDataGeneration()) {
-            final IReloadableResourceManager resMgr = (IReloadableResourceManager)Minecraft.getInstance().func_195551_G();
+            final ResourceManager resMgr = (ResourceManager)Minecraft.getInstance().func_195551_G();
             resMgr.func_219534_a((PreparableReloadListener)AssetLibrary.INSTANCE);
             resMgr.func_219534_a((PreparableReloadListener)AssetPreLoader.INSTANCE);
             resMgr.func_219534_a(ColorizationHelper.onReload());
             resMgr.func_219534_a((stage, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) -> stage.func_216872_a((Object)Unit.INSTANCE).thenRunAsync(() -> {
-                if (!(!SelectiveReloadStateHandler.INSTANCE.get().test(VanillaResourceType.LANGUAGES))) {
+                if (!(!PreparableReloadListener.INSTANCE.get().test(VanillaResourceType.LANGUAGES))) {
                     PerkTree.PERK_TREE.getPerkPoints(LogicalSide.CLIENT).stream().map((Function<? super PerkTreePoint<?>, ?>)PerkTreePoint::getPerk).forEach(AbstractPerk::clearClientTextCaches);
                 }
             }));
@@ -157,7 +157,7 @@ public class ClientProxy extends CommonProxy
     
     @Override
     public void openGui(final Player player, final GuiType type, final Object... data) {
-        if (player instanceof AbstractClientPlayerEntity) {
+        if (player instanceof AbstractClientPlayer) {
             this.openGuiClient(type, type.serializeArguments(data));
 
         }
@@ -174,9 +174,9 @@ public class ClientProxy extends CommonProxy
         RegistryItems.registerItemProperties();
         final Map<String, PlayerRenderer> playerRenderMap = Minecraft.getInstance().func_175598_ae().getSkinMap();
         PlayerRenderer renderer = playerRenderMap.get("slim");
-        renderer.func_177094_a((LayerRenderer)new StarryLayerRenderer((net.minecraft.client.renderer.entity.IEntityRenderer<LivingEntity, HumanoidModel>)renderer, true));
+        renderer.func_177094_a((RenderLayer)new StarryLayerRenderer((net.minecraft.client.renderer.entity.EntityRenderer<LivingEntity, HumanoidModel>)renderer, true));
         renderer = playerRenderMap.get("default");
-        renderer.func_177094_a((LayerRenderer)new StarryLayerRenderer((net.minecraft.client.renderer.entity.IEntityRenderer<LivingEntity, HumanoidModel>)renderer, false));
+        renderer.func_177094_a((RenderLayer)new StarryLayerRenderer((net.minecraft.client.renderer.entity.EntityRenderer<LivingEntity, HumanoidModel>)renderer, false));
     }
     
     private void addTomeBookmarks() {

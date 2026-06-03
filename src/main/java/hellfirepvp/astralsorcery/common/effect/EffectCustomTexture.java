@@ -13,13 +13,13 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.DisplayEffectsScreen;
-import net.minecraft.world.level.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffectInstance;
 import hellfirepvp.astralsorcery.client.resource.query.SpriteQuery;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraft.world.effect.EffectType;
 import java.awt.Color;
 import java.util.Random;
-import net.minecraft.world.level.effect.MobEffect;
+import net.minecraft.world.effect.MobEffect;
 
 public abstract class EffectCustomTexture extends Effect
 {

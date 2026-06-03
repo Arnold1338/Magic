@@ -49,7 +49,7 @@ public interface RefreshFunction<T extends EntityComplexFX>
         protected E getTileIfValid() {
             final Level clWorld = (Level)Minecraft.getInstance().level;
             final E tile;
-            if (clWorld != null && clWorld.dimension().equals(this.dimType) && (tile = MiscUtils.getTileAt((IBlockReader)clWorld, this.pos, this.clazzExpected, true)) != null && !tile.func_145837_r()) {
+            if (clWorld != null && clWorld.dimension().equals(this.dimType) && (tile = MiscUtils.getTileAt((BlockGetter)clWorld, this.pos, this.clazzExpected, true)) != null && !tile.func_145837_r()) {
                 return tile;
             }
             return null;

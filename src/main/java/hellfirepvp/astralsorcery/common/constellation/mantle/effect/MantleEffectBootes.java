@@ -7,7 +7,7 @@ import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
 import java.util.ArrayList;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.api.distmarker.Dist;

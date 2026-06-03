@@ -17,7 +17,7 @@ public abstract class BlockStarlightNetwork extends BlockInventory
     @Override
     public void func_196243_a(final BlockState state, final Level worldIn, final BlockPos pos, final BlockState newState, final boolean isMoving) {
         if (state != newState) {
-            final TileNetwork<?> te = MiscUtils.getTileAt((IBlockReader)worldIn, pos, TileNetwork.class, true);
+            final TileNetwork<?> te = MiscUtils.getTileAt((BlockGetter)worldIn, pos, TileNetwork.class, true);
             if (te != null) {
                 te.onBreak();
             }

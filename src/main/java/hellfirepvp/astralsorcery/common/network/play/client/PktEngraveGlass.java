@@ -75,7 +75,7 @@ public class PktEngraveGlass extends ASPacket<PktEngraveGlass>
         return (packet, context, side) -> context.enqueueWork(() -> {
             final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
             final Level world = (Level)srv.getLevel((ResourceKey)packet.dim);
-            final TileRefractionTable tmt = MiscUtils.getTileAt((IBlockReader)world, packet.pos, TileRefractionTable.class, false);
+            final TileRefractionTable tmt = MiscUtils.getTileAt((BlockGetter)world, packet.pos, TileRefractionTable.class, false);
             if (tmt != null && !packet.constellations.isEmpty()) {
                 final List<DrawnConstellation> cstList = packet.constellations.subList(0, Math.min(3, packet.constellations.size()));
                 tmt.engraveGlass(cstList);

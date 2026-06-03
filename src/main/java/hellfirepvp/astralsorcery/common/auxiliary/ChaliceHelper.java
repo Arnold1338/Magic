@@ -40,7 +40,7 @@ public class ChaliceHelper
     public static List<TileChalice> findNearbyChalicesContaining(final Level world, final BlockPos origin, final FluidStack expected, final int distance) {
         final List<TileChalice> out = new LinkedList<TileChalice>();
         for (final BlockPos chalicePos : findNearbyChalices(world, origin, distance)) {
-            final TileChalice chalice = MiscUtils.getTileAt((IBlockReader)world, chalicePos, TileChalice.class, true);
+            final TileChalice chalice = MiscUtils.getTileAt((BlockGetter)world, chalicePos, TileChalice.class, true);
             if (chalice != null && chalice.getTank().drain(expected, IFluidHandler.FluidAction.SIMULATE).getAmount() >= expected.getAmount()) {
                 out.add(chalice);
             }
@@ -53,7 +53,7 @@ public class ChaliceHelper
         final FluidStack required = expected.copy();
         final List<TileChalice> out = new LinkedList<TileChalice>();
         for (final BlockPos chalicePos : findNearbyChalices(world, origin, distance)) {
-            final TileChalice chalice = MiscUtils.getTileAt((IBlockReader)world, chalicePos, TileChalice.class, true);
+            final TileChalice chalice = MiscUtils.getTileAt((BlockGetter)world, chalicePos, TileChalice.class, true);
             if (chalice != null) {
                 final FluidStack drained = chalice.getTank().drain(expected, IFluidHandler.FluidAction.SIMULATE);
                 if (drained.isEmpty()) {
@@ -72,7 +72,7 @@ public class ChaliceHelper
     public static boolean doChalicesContainCombined(final Level world, final Collection<BlockPos> chalicePositions, final FluidStack expected) {
         final FluidStack required = expected.copy();
         for (final BlockPos pos : chalicePositions) {
-            final TileChalice chalice = MiscUtils.getTileAt((IBlockReader)world, pos, TileChalice.class, true);
+            final TileChalice chalice = MiscUtils.getTileAt((BlockGetter)world, pos, TileChalice.class, true);
             if (chalice != null) {
                 final FluidStack drained = chalice.getTank().drain(expected, IFluidHandler.FluidAction.SIMULATE);
                 if (drained.isEmpty()) {

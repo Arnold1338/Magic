@@ -74,7 +74,7 @@ public class RenderPageStructure extends RenderablePage
         this.name = name;
         this.shift = shift;
         this.contentStacks = new ArrayList<Tuple<ItemStack, FormattedCharSequence>>();
-        structure.getAsStacks((IBlockReader)this.structureRenderer.getRenderWorld(), (Player)Minecraft.func_71410_x().field_71439_g).forEach(stack -> {
+        structure.getAsStacks((BlockGetter)this.structureRenderer.getRenderWorld(), (Player)Minecraft.func_71410_x().field_71439_g).forEach(stack -> {
             final ItemStack display = ItemUtils.copyStackWithSize(stack, 1);
             new StringTextComponent(stack.func_190916_E() + "x ");
             final StringTextComponent stringTextComponent;

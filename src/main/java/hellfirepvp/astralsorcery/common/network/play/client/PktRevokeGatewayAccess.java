@@ -72,10 +72,10 @@ public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess>
                 if (sender != null) {
                     final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
                     final Level world = (Level)srv.getLevel((ResourceKey)packet.dim);
-                    final TileCelestialGateway gateway = MiscUtils.getTileAt((IBlockReader)world, packet.pos, TileCelestialGateway.class, false);
+                    final TileCelestialGateway gateway = MiscUtils.getTileAt((BlockGetter)world, packet.pos, TileCelestialGateway.class, false);
                     if (gateway != null && gateway.isLocked() && gateway.getOwner() != null && gateway.getOwner().isPlayer(sender)) {
                         final BlockPos testPos = Vector3.atEntityCorner((Entity)sender).toBlockPos();
-                        final TileCelestialGateway playerGateway = MiscUtils.getTileAt((IBlockReader)world, testPos, TileCelestialGateway.class, false);
+                        final TileCelestialGateway playerGateway = MiscUtils.getTileAt((BlockGetter)world, testPos, TileCelestialGateway.class, false);
                         if (gateway.equals(playerGateway)) {
                             final PlayerReference removedPlayer = gateway.removeAllowedUser(packet.revokeUUID);
                             if (removedPlayer != null) {

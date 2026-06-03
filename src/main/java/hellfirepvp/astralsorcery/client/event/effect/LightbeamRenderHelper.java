@@ -59,7 +59,7 @@ public class LightbeamRenderHelper implements ITickHandler
                         if (renderView.func_70092_e((double)at.getX(), (double)at.getY(), (double)at.getZ()) <= RenderingConfig.CONFIG.getMaxEffectRenderDistanceSq()) {
                             final Vector3 source = new Vector3((Vec3i)at).add(0.5, 0.5, 0.5);
                             Color overlay = null;
-                            final TileLens lens = MiscUtils.getTileAt((IBlockReader)renderView.level(), at, TileLens.class, true);
+                            final TileLens lens = MiscUtils.getTileAt((BlockGetter)renderView.level(), at, TileLens.class, true);
                             if (lens != null && lens.getColorType() != null) {
                                 overlay = lens.getColorType().getColor();
                             }

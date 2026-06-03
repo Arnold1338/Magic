@@ -90,7 +90,7 @@ public class TimeStopZone
         for (final BlockEntity cached : this.cachedTiles) {
             final BlockState state = this.world.getBlockState(cached.getBlockState());
             if (state.getBlock().hasTileEntity(state)) {
-                final BlockEntity te = state.getBlock().createTileEntity(state, (IBlockReader)this.world);
+                final BlockEntity te = state.getBlock().createTileEntity(state, (BlockGetter)this.world);
                 if (te == null || !te.getClass().isAssignableFrom(cached.getClass())) {
 
                 }

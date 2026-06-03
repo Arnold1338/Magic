@@ -121,7 +121,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable
         if (world == null) {
 
         }
-        final TileInfuser thisInfuser = MiscUtils.getTileAt((IBlockReader)world, at, TileInfuser.class, false);
+        final TileInfuser thisInfuser = MiscUtils.getTileAt((BlockGetter)world, at, TileInfuser.class, false);
         if (thisInfuser != null) {
             final Recipe<?> recipe = (Recipe<?>)world.func_199532_z().getRecipeFor((RecipeType)RecipeTypesAS.TYPE_INFUSION.getType()).get(recipeName);
             if (recipe instanceof LiquidInfusion) {

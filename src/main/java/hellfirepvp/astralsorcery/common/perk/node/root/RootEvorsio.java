@@ -57,7 +57,7 @@ public class RootEvorsio extends RootPerk
         final IWorld world = event.getWorld();
         float gainedExp;
         try {
-            gainedExp = broken.func_185887_b((IBlockReader)world, event.getPos());
+            gainedExp = broken.func_185887_b((BlockGetter)world, event.getPos());
         }
         catch (final Exception exc) {
             gainedExp = 0.5f;

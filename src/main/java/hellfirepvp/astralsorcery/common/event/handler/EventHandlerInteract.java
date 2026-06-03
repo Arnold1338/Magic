@@ -73,7 +73,7 @@ public class EventHandlerInteract
     }
     
     private static void handleOwnerPlacement(final IWorld world, final BlockPos pos, final Player placer) {
-        final TileOwned owned = MiscUtils.getTileAt((IBlockReader)world, pos, TileOwned.class, true);
+        final TileOwned owned = MiscUtils.getTileAt((BlockGetter)world, pos, TileOwned.class, true);
         if (owned != null) {
             owned.setOwner(placer);
         }

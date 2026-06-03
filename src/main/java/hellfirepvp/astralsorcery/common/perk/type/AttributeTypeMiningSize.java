@@ -61,8 +61,8 @@ public class AttributeTypeMiningSize extends PerkAttributeType
                     final BlockHitResult brtr = MiscUtils.rayTraceLookBlock(player, ClipContext.BlockMode.OUTLINE, ClipContext.FluidMode.NONE);
                     if (brtr != null && brtr.func_216346_c() == HitResult.Type.BLOCK) {
                         final int levelBroken = event.getState().getHarvestLevel();
-                        final float hardnessBroken = event.getState().func_185887_b((IBlockReader)world, event.getPos());
-                        final BlockPredicate miningTest = (worldIn, posIn, stateIn) -> stateIn.getHarvestLevel() <= levelBroken && stateIn.func_185887_b((IBlockReader)worldIn, posIn) <= hardnessBroken;
+                        final float hardnessBroken = event.getState().func_185887_b((BlockGetter)world, event.getPos());
+                        final BlockPredicate miningTest = (worldIn, posIn, stateIn) -> stateIn.getHarvestLevel() <= levelBroken && stateIn.func_185887_b((BlockGetter)worldIn, posIn) <= hardnessBroken;
                         final Direction dir = brtr.func_216354_b();
                         if (dir.func_176740_k() == Direction.Axis.Y) {
                             this.breakBlocksPlaneHorizontal((ServerPlayer)player, dir, (Level)world, event.getPos(), miningTest, Mth.func_76141_d(size2));
@@ -89,9 +89,9 @@ public class AttributeTypeMiningSize extends PerkAttributeType
                                 if (xx != 0 || yy != 0 || zz != 0) {
                                     final BlockPos other = at.offset(xx, yy, zz);
                                     final BlockState otherState = world.getBlockState(other);
-                                    if (otherState.func_185887_b((IBlockReader)world, other) != -1.0f && (player.getVehicle() || miningTest.test(world, other, otherState)) && AlignmentChargeHandler.INSTANCE.drainCharge((Player)player, LogicalSide.SERVER, (float)(int)AttributeTypeMiningSize.CONFIG.chargeCostPerBreak.get(), true)) {
+                                    if (otherState.func_185887_b((BlockGetter)world, other) != -1.0f && (player.getVehicle() || miningTest.test(world, other, otherState)) && AlignmentChargeHandler.INSTANCE.drainCharge((Player)player, LogicalSide.SERVER, (float)(int)AttributeTypeMiningSize.CONFIG.chargeCostPerBreak.get(), true)) {
                                         final BlockState state = world.getBlockState(other);
-                                        if (!BlockUtils.isFluidBlock(state) && (player.getVehicle() || otherState.canHarvestBlock((IBlockReader)world, other, (Player)player)) && player.field_71134_c.func_180237_b(other) && AttributeTypeMiningSize.rand.nextInt(3) == 0) {
+                                        if (!BlockUtils.isFluidBlock(state) && (player.getVehicle() || otherState.canHarvestBlock((BlockGetter)world, other, (Player)player)) && player.field_71134_c.func_180237_b(other) && AttributeTypeMiningSize.rand.nextInt(3) == 0) {
                                             AlignmentChargeHandler.INSTANCE.drainCharge((Player)player, LogicalSide.SERVER, (float)(int)AttributeTypeMiningSize.CONFIG.chargeCostPerBreak.get(), false);
                                         }
                                     }
@@ -115,9 +115,9 @@ public class AttributeTypeMiningSize extends PerkAttributeType
                         if (xx != 0 || zz != 0) {
                             final BlockPos other = at.offset(xx, 0, zz);
                             final BlockState otherState = world.getBlockState(other);
-                            if (otherState.func_185887_b((IBlockReader)world, other) != -1.0f && (player.getVehicle() || miningTest.test(world, other, otherState)) && AlignmentChargeHandler.INSTANCE.drainCharge((Player)player, LogicalSide.SERVER, (float)(int)AttributeTypeMiningSize.CONFIG.chargeCostPerBreak.get(), true)) {
+                            if (otherState.func_185887_b((BlockGetter)world, other) != -1.0f && (player.getVehicle() || miningTest.test(world, other, otherState)) && AlignmentChargeHandler.INSTANCE.drainCharge((Player)player, LogicalSide.SERVER, (float)(int)AttributeTypeMiningSize.CONFIG.chargeCostPerBreak.get(), true)) {
                                 final BlockState state = world.getBlockState(other);
-                                if (!BlockUtils.isFluidBlock(state) && (player.getVehicle() || otherState.canHarvestBlock((IBlockReader)world, other, (Player)player)) && player.field_71134_c.func_180237_b(other) && AttributeTypeMiningSize.rand.nextInt(3) == 0) {
+                                if (!BlockUtils.isFluidBlock(state) && (player.getVehicle() || otherState.canHarvestBlock((BlockGetter)world, other, (Player)player)) && player.field_71134_c.func_180237_b(other) && AttributeTypeMiningSize.rand.nextInt(3) == 0) {
                                     AlignmentChargeHandler.INSTANCE.drainCharge((Player)player, LogicalSide.SERVER, (float)(int)AttributeTypeMiningSize.CONFIG.chargeCostPerBreak.get(), false);
                                 }
                             }

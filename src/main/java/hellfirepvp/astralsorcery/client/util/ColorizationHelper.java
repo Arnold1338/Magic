@@ -2,11 +2,11 @@ package hellfirepvp.astralsorcery.client.util;
 
 import java.util.HashMap;
 import net.minecraftforge.resource.VanillaResourceType;
-import net.minecraftforge.resource.SelectiveReloadStateHandler;
+
 import net.minecraft.util.Unit;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
-import net.minecraft.util.profiling.IProfiler;
+import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import javax.annotation.Nullable;
@@ -109,7 +109,7 @@ public class ColorizationHelper
     
     public static PreparableReloadListener onReload() {
         return (stage, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) -> stage.func_216872_a((Object)Unit.INSTANCE).thenRunAsync(() -> {
-            if (!(!SelectiveReloadStateHandler.INSTANCE.get().test(VanillaResourceType.TEXTURES))) {
+            if (!(!PreparableReloadListener.INSTANCE.get().test(VanillaResourceType.TEXTURES))) {
                 ColorizationHelper.itemColors.clear();
                 ColorizationHelper.fluidColors.clear();
             }

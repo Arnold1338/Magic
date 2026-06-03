@@ -37,13 +37,13 @@ public class BlockTreeBeacon extends BlockStarlightNetwork implements CustomItem
     @Override
     public void func_180633_a(final Level world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
         super.func_180633_a(world, pos, state, placer, stack);
-        final TileTreeBeacon ttb = MiscUtils.getTileAt((IBlockReader)world, pos, TileTreeBeacon.class, true);
+        final TileTreeBeacon ttb = MiscUtils.getTileAt((BlockGetter)world, pos, TileTreeBeacon.class, true);
         if (ttb != null && !world.level().isClientSide() && placer instanceof ServerPlayer && !MiscUtils.isPlayerFakeMP((ServerPlayer)placer)) {
             ttb.setPlayerUUID(placer.getUUID());
         }
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter world, final BlockPos pos, final CollisionContext context) {
         return BlockTreeBeacon.SHAPE;
     }
     
@@ -55,10 +55,10 @@ public class BlockTreeBeacon extends BlockStarlightNetwork implements CustomItem
     }
     
     public boolean func_196260_a(final BlockState state, final IWorldReader world, final BlockPos pos) {
-        return func_220064_c((IBlockReader)world, pos.renderItem());
+        return func_220064_c((BlockGetter)world, pos.renderItem());
     }
     
-    public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {
+    public boolean func_196266_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final PathType type) {
         return false;
     }
     
@@ -67,7 +67,7 @@ public class BlockTreeBeacon extends BlockStarlightNetwork implements CustomItem
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader world) {
+    public BlockEntity func_196283_a_(final BlockGetter world) {
         return new TileTreeBeacon();
     }
     

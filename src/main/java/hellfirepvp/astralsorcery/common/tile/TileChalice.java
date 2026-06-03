@@ -110,7 +110,7 @@ public class TileChalice extends TileEntityTick
         final List<BlockPos> chalicePositions = ChaliceHelper.findNearbyChalices(this.getLevel(), this.getBlockState(), 16);
         Collections.shuffle(chalicePositions, TileChalice.rand);
         for (final BlockPos otherChalicePos : chalicePositions) {
-            final TileChalice otherChalice = MiscUtils.getTileAt((IBlockReader)this.getLevel(), otherChalicePos, TileChalice.class, false);
+            final TileChalice otherChalice = MiscUtils.getTileAt((BlockGetter)this.getLevel(), otherChalicePos, TileChalice.class, false);
             if (otherChalice == null) {
 
             }
@@ -156,7 +156,7 @@ public class TileChalice extends TileEntityTick
         });
         Collections.shuffle(fountains, TileChalice.rand);
         for (final BlockPos wellPos : fountains) {
-            final TileFountain fountain = MiscUtils.getTileAt((IBlockReader)this.level, wellPos, TileFountain.class, true);
+            final TileFountain fountain = MiscUtils.getTileAt((BlockGetter)this.level, wellPos, TileFountain.class, true);
             if (fountain != null) {
                 final FluidStack drained = fountain.getTank().drain(400, IFluidHandler.FluidAction.SIMULATE);
                 if (drained.getAmount() <= 100) {
@@ -199,7 +199,7 @@ public class TileChalice extends TileEntityTick
         });
         Collections.shuffle(wellPositions, TileChalice.rand);
         for (final BlockPos wellPos : wellPositions) {
-            final TileWell well = MiscUtils.getTileAt((IBlockReader)this.level, wellPos, TileWell.class, true);
+            final TileWell well = MiscUtils.getTileAt((BlockGetter)this.level, wellPos, TileWell.class, true);
             if (well != null) {
                 final FluidStack drained = well.getTank().drain(400, IFluidHandler.FluidAction.SIMULATE);
                 if (!(drained.getFluid() instanceof FluidLiquidStarlight) || drained.getAmount() <= 100) {

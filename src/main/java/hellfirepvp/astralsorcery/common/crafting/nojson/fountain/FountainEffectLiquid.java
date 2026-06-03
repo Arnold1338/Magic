@@ -110,7 +110,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext>
         try {
             positions.forEach(pos -> MiscUtils.executeWithChunk((IWorldReader)world, pos, () -> {
                 final BlockState state = world.getBlockState(pos);
-                if (!state.isAir((IBlockReader)world, pos) && world.func_175625_s(pos) == null && state.func_185887_b((IBlockReader)world, pos) >= 0.0f && !BlockUtils.isFluidBlock(state)) {
+                if (!state.isAir((BlockGetter)world, pos) && world.func_175625_s(pos) == null && state.func_185887_b((BlockGetter)world, pos) >= 0.0f && !BlockUtils.isFluidBlock(state)) {
                     BlockUtils.breakBlockWithoutPlayer(world, pos, state, ItemStack.EMPTY, true, true, false);
                 }
             }));

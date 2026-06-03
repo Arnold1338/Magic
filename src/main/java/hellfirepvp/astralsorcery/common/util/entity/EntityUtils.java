@@ -15,7 +15,7 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import java.util.Collections;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.spawner.WorldEntitySpawner;
@@ -46,7 +46,7 @@ import net.minecraft.server.level.ServerLevel;
 import java.util.function.Consumer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import java.util.function.Supplier;
-import net.minecraft.world.level.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -135,7 +135,7 @@ public class EntityUtils
             final float y = (float)pos.getY();
             final float z = pos.getZ() + 0.5f;
             final BlockState state = world.getBlockState(pos);
-            if (!state.func_215686_e((IBlockReader)world, pos) && canEntitySpawnHere(world, pos, (EntityType<? extends Entity>)entry.field_242588_c, reason, ignoreSpawnCheckFlags, null)) {
+            if (!state.func_215686_e((BlockGetter)world, pos) && canEntitySpawnHere(world, pos, (EntityType<? extends Entity>)entry.field_242588_c, reason, ignoreSpawnCheckFlags, null)) {
                 MobEntity entity;
                 try {
                     entity = (MobEntity)entry.field_242588_c.func_200721_a((Level)world);

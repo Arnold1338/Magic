@@ -73,7 +73,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
             final BlockPos pos = entry.getKey();
             final IIndependentStarlightSource source = entry.getValue();
             MiscUtils.executeWithChunk((IWorldReader)world, pos, () -> {
-                final IStarlightSource<?> te = MiscUtils.getTileAt((IBlockReader)world, pos, IStarlightSource.class, true);
+                final IStarlightSource<?> te = MiscUtils.getTileAt((BlockGetter)world, pos, IStarlightSource.class, true);
                 if (te != null) {
                     if (te.needsToRefreshNetworkChain()) {
                         if (handle != null) {
@@ -107,7 +107,7 @@ public class LightNetworkBuffer extends SectionWorldData<ChunkNetworkData>
             for (final ChunkNetworkData data : this.getSections()) {
                 for (final ChunkSectionNetworkData secData : data.sections.values()) {
                     for (final IPrismTransmissionNode node : secData.getAllTransmissionNodes()) {
-                        final IStarlightTransmission<?> te = MiscUtils.getTileAt((IBlockReader)world, node.getLocationPos(), IStarlightTransmission.class, true);
+                        final IStarlightTransmission<?> te = MiscUtils.getTileAt((BlockGetter)world, node.getLocationPos(), IStarlightTransmission.class, true);
                         if (te == null) {
                             invalidRemoval.add(node);
                         }

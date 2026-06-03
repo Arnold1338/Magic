@@ -167,7 +167,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         if (world == null) {
 
         }
-        final TileAltar thisAltar = MiscUtils.getTileAt((IBlockReader)world, at, TileAltar.class, false);
+        final TileAltar thisAltar = MiscUtils.getTileAt((BlockGetter)world, at, TileAltar.class, false);
         if (thisAltar != null) {
             final Recipe<?> recipe = (Recipe<?>)world.func_199532_z().getRecipeFor((RecipeType)RecipeTypesAS.TYPE_ALTAR.getType()).get(recipeName);
             if (recipe instanceof SimpleAltarRecipe) {
@@ -311,7 +311,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
             for (int zz = -3; zz <= 3; ++zz) {
                 if (xx != 0 || zz != 0) {
                     final BlockPos offset = new BlockPos(xx, 0, zz);
-                    final TileSpectralRelay tar = MiscUtils.getTileAt((IBlockReader)this.getLevel(), this.getBlockState().func_177971_a((Vec3i)offset), TileSpectralRelay.class, true);
+                    final TileSpectralRelay tar = MiscUtils.getTileAt((BlockGetter)this.getLevel(), this.getBlockState().func_177971_a((Vec3i)offset), TileSpectralRelay.class, true);
                     if (tar != null) {
                         eligableRelayOffsets.add(this.getBlockState().func_177971_a((Vec3i)offset));
                     }
@@ -339,7 +339,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     private void updateNearbyRelayLinkStates() {
         final Set<BlockPos> relayPositions = BlockDiscoverer.searchForTileEntitiesAround(this.getLevel(), this.getBlockState(), 16, tile -> tile instanceof TileSpectralRelay);
         for (final BlockPos relayPos : relayPositions) {
-            final TileSpectralRelay tsr = MiscUtils.getTileAt((IBlockReader)this.getLevel(), relayPos, TileSpectralRelay.class, true);
+            final TileSpectralRelay tsr = MiscUtils.getTileAt((BlockGetter)this.getLevel(), relayPos, TileSpectralRelay.class, true);
             if (tsr != null) {
                 tsr.updateAltarLinkState();
             }

@@ -58,7 +58,7 @@ public class MarkerManagerAS
     private static void makeCollectorCrystal(final IWorld world, final BlockPos pos, final Random rand, final MutableBoundingBox box) {
         if (box.func_175898_b((Vec3i)pos) && world.getBlockState(pos).getBlock() != BlocksAS.ROCK_COLLECTOR_CRYSTAL) {
             world.func_180501_a(pos, BlocksAS.ROCK_COLLECTOR_CRYSTAL.defaultBlockState(), 2);
-            final TileCollectorCrystal tcc = MiscUtils.getTileAt((IBlockReader)world, pos, TileCollectorCrystal.class, true);
+            final TileCollectorCrystal tcc = MiscUtils.getTileAt((BlockGetter)world, pos, TileCollectorCrystal.class, true);
             if (tcc != null) {
                 final IMajorConstellation cst = MiscUtils.getRandomEntry(ConstellationRegistry.getMajorConstellations(), rand);
                 tcc.setAttributes(CrystalPropertiesAS.WORLDGEN_SHRINE_COLLECTOR_ATTRIBUTES);
@@ -69,9 +69,9 @@ public class MarkerManagerAS
     
     private static void makeChest(final IWorld world, final BlockPos pos, final ResourceLocation tableName, final Random rand, final MutableBoundingBox box) {
         if (box.func_175898_b((Vec3i)pos) && world.getBlockState(pos).getBlock() != Blocks.field_150486_ae) {
-            final BlockState chest = StructurePiece.func_197528_a((IBlockReader)world, pos, Blocks.field_150486_ae.defaultBlockState());
+            final BlockState chest = StructurePiece.func_197528_a((BlockGetter)world, pos, Blocks.field_150486_ae.defaultBlockState());
             world.func_180501_a(pos, chest, 2);
-            LockableLootTileEntity.func_195479_a((IBlockReader)world, rand, pos, tableName);
+            LockableLootTileEntity.func_195479_a((BlockGetter)world, rand, pos, tableName);
         }
     }
 }

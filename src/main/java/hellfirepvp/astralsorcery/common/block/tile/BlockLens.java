@@ -58,7 +58,7 @@ public class BlockLens extends BlockStarlightNetwork implements CustomItemBlock
     }
     
     public void func_176208_a(final Level world, final BlockPos pos, final BlockState state, final Player player) {
-        final TileLens lens = MiscUtils.getTileAt((IBlockReader)world, pos, TileLens.class, true);
+        final TileLens lens = MiscUtils.getTileAt((BlockGetter)world, pos, TileLens.class, true);
         if (lens != null && !world.level().isClientSide() && !player.getVehicle() && lens.getColorType() != null) {
             final ItemStack drop = lens.getColorType().getStack();
             ItemUtils.dropItemNaturally(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop);
@@ -68,7 +68,7 @@ public class BlockLens extends BlockStarlightNetwork implements CustomItemBlock
     
     public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
         if (!world.level().isClientSide() && player.isCrouching()) {
-            final TileLens lens = MiscUtils.getTileAt((IBlockReader)world, pos, TileLens.class, true);
+            final TileLens lens = MiscUtils.getTileAt((BlockGetter)world, pos, TileLens.class, true);
             if (lens != null && lens.getColorType() != null) {
                 final ItemStack drop = lens.getColorType().getStack();
                 if (player.getItemInHand(hand).isEmpty()) {
@@ -94,7 +94,7 @@ public class BlockLens extends BlockStarlightNetwork implements CustomItemBlock
         return (BlockState)this.defaultBlockState().setValue((Property)BlockLens.PLACED_AGAINST, (Comparable)context.func_196000_l().func_176734_d());
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         switch ((Direction)state.getValue((Property)BlockLens.PLACED_AGAINST)) {
             case UP: {
                 return BlockLens.LENS_UP;
@@ -117,7 +117,7 @@ public class BlockLens extends BlockStarlightNetwork implements CustomItemBlock
         }
     }
     
-    public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {
+    public boolean func_196266_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final PathType type) {
         return false;
     }
     
@@ -126,7 +126,7 @@ public class BlockLens extends BlockStarlightNetwork implements CustomItemBlock
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader worldIn) {
+    public BlockEntity func_196283_a_(final BlockGetter worldIn) {
         return new TileLens();
     }
     

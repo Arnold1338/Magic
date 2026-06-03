@@ -45,7 +45,7 @@ public class BlockObservatory extends BaseEntityBlock implements LargeBlock, Cus
     
     public InteractionResult func_225533_a_(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final Hand handIn, final BlockHitResult hit) {
         if (!worldIn.level()) {
-            final TileObservatory observatory = MiscUtils.getTileAt((IBlockReader)worldIn, pos, TileObservatory.class, false);
+            final TileObservatory observatory = MiscUtils.getTileAt((BlockGetter)worldIn, pos, TileObservatory.class, false);
             if (observatory != null && observatory.isUsable() && !player.isCrouching()) {
                 final Entity entity = observatory.findRideableObservatoryEntity();
                 if (entity != null) {
@@ -59,12 +59,12 @@ public class BlockObservatory extends BaseEntityBlock implements LargeBlock, Cus
         return InteractionResult.SUCCESS;
     }
     
-    public VoxelShape func_220071_b(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220071_b(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         return VoxelShapes.func_197880_a();
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader worldIn) {
+    public BlockEntity func_196283_a_(final BlockGetter worldIn) {
         return new TileObservatory();
     }
     

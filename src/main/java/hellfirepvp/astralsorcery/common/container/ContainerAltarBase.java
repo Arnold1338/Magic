@@ -4,12 +4,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.inventory.Slot;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import java.util.Optional;
 import net.minecraft.world.entity.player.Player;
 import javax.annotation.Nullable;
-import net.minecraft.world.level.inventory.MenuType;
+import net.minecraft.world.inventory.MenuType;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
 import net.minecraft.world.entity.player.Inventory;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
@@ -74,6 +74,6 @@ public abstract class ContainerAltarBase extends ContainerTileEntity<TileAltar>
     
     public boolean func_75145_c(final Player player) {
         final BlockPos pos = this.getTileEntity().getBlockState();
-        return MiscUtils.getTileAt((IBlockReader)this.getTileEntity().getLevel(), pos, BlockEntity.class, false) == ((ContainerTileEntity<BlockEntity>)this).getTileEntity() && player.func_70092_e(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5) <= 64.0;
+        return MiscUtils.getTileAt((BlockGetter)this.getTileEntity().getLevel(), pos, BlockEntity.class, false) == ((ContainerTileEntity<BlockEntity>)this).getTileEntity() && player.func_70092_e(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5) <= 64.0;
     }
 }

@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.integration.jei;
 
 import org.apache.logging.log4j.LogManager;
-import net.minecraft.world.level.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import javax.annotation.Nullable;
 import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import java.util.Iterator;
@@ -19,7 +19,7 @@ import mezz.jei.transfer.RecipeTransferUtil;
 import java.util.Map;
 import net.minecraft.world.item.ItemStack;
 import mezz.jei.api.gui.ingredient.IGuiIngredient;
-import net.minecraft.world.level.inventory.Slot;
+import net.minecraft.world.inventory.Slot;
 import java.util.HashMap;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import mezz.jei.util.Translator;

@@ -24,7 +24,7 @@ public abstract class BlockCrystalContainer extends BaseEntityBlock
         super(builder);
     }
     
-    public ItemStack getPickBlock(final BlockState state, final HitResult target, final IBlockReader world, final BlockPos pos, final Player player) {
+    public ItemStack getPickBlock(final BlockState state, final HitResult target, final BlockGetter world, final BlockPos pos, final Player player) {
         final ItemStack stack = super.getPickBlock(state, target, world, pos, player);
         if (stack.getItem() instanceof CrystalAttributeItem) {
             final CrystalAttributeTile cat = MiscUtils.getTileAt(world, pos, CrystalAttributeTile.class, true);
@@ -45,13 +45,13 @@ public abstract class BlockCrystalContainer extends BaseEntityBlock
     public void func_180633_a(final Level world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
         final Item i = stack.getItem();
         if (i instanceof CrystalAttributeItem) {
-            final CrystalAttributeTile cat = MiscUtils.getTileAt((IBlockReader)world, pos, CrystalAttributeTile.class, true);
+            final CrystalAttributeTile cat = MiscUtils.getTileAt((BlockGetter)world, pos, CrystalAttributeTile.class, true);
             if (cat != null) {
                 cat.setAttributes(((CrystalAttributeItem)i).getAttributes(stack));
             }
         }
         if (i instanceof ConstellationItem) {
-            final ConstellationTile ct = MiscUtils.getTileAt((IBlockReader)world, pos, ConstellationTile.class, true);
+            final ConstellationTile ct = MiscUtils.getTileAt((BlockGetter)world, pos, ConstellationTile.class, true);
             if (ct != null) {
                 ct.setAttunedConstellation(((ConstellationItem)i).getAttunedConstellation(stack));
                 ct.setTraitConstellation(((ConstellationItem)i).getTraitConstellation(stack));

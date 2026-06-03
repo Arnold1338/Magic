@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.common.perk.node.root;
 
 import net.minecraft.util.CombatTracker;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;

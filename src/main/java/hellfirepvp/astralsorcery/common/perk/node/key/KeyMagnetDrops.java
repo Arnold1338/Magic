@@ -4,7 +4,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.Iterator;
 import java.util.List;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.entity.item.ItemEntity;

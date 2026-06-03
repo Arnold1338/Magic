@@ -27,7 +27,7 @@ public class BlockTreeBeaconComponent extends BlockFakedState
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader worldIn) {
+    public BlockEntity func_196283_a_(final BlockGetter worldIn) {
         return new TileTreeBeaconComponent();
     }
 }

@@ -33,19 +33,19 @@ public class BlockVanishing extends BaseEntityBlock
     public void func_180655_c(final BlockState state, final Level world, final BlockPos pos, final Random random) {
     }
     
-    public boolean canEntityDestroy(final BlockState state, final IBlockReader world, final BlockPos pos, final Entity entity) {
+    public boolean canEntityDestroy(final BlockState state, final BlockGetter world, final BlockPos pos, final Entity entity) {
         return false;
     }
     
-    public boolean canCreatureSpawn(final BlockState state, final IBlockReader world, final BlockPos pos, final SpawnPlacements.PlacementType type, @Nullable final EntityType<?> entityType) {
+    public boolean canCreatureSpawn(final BlockState state, final BlockGetter world, final BlockPos pos, final SpawnPlacements.PlacementType type, @Nullable final EntityType<?> entityType) {
         return false;
     }
     
-    public VoxelShape func_220053_a(final BlockState p_220053_1_, final IBlockReader p_220053_2_, final BlockPos p_220053_3_, final CollisionContext p_220053_4_) {
+    public VoxelShape func_220053_a(final BlockState p_220053_1_, final BlockGetter p_220053_2_, final BlockPos p_220053_3_, final CollisionContext p_220053_4_) {
         return VoxelShapes.func_197880_a();
     }
     
-    public VoxelShape func_220071_b(final BlockState state, final IBlockReader world, final BlockPos pos, final CollisionContext ctx) {
+    public VoxelShape func_220071_b(final BlockState state, final BlockGetter world, final BlockPos pos, final CollisionContext ctx) {
         if (ctx.getEntity() instanceof Player) {
             return VoxelShapes.func_197868_b();
         }
@@ -53,7 +53,7 @@ public class BlockVanishing extends BaseEntityBlock
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader worldIn) {
+    public BlockEntity func_196283_a_(final BlockGetter worldIn) {
         return new TileVanishing();
     }
 }

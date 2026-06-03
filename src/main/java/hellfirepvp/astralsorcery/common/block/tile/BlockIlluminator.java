@@ -49,18 +49,18 @@ public class BlockIlluminator extends BaseEntityBlock implements CustomItemBlock
     public void func_180633_a(final Level world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
         super.func_180633_a(world, pos, state, placer, stack);
         if (!world.level().isClientSide() && placer instanceof Player) {
-            final TileIlluminator illuminator = MiscUtils.getTileAt((IBlockReader)world, pos, TileIlluminator.class, true);
+            final TileIlluminator illuminator = MiscUtils.getTileAt((BlockGetter)world, pos, TileIlluminator.class, true);
             if (illuminator != null) {
                 illuminator.setPlayerPlaced(true);
             }
         }
     }
     
-    public VoxelShape func_220053_a(final BlockState p_220053_1_, final IBlockReader p_220053_2_, final BlockPos p_220053_3_, final CollisionContext p_220053_4_) {
+    public VoxelShape func_220053_a(final BlockState p_220053_1_, final BlockGetter p_220053_2_, final BlockPos p_220053_3_, final CollisionContext p_220053_4_) {
         return this.shape;
     }
     
-    public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {
+    public boolean func_196266_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final PathType type) {
         return false;
     }
     
@@ -69,7 +69,7 @@ public class BlockIlluminator extends BaseEntityBlock implements CustomItemBlock
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader world) {
+    public BlockEntity func_196283_a_(final BlockGetter world) {
         return new TileIlluminator();
     }
 }

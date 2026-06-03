@@ -15,7 +15,7 @@ import net.minecraft.core.BlockPos;
 import java.util.Random;
 import net.minecraft.world.level.levelgen.feature.WorldDecoratingHelper;
 import net.minecraft.world.level.levelgen.placement.NoPlacementConfig;
-import net.minecraft.world.level.levelgen.placement.Placement;
+
 
 public class RiverbedPlacement extends Placement<NoPlacementConfig>
 {

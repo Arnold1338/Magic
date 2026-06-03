@@ -157,7 +157,7 @@ public class CropHelper
         @Override
         public boolean canHarvest(final IWorld world) {
             final BlockState at = world.getBlockState(this.pos);
-            return at.getBlock() instanceof BonemealableBlock && !(at.getBlock() instanceof StemBlock) && !((BonemealableBlock)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false);
+            return at.getBlock() instanceof BonemealableBlock && !(at.getBlock() instanceof StemBlock) && !((BonemealableBlock)at.getBlock()).func_176473_a((BlockGetter)world, this.pos, at, false);
         }
         
         @Override
@@ -168,7 +168,7 @@ public class CropHelper
                 final BlockState at = world.getBlockState(this.getPos());
                 if (at.getBlock() instanceof IPlantable) {
                     drops.addAll((Collection)BlockUtils.getDrops(world, pos, harvestFortune, rand));
-                    world.func_175656_a(pos, ((IPlantable)at.getBlock()).getPlant((IBlockReader)world, pos));
+                    world.func_175656_a(pos, ((IPlantable)at.getBlock()).getPlant((BlockGetter)world, pos));
                 }
             }
             return drops;
@@ -193,7 +193,7 @@ public class CropHelper
         public boolean canGrow(final IWorld world) {
             final BlockState at = world.getBlockState(this.pos);
             if (at.getBlock() instanceof BonemealableBlock) {
-                if (((BonemealableBlock)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false)) {
+                if (((BonemealableBlock)at.getBlock()).func_176473_a((BlockGetter)world, this.pos, at, false)) {
                     return true;
                 }
                 if (at.getBlock() instanceof StemBlock) {
@@ -210,7 +210,7 @@ public class CropHelper
             }
             final BlockState at = world.getBlockState(this.pos);
             if (at.getBlock() instanceof BonemealableBlock) {
-                if (((BonemealableBlock)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false)) {
+                if (((BonemealableBlock)at.getBlock()).func_176473_a((BlockGetter)world, this.pos, at, false)) {
                     ((BonemealableBlock)at.getBlock()).func_225535_a_((ServerLevel)world, rand, this.pos, at);
                     return true;
                 }
@@ -313,7 +313,7 @@ public class CropHelper
             for (int i = 1; i < 3; ++i) {
                 cache = cache.above();
                 final BlockState upState = world.getBlockState(cache);
-                if (upState.isAir((IBlockReader)world, cache)) {
+                if (upState.isAir((BlockGetter)world, cache)) {
                     return true;
                 }
                 if (!(upState.getBlock() instanceof CactusBlock)) {
@@ -329,7 +329,7 @@ public class CropHelper
             for (int i = 1; i < 3; ++i) {
                 cache = cache.above();
                 final BlockState upState = world.getBlockState(cache);
-                if (upState.isAir((IBlockReader)world, cache)) {
+                if (upState.isAir((BlockGetter)world, cache)) {
                     return rand.nextBoolean() && world.func_180501_a(cache, Blocks.field_150434_aF.defaultBlockState(), 3);
                 }
                 if (!(upState.getBlock() instanceof CactusBlock)) {
@@ -388,7 +388,7 @@ public class CropHelper
             for (int i = 1; i < 3; ++i) {
                 cache = cache.above();
                 final BlockState upState = world.getBlockState(cache);
-                if (upState.isAir((IBlockReader)world, cache)) {
+                if (upState.isAir((BlockGetter)world, cache)) {
                     return true;
                 }
                 if (!(upState.getBlock() instanceof SugarCaneBlock)) {
@@ -404,7 +404,7 @@ public class CropHelper
             for (int i = 1; i < 3; ++i) {
                 cache = cache.above();
                 final BlockState upState = world.getBlockState(cache);
-                if (upState.isAir((IBlockReader)world, cache)) {
+                if (upState.isAir((BlockGetter)world, cache)) {
                     return rand.nextBoolean() && world.func_180501_a(cache, Blocks.field_196608_cF.defaultBlockState(), 3);
                 }
                 if (!(upState.getBlock() instanceof SugarCaneBlock)) {
@@ -441,7 +441,7 @@ public class CropHelper
         @Override
         public boolean canGrow(final IWorld world) {
             final BlockState state = world.getBlockState(this.pos);
-            return state.getBlock() instanceof CropsBlock && ((CropsBlock)state.getBlock()).func_176473_a((IBlockReader)world, this.pos, state, false);
+            return state.getBlock() instanceof CropsBlock && ((CropsBlock)state.getBlock()).func_176473_a((BlockGetter)world, this.pos, state, false);
         }
         
         @Override
@@ -449,7 +449,7 @@ public class CropHelper
             final BlockState state = world.getBlockState(this.pos);
             if (state.getBlock() instanceof CropsBlock) {
                 final CropsBlock block = (CropsBlock)state.getBlock();
-                if (block.func_176473_a((IBlockReader)world, this.pos, state, false)) {
+                if (block.func_176473_a((BlockGetter)world, this.pos, state, false)) {
                     final int age = (int)state.getValue((Property)block.func_185524_e());
                     final int next = Math.min(age + 1, block.func_185526_g());
                     return world.func_180501_a(this.pos, block.func_185528_e(next), 3);
@@ -461,7 +461,7 @@ public class CropHelper
         @Override
         public boolean canHarvest(final IWorld world) {
             final BlockState state = world.getBlockState(this.pos);
-            return state.getBlock() instanceof CropsBlock && !((CropsBlock)state.getBlock()).func_176473_a((IBlockReader)world, this.pos, state, false);
+            return state.getBlock() instanceof CropsBlock && !((CropsBlock)state.getBlock()).func_176473_a((BlockGetter)world, this.pos, state, false);
         }
         
         @Override
@@ -514,7 +514,7 @@ public class CropHelper
         @Override
         public boolean canGrow(final IWorld world) {
             final BlockState at = world.getBlockState(this.pos);
-            return at.getBlock() instanceof BonemealableBlock && (((BonemealableBlock)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false) || (at.getBlock() instanceof StemBlock && !this.stemHasCrop(world, (Block)((StemBlock)at.getBlock()).func_208486_d())));
+            return at.getBlock() instanceof BonemealableBlock && (((BonemealableBlock)at.getBlock()).func_176473_a((BlockGetter)world, this.pos, at, false) || (at.getBlock() instanceof StemBlock && !this.stemHasCrop(world, (Block)((StemBlock)at.getBlock()).func_208486_d())));
         }
         
         private boolean stemHasCrop(final IWorld world, final Block stemGrownBlock) {
@@ -531,7 +531,7 @@ public class CropHelper
         public boolean tryGrow(final IWorld world, final Random rand) {
             final BlockState at = world.getBlockState(this.pos);
             if (at.getBlock() instanceof BonemealableBlock && world instanceof ServerLevel) {
-                if (((BonemealableBlock)at.getBlock()).func_176473_a((IBlockReader)world, this.pos, at, false)) {
+                if (((BonemealableBlock)at.getBlock()).func_176473_a((BlockGetter)world, this.pos, at, false)) {
                     if (!((BonemealableBlock)at.getBlock()).func_180670_a((Level)world, rand, this.pos, at) && rand.nextInt(20) != 0) {
                         return true;
                     }

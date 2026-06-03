@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.event.handler;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ISeedReader;
 import hellfirepvp.astralsorcery.common.capability.ChunkFluidEntry;
-import net.minecraft.world.level.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffectInstance;
 import java.util.Collection;
 import hellfirepvp.astralsorcery.common.effect.EffectDropModifier;
 import net.minecraft.world.entity.AreaEffectCloud;
@@ -53,7 +53,7 @@ public class EventHandlerMisc
         if (event.getWorld().level()) {
 
         }
-        final LecternTileEntity lectern = MiscUtils.getTileAt((IBlockReader)event.getWorld(), event.getPos(), LecternTileEntity.class, false);
+        final LecternTileEntity lectern = MiscUtils.getTileAt((BlockGetter)event.getWorld(), event.getPos(), LecternTileEntity.class, false);
         if (lectern != null) {
             final ItemStack contained = lectern.func_214033_c();
             if (contained.getItem() instanceof ItemTome) {

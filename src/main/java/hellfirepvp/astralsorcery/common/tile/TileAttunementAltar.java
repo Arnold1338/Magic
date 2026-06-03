@@ -152,7 +152,7 @@ public class TileAttunementAltar extends TileEntityTick
             }
             if (this.activeConstellation != null) {
                 for (final BlockPos pos : this.getConstellationPositions(this.activeConstellation)) {
-                    final TileSpectralRelay relay = MiscUtils.getTileAt((IBlockReader)this.getLevel(), pos, TileSpectralRelay.class, false);
+                    final TileSpectralRelay relay = MiscUtils.getTileAt((BlockGetter)this.getLevel(), pos, TileSpectralRelay.class, false);
                     if (relay != null && !relay.getInventory().getStackInSlot(0).isEmpty()) {
                         ItemUtils.dropInventory((IItemHandler)relay.getInventory(), this.getLevel(), pos.above());
                         relay.getInventory().clearInventory();
@@ -394,7 +394,7 @@ public class TileAttunementAltar extends TileEntityTick
                 if (expectedRelayPos.equals((Object)this.getBlockState())) {
 
                 }
-                final BlockEntity tile = MiscUtils.getTileAt((IBlockReader)this.getLevel(), expectedRelayPos, BlockEntity.class, true);
+                final BlockEntity tile = MiscUtils.getTileAt((BlockGetter)this.getLevel(), expectedRelayPos, BlockEntity.class, true);
                 if (!(tile instanceof TileSpectralRelay) && !(tile instanceof TileAttunementAltar)) {
                     isValid = false;
 

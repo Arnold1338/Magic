@@ -2,7 +2,7 @@ package hellfirepvp.astralsorcery.client.util.camera;
 
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.client.player.AbstractClientPlayerEntity;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.client.Minecraft;
 
@@ -22,7 +22,7 @@ public class CameraTransformerPlayerFocus extends CameraTransformerSettingsCache
         super.onStartTransforming(pTicks);
         final EntityClientReplacement repl = new EntityClientReplacement();
         repl.func_70020_e(Minecraft.getInstance().player.func_189511_e(new CompoundTag()));
-        Minecraft.getInstance().level.func_217408_a(repl.func_145782_y(), (AbstractClientPlayerEntity)repl);
+        Minecraft.getInstance().level.func_217408_a(repl.func_145782_y(), (AbstractClientPlayer)repl);
         this.clientEntity = repl;
         this.entity.setAsRenderViewEntity();
     }

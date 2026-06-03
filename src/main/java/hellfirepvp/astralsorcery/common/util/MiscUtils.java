@@ -84,7 +84,7 @@ import net.minecraft.world.level.BlockGetter;
 public class MiscUtils
 {
     @Nullable
-    public static <T> T getTileAt(final IBlockReader world, final BlockPos pos, final Class<T> tileClass, final boolean forceChunkLoad) {
+    public static <T> T getTileAt(final BlockGetter world, final BlockPos pos, final Class<T> tileClass, final boolean forceChunkLoad) {
         if (world == null || pos == null) {
             return null;
         }
@@ -452,7 +452,7 @@ public class MiscUtils
         for (BlockPos blockpos = new BlockPos(at.getX(), chunk.func_76625_h() + 16, at.getZ()); blockpos.getY() >= 0; blockpos = downPos) {
             downPos = blockpos.renderItem();
             final BlockState test = world.getBlockState(downPos);
-            if (!world.isEmptyBlock(downPos) && !test.func_235714_a_((ITag)BlockTags.field_206952_E) && test.func_224755_d((IBlockReader)world, downPos, Direction.UP)) {
+            if (!world.isEmptyBlock(downPos) && !test.func_235714_a_((ITag)BlockTags.field_206952_E) && test.func_224755_d((BlockGetter)world, downPos, Direction.UP)) {
 
             }
         }

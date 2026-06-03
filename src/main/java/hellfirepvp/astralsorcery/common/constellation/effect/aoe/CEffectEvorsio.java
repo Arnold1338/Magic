@@ -131,8 +131,8 @@ public class CEffectEvorsio extends CEffectAbstractList<ListEntries.PosEntry>
         if (blacklist.test(state)) {
             return false;
         }
-        final float hardness = state.func_185887_b((IBlockReader)world, pos);
-        return hardness >= 0.0f && hardness < 75.0f && !state.isAir((IBlockReader)world, pos);
+        final float hardness = state.func_185887_b((BlockGetter)world, pos);
+        return hardness >= 0.0f && hardness < 75.0f && !state.isAir((BlockGetter)world, pos);
     }
     
     private Predicate<BlockState> buildFilter(final TileRitualPedestal pedestal) {

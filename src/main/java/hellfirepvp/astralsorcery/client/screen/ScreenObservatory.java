@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.client.screen;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import hellfirepvp.astralsorcery.common.container.ContainerTileEntity;
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import net.minecraft.world.level.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.util.Tuple;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import java.awt.Color;

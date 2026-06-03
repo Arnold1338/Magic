@@ -27,7 +27,7 @@ public class BlockTranslucentBlock extends BlockFakedState
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader world) {
+    public BlockEntity func_196283_a_(final BlockGetter world) {
         return new TileTranslucentBlock();
     }
 }

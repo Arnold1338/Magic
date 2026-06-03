@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceKey;
 import java.util.List;
 import com.mojang.serialization.Codec;
 import hellfirepvp.astralsorcery.common.world.placement.config.WorldFilterConfig;
-import net.minecraft.world.level.levelgen.placement.Placement;
+
 
 public class WorldFilteredPlacement extends Placement<WorldFilterConfig>
 {

@@ -65,13 +65,13 @@ public abstract class ConstellationEffect
     
     @Nullable
     public TileRitualPedestal getPedestal(final Level world, BlockPos pos) {
-        final BlockEntity te = MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, false);
+        final BlockEntity te = MiscUtils.getTileAt((BlockGetter)world, pos, BlockEntity.class, false);
         if (te instanceof TileRitualLink) {
             final TileRitualLink link = (TileRitualLink)te;
             pos = link.getLinkedTo();
             if (pos != null) {
                 pos = pos.func_177973_b((Vec3i)TileRitualPedestal.RITUAL_ANCHOR_OFFEST);
-                return MiscUtils.getTileAt((IBlockReader)world, pos, TileRitualPedestal.class, false);
+                return MiscUtils.getTileAt((BlockGetter)world, pos, TileRitualPedestal.class, false);
             }
         }
         return (te instanceof TileRitualPedestal) ? ((TileRitualPedestal)te) : null;

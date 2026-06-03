@@ -36,7 +36,7 @@ public class CrystalTransmissionNode extends SimpleTransmissionNode
     
     @Override
     public void onTransmissionTick(final Level world, final float starlightAmt, final IWeakConstellation type) {
-        final TileLens lens = MiscUtils.getTileAt((IBlockReader)world, this.getLocationPos(), TileLens.class, false);
+        final TileLens lens = MiscUtils.getTileAt((BlockGetter)world, this.getLocationPos(), TileLens.class, false);
         if (lens != null) {
             lens.transmissionTick(starlightAmt, type);
         }

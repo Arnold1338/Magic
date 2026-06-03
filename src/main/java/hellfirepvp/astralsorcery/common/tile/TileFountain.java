@@ -110,7 +110,7 @@ public class TileFountain extends TileEntityTick
         if (world == null) {
 
         }
-        final TileFountain fountain = MiscUtils.getTileAt((IBlockReader)world, at, TileFountain.class, false);
+        final TileFountain fountain = MiscUtils.getTileAt((BlockGetter)world, at, TileFountain.class, false);
         if (fountain == null) {
 
         }
@@ -128,7 +128,7 @@ public class TileFountain extends TileEntityTick
         if (world == null) {
 
         }
-        final TileFountain fountain = MiscUtils.getTileAt((IBlockReader)world, at, TileFountain.class, false);
+        final TileFountain fountain = MiscUtils.getTileAt((BlockGetter)world, at, TileFountain.class, false);
         if (fountain == null) {
 
         }
@@ -144,7 +144,7 @@ public class TileFountain extends TileEntityTick
         if (this.tickDrawLiquidStarlight <= 0) {
             this.tickDrawLiquidStarlight = 100;
             if (this.mbLiquidStarlight < 12800.0f && this.currentEffect != null) {
-                final TileChalice chalice = MiscUtils.getTileAt((IBlockReader)this.level, this.field_174879_c.above(), TileChalice.class, false);
+                final TileChalice chalice = MiscUtils.getTileAt((BlockGetter)this.level, this.field_174879_c.above(), TileChalice.class, false);
                 if (chalice != null) {
                     final FluidStack fluid = chalice.getTank().drain(400, IFluidHandler.FluidAction.SIMULATE);
                     if (!fluid.isEmpty() && fluid.getFluid() instanceof FluidLiquidStarlight) {

@@ -66,7 +66,7 @@ public class BlockRitualPedestal extends BlockStarlightNetwork implements Custom
         if (world.level()) {
             return InteractionResult.SUCCESS;
         }
-        final TileRitualPedestal pedestal = MiscUtils.getTileAt((IBlockReader)world, pos, TileRitualPedestal.class, true);
+        final TileRitualPedestal pedestal = MiscUtils.getTileAt((BlockGetter)world, pos, TileRitualPedestal.class, true);
         if (pedestal == null) {
             return InteractionResult.PASS;
         }
@@ -89,32 +89,32 @@ public class BlockRitualPedestal extends BlockStarlightNetwork implements Custom
     
     public void func_220069_a(final BlockState state, final Level world, final BlockPos pos, final Block block, final BlockPos fromPos, final boolean isMoving) {
         super.func_220069_a(state, world, pos, block, fromPos, isMoving);
-        final TileRitualPedestal te = MiscUtils.getTileAt((IBlockReader)world, pos, TileRitualPedestal.class, true);
+        final TileRitualPedestal te = MiscUtils.getTileAt((BlockGetter)world, pos, TileRitualPedestal.class, true);
         if (te != null && !world.level()) {
             final BlockPos toCheck = pos.above();
             final BlockState other = world.getBlockState(toCheck);
-            if (Block.func_208061_a(other.func_196952_d((IBlockReader)world, pos), Direction.DOWN)) {
+            if (Block.func_208061_a(other.func_196952_d((BlockGetter)world, pos), Direction.DOWN)) {
                 ItemUtils.dropItem(world, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, te.getCurrentCrystal());
                 te.tryPlaceCrystalInPedestal(ItemStack.EMPTY);
             }
         }
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         return this.shape;
     }
     
     public void func_180633_a(final Level world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
         super.func_180633_a(world, pos, state, placer, stack);
         if (placer instanceof Player) {
-            final TileRitualPedestal pedestal = MiscUtils.getTileAt((IBlockReader)world, pos, TileRitualPedestal.class, true);
+            final TileRitualPedestal pedestal = MiscUtils.getTileAt((BlockGetter)world, pos, TileRitualPedestal.class, true);
             if (pedestal != null) {
                 pedestal.setOwner(placer.getUUID());
             }
         }
     }
     
-    public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {
+    public boolean func_196266_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final PathType type) {
         return false;
     }
     
@@ -123,7 +123,7 @@ public class BlockRitualPedestal extends BlockStarlightNetwork implements Custom
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader worldIn) {
+    public BlockEntity func_196283_a_(final BlockGetter worldIn) {
         return new TileRitualPedestal();
     }
 }

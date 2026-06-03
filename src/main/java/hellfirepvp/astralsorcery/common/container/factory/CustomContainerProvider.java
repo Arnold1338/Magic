@@ -10,9 +10,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.inventory.MenuType;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.INamedContainerProvider;
-import net.minecraft.world.level.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 
 public abstract class CustomContainerProvider<C extends Container> implements INamedContainerProvider
 {

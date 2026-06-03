@@ -13,7 +13,7 @@ import net.minecraft.world.level.BlockGetter;
 
 public class BlockSymmetryHelper
 {
-    public SymmetryResult getDotSymmetry(final IBlockReader world, final BlockPos center, final int radiusLayer, final boolean allowMirrorSymmetry, final Predicate<BlockState> applicableStateFilter) {
+    public SymmetryResult getDotSymmetry(final BlockGetter world, final BlockPos center, final int radiusLayer, final boolean allowMirrorSymmetry, final Predicate<BlockState> applicableStateFilter) {
         final List<BlockPos> layerPositions = BlockGeometry.getHollowSphere(radiusLayer + 1, radiusLayer);
         final SymmetryResult result = new SymmetryResult(layerPositions.size());
         final Set<BlockPos> visitedBlocks = new HashSet<BlockPos>();
@@ -58,7 +58,7 @@ public class BlockSymmetryHelper
         return result;
     }
     
-    private static void checkMirrorSymmetry(final IBlockReader world, final Vec3i offset, final BlockPos center, final SymmetryResult result, final Set<BlockPos> visitedBlocks) {
+    private static void checkMirrorSymmetry(final BlockGetter world, final Vec3i offset, final BlockPos center, final SymmetryResult result, final Set<BlockPos> visitedBlocks) {
         final BlockPos at = center.func_177971_a(offset);
         final BlockState state = world.getBlockState(at);
         visitedBlocks.add(at);

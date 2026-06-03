@@ -126,7 +126,7 @@ public class RenderingUtils
         }
         final BlockPos pos = (positionHint != null) ? positionHint : BlockPos.field_177992_a;
         try {
-            if (state.isAir((IBlockReader)world, pos)) {
+            if (state.isAir((BlockGetter)world, pos)) {
                 return null;
             }
         }
@@ -141,7 +141,7 @@ public class RenderingUtils
         final ParticleEngine mgr = Minecraft.getInstance().field_71452_i;
         VoxelShape voxelshape;
         try {
-            voxelshape = ((actualState == null) ? VoxelShapes.func_197868_b() : actualState.func_196954_c((IBlockReader)world, pos));
+            voxelshape = ((actualState == null) ? VoxelShapes.func_197868_b() : actualState.func_196954_c((BlockGetter)world, pos));
         }
         catch (final Exception exc) {
             voxelshape = VoxelShapes.func_197868_b();

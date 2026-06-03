@@ -45,7 +45,7 @@ public class TileGemCrystals extends TileEntityTick
     
     @OnlyIn(Dist.CLIENT)
     private void playHarvestEffects() {
-        final Vector3 pos = new Vector3(this).add(0.5, 0.5, 0.5).add(this.func_195044_w().func_191059_e((IBlockReader)this.getLevel(), this.getBlockState()));
+        final Vector3 pos = new Vector3(this).add(0.5, 0.5, 0.5).add(this.func_195044_w().func_191059_e((BlockGetter)this.getLevel(), this.getBlockState()));
         MiscUtils.applyRandomOffset(pos, TileGemCrystals.rand, 0.5f);
         EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE).spawn(pos).color(VFXColorFunction.constant(this.getGrowth().getDisplayColor())).setScaleMultiplier(0.1f + TileGemCrystals.rand.nextFloat() * 0.05f).setMaxAge(15 + TileGemCrystals.rand.nextInt(5));
     }

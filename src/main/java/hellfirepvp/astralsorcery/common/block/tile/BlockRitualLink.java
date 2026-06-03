@@ -23,7 +23,7 @@ public class BlockRitualLink extends BaseEntityBlock implements CustomItemBlock
         super(PropertiesGlass.coatedGlass().harvestTool(ToolType.PICKAXE));
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         return BlockRitualLink.RITUAL_LINK;
     }
     
@@ -32,7 +32,7 @@ public class BlockRitualLink extends BaseEntityBlock implements CustomItemBlock
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader worldIn) {
+    public BlockEntity func_196283_a_(final BlockGetter worldIn) {
         return new TileRitualLink();
     }
     

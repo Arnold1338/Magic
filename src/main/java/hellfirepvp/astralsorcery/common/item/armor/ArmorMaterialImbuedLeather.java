@@ -8,9 +8,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.IArmorMaterial;
+import net.minecraft.world.item.ArmorMaterial;
 
-public class ArmorMaterialImbuedLeather implements IArmorMaterial
+public class ArmorMaterialImbuedLeather implements ArmorMaterial
 {
     public int func_200896_a(final EquipmentSlot slot) {
         return 486;

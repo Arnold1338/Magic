@@ -77,7 +77,7 @@ public class GatewayUIRenderHandler implements ITickHandler
         }
         final Level world = (Level)Minecraft.getInstance().level;
         final TileCelestialGateway gateway;
-        if (world == null || this.currentUI.getVisibleTicks() <= 0 || !this.currentUI.getDimType().equals(world.dimension()) || (gateway = MiscUtils.getTileAt((IBlockReader)world, this.currentUI.getPos(), TileCelestialGateway.class, true)) == null || !gateway.doesSeeSky() || !gateway.hasMultiblock()) {
+        if (world == null || this.currentUI.getVisibleTicks() <= 0 || !this.currentUI.getDimType().equals(world.dimension()) || (gateway = MiscUtils.getTileAt((BlockGetter)world, this.currentUI.getPos(), TileCelestialGateway.class, true)) == null || !gateway.doesSeeSky() || !gateway.hasMultiblock()) {
             this.currentUI = null;
         }
         return this.currentUI == null;

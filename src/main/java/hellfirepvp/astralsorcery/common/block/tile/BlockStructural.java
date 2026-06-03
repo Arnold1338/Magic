@@ -60,7 +60,7 @@ public class BlockStructural extends Block
         builder.func_206894_a(new Property[] { (Property)BlockStructural.BLOCK_TYPE });
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
             case TELESCOPE: {
                 return BlockStructural.STRUCT_TELESCOPE;
@@ -147,7 +147,7 @@ public class BlockStructural extends Block
         }
     }
     
-    public ItemStack getPickBlock(final BlockState state, final HitResult target, final IBlockReader world, final BlockPos pos, final Player player) {
+    public ItemStack getPickBlock(final BlockState state, final HitResult target, final BlockGetter world, final BlockPos pos, final Player player) {
         switch ((BlockType)state.getValue((Property)BlockStructural.BLOCK_TYPE)) {
             case TELESCOPE: {
                 return BlockType.TELESCOPE.getSupportedState().getPickBlock(target, world, pos.renderItem(), player);

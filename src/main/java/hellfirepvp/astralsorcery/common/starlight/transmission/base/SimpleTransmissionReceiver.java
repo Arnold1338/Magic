@@ -76,7 +76,7 @@ public abstract class SimpleTransmissionReceiver<T extends TileReceiverBase<?>> 
     
     @Nullable
     public T getTileAtPos(final Level world) {
-        return MiscUtils.getTileAt((IBlockReader)world, this.getLocationPos(), this.getTileClass(), false);
+        return MiscUtils.getTileAt((BlockGetter)world, this.getLocationPos(), this.getTileClass(), false);
     }
     
     @Override

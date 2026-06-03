@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.perk.type;
 
 import java.util.Locale;
-import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;

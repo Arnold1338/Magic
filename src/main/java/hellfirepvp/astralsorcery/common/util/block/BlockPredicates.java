@@ -51,7 +51,7 @@ public class BlockPredicates
                             return true;
                         }
                     }
-                    final BlockEntity te = MiscUtils.getTileAt((IBlockReader)foundWorld, pos, BlockEntity.class, true);
+                    final BlockEntity te = MiscUtils.getTileAt((BlockGetter)foundWorld, pos, BlockEntity.class, true);
                     return te != null && te.getType().equals(tileType);
                 }
             }

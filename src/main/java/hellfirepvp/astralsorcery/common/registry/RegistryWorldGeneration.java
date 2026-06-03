@@ -45,7 +45,7 @@ import hellfirepvp.astralsorcery.common.world.structure.SmallShrineStructure;
 import hellfirepvp.astralsorcery.common.world.structure.DesertShrineStructure;
 import net.minecraft.world.level.levelgen.structure.StructurePieceType;
 import hellfirepvp.astralsorcery.common.world.structure.AncientShrineStructure;
-import net.minecraft.world.level.levelgen.placement.Placement;
+
 import net.minecraft.world.level.levelgen.feature.Feature;
 import hellfirepvp.astralsorcery.common.lib.WorldGenerationAS;
 import net.minecraft.world.level.biome.Biome;

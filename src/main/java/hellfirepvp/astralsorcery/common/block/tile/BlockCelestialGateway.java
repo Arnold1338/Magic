@@ -58,7 +58,7 @@ public class BlockCelestialGateway extends BaseEntityBlock implements CustomItem
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void func_190948_a(final ItemStack stack, @Nullable final IBlockReader worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+    public void func_190948_a(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         super.func_190948_a(stack, worldIn, (List)tooltip, flagIn);
         final DyeColor color = getColor(stack);
         if (color != null) {
@@ -66,7 +66,7 @@ public class BlockCelestialGateway extends BaseEntityBlock implements CustomItem
         }
     }
     
-    public ItemStack getPickBlock(final BlockState state, final HitResult target, final IBlockReader world, final BlockPos pos, final Player player) {
+    public ItemStack getPickBlock(final BlockState state, final HitResult target, final BlockGetter world, final BlockPos pos, final Player player) {
         final ItemStack stack = new ItemStack((ItemLike)BlocksAS.GATEWAY);
         final TileCelestialGateway gateway = MiscUtils.getTileAt(world, pos, TileCelestialGateway.class, true);
         if (gateway != null) {
@@ -78,12 +78,12 @@ public class BlockCelestialGateway extends BaseEntityBlock implements CustomItem
         return stack;
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter world, final BlockPos pos, final CollisionContext context) {
         return BlockCelestialGateway.SHAPE;
     }
     
     public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
-        final TileCelestialGateway gateway = MiscUtils.getTileAt((IBlockReader)world, pos, TileCelestialGateway.class, false);
+        final TileCelestialGateway gateway = MiscUtils.getTileAt((BlockGetter)world, pos, TileCelestialGateway.class, false);
         if (gateway != null && gateway.getOwner() != null && gateway.getOwner().isPlayer(player)) {
             if (gateway.isLocked()) {
                 if (!world.level()) {
@@ -109,7 +109,7 @@ public class BlockCelestialGateway extends BaseEntityBlock implements CustomItem
     
     public void func_180633_a(final Level world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity placer, final ItemStack stack) {
         super.func_180633_a(world, pos, state, placer, stack);
-        final TileCelestialGateway gateway = MiscUtils.getTileAt((IBlockReader)world, pos, TileCelestialGateway.class, true);
+        final TileCelestialGateway gateway = MiscUtils.getTileAt((BlockGetter)world, pos, TileCelestialGateway.class, true);
         if (gateway != null) {
             if (stack.func_82837_s()) {
                 gateway.setDisplayText(stack.func_200301_q());
@@ -121,7 +121,7 @@ public class BlockCelestialGateway extends BaseEntityBlock implements CustomItem
         }
     }
     
-    public float func_180647_a(final BlockState state, final Player player, final IBlockReader world, final BlockPos pos) {
+    public float func_180647_a(final BlockState state, final Player player, final BlockGetter world, final BlockPos pos) {
         final TileCelestialGateway gateway = MiscUtils.getTileAt(world, pos, TileCelestialGateway.class, true);
         if (gateway != null && (!gateway.isLocked() || (gateway.getOwner() != null && gateway.getOwner().isPlayer(player)))) {
             final int i = ForgeHooks.canHarvestBlock(state, player, world, pos) ? 30 : 100;
@@ -133,7 +133,7 @@ public class BlockCelestialGateway extends BaseEntityBlock implements CustomItem
     public void func_196243_a(final BlockState state, final Level world, final BlockPos pos, final BlockState newState, final boolean moving) {
         if (state != newState && !world.level()) {
             ((GatewayCache)DataAS.DOMAIN_AS.getData(world, (WorldCacheDomain.SaveKey)DataAS.KEY_GATEWAY_CACHE)).removePosition(world, pos);
-            final TileCelestialGateway gateway = MiscUtils.getTileAt((IBlockReader)world, pos, TileCelestialGateway.class, true);
+            final TileCelestialGateway gateway = MiscUtils.getTileAt((BlockGetter)world, pos, TileCelestialGateway.class, true);
             if (gateway != null && gateway.isLocked()) {
                 ItemUtils.dropItemNaturally(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack((ItemLike)ItemsAS.AQUAMARINE));
             }
@@ -149,8 +149,8 @@ public class BlockCelestialGateway extends BaseEntityBlock implements CustomItem
     }
     
     public boolean func_196260_a(final BlockState state, final IWorldReader world, final BlockPos pos) {
-        final TileCelestialGateway gateway = MiscUtils.getTileAt((IBlockReader)world, pos, TileCelestialGateway.class, true);
-        return (gateway != null && gateway.isLocked()) || func_220064_c((IBlockReader)world, pos.renderItem());
+        final TileCelestialGateway gateway = MiscUtils.getTileAt((BlockGetter)world, pos, TileCelestialGateway.class, true);
+        return (gateway != null && gateway.isLocked()) || func_220064_c((BlockGetter)world, pos.renderItem());
     }
     
     @Nullable
@@ -178,7 +178,7 @@ public class BlockCelestialGateway extends BaseEntityBlock implements CustomItem
         }
     }
     
-    public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {
+    public boolean func_196266_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final PathType type) {
         return false;
     }
     
@@ -187,7 +187,7 @@ public class BlockCelestialGateway extends BaseEntityBlock implements CustomItem
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader world) {
+    public BlockEntity func_196283_a_(final BlockGetter world) {
         return new TileCelestialGateway();
     }
     

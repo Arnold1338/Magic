@@ -220,7 +220,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         if (match != null && tplStates.size() <= 1) {
             return placeables;
         }
-        final float hardness = atState.func_185887_b((IBlockReader)world, origin);
+        final float hardness = atState.func_185887_b((BlockGetter)world, origin);
         final int cfgHardness = (int)WandsConfig.CONFIG.exchangeWandMaxHardness.get();
         if (hardness == -1.0f || (cfgHardness != -1 && hardness > cfgHardness)) {
             return placeables;

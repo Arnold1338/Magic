@@ -104,7 +104,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
             if (TileTreeBeacon.rand.nextFloat() < filled * 0.25f) {
                 final BlockPos pos = MiscUtils.getWeightedRandomEntry(this.treeComponents.keySet(), TileTreeBeacon.rand, this.treeComponents::get);
                 if (pos != null) {
-                    final TileTreeBeaconComponent component = MiscUtils.getTileAt((IBlockReader)this.getLevel(), pos, TileTreeBeaconComponent.class, false);
+                    final TileTreeBeaconComponent component = MiscUtils.getTileAt((BlockGetter)this.getLevel(), pos, TileTreeBeaconComponent.class, false);
                     if (component != null && this.harvestTree(component)) {
                         final int breakChance = (int)Config.CONFIG.breakChance.get();
                         if (breakChance > 0 && TileTreeBeacon.rand.nextInt(breakChance) == 0 && component.removeSelf()) {
@@ -173,10 +173,10 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
         }
         final Level world = this.getLevel();
         final BlockState state = world.getBlockState(pos);
-        if (state.isAir((IBlockReader)world, pos) || !this.getLevel().func_180501_a(pos, BlocksAS.TREE_BEACON_COMPONENT.defaultBlockState(), 3)) {
+        if (state.isAir((BlockGetter)world, pos) || !this.getLevel().func_180501_a(pos, BlocksAS.TREE_BEACON_COMPONENT.defaultBlockState(), 3)) {
             return false;
         }
-        final TileTreeBeaconComponent tfs = MiscUtils.getTileAt((IBlockReader)world, pos, TileTreeBeaconComponent.class, true);
+        final TileTreeBeaconComponent tfs = MiscUtils.getTileAt((BlockGetter)world, pos, TileTreeBeaconComponent.class, true);
         if (tfs == null) {
             this.getLevel().func_180501_a(pos, state, 3);
             return false;
@@ -298,7 +298,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
     public void onBreak() {
         super.onBreak();
         this.treeComponents.keySet().forEach(pos -> {
-            final TileTreeBeaconComponent component = MiscUtils.getTileAt((IBlockReader)this.getLevel(), pos, TileTreeBeaconComponent.class, true);
+            final TileTreeBeaconComponent component = MiscUtils.getTileAt((BlockGetter)this.getLevel(), pos, TileTreeBeaconComponent.class, true);
             if (component != null) {
                 component.revert();
             }
@@ -396,7 +396,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
             if (closestBeacon == null) {
 
             }
-            final TileTreeBeacon ttb = MiscUtils.getTileAt((IBlockReader)world, closestBeacon, TileTreeBeacon.class, false);
+            final TileTreeBeacon ttb = MiscUtils.getTileAt((BlockGetter)world, closestBeacon, TileTreeBeacon.class, false);
             if (ttb == null) {
 
             }

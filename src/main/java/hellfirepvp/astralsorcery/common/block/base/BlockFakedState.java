@@ -57,7 +57,7 @@ public abstract class BlockFakedState extends BaseEntityBlock
     protected void playParticles(final Level world, final BlockPos pos, final Random rand) {
         if (rand.nextInt(8) == 0) {
             VFXColorFunction<?> colorFn = VFXColorFunction.WHITE;
-            final TileFakedState fakedState = MiscUtils.getTileAt((IBlockReader)world, pos, TileFakedState.class, false);
+            final TileFakedState fakedState = MiscUtils.getTileAt((BlockGetter)world, pos, TileFakedState.class, false);
             if (fakedState != null) {
                 colorFn = VFXColorFunction.constant(fakedState.getOverlayColor());
             }
@@ -67,7 +67,7 @@ public abstract class BlockFakedState extends BaseEntityBlock
     
     @OnlyIn(Dist.CLIENT)
     public boolean addDestroyEffects(final BlockState state, final Level world, final BlockPos pos, final ParticleEngine manager) {
-        final BlockState fakeState = this.getFakedState((IBlockReader)world, pos);
+        final BlockState fakeState = this.getFakedState((BlockGetter)world, pos);
         RenderingUtils.playBlockBreakParticles(pos, state, fakeState);
         return true;
     }
@@ -86,15 +86,15 @@ public abstract class BlockFakedState extends BaseEntityBlock
     }
     
     public SoundType getSoundType(final BlockState state, final IWorldReader world, final BlockPos pos, @Nullable final Entity entity) {
-        final BlockState fakeState = this.getFakedState((IBlockReader)world, pos);
+        final BlockState fakeState = this.getFakedState((BlockGetter)world, pos);
         return fakeState.getSoundType(world, pos, entity);
     }
     
-    public boolean canEntityDestroy(final BlockState state, final IBlockReader world, final BlockPos pos, final Entity entity) {
+    public boolean canEntityDestroy(final BlockState state, final BlockGetter world, final BlockPos pos, final Entity entity) {
         return false;
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter world, final BlockPos pos, final CollisionContext context) {
         final BlockState fakeState = this.getFakedState(world, pos);
         return fakeState.func_215700_a(world, pos, context);
     }
@@ -107,7 +107,7 @@ public abstract class BlockFakedState extends BaseEntityBlock
         return AbstractBlock.OffsetType.NONE;
     }
     
-    public VoxelShape func_220071_b(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220071_b(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         final BlockState fakeState = this.getFakedState(worldIn, pos);
         try {
             return fakeState.func_215685_b(worldIn, pos, context);
@@ -117,7 +117,7 @@ public abstract class BlockFakedState extends BaseEntityBlock
         }
     }
     
-    public VoxelShape func_196247_c(final BlockState state, final IBlockReader worldIn, final BlockPos pos) {
+    public VoxelShape func_196247_c(final BlockState state, final BlockGetter worldIn, final BlockPos pos) {
         final BlockState fakeState = this.getFakedState(worldIn, pos);
         try {
             return fakeState.func_196951_e(worldIn, pos);
@@ -128,7 +128,7 @@ public abstract class BlockFakedState extends BaseEntityBlock
     }
     
     public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand handIn, final BlockHitResult hit) {
-        final BlockState fakeState = this.getFakedState((IBlockReader)world, pos);
+        final BlockState fakeState = this.getFakedState((BlockGetter)world, pos);
         try {
             return fakeState.func_227031_a_(world, player, handIn, hit);
         }
@@ -137,7 +137,7 @@ public abstract class BlockFakedState extends BaseEntityBlock
         }
     }
     
-    public ItemStack getPickBlock(final BlockState state, final HitResult target, final IBlockReader world, final BlockPos pos, final Player player) {
+    public ItemStack getPickBlock(final BlockState state, final HitResult target, final BlockGetter world, final BlockPos pos, final Player player) {
         final BlockState fakeState = this.getFakedState(world, pos);
         try {
             return fakeState.getPickBlock(target, world, pos, player);
@@ -148,7 +148,7 @@ public abstract class BlockFakedState extends BaseEntityBlock
     }
     
     @Nonnull
-    private BlockState getFakedState(final IBlockReader world, final BlockPos pos) {
+    private BlockState getFakedState(final BlockGetter world, final BlockPos pos) {
         final TileFakedState tb = MiscUtils.getTileAt(world, pos, TileFakedState.class, true);
         return (tb != null) ? tb.getFakedState() : Blocks.AIR.defaultBlockState();
     }

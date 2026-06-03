@@ -8,18 +8,18 @@ import java.util.LinkedList;
 import net.minecraftforge.fml.util.thread.EffectiveSide;
 import hellfirepvp.astralsorcery.common.item.ItemConstellationPaper;
 import hellfirepvp.astralsorcery.common.container.slot.SlotConstellationPaper;
-import net.minecraft.world.level.inventory.Slot;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.Container;
 import hellfirepvp.astralsorcery.common.container.slot.SlotUnclickable;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import hellfirepvp.astralsorcery.common.item.ItemTome;
-import net.minecraft.world.level.inventory.MenuType;
+import net.minecraft.world.inventory.MenuType;
 import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 
 public class ContainerTome extends Container
 {

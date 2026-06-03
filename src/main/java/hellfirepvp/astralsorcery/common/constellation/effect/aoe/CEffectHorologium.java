@@ -46,7 +46,7 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
     public static HorologiumConfig CONFIG;
     
     public CEffectHorologium(@Nonnull final ILocatable origin) {
-        super(origin, ConstellationsAS.horologium, (int)CEffectHorologium.CONFIG.maxAmount.get(), (world, pos, state) -> TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, false)));
+        super(origin, ConstellationsAS.horologium, (int)CEffectHorologium.CONFIG.maxAmount.get(), (world, pos, state) -> TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(MiscUtils.getTileAt((BlockGetter)world, pos, BlockEntity.class, false)));
     }
     
     @Nonnull
@@ -96,7 +96,7 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
         }
         final ListEntries.PosEntry entry = this.getRandomElementChanced();
         if (entry != null && MiscUtils.executeWithChunk((IWorldReader)world, entry.getPos(), () -> {
-            final BlockEntity tile = MiscUtils.getTileAt((IBlockReader)world, entry.getPos(), BlockEntity.class, true);
+            final BlockEntity tile = MiscUtils.getTileAt((BlockGetter)world, entry.getPos(), BlockEntity.class, true);
             if (tile != null && this.isValid(world, entry)) {
                 this.sendConstellationPing(world, new Vector3((Vec3i)entry.getPos()).add(Vector3.positiveRandom()));
                 this.sendConstellationPing(world, new Vector3((Vec3i)entry.getPos()).add(Vector3.positiveRandom()));

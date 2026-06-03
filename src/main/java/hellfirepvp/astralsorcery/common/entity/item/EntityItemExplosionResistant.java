@@ -4,7 +4,7 @@ import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraft.network.IPacket;
-import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.item.ItemEntity;

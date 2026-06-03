@@ -61,7 +61,7 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
     public abstract Class<? extends ItemBlockCollectorCrystal> getItemBlockClass();
     
     @OnlyIn(Dist.CLIENT)
-    public void func_190948_a(final ItemStack stack, @Nullable final IBlockReader world, final List<Component> toolTip, final TooltipFlag flag) {
+    public void func_190948_a(final ItemStack stack, @Nullable final BlockGetter world, final List<Component> toolTip, final TooltipFlag flag) {
         super.func_190948_a(stack, world, (List)toolTip, flag);
         final CrystalAttributes attr = CrystalAttributes.getCrystalAttributes(stack);
         CrystalAttributes.TooltipResult result = null;
@@ -95,11 +95,11 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
         }
     }
     
-    public VoxelShape func_220053_a(final BlockState p_220053_1_, final IBlockReader p_220053_2_, final BlockPos p_220053_3_, final CollisionContext p_220053_4_) {
+    public VoxelShape func_220053_a(final BlockState p_220053_1_, final BlockGetter p_220053_2_, final BlockPos p_220053_3_, final CollisionContext p_220053_4_) {
         return BlockCollectorCrystal.SHAPE;
     }
     
-    public float func_180647_a(final BlockState state, final Player player, final IBlockReader world, final BlockPos pos) {
+    public float func_180647_a(final BlockState state, final Player player, final BlockGetter world, final BlockPos pos) {
         final TileCollectorCrystal crystal = MiscUtils.getTileAt(world, pos, TileCollectorCrystal.class, false);
         if (crystal != null && crystal.isPlayerMade()) {
             final int i = ForgeHooks.canHarvestBlock(state, player, world, pos) ? 30 : 100;
@@ -109,7 +109,7 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
     }
     
     public void func_180633_a(final Level world, final BlockPos pos, final BlockState state, @Nullable final LivingEntity entity, final ItemStack stack) {
-        final TileCollectorCrystal tcc = MiscUtils.getTileAt((IBlockReader)world, pos, TileCollectorCrystal.class, true);
+        final TileCollectorCrystal tcc = MiscUtils.getTileAt((BlockGetter)world, pos, TileCollectorCrystal.class, true);
         final Item i = stack.getItem();
         if (tcc != null && i instanceof ItemBlockCollectorCrystal) {
             final ItemBlockCollectorCrystal ibcc = (ItemBlockCollectorCrystal)i;
@@ -122,7 +122,7 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
         super.func_180633_a(world, pos, state, entity, stack);
     }
     
-    public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {
+    public boolean func_196266_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final PathType type) {
         return false;
     }
     
@@ -131,7 +131,7 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader worldIn) {
+    public BlockEntity func_196283_a_(final BlockGetter worldIn) {
         return new TileCollectorCrystal();
     }
     

@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 import java.util.Collection;
 import net.minecraft.tags.TagKey;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.level.effect.MobEffects;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.effect.EffectUtils;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.entity.LivingEntity;
@@ -58,7 +58,7 @@ public class BlockUtils
     
     @Nonnull
     public static List<ItemStack> getDrops(final ServerLevel world, final BlockPos pos, final BlockState state, final int harvestFortune, final Random rand, final ItemStack tool) {
-        final LootContext.Builder builder = new LootContext.Builder(world).withParameter(LootContextParams.LAST_DAMAGE_PLAYER, (Object)Vec3.func_237489_a_((Vec3i)pos)).withParameter(LootParameters.field_216287_g, (Object)state).withParameter(LootContextParams.TOOL, (Object)tool).withOptionalParameter(LootParameters.field_216288_h, (Object)MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true)).withRandom(rand).withLuck((float)harvestFortune);
+        final LootContext.Builder builder = new LootContext.Builder(world).withParameter(LootContextParams.LAST_DAMAGE_PLAYER, (Object)Vec3.func_237489_a_((Vec3i)pos)).withParameter(LootParameters.field_216287_g, (Object)state).withParameter(LootContextParams.TOOL, (Object)tool).withOptionalParameter(LootParameters.field_216288_h, (Object)MiscUtils.getTileAt((BlockGetter)world, pos, BlockEntity.class, true)).withRandom(rand).withLuck((float)harvestFortune);
         return state.func_215693_a(builder);
     }
     
@@ -69,7 +69,7 @@ public class BlockUtils
         return it;
     }
     
-    public static BlockPos firstSolidDown(final IBlockReader world, BlockPos at) {
+    public static BlockPos firstSolidDown(final BlockGetter world, BlockPos at) {
         for (BlockState state = world.getBlockState(at); at.getY() > 0 && !state.func_185904_a().func_76230_c() && state.getFluidState().func_206888_e(); at = at.renderItem(), state = world.getBlockState(at)) {}
         return at;
     }
@@ -173,7 +173,7 @@ public class BlockUtils
     }
     
     public static boolean canToolBreakBlockWithoutPlayer(@Nonnull final Level world, @Nonnull final BlockPos pos, @Nonnull final BlockState state, @Nonnull final ItemStack stack) {
-        if (state.func_185887_b((IBlockReader)world, pos) == -1.0f) {
+        if (state.func_185887_b((BlockGetter)world, pos) == -1.0f) {
             return false;
         }
         if (!state.func_235783_q_()) {
@@ -231,7 +231,7 @@ public class BlockUtils
         boolean harvestable = true;
         try {
             if (!ignoreHarvestRestrictions) {
-                harvestable = stateBroken.canHarvestBlock((IBlockReader)world, pos, (Player)fakePlayer);
+                harvestable = stateBroken.canHarvestBlock((BlockGetter)world, pos, (Player)fakePlayer);
             }
         }
         catch (final Exception exc2) {
@@ -265,7 +265,7 @@ public class BlockUtils
         stateBroken.getBlock().func_176206_d((IWorld)world, pos, stateBroken);
         if (harvestable) {
             try {
-                final BlockEntity tileentity = MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true);
+                final BlockEntity tileentity = MiscUtils.getTileAt((BlockGetter)world, pos, BlockEntity.class, true);
                 final ItemStack harvestStack = heldCopy.isEmpty() ? ItemStack.EMPTY : heldCopy.copy();
                 stateBroken.getBlock().func_180657_a((Level)world, (Player)fakePlayer, pos, stateBroken, tileentity, harvestStack);
             }

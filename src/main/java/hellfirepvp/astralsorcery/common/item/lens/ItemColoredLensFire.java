@@ -7,7 +7,7 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;

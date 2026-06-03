@@ -55,7 +55,7 @@ public class RootAevitas extends RootPerk
         }
         float hardness;
         try {
-            hardness = Math.max(event.getPlacedBlock().func_185887_b((IBlockReader)event.getWorld(), event.getPos()), 1.0f);
+            hardness = Math.max(event.getPlacedBlock().func_185887_b((BlockGetter)event.getWorld(), event.getPos()), 1.0f);
         }
         catch (final Exception exc) {
             hardness = 1.0f;

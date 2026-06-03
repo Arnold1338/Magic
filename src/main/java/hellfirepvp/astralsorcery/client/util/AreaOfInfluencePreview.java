@@ -80,7 +80,7 @@ public class AreaOfInfluencePreview implements ITickHandler
             this.removeEffects();
 
         }
-        final TileAreaOfInfluence aoeTile = MiscUtils.getTileAt((IBlockReader)clientWorld, this.tilePosition, TileAreaOfInfluence.class, true);
+        final TileAreaOfInfluence aoeTile = MiscUtils.getTileAt((BlockGetter)clientWorld, this.tilePosition, TileAreaOfInfluence.class, true);
         if (aoeTile != null && aoeTile.providesEffect() && this.shouldContinueEffect(aoeTile)) {
             this.effect1 = this.uptickEffect(this.effect1, 1.25f, aoeTile);
             this.effect2 = this.uptickEffect(this.effect2, 1.35f, aoeTile);

@@ -76,7 +76,7 @@ public class TileSpectralRelay extends TileEntityTick
             }
             if (this.hasMultiblock() && this.hasGlassLens() && this.altarPos != null) {
                 MiscUtils.executeWithChunk((IWorldReader)this.getLevel(), this.altarPos, () -> {
-                    final TileAltar ta = MiscUtils.getTileAt((IBlockReader)this.getLevel(), this.altarPos, TileAltar.class, true);
+                    final TileAltar ta = MiscUtils.getTileAt((BlockGetter)this.getLevel(), this.altarPos, TileAltar.class, true);
                     if (ta == null) {
                         this.updateAltarLinkState();
                     }
@@ -131,10 +131,10 @@ public class TileSpectralRelay extends TileEntityTick
     private static void foreachNearbyRelay(final Level world, final BlockPos pos, final Consumer<TileSpectralRelay> relayConsumer) {
         final List<BlockPos> nearbyRelays = BlockDiscoverer.searchForBlocksAround(world, pos, 8, (world1, pos1, state) -> {
             final TileSpectralRelay relay;
-            return state.getBlock() instanceof BlockSpectralRelay && (relay = MiscUtils.getTileAt((IBlockReader)world1, pos1, TileSpectralRelay.class, false)) != null && relay.hasGlassLens() && relay.hasMultiblock();
+            return state.getBlock() instanceof BlockSpectralRelay && (relay = MiscUtils.getTileAt((BlockGetter)world1, pos1, TileSpectralRelay.class, false)) != null && relay.hasGlassLens() && relay.hasMultiblock();
         });
         nearbyRelays.forEach(relayPos -> {
-            final TileSpectralRelay relay2 = MiscUtils.getTileAt((IBlockReader)world, relayPos, TileSpectralRelay.class, false);
+            final TileSpectralRelay relay2 = MiscUtils.getTileAt((BlockGetter)world, relayPos, TileSpectralRelay.class, false);
             if (relay2 != null) {
                 relayConsumer.accept(relay2);
             }

@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.base.patreon.types;
 
 import java.util.EnumSet;
-import net.minecraft.world.level.effect.MobEffects;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Pose;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

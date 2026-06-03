@@ -60,7 +60,7 @@ public class FormGemCrystalClusterRecipe extends LiquidStarlightRecipe
     
     @Override
     public boolean matches(final ItemEntity trigger, final Level world, final BlockPos at) {
-        if (!world.getBlockState(at.renderItem()).func_215682_a((IBlockReader)world, at.renderItem(), (Entity)trigger, Direction.UP)) {
+        if (!world.getBlockState(at.renderItem()).func_215682_a((BlockGetter)world, at.renderItem(), (Entity)trigger, Direction.UP)) {
             return false;
         }
         final List<Entity> otherEntities = this.getEntitiesInBlock((IWorld)world, at);

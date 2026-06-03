@@ -34,14 +34,14 @@ public class BlockInfuser extends BlockInventory implements CustomItemBlock
         super(PropertiesMarble.defaultMarble().harvestLevel(1).harvestTool(ToolType.PICKAXE));
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         return BlockInfuser.INFUSER;
     }
     
     public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
         if (!world.isClientSide) {
             final ItemStack held = player.getItemInHand(hand);
-            final TileInfuser ti = MiscUtils.getTileAt((IBlockReader)world, pos, TileInfuser.class, true);
+            final TileInfuser ti = MiscUtils.getTileAt((BlockGetter)world, pos, TileInfuser.class, true);
             if (ti != null) {
                 final ItemStack stored = ti.getItemInput();
                 if (!held.isEmpty()) {
@@ -75,14 +75,14 @@ public class BlockInfuser extends BlockInventory implements CustomItemBlock
     }
     
     public int func_180641_l(final BlockState state, final Level world, final BlockPos pos) {
-        final TileInfuser ti = MiscUtils.getTileAt((IBlockReader)world, pos, TileInfuser.class, false);
+        final TileInfuser ti = MiscUtils.getTileAt((BlockGetter)world, pos, TileInfuser.class, false);
         if (ti != null) {
             return ti.getItemInput().isEmpty() ? 0 : 15;
         }
         return 0;
     }
     
-    public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {
+    public boolean func_196266_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final PathType type) {
         return false;
     }
     
@@ -91,7 +91,7 @@ public class BlockInfuser extends BlockInventory implements CustomItemBlock
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader worldIn) {
+    public BlockEntity func_196283_a_(final BlockGetter worldIn) {
         return new TileInfuser();
     }
     

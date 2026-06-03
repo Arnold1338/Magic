@@ -13,7 +13,7 @@ public class BlockSandTemplate extends FallingBlock implements CustomItemBlock
         super(PropertiesMisc.defaultSand());
     }
     
-    public int func_189876_x(final BlockState state, final IBlockReader reader, final BlockPos pos) {
+    public int func_189876_x(final BlockState state, final BlockGetter reader, final BlockPos pos) {
         return 14409376;
     }
 }

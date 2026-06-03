@@ -39,7 +39,7 @@ public class SpectralToolBreakLogGoal extends SpectralToolGoal
     private BlockPredicate breakableLogs() {
         return (world, pos, state) -> {
             final boolean b;
-            if (MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, false) == null && pos.getY() >= this.getEntity().getStartPosition().getY() && !state.isAir((IBlockReader)world, pos) && state.func_185887_b((IBlockReader)world, pos) != -1.0f && state.func_185887_b((IBlockReader)world, pos) <= 10.0f && (state.func_235714_a_((ITag)BlockTags.field_200031_h) || state.func_235714_a_((ITag)BlockTags.field_206952_E))) {
+            if (MiscUtils.getTileAt((BlockGetter)world, pos, BlockEntity.class, false) == null && pos.getY() >= this.getEntity().getStartPosition().getY() && !state.isAir((BlockGetter)world, pos) && state.func_185887_b((BlockGetter)world, pos) != -1.0f && state.func_185887_b((BlockGetter)world, pos) <= 10.0f && (state.func_235714_a_((ITag)BlockTags.field_200031_h) || state.func_235714_a_((ITag)BlockTags.field_206952_E))) {
                 if (BlockUtils.canToolBreakBlockWithoutPlayer(world, pos, state, new ItemStack((ItemLike)Items.field_151056_x))) {
                     return b;
                 }

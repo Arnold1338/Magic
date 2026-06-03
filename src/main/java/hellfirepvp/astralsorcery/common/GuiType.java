@@ -9,7 +9,7 @@ import hellfirepvp.astralsorcery.client.screen.ScreenHandTelescope;
 import hellfirepvp.astralsorcery.client.screen.ScreenTelescope;
 import hellfirepvp.astralsorcery.common.tile.TileTelescope;
 import hellfirepvp.astralsorcery.client.screen.ScreenRefractionTable;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalProgression;
@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.client.screen.ScreenConstellationPaper;
 import net.minecraft.resources.ResourceLocation;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.core.BlockPos;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
@@ -70,7 +70,7 @@ public enum GuiType
                 }
                 case REFRACTION_TABLE: {
                     final BlockPos at = NBTHelper.readBlockPosFromNBT(data);
-                    final TileRefractionTable refractionTable = MiscUtils.getTileAt((IBlockReader)clWorld, at, TileRefractionTable.class, true);
+                    final TileRefractionTable refractionTable = MiscUtils.getTileAt((BlockGetter)clWorld, at, TileRefractionTable.class, true);
                     if (refractionTable != null) {
                         return new ScreenRefractionTable(refractionTable);
                     }
@@ -78,7 +78,7 @@ public enum GuiType
                 }
                 case TELESCOPE: {
                     final BlockPos at = NBTHelper.readBlockPosFromNBT(data);
-                    final TileTelescope telescope = MiscUtils.getTileAt((IBlockReader)clWorld, at, TileTelescope.class, true);
+                    final TileTelescope telescope = MiscUtils.getTileAt((BlockGetter)clWorld, at, TileTelescope.class, true);
                     if (telescope != null) {
                         return new ScreenTelescope(telescope);
                     }

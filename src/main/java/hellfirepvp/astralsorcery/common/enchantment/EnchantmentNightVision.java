@@ -1,8 +1,8 @@
 package hellfirepvp.astralsorcery.common.enchantment;
 
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.effect.MobEffectInstance;
-import net.minecraft.world.level.effect.MobEffects;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.EquipmentSlot;

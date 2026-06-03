@@ -60,7 +60,7 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
     
     @Override
     public void receiveStarlight(final Level world, final Random rand, final BlockPos pos, final IWeakConstellation starlightType, final double amount) {
-        final TileCelestialCrystals crystals = MiscUtils.getTileAt((IBlockReader)world, pos, TileCelestialCrystals.class, false);
+        final TileCelestialCrystals crystals = MiscUtils.getTileAt((BlockGetter)world, pos, TileCelestialCrystals.class, false);
         if (crystals != null) {
             crystals.grow((int)(18000.0 / amount));
         }
@@ -70,7 +70,7 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
         builder.func_206894_a(new Property[] { (Property)BlockCelestialCrystalCluster.STAGE });
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter world, final BlockPos pos, final CollisionContext context) {
         final Vec3 offset = state.func_191059_e(world, pos);
         VoxelShape shape = null;
         switch ((int)state.getValue((Property)BlockCelestialCrystalCluster.STAGE)) {
@@ -110,18 +110,18 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
     }
     
     public boolean func_196260_a(final BlockState state, final IWorldReader world, final BlockPos pos) {
-        return func_220064_c((IBlockReader)world, pos.renderItem());
+        return func_220064_c((BlockGetter)world, pos.renderItem());
     }
     
     public void func_196243_a(final BlockState state, final Level world, final BlockPos pos, final BlockState newState, final boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             super.func_196243_a(state, world, pos, newState, isMoving);
-            final PktPlayEffect effect = new PktPlayEffect(PktPlayEffect.Type.SMALL_CRYSTAL_BREAK).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos).add(state.func_191059_e((IBlockReader)world, pos)).add(0.5, 0.4, 0.5)));
+            final PktPlayEffect effect = new PktPlayEffect(PktPlayEffect.Type.SMALL_CRYSTAL_BREAK).addData(buf -> ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos).add(state.func_191059_e((BlockGetter)world, pos)).add(0.5, 0.4, 0.5)));
             PacketChannel.CHANNEL.sendToAllAround(effect, PacketChannel.pointFromPos(world, (Vec3i)pos, 32.0));
         }
     }
     
-    public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {
+    public boolean func_196266_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final PathType type) {
         return false;
     }
     
@@ -130,7 +130,7 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader world) {
+    public BlockEntity func_196283_a_(final BlockGetter world) {
         return new TileCelestialCrystals();
     }
     

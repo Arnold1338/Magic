@@ -4,9 +4,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.world.entity.player.PlayerModelPart;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.AbstractClientPlayerEntity;
+import net.minecraft.client.player.AbstractClientPlayer;
 
-public class EntityClientReplacement extends AbstractClientPlayerEntity
+public class EntityClientReplacement extends AbstractClientPlayer
 {
     public EntityClientReplacement() {
         super(Minecraft.getInstance().level, Minecraft.getInstance().player.func_146103_bH());

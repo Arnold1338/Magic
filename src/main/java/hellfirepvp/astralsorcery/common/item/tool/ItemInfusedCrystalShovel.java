@@ -27,13 +27,13 @@ public class ItemInfusedCrystalShovel extends ItemCrystalShovel
             final PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
             if (prog.doPerkAbilities()) {
                 EventFlags.CHAIN_MINING.executeWithFlag(() -> {
-                    if (!world.getBlockState(pos).isAir((IBlockReader)world, pos)) {
+                    if (!world.getBlockState(pos).isAir((BlockGetter)world, pos)) {
                         final List<BlockPos> foundBlocks = BlockDiscoverer.discoverBlocksWithSameStateAround(world, pos, true, 8, 200, false);
                         if (!foundBlocks.isEmpty()) {
                             final ServerPlayer serverPlayer = (ServerPlayer)player;
                             foundBlocks.forEach(at -> {
                                 final BlockState currentState = world.getBlockState(at);
-                                if (!currentState.isAir((IBlockReader)world, at) && serverPlayer.field_71134_c.func_180237_b(at)) {
+                                if (!currentState.isAir((BlockGetter)world, at) && serverPlayer.field_71134_c.func_180237_b(at)) {
                                     final PktPlayEffect ev = new PktPlayEffect(PktPlayEffect.Type.BLOCK_EFFECT).addData(buf -> {
                                         ByteBufUtils.writePos(buf, at);
                                         ByteBufUtils.writeBlockState(buf, currentState);

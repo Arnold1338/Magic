@@ -44,7 +44,7 @@ public class BlockTelescope extends BaseEntityBlock implements CustomItemBlock
         return false;
     }
     
-    public VoxelShape func_220053_a(final BlockState p_220053_1_, final IBlockReader p_220053_2_, final BlockPos p_220053_3_, final CollisionContext p_220053_4_) {
+    public VoxelShape func_220053_a(final BlockState p_220053_1_, final BlockGetter p_220053_2_, final BlockPos p_220053_3_, final CollisionContext p_220053_4_) {
         return BlockTelescope.TELESCOPE;
     }
     
@@ -72,7 +72,7 @@ public class BlockTelescope extends BaseEntityBlock implements CustomItemBlock
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader worldIn) {
+    public BlockEntity func_196283_a_(final BlockGetter worldIn) {
         return new TileTelescope();
     }
     

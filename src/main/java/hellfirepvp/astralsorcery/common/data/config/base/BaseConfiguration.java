@@ -48,7 +48,7 @@ public class BaseConfiguration
         BaseConfiguration.REGISTERED_CONFIGS.put(this.configType, this);
     }
     
-    public static void refreshConfiguration(final ModConfig.Loading cfgLoadEvent) {
+    public static void refreshConfiguration(final ModConfig.Type cfgLoadEvent) {
         final ModConfig config = cfgLoadEvent.getConfig();
         if (config.getModId().equals("astralsorcery")) {
             final BaseConfiguration cfg = BaseConfiguration.REGISTERED_CONFIGS.get(config.getType());

@@ -18,7 +18,7 @@ public abstract class BlockFoliageTemplate extends Block implements CustomItemBl
         super(properties);
     }
     
-    protected abstract boolean isValidGround(final BlockState p0, final IBlockReader p1, final BlockPos p2);
+    protected abstract boolean isValidGround(final BlockState p0, final BlockGetter p1, final BlockPos p2);
     
     public BlockState func_196271_a(final BlockState state, final Direction dir, final BlockState facingState, final IWorld world, final BlockPos pos, final BlockPos facingPos) {
         if (!state.func_196955_c((IWorldReader)world, pos)) {
@@ -30,16 +30,16 @@ public abstract class BlockFoliageTemplate extends Block implements CustomItemBl
     public boolean func_196260_a(final BlockState state, final IWorldReader world, final BlockPos pos) {
         final BlockPos blockpos = pos.renderItem();
         if (state.getBlock() == this) {
-            return world.getBlockState(blockpos).canSustainPlant((IBlockReader)world, blockpos, Direction.UP, (IPlantable)this);
+            return world.getBlockState(blockpos).canSustainPlant((BlockGetter)world, blockpos, Direction.UP, (IPlantable)this);
         }
-        return this.isValidGround(world.getBlockState(blockpos), (IBlockReader)world, blockpos);
+        return this.isValidGround(world.getBlockState(blockpos), (BlockGetter)world, blockpos);
     }
     
-    public boolean func_200123_i(final BlockState p_200123_1_, final IBlockReader p_200123_2_, final BlockPos p_200123_3_) {
+    public boolean func_200123_i(final BlockState p_200123_1_, final BlockGetter p_200123_2_, final BlockPos p_200123_3_) {
         return true;
     }
     
-    public BlockState getPlant(final IBlockReader world, final BlockPos pos) {
+    public BlockState getPlant(final BlockGetter world, final BlockPos pos) {
         final BlockState state = world.getBlockState(pos);
         if (state.getBlock() != this) {
             return this.defaultBlockState();

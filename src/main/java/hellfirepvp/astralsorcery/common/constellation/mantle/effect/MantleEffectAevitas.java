@@ -99,7 +99,7 @@ public class MantleEffectAevitas extends MantleEffect
         if (entity.func_233570_aj_()) {
             final Level world = entity.level();
             final BlockPos at = entity.func_233580_cy_().renderItem();
-            return world.getBlockState(at).isAir((IBlockReader)world, at);
+            return world.getBlockState(at).isAir((BlockGetter)world, at);
         }
         return false;
     }

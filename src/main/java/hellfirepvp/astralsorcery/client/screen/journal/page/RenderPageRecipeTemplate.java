@@ -34,7 +34,7 @@ import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Util;
 import net.minecraft.network.chat.Component;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.Minecraft;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import com.mojang.blaze3d.systems.RenderSystem;

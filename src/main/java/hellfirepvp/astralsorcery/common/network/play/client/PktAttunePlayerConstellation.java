@@ -71,7 +71,7 @@ public class PktAttunePlayerConstellation extends ASPacket<PktAttunePlayerConste
                 final MinecraftServer srv = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
                 if (srv.forgeGetWorldMap().containsKey(packet.world)) {
                     final Level world = (Level)srv.getLevel((ResourceKey)packet.world);
-                    final TileAttunementAltar ta = MiscUtils.getTileAt((IBlockReader)world, packet.at, TileAttunementAltar.class, false);
+                    final TileAttunementAltar ta = MiscUtils.getTileAt((BlockGetter)world, packet.at, TileAttunementAltar.class, false);
                     if (ta != null && ta.getActiveRecipe() instanceof ActivePlayerAttunementRecipe && context.getSender().getUUID().equals(((ActivePlayerAttunementRecipe)ta.getActiveRecipe()).getPlayerUUID()) && AttunePlayerRecipe.isEligablePlayer(context.getSender(), ta.getActiveConstellation())) {
                         ta.finishActiveRecipe();
                     }

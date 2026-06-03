@@ -10,7 +10,7 @@ import org.joml.Vector3f;
 import net.minecraft.util.Mth;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraft.world.level.effect.MobEffects;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.eventbus.api.IEventBus;
 import javax.annotation.Nullable;

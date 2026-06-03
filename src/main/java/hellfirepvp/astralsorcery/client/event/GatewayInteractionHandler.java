@@ -67,7 +67,7 @@ public class GatewayInteractionHandler
         if (node == null || !node.isLocked() || node.getOwner() == null || node.getAllowedUsers().isEmpty()) {
 
         }
-        final TileCelestialGateway gateway = MiscUtils.getTileAt((IBlockReader)world, Vector3.atEntityCorner((Entity)player).toBlockPos(), TileCelestialGateway.class, true);
+        final TileCelestialGateway gateway = MiscUtils.getTileAt((BlockGetter)world, Vector3.atEntityCorner((Entity)player).toBlockPos(), TileCelestialGateway.class, true);
         if (gateway == null || !gateway.hasMultiblock() || !gateway.doesSeeSky()) {
 
         }
@@ -92,7 +92,7 @@ public class GatewayInteractionHandler
             GatewayInteractionHandler.focusTicks = 0;
 
         }
-        final TileCelestialGateway gateway = MiscUtils.getTileAt((IBlockReader)world, Vector3.atEntityCorner((Entity)player).toBlockPos(), TileCelestialGateway.class, true);
+        final TileCelestialGateway gateway = MiscUtils.getTileAt((BlockGetter)world, Vector3.atEntityCorner((Entity)player).toBlockPos(), TileCelestialGateway.class, true);
         if (gateway == null || !gateway.hasMultiblock() || !gateway.doesSeeSky()) {
             GatewayInteractionHandler.focusingEntry = null;
             GatewayInteractionHandler.focusTicks = 0;

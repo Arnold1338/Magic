@@ -63,7 +63,7 @@ public class BlockGemCrystalCluster extends BaseEntityBlock implements CustomIte
         builder.func_206894_a(new Property[] { (Property)BlockGemCrystalCluster.STAGE });
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter world, final BlockPos pos, final CollisionContext context) {
         final Vec3 offset = state.func_191059_e(world, pos);
         VoxelShape shape = VoxelShapes.func_197868_b();
         switch ((GrowthStageType)state.getValue((Property)BlockGemCrystalCluster.STAGE)) {
@@ -103,14 +103,14 @@ public class BlockGemCrystalCluster extends BaseEntityBlock implements CustomIte
     }
     
     public boolean func_196260_a(final BlockState state, final IWorldReader world, final BlockPos pos) {
-        return func_220064_c((IBlockReader)world, pos.renderItem());
+        return func_220064_c((BlockGetter)world, pos.renderItem());
     }
     
     public void func_196243_a(final BlockState state, final Level world, final BlockPos pos, final BlockState newState, final boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             super.func_196243_a(state, world, pos, newState, isMoving);
             final PktPlayEffect effect = new PktPlayEffect(PktPlayEffect.Type.GEM_CRYSTAL_BREAK).addData(buf -> {
-                ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos).add(state.func_191059_e((IBlockReader)world, pos)));
+                ByteBufUtils.writeVector(buf, new Vector3((Vec3i)pos).add(state.func_191059_e((BlockGetter)world, pos)));
                 buf.writeInt(((GrowthStageType)state.getValue((Property)BlockGemCrystalCluster.STAGE)).ordinal());
 
             });
@@ -118,7 +118,7 @@ public class BlockGemCrystalCluster extends BaseEntityBlock implements CustomIte
         }
     }
     
-    public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {
+    public boolean func_196266_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final PathType type) {
         return false;
     }
     
@@ -127,7 +127,7 @@ public class BlockGemCrystalCluster extends BaseEntityBlock implements CustomIte
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader world) {
+    public BlockEntity func_196283_a_(final BlockGetter world) {
         return new TileGemCrystals();
     }
     

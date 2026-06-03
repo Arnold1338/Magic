@@ -30,7 +30,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.ISeedReader;
 import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import net.minecraft.util.EntityPredicates;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;

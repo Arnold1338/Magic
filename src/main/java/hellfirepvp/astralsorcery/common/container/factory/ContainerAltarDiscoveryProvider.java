@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.container.factory;
 
 import net.minecraftforge.fml.network.IContainerFactory;
-import net.minecraft.world.level.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
@@ -37,7 +37,7 @@ public class ContainerAltarDiscoveryProvider extends CustomContainerProvider<Con
     private static ContainerAltarDiscovery createFromPacket(final int id, final Inventory plInventory, final FriendlyByteBuf data) {
         final BlockPos at = ByteBufUtils.readPos(data);
         final Player player = plInventory.field_70458_d;
-        final TileAltar ta = MiscUtils.getTileAt((IBlockReader)player.level(), at, TileAltar.class, true);
+        final TileAltar ta = MiscUtils.getTileAt((BlockGetter)player.level(), at, TileAltar.class, true);
         return new ContainerAltarDiscovery(ta, plInventory, id);
     }
     

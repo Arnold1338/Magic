@@ -73,11 +73,11 @@ public class BlockFlareLight extends Block
         return true;
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final CollisionContext ctx) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter world, final BlockPos pos, final CollisionContext ctx) {
         return BlockFlareLight.SHAPE;
     }
     
-    public boolean isAir(final BlockState state, final IBlockReader world, final BlockPos pos) {
+    public boolean isAir(final BlockState state, final BlockGetter world, final BlockPos pos) {
         return false;
     }
     

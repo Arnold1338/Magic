@@ -53,7 +53,7 @@ public class LinkHandler implements ITickHandler
     public static RightClickResult onInteractBlock(final Player clicked, final Level world, final BlockPos pos, final boolean sneak) {
         final UUID playerUUID = clicked.getUUID();
         if (!LinkHandler.players.containsKey(playerUUID)) {
-            final LinkableTileEntity tile = MiscUtils.getTileAt((IBlockReader)world, pos, LinkableTileEntity.class, true);
+            final LinkableTileEntity tile = MiscUtils.getTileAt((BlockGetter)world, pos, LinkableTileEntity.class, true);
             if (tile == null) {
                 return new RightClickResult(RightClickResultType.NONE, null);
             }
@@ -64,7 +64,7 @@ public class LinkHandler implements ITickHandler
         else {
             final LinkSession session2 = LinkHandler.players.get(playerUUID);
             if (session2.getType() == LinkType.ENTITY) {
-                final LinkableTileEntity tile2 = MiscUtils.getTileAt((IBlockReader)world, pos, LinkableTileEntity.class, true);
+                final LinkableTileEntity tile2 = MiscUtils.getTileAt((BlockGetter)world, pos, LinkableTileEntity.class, true);
                 if (tile2 == null) {
                     LinkHandler.players.remove(playerUUID);
                     return new RightClickResult(RightClickResultType.NONE, null);
@@ -97,7 +97,7 @@ public class LinkHandler implements ITickHandler
 
             }
             case TRY_LINK: {
-                final BlockEntity te = MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true);
+                final BlockEntity te = MiscUtils.getTileAt((BlockGetter)world, pos, BlockEntity.class, true);
                 String linkedToName = "astralsorcery.misc.link.link.block";
                 if (te instanceof LinkableTileEntity) {
                     if (!((LinkableTileEntity)te).doesAcceptLinks()) {
@@ -129,7 +129,7 @@ public class LinkHandler implements ITickHandler
             case TRY_UNLINK: {
                 if (tile.tryUnlink(playerIn, pos)) {
                     String linkedToName = "astralsorcery.misc.link.link.block";
-                    final BlockEntity te = MiscUtils.getTileAt((IBlockReader)world, pos, BlockEntity.class, true);
+                    final BlockEntity te = MiscUtils.getTileAt((BlockGetter)world, pos, BlockEntity.class, true);
                     if (te instanceof LinkableTileEntity) {
                         final String unloc = ((LinkableTileEntity)te).getUnLocalizedDisplayName();
                         if (unloc != null) {

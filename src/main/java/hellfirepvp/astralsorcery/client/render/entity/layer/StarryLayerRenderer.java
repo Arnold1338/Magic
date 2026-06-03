@@ -10,7 +10,7 @@ import java.util.Iterator;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.entity.IEntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import java.util.function.BiPredicate;
@@ -30,8 +30,8 @@ public class StarryLayerRenderer<E extends LivingEntity, M extends HumanoidModel
     private static BiPredicate<Player, EquipmentSlot> renderTest;
     private final boolean slimRender;
     
-    public StarryLayerRenderer(final IEntityRenderer<E, M> entityRendererIn, final boolean slimRender) {
-        super((IEntityRenderer)entityRendererIn, StarryLayerRenderer.MODEL_ARMOR, StarryLayerRenderer.MODEL_ARMOR);
+    public StarryLayerRenderer(final EntityRenderer<E, M> entityRendererIn, final boolean slimRender) {
+        super((EntityRenderer)entityRendererIn, StarryLayerRenderer.MODEL_ARMOR, StarryLayerRenderer.MODEL_ARMOR);
         this.slimRender = slimRender;
     }
     

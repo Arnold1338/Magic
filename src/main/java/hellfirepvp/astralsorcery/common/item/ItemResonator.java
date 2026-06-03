@@ -172,13 +172,13 @@ public class ItemResonator extends Item implements OverrideInteractItem
     
     public boolean shouldInterceptBlockInteract(final LogicalSide side, final Player player, final Hand hand, final BlockPos pos, final Direction face) {
         final ResonatorUpgrade upgrade = getCurrentUpgrade(player, player.getItemInHand(hand));
-        return upgrade == ResonatorUpgrade.AREA_SIZE && MiscUtils.getTileAt((IBlockReader)player.level(), pos, TileAreaOfInfluence.class, false) != null;
+        return upgrade == ResonatorUpgrade.AREA_SIZE && MiscUtils.getTileAt((BlockGetter)player.level(), pos, TileAreaOfInfluence.class, false) != null;
     }
     
     public boolean doBlockInteract(final LogicalSide side, final Player player, final Hand hand, final BlockPos pos, final Direction face) {
         final ResonatorUpgrade upgrade = getCurrentUpgrade(player, player.getItemInHand(hand));
         if (upgrade == ResonatorUpgrade.AREA_SIZE && player.level()) {
-            final TileAreaOfInfluence aoeTile = MiscUtils.getTileAt((IBlockReader)player.level(), pos, TileAreaOfInfluence.class, false);
+            final TileAreaOfInfluence aoeTile = MiscUtils.getTileAt((BlockGetter)player.level(), pos, TileAreaOfInfluence.class, false);
             if (aoeTile != null) {
                 this.playAreaOfInfluenceEffect(aoeTile);
             }

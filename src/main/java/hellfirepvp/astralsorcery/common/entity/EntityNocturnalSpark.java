@@ -105,7 +105,7 @@ public class EntityNocturnalSpark extends ThrowableEntity
         if (this.level() instanceof ServerLevel) {
             final ServerLevel sWorld = (ServerLevel)this.level();
             if (this.field_70173_aa % 5 == 0) {
-                final List<BlockPos> lightPositions = BlockDiscoverer.searchForBlocksAround((Level)sWorld, this.func_233580_cy_(), 8, (world, pos, state) -> !(state.getBlock() instanceof AirBlock) && state.func_185887_b((IBlockReader)world, pos) != -1.0f && state.getLightValue((IBlockReader)world, pos) > 3);
+                final List<BlockPos> lightPositions = BlockDiscoverer.searchForBlocksAround((Level)sWorld, this.func_233580_cy_(), 8, (world, pos, state) -> !(state.getBlock() instanceof AirBlock) && state.func_185887_b((BlockGetter)world, pos) != -1.0f && state.getLightValue((BlockGetter)world, pos) > 3);
                 for (final BlockPos light : lightPositions) {
                     if (!BlockUtils.breakBlockWithoutPlayer(sWorld, light, sWorld.getBlockState(light), ItemStack.EMPTY, true, true)) {
                         sWorld.func_217377_a(light, false);
@@ -168,7 +168,7 @@ public class EntityNocturnalSpark extends ThrowableEntity
         if (this.random.nextInt(12) == 0 && this.level() instanceof ServerLevel) {
             BlockPos pos = this.func_233580_cy_();
             pos.offset(this.random.nextInt(2) - this.random.nextInt(2), 1, this.random.nextInt(2) - this.random.nextInt(2));
-            pos = BlockUtils.firstSolidDown((IBlockReader)this.level(), pos).above();
+            pos = BlockUtils.firstSolidDown((BlockGetter)this.level(), pos).above();
             if (pos.func_177951_i((Vec3i)this.func_233580_cy_()) >= 16.0) {
 
             }

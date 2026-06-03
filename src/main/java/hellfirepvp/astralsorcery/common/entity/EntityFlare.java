@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Collection;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;

@@ -60,7 +60,7 @@ public class PktRequestTeleport extends ASPacket<PktRequestTeleport>
     public Handler<PktRequestTeleport> handler() {
         return (packet, context, side) -> context.enqueueWork(() -> {
             final Player player = (Player)context.getSender();
-            final TileCelestialGateway gate = MiscUtils.getTileAt((IBlockReader)player.level(), Vector3.atEntityCorner((Entity)player).toBlockPos(), TileCelestialGateway.class, false);
+            final TileCelestialGateway gate = MiscUtils.getTileAt((BlockGetter)player.level(), Vector3.atEntityCorner((Entity)player).toBlockPos(), TileCelestialGateway.class, false);
             if (gate != null && gate.hasMultiblock() && gate.doesSeeSky()) {
                 final MinecraftServer server = (MinecraftServer)ServerLifecycleHooks.getCurrentServer();
                 if (server != null) {

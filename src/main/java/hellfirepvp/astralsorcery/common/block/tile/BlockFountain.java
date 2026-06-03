@@ -33,7 +33,7 @@ public class BlockFountain extends BaseEntityBlock implements CustomItemBlock
         return VoxelUtils.combineAll(BooleanOp.field_223244_o_, m1, m2, m3, m4);
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         return this.shape;
     }
     
@@ -42,7 +42,7 @@ public class BlockFountain extends BaseEntityBlock implements CustomItemBlock
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader world) {
+    public BlockEntity func_196283_a_(final BlockGetter world) {
         return new TileFountain();
     }
 }

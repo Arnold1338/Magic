@@ -10,7 +10,7 @@ import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXCrystal;
 import net.minecraft.world.entity.Entity;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.effect.MobEffects;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;

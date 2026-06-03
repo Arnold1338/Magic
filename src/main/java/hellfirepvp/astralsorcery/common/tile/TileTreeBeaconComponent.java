@@ -27,7 +27,7 @@ public class TileTreeBeaconComponent extends TileFakedState
                 this.removeSelf();
             }
             else {
-                final TileTreeBeacon ttb = MiscUtils.getTileAt((IBlockReader)this.getLevel(), this.getTreeBeaconPos(), TileTreeBeacon.class, false);
+                final TileTreeBeacon ttb = MiscUtils.getTileAt((BlockGetter)this.getLevel(), this.getTreeBeaconPos(), TileTreeBeacon.class, false);
                 if (ttb == null) {
                     this.removeSelf();
                 }

@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.perk.type;
 
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;

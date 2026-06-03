@@ -10,7 +10,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import net.minecraft.world.effect.EffectType;
-import net.minecraft.world.level.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffectInstance;
 import java.util.List;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHealEvent;

@@ -37,20 +37,20 @@ public class BlockAttunementAltar extends BaseEntityBlock implements CustomItemB
         return this.canPlaceAt(context) ? this.defaultBlockState() : null;
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         return BlockAttunementAltar.ATTUNEMENT_ALTAR;
     }
     
-    public VoxelShape func_220071_b(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220071_b(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         return BlockAttunementAltar.ATTUNEMENT_ALTAR_COLLISION;
     }
     
-    public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {
+    public boolean func_196266_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final PathType type) {
         return false;
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader worldIn) {
+    public BlockEntity func_196283_a_(final BlockGetter worldIn) {
         return new TileAttunementAltar();
     }
     

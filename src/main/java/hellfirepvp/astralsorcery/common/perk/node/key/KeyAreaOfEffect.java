@@ -3,7 +3,7 @@ package hellfirepvp.astralsorcery.common.perk.node.key;
 import java.util.Iterator;
 import net.minecraft.world.item.ItemStack;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
-import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;

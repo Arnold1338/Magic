@@ -38,14 +38,14 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
         super(PropertiesGlass.coatedGlass().func_235838_a_(state -> 4));
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader world, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter world, final BlockPos pos, final CollisionContext context) {
         return BlockSpectralRelay.RELAY;
     }
     
     public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
         if (!world.level()) {
             final ItemStack held = player.getItemInHand(hand);
-            final TileSpectralRelay tar = MiscUtils.getTileAt((IBlockReader)world, pos, TileSpectralRelay.class, true);
+            final TileSpectralRelay tar = MiscUtils.getTileAt((BlockGetter)world, pos, TileSpectralRelay.class, true);
             if (tar != null) {
                 final TileInventory inv = tar.getInventory();
                 if (!held.isEmpty()) {
@@ -96,7 +96,7 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
     }
     
     public boolean func_196260_a(final BlockState state, final IWorldReader world, final BlockPos pos) {
-        return func_220064_c((IBlockReader)world, pos.renderItem());
+        return func_220064_c((BlockGetter)world, pos.renderItem());
     }
     
     public boolean func_149740_M(final BlockState p_149740_1_) {
@@ -104,14 +104,14 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
     }
     
     public int func_180641_l(final BlockState state, final Level world, final BlockPos pos) {
-        final TileSpectralRelay tsr = MiscUtils.getTileAt((IBlockReader)world, pos, TileSpectralRelay.class, false);
+        final TileSpectralRelay tsr = MiscUtils.getTileAt((BlockGetter)world, pos, TileSpectralRelay.class, false);
         if (tsr != null) {
             return tsr.getInventory().getStackInSlot(0).isEmpty() ? 0 : 15;
         }
         return 0;
     }
     
-    public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {
+    public boolean func_196266_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final PathType type) {
         return false;
     }
     
@@ -120,7 +120,7 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader worldIn) {
+    public BlockEntity func_196283_a_(final BlockGetter worldIn) {
         return new TileSpectralRelay();
     }
     

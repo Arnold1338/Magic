@@ -48,7 +48,7 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
         super(PropertiesWood.defaultInfusedWood().func_226896_b_());
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         return BlockRefractionTable.REFRACTION_TABLE;
     }
     
@@ -78,7 +78,7 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
     public InteractionResult func_225533_a_(final BlockState state, final Level world, final BlockPos pos, final Player player, final Hand hand, final BlockHitResult hit) {
         final ItemStack held = player.getItemInHand(hand);
         if (!world.level()) {
-            final TileRefractionTable tft = MiscUtils.getTileAt((IBlockReader)world, pos, TileRefractionTable.class, true);
+            final TileRefractionTable tft = MiscUtils.getTileAt((BlockGetter)world, pos, TileRefractionTable.class, true);
             if (tft != null) {
                 if (player.isCrouching()) {
                     if (!tft.getInputStack().isEmpty()) {
@@ -155,19 +155,19 @@ public class BlockRefractionTable extends BaseEntityBlock implements CustomItemB
     }
     
     public void func_196243_a(final BlockState state, final Level world, final BlockPos pos, final BlockState newState, final boolean isMoving) {
-        final TileRefractionTable te = MiscUtils.getTileAt((IBlockReader)world, pos, TileRefractionTable.class, true);
+        final TileRefractionTable te = MiscUtils.getTileAt((BlockGetter)world, pos, TileRefractionTable.class, true);
         if (te != null && !world.isClientSide) {
             te.dropContents();
         }
         super.func_196243_a(state, world, pos, newState, isMoving);
     }
     
-    public boolean func_196266_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final PathType type) {
+    public boolean func_196266_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final PathType type) {
         return false;
     }
     
     @Nullable
-    public BlockEntity func_196283_a_(final IBlockReader worldIn) {
+    public BlockEntity func_196283_a_(final BlockGetter worldIn) {
         return new TileRefractionTable();
     }
     

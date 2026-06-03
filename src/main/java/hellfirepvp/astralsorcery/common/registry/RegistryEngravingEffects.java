@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.common.registry;
 
-import net.minecraft.world.level.effect.MobEffect;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.enchantment.Enchantment;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.AstralSorcery;
@@ -11,7 +11,7 @@ import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import net.minecraft.world.item.enchantment.Enchantments;
 import hellfirepvp.astralsorcery.common.constellation.engraving.EngravingEffect;
-import net.minecraft.world.level.effect.MobEffects;
+import net.minecraft.world.effect.MobEffects;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 

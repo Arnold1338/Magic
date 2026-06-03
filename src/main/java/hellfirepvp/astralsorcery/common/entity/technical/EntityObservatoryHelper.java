@@ -53,7 +53,7 @@ public class EntityObservatoryHelper extends Entity
     @Nullable
     public TileObservatory getAssociatedObservatory() {
         final BlockPos at = this.getFixedObservatoryPos();
-        final TileObservatory observatory = MiscUtils.getTileAt((IBlockReader)this.level(), at, TileObservatory.class, true);
+        final TileObservatory observatory = MiscUtils.getTileAt((BlockGetter)this.level(), at, TileObservatory.class, true);
         if (observatory == null) {
             return null;
         }

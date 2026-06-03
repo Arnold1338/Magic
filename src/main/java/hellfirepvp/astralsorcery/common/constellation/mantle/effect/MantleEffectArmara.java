@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.common.constellation.mantle.effect;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.level.Level;
 import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;

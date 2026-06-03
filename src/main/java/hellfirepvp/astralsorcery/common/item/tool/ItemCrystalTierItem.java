@@ -100,7 +100,7 @@ public abstract class ItemCrystalTierItem extends Item implements CrystalAttribu
     }
     
     public boolean func_179218_a(final ItemStack stack, final Level worldIn, final BlockState state, final BlockPos pos, final LivingEntity entityLiving) {
-        if (!worldIn.isClientSide && state.func_185887_b((IBlockReader)worldIn, pos) != 0.0f) {
+        if (!worldIn.isClientSide && state.func_185887_b((BlockGetter)worldIn, pos) != 0.0f) {
             stack.func_222118_a(1, entityLiving, p_220038_0_ -> p_220038_0_.func_213361_c(EquipmentSlot.MAINHAND));
         }
         return true;

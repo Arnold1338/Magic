@@ -129,10 +129,10 @@ import java.util.List;
 import hellfirepvp.observerlib.common.util.tick.TickManager;
 import hellfirepvp.astralsorcery.common.registry.internal.PrimerEventHandler;
 import hellfirepvp.astralsorcery.common.registry.internal.InternalRegistryPrimer;
-import net.minecraft.world.item.IArmorMaterial;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import java.util.UUID;
 
 public class CommonProxy
@@ -147,7 +147,7 @@ public class CommonProxy
     public static final Rarity RARITY_CELESTIAL;
     public static final Rarity RARITY_ARTIFACT;
     public static final Rarity RARITY_VESTIGE;
-    public static final IArmorMaterial ARMOR_MATERIAL_IMBUED_LEATHER;
+    public static final ArmorMaterial ARMOR_MATERIAL_IMBUED_LEATHER;
     private InternalRegistryPrimer registryPrimer;
     private PrimerEventHandler registryEventHandler;
     private CommonScheduler commonScheduler;
@@ -388,6 +388,6 @@ public class CommonProxy
         RARITY_CELESTIAL = Rarity.create("AS_CELESTIAL", ChatFormatting.BLUE);
         RARITY_ARTIFACT = Rarity.create("AS_ARTIFACT", ChatFormatting.GOLD);
         RARITY_VESTIGE = Rarity.create("AS_VESTIGE", ChatFormatting.RED);
-        ARMOR_MATERIAL_IMBUED_LEATHER = (IArmorMaterial)new ArmorMaterialImbuedLeather();
+        ARMOR_MATERIAL_IMBUED_LEATHER = (ArmorMaterial)new ArmorMaterialImbuedLeather();
     }
 }

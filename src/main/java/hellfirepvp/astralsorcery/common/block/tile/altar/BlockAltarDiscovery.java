@@ -27,7 +27,7 @@ public class BlockAltarDiscovery extends BlockAltar
         return VoxelUtils.combineAll(BooleanOp.field_223244_o_, base, pillar, head);
     }
     
-    public VoxelShape func_220053_a(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final CollisionContext context) {
+    public VoxelShape func_220053_a(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         return this.shape;
     }
 }

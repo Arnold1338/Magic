@@ -68,7 +68,7 @@ public class GatewayCache extends GlobalWorldData
     }
     
     public boolean offerPosition(final Level world, final BlockPos pos) {
-        final TileCelestialGateway te = MiscUtils.getTileAt((IBlockReader)world, pos, TileCelestialGateway.class, false);
+        final TileCelestialGateway te = MiscUtils.getTileAt((BlockGetter)world, pos, TileCelestialGateway.class, false);
         if (te == null) {
             return false;
         }
@@ -102,7 +102,7 @@ public class GatewayCache extends GlobalWorldData
             final GatewayNode node = iterator.next();
             TileCelestialGateway gateway;
             try {
-                gateway = MiscUtils.getTileAt((IBlockReader)world, node.getPos(), TileCelestialGateway.class, true);
+                gateway = MiscUtils.getTileAt((BlockGetter)world, node.getPos(), TileCelestialGateway.class, true);
             }
             catch (final Exception loadEx) {
                 LogUtil.info(LogCategory.GATEWAY_CACHE, () -> "Failed to check gateway for " + node + " skipping");

@@ -65,7 +65,7 @@ public class WorldBlockPos extends BlockPos
     public <T extends BlockEntity> T getTileAt(final Class<T> tileClass, final boolean forceChunkLoad) {
         final Level world = this.worldReference.getValue();
         if (world != null) {
-            return MiscUtils.getTileAt((IBlockReader)world, this, tileClass, forceChunkLoad);
+            return MiscUtils.getTileAt((BlockGetter)world, this, tileClass, forceChunkLoad);
         }
         return null;
     }

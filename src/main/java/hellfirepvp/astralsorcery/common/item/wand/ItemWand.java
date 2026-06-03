@@ -90,12 +90,12 @@ public class ItemWand extends Item implements OverrideInteractItem
         if (b instanceof WandInteractable && ((WandInteractable)b).onInteract(world, pos, player, face, player.isCrouching())) {
             return true;
         }
-        final WandInteractable wandTe = MiscUtils.getTileAt((IBlockReader)world, pos, WandInteractable.class, true);
+        final WandInteractable wandTe = MiscUtils.getTileAt((BlockGetter)world, pos, WandInteractable.class, true);
         if (wandTe != null && wandTe.onInteract(world, pos, player, face, player.isCrouching())) {
             return true;
         }
-        final TileRequiresMultiblock mbTe = MiscUtils.getTileAt((IBlockReader)world, pos, TileRequiresMultiblock.class, true);
-        if (mbTe != null && mbTe.getRequiredStructureType() != null && mbTe.getRequiredStructureType().getStructure() instanceof MatchableStructure && !((MatchableStructure)mbTe.getRequiredStructureType().getStructure()).matches((IBlockReader)world, pos)) {
+        final TileRequiresMultiblock mbTe = MiscUtils.getTileAt((BlockGetter)world, pos, TileRequiresMultiblock.class, true);
+        if (mbTe != null && mbTe.getRequiredStructureType() != null && mbTe.getRequiredStructureType().getStructure() instanceof MatchableStructure && !((MatchableStructure)mbTe.getRequiredStructureType().getStructure()).matches((BlockGetter)world, pos)) {
             if (world.level()) {
                 this.displayClientStructurePreview(world, pos, mbTe.getRequiredStructureType());
             }
@@ -111,14 +111,14 @@ public class ItemWand extends Item implements OverrideInteractItem
     @OnlyIn(Dist.CLIENT)
     private void displayClientStructurePreview(final Level world, final BlockPos pos, final StructureType type) {
         StructurePreview.newBuilder(world.dimension(), pos, (MatchableStructure)type.getStructure()).removeIfOutInDifferentWorld().andPersistOnlyIf((inWorld, at) -> MiscUtils.executeWithChunk((IWorldReader)world, pos, () -> {
-            final TileRequiresMultiblock tileFound = MiscUtils.getTileAt((IBlockReader)world, pos, TileRequiresMultiblock.class, true);
+            final TileRequiresMultiblock tileFound = MiscUtils.getTileAt((BlockGetter)world, pos, TileRequiresMultiblock.class, true);
             if (tileFound == null) {
                 return Boolean.valueOf(false);
             }
             else {
                 return Boolean.valueOf(tileFound.getRequiredStructureType() != null && tileFound.getRequiredStructureType().equals(type));
             }
-        }, true)).andPersistOnlyIf((inWorld, at) -> !((MatchableStructure)type.getStructure()).matches((IBlockReader)world, pos)).showBar(type.getDisplayName()).buildAndSet();
+        }, true)).andPersistOnlyIf((inWorld, at) -> !((MatchableStructure)type.getStructure()).matches((BlockGetter)world, pos)).showBar(type.getDisplayName()).buildAndSet();
     }
     
     @OnlyIn(Dist.CLIENT)
