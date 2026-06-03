@@ -1,180 +1,122 @@
-  location: package net.minecraftforge.resource
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/ClientProxy.java:9: error: cannot find symbol
-import net.minecraftforge.resource.SelectiveReloadStateHandler;
-                                  ^
-  symbol:   class SelectiveReloadStateHandler
-  location: package net.minecraftforge.resource
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/ClientProxy.java:13: error: cannot find symbol
-import net.minecraft.util.profiling.IProfiler;
-                                   ^
-  symbol:   class IProfiler
-  location: package net.minecraft.util.profiling
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/ClientProxy.java:23: error: cannot find symbol
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-                                                  ^
-  symbol:   class LayerRenderer
-  location: package net.minecraft.client.renderer.entity.layers
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/ClientProxy.java:26: error: cannot find symbol
-import net.minecraft.client.renderer.entity.IEntityRenderer;
-                                           ^
-  symbol:   class IEntityRenderer
-  location: package net.minecraft.client.renderer.entity
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/ClientProxy.java:28: error: cannot find symbol
-import net.minecraft.client.renderer.entity.PlayerRenderer;
-                                           ^
-  symbol:   class PlayerRenderer
-  location: package net.minecraft.client.renderer.entity
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/ClientProxy.java:35: error: cannot find symbol
-import net.minecraft.client.player.AbstractClientPlayerEntity;
-                                  ^
-  symbol:   class AbstractClientPlayerEntity
-  location: package net.minecraft.client.player
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/ClientProxy.java:69: error: cannot find symbol
-import net.minecraft.resources.IReloadableResourceManager;
-                              ^
-  symbol:   class IReloadableResourceManager
-  location: package net.minecraft.resources
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/CommonProxy.java:132: error: cannot find symbol
-import net.minecraft.world.item.IArmorMaterial;
-                               ^
-  symbol:   class IArmorMaterial
-  location: package net.minecraft.world.item
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/CommonProxy.java:135: error: package net.minecraft.world.level.damagesource does not exist
-import net.minecraft.world.level.damagesource.DamageSource;
-                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/GuiType.java:12: error: cannot find symbol
-import net.minecraft.world.IBlockReader;
-                          ^
-  symbol:   class IBlockReader
-  location: package net.minecraft.world
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/GuiType.java:20: error: package net.minecraft.client.gui.screen does not exist
-import net.minecraft.client.gui.screen.Screen;
-                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/GuiType.java:57: error: cannot find symbol
-    public Screen deserialize(final CompoundTag data) {
-           ^
-  symbol:   class Screen
-  location: class GuiType
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/config/base/BaseConfiguration.java:51: error: cannot find symbol
-    public static void refreshConfiguration(final ModConfig.Loading cfgLoadEvent) {
-                                                           ^
-  symbol:   class Loading
-  location: class ModConfig
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/CommonProxy.java:141: error: cannot find symbol
-    public static DamageSource DAMAGE_SOURCE_BLEED;
                   ^
-  symbol:   class DamageSource
-  location: class CommonProxy
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/CommonProxy.java:142: error: cannot find symbol
-    public static DamageSource DAMAGE_SOURCE_STELLAR;
+  symbol:   class ModelRenderer
+  location: class ModelRefractionTable
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:29: error: cannot find symbol
+    private final ModelRenderer leg_1;
                   ^
-  symbol:   class DamageSource
-  location: class CommonProxy
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/CommonProxy.java:143: error: cannot find symbol
-    public static DamageSource DAMAGE_SOURCE_REFLECT;
+  symbol:   class ModelRenderer
+  location: class ModelRefractionTable
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:30: error: cannot find symbol
+    private final ModelRenderer leg_2;
                   ^
-  symbol:   class DamageSource
-  location: class CommonProxy
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/CommonProxy.java:150: error: cannot find symbol
-    public static final IArmorMaterial ARMOR_MATERIAL_IMBUED_LEATHER;
-                        ^
-  symbol:   class IArmorMaterial
-  location: class CommonProxy
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:38: error: package net.minecraft.world.level.inventory does not exist
-import net.minecraft.world.level.inventory.MenuType;
+  symbol:   class ModelRenderer
+  location: class ModelRefractionTable
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:31: error: cannot find symbol
+    private final ModelRenderer leg_3;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelRefractionTable
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:32: error: cannot find symbol
+    private final ModelRenderer leg_4;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelRefractionTable
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:33: error: cannot find symbol
+    private final ModelRenderer parchment;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelRefractionTable
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:34: error: cannot find symbol
+    private final ModelRenderer black_mirror;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelRefractionTable
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:35: error: cannot find symbol
+    private final ModelRenderer treated_glass;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelRefractionTable
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:7: error: package net.minecraft.client.renderer.model does not exist
+import net.minecraft.client.renderer.model.Model;
                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:55: error: package net.minecraft.world.level.effect does not exist
-import net.minecraft.world.level.effect.MobEffect;
-                                       ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:56: error: cannot find symbol
-import net.minecraft.world.level.levelgen.placement.Placement;
-                                                   ^
-  symbol:   class Placement
-  location: package net.minecraft.world.level.levelgen.placement
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:126: error: type RegisterEvent does not take parameters
-    private void registerItems(final RegisterEvent<Item> event) {
-                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:135: error: type RegisterEvent does not take parameters
-    private void registerBlocks(final RegisterEvent<Block> event) {
-                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:142: error: type RegisterEvent does not take parameters
-    private void registerFluids(final RegisterEvent<Fluid> event) {
-                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:146: error: type RegisterEvent does not take parameters
-    private void registerTiles(final RegisterEvent<BlockEntityType<?>> event) {
-                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:151: error: type RegisterEvent does not take parameters
-    private void registerEntities(final RegisterEvent<EntityType<?>> event) {
-                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:156: error: cannot find symbol
-    private void registerEffects(final RegisterEvent<Effect> event) {
-                                                     ^
-  symbol:   class Effect
-  location: class PrimerEventHandler
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:156: error: type RegisterEvent does not take parameters
-    private void registerEffects(final RegisterEvent<Effect> event) {
-                                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:161: error: type RegisterEvent does not take parameters
-    private void registerEnchantments(final RegisterEvent<Enchantment> event) {
-                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:166: error: cannot find symbol
-    private void registerGlobalLootModifierSerializers(final RegisterEvent<GlobalLootModifierSerializer<?>> event) {
-                                                                           ^
-  symbol:   class GlobalLootModifierSerializer
-  location: class PrimerEventHandler
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:166: error: type RegisterEvent does not take parameters
-    private void registerGlobalLootModifierSerializers(final RegisterEvent<GlobalLootModifierSerializer<?>> event) {
-                                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:171: error: type RegisterEvent does not take parameters
-    private void registerConstellations(final RegisterEvent<IConstellation> event) {
-                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:175: error: type RegisterEvent does not take parameters
-    private void registerConstellationEffects(final RegisterEvent<ConstellationEffectProvider> event) {
-                                                                 ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:179: error: type RegisterEvent does not take parameters
-    private void registerMantleEffects(final RegisterEvent<MantleEffect> event) {
-                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:183: error: type RegisterEvent does not take parameters
-    private void registerEngravingEffects(final RegisterEvent<EngravingEffect> event) {
-                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:187: error: type RegisterEvent does not take parameters
-    private void registerPerkAttributeTypes(final RegisterEvent<PerkAttributeType> event) {
-                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:191: error: type RegisterEvent does not take parameters
-    private void registerPerkConverters(final RegisterEvent<PerkConverter> event) {
-                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:195: error: type RegisterEvent does not take parameters
-    private void registerPerkCustomModifiers(final RegisterEvent<PerkAttributeModifier> event) {
-                                                                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:199: error: type RegisterEvent does not take parameters
-    private void registerPerkAttributeReaders(final RegisterEvent<PerkAttributeReader> event) {
-                                                                 ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:203: error: cannot find symbol
-    private void registerContainerTypes(final RegisterEvent<MenuType<?>> event) {
-                                                            ^
-  symbol:   class MenuType
-  location: class PrimerEventHandler
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:203: error: type RegisterEvent does not take parameters
-    private void registerContainerTypes(final RegisterEvent<MenuType<?>> event) {
-                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:208: error: type RegisterEvent does not take parameters
-    private void registerCrystalProperties(final RegisterEvent<CrystalProperty> event) {
-                                                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:212: error: type RegisterEvent does not take parameters
-    private void registerCrystalUsages(final RegisterEvent<PropertyUsage> event) {
-                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:216: error: type RegisterEvent does not take parameters
-    private void registerAltarRecipeEffects(final RegisterEvent<AltarRecipeEffect> event) {
-                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:221: error: type RegisterEvent does not take parameters
-    private void registerDataSerializers(final RegisterEvent<net.minecraft.network.syncher.EntityDataSerializer> event) {
-                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:226: error: type RegisterEvent does not take parameters
-    private void registerRecipeSerializers(final RegisterEvent<RecipeSerializer<?>> event) {
-                                                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/registry/internal/PrimerEventHandler.java:230: error: type RegisterEvent does not take parameters
-    private void registerStructures(final RegisterEvent<MatchableStructure> event) {
-                                                       ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:9: error: package net.minecraft.client.renderer.model does not exist
+import net.minecraft.client.renderer.model.ModelRenderer;
+                                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:13: error: cannot find symbol
+    private final ModelRenderer base;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:14: error: cannot find symbol
+    private final ModelRenderer tube;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:15: error: cannot find symbol
+    private final ModelRenderer seat;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:16: error: cannot find symbol
+    private final ModelRenderer base1;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:17: error: cannot find symbol
+    private final ModelRenderer base2;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:18: error: cannot find symbol
+    private final ModelRenderer base3;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:19: error: cannot find symbol
+    private final ModelRenderer base4;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:20: error: cannot find symbol
+    private final ModelRenderer base5;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:21: error: cannot find symbol
+    private final ModelRenderer base6;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:22: error: cannot find symbol
+    private final ModelRenderer base7;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:23: error: cannot find symbol
+    private final ModelRenderer base8;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:24: error: cannot find symbol
+    private final ModelRenderer seat1;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:25: error: cannot find symbol
+    private final ModelRenderer seat2;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:26: error: cannot find symbol
+    private final ModelRenderer seat3;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:27: error: cannot find symbol
+    private final ModelRenderer seat4;
+                  ^
+  symbol:   class ModelRenderer
+  location: class ModelObservatory
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/resource/AssetLoader.java:39: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
         return new WavefrontObject(new ResourceLocation(buildResourceString(AssetLocation.MODELS, location, name, ".obj")));
                                    ^
@@ -389,7 +331,7 @@ Note: Recompile with -Xlint:unchecked for details.
 Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
 100 errors
 69 warnings
-only showing the first 100 errors, of 7516 total; use -Xmaxerrs if you would like to see more
+only showing the first 100 errors, of 7170 total; use -Xmaxerrs if you would like to see more
 
 > Task :compileJava FAILED
 
@@ -434,6 +376,35 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':compile
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:463)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:380)
+	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:116)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:138)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:123)
+	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
+	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:51)
+	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
+	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
+	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
+	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:177)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:44)
+	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:177)
+	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
+	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:264)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
+	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
+	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
+	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
+	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:80)
+	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Compilation failed; see the compiler error output for details.
@@ -586,6 +557,35 @@ Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Com
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:463)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:380)
+	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:116)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:138)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:123)
+	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
+	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:51)
+	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
+	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
+	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
+	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:177)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:44)
+	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:177)
+	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
+	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:264)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
+	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
+	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
+	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
+	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:80)
+	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 
@@ -596,5 +596,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 2m 43s
+BUILD FAILED in 2m 33s
 4 actionable tasks: 4 executed
