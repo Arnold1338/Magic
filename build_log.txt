@@ -1,131 +1,252 @@
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelRefractionTable
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:29: error: cannot find symbol
-    private final ModelRenderer leg_1;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelRefractionTable
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:30: error: cannot find symbol
-    private final ModelRenderer leg_2;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelRefractionTable
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:31: error: cannot find symbol
-    private final ModelRenderer leg_3;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelRefractionTable
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:32: error: cannot find symbol
-    private final ModelRenderer leg_4;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelRefractionTable
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:33: error: cannot find symbol
-    private final ModelRenderer parchment;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelRefractionTable
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:34: error: cannot find symbol
-    private final ModelRenderer black_mirror;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelRefractionTable
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelRefractionTable.java:35: error: cannot find symbol
-    private final ModelRenderer treated_glass;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelRefractionTable
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:7: error: package net.minecraft.client.renderer.model does not exist
-import net.minecraft.client.renderer.model.Model;
-                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:9: error: package net.minecraft.client.renderer.model does not exist
-import net.minecraft.client.renderer.model.ModelRenderer;
-                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:13: error: cannot find symbol
-    private final ModelRenderer base;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:14: error: cannot find symbol
-    private final ModelRenderer tube;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:15: error: cannot find symbol
-    private final ModelRenderer seat;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:16: error: cannot find symbol
-    private final ModelRenderer base1;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:17: error: cannot find symbol
-    private final ModelRenderer base2;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:18: error: cannot find symbol
-    private final ModelRenderer base3;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:19: error: cannot find symbol
-    private final ModelRenderer base4;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:20: error: cannot find symbol
-    private final ModelRenderer base5;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:21: error: cannot find symbol
-    private final ModelRenderer base6;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:22: error: cannot find symbol
-    private final ModelRenderer base7;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:23: error: cannot find symbol
-    private final ModelRenderer base8;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:24: error: cannot find symbol
-    private final ModelRenderer seat1;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:25: error: cannot find symbol
-    private final ModelRenderer seat2;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:26: error: cannot find symbol
-    private final ModelRenderer seat3;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/model/builtin/ModelObservatory.java:27: error: cannot find symbol
-    private final ModelRenderer seat4;
-                  ^
-  symbol:   class ModelRenderer
-  location: class ModelObservatory
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/resource/AssetLoader.java:39: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        return new WavefrontObject(new ResourceLocation(buildResourceString(AssetLocation.MODELS, location, name, ".obj")));
+                                       ^
+  symbol:   class TemplateManager
+  location: class DesertShrineStructure
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/DesertShrineStructure.java:17: error: cannot find symbol
+    public DesertShrineStructure(final TemplateManager mgr, final CompoundTag nbt) {
+                                       ^
+  symbol:   class TemplateManager
+  location: class DesertShrineStructure
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:3: error: cannot find symbol
+import net.minecraft.world.level.levelgen.feature.FeatureConfiguration;
+                                                 ^
+  symbol:   class FeatureConfiguration
+  location: package net.minecraft.world.level.levelgen.feature
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:8: error: package net.minecraft.world.level.levelgen.feature.template does not exist
+import net.minecraft.world.level.levelgen.feature.template.TemplateManager;
+                                                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:10: error: cannot find symbol
+import net.minecraft.core.DynamicRegistries;
+                         ^
+  symbol:   class DynamicRegistries
+  location: package net.minecraft.core
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:11: error: cannot find symbol
+import net.minecraft.core.MutableBoundingBox;
+                         ^
+  symbol:   class MutableBoundingBox
+  location: package net.minecraft.core
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:13: error: cannot find symbol
+import net.minecraft.world.level.levelgen.feature.NoneFeatureConfiguration;
+                                                 ^
+  symbol:   class NoneFeatureConfiguration
+  location: package net.minecraft.world.level.levelgen.feature
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/TemplateStructureFeature.java:4: error: cannot find symbol
+import net.minecraft.world.level.levelgen.feature.NoneFeatureConfiguration;
+                                                 ^
+  symbol:   class NoneFeatureConfiguration
+  location: package net.minecraft.world.level.levelgen.feature
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/TemplateStructureFeature.java:7: error: cannot find symbol
+public abstract class TemplateStructureFeature extends Structure<NoneFeatureConfiguration>
+                                                                 ^
+  symbol: class NoneFeatureConfiguration
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/TemplateStructureFeature.java:7: error: type Structure does not take parameters
+public abstract class TemplateStructureFeature extends Structure<NoneFeatureConfiguration>
+                                                                ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:19: error: cannot find symbol
+    public Structure.IStartFactory<NoneFeatureConfiguration> func_214557_a() {
+                    ^
+  symbol:   class IStartFactory
+  location: class Structure
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:19: error: cannot find symbol
+    public Structure.IStartFactory<NoneFeatureConfiguration> func_214557_a() {
                                    ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/resource/BindableResource.java:56: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        mgr.func_229263_a_(this.getKey(), (AbstractTexture)new SimpleTexture(new ResourceLocation(this.getPath())));
-                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/IConstellation.java:128: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        return ConstellationRegistry.getConstellation(new ResourceLocation(compound.getString(key)));
-                                                      ^
+  symbol:   class NoneFeatureConfiguration
+  location: class FeatureSmallShrineStructure
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/TemplateStructureFeature.java:13: error: package GenerationStage does not exist
+    public GenerationStage.Decoration func_236396_f_() {
+                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:23: error: cannot inherit from final StructureStart
+    public static class Start extends StructureStart<NoneFeatureConfiguration>
+                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:23: error: cannot find symbol
+    public static class Start extends StructureStart<NoneFeatureConfiguration>
+                                                     ^
+  symbol:   class NoneFeatureConfiguration
+  location: class FeatureSmallShrineStructure
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:23: error: type StructureStart does not take parameters
+    public static class Start extends StructureStart<NoneFeatureConfiguration>
+                                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:25: error: cannot find symbol
+        public Start(final Structure<NoneFeatureConfiguration> config, final int chunkPosX, final int chunkPosZ, final MutableBoundingBox bounds, final int ref, final long seed) {
+                                     ^
+  symbol:   class NoneFeatureConfiguration
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:25: error: type Structure does not take parameters
+        public Start(final Structure<NoneFeatureConfiguration> config, final int chunkPosX, final int chunkPosZ, final MutableBoundingBox bounds, final int ref, final long seed) {
+                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:25: error: cannot find symbol
+        public Start(final Structure<NoneFeatureConfiguration> config, final int chunkPosX, final int chunkPosZ, final MutableBoundingBox bounds, final int ref, final long seed) {
+                                                                                                                       ^
+  symbol:   class MutableBoundingBox
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:29: error: cannot find symbol
+        public void func_230364_a_(final DynamicRegistries registries, final ChunkGenerator gen, final TemplateManager mgr, final int chunkX, final int chunkZ, final Biome biome, final NoneFeatureConfiguration cfg) {
+                                         ^
+  symbol:   class DynamicRegistries
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:29: error: cannot find symbol
+        public void func_230364_a_(final DynamicRegistries registries, final ChunkGenerator gen, final TemplateManager mgr, final int chunkX, final int chunkZ, final Biome biome, final NoneFeatureConfiguration cfg) {
+                                                                                                       ^
+  symbol:   class TemplateManager
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureSmallShrineStructure.java:29: error: cannot find symbol
+        public void func_230364_a_(final DynamicRegistries registries, final ChunkGenerator gen, final TemplateManager mgr, final int chunkX, final int chunkZ, final Biome biome, final NoneFeatureConfiguration cfg) {
+                                                                                                                                                                                         ^
+  symbol:   class NoneFeatureConfiguration
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:3: error: cannot find symbol
+import net.minecraft.world.level.levelgen.feature.FeatureConfiguration;
+                                                 ^
+  symbol:   class FeatureConfiguration
+  location: package net.minecraft.world.level.levelgen.feature
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:8: error: package net.minecraft.world.level.levelgen.feature.template does not exist
+import net.minecraft.world.level.levelgen.feature.template.TemplateManager;
+                                                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:10: error: cannot find symbol
+import net.minecraft.core.DynamicRegistries;
+                         ^
+  symbol:   class DynamicRegistries
+  location: package net.minecraft.core
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:11: error: cannot find symbol
+import net.minecraft.core.MutableBoundingBox;
+                         ^
+  symbol:   class MutableBoundingBox
+  location: package net.minecraft.core
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:13: error: cannot find symbol
+import net.minecraft.world.level.levelgen.feature.NoneFeatureConfiguration;
+                                                 ^
+  symbol:   class NoneFeatureConfiguration
+  location: package net.minecraft.world.level.levelgen.feature
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:19: error: cannot find symbol
+    public Structure.IStartFactory<NoneFeatureConfiguration> func_214557_a() {
+                    ^
+  symbol:   class IStartFactory
+  location: class Structure
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:19: error: cannot find symbol
+    public Structure.IStartFactory<NoneFeatureConfiguration> func_214557_a() {
+                                   ^
+  symbol:   class NoneFeatureConfiguration
+  location: class FeatureDesertShrineStructure
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:23: error: cannot inherit from final StructureStart
+    public static class Start extends StructureStart<NoneFeatureConfiguration>
+                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:23: error: cannot find symbol
+    public static class Start extends StructureStart<NoneFeatureConfiguration>
+                                                     ^
+  symbol:   class NoneFeatureConfiguration
+  location: class FeatureDesertShrineStructure
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:23: error: type StructureStart does not take parameters
+    public static class Start extends StructureStart<NoneFeatureConfiguration>
+                                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:25: error: cannot find symbol
+        public Start(final Structure<NoneFeatureConfiguration> config, final int chunkPosX, final int chunkPosZ, final MutableBoundingBox bounds, final int ref, final long seed) {
+                                     ^
+  symbol:   class NoneFeatureConfiguration
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:25: error: type Structure does not take parameters
+        public Start(final Structure<NoneFeatureConfiguration> config, final int chunkPosX, final int chunkPosZ, final MutableBoundingBox bounds, final int ref, final long seed) {
+                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:25: error: cannot find symbol
+        public Start(final Structure<NoneFeatureConfiguration> config, final int chunkPosX, final int chunkPosZ, final MutableBoundingBox bounds, final int ref, final long seed) {
+                                                                                                                       ^
+  symbol:   class MutableBoundingBox
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:29: error: cannot find symbol
+        public void func_230364_a_(final DynamicRegistries registries, final ChunkGenerator gen, final TemplateManager mgr, final int chunkX, final int chunkZ, final Biome biome, final NoneFeatureConfiguration cfg) {
+                                         ^
+  symbol:   class DynamicRegistries
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:29: error: cannot find symbol
+        public void func_230364_a_(final DynamicRegistries registries, final ChunkGenerator gen, final TemplateManager mgr, final int chunkX, final int chunkZ, final Biome biome, final NoneFeatureConfiguration cfg) {
+                                                                                                       ^
+  symbol:   class TemplateManager
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureDesertShrineStructure.java:29: error: cannot find symbol
+        public void func_230364_a_(final DynamicRegistries registries, final ChunkGenerator gen, final TemplateManager mgr, final int chunkX, final int chunkZ, final Biome biome, final NoneFeatureConfiguration cfg) {
+                                                                                                                                                                                         ^
+  symbol:   class NoneFeatureConfiguration
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:3: error: cannot find symbol
+import net.minecraft.world.level.levelgen.feature.FeatureConfiguration;
+                                                 ^
+  symbol:   class FeatureConfiguration
+  location: package net.minecraft.world.level.levelgen.feature
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:8: error: package net.minecraft.world.level.levelgen.feature.template does not exist
+import net.minecraft.world.level.levelgen.feature.template.TemplateManager;
+                                                          ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:10: error: cannot find symbol
+import net.minecraft.core.DynamicRegistries;
+                         ^
+  symbol:   class DynamicRegistries
+  location: package net.minecraft.core
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:11: error: cannot find symbol
+import net.minecraft.core.MutableBoundingBox;
+                         ^
+  symbol:   class MutableBoundingBox
+  location: package net.minecraft.core
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:13: error: cannot find symbol
+import net.minecraft.world.level.levelgen.feature.NoneFeatureConfiguration;
+                                                 ^
+  symbol:   class NoneFeatureConfiguration
+  location: package net.minecraft.world.level.levelgen.feature
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:19: error: cannot find symbol
+    public Structure.IStartFactory<NoneFeatureConfiguration> func_214557_a() {
+                    ^
+  symbol:   class IStartFactory
+  location: class Structure
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:19: error: cannot find symbol
+    public Structure.IStartFactory<NoneFeatureConfiguration> func_214557_a() {
+                                   ^
+  symbol:   class NoneFeatureConfiguration
+  location: class FeatureAncientShrineStructure
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:23: error: cannot inherit from final StructureStart
+    public static class Start extends StructureStart<NoneFeatureConfiguration>
+                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:23: error: cannot find symbol
+    public static class Start extends StructureStart<NoneFeatureConfiguration>
+                                                     ^
+  symbol:   class NoneFeatureConfiguration
+  location: class FeatureAncientShrineStructure
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:23: error: type StructureStart does not take parameters
+    public static class Start extends StructureStart<NoneFeatureConfiguration>
+                                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:25: error: cannot find symbol
+        public Start(final Structure<NoneFeatureConfiguration> config, final int chunkPosX, final int chunkPosZ, final MutableBoundingBox bounds, final int ref, final long seed) {
+                                     ^
+  symbol:   class NoneFeatureConfiguration
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:25: error: type Structure does not take parameters
+        public Start(final Structure<NoneFeatureConfiguration> config, final int chunkPosX, final int chunkPosZ, final MutableBoundingBox bounds, final int ref, final long seed) {
+                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:25: error: cannot find symbol
+        public Start(final Structure<NoneFeatureConfiguration> config, final int chunkPosX, final int chunkPosZ, final MutableBoundingBox bounds, final int ref, final long seed) {
+                                                                                                                       ^
+  symbol:   class MutableBoundingBox
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:29: error: cannot find symbol
+        public void func_230364_a_(final DynamicRegistries registries, final ChunkGenerator gen, final TemplateManager mgr, final int chunkX, final int chunkZ, final Biome biome, final NoneFeatureConfiguration cfg) {
+                                         ^
+  symbol:   class DynamicRegistries
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/world/structure/feature/FeatureAncientShrineStructure.java:29: error: cannot find symbol
+        public void func_230364_a_(final DynamicRegistries registries, final ChunkGenerator gen, final TemplateManager mgr, final int chunkX, final int chunkZ, final Biome biome, final NoneFeatureConfiguration cfg) {
+                                                                                                       ^
+  symbol:   class TemplateManager
+  location: class Start
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/AstralSorcery.java:31: warning: [removal] get() in FMLJavaModLoadingContext has been deprecated and marked for removal
+        this.proxy.attachLifecycle(FMLJavaModLoadingContext.get().getModEventBus());
+                                                           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/AstralSorcery.java:48: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+        return new ResourceLocation("astralsorcery", path);
+               ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/GuiType.java:66: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+                    return new ScreenConstellationPaper((IConstellation)RegistriesAS.REGISTRY_CONSTELLATIONS.getValue(new ResourceLocation(data.func_74779_i("cst"))));
+                                                                                                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/enchantment/dynamic/DynamicEnchantmentHelper.java:35: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+        final Enchantment enchantment = (Enchantment)ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(enchStr));
+                                                                                           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/enchantment/amulet/AmuletEnchantment.java:66: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+        final ResourceLocation res = new ResourceLocation(cmp.getString("ench"));
+                                     ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/research/PlayerProgress.java:65: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
                 this.seenConstellations.add(new ResourceLocation(list.func_150307_f(i)));
                                             ^
@@ -144,6 +265,9 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/research/PlayerProgress.java:181: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
                 final ResourceLocation cstName = new ResourceLocation(list.func_150307_f(i));
                                                  ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/IConstellation.java:128: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+        return ConstellationRegistry.getConstellation(new ResourceLocation(compound.getString(key)));
+                                                      ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/research/PlayerPerkData.java:242: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
         this.freePointTokens.addAll(NBTHelper.readList(tag, "tokens", 8, nbt -> new ResourceLocation(nbt.func_150285_a_().replace("-", "_"))));
                                                                                 ^
@@ -165,111 +289,81 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/data/world/LightNetworkBuffer.java:421: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
                 final ResourceLocation nodeIdentifier = new ResourceLocation(prismComp.getString("trNodeId"));
                                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/event/effect/ClientMiscEventHandler.java:48: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-            final ResourceLocation mod = new ResourceLocation("astralsorcery:models/obj/modelassec.obj");
-                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/sky/astral/AstralSkyRenderer.java:296: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        REF_TEX_MOON_PHASES = new ResourceLocation("textures/environment/moon_phases.png");
-                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/sky/astral/AstralSkyRenderer.java:297: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        REF_TEX_SUN = new ResourceLocation("textures/environment/sun.png");
-                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/GuiType.java:66: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-                    return new ScreenConstellationPaper((IConstellation)RegistriesAS.REGISTRY_CONSTELLATIONS.getValue(new ResourceLocation(data.func_74779_i("cst"))));
-                                                                                                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/resource/AssetLoader.java:39: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+        return new WavefrontObject(new ResourceLocation(buildResourceString(AssetLocation.MODELS, location, name, ".obj")));
+                                   ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/client/resource/BindableResource.java:56: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+        mgr.func_229263_a_(this.getKey(), (AbstractTexture)new SimpleTexture(new ResourceLocation(this.getPath())));
+                                                                             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/storage/StorageKey.java:55: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+        final ResourceLocation rl = new ResourceLocation(nbt.getString("name"));
+                                    ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/advancement/instance/ConstellationInstance.java:95: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+            final IConstellation cst = (IConstellation)RegistriesAS.REGISTRY_CONSTELLATIONS.getValue(new ResourceLocation(key));
+                                                                                                     ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/advancement/instance/AltarRecipeInstance.java:99: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+            instance.recipeNames.add(new ResourceLocation(key));
+                                     ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/altar/TileAltar.java:438: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
         this.knownRecipes = NBTHelper.readSet(compound, "knownRecipes", 8, nbt -> new ResourceLocation(nbt.func_150285_a_()));
                                                                                   ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/recipe/altar/ActiveSimpleAltarRecipe.java:256: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
         final ResourceLocation recipeKey = new ResourceLocation(compound.getString("recipeToCraft"));
                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/block/BlockMatchInformation.java:100: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        final ITag<Block> blockTag = (ITag<Block>)TagCollectionManager.func_242178_a().func_241835_a().func_199910_a(new ResourceLocation(object.get("tag").getAsString()));
-                                                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/block/BlockMatchInformation.java:131: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-                final ITag<Block> blockTag = (ITag<Block>)TagCollectionManager.func_242178_a().func_241835_a().func_199910_a(new ResourceLocation(tagName));
-                                                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/TileInfuser.java:272: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        this.knownRecipes = NBTHelper.readSet(compound, "knownRecipes", 8, nbt -> new ResourceLocation(nbt.func_150285_a_()));
-                                                                                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/recipe/infusion/ActiveLiquidInfusionRecipe.java:277: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        final ResourceLocation recipeKey = new ResourceLocation(compound.getString("recipeToCraft"));
-                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/tile/SimpleSingleFluidTank.java:194: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        this.fluid = (Fluid)ForgeRegistries.FLUIDS.getValue(new ResourceLocation(tag.getString("fluid")));
-                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/tile/PrecisionSingleFluidTank.java:195: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        this.fluid = (Fluid)ForgeRegistries.FLUIDS.getValue(new ResourceLocation(tag.getString("fluid")));
-                                                            ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/TileLens.java:193: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-            this.colorType = LensColorType.byName(new ResourceLocation(compound.getString("colorType")));
-                                                  ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/advancement/DiscoverConstellationTrigger.java:31: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+        ID = new ResourceLocation("astralsorcery", "find_constellation");
+             ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/engraving/EngravedStarMap.java:192: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+            final ResourceLocation constellationKey = new ResourceLocation(cstTag.getString("cst"));
+                                                      ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/engraving/EngravedStarMap.java:202: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+            final IConstellation cst = ConstellationRegistry.getConstellation(new ResourceLocation(cstTag2.getString("cst")));
+                                                                              ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/constellation/effect/base/ListEntries.java:44: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+            this.type = (EntityType<?>)ForgeRegistries.ENTITIES.getValue(new ResourceLocation(nbt.getString("entity")));
+                                                                         ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/TileAttunementAltar.java:461: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
             this.activeConstellation = ConstellationRegistry.getConstellation(new ResourceLocation(compound.getString("activeConstellation")));
                                                                               ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/TileAttunementAltar.java:468: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
             final AttunementRecipe recipe = ((CustomRecipeRegistry<AttunementRecipe>)AttunementCraftingRegistry.INSTANCE).getRecipe(new ResourceLocation(nbt.getString("recipe")));
                                                                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/AstralSorcery.java:31: warning: [removal] get() in FMLJavaModLoadingContext has been deprecated and marked for removal
-        this.proxy.attachLifecycle(FMLJavaModLoadingContext.get().getModEventBus());
-                                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/AstralSorcery.java:48: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
-        return new ResourceLocation("astralsorcery", path);
-               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/datagen/data/recipes/builder/ResultCookingRecipeBuilder.java:51: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        final ResourceLocation saveNameKey = new ResourceLocation(save);
-                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/datagen/data/recipes/builder/ResultCookingRecipeBuilder.java:59: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
-        id = new ResourceLocation(id.func_110624_b(), this.recipeSerializer.getRegistryName().addTransientModifier() + "/" + id.addTransientModifier());
-             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/datagen/data/recipes/builder/ResultCookingRecipeBuilder.java:106: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-            return new ResourceLocation("");
-                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/datagen/data/recipes/builder/SimpleShapelessRecipeBuilder.java:84: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
-        id = new ResourceLocation(id.func_110624_b(), "shapeless/" + path);
-             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/datagen/data/recipes/builder/SimpleShapelessRecipeBuilder.java:131: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-            return new ResourceLocation("");
-                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/datagen/data/recipes/builder/StoneCuttingRecipeBuilder.java:80: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-            return new ResourceLocation("");
-                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/datagen/data/recipes/builder/SimpleShapedRecipeBuilder.java:95: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
-        id = new ResourceLocation(id.func_110624_b(), "shaped/" + path);
-             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/datagen/data/recipes/builder/SimpleShapedRecipeBuilder.java:165: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-            return new ResourceLocation("");
-                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/ProgressGatedPerk.java:105: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-                final IConstellation cst = ConstellationRegistry.getConstellation(new ResourceLocation(key));
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/TileFountain.java:251: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+            final ResourceLocation key = new ResourceLocation(compound.getString("currentEffect"));
+                                         ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/TileInfuser.java:272: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+        this.knownRecipes = NBTHelper.readSet(compound, "knownRecipes", 8, nbt -> new ResourceLocation(nbt.func_150285_a_()));
                                                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/modifier/AttributeConverterPerk.java:65: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-                final PerkConverter converter = (PerkConverter)RegistriesAS.REGISTRY_PERK_ATTRIBUTE_CONVERTERS.getValue(new ResourceLocation(key));
-                                                                                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/modifier/AttributeModifierPerk.java:86: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-                    final PerkAttributeModifier customModifier = (PerkAttributeModifier)RegistriesAS.REGISTRY_PERK_CUSTOM_MODIFIERS.getValue(new ResourceLocation(customKey));
-                                                                                                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/modifier/AttributeModifierPerk.java:94: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-                    final PerkAttributeType type = (PerkAttributeType)RegistriesAS.REGISTRY_PERK_ATTRIBUTE_TYPES.getValue(new ResourceLocation(typeKey));
-                                                                                                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyAddEnchantment.java:126: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-                    final Enchantment ench = (Enchantment)ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(enchantmentKey));
-                                                                                                ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/ConstellationPerk.java:50: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-            final IConstellation cst = ConstellationRegistry.getConstellation(new ResourceLocation(cstKey));
-                                                                              ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/perk/node/key/KeyTreeConnector.java:73: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-                ResearchManager.revokeFreePoint(player, new ResourceLocation(list.func_150307_f(i)));
-                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/auxiliary/gateway/CelestialGatewayFilter.java:66: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-                final ResourceLocation location = new ResourceLocation(list.func_150307_f(i));
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/TileLens.java:193: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+            this.colorType = LensColorType.byName(new ResourceLocation(compound.getString("colorType")));
                                                   ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/integration/crt/LiquidInteractionManager.java:32: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        final ResourceLocation recipeId = new ResourceLocation(name);
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/tile/PrecisionSingleFluidTank.java:195: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+        this.fluid = (Fluid)ForgeRegistries.FLUIDS.getValue(new ResourceLocation(tag.getString("fluid")));
+                                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/recipe/infusion/ActiveLiquidInfusionRecipe.java:277: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+        final ResourceLocation recipeKey = new ResourceLocation(compound.getString("recipeToCraft"));
+                                           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/tile/SimpleSingleFluidTank.java:194: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+        this.fluid = (Fluid)ForgeRegistries.FLUIDS.getValue(new ResourceLocation(tag.getString("fluid")));
+                                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/serializer/WellRecipeSerializer.java:31: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+        final Fluid fluid = (Fluid)ForgeRegistries.FLUIDS.getValue(new ResourceLocation(fluidKey));
+                                                                   ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/serializer/LiquidInfusionSerializer.java:28: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+        final ResourceLocation fluidKey = new ResourceLocation(JSONUtils.func_151200_h(json, "fluidInput"));
                                           ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/integration/crt/LiquidInteractionManager.java:40: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        final ResourceLocation recipeId = new ResourceLocation(name);
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/serializer/BlockTransmutationSerializer.java:58: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+            final ResourceLocation cstKey = new ResourceLocation(JSONUtils.func_151200_h(json, "constellation"));
+                                            ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/serializer/SimpleAltarRecipeSerializer.java:41: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+            final ResourceLocation key = new ResourceLocation(JSONUtils.func_151200_h(json, "recipe_class"));
+                                         ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/serializer/SimpleAltarRecipeSerializer.java:60: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+            final ResourceLocation key2 = new ResourceLocation(JSONUtils.func_151200_h(json, "focus_constellation"));
                                           ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/serializer/SimpleAltarRecipeSerializer.java:85: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+                final ResourceLocation effectKey = new ResourceLocation(JSONUtils.func_151206_a(element, "effects[" + j + "]"));
+                                                   ^
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/recipe/LiquidInteraction.java:114: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
         final Fluid reactant1 = (Fluid)ForgeRegistries.FLUIDS.getValue(new ResourceLocation(fluidKey1));
                                                                        ^
@@ -282,56 +376,20 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 /home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/crafting/recipe/LiquidInteraction.java:189: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
         final ResourceLocation key = new ResourceLocation(ByteBufUtils.readString(buffer));
                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/integration/crt/WellManager.java:29: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        final ResourceLocation recipeId = new ResourceLocation(name);
-                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/integration/crt/InfusionManager.java:29: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        final ResourceLocation recipeId = new ResourceLocation(name);
-                                          ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/integration/crt/BlockTransmutationManager.java:55: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        final BlockTransmutation transmutation = new BlockTransmutation(new ResourceLocation(name), outState, starlight, weakConstellation);
-                                                                        ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/integration/crt/AltarManager.java:51: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        final SimpleAltarRecipe recipe = new SimpleAltarRecipe(new ResourceLocation(name), AltarType.valueOf(altarType.toUpperCase()), duration, starlightRequired, builder.build());
-                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/integration/crt/AltarManager.java:75: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-        final SimpleAltarRecipe recipe = new SimpleAltarRecipe(new ResourceLocation(name), AltarType.valueOf(altarType.toUpperCase()), duration, starlightRequired, builder.build());
-                                                               ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/integration/IntegrationCurios.java:18: warning: [removal] SlotTypeMessage in top.theillusivec4.curios.api has been deprecated and marked for removal
-        InterModComms.sendTo(Mods.CURIOS.getModId(), SlotTypeMessage.REGISTER_TYPE,
-                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/integration/IntegrationCurios.java:19: warning: [removal] SlotTypePreset in top.theillusivec4.curios.api has been deprecated and marked for removal
-            () -> SlotTypePreset.NECKLACE.getMessageBuilder().build());
-                  ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/integration/IntegrationCurios.java:19: warning: [removal] getMessageBuilder() in SlotTypePreset has been deprecated and marked for removal
-            () -> SlotTypePreset.NECKLACE.getMessageBuilder().build());
-                                         ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/integration/IntegrationCurios.java:19: warning: [removal] build() in Builder has been deprecated and marked for removal
-            () -> SlotTypePreset.NECKLACE.getMessageBuilder().build());
-                                                             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/advancement/instance/AltarRecipeInstance.java:99: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-            instance.recipeNames.add(new ResourceLocation(key));
-                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/advancement/instance/ConstellationInstance.java:95: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-            final IConstellation cst = (IConstellation)RegistriesAS.REGISTRY_CONSTELLATIONS.getValue(new ResourceLocation(key));
-                                                                                                     ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/advancement/DiscoverConstellationTrigger.java:31: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
-        ID = new ResourceLocation("astralsorcery", "find_constellation");
-             ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/base/Mods.java:41: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
-    public ResourceLocation key(String path) { return new ResourceLocation(this.getModId(), path); }
-                                                      ^
-/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/tile/TileFountain.java:251: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
-            final ResourceLocation key = new ResourceLocation(compound.getString("currentEffect"));
-                                         ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/block/BlockMatchInformation.java:100: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+        final ITag<Block> blockTag = (ITag<Block>)TagCollectionManager.func_242178_a().func_241835_a().func_199910_a(new ResourceLocation(object.get("tag").getAsString()));
+                                                                                                                     ^
+/home/runner/work/Magic/Magic/src/main/java/hellfirepvp/astralsorcery/common/util/block/BlockMatchInformation.java:131: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+                final ITag<Block> blockTag = (ITag<Block>)TagCollectionManager.func_242178_a().func_241835_a().func_199910_a(new ResourceLocation(tagName));
+                                                                                                                             ^
 Note: Some input files use or override a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
 Note: Some input files use unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
 Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
 100 errors
-69 warnings
-only showing the first 100 errors, of 7170 total; use -Xmaxerrs if you would like to see more
+50 warnings
+only showing the first 100 errors, of 3855 total; use -Xmaxerrs if you would like to see more
 
 > Task :compileJava FAILED
 
@@ -376,35 +434,6 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':compile
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:463)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:380)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:116)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:138)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:123)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:51)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:177)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:44)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:177)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:264)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:80)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Compilation failed; see the compiler error output for details.
@@ -557,35 +586,6 @@ Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Com
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:463)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:380)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:116)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:138)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:123)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:51)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:177)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:44)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:177)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:264)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:80)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 
@@ -596,5 +596,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 2m 33s
+BUILD FAILED in 13m 25s
 4 actionable tasks: 4 executed
