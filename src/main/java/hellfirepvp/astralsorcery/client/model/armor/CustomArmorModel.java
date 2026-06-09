@@ -1,7 +1,7 @@
 package hellfirepvp.astralsorcery.client.model.armor;
 
 import net.minecraft.world.entity.Entity;
-import net.minecraft.client.resources.model.ModelRenderer;
+import net.minecraft.client.resources.model.ModelPart;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.LivingEntity;
@@ -43,7 +43,7 @@ public class CustomArmorModel<T extends LivingEntity> extends HumanoidModel<T>
         }
     }
     
-    protected void setRotateAngle(final ModelRenderer modelPart, final float x, final float y, final float z) {
+    protected void setRotateAngle(final ModelPart modelPart, final float x, final float y, final float z) {
         modelPart.field_78795_f = x;
         modelPart.field_78796_g = y;
         modelPart.field_78808_h = z;

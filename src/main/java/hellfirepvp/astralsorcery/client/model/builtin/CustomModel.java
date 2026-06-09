@@ -1,6 +1,6 @@
 package hellfirepvp.astralsorcery.client.model.builtin;
 
-import net.minecraft.client.resources.model.ModelRenderer;
+import net.minecraft.client.resources.model.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.texture.TextureAtlas;
@@ -23,7 +23,7 @@ public abstract class CustomModel extends Model
         this.func_225598_a_(matrixStackIn, buffer.getBuffer(this.getGeneralType()), packedLightIn, packedOverlayIn, 1.0f, 1.0f, 1.0f, 1.0f);
     }
     
-    protected void setRotateAngle(final ModelRenderer modelPart, final float x, final float y, final float z) {
+    protected void setRotateAngle(final ModelPart modelPart, final float x, final float y, final float z) {
         modelPart.field_78795_f = x;
         modelPart.field_78796_g = y;
         modelPart.field_78808_h = z;

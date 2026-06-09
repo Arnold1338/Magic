@@ -4,22 +4,22 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.model.Model;
+import net.minecraft.client.model.Model;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
-import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.model.geom.ModelPart;
 
 public class ModelAttunementAltar extends CustomModel
 {
-    private final ModelRenderer base;
-    private final ModelRenderer hovering;
+    private final ModelPart base;
+    private final ModelPart hovering;
     
     public ModelAttunementAltar() {
         super(resKey -> RenderTypesAS.MODEL_ATTUNEMENT_ALTAR);
         this.field_78090_t = 128;
         this.field_78089_u = 32;
-        (this.base = new ModelRenderer((Model)this, 0, 0)).func_78793_a(0.0f, 16.0f, 0.0f);
+        (this.base = new ModelPart((Model)this, 0, 0)).func_78793_a(0.0f, 16.0f, 0.0f);
         this.base.func_228301_a_(-10.0f, -14.0f, -10.0f, 20.0f, 6.0f, 20.0f, 0.0f);
-        (this.hovering = new ModelRenderer((Model)this, 0, 0)).func_78793_a(-2.0f, -16.0f, -2.0f);
+        (this.hovering = new ModelPart((Model)this, 0, 0)).func_78793_a(-2.0f, -16.0f, -2.0f);
         this.hovering.func_228301_a_(0.0f, 0.0f, 0.0f, 4.0f, 4.0f, 4.0f, 0.0f);
     }
     
